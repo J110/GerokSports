@@ -1,0 +1,270 @@
+{
+  "summary": {
+    "frames": 10,
+    "together_avg_latency": 3.51,
+    "groq_avg_latency": 0.74,
+    "together_accuracy": "21/70",
+    "groq_accuracy": "42/70",
+    "speed_ratio": 4.7
+  },
+  "frames": [
+    {
+      "frame": "f1.jpg",
+      "together": {
+        "latency": 7.32,
+        "score": 5,
+        "found": [
+          "type:GRAPHIC",
+          "score:76-1",
+          "overs:8.0",
+          "players:RUTURAJ",
+          "team:yes"
+        ],
+        "text": "GRAPHIC\n\nCRITICAL \u2014 TWO SOURCES OF DATA ON SCREEN:\n\n1. LIVE SCOREBOARD STRIP (bottom bar, always present during play):\n   Top line: RCB 76-1 (8.0)\n   Bottom line: KLAASEN 9(14), RUTURAJ 10(10), BOWLER: KHAN 1-0-10-0\n\n2. INFO/CAREER PANEL (rotating overlay, appears above or beside strip):\n   INFO_PAN",
+        "full_text": "GRAPHIC\n\nCRITICAL \u2014 TWO SOURCES OF DATA ON SCREEN:\n\n1. LIVE SCOREBOARD STRIP (bottom bar, always present during play):\n   Top line: RCB 76-1 (8.0)\n   Bottom line: KLAASEN 9(14), RUTURAJ 10(10), BOWLER: KHAN 1-0-10-0\n\n2. INFO/CAREER PANEL (rotating overlay, appears above or beside strip):\n   INFO_PANEL: IPL CAREER\n\nBOWLING SPEED: Not visible.\n\nEXTRAS: Not visible.\n\nTHIS OVER: Not visible.\n\nFULL SCORECARD GRAPHIC (overlay filling the screen):\n   TEAM: CHENNAI SUPER KINGS\n   BATTERS:\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0\n   - KHAN: 1-0-10-0"
+      },
+      "groq": {
+        "latency": 1.27,
+        "score": 7,
+        "found": [
+          "type:GRAPHIC",
+          "score:76-1",
+          "overs:6.0",
+          "players:KHALEEL,HENRY,NOOR,KAMBOJ",
+          "bowler:yes",
+          "team:yes"
+        ],
+        "text": "GRAPHIC \u2014 \n\n**Chennai Super Kings Bowling Scorecard:**\n\n* KHALEEL: 3 Overs, 8 Dots, 18 Runs, 0 Wickets, 6.00 Economy\n* HENRY: 2 Overs, 1 Dot, 22 Runs, 0 Wickets, 11.00 Economy\n* KAMBOJ: 2 Overs, 3 Dots, 25 Runs, 1 Wicket, 12.50 Economy\n* NOOR: 1 Over, 1 Dot, 10 Runs, 0 Wickets, 10.00 Economy\n\n**Impa",
+        "full_text": "GRAPHIC \u2014 \n\n**Chennai Super Kings Bowling Scorecard:**\n\n* KHALEEL: 3 Overs, 8 Dots, 18 Runs, 0 Wickets, 6.00 Economy\n* HENRY: 2 Overs, 1 Dot, 22 Runs, 0 Wickets, 11.00 Economy\n* KAMBOJ: 2 Overs, 3 Dots, 25 Runs, 1 Wicket, 12.50 Economy\n* NOOR: 1 Over, 1 Dot, 10 Runs, 0 Wickets, 10.00 Economy\n\n**Impact Sub Options:**\n* MATTHEW SHORT\n* KARTIK SHARMA\n* RAMAKRISHNA GHOSH\n* AKEAL HOSEIN\n* GURJAPNEET SINGH\n\n**Fall of Wickets:**\n* 1st: 37\n\n**Extras:** 2\n\n**Overs:** 8\n\n**Total:** 76-1\n\nThe rest of the frame shows a live cricket broadcast with a dark background and a blurred crowd in the background. There are no clear visuals of a delivery being bowled, a shot being played, or a batter running between wickets. The focus is on the scorecard and the Impact Sub Options."
+      },
+      "winner": "Groq"
+    },
+    {
+      "frame": "f2.jpg",
+      "together": {
+        "latency": 10.4,
+        "score": 4,
+        "found": [
+          "type:GRAPHIC",
+          "score:76-1",
+          "overs:8.0",
+          "team:yes"
+        ],
+        "text": "GRAPHIC\n\nCRITICAL \u2014 TWO SOURCES OF DATA ON SCREEN:\n\n1. LIVE SCOREBOARD STRIP (bottom bar, always present during play):\n   Top line: RCB 76-1 (8.0)\n   Bottom line: KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN ",
+        "full_text": "GRAPHIC\n\nCRITICAL \u2014 TWO SOURCES OF DATA ON SCREEN:\n\n1. LIVE SCOREBOARD STRIP (bottom bar, always present during play):\n   Top line: RCB 76-1 (8.0)\n   Bottom line: KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18(3), KHAN 18("
+      },
+      "groq": {
+        "latency": 0.88,
+        "score": 7,
+        "found": [
+          "type:SCOREBOARD",
+          "score:76-1",
+          "overs:6.0",
+          "players:HENRY,NOOR,KAMBOJ",
+          "bowler:yes",
+          "team:yes"
+        ],
+        "text": "SCOREBOARD \u2014 \nThe bottom scoreboard strip information is partially not visible; however, it says: \nCHENNAI SUPER KINGS \nThe visible data includes bowling: \n- KHALIL 3 Overs, 18 Runs, 0 Wickets, Economy 6.00 \n- HENRY 2 Overs, 22 Runs, 0 Wickets, Economy 11.00\n- KAMBOJ 2 Overs, 25 Runs, 0 Wickets, Eco",
+        "full_text": "SCOREBOARD \u2014 \nThe bottom scoreboard strip information is partially not visible; however, it says: \nCHENNAI SUPER KINGS \nThe visible data includes bowling: \n- KHALIL 3 Overs, 18 Runs, 0 Wickets, Economy 6.00 \n- HENRY 2 Overs, 22 Runs, 0 Wickets, Economy 11.00\n- KAMBOJ 2 Overs, 25 Runs, 0 Wickets, Economy 12.50\n- NOOR 1 Overs, 10 Runs, 0 Wickets, Economy 10.00\n\nThe rest of the frame shows a full-screen overlay with Chennai Super Kings' batting scorecard:\n- The score is 76-1 after 8 overs.\n- The Impact Sub Options are listed on the right side.\n\nNo delivery is being bowled in the current frame; however, it seems to be a live broadcast, likely during a break in play."
+      },
+      "winner": "Groq"
+    },
+    {
+      "frame": "f3.jpg",
+      "together": {
+        "latency": 1.21,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.8,
+        "score": 7,
+        "found": [
+          "type:SCOREBOARD",
+          "score:76/1",
+          "overs:8.0",
+          "players:PADIKKAL,NOOR,SALT",
+          "bowler:yes",
+          "team:yes"
+        ],
+        "text": "SCOREBOARD \u2014 \nRCB 76/1 (8.0 overs, RR: 9.5)\n*Phil Salt 41(24)\nPadikkal 5(6)\nNoor Ahmad 1.0 - 0 - 10 - 0 \nTHIS OVER: Not shown\nINFO_PANEL: Not shown\nThe rest of the frame shows a packed stadium with a large screen displaying an ad for CEAT tires. The crowd is watching the game intently. A fielder can",
+        "full_text": "SCOREBOARD \u2014 \nRCB 76/1 (8.0 overs, RR: 9.5)\n*Phil Salt 41(24)\nPadikkal 5(6)\nNoor Ahmad 1.0 - 0 - 10 - 0 \nTHIS OVER: Not shown\nINFO_PANEL: Not shown\nThe rest of the frame shows a packed stadium with a large screen displaying an ad for CEAT tires. The crowd is watching the game intently. A fielder can be seen in the background. No delivery is being bowled currently. The focus is on the scoreboard and the ad."
+      },
+      "winner": "Groq"
+    },
+    {
+      "frame": "f4.jpg",
+      "together": {
+        "latency": 0.97,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.85,
+        "score": 7,
+        "found": [
+          "type:SCOREBOARD",
+          "score:76/1",
+          "overs:8.0",
+          "players:PADIKKAL,NOOR,SALT",
+          "bowler:yes",
+          "team:yes"
+        ],
+        "text": "SCOREBOARD \u2014 \nRCB 76/1 (8.0 overs)\n* PHIL SALT 41(24)\nPADIKKAL 5(6)\nNOOR AHMAD 1.0-0-10-0\nThe rest of the frame shows a large screen displaying an advertisement for CEAT tires, with a crowd of spectators in the background. The stadium appears to be filled with people, and there are several banners a",
+        "full_text": "SCOREBOARD \u2014 \nRCB 76/1 (8.0 overs)\n* PHIL SALT 41(24)\nPADIKKAL 5(6)\nNOOR AHMAD 1.0-0-10-0\nThe rest of the frame shows a large screen displaying an advertisement for CEAT tires, with a crowd of spectators in the background. The stadium appears to be filled with people, and there are several banners and signs visible, including one that reads \"TATA INDIAN PREMIER LEAGUE 2026\" and another that says \"BENGALURU\". A timer on the screen reads \"00:03\" and appears to be counting down for a strategic timeout."
+      },
+      "winner": "Groq"
+    },
+    {
+      "frame": "f5.jpg",
+      "together": {
+        "latency": 1.07,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.83,
+        "score": 7,
+        "found": [
+          "type:SCOREBOARD",
+          "score:76/1",
+          "overs:8.0",
+          "players:OVERTON,PADIKKAL,SALT",
+          "bowler:yes",
+          "team:yes"
+        ],
+        "text": "SCOREBOARD \u2014 \n\nThe scoreboard shows:\n- Top line: RCB, 76/1, 8.0 overs\n- Bottom line (partially visible): PHIL SALT 41(24), *PADIKKAL 5(6), JAMIE OVERTON 0.0-0-0-0\n\nThe rest of the frame shows a large screen displaying a CEAT advertisement with a car wheel and the text \"CEAT STRATEGIC TIMEOUT\" and \"B",
+        "full_text": "SCOREBOARD \u2014 \n\nThe scoreboard shows:\n- Top line: RCB, 76/1, 8.0 overs\n- Bottom line (partially visible): PHIL SALT 41(24), *PADIKKAL 5(6), JAMIE OVERTON 0.0-0-0-0\n\nThe rest of the frame shows a large screen displaying a CEAT advertisement with a car wheel and the text \"CEAT STRATEGIC TIMEOUT\" and \"BUILT FOR GRIP\". The background is a blue wall with the TATA IPL logo and a crowd of people. There are no visible deliveries being bowled, shots played, or batters running between wickets. The atmosphere seems to be a strategic timeout during the match."
+      },
+      "winner": "Groq"
+    },
+    {
+      "frame": "f6.jpg",
+      "together": {
+        "latency": 1.1,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.46,
+        "score": 1,
+        "found": [
+          "type:CLOSEUP"
+        ],
+        "text": "CLOSEUP",
+        "full_text": "CLOSEUP"
+      },
+      "winner": "Tie \u2192 Groq faster"
+    },
+    {
+      "frame": "f7.jpg",
+      "together": {
+        "latency": 1.2,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.38,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "winner": "Tie \u2192 Groq faster"
+    },
+    {
+      "frame": "f8.jpg",
+      "together": {
+        "latency": 1.31,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.65,
+        "score": 1,
+        "found": [
+          "type:CLOSEUP"
+        ],
+        "text": "CLOSEUP \u2014 A man in a brown jersey with \"Qatar Airways\" on it covers his mouth with his hands, while another man in a blue jersey with \"Rich\" on it waves a blue flag. A fielder at deep cover is visible in the background.",
+        "full_text": "CLOSEUP \u2014 A man in a brown jersey with \"Qatar Airways\" on it covers his mouth with his hands, while another man in a blue jersey with \"Rich\" on it waves a blue flag. A fielder at deep cover is visible in the background."
+      },
+      "winner": "Tie \u2192 Groq faster"
+    },
+    {
+      "frame": "f9.jpg",
+      "together": {
+        "latency": 6.04,
+        "score": 3,
+        "found": [
+          "type:GRAPHIC",
+          "overs:9.0",
+          "players:OVERTON"
+        ],
+        "text": "GRAPHIC\n\nLIVE SCOREBOARD STRIP: Not visible.\n\nINFO_PANEL: JAMIE OVERTON T20 CAREER\nMATCHES 200\nWICKETS 156\nECONOMY 9.0\n\nREST OF FRAME: Jamie Overton (in light blue jersey with \"ETIHAD AIRWAYS\" and \"ASHOK LEYLAND\" logos) is in the act of bowling, with the ball visible in mid-air. He is facing a field",
+        "full_text": "GRAPHIC\n\nLIVE SCOREBOARD STRIP: Not visible.\n\nINFO_PANEL: JAMIE OVERTON T20 CAREER\nMATCHES 200\nWICKETS 156\nECONOMY 9.0\n\nREST OF FRAME: Jamie Overton (in light blue jersey with \"ETIHAD AIRWAYS\" and \"ASHOK LEYLAND\" logos) is in the act of bowling, with the ball visible in mid-air. He is facing a fielder in a brown jersey with \"WONDER CEMENT\" and \"TATA IPL\" logos, who is standing in the foreground. The fielder is wearing a cap and sunglasses. The background is dark, suggesting a night match. No other fielders are clearly visible in the background."
+      },
+      "groq": {
+        "latency": 0.61,
+        "score": 1,
+        "found": [
+          "type:CLOSEUP"
+        ],
+        "text": "CLOSEUP \u2014 Two men are visible; one wearing a brown cap and sunglasses with a brown shirt and the other behind him in a teal shirt. A field is not visible but the image implies a cricket event.",
+        "full_text": "CLOSEUP \u2014 Two men are visible; one wearing a brown cap and sunglasses with a brown shirt and the other behind him in a teal shirt. A field is not visible but the image implies a cricket event."
+      },
+      "winner": "Together"
+    },
+    {
+      "frame": "f10.jpg",
+      "together": {
+        "latency": 4.48,
+        "score": 3,
+        "found": [
+          "type:GRAPHIC",
+          "players:OVERTON",
+          "team:yes"
+        ],
+        "text": "GRAPHIC\n\nCRITICAL \u2014 TWO SOURCES OF DATA ON SCREEN:\n\n1. LIVE SCOREBOARD STRIP (bottom bar, always present during play): Not visible.\n\n2. INFO/CAREER PANEL (rotating overlay, appears above or beside strip): INFO_PANEL: JAMIE OVERTON T20 CAREER\n\nREST OF FRAME: Jamie Overton, wearing a light blue RCB je",
+        "full_text": "GRAPHIC\n\nCRITICAL \u2014 TWO SOURCES OF DATA ON SCREEN:\n\n1. LIVE SCOREBOARD STRIP (bottom bar, always present during play): Not visible.\n\n2. INFO/CAREER PANEL (rotating overlay, appears above or beside strip): INFO_PANEL: JAMIE OVERTON T20 CAREER\n\nREST OF FRAME: Jamie Overton, wearing a light blue RCB jersey with \"ETIHAD AIRWAYS\" and \"ASHOK LEYLAND\" logos, is visible. He is gesturing with his right hand, thumb up. To his right, a fielder in a dark brown CSK jersey with \"WONDER CEMENT\" and \"IPL\" logos is partially visible, wearing a cap and sunglasses. The background is dark, suggesting a night match. No delivery is being bowled, no shot is being played, and no fielder is diving or celebrating. The frame appears to be a static shot of the players during a break in play."
+      },
+      "groq": {
+        "latency": 0.68,
+        "score": 3,
+        "found": [
+          "type:GRAPHIC",
+          "overs:9.0",
+          "players:OVERTON"
+        ],
+        "text": "GRAPHIC \n\nThe image shows a graphic with information about Jamie Overton's T20 career: \nINFO_PANEL: \nMatches: 200 \nWickets: 156 \nEconomy: 9.0 \n\nThe image also shows two men. One man on the left is wearing a light blue jersey. There is a man on the right wearing a brown cap and a black and blue jerse",
+        "full_text": "GRAPHIC \n\nThe image shows a graphic with information about Jamie Overton's T20 career: \nINFO_PANEL: \nMatches: 200 \nWickets: 156 \nEconomy: 9.0 \n\nThe image also shows two men. One man on the left is wearing a light blue jersey. There is a man on the right wearing a brown cap and a black and blue jersey. A fielder is visible in the background."
+      },
+      "winner": "Tie \u2192 Groq faster"
+    }
+  ]
+}

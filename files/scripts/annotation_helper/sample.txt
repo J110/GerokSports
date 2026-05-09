@@ -1,0 +1,38 @@
+# Stratified sample n=30 seed=42 session=20260430_195352
+# MULTI_BALL-adjacent: next SCOREBOARD DETAIL after ball_event=MULTI_BALL (6 in log; F5240→next valid DETAIL ambiguous — using 5 mapped: d010,d037,d102,d104,d105)
+# d010: after F273 MULTI → F282 1_RUNS 6.4 inn1
+# d037: after F986 MULTI → F990 DOT 11.4 inn1
+# d102: after F3021 MULTI → F3086 DOT 3.1 inn2
+# d104: after F3155 MULTI → F3176 DOT 3.5 inn2
+# d105: after F3346 MULTI → F3348 1_RUNS 5.1 inn2
+
+d010	fallback_pre_event_window
+d037	fallback_pre_event_window
+d102	fallback_pre_event_window
+d104	fallback_pre_event_window
+d105	fallback_pre_event_window
+d097	retrospective_span
+d100	retrospective_span
+d114	retrospective_span
+d195	retrospective_span
+d205	retrospective_span
+d007	fallback_pre_event_window
+d008	fallback_pre_event_window
+d009	fallback_pre_event_window
+d024	fallback_pre_event_window
+d025	fallback_pre_event_window
+d028	fallback_pre_event_window
+d038	fallback_pre_event_window
+d053	fallback_pre_event_window
+d058	fallback_pre_event_window
+d060	fallback_pre_event_window
+d062	fallback_pre_event_window
+d118	fallback_pre_event_window
+d141	fallback_pre_event_window
+d151	fallback_pre_event_window
+d155	fallback_pre_event_window
+d163	fallback_pre_event_window
+d166	fallback_pre_event_window
+d185	fallback_pre_event_window
+d202	fallback_pre_event_window
+d203	fallback_pre_event_window

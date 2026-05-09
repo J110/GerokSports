@@ -1,0 +1,56 @@
+[
+  {
+    "clip": "ball_test_clip_30fps.mp4",
+    "wall_ms": 8035,
+    "raw": "```json\n{\n  \"is_valid_delivery\": true,\n  \"bowling_angle\": \"over\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot_side\": \"off\",\n  \"shot_angle\": \"behind_wicket\",\n  \"elevation\": \"along_ground\",\n  \"shot_type\": \"defend\",\n  \"bowler_speed_kph\": null,\n  \"narrative\": \"The bowler bowls a good length delivery outside the off stump. The right-handed batter plays a defensive shot, pushing the ball along the ground towards the off-side, behind square.\",\n  \"confidence\": \"high\"\n}\n```",
+    "parsed": {
+      "is_valid_delivery": true,
+      "bowling_angle": "over",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot_side": "off",
+      "shot_angle": "behind_wicket",
+      "elevation": "along_ground",
+      "shot_type": "defend",
+      "bowler_speed_kph": null,
+      "narrative": "The bowler bowls a good length delivery outside the off stump. The right-handed batter plays a defensive shot, pushing the ball along the ground towards the off-side, behind square.",
+      "confidence": "high"
+    }
+  },
+  {
+    "clip": "ball_test_clip_60fps.mp4",
+    "wall_ms": 11730,
+    "raw": "```json\n{\n  \"is_valid_delivery\": true,\n  \"bowling_angle\": \"over\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot_side\": \"off\",\n  \"shot_angle\": \"behind_wicket\",\n  \"elevation\": \"along_ground\",\n  \"shot_type\": \"cut\",\n  \"bowler_speed_kph\": 146,\n  \"narrative\": \"Alzarri Joseph bowls a good length delivery outside off stump at 146 KPH. The batsman, Shreyas Iyer, plays a controlled late cut, guiding the ball along the ground behind square on the off side.\",\n  \"confidence\": \"high\"\n}\n```",
+    "parsed": {
+      "is_valid_delivery": true,
+      "bowling_angle": "over",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot_side": "off",
+      "shot_angle": "behind_wicket",
+      "elevation": "along_ground",
+      "shot_type": "cut",
+      "bowler_speed_kph": 146,
+      "narrative": "Alzarri Joseph bowls a good length delivery outside off stump at 146 KPH. The batsman, Shreyas Iyer, plays a controlled late cut, guiding the ball along the ground behind square on the off side.",
+      "confidence": "high"
+    }
+  },
+  {
+    "clip": "ball_test_clip_60fps_long.mp4",
+    "wall_ms": 18624,
+    "raw": "```json\n{\n  \"is_valid_delivery\": true,\n  \"bowling_angle\": \"over\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot_side\": \"off\",\n  \"shot_angle\": \"mid\",\n  \"elevation\": \"along_ground\",\n  \"shot_type\": \"drive\",\n  \"bowler_speed_kph\": 137,\n  \"narrative\": \"Alzarri Joseph bowls a good length delivery outside the off-stump at 137 KPH. Hardik Pant plays a front-foot drive, pushing the ball along the ground towards the mid-off region.\",\n  \"confidence\": \"high\"\n}\n```",
+    "parsed": {
+      "is_valid_delivery": true,
+      "bowling_angle": "over",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot_side": "off",
+      "shot_angle": "mid",
+      "elevation": "along_ground",
+      "shot_type": "drive",
+      "bowler_speed_kph": 137,
+      "narrative": "Alzarri Joseph bowls a good length delivery outside the off-stump at 137 KPH. Hardik Pant plays a front-foot drive, pushing the ball along the ground towards the mid-off region.",
+      "confidence": "high"
+    }
+  }
+]

@@ -1,0 +1,616 @@
+"""Vision — Single-provider Scout 17B cricket stream watcher.
+
+Scout 17B (Groq): ONE call does tag + read.
+  max_tokens=600, ~1.0s, $0.09/match.
+  Outputs a 3-boolean classification line, then reads the strip.
+
+Returns (frame_type, description, action_description).
+"""
+from __future__ import annotations
+
+import asyncio
+import base64
+import json
+import re
+import time
+
+import cv2
+import numpy as np
+from groq import AsyncGroq
+
+from eyes.config import GROQ_API_KEY, GROQ_PRIMARY_MODEL
+from eyes.cricket_logger import CricketLogger
+
+log = CricketLogger("VISION")
+
+VALID_FRAME_TYPES = {
+    "SCOREBOARD", "GRAPHIC", "CLOSEUP", "ADVERTISEMENT", "PREMATCH",
+}
+
+_SCOUT_TIMEOUT = 5.0
+
+# Fix #4 (2026-04-23): template-placeholder guard.
+# Scout's vision endpoint occasionally regurgitates the prompt
+# template verbatim — returning literal bracketed tokens like
+# "STRIP: [TEAM] [SCORE]-[WICKETS] ([OVERS]) | [BATTER1] ..."
+# instead of extracting real values from the broadcast.  When that
+# happens downstream parsers see "0-0" and template names, which
+# poisons the scorecard with null fields and corrupted state.
+#
+# Defense: after Scout returns, scan the description + action for
+# any of these bracketed markers.  If found, treat the frame as
+# UNKNOWN (skip downstream processing) and bump the rejection
+# counter for monitoring.  Grep pattern: `[SCOUT-REJECT]`.
+_TEMPLATE_MARKERS = re.compile(
+    r"\[(?:RUNS|BALLS|W|R|OVERS|SCORE|WICKETS|SR|WKT|"
+    r"NAME|TEAM|BATTER\d*|BOWLER)\]",
+    re.IGNORECASE,
+)
+
+# ── Combined tag + read prompt ──────────────────────────────────────
+# 2026-04-19: extended the JSON tag with `frame_phase` and
+# `ball_position` fields.  Validation on 115 frames from 31 prior
+# confirmed deliveries:
+#   * 100% of deliveries get >= 1 release/flight/shot frame
+#   * 90% strip-parse rate (vs ~97% prior — within bounds)
+#   * Avg latency 808 ms (no regression vs 1.0 s baseline)
+# `frame_phase` lets `analyze_last_delivery` sample the moment of
+# action (release / flight / shot) instead of the post-delivery
+# camera dwell that biased the prior selection.
+#
+# 2026-04-24 (Part B, V5): STEP 1 rewritten from a single-example
+# anchor to three balanced examples (bowlers_end / closeup / graphic)
+# with an explicit "DO NOT copy the values" instruction.  Shadow run
+# (41 frames × 7 variants × 3 reps = 861 calls) showed:
+#   * Rulebook-only variants (V1–V3) did NOT shift bowlers_end
+#     precision (15.2% baseline → ±1pp across variants).  Scout was
+#     copying the STEP 1 example line byte-identically and ignoring
+#     the rulebook below.
+#   * V4 diagnostic (swap example camera_view "bowlers_end" → "other",
+#     single-character change, rulebook unchanged) caused Scout to
+#     emit "other" on 36/41 frames — proving the example block is the
+#     dominant control surface for camera_view output.
+#   * V5 (this prompt — three balanced examples + hardened rulebook
+#     for bowlers_end / release / flight / shot / closeup) doubled
+#     bowlers_end strict precision from 15.2% to 31.2% with 7 truth-
+#     improving shifts, 0 regressions, and 100% recall preserved on
+#     all 5 human-labeled bowlers_end frames.
+# Updated 2026-05-02 per files/docs/investigations/
+# strip_ocr_failure_mode_analysis.md §5 item 1:
+#   - team=null when strip shows flag/logo only (stops IPL/CPL prior
+#     hallucinations: KKR, RCB, MI, LSG, LIONS, etc.)
+#   - overs=null when no X.Y over counter on strip (stops stealing a
+#     digit from score, SR, or partnership)
+#   - replaced KKR numeric example with a null-using example (examples
+#     are priors — concrete team abbreviations get regurgitated).
+# The ≥90% precision target is NOT met — remaining FPs are geometric
+# ambiguity cases the model cannot resolve without either a stronger
+# vision model, a post-hoc verification call, or temperature>0
+# ensembling.  See docs/scout_shadow_run_v1_analysis.md,
+# docs/scout_corpus_v1.json, docs/scout_labeling_rubric_v1.md.
+SCOUT_PROMPT = """\
+You are reading a live IPL cricket broadcast frame.
+
+STEP 1 — CLASSIFY. Output one JSON object on the FIRST line, nothing \
+before it.  Pick `camera_view` and `frame_phase` from the enums below \
+by looking at the ACTUAL frame.  Example JSON shapes for three \
+common broadcast contexts (these are format guides — DO NOT copy the \
+values, pick the value that matches the frame):
+
+- During a delivery (camera behind bowler, pitch extends away): \
+{{"has_strip": true, "has_overlay_stats": false, "drs_review": false, \
+"camera_view": "bowlers_end", "frame_phase": "release", \
+"ball_position": null}}
+- During a player closeup (face/body fills frame): \
+{{"has_strip": true, "has_overlay_stats": false, "drs_review": false, \
+"camera_view": "closeup", "frame_phase": "between_play", \
+"ball_position": null}}
+- During a full-screen broadcaster graphic (scorecard, partnership): \
+{{"has_strip": false, "has_overlay_stats": true, "drs_review": false, \
+"camera_view": "graphic", "frame_phase": "graphic", \
+"ball_position": null}}
+
+has_strip: Is the team score strip visible at the bottom?
+has_overlay_stats: Are career/tournament/head-to-head stats shown as an \
+OVERLAY on top of the live feed? (NOT the regular scoreboard strip)
+drs_review: Is a DRS review decision being shown?
+
+camera_view: ONE of these exact strings, describing the camera angle:
+  - "bowlers_end": the standard wide shot down the pitch from BEHIND \
+    the bowler.  REQUIRED: the pitch extends away from the camera \
+    toward the far stumps.  The bowler or the batter (or both) is \
+    typically visible — the bowler at or near the foreground, the \
+    batter at the far crease (often small, in the upper half of the \
+    frame).  If the camera is square to the pitch from the sideline \
+    (third-man, fine-leg, square-leg), this is "side_on", not \
+    "bowlers_end".  This is the only camera where a legal ball can \
+    be delivered on-screen.
+  - "side_on": square / side-on field camera (e.g. third-man or fine-\
+    leg angle on a boundary chase).
+  - "closeup": a player's face or upper body fills a substantial \
+    portion of the frame (batter at the non-striker's end, bowler \
+    walking back, fielder reaction, captain directing, coach, crowd \
+    individual).  Use this tag whenever face/body is the visual \
+    subject, EVEN IF the pitch, stumps, or fielders are partly \
+    visible in the background.  A frame where the pitch does NOT \
+    extend away from the camera toward the far stumps is almost \
+    always closeup, not bowlers_end.
+  - "replay": clearly a replay or slow-motion of an earlier moment \
+    (replay logo, slow-mo motion blur, "REPLAY" badge).
+  - "graphic": full-screen broadcaster graphic (full scorecard, \
+    partnership graphic, statistical overlay, sponsor card).
+  - "ad": commercial / advertisement break.
+  - "other": pre-match presenter, post-match presentation, drinks \
+    break, anything else.
+
+frame_phase: ONE of these exact strings, describing the MOMENT of the \
+delivery this frame shows.  Use the visual signature, not your guess:
+  - "runup": Camera behind the bowler looking down the pitch.  The \
+    bowler is walking or running toward the crease.  The ball is in \
+    the bowler's hand.  The batter is at the far crease, often \
+    taking guard.
+  - "release": Camera BEHIND the bowler looking down the pitch.  \
+    REQUIRED: the pitch extends away from the camera AND the bowler \
+    is in delivery stride (front foot landing, arm coming through, \
+    or arm at the top of the action).  The batter should be visible \
+    at the far crease, though may be partially occluded by umpire or \
+    non-striker.  If the bowler is not visible at all (full closeup \
+    of the batter, umpire, fielder, or a replay), this is NOT \
+    release.
+  - "flight": Camera BEHIND the bowler looking down the pitch.  \
+    REQUIRED: the pitch extends away from the camera AND the ball \
+    has left the bowler's hand (the bowler is typically in follow-\
+    through or has just exited the frame).  The batter should be \
+    visible at the far crease preparing to play, though may be \
+    partially occluded.  If the camera is not looking down the pitch \
+    from behind the bowler's end, this is NOT flight.
+  - "shot": Camera BEHIND the bowler (or a tight over-the-shoulder \
+    angle from behind the stumps).  REQUIRED: the pitch extends away \
+    from the camera AND the bat is in motion through the shot or \
+    just after contact.  A batter close-up without the pitch \
+    extending away is NOT "shot" — it is "closeup" or "post_shot".
+  - "post_shot": The shot has been played.  Camera may still be on \
+    bowler's end briefly, or has just cut to follow the ball.  The \
+    batter has completed the shot motion.
+  - "fielder_reaction": Camera has cut to a fielder running after \
+    the ball, diving, catching, throwing, OR a celebration huddle \
+    around the stumps after a wicket.  The pitch is no longer the \
+    focus.
+  - "replay": Slow-motion replay, spider-cam, close-up of ball/bat \
+    contact, wagon wheel, hawkeye, stats overlay over live feed.
+  - "between_play": Cricket visible but no delivery happening.  \
+    Bowler walking back to mark, field change, drinks, batter \
+    signalling for new bat, umpire discussion.
+  - "graphic": Full-screen / near-full-screen broadcaster graphic.  \
+    Score summary, partnership stats, player profile, sponsor.
+  - "advertisement": Commercial break, no cricket content visible.
+  - "other": none of the above.
+
+ball_position: If you can clearly see the ball in flight as a small \
+white object between the bowler's end and the batter, give its \
+position as {{"x": 0.0..1.0, "y": 0.0..1.0}} where (0,0) is top-left.  \
+Only set this for "release", "flight", or "shot" phases.  Otherwise \
+return null.  Do NOT guess — if the ball is not clearly visible as a \
+small object in flight, return null.
+
+STEP 2 — READ THE STRIP (skip if has_strip is false).
+Output the strip data in this exact format (use the literal token null \
+in place of any field you cannot read from pixels — never invent text):
+STRIP: [team] [score]-[wickets] ([overs]) | extras=[number_or_null] | \
+this_over=[ball-by-ball symbols or brief text] | \
+[BATTER1] [RUNS]([BALLS]) | [BATTER2] [RUNS]([BALLS]) | \
+[BOWLER] [W]-[R] ([OVERS])
+
+Team token: If the batting side is shown only as a flag icon or logo \
+and there is NO team abbreviation text on the strip, emit team=null. \
+Do NOT guess from which teams might be playing. Common spurious \
+outputs to avoid: inferring KKR, RCB, MI, LSG, LIONS, Paarl, Blue \
+Waters, or any franchise abbreviation when the strip does not show \
+that text.
+
+Overs token: If the strip has no match-over counter in X.Y form (only \
+ball-by-ball dots such as THIS OVER ⊙⊙⊙ with no numeric over visible), \
+emit ([overs]) as (null). Do NOT take a digit from the team score \
+(e.g. the 9 in 9-0), from strike rate, required rate, partnership \
+totals, speed kph, or any adjacent panel.
+
+Example (format + nulls only — do not copy numbers from this line; \
+they illustrate shape only): \
+STRIP: null 47-3 (null) | extras=2 | this_over=⊙⊙. | Striker 20(18) | \
+NonStriker 5(7) | BowlerName 1-15 (3.2)
+
+STEP 3 — REPORT OVERLAYS (skip if nothing visible):
+INFO_PANEL: [career/tournament/head-to-head text]
+SPEED: [number] (bowling speed in kph)
+EXTRA: wide/no_ball/leg_bye/bye
+THIS OVER: [ball-by-ball results]
+FULL SCORECARD: [every batter/bowler row]
+
+STEP 4 — ACTION (1 sentence):
+What is happening? (delivery bowled, shot played, celebration, etc.)
+
+RULES:
+- JSON tag line MUST be first. Then strip. Then overlays. Then action.
+- Report exact numbers from the strip. Don't guess or infer — use \
+null tokens from STEP 2 when a field is absent on-screen rather than \
+filling from priors or neighbouring panels.
+- * or > prefix on batter name = striker.
+- If this is a pure ADVERTISEMENT with no strip: output the JSON with \
+all false, then say "ADVERTISEMENT" and stop.
+
+HINT FROM SCORER:
+{vision_hint}\
+"""
+
+
+class Vision:
+    """Scout does everything: tag + read in one call."""
+
+    # Allowed camera_view values — Scout occasionally returns close
+    # variants ("bowler_end", "wide_shot"); we normalise.
+    _CAMERA_VIEW_ALLOWED = {
+        "bowlers_end", "side_on", "closeup", "replay",
+        "graphic", "ad", "other",
+    }
+    # 2026-04-24 (Part B, V1): re-point wide_shot / wide to side_on.
+    # An elevated square/side shot with the pitch visible off-axis is
+    # a side_on frame in the consumer-aligned rubric (see rubric EC-6
+    # in docs/scout_labeling_rubric_v1.md) — DWR opening a delivery
+    # window on such a frame would expect pitch-receding geometry in
+    # subsequent frames and would cut a broken clip.  A3 audit of 5
+    # production sessions found zero emissions of "wide_shot" or
+    # "wide" from Scout, so this change is defensive hygiene with no
+    # observable traffic impact; it fires only if a future prompt
+    # revision or model upgrade causes Scout to emit these aliases.
+    _CAMERA_VIEW_ALIASES = {
+        "bowler_end": "bowlers_end", "bowlers": "bowlers_end",
+        "wide_shot": "side_on", "wide": "side_on",
+        "side": "side_on", "sideon": "side_on",
+        "close_up": "closeup", "close-up": "closeup",
+        "replay_slow_mo": "replay", "slow_mo": "replay",
+        "advertisement": "ad", "commercial": "ad",
+        "fullscreen_graphic": "graphic", "scorecard_graphic": "graphic",
+    }
+
+    # 2026-04-19: phase tag describes the MOMENT of the delivery.
+    # Used by BallAnalyzer to sample release / flight / shot frames
+    # for VLM classification — solves the post-action-dwell bias of
+    # the prior "last N bowlers_end frames" selection.
+    _FRAME_PHASE_ALLOWED = {
+        "runup", "release", "flight", "shot", "post_shot",
+        "fielder_reaction", "replay", "between_play", "graphic",
+        "advertisement", "other",
+    }
+    _FRAME_PHASE_ALIASES = {
+        "delivery_release": "release", "ball_release": "release",
+        "delivery_flight": "flight", "ball_flight": "flight",
+        "shot_played": "shot", "batting_shot": "shot",
+        "after_shot": "post_shot", "post-shot": "post_shot",
+        "fielding": "fielder_reaction", "fielder": "fielder_reaction",
+        "celebration": "fielder_reaction",
+        "ad": "advertisement", "commercial": "advertisement",
+        "between": "between_play", "no_play": "between_play",
+    }
+
+    def __init__(self):
+        self._groq = AsyncGroq(
+            api_key=GROQ_API_KEY, timeout=_SCOUT_TIMEOUT + 2)
+        self.last_drs_flag: bool = False
+        # Fix #4: cumulative count of frames where Scout returned a
+        # prompt-template placeholder response.  Surfaced for monitoring;
+        # rare (1-5/match) means the guard is doing its job silently,
+        # frequent (10+/match) signals a Scout reliability issue.
+        self.scout_template_rejection_count: int = 0
+        # Last camera_view tag (set after every describe() call).  Read
+        # by the main loop so the tag can be pushed into BallAnalyzer's
+        # tagged-frame buffer for delivery analysis.
+        self.last_camera_view: str | None = None
+        # Last frame_phase tag — drives `analyze_last_delivery`'s
+        # frame-selection so VLM classification sees release/flight/
+        # shot frames instead of post-action dwell.
+        self.last_frame_phase: str | None = None
+        # Last ball_position {"x": float, "y": float} or None.  Not
+        # used by capture pipeline yet; stored for future trajectory
+        # inference.
+        self.last_ball_position: dict | None = None
+        # Scout strip / overlay classifier outputs — surfaced for Thread 7
+        # Fix 2 (`cam=graphic` fast-path in test_pipeline). Reset defensively
+        # alongside ``last_camera_view`` when Scout fails or is rejected.
+        self.last_strip_flag: bool = False
+        self.last_overlay_flag: bool = False
+
+    async def describe(self, frame: np.ndarray,
+                       vision_hint: str | None = None,
+                       ) -> tuple[str, str, str | None]:
+        """Returns (frame_type, description, action_description).
+
+        Side-effect: sets ``self.last_camera_view`` to one of the
+        allowed camera_view tags (bowlers_end / side_on / closeup /
+        replay / graphic / ad / other) so the caller can stash the
+        frame in BallAnalyzer's tagged buffer for delivery analysis.
+        """
+        image_b64 = self._encode(frame)
+        hint = vision_hint or "None — first frame or no issues."
+        prompt = SCOUT_PROMPT.format(vision_hint=hint)
+
+        t0 = time.time()
+        raw = await self._scout_call(image_b64, prompt)
+        ms = (time.time() - t0) * 1000
+
+        if not raw:
+            log.info(f"[SCOUT] Empty response {ms:.0f}ms")
+            self.last_camera_view = None
+            self.last_strip_flag = False
+            self.last_overlay_flag = False
+            return ("UNKNOWN", "", None)
+
+        tag, frame_type = self._parse_tag(raw)
+        description, action_desc = self._split_output(raw, frame_type)
+
+        # Fix #4 (2026-04-23): template-placeholder guard.  If Scout
+        # echoed the prompt template instead of parsing the broadcast,
+        # reject the whole read — downstream parsers can't recover
+        # from literal "[RUNS]" / "[BATTER1]" tokens and would write
+        # corrupted state.  Check both description and action payload.
+        _tmpl_hit = (
+            (description and _TEMPLATE_MARKERS.search(description))
+            or (action_desc and _TEMPLATE_MARKERS.search(action_desc))
+        )
+        if _tmpl_hit:
+            self.scout_template_rejection_count += 1
+            preview = (description or action_desc or "")[:200]
+            log.warn(
+                f"[SCOUT-REJECT] Template placeholder detected "
+                f"(#{self.scout_template_rejection_count}): "
+                f"{preview!r}"
+            )
+            self.last_camera_view = None
+            self.last_frame_phase = None
+            self.last_ball_position = None
+            self.last_strip_flag = False
+            self.last_overlay_flag = False
+            self.last_drs_flag = False
+            return ("UNKNOWN", "", None)
+
+        has_digits = bool(re.search(r"\d{2,3}", raw))
+        strip_flag = tag.get("has_strip", False) if tag else False
+        overlay_flag = tag.get("has_overlay_stats", False) if tag else False
+        drs_flag = tag.get("drs_review", False) if tag else False
+
+        self.last_strip_flag = strip_flag
+        self.last_overlay_flag = overlay_flag
+        self.last_drs_flag = drs_flag
+        self.last_camera_view = self._normalise_camera_view(
+            tag.get("camera_view") if tag else None,
+            frame_type=frame_type,
+            has_strip=strip_flag,
+            has_overlay=overlay_flag,
+        )
+        self.last_frame_phase = self._normalise_frame_phase(
+            tag.get("frame_phase") if tag else None,
+            camera_view=self.last_camera_view,
+            frame_type=frame_type,
+        )
+        self.last_ball_position = self._normalise_ball_position(
+            tag.get("ball_position") if tag else None,
+            frame_phase=self.last_frame_phase,
+        )
+
+        log.info(f"[SCOUT] {frame_type} {ms:.0f}ms "
+                 f"strip={strip_flag} overlay={overlay_flag} "
+                 f"drs={drs_flag} cam={self.last_camera_view} "
+                 f"phase={self.last_frame_phase} "
+                 f"digits={has_digits} "
+                 f"{len(raw)} chars")
+        if not has_digits and frame_type != "ADVERTISEMENT":
+            log.info(f"[SCOUT] Preview: {raw[:200]}")
+
+        return (frame_type, description, action_desc)
+
+    @classmethod
+    def _normalise_camera_view(cls, raw: str | None, *,
+                                frame_type: str,
+                                has_strip: bool,
+                                has_overlay: bool) -> str | None:
+        """Map Scout's camera_view to one of the allowed tags.
+
+        IMPORTANT: frame_type overrides Scout's `camera_view` when the
+        two conflict.  Empirical bug (2026-04-18): Scout sometimes
+        returns ``camera_view="bowlers_end"`` on AD frames where the
+        scoreboard strip is absent — without this guard we'd record
+        an ad frame into BallAnalyzer's bowlers_end tagged buffer
+        and poison delivery analysis.  Rule:
+
+          - frame_type == ADVERTISEMENT  →  always "ad"
+          - has_overlay and not has_strip →  always "graphic"
+          - otherwise trust Scout's tag if it's in the allowed set
+          - fall back to None
+        """
+        if frame_type == "ADVERTISEMENT":
+            return "ad"
+        if has_overlay and not has_strip:
+            return "graphic"
+        if isinstance(raw, str):
+            v = raw.strip().lower().replace(" ", "_")
+            v = cls._CAMERA_VIEW_ALIASES.get(v, v)
+            if v in cls._CAMERA_VIEW_ALLOWED:
+                # When the strip ISN'T visible at all, an active-play
+                # tag (bowlers_end / side_on) doesn't make sense —
+                # Scout is hallucinating from the visual content
+                # only.  Demote to "other" so the tagged buffer
+                # doesn't pick it up as a delivery candidate.
+                if (not has_strip
+                        and v in ("bowlers_end", "side_on")):
+                    return "other"
+                return v
+        return None
+
+    @classmethod
+    def _normalise_frame_phase(cls, raw: str | None, *,
+                                camera_view: str | None,
+                                frame_type: str) -> str | None:
+        """Map Scout's frame_phase to one of the allowed tags.
+
+        Cross-checks against camera_view: if Scout claims `release`
+        on an `ad`-tagged frame, the phase tag is hallucinated —
+        force it to `advertisement`.  Same for graphic / replay.
+        """
+        if frame_type == "ADVERTISEMENT" or camera_view == "ad":
+            return "advertisement"
+        if camera_view == "graphic":
+            return "graphic"
+        if camera_view == "replay":
+            return "replay"
+        if isinstance(raw, str):
+            v = raw.strip().lower().replace(" ", "_")
+            v = cls._FRAME_PHASE_ALIASES.get(v, v)
+            if v in cls._FRAME_PHASE_ALLOWED:
+                return v
+        return None
+
+    @staticmethod
+    def _normalise_ball_position(raw, *,
+                                  frame_phase: str | None) -> dict | None:
+        """Validate and clip ball_position to [0,1]x[0,1].
+
+        Only meaningful for `release`, `flight`, `shot` phases.  Drop
+        otherwise — Scout was instructed to return null but may still
+        echo a stale value.
+        """
+        if frame_phase not in ("release", "flight", "shot"):
+            return None
+        if not isinstance(raw, dict):
+            return None
+        try:
+            x = float(raw.get("x"))
+            y = float(raw.get("y"))
+        except (TypeError, ValueError):
+            return None
+        if not (0.0 <= x <= 1.0 and 0.0 <= y <= 1.0):
+            return None
+        return {"x": x, "y": y}
+
+    # ------------------------------------------------------------------
+    # Scout call — single Groq call, tag + read, 600 tokens
+    # ------------------------------------------------------------------
+    async def _scout_call(self, image_b64: str,
+                          prompt: str) -> str | None:
+        try:
+            resp = await self._groq.chat.completions.create(
+                model=GROQ_PRIMARY_MODEL,
+                temperature=0,
+                max_tokens=600,
+                messages=[{
+                    "role": "user",
+                    "content": [
+                        {"type": "image_url",
+                         "image_url": {
+                             "url": f"data:image/jpeg;base64,{image_b64}"}},
+                        {"type": "text", "text": prompt},
+                    ],
+                }],
+            )
+            content = resp.choices[0].message.content.strip()
+            finish = resp.choices[0].finish_reason
+            usage = resp.usage
+            tokens = usage.completion_tokens if usage else "?"
+            if finish != "stop":
+                log.info(f"[SCOUT] finish={finish} tokens={tokens}")
+            return content
+        except Exception as e:
+            log.error(f"[SCOUT] Error: {e}")
+            return None
+
+    # ------------------------------------------------------------------
+    # Parse the JSON tag line from Scout output
+    # ------------------------------------------------------------------
+    @staticmethod
+    def _parse_tag(raw: str) -> tuple[dict | None, str]:
+        """Extract the classification JSON and derive frame_type."""
+        tag = None
+        for line in raw.split("\n")[:5]:
+            line = line.strip()
+            if line.startswith("{") and "has_strip" in line:
+                try:
+                    tag = json.loads(line)
+                    break
+                except json.JSONDecodeError:
+                    brace_end = line.rfind("}") + 1
+                    if brace_end > 0:
+                        try:
+                            tag = json.loads(line[:brace_end])
+                            break
+                        except json.JSONDecodeError:
+                            pass
+
+        if not tag:
+            upper = raw.upper()[:100]
+            if "ADVERTISEMENT" in upper and "STRIP" not in upper:
+                return ({"has_strip": False, "has_overlay_stats": False,
+                         "drs_review": False}, "ADVERTISEMENT")
+            has_strip = bool(re.search(
+                r"STRIP:\s*(?:[A-Z]{2,}|null)\s+\d+", raw, re.IGNORECASE))
+            return ({"has_strip": has_strip, "has_overlay_stats": False,
+                     "drs_review": False},
+                    "SCOREBOARD" if has_strip else "UNKNOWN")
+
+        has_strip = tag.get("has_strip", False)
+        has_overlay = tag.get("has_overlay_stats", False)
+        drs = tag.get("drs_review", False)
+
+        if drs:
+            return (tag, "SCOREBOARD")
+        if has_strip and has_overlay:
+            return (tag, "GRAPHIC")
+        if has_strip:
+            return (tag, "SCOREBOARD")
+        if has_overlay:
+            return (tag, "GRAPHIC")
+        return (tag, "ADVERTISEMENT")
+
+    # ------------------------------------------------------------------
+    # Split scout output into description + action
+    # ------------------------------------------------------------------
+    @staticmethod
+    def _split_output(raw: str, frame_type: str,
+                      ) -> tuple[str, str | None]:
+        if frame_type == "ADVERTISEMENT":
+            return ("", None)
+
+        lines = raw.split("\n")
+        text_lines = []
+        for line in lines:
+            stripped = line.strip()
+            if stripped.startswith("{") and "has_strip" in stripped:
+                continue
+            text_lines.append(line)
+        text = "\n".join(text_lines).strip()
+
+        action = None
+        for marker in ("ACTION:", "CRICKET ACTION:", "STEP 4"):
+            idx = text.upper().find(marker)
+            if idx != -1:
+                after = text[idx:]
+                colon = after.find(":")
+                if colon != -1:
+                    action_part = after[colon + 1:].strip()
+                    nl = action_part.find("\n")
+                    if nl != -1:
+                        action_part = action_part[:nl].strip()
+                    text = text[:idx].strip()
+                    if len(action_part) > 10:
+                        action = action_part
+                break
+
+        return (text, action)
+
+    # ------------------------------------------------------------------
+    # Helpers
+    # ------------------------------------------------------------------
+    @staticmethod
+    def _encode(frame: np.ndarray) -> str:
+        _, buf = cv2.imencode(".jpg", frame, [cv2.IMWRITE_JPEG_QUALITY, 80])
+        return base64.b64encode(buf).decode()
+
+    async def close(self):
+        await self._groq.close()

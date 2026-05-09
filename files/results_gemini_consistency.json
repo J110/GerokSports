@@ -1,0 +1,962 @@
+[
+  {
+    "id": "delivery_040",
+    "call": 1,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"The bowler delivers a good length ball outside off. The batsman drives it along the ground towards the offside for a single.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "The bowler delivers a good length ball outside off. The batsman drives it along the ground towards the offside for a single."
+    },
+    "wall_ms": 2437
+  },
+  {
+    "id": "delivery_040",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Bowler Prasidh Krishna delivers a good length ball just outside off stump. The batter plays a controlled shot along the ground, driving it towards the offside fielders.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Bowler Prasidh Krishna delivers a good length ball just outside off stump. The batter plays a controlled shot along the ground, driving it towards the offside fielders."
+    },
+    "wall_ms": 8847
+  },
+  {
+    "id": "delivery_040",
+    "call": 3,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"The bowler delivers a good length ball outside off stump. The batsman plays a defensive shot, pushing the ball along the ground towards the offside.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "The bowler delivers a good length ball outside off stump. The batsman plays a defensive shot, pushing the ball along the ground towards the offside."
+    },
+    "wall_ms": 2383
+  },
+  {
+    "id": "delivery_116",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"Tyagi bowls a good length ball outside off, which Green attempts to drive along the ground on the offside. The umpire raises his finger for a wicket, ending the delivery.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "Tyagi bowls a good length ball outside off, which Green attempts to drive along the ground on the offside. The umpire raises his finger for a wicket, ending the delivery."
+    },
+    "wall_ms": 10515
+  },
+  {
+    "id": "delivery_116",
+    "call": 2,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Tyagi bowls a good length delivery outside off stump to Green, who plays a defensive shot. The umpire raises his finger, indicating a dismissal for KKR, who are now 73-8.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Tyagi bowls a good length delivery outside off stump to Green, who plays a defensive shot. The umpire raises his finger, indicating a dismissal for KKR, who are now 73-8."
+    },
+    "wall_ms": 7316
+  },
+  {
+    "id": "delivery_116",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.85, \"narrative\": \"The bowler delivered a good length ball outside off-stump, which the batsman played along the ground towards the offside. The umpire is seen raising his finger, indicating an out.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "The bowler delivered a good length ball outside off-stump, which the batsman played along the ground towards the offside. The umpire is seen raising his finger, indicating an out."
+    },
+    "wall_ms": 5971
+  },
+  {
+    "id": "delivery_036",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Bowler Green delivers a good length ball just outside off stump to Powell. The batsman confidently plays the ball along the ground, driving it through the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Bowler Green delivers a good length ball just outside off stump to Powell. The batsman confidently plays the ball along the ground, driving it through the offside."
+    },
+    "wall_ms": 7021
+  },
+  {
+    "id": "delivery_036",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Bowler Green bowls a good length delivery outside off stump. The batsman plays an on-the-rise shot, hitting the ball along the ground towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Bowler Green bowls a good length delivery outside off stump. The batsman plays an on-the-rise shot, hitting the ball along the ground towards the offside."
+    },
+    "wall_ms": 6583
+  },
+  {
+    "id": "delivery_036",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"Prasidh Krishna bowls a good length ball outside off to Green, who pushes it along the ground towards the offside, with the non-striker starting a run.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "Prasidh Krishna bowls a good length ball outside off to Green, who pushes it along the ground towards the offside, with the non-striker starting a run."
+    },
+    "wall_ms": 13581
+  },
+  {
+    "id": "delivery_105",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"A good length delivery on an outside off line from Ashok is played along the ground by Ramandeep Green. The shot appears to be driven towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "A good length delivery on an outside off line from Ashok is played along the ground by Ramandeep Green. The shot appears to be driven towards the offside."
+    },
+    "wall_ms": 7757
+  },
+  {
+    "id": "delivery_105",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"A good length delivery bowled outside off stump, which the batsman played along the ground towards the offside. The initial broadcast frame was partially obscured by large graphic overlays.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "A good length delivery bowled outside off stump, which the batsman played along the ground towards the offside. The initial broadcast frame was partially obscured by large graphic overlays."
+    },
+    "wall_ms": 9587
+  },
+  {
+    "id": "delivery_105",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"Ashok bowls a good length delivery just outside off stump to Ramandeep Green. The batsman plays the ball along the ground towards the offside. KKR stands at 161/6 after 16.1 overs.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "Ashok bowls a good length delivery just outside off stump to Ramandeep Green. The batsman plays the ball along the ground towards the offside. KKR stands at 161/6 after 16.1 overs."
+    },
+    "wall_ms": 16751
+  },
+  {
+    "id": "delivery_127",
+    "call": 1,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Vaibhav bowls a good length delivery outside off stump. Sudharsan plays a controlled shot, driving the ball along the ground towards the offside fielders.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Vaibhav bowls a good length delivery outside off stump. Sudharsan plays a controlled shot, driving the ball along the ground towards the offside fielders."
+    },
+    "wall_ms": 5609
+  },
+  {
+    "id": "delivery_127",
+    "call": 2,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"The bowler delivers a good length ball outside off stump. The batter plays it along the ground towards the offside, where a fielder moves to collect it.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivers a good length ball outside off stump. The batter plays it along the ground towards the offside, where a fielder moves to collect it."
+    },
+    "wall_ms": 4539
+  },
+  {
+    "id": "delivery_127",
+    "call": 3,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"The bowler delivers a good length ball outside the off-stump. The batsman plays a defensive shot, pushing the ball along the ground towards the offside. Fielders move to collect it.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivers a good length ball outside the off-stump. The batsman plays a defensive shot, pushing the ball along the ground towards the offside. Fielders move to collect it."
+    },
+    "wall_ms": 5228
+  },
+  {
+    "id": "delivery_003",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"Shubman Gill plays a defensive shot on the front foot to a good length delivery outside off, hitting it along the ground towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "Shubman Gill plays a defensive shot on the front foot to a good length delivery outside off, hitting it along the ground towards the offside."
+    },
+    "wall_ms": 7765
+  },
+  {
+    "id": "delivery_003",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Shubman Gill plays a good length delivery just outside off stump, pushing it gently along the ground towards the offside. The shot appears to be a controlled push.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Shubman Gill plays a good length delivery just outside off stump, pushing it gently along the ground towards the offside. The shot appears to be a controlled push."
+    },
+    "wall_ms": 7371
+  },
+  {
+    "id": "delivery_003",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"The bowler bowls a good length delivery outside off stump. The batsman, Shubman Gill, plays a defensive shot along the ground, pushing the ball towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "The bowler bowls a good length delivery outside off stump. The batsman, Shubman Gill, plays a defensive shot along the ground, pushing the ball towards the offside."
+    },
+    "wall_ms": 7199
+  },
+  {
+    "id": "delivery_075",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"A bowler in brown delivers a good length ball outside off stump. The batsman drives the ball along the ground towards the offside, with fielders reacting to the shot.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "A bowler in brown delivers a good length ball outside off stump. The batsman drives the ball along the ground towards the offside, with fielders reacting to the shot."
+    },
+    "wall_ms": 8042
+  },
+  {
+    "id": "delivery_075",
+    "call": 2,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"A good length delivery outside the off-stump is played by the batsman along the ground towards the offside, as fielders position themselves.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "A good length delivery outside the off-stump is played by the batsman along the ground towards the offside, as fielders position themselves."
+    },
+    "wall_ms": 6347
+  },
+  {
+    "id": "delivery_075",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"A right-arm bowler delivers a good length ball outside the off-stump. The batsman plays a straight bat shot along the ground towards the offside, seemingly for a single or a dot ball.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "A right-arm bowler delivers a good length ball outside the off-stump. The batsman plays a straight bat shot along the ground towards the offside, seemingly for a single or a dot ball."
+    },
+    "wall_ms": 7159
+  },
+  {
+    "id": "delivery_045",
+    "call": 1,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Ashok bowls a good length delivery outside off stump at 147.2 km/h. Powell plays a defensive shot, pushing the ball along the ground towards the offside from his front foot.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Ashok bowls a good length delivery outside off stump at 147.2 km/h. Powell plays a defensive shot, pushing the ball along the ground towards the offside from his front foot."
+    },
+    "wall_ms": 5504
+  },
+  {
+    "id": "delivery_045",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Bowler Ashok delivers a fast, good length ball outside off-stump to Powell, who plays a controlled shot along the ground, directing it through the offside fielders for no runs.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Bowler Ashok delivers a fast, good length ball outside off-stump to Powell, who plays a controlled shot along the ground, directing it through the offside fielders for no runs."
+    },
+    "wall_ms": 7026
+  },
+  {
+    "id": "delivery_045",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.85, \"narrative\": \"A fast bowler delivers a good length ball outside off stump. The batsman, Powell, plays a controlled shot along the ground towards the offside, likely for a single or to defend.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "A fast bowler delivers a good length ball outside off stump. The batsman, Powell, plays a controlled shot along the ground towards the offside, likely for a single or to defend."
+    },
+    "wall_ms": 8798
+  },
+  {
+    "id": "delivery_018",
+    "call": 1,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"The bowler delivers a good length ball outside off stump. The batsman plays an on-the-ground shot towards the offside.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "The bowler delivers a good length ball outside off stump. The batsman plays an on-the-ground shot towards the offside."
+    },
+    "wall_ms": 7982
+  },
+  {
+    "id": "delivery_018",
+    "call": 2,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"Rabada bowls a good length delivery outside off stump to Seifert, who plays a defensive shot along the ground towards the offside, as seen from the overhead camera angle.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "Rabada bowls a good length delivery outside off stump to Seifert, who plays a defensive shot along the ground towards the offside, as seen from the overhead camera angle."
+    },
+    "wall_ms": 9015
+  },
+  {
+    "id": "delivery_018",
+    "call": 3,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"Kagiso Rabada bowls a good length delivery outside off-stump to Tim Seifert. Seifert plays a controlled shot along the ground towards the offside, looking to score runs for KKR.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "Kagiso Rabada bowls a good length delivery outside off-stump to Tim Seifert. Seifert plays a controlled shot along the ground towards the offside, looking to score runs for KKR."
+    },
+    "wall_ms": 8258
+  },
+  {
+    "id": "delivery_054",
+    "call": 1,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Prasidh Krishna bowls a good length delivery outside off stump. The batsman, Powell, plays a controlled shot along the ground towards the offside.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Prasidh Krishna bowls a good length delivery outside off stump. The batsman, Powell, plays a controlled shot along the ground towards the offside."
+    },
+    "wall_ms": 6339
+  },
+  {
+    "id": "delivery_054",
+    "call": 2,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Prasidh Krishna bowls a good length delivery outside off stump, just after release. The batsman, Green, plays a controlled shot along the ground, directing it towards the offside.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Prasidh Krishna bowls a good length delivery outside off stump, just after release. The batsman, Green, plays a controlled shot along the ground, directing it towards the offside."
+    },
+    "wall_ms": 8906
+  },
+  {
+    "id": "delivery_054",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"The bowler delivers a good length ball outside off stump at 146.4 kph. The batsman plays it along the ground towards the offside, resulting in no apparent run.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivers a good length ball outside off stump at 146.4 kph. The batsman plays it along the ground towards the offside, resulting in no apparent run."
+    },
+    "wall_ms": 4945
+  },
+  {
+    "id": "delivery_064",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"impact\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"The bowler delivers a good length ball outside the off stump, which the batter plays with a straight bat, driving it along the ground towards the offside. The ball speed was 145.2 km/h.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "impact",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivers a good length ball outside the off stump, which the batter plays with a straight bat, driving it along the ground towards the offside. The ball speed was 145.2 km/h."
+    },
+    "wall_ms": 6337
+  },
+  {
+    "id": "delivery_064",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Ashok bowls a good length delivery outside the off stump. Powell plays a defensive shot on the front foot, pushing the ball along the ground towards the off-side fielders.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Ashok bowls a good length delivery outside the off stump. Powell plays a defensive shot on the front foot, pushing the ball along the ground towards the off-side fielders."
+    },
+    "wall_ms": 14818
+  },
+  {
+    "id": "delivery_064",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.75, \"narrative\": \"The bowler delivers a good length ball outside the off stump. The batsman plays a defensive shot, pushing the ball along the ground towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.75,
+      "narrative": "The bowler delivers a good length ball outside the off stump. The batsman plays a defensive shot, pushing the ball along the ground towards the offside."
+    },
+    "wall_ms": 5195
+  },
+  {
+    "id": "delivery_039",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"The bowler delivers a good length ball outside off-stump. The batter plays a forward defensive shot, pushing the ball along the ground towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "The bowler delivers a good length ball outside off-stump. The batter plays a forward defensive shot, pushing the ball along the ground towards the offside."
+    },
+    "wall_ms": 7209
+  },
+  {
+    "id": "delivery_039",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"A GT bowler delivers a good length ball outside off-stump during an IPL match. The KKR batsman plays the shot along the ground towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "A GT bowler delivers a good length ball outside off-stump during an IPL match. The KKR batsman plays the shot along the ground towards the offside."
+    },
+    "wall_ms": 8166
+  },
+  {
+    "id": "delivery_039",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"The bowler delivers a good length ball outside off stump. The batsman plays it along the ground towards the offside for a single run.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "The bowler delivers a good length ball outside off stump. The batsman plays it along the ground towards the offside for a single run."
+    },
+    "wall_ms": 8455
+  },
+  {
+    "id": "delivery_032",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"not_played\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"The fast bowler delivers a good length delivery wide outside off-stump, which the batsman chooses to leave untouched. The ball passes the offside without contact, registering no runs.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "not_played",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "The fast bowler delivers a good length delivery wide outside off-stump, which the batsman chooses to leave untouched. The ball passes the offside without contact, registering no runs."
+    },
+    "wall_ms": 16277
+  },
+  {
+    "id": "delivery_032",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"Rabada bowls a good length delivery just outside off stump at 141.2 kph. The right-handed batsman, Green, plays it along the ground towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "Rabada bowls a good length delivery just outside off stump at 141.2 kph. The right-handed batsman, Green, plays it along the ground towards the offside."
+    },
+    "wall_ms": 9211
+  },
+  {
+    "id": "delivery_032",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"The bowler delivers a good length ball outside the off-stump. The batsman defends it, playing the ball along the ground towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivers a good length ball outside the off-stump. The batsman defends it, playing the ball along the ground towards the offside."
+    },
+    "wall_ms": 6347
+  },
+  {
+    "id": "delivery_074",
+    "call": 1,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"Rashid bowls a good length delivery just outside the off-stump. The batsman plays it along the ground towards the offside, seemingly for a single run.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "Rashid bowls a good length delivery just outside the off-stump. The batsman plays it along the ground towards the offside, seemingly for a single run."
+    },
+    "wall_ms": 4673
+  },
+  {
+    "id": "delivery_074",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"Rashid Khan bowls a good length delivery outside off to Anukul Roy, who plays it along the ground towards the offside. The ball is fielded without much trouble.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "Rashid Khan bowls a good length delivery outside off to Anukul Roy, who plays it along the ground towards the offside. The ball is fielded without much trouble."
+    },
+    "wall_ms": 6483
+  },
+  {
+    "id": "delivery_074",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"A right-arm bowler bowls a good length delivery outside off stump. The right-handed batter plays the ball along the ground towards the offside. The ball is seen bouncing on the pitch.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "A right-arm bowler bowls a good length delivery outside off stump. The right-handed batter plays the ball along the ground towards the offside. The ball is seen bouncing on the pitch."
+    },
+    "wall_ms": 17080
+  },
+  {
+    "id": "delivery_019",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"Washington bowls a good length delivery outside off to Shubman Gill, who plays it along the ground for a single towards the offside, moving the score to 98/2.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "Washington bowls a good length delivery outside off to Shubman Gill, who plays it along the ground for a single towards the offside, moving the score to 98/2."
+    },
+    "wall_ms": 10148
+  },
+  {
+    "id": "delivery_019",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.85, \"narrative\": \"Washington bowls a good length delivery outside off stump to Shubman Gill, who plays a defensive shot along the ground towards the offside, contributing one run.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "Washington bowls a good length delivery outside off stump to Shubman Gill, who plays a defensive shot along the ground towards the offside, contributing one run."
+    },
+    "wall_ms": 7195
+  },
+  {
+    "id": "delivery_019",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"The bowler Washington delivers a good length ball outside off-stump to Gill, who plays it along the ground towards the offside for a single run.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "The bowler Washington delivers a good length ball outside off-stump to Gill, who plays it along the ground towards the offside for a single run."
+    },
+    "wall_ms": 6735
+  },
+  {
+    "id": "delivery_128",
+    "call": 1,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"A good length delivery outside the off stump was played along the ground by Sudharsan, driving it towards the offside for a single to complete the first over of the innings.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "A good length delivery outside the off stump was played along the ground by Sudharsan, driving it towards the offside for a single to complete the first over of the innings."
+    },
+    "wall_ms": 9432
+  },
+  {
+    "id": "delivery_128",
+    "call": 2,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"middle_stump\", \"shot\": \"sweep\", \"direction\": \"legside\", \"confidence\": 0.8, \"narrative\": \"The bowler delivers a good length ball on middle stump. The batsman plays a sweep shot along the ground towards the leg side, getting a single run.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "middle_stump",
+      "shot": "sweep",
+      "direction": "legside",
+      "confidence": 0.8,
+      "narrative": "The bowler delivers a good length ball on middle stump. The batsman plays a sweep shot along the ground towards the leg side, getting a single run."
+    },
+    "wall_ms": 17370
+  },
+  {
+    "id": "delivery_128",
+    "call": 3,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"legside\", \"confidence\": 0.7, \"narrative\": \"Vaibhav bowls a good length delivery just outside off stump. The batsman attempts to play it to the leg side but gets an inside edge, leading to the ball traveling along the ground and hitting the stumps. The batsman is out, and the 'W' on the score tracker confirms a wicket.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "legside",
+      "confidence": 0.7,
+      "narrative": "Vaibhav bowls a good length delivery just outside off stump. The batsman attempts to play it to the leg side but gets an inside edge, leading to the ball traveling along the ground and hitting the stumps. The batsman is out, and the 'W' on the score tracker confirms a wicket."
+    },
+    "wall_ms": 22039
+  },
+  {
+    "id": "delivery_056",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"legside\", \"confidence\": 0.9, \"narrative\": \"Left-handed batsman Green sweeps a good length delivery from Rashid, pitched outside his off-stump, hitting it along the ground towards the leg side.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "legside",
+      "confidence": 0.9,
+      "narrative": "Left-handed batsman Green sweeps a good length delivery from Rashid, pitched outside his off-stump, hitting it along the ground towards the leg side."
+    },
+    "wall_ms": 13269
+  },
+  {
+    "id": "delivery_056",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"contact\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"Rashid bowls a good length delivery outside the off stump at 96.1 kph. The batsman, Green, plays a grounded shot along the offside, likely a defensive push or a gentle drive.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "contact",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "Rashid bowls a good length delivery outside the off stump at 96.1 kph. The batsman, Green, plays a grounded shot along the offside, likely a defensive push or a gentle drive."
+    },
+    "wall_ms": 10737
+  },
+  {
+    "id": "delivery_056",
+    "call": 3,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Rashid delivers a good length ball outside off stump. The batsman, Powell, plays a defensive shot, pushing the ball along the ground towards the offside.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Rashid delivers a good length ball outside off stump. The batsman, Powell, plays a defensive shot, pushing the ball along the ground towards the offside."
+    },
+    "wall_ms": 6624
+  },
+  {
+    "id": "delivery_102",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"Rabada bowls a good length delivery outside off. Ramandeep plays a controlled shot along the ground through the offside, completing two runs for KKR, as Rabada finishes his follow-through.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "Rabada bowls a good length delivery outside off. Ramandeep plays a controlled shot along the ground through the offside, completing two runs for KKR, as Rabada finishes his follow-through."
+    },
+    "wall_ms": 9481
+  },
+  {
+    "id": "delivery_102",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"The bowler releases a good length delivery just outside off-stump. The batsman Ramandeep plays it along the ground into the offside, scoring two runs to update KKR's total to 156-6.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "The bowler releases a good length delivery just outside off-stump. The batsman Ramandeep plays it along the ground into the offside, scoring two runs to update KKR's total to 156-6."
+    },
+    "wall_ms": 9265
+  },
+  {
+    "id": "delivery_102",
+    "call": 3,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"Rabada bowls a good length delivery outside off-stump. Ramandeep plays it along the ground towards the offside, scoring two runs for Kolkata Knight Riders. The ball is seen near the release point in the key frame.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Rabada bowls a good length delivery outside off-stump. Ramandeep plays it along the ground towards the offside, scoring two runs for Kolkata Knight Riders. The ball is seen near the release point in the key frame."
+    },
+    "wall_ms": 6764
+  },
+  {
+    "id": "delivery_057",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"Rashid Khan bowls a good length delivery outside off stump to Rovman Powell. The batsman plays the ball along the ground towards the offside, during this KKR vs GT match.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "Rashid Khan bowls a good length delivery outside off stump to Rovman Powell. The batsman plays the ball along the ground towards the offside, during this KKR vs GT match."
+    },
+    "wall_ms": 10850
+  },
+  {
+    "id": "delivery_057",
+    "call": 2,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"flight\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"Rashid Khan bowls a good length delivery outside off to Rovman Powell. The ball is in flight, with Powell prepared to play a shot towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "flight",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "Rashid Khan bowls a good length delivery outside off to Rovman Powell. The ball is in flight, with Powell prepared to play a shot towards the offside."
+    },
+    "wall_ms": 14258
+  },
+  {
+    "id": "delivery_057",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.8, \"narrative\": \"Rovman Powell plays a good length delivery from Rashid Khan, pitched outside off stump. He drives the ball along the ground towards the offside, with KKR at 73-3.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "Rovman Powell plays a good length delivery from Rashid Khan, pitched outside off stump. He drives the ball along the ground towards the offside, with KKR at 73-3."
+    },
+    "wall_ms": 8309
+  },
+  {
+    "id": "delivery_122",
+    "call": 1,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"A bowler is captured releasing a good length delivery just outside the off stump. The batsman is in a prepared stance, poised to play the ball along the ground towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "A bowler is captured releasing a good length delivery just outside the off stump. The batsman is in a prepared stance, poised to play the ball along the ground towards the offside."
+    },
+    "wall_ms": 15787
+  },
+  {
+    "id": "delivery_122",
+    "call": 2,
+    "raw": "{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"A good length delivery outside off stump, met with a forward defensive shot, sending the ball along the ground towards the offside.\"}",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "A good length delivery outside off stump, met with a forward defensive shot, sending the ball along the ground towards the offside."
+    },
+    "wall_ms": 3965
+  },
+  {
+    "id": "delivery_122",
+    "call": 3,
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.7, \"narrative\": \"A bowler delivers a good length ball outside the off stump. The batsman plays a grounded shot towards the offside, as seen before a graphic overlay.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "A bowler delivers a good length ball outside the off stump. The batsman plays a grounded shot towards the offside, as seen before a graphic overlay."
+    },
+    "wall_ms": 5363
+  }
+]

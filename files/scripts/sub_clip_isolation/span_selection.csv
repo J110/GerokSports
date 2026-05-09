@@ -1,0 +1,11 @@
+session,clip_id,manual_label,event_type,action_ratio_v2,max_run_v2,n_spans_default,selected_start_s_default,selected_end_s_default,selected_frames_default,selection_note_default,n_spans_p22,selected_start_s_p22,selected_end_s_p22,selected_frames_p22,selection_note_p22
+20260420_202239,d004,real_delivery,2_RUNS,0.955,21,1,2.0,21.0,20,single_qualifying_span,1,2.0,21.0,20,single_qualifying_span
+20260421_195050,d048,real_delivery,1_RUNS,1.0,15,1,0.0,14.0,15,single_qualifying_span,1,0.0,14.0,15,single_qualifying_span
+20260421_195050,d016,real_delivery,1_RUNS,0.857,7,1,0.0,6.0,7,single_qualifying_span,1,0.0,6.0,7,single_qualifying_span
+20260420_202239,d010,real_delivery,WICKET,0.625,7,1,0.0,6.0,7,single_qualifying_span,1,0.0,6.0,7,single_qualifying_span
+20260420_202239,d020,real_delivery,SIX,0.688,8,1,0.0,11.0,11,single_qualifying_span,1,0.0,11.0,11,single_qualifying_span
+20260421_195050,d024,real_delivery,2_RUNS,0.692,11,1,9.0,20.0,11,single_qualifying_span,1,9.0,20.0,11,single_qualifying_span
+20260420_202239,d002,real_delivery,1_RUNS,0.636,7,1,10.0,15.0,6,single_qualifying_span,1,10.0,15.0,6,single_qualifying_span
+20260420_202239,d025,real_delivery,1_RUNS,0.375,7,1,7.0,13.0,7,single_qualifying_span,1,7.0,13.0,7,single_qualifying_span
+20260421_195050,d022,real_delivery,DOT,0.2,2,0,0.0,0.0,0,no_qualifying_span,0,0.0,0.0,0,no_qualifying_span
+20260421_195050,d031,real_delivery,1_RUNS,0.133,1,0,0.0,0.0,0,no_qualifying_span,0,0.0,0.0,0,no_qualifying_span

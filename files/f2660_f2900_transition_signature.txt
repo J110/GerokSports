@@ -1,0 +1,3 @@
+('pre', 1, 'Mumbai Indians', 'Sunrisers Hyderabad', None, None, None, None)
+('post-2695', 2, 'Sunrisers Hyderabad', 'Mumbai Indians', None, None, None, 244)
+('post-idempotent', 2, 'Sunrisers Hyderabad', 'Mumbai Indians', None, None, None, 244)

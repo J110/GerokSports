@@ -1,0 +1,16 @@
+session,clip_id,manual_label,event_type,action_ratio_v2,max_run_v2,replay_frames,clip_duration_s,event_offset_s,hard_close_count,n_candidates_pre_filter,n_candidates_post_filter,selection_basis,raw_start_s,raw_end_s,padded_start_s,padded_end_s,padding_clamp_flags,selected_frames,v2_padded_start_s,v2_padded_end_s,selection_changed
+20260420_202239,d012,real_delivery,1_RUNS,1.0,13,0,12.976,17.12,0,1,1,anchor_end_before_event,0.0,12.0,0.0,12.976,"clamped_start,clamped_end",13,0.0,12.976,False
+20260420_202239,d032,real_delivery,1_RUNS,0.885,11,0,25.511,26.792,0,2,2,anchor_end_before_event_n=2,16.0,25.0,15.0,25.511,clamped_end,10,0.0,12.0,True
+20260421_195050,d013,real_delivery,1_RUNS,0.941,16,0,16.521,25.379,0,1,1,anchor_end_before_event,0.0,15.0,0.0,16.0,clamped_start,16,0.0,16.521,True
+20260420_202239,d033,real_delivery,SIX,0.591,11,3,21.857,22.571,3,1,1,anchor_end_before_event,0.0,13.0,0.0,14.0,clamped_start,13,0.0,15.0,True
+20260420_202239,d005,real_delivery,DOT,0.688,6,1,15.322,26.146,1,1,1,anchor_end_before_event,0.0,5.0,0.0,6.0,clamped_start,6,0.0,7.0,True
+20260421_195050,d066,real_delivery,FOUR,0.625,7,0,15.152,18.897,0,1,1,anchor_end_before_event,0.0,11.0,0.0,12.0,clamped_start,10,0.0,13.0,True
+20260421_195050,d008,real_delivery,1_RUNS,0.565,10,9,22.39,25.121,9,1,1,anchor_end_before_event,11.0,20.0,10.0,21.0,,10,9.0,22.0,True
+20260420_202239,d017,real_delivery,1_RUNS,0.48,7,0,24.745,25.372,0,1,1,anchor_end_before_event,13.0,18.0,12.0,19.0,,6,11.0,20.0,True
+20260421_195050,d021,real_delivery,1_RUNS,0.238,2,13,20.336,22.133,13,0,0,no_qualifying_span,0.0,0.0,0.0,0.0,,0,0.0,0.0,False
+20260421_195050,d027,real_delivery,SIX,0.389,6,0,17.861,25.468,0,1,1,anchor_end_before_event,2.0,6.0,1.0,7.0,,5,0.0,8.0,True
+20260420_202239,d015,real_delivery,1_RUNS,1.0,23,0,23.101,24.048,0,1,1,anchor_end_before_event,0.0,22.0,0.0,23.0,clamped_start,23,,,
+20260421_195050,d029,real_delivery,1_RUNS,1.0,10,0,9.943,12.143,0,1,1,anchor_end_before_event,0.0,9.0,0.0,9.943,"clamped_start,clamped_end",10,,,
+20260420_202239,d029,real_delivery,DOT,0.7,13,0,19.93,21.012,0,1,1,anchor_end_before_event,0.0,14.0,0.0,15.0,clamped_start,14,,,
+20260421_195050,d055,real_delivery,1_RUNS,0.583,11,0,23.533,25.134,0,1,1,anchor_end_before_event,6.0,17.0,5.0,18.0,,11,,,
+20260421_195050,d060,real_delivery,1_RUNS,0.455,5,0,10.109,11.211,0,1,1,anchor_end_before_event,0.0,4.0,0.0,5.0,clamped_start,5,,,

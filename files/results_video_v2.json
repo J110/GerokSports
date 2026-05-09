@@ -1,0 +1,64 @@
+[
+  {
+    "clip": "ball_test_clip_30fps.mp4",
+    "truth": "Clip 1 (30fps, 15s) \u2014 LEFT-handed batsman, square of wicket",
+    "structured": {
+      "wall_ms": 9162,
+      "raw": "{\"is_valid_delivery\": true, \"batsman_handed\": \"right\", \"bowling_angle\": \"over\", \"length\": \"good_length\", \"line\": \"outside_off\", \"bounce\": \"normal\", \"shot_played\": true, \"footwork\": \"front_foot\", \"shot_type\": \"defend\", \"shot_side\": \"off\", \"shot_angle\": \"cover\", \"elevation\": \"along_ground\", \"bowler_speed_kph\": null, \"bowler_name\": \"McCoy\", \"batsman_name\": \"Shreyas\", \"narrative\": \"The bowler bowls a good length delivery outside off stump, which the right-handed batsman defends onto the off side along the ground with front-foot footwork.\", \"confidence\": \"high\"}",
+      "parsed": {
+        "is_valid_delivery": true,
+        "batsman_handed": "right",
+        "bowling_angle": "over",
+        "length": "good_length",
+        "line": "outside_off",
+        "bounce": "normal",
+        "shot_played": true,
+        "footwork": "front_foot",
+        "shot_type": "defend",
+        "shot_side": "off",
+        "shot_angle": "cover",
+        "elevation": "along_ground",
+        "bowler_speed_kph": null,
+        "bowler_name": "McCoy",
+        "batsman_name": "Shreyas",
+        "narrative": "The bowler bowls a good length delivery outside off stump, which the right-handed batsman defends onto the off side along the ground with front-foot footwork.",
+        "confidence": "high"
+      }
+    },
+    "commentator": {
+      "wall_ms": 13885,
+      "raw": "From a wide shot, the bowler McCoy runs in and delivers a full-length ball outside off stump. The right-handed Rishabh Pant steps across and plays a drive shot, sending the ball wide of the point fielder for a single. The on-screen graphic indicates India is at 17 for 2, with Shreyas on 6 runs from 6 balls, Pant on 0 from 0, and McCoy having bowled 1.1 overs for 2 runs. The bowler, McCoy, then appears visibly frustrated as the camera cuts to a close-up."
+    }
+  },
+  {
+    "clip": "ball_test_clip_60fps_long.mp4",
+    "truth": "Clip 3 (60fps, 45s) \u2014 SHORT delivery, steep bounce, dab",
+    "structured": {
+      "wall_ms": 19566,
+      "raw": "{\"is_valid_delivery\": true, \"batsman_handed\": \"right\", \"bowling_angle\": \"over\", \"length\": \"short_of_a_length\", \"line\": \"outside_off\", \"bounce\": \"normal\", \"shot_played\": true, \"footwork\": \"crease\", \"shot_type\": \"drive\", \"shot_side\": \"off\", \"shot_angle\": \"cover\", \"elevation\": \"no_shot\", \"bowler_speed_kph\": 137, \"bowler_name\": \"JOSEPH\", \"batsman_name\": \"HARDIK PANT\", \"narrative\": \"West Indies bowler Joseph delivers a 137 KPH short of a length ball outside off stump, which Hardik Pant attempts to drive but misses.\", \"confidence\": \"high\"}",
+      "parsed": {
+        "is_valid_delivery": true,
+        "batsman_handed": "right",
+        "bowling_angle": "over",
+        "length": "short_of_a_length",
+        "line": "outside_off",
+        "bounce": "normal",
+        "shot_played": true,
+        "footwork": "crease",
+        "shot_type": "drive",
+        "shot_side": "off",
+        "shot_angle": "cover",
+        "elevation": "no_shot",
+        "bowler_speed_kph": 137,
+        "bowler_name": "JOSEPH",
+        "batsman_name": "HARDIK PANT",
+        "narrative": "West Indies bowler Joseph delivers a 137 KPH short of a length ball outside off stump, which Hardik Pant attempts to drive but misses.",
+        "confidence": "high"
+      }
+    },
+    "commentator": {
+      "wall_ms": 13092,
+      "raw": "Alzarri Joseph runs in and bowls a full-length delivery, pitching outside off stump at 137 KPH. Hardik Pant plays a straight bat defensive shot, pushing the ball gently to a fielder. The scoreboard shows India are 44 for 3 after 4.4 overs, with Hardik Pant on zero from two balls."
+    }
+  }
+]

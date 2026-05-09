@@ -1,0 +1,108 @@
+=== Per-frame signals for t=1170-1200 ===
+
+   t | V S M M2 W K SS SSlo CG HARD | A B C | path | rc
+-------------------------------------------------------
+1170 | n n n  n n Y  n    n  Y    n | n n n | none | 0
+1171 | n n n  n n Y  n    n  n    n | n n n | none | 0
+1172 | n n Y  n n Y  n    n  n    n | n n n | none | 1
+1173 | n n Y  n n Y  n    n  n    n | n n n | none | 1
+1174 | n n Y  n n Y  n    n  n    n | n n n | none | 2
+1175 | n n Y  n n Y  n    n  n    n | n n n | none | 1
+1176 | n n Y  n n Y  n    n  n    n | n n n | none | 1
+1177 | n n n  n n Y  n    n  n    Y | n n n | none | 0
+1178 | n n Y  n n Y  n    n  n    Y | n n n | none | 1
+1179 | n n Y  n n Y  n    n  n    n | n n n | none | 1
+1180 | n Y Y  n n n  Y    n  Y    n | n n n | none | 1
+1181 | n n Y  Y n n  Y    n  n    n | n n n | none | 3
+1182 | n n Y  Y n n  Y    n  Y    n | n n n | none | 2
+1183 | n n Y  Y n Y  Y    n  Y    n | n n n | none | 4
+1184 | n n Y  n n n  Y    n  n    n | n n n | none | 2
+1185 | n n Y  Y n n  Y    n  Y    n | n n n | none | 2
+1186 | n n Y  n Y Y  Y    n  Y    n | n n n | none | 2
+1187 | n n Y  n Y Y  Y    n  Y    n | n n n | none | 3
+1188 | n n Y  n Y Y  Y    n  Y    n | n n n | none | 3
+1189 | n n Y  n Y n  Y    n  Y    n | n n n | none | 3
+1190 | n n Y  n Y Y  Y    n  Y    n | n n n | none | 2
+1191 | n n Y  n n Y  Y    n  n    n | n n n | none | 1
+1192 | n n Y  n n n  Y    n  n    n | n n n | none | 1
+1193 | n n Y  n n Y  Y    n  Y    n | n n n | none | 1
+1194 | n n Y  n n n  Y    n  n    n | n n n | none | 1
+1195 | n Y Y  n n Y  Y    n  n    n | n n n | none | 1
+1196 | n n Y  Y Y Y  Y    n  Y    n | n n Y |    C | 4
+1197 | n n Y  Y Y Y  Y    n  Y    n | n n Y |    C | 4
+1198 | n n Y  Y n Y  Y    n  n    n | n n n | none | 3
+1199 | n n Y  n Y Y  Y    n  Y    n | n n n | none | 2
+1200  (no frame)
+
+=== Cluster builder trace, t=1148-1200 ===
+
+  t=1148: OPEN cluster (path=B)
+  t=1149: extend cluster (path=C), last_d=1149
+  t=1150: extend cluster (path=B), last_d=1150
+  t=1151: gap=1 (D=N path=none)
+  t=1152: gap=2 (D=N path=none)
+  t=1153: gap>2 -> close at last_d=1150
+  t=1154: idle (HARD=n D=n)
+  t=1155: idle (HARD=n D=n)
+  t=1156: idle (HARD=n D=n)
+  t=1157: idle (HARD=n D=n)
+  t=1158: idle (HARD=n D=n)
+  t=1159: idle (HARD=n D=n)
+  t=1160: idle (HARD=n D=n)
+  t=1161: idle (HARD=n D=n)
+  t=1162: idle (HARD=n D=n)
+  t=1163: idle (HARD=n D=n)
+  t=1164: idle (HARD=n D=n)
+  t=1165: idle (HARD=n D=n)
+  t=1166: idle (HARD=n D=n)
+  t=1167: idle (HARD=n D=n)
+  t=1168: idle (HARD=n D=n)
+  t=1169: idle (HARD=n D=n)
+  t=1170: idle (HARD=n D=n)
+  t=1171: idle (HARD=n D=n)
+  t=1172: idle (HARD=n D=n)
+  t=1173: idle (HARD=n D=n)
+  t=1174: idle (HARD=n D=n)
+  t=1175: idle (HARD=n D=n)
+  t=1176: idle (HARD=n D=n)
+  t=1177: idle (HARD=Y D=n)
+  t=1178: idle (HARD=Y D=n)
+  t=1179: idle (HARD=n D=n)
+  t=1180: idle (HARD=n D=n)
+  t=1181: idle (HARD=n D=n)
+  t=1182: idle (HARD=n D=n)
+  t=1183: idle (HARD=n D=n)
+  t=1184: idle (HARD=n D=n)
+  t=1185: idle (HARD=n D=n)
+  t=1186: idle (HARD=n D=n)
+  t=1187: idle (HARD=n D=n)
+  t=1188: idle (HARD=n D=n)
+  t=1189: idle (HARD=n D=n)
+  t=1190: idle (HARD=n D=n)
+  t=1191: idle (HARD=n D=n)
+  t=1192: idle (HARD=n D=n)
+  t=1193: idle (HARD=n D=n)
+  t=1194: idle (HARD=n D=n)
+  t=1195: idle (HARD=n D=n)
+  t=1196: OPEN cluster (path=C)
+  t=1197: extend cluster (path=C), last_d=1197
+  t=1198: gap=1 (D=N path=none)
+  t=1199: gap=2 (D=N path=none)
+  t=1200: window end -> close at last_d=1197
+
+=== Closed clusters in 1148-1200: 2 ===
+  start=1148 end=1150 reason=gap>2 delivery_count=3 any_v=Y pass_min_run(2)=Y pass_v_filter=Y
+  start=1196 end=1197 reason=window-end delivery_count=2 any_v=n pass_min_run(2)=Y pass_v_filter=n
+
+=== build_clusters() output (cross-check) ===
+  Found 1 cluster(s) in window [1143, 1205]
+  cluster 1148-1150s (3 frames)
+
+=== Prose excerpts: 1180-1200 frames with delivery-verb language ===
+    (only frames where is_delivery=False but prose contains released/bowled/swung/follow-through/just-hit/etc.)
+
+  -- t=1198 (path=none, V=n, matched verb='just hit') --
+     The camera shows a cricket player in an orange uniform with blue accents, wearing a helmet and holding a bat, standing on a green field. He appears to have just hit the ball and is preparing to run. A wicketkeeper in a teal uniform stands behind him, and two other individuals are visible in the foreground.
+     
+     There are several graphical overlays at the bottom of the frame, including a score graphic showing the score "30-1" and "4.1" overs played, as well as logos for the teams "Delhi Capitals" and "Chennai Super Kings." The action level appears to be during active play, as the batter is still holding the bat and preparing to react to the play.
+

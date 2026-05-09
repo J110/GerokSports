@@ -1,0 +1,50 @@
+{
+  "frames": 208,
+  "duration_s": 900,
+  "genuine_issues": [
+    {
+      "id": "NO_ACTIVE_BATTERS",
+      "severity": "HIGH",
+      "count": 14,
+      "pct": 6.7,
+      "max_run": 14,
+      "sample": "0 active batters, card has 2 entries"
+    },
+    {
+      "id": "NO_CURRENT_BOWLER",
+      "severity": "HIGH",
+      "count": 29,
+      "pct": 13.9,
+      "max_run": 24,
+      "sample": "0 current bowlers, card has 1 entries"
+    },
+    {
+      "id": "SCORE_MISSING",
+      "severity": "MEDIUM",
+      "count": 14,
+      "pct": 6.7,
+      "max_run": 8,
+      "sample": "score=None wickets=None in live phase"
+    }
+  ],
+  "transient": [
+    {
+      "id": "SCORE_FROZEN",
+      "count": 7
+    }
+  ],
+  "score_progression": [
+    "Rajasthan Royals 137/3 (12.4)",
+    "Rajasthan Royals 138/3 (12.5)",
+    "Rajasthan Royals 139/3 (13.0)",
+    "Rajasthan Royals 145/3 (13.1)",
+    "Rajasthan Royals 149/3 (13.2)",
+    "Rajasthan Royals 149/3 (13.3)",
+    "Rajasthan Royals 150/3 (13.4)",
+    "Rajasthan Royals 151/3 (13.5)",
+    "Rajasthan Royals 151/4 (14.0)",
+    "Rajasthan Royals 156/4 (14.3)",
+    "Rajasthan Royals 156/6 (14.3)",
+    "Rajasthan Royals 160/6 (14.4)"
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "conf_floor": 0.7,
+  "routing": {
+    "is_valid_delivery": "gemini-3-flash",
+    "batsman_handed": "qwen30b-instruct",
+    "bowling_arm": "qwen30b-instruct",
+    "bowling_angle": "gemini-3-flash",
+    "bowling_type": "gemini-3-flash",
+    "length": "gemini-3-flash",
+    "line": "qwen30b-instruct",
+    "bounce": "qwen30b-instruct",
+    "shot_played": "qwen30b-instruct",
+    "shot_type": "gemini-3-flash",
+    "shot_side": "qwen30b-instruct",
+    "shot_angle": "qwen30b-instruct",
+    "elevation": "gemini-3-flash",
+    "contact_quality": "gemini-3-flash"
+  },
+  "field_stats": {
+    "is_valid_delivery": {
+      "owner": "gemini-3-flash",
+      "qwen_acc": 1.0,
+      "gemini_acc": 1.0,
+      "qwen_spread": 0.0,
+      "gemini_spread": 0.0
+    },
+    "batsman_handed": {
+      "owner": "qwen30b-instruct",
+      "qwen_acc": 0.711,
+      "gemini_acc": 0.156,
+      "qwen_spread": 0.067,
+      "gemini_spread": 0.2
+    },
+    "bowling_arm": {
+      "owner": "qwen30b-instruct",
+      "qwen_acc": 0.944,
+      "gemini_acc": 0.833,
+      "qwen_spread": 0.083,
+      "gemini_spread": 0.0
+    },
+    "bowling_angle": {
+      "owner": "gemini-3-flash",
+      "qwen_acc": 0.593,
+      "gemini_acc": 0.852,
+      "qwen_spread": 0.111,
+      "gemini_spread": 0.111
+    },
+    "bowling_type": {
+      "owner": "gemini-3-flash",
+      "qwen_acc": 0.333,
+      "gemini_acc": 1.0,
+      "qwen_spread": 0.0,
+      "gemini_spread": 0.0
+    },
+    "length": {
+      "owner": "gemini-3-flash",
+      "qwen_acc": 0.0,
+      "gemini_acc": 0.0,
+      "qwen_spread": 0.0,
+      "gemini_spread": 0.0
+    },
+    "line": {
+      "owner": "qwen30b-instruct",
+      "qwen_acc": 0.333,
+      "gemini_acc": 0.296,
+      "qwen_spread": 0.0,
+      "gemini_spread": 0.111
+    },
+    "bounce": {
+      "owner": "qwen30b-instruct",
+      "qwen_acc": 1.0,
+      "gemini_acc": 0.481,
+      "qwen_spread": 0.0,
+      "gemini_spread": 0.444
+    },
+    "shot_played": {
+      "owner": "qwen30b-instruct",
+      "qwen_acc": 1.0,
+      "gemini_acc": 0.933,
+      "qwen_spread": 0.0,
+      "gemini_spread": 0.0
+    },
+    "shot_type": {
+      "owner": "gemini-3-flash",
+      "qwen_acc": 0.222,
+      "gemini_acc": 0.311,
+      "qwen_spread": 0.067,
+      "gemini_spread": 0.067
+    },
+    "shot_side": {
+      "owner": "qwen30b-instruct",
+      "qwen_acc": 0.37,
+      "gemini_acc": 0.333,
+      "qwen_spread": 0.111,
+      "gemini_spread": 0.222
+    },
+    "shot_angle": {
+      "owner": "qwen30b-instruct",
+      "qwen_acc": 1.0,
+      "gemini_acc": 0.333,
+      "qwen_spread": 0.0,
+      "gemini_spread": 0.333
+    },
+    "elevation": {
+      "owner": "gemini-3-flash",
+      "qwen_acc": 0.333,
+      "gemini_acc": 0.815,
+      "qwen_spread": 0.0,
+      "gemini_spread": 0.222
+    },
+    "contact_quality": {
+      "owner": "gemini-3-flash",
+      "qwen_acc": 0.0,
+      "gemini_acc": 0.5,
+      "qwen_spread": 0.0,
+      "gemini_spread": 0.0
+    }
+  },
+  "expected": {
+    "committed_per_delivery": 13.29,
+    "correct_per_delivery": 9.64,
+    "precision": 0.725
+  }
+}

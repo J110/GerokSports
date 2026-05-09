@@ -1,0 +1,152 @@
+frame,truth_label,prompt_id,raw_response,parsed_answer
+post_001.jpg,post,P1_binary,LIVE.,LIVE
+post_001.jpg,post,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+post_001.jpg,post,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: Y, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=Y;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+post_001.jpg,post,P4_camera,"The camera framing in this cricket frame is **CLOSEUP**. This is because the image primarily focuses on a single player, showcasing their profile and uniform details, indicating a close-up shot.",CLOSEUP
+post_001.jpg,post,P5_anchor,No.,NO
+post_002.jpg,post,P1_binary,LIVE.,LIVE
+post_002.jpg,post,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+post_002.jpg,post,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+post_002.jpg,post,P4_camera,"The camera framing in this cricket frame is **CLOSEUP**. This is because the image primarily focuses on a single player, showcasing their helmet and part of their jersey, with minimal background visible. The close-up view emphasizes the player's gear and facial expression (though the face is not fully visible), which is characteristic of a close-up shot.",CLOSEUP
+post_002.jpg,post,P5_anchor,No.,NO
+post_003.jpg,post,P1_binary,LIVE.,LIVE
+post_003.jpg,post,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+post_003.jpg,post,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: Y, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=Y;FIELDER_DIVING=N
+post_003.jpg,post,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it appears to be a view from behind the bowler showing the pitch. This type of shot provides a wide-angle perspective of the action on the pitch, allowing viewers to see the bowler, the batsman, and the fielders.",BOWLERS_END_WIDE
+post_003.jpg,post,P5_anchor,NO.,NO
+post_004.jpg,post,P1_binary,LIVE.,LIVE
+post_004.jpg,post,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+post_004.jpg,post,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: Y, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=Y;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+post_004.jpg,post,P4_camera,"The camera framing in this cricket frame is **CLOSEUP**. This is because the image primarily focuses on a single player, showcasing their profile and jersey details, indicating a close-up shot.",CLOSEUP
+post_004.jpg,post,P5_anchor,No.,NO
+post_005.jpg,post,P1_binary,LIVE.,LIVE
+post_005.jpg,post,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+post_005.jpg,post,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: Y, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=Y;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+post_005.jpg,post,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it appears to be a view from behind the bowler showing the pitch. The player is positioned on the pitch, and the camera angle suggests that it is capturing the scene from the bowler's end, with the pitch and the player's movement visible.",BOWLERS_END_WIDE
+post_005.jpg,post,P5_anchor,NO.,NO
+pre_001.jpg,pre,P1_binary,LIVE.,LIVE
+pre_001.jpg,pre,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+pre_001.jpg,pre,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: Y, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=Y;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+pre_001.jpg,pre,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it appears to be a wide-angle shot from behind the bowler, showing the pitch and the players on the field. This type of shot provides a broad view of the action on the pitch, allowing viewers to see the positions of the batsmen, the bowler, and the fielders.",BOWLERS_END_WIDE
+pre_001.jpg,pre,P5_anchor,NO.,NO
+pre_002.jpg,pre,P1_binary,LIVE.,LIVE
+pre_002.jpg,pre,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+pre_002.jpg,pre,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: Y, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=Y;FIELDER_DIVING=N
+pre_002.jpg,pre,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it appears to be a wide-angle shot from behind the bowler, showing the pitch and the players' positions. This type of framing is commonly used in cricket broadcasts to provide a clear view of the action on the field.",BOWLERS_END_WIDE
+pre_002.jpg,pre,P5_anchor,NO.,NO
+pre_003.jpg,pre,P1_binary,LIVE.,LIVE
+pre_003.jpg,pre,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+pre_003.jpg,pre,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: Y, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=Y;FIELDER_DIVING=N
+pre_003.jpg,pre,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it appears to be a view from behind the bowler showing the pitch.",BOWLERS_END_WIDE
+pre_003.jpg,pre,P5_anchor,NO.,NO
+pre_004.jpg,pre,P1_binary,LIVE.,LIVE
+pre_004.jpg,pre,P2_scene,DELIVERY,DELIVERY
+pre_004.jpg,pre,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: Y, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: Y, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=Y;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=Y;BATTER_PLAYING=N;FIELDER_DIVING=N
+pre_004.jpg,pre,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it shows the view from behind the bowler, capturing the pitch and the players' actions. This type of framing provides a clear view of the bowler's action and the batsman's response, making it an ideal angle for showcasing the delivery of the ball.",BOWLERS_END_WIDE
+pre_004.jpg,pre,P5_anchor,NO.,NO
+pre_005.jpg,pre,P1_binary,LIVE.,LIVE
+pre_005.jpg,pre,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+pre_005.jpg,pre,P3_checklist,"REPLAY_TAG: N, SLO_MO: Y, ANALYSIS: Y, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: Y, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=Y;ANALYSIS=Y;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=Y;BATTER_PLAYING=N;FIELDER_DIVING=N
+pre_005.jpg,pre,P4_camera,"The camera framing in this cricket frame is **CLOSEUP**. This is because the image primarily focuses on a single player, capturing their actions and movements in detail, with a significant portion of the frame dedicated to their body and a blurred background.",CLOSEUP
+pre_005.jpg,pre,P5_anchor,No.,NO
+real_001.jpg,real,P1_binary,LIVE.,LIVE
+real_001.jpg,real,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+real_001.jpg,real,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: Y, BATTER_PLAYING: N, FIELDER_DIVING: Y",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=Y;BATTER_PLAYING=N;FIELDER_DIVING=Y
+real_001.jpg,real,P4_camera,"The camera framing in this cricket frame is **CLOSEUP**. This is because the image shows a close-up view of a single player, specifically focusing on their helmet and upper body. The player's face and upper torso are prominently displayed, indicating that the camera is capturing a detailed shot of the individual.",CLOSEUP
+real_001.jpg,real,P5_anchor,No.,NO
+real_002.jpg,real,P1_binary,LIVE.,LIVE
+real_002.jpg,real,P2_scene,DELIVERY,DELIVERY
+real_002.jpg,real,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: Y, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: Y, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=Y;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=Y;FIELDER_DIVING=N
+real_002.jpg,real,P4_camera,"The camera framing in this cricket frame is **AERIAL**. This type of framing is characterized by an overhead or stand-level wide view, which is evident in the image as it shows the entire pitch and players from a high angle.",AERIAL
+real_002.jpg,real,P5_anchor,NO.,NO
+real_003.jpg,real,P1_binary,LIVE.,LIVE
+real_003.jpg,real,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+real_003.jpg,real,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+real_003.jpg,real,P4_camera,"The camera framing in this cricket frame is **REPLAY_CUT**. 
+
+The image shows a replay of a moment in the game, likely from a behind-the-batter angle, which is not a typical live broadcast angle. The presence of a player in the foreground and the scoreboard at the bottom of the screen also supports this classification.",REPLAY_CUT
+real_003.jpg,real,P5_anchor,NO.,NO
+real_004.jpg,real,P1_binary,LIVE.,LIVE
+real_004.jpg,real,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+real_004.jpg,real,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: Y, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=Y;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+real_004.jpg,real,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as evidenced by the view from behind the bowler showing the pitch. This type of framing is commonly used in cricket broadcasts to provide a clear view of the bowler's action and the batsman's response.",BOWLERS_END_WIDE
+real_004.jpg,real,P5_anchor,NO.,NO
+real_005.jpg,real,P1_binary,LIVE.,LIVE
+real_005.jpg,real,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+real_005.jpg,real,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: Y, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=Y;FIELDER_DIVING=N
+real_005.jpg,real,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it shows the view from behind the bowler, capturing the pitch and the bowler's action.",BOWLERS_END_WIDE
+real_005.jpg,real,P5_anchor,NO.,NO
+replay_action_001.jpg,replay_action,P1_binary,LIVE.,LIVE
+replay_action_001.jpg,replay_action,P2_scene,DELIVERY,DELIVERY
+replay_action_001.jpg,replay_action,P3_checklist,"REPLAY_TAG: N, SLO_MO: Y, ANALYSIS: N, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: Y, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=Y;ANALYSIS=N;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=Y;FIELDER_DIVING=N
+replay_action_001.jpg,replay_action,P4_camera,"The camera framing in this cricket frame is **REPLAY_CUT**. This is because the image shows a close-up view of a player, but it appears to be a replay or a specific shot that is not typically seen in a live broadcast. The presence of a graphic overlay with information such as ""WICKET BALL SPEED"" and ""122.7 kph"" also supports this classification. Additionally, the angle of the shot, which seems to be behind the batter, further confirms that it is a replay cut.",REPLAY_CUT
+replay_action_001.jpg,replay_action,P5_anchor,"No. 
+
+The image shows a player in action, with a green screen behind them and various logos and text overlays, indicating that it is not a standard live pitch view. Additionally, there is a ""WICKET BALL SPEED"" indicator at the bottom of the screen, which suggests that this is a replay or analysis frame rather than a standard live pitch view.",NO
+replay_action_002.jpg,replay_action,P1_binary,LIVE.,LIVE
+replay_action_002.jpg,replay_action,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+replay_action_002.jpg,replay_action,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+replay_action_002.jpg,replay_action,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it appears to be a wide-angle shot from behind the bowler, showing the pitch and the players. This type of shot provides a broad view of the action on the field, allowing viewers to see the bowler, the batsman, and the wicket.",BOWLERS_END_WIDE
+replay_action_002.jpg,replay_action,P5_anchor,"No. 
+
+The image shows a graphic overlay at the bottom of the screen with text that reads ""BALL SPEEDS AFTER SIX,"" indicating it is not a standard live pitch view.",NO
+replay_action_003.jpg,replay_action,P1_binary,LIVE.,LIVE
+replay_action_003.jpg,replay_action,P2_scene,DELIVERY,DELIVERY
+replay_action_003.jpg,replay_action,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: Y, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=Y;FIELDER_DIVING=N
+replay_action_003.jpg,replay_action,P4_camera,"The camera framing in this cricket frame is **REPLAY_CUT**. 
+
+The image shows a player in a blue-and-orange uniform with his hands raised, likely reacting to a delivery or a call. The angle appears to be from behind the batter, and the presence of a graphic overlay at the bottom with information about the ""WICKET BALL SPEED"" suggests that it is a replay or a highlight, which is not a typical live broadcast angle.",REPLAY_CUT
+replay_action_003.jpg,replay_action,P5_anchor,"No. 
+
+The image shows a replay indicator (""JioHotstar LIVE 4.2Cr Views"") in the upper right corner and does not depict the standard live pitch view.",NO
+replay_action_004.jpg,replay_action,P1_binary,LIVE.,LIVE
+replay_action_004.jpg,replay_action,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+replay_action_004.jpg,replay_action,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: N, CROWD_FOREGROUND: Y, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=N;CROWD_FOREGROUND=Y;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+replay_action_004.jpg,replay_action,P4_camera,"The camera framing in this cricket frame is **AERIAL**. This type of framing is characterized by an overhead or stand-level wide view, which is evident in the image as it shows the entire field with players and the crowd in the background.",AERIAL
+replay_action_004.jpg,replay_action,P5_anchor,No.,NO
+replay_action_005.jpg,replay_action,P1_binary,LIVE.,LIVE
+replay_action_005.jpg,replay_action,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+replay_action_005.jpg,replay_action,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+replay_action_005.jpg,replay_action,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it appears to be a view from behind the bowler showing the pitch. The image shows two players on the pitch and a third player in a crouched position, likely fielding, with the advertisement boards and spectators visible in the background. The angle of the shot suggests that it is taken from behind the bowler, which is consistent with the BOWLERS_END_WIDE framing.",BOWLERS_END_WIDE
+replay_action_005.jpg,replay_action,P5_anchor,NO.,NO
+replay_overlay_001.jpg,replay_overlay,P1_binary,LIVE.,LIVE
+replay_overlay_001.jpg,replay_overlay,P2_scene,BETWEEN_DELIVERIES,BETWEEN_DELIVERIES
+replay_overlay_001.jpg,replay_overlay,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: Y, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=Y;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+replay_overlay_001.jpg,replay_overlay,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as it appears to be a view from behind the bowler showing the pitch. This type of framing is commonly used to capture the action on the pitch, including the bowler, batsman, and wicket-keeper. The presence of the bowler, batsman, and wicket-keeper in the frame, along with the pitch and the umpire in the background, supports this classification.",BOWLERS_END_WIDE
+replay_overlay_001.jpg,replay_overlay,P5_anchor,NO.,NO
+replay_overlay_002.jpg,replay_overlay,P1_binary,LIVE.,LIVE
+replay_overlay_002.jpg,replay_overlay,P2_scene,GRAPHIC.,GRAPHIC
+replay_overlay_002.jpg,replay_overlay,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: N, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=N;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+replay_overlay_002.jpg,replay_overlay,P4_camera,"The camera framing in this cricket frame is **GRAPHIC**, as the graphic overlay dominates the image. The image features large, colorful letters and a logo, indicating that it is a graphic element rather than a live-action shot of the game.",GRAPHIC
+replay_overlay_002.jpg,replay_overlay,P5_anchor,"No. 
+
+The image does not depict a standard live pitch view, as it appears to be a stylized graphic with large letters and a logo, rather than a traditional live broadcast shot of the cricket pitch.",NO
+replay_overlay_003.jpg,replay_overlay,P1_binary,REPLAY.,REPLAY
+replay_overlay_003.jpg,replay_overlay,P2_scene,REPLAY.,REPLAY
+replay_overlay_003.jpg,replay_overlay,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+replay_overlay_003.jpg,replay_overlay,P4_camera,"The camera framing in this cricket frame is **REPLAY_CUT**. 
+
+The image shows a unique angle of the pitch, focusing on the ball and not a typical live broadcast view. The presence of a graphic overlay displaying ""WICKET BALL SPEED 90.9 kph"" also supports this classification, as it indicates a replay or analysis of a specific moment in the game.",REPLAY_CUT
+replay_overlay_003.jpg,replay_overlay,P5_anchor,"No. 
+
+The image shows a replay indicator (""WICKET BALL SPEED 90.9 kph"") at the bottom, indicating that it is not a standard live pitch view.",NO
+replay_overlay_004.jpg,replay_overlay,P1_binary,REPLAY.,REPLAY
+replay_overlay_004.jpg,replay_overlay,P2_scene,REPLAY.,REPLAY
+replay_overlay_004.jpg,replay_overlay,P3_checklist,"REPLAY_TAG: N, SLO_MO: Y, ANALYSIS: N, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=Y;ANALYSIS=N;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+replay_overlay_004.jpg,replay_overlay,P4_camera,"The camera framing in this cricket frame is **REPLAY_CUT**. 
+
+This is because the frame shows a player in motion, likely in slow-motion, from an angle that is not typical of a live broadcast. The focus on the player's action and the presence of a graphic overlay with information about the ""WICKET BALL SPEED"" suggest that this is a replay or a highlight from the game, rather than a live shot.",REPLAY_CUT
+replay_overlay_004.jpg,replay_overlay,P5_anchor,"No. 
+
+The image shows a replay indicator in the top right corner (""JioHotstar LIVE"") and a wicket ball speed indicator at the bottom, indicating that this is not a standard live pitch view.",NO
+replay_overlay_005.jpg,replay_overlay,P1_binary,REPLAY.,REPLAY
+replay_overlay_005.jpg,replay_overlay,P2_scene,REPLAY.,REPLAY
+replay_overlay_005.jpg,replay_overlay,P3_checklist,"REPLAY_TAG: N, SLO_MO: N, ANALYSIS: N, BALL_SPEED: Y, CROWD_FOREGROUND: N, BOWLER_RELEASING: N, BATTER_PLAYING: N, FIELDER_DIVING: N",REPLAY_TAG=N;SLO_MO=N;ANALYSIS=N;BALL_SPEED=Y;CROWD_FOREGROUND=N;BOWLER_RELEASING=N;BATTER_PLAYING=N;FIELDER_DIVING=N
+replay_overlay_005.jpg,replay_overlay,P4_camera,"The camera framing in this cricket frame is **BOWLERS_END_WIDE**, as indicated by the view from behind the bowler showing the pitch. This type of framing is commonly used to capture the bowler's action and the pitch, providing a clear view of the bowler's run-up and delivery.",BOWLERS_END_WIDE
+replay_overlay_005.jpg,replay_overlay,P5_anchor,"No. 
+
+The image shows a single frame of a cricket broadcast with a green field and a white ball. There are several indicators that suggest this is not the standard live pitch view: 
+
+*   The presence of a ""WICKET BALL SPEED"" and ""95.9 kph"" overlay at the bottom, which is typically used for replays or analysis.
+*   The presence of a logo and view count in the top corners, which is not typical for a standard live pitch view. 
+*   The lack of a bowler or batter in the frame.",NO

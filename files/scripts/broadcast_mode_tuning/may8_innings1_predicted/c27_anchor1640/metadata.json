@@ -1,0 +1,65 @@
+{
+  "cluster_id": 27,
+  "cluster_window": [
+    1632.0,
+    1643.0
+  ],
+  "anchor_t": 1640.0,
+  "anchor_path": "B",
+  "anchor_signals": {
+    "V": true,
+    "S": false,
+    "M": true,
+    "W": true,
+    "K": true,
+    "SS": true,
+    "HARD": false,
+    "role_count": 7
+  },
+  "clip_window": [
+    1632.0,
+    1652.0
+  ],
+  "clip_duration": 20.0,
+  "back_extent": 1632.0,
+  "fwd_extent": 1654.0,
+  "note": "max-cap",
+  "frames": [
+    {
+      "t": 1632.0,
+      "path": "A",
+      "is_delivery": true,
+      "signals": "VY SY MY M2Y Wn KY SSY CGY rc=1"
+    },
+    {
+      "t": 1639.0,
+      "path": "C",
+      "is_delivery": true,
+      "signals": "Vn SY MY M2Y WY KY SSY CGY rc=3"
+    },
+    {
+      "t": 1640.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2Y WY KY SSY CGY rc=7"
+    },
+    {
+      "t": 1641.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2n WY KY SSY CGY rc=2"
+    },
+    {
+      "t": 1642.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2n WY Kn SSY CGY rc=2"
+    },
+    {
+      "t": 1643.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2n WY KY SSY CGY rc=2"
+    }
+  ]
+}

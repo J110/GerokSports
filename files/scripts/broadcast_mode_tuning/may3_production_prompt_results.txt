@@ -1,0 +1,272 @@
+====================
+[CLIP d001] duration=12.50s event_ts=10.00s
+
+   0.00s —
+    JSON: {"has_strip": false, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+    Description: "ADVERTISEMENT"
+   1.00s —
+    JSON: {"has_strip": false, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+    Description: "ADVERTISEMENT"
+   2.00s —
+    JSON: {"has_strip": false, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+    Description: "ADVERTISEMENT"
+   3.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 134-6 (17) | extras=null | this_over=null | Stonis 35(28) | M Jansen 1(1) | Holder 0-0 (0) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: SIRAJ 0 2-28 RABADA 0 2-22 HOLDER 1 2-17 ARSHAD 2 0-21 RASHID 1 0-18 SUTHAR 3 0-27 Holder replaces Rabada."
+   4.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 134-6 (17) | extras=null | this_over=null | Stonis 35(28) | Jansen 1(1) | Holder null-null (null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: SIRAJ 0-28 RABADA 0-22 HOLDER 0-17 ARSHAD 0-21 RASHID 0-18 SUTHAR 0-27 Holder replaces Rabada."
+   5.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 134-6 (17) | extras=null | this_over=null | Stonis 35(28) | M Jansen 1(1) | Holder 0-0 (0) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: - Siraj: 2-28 - Rabada: 2-22 - Holder: 2-17 - Arshad: 0-21 - Rashid: 0-18 - Suthar: 0-27 The player is celebrating or acknowledging something, likely related to a substitution or a change in the game."
+   6.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 134-6 (17) | extras=null | this_over=null | Stonis 35(28) | M Jansen 1(1) | Holder 0-0 (0) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is celebrating, likely after taking a wicket or completing a good play."
+   7.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 134-6 (17) | extras=null | this_over=null | Stonis 35(28) | M Jansen 1(1) | Holder 0-0 (0) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: - Siraj 0-2 (2.2) - Rabada 0-2 (2) - Holder 0-0 (1) - Arshad 0-21 (2) - Rashid 0-18 (1) - Suthar 0-27 (3) The player is gesturing with the ball in hand, likely during a break in play."
+   8.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 134-6 (17) | extras=null | this_over=null | Stonis 35(28) | M Jansen 1(1) | Holder null-null (null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: SIRAJ 0-28 RABADA 0-22 HOLDER 2-17 ARSHAD 0-21 RASHID 0-18 SUTHAR 0-27 The player is walking onto the field, likely as a substitute or replacement."
+   9.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+    Description: "STRIP: PBKS 134-6 (17) | extras=null | this_over=null | Stonis 35(28) | M Jansen 1(1) | Holder 0-0 (0) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: SIRAJ 0-28 RABADA 0-22 HOLDER 2-17 ARSHAD 0-21 RASHID 0-18 SUTHAR 0-27 The screen shows a scorecard and player statistics during a live IPL cricket broadcast."
+
+====================
+[CLIP d002] duration=12.50s event_ts=10.00s
+
+   0.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stonis 36(29) | M Jansen 1(1) | Holder 2-18 (3.1) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The crowd is cheering and showing excitement, with no specific cricket action happening."
+   1.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stonis 36(29) | | Jansen null-null (null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The crowd is cheering and showing green t-shirts and signs, indicating excitement during a break in play."
+   2.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stonis 36(29) | M Jansen 1(1) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The crowd is showing a green banner with a website to win match tickets."
+   3.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stonis 36(29) | M Jansen 1(1) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null ACTION: The crowd is showing a green banner with a promotional message during a break in play."
+   4.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stonis 36(29) | M Jansen 1(1) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The frame shows a graphic with no live cricket action."
+   5.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | STOINIS 36(29) | M JANSEN 1(1) | INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The screen shows a cricket scorecard graphic."
+   6.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stonis 36(29) | M Jansen 1(1) | null null-null (null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The crowd is cheering and celebrating."
+   7.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stonis 36(29) | M Jansen 1(1) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The crowd is cheering and showing their support for their team."
+   8.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | STOINIS 36(29) | M JANSEN 1(1) | INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null ACTION: The crowd is cheering and celebrating."
+   9.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stonis 36(29) | M Jansen 1(1) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null ACTION: The crowd is cheering and celebrating during a break in play."
+
+====================
+[CLIP d003] duration=12.50s event_ts=10.00s
+
+   0.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stonis 36(29) | M Jansen 1(1) | Holder 2-18 (3.1) ACTION: The game is currently in a break, with players on the field and no immediate action happening."
+   1.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | STOINIS 36(29) | M Jansen 1(1) | null null-null (null) INFO_PANEL: null SPEED: 132.8 EXTRA: null THIS OVER: null FULL SCORECARD: null The game is currently in a break, with players on the field and no immediate action happening."
+   2.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | Stoinis 36(29) | M Jansen 1(1) | null null-null (null) INFO_PANEL: null SPEED: 132.8 EXTRA: null THIS OVER: null FULL SCORECARD: null The players are on the field, and it appears to be a break in play."
+   3.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 135-6 (17.1) | extras=null | this_over=null | STOINIS 36(29) | M JANSEN 1(1) | null null-null (null) INFO_PANEL: null SPEED: 132.8 EXTRA: null THIS OVER: null FULL SCORECARD: null The players are walking off the field."
+   4.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 136-6 (17.2) | extras=null | this_over=null | Stonis 36(29) | Jansen 2(2) | null null-null (null) INFO_PANEL: null SPEED: 132.8 EXTRA: null THIS OVER: null FULL SCORECARD: null The players are walking off the field."
+   5.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "between_play", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 136-6 (17.2) | extras=null | this_over=null | Stonis 36(29) | 2(2) | M Jansen INFO_PANEL: null SPEED: 132.8 kph EXTRA: null THIS OVER: null FULL SCORECARD: null The players are walking off the field between play."
+   6.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 136-6 (17.2) | extras=null | this_over=null | Stonis 36(29) | Jansen 2(2) | Holder 2-19 (3.2)"
+   7.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 136-6 (17.2) | extras=null | this_over=null | Stoinis 36(29) | M Jansen 2(2) | Holder 2-19 (3.2) ACTION: A player is shown with a contemplative expression, likely during a break in play."
+   8.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 136-6 (17.2) | extras=null | this_over=null | Stonis 36(29) | M Jansen 2(2) | Holder 2-19 (3.2) ACTION: A player is shown in a close-up shot during a break in play."
+   9.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 136-6 (17.2) | extras=null | this_over=null | null null(null) | null null(null) | null null(null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player appears to be looking up, possibly reacting to something happening on the field or waiting for the next play."
+
+====================
+[CLIP d004] duration=12.50s event_ts=10.00s
+
+   0.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | null null(null) | Stoinis null(null) | null null(null) INFO_PANEL: MARCUS STOINIS OVERS 17-20, TATA IPL 2026 STRIKE RATE 276 DOTS 18% BALLS/BDRY 2 SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The camera shows a close-up of a player, likely between play, with the score strip and player information visible."
+   1.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | Stoinis null(null) | null null(null) | null null-null (null) INFO_PANEL: MARCUS STOINIS OVERS 17-20, TATA IPL 2026 STRIKE RATE 276 DOTS 18% BALLS/BDRY 2 SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The game is currently paused with players on the field."
+   2.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | Stoinis null(null) | null null(null) | null null-null (null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The players are in position as the bowler prepares to bowl."
+   3.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | null null(null) | null null(null) | null null(null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The game is currently paused, with the batter walking around the field."
+   4.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | null INFO_PANEL: MARCUS STOINIS OVERS 17-20, TATA IPL 2026 STRIKE RATE 276 DOTS 18% BALLS/BDRY 2 The fielder is celebrating."
+   5.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | null null(null) | null null(null) | null null(null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The fielder, likely a team player for PBKS, appears to be walking back to their position after a play."
+   6.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | null null(null) | null null(null) | null null(null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The coach or a team staff member is gesturing on the field."
+   7.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | null null(null) | null null(null) | null null(null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The camera shows a close-up of a man in a black and blue uniform, likely a coach or staff member, as the game is in a break phase."
+   8.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | null null(null) | null null(null) | null null(null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player, likely a team staff member or coach, is standing on the field, seemingly observing the game during a break in play."
+   9.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 140-6 (17.3) | extras=null | this_over=null | null null(null) | null null(null) | null null(null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player, Marcus Stoinis, appears to be walking off the field, likely between play."
+
+====================
+[CLIP d005] duration=12.50s event_ts=10.00s
+
+   0.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "shot", "ball_position": null}
+    Description: "STRIP: null 42-3 (18) | extras=null | this_over=null | MARCUS STOINIS 62*(22) | 3(2) | null null-null (null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The batter is playing a shot."
+   1.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "post_shot", "ball_position": null}
+    Description: "STRIP: null 3-2 (18) | extras=null | this_over=null | MARCUS STOINIS 62*(22) | null null(null) | null null(null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The batter, Marcus Stoinis, has just played a shot."
+   2.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+    Description: "STRIP: null null-null (null) | extras=null | this_over=null | MARCUS STOINIS 62*(22) | null null(null) | null null-null (null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The bowler is in the process of bowling the ball."
+   3.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: null 96-3 (7.0) | extras=5 | this_over=1. | *Jadeja 1(3) | Gaikwad 41(23) | Bishan 1-16 (4.0) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The players are taking a break between play."
+   4.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: Punjab Kings null-null (null) | extras=null | this_over=null | null null(null) | null null(null) | null null-null (null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The crowd is cheering and there is no current action happening on the field."
+   5.00s —
+    JSON: {"has_strip": false, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "other", "ball_position": null}
+    Description: "ADVERTISEMENT"
+   6.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: null null-null (null) | extras=null | this_over=null | null null(null) | null null(null) | null null-null (null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The batter is preparing to play a shot."
+   7.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-6 (17.3) | extras=null | this_over=null | Stoinis 40(30) | Jansen 2(2) | Holder 2-24 (3.3)"
+   8.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-6 (17.3) | extras=null | this_over=null | Stonis 40(30) | M Jansen 2(2) | Holder 2-24 (3.3) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null ACTION: The players are taking a break between play."
+   9.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "shot", "ball_position": null}
+    Description: "STRIP: PBKS 141-6 (17.3) | extras=null | this_over=null | Stonis 40(30) | M Jansen 2(2) | Holder 2-24 (3.3) ACTION: A batsman is playing a shot."
+
+====================
+[CLIP d006] duration=12.50s event_ts=10.00s
+
+   0.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-6 (17.3) | extras=null | this_over=null | Stonis 40(30) | M Jansen 2(2) | Holder 2-24 (3.3)"
+   1.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | Stonis 40(31) | M Jansen 2(2) | Holder 3-24 (3.4) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The crowd is clapping and cheering as the players are celebrating on the field."
+   2.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: null 96-5 (null) | extras=null | this_over=null | *Rahman 29(21) | Ashwin 25(20) | Bishan 2-32 (4) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The players are celebrating a wicket."
+   3.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: null null-null (null) | extras=null | this_over=null | null null(null) | null null(null) | null null(null) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The crowd is celebrating a wicket."
+   4.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: null null-null (null) | extras=null | this_over=null | null null(null) | null null(null) | null null(null) INFO_PANEL: SPEED: EXTRA: THIS OVER: FULL SCORECARD: The crowd is celebrating a wicket."
+   5.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-5 (19.2) | extras=null | this_over=◉◉◉◉◉. | Shikhar Dhawan 29(22) | Aiden Markram 12(8) | Arshdeep Singh 1-19 (4) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null ACTION: The crowd is celebrating as the Punjab Kings team is playing."
+   6.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | STOINIS 40(31) | M JANSEN 2(2) | HOLDER 3-24 (3.4) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null ACTION: The crowd is celebrating as a team supporter."
+   7.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | Stonis 40(31) | Jansen 2(2) | M Jansen INFO_PANEL: null SPEED: 133.2 EXTRA: null THIS OVER: 1 1 4 wd w FULL SCORECARD: null The player is taking a break between plays."
+   8.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | STOINIS 40(31) | M JANSEN 2(2) | null null-null (null) INFO_PANEL: null SPEED: 133.2 EXTRA: null THIS OVER: 1 1 4 wd w FULL SCORECARD: null The player is taking a break between plays."
+   9.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | M Stoinis 40(31) | 2(2) | M Jansen 2-40 (7) INFO_PANEL: null SPEED: 133.2 kph EXTRA: null THIS OVER: 1/1/4 wd w FULL SCORECARD: null The crowd is cheering and the players are on the field, seemingly between play."
+
+====================
+[CLIP d007] duration=12.50s event_ts=10.00s
+
+   0.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | Bartlett 0(0) | Stoinis 40(31) | M Jansen 0-2 (2) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The bowler is releasing the ball."
+   1.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "shot", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | Bartlett 0(2) | Stoinis 40(31) | Jansen M 2-22 (2) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null ACTION: A batter is playing a shot."
+   2.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | M Jansen 0(0) | Stoinis 40(31) | Holder null-null (null)"
+   3.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | M Jansen 2(2) | Bartlett 0(1) | INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The last wicket has fallen, and the new batsmen are walking in."
+   4.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | Bartlett 0(2) | M Jansen 0(0) | Stoinis c Washington b Holder 40(31) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is celebrating after taking a wicket."
+   5.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-7 (17.4) | extras=null | this_over=null | Bartlett 0(2) | M Jansen 2(2) | Stoinis c Washington b Holder 40(31) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is celebrating or reacting to a moment in the game."
+   6.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (17.5) | extras=null | this_over=null | Bartlett 0(1) | Stoinis 40(31) | M Jansen 2-2 (2) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The bowler is in the process of bowling a delivery."
+   7.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (17.5) | extras=null | this_over=null | Bartlett 0(1) | M Jansen 2(2) | Stoinis c Washington b Holder 40(31) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The players are celebrating a wicket."
+   8.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (17.5) | extras=null | this_over=null | Bartlett 0(1) | M Jansen 2(2) | Stoinis c Washington b Holder 40(31) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The players are celebrating a wicket."
+   9.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (17.5) | extras=null | this_over=null | Bartlett 0(1) | Jansen 2(2) | Stoinis c Washington b Holder 40(31)"
+
+====================
+[CLIP d008] duration=12.50s event_ts=10.00s
+
+   0.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | Arshad 0-21 (2) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is looking concerned or focused during a break in play."
+   1.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | Arshad null(null) | M Jansen 0-21 (2) INFO_PANEL: null SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is walking while looking down, likely between play."
+   2.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | M Jansen 2(2) | Arshad 0-21 (2) INFO_PANEL: Holder BEST FIGURES - IPL SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The camera shows a close-up of a player wearing a brown jersey with the number 18 on it, and various statistics are displayed on the screen, indicating a break in play during the IPL match."
+   3.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | M Jansen 2(2) | Arshad 0-21 (2) INFO_PANEL: Holder Best Figures - IPL SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is being shown in a close-up, likely during a break in play."
+   4.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | M Jansen 2(2) | Arshad 0-21 (2) INFO_PANEL: Holder BEST FIGURES - IPL SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is being shown in a close-up, likely during a break in play."
+   5.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | Arshad 0(2) | M Jansen 2-2 (null) INFO_PANEL: Holder BEST FIGURES - IPL SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is being shown on a close-up, likely during a break in play."
+   6.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | M Jansen 2(2) | Arshad 0-21 (2) INFO_PANEL: Holder BEST FIGURES - IPL SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is being shown in a close-up, seemingly during a break in play."
+   7.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | Arshad null(null) | M Jansen 0-21 (2) INFO_PANEL: Holder BEST FIGURES - IPL SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player appears to be frustrated or disappointed, possibly due to a recent play or the current score."
+   8.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | M Jansen 2(2) | Arshad 0-21 (2) INFO_PANEL: Holder Best Figures - IPL SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is being shown in a close-up, likely during a break in play."
+   9.00s —
+    JSON: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+    Description: "STRIP: PBKS 141-8 (18) | extras=null | this_over=null | Vyshak 0(1) | Arshad null(null) | M Jansen 0-21 (2) INFO_PANEL: Holder BEST FIGURES - IPL SPEED: null EXTRA: null THIS OVER: null FULL SCORECARD: null The player is reacting, possibly to a previous play or a change in the game."
+

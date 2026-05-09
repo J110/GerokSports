@@ -1,0 +1,129 @@
+=== t=1265-1271 — c3 + c4 duplicate split ===
+
+   t | V S M M2 W K SS SSlo CG HARD | A B C | path | rc
+-------------------------------------------------------
+1265 | Y n Y  Y Y n  Y    n  Y    n | n Y Y |    B | 4
+1266 | n Y Y  n n Y  Y    n  Y    n | n n n | none | 1
+1267 | n Y Y  n n Y  Y    n  n    n | n n n | none | 1
+1268 | Y Y Y  n n Y  Y    n  Y    Y | n n n | none | 2
+1269 | Y n Y  Y Y Y  Y    n  Y    n | n Y Y |    B | 6
+1270 | n n Y  Y Y Y  Y    n  Y    n | n n Y |    C | 4
+1271 | n n Y  n Y n  n    n  Y    n | n n n | none | 2
+
+=== t=1275-1280 — c5 — real 4.5 or replay false positive? ===
+
+   t | V S M M2 W K SS SSlo CG HARD | A B C | path | rc
+-------------------------------------------------------
+1275 | n Y Y  Y Y Y  Y    n  Y    n | n n Y |    C | 2
+1276 | n n Y  Y Y n  Y    n  Y    n | n n Y |    C | 2
+1277 | Y n Y  Y Y n  Y    n  Y    n | n Y Y |    B | 3
+1278 | Y n Y  Y Y n  Y    n  Y    n | n Y Y |    B | 4
+1279 | n n n  n n Y  n    n  n    n | n n n | none | 0
+1280 | n n Y  Y Y Y  n    n  Y    n | n n n | none | 4
+
+=== t=1325-1336 — missed ball with explicit motion-verb prose ===
+
+   t | V S M M2 W K SS SSlo CG HARD | A B C | path | rc
+-------------------------------------------------------
+1325 | n n n  n n Y  Y    n  Y    n | n n n | none | 0
+1326 | Y n Y  Y n n  n    n  n    n | n n n | none | 4
+1327 | Y n Y  Y n n  n    n  n    n | n n n | none | 4
+1328 | Y n Y  Y n Y  n    n  Y    n | n n n | none | 4
+1329 | n n Y  Y n Y  n    n  Y    n | n n n | none | 6
+1330 | n n Y  n n Y  n    n  Y    n | n n n | none | 2
+1331 | n n Y  n n Y  n    n  n    n | n n n | none | 2
+1332 | Y n Y  n n Y  n    n  n    n | n n n | none | 1
+1333 | n n Y  n Y Y  n    n  Y    n | n n n | none | 1
+1334 | n n Y  n n Y  n    n  Y    n | n n n | none | 1
+1335 | n n Y  n Y Y  n    n  Y    n | n n n | none | 2
+1336 | Y n Y  n n Y  n    n  Y    n | n n n | none | 2
+
+=== t=1445-1455 — missed wicket ball ===
+
+   t | V S M M2 W K SS SSlo CG HARD | A B C | path | rc
+-------------------------------------------------------
+1445 | n n n  n n Y  Y    n  Y    n | n n n | none | 0
+1446 | n n Y  n n Y  n    n  n    Y | n n n | none | 1
+1447 | n n n  n n Y  n    n  Y    Y | n n n | none | 0
+1448 | Y n Y  n n Y  n    n  Y    n | n n n | none | 1
+1449 | n n Y  n n Y  n    n  Y    n | n n n | none | 1
+1450 | n n Y  n n Y  n    n  Y    n | n n n | none | 2
+1451 | Y n Y  Y n Y  n    n  Y    n | n n n | none | 5
+1452 | n n Y  n n Y  n    n  Y    n | n n n | none | 2
+1453 | n n Y  n Y Y  n    n  Y    n | n n n | none | 1
+1454 | n n Y  n Y Y  n    n  Y    n | n n n | none | 2
+1455 | Y n Y  n n Y  n    n  Y    n | n n n | none | 2
+
+=== Prose with delivery-verb language: t=1265-1271 (c3 + c4 duplicate split) ===
+
+  -- t=1265 path=B V=Y matched='about to deliver' --
+     The camera shows a wide field view of a cricket field with players scattered around it. The people in the frame are mostly standing still, with a bowler about to deliver the ball and fielders positioned around the field. 
+     
+     There are several graphical overlays on the screen, including a score graphic at the bottom showing the score, team logos, and player statistics. The action level appears to be just before active play, as the bowler is preparing to bowl and the fielders are in position.
+
+  -- t=1268 path=none V=Y matched='in mid-action' --
+     The camera shows a close-up of a cricket player wearing a blue helmet and an orange jersey with various sponsor logos. The player appears to be looking down, likely focused on the field or the bowler.
+     
+     In the frame, the player is not actively engaged in play but seems to be in a moment of concentration or preparation. There are no other people visible in the frame apart from the player.
+     
+     There are several graphical overlays on the screen, including a score graphic at the bottom showing the score (DC 31-1), overs (4.3), and other game statistics. Additionally, there are logos for Tata IPL, JioHotstar, and sponsor logos on the player's jersey.
+     
+     The action level appears to be between deliveries, as the player is not in mid-action, and there is no indication of replay or slow-motion. The overall atmosphere suggests a live broadcast of a professional cricket match.
+
+  -- t=1269 path=B V=Y matched='just bowled' --
+     The camera shows a wide field view of a cricket pitch with several players and an umpire. The bowler appears to have just bowled the ball, and the batter is preparing to play it. A fielder is positioned behind the batter, while another player is on the pitch near the bowler's end.
+     
+     There are several graphical overlays on the screen, including a score graphic at the bottom showing the current score and player statistics, as well as sponsor logos such as "TATA AIG INSURANCE" and "JioHotstar LIVE". The action level appears to be between deliveries, as the players are not in motion and the batter is preparing for the next ball.
+
+=== Prose with delivery-verb language: t=1275-1280 (c5 — real 4.5 or replay false positive?) ===
+
+  -- t=1277 path=B V=Y matched='follow-through' --
+     The camera shows a wide field view of a cricket match in progress. The people in the frame are engaged in active play, with a batter standing near the wicket, a bowler in a follow-through position on the left side of the frame, and two fielders positioned behind him.
+     
+     There are several graphical overlays on the screen, including a score graphic at the bottom showing the score and team logos, as well as sponsor logos along the boundary of the field. The action level appears to be during a moment of active play, likely just after the bowler has delivered the ball.
+
+  -- t=1278 path=B V=Y matched='in mid-action' --
+     The camera shows a wide field view of a cricket field with four people visible. A player in a light blue uniform appears to be celebrating, with their left arm raised above their head and their right hand on their helmet; another player in a similar uniform walks towards them, while a batter in an orange uniform walks off the field with their bat, and an umpire in a black uniform stands in the background.
+     
+     There are several graphical overlays at the bottom of the frame, including a score graphic showing the score and run rate, as well as logos for the teams and sponsors. The action level appears to be a post-action moment, as the players are not in mid-action and seem to be reacting to something that has just happened.
+
+=== Prose with delivery-verb language: t=1325-1336 (missed ball with explicit motion-verb prose) ===
+
+  -- t=1326 path=none V=Y matched='in mid-air' --
+     The camera shows a medium shot of a cricket player in mid-air, about to bowl the ball. The bowler, wearing a teal uniform with the number 47 on his back, is captured in a dynamic pose, with his right leg lifted high and his left arm cocked back to release the ball. Behind him, a wicketkeeper in an orange and blue uniform crouches, ready to catch the ball, while an umpire in a black uniform stands to the right, observing the action. The scene is set against a backdrop of advertisements and sponsor logos along the boundary line.
+
+  -- t=1328 path=none V=Y matched='in mid-action' --
+     The camera shows a medium shot of two cricket players in action. The player on the right is wearing a light blue uniform and appears to be jumping up and throwing a ball towards the wicket, while the player on the left, wearing an orange uniform, is holding a bat and standing behind a wicket. 
+     
+     There are graphical overlays including sponsor logos, such as "TATA AIG INSURANCE" and "KINGFISHER," as well as a "JioHotstar LIVE" logo in the top-right corner. The action level appears to be an active moment during play, with the bowler in mid-action and the batter prepared to hit the ball.
+
+  -- t=1332 path=none V=Y matched='thrown' --
+     The camera shows a medium shot of a cricket player in a light blue uniform, with their back to the camera, throwing a ball. The player appears to be in motion, with their right leg lifted and their left foot planted on the ground. A partial view of another player in a blue and white uniform is visible on the left edge of the frame.
+     
+     There are several graphical overlays, including logos for "TATA IPL", "SBI", and "JioHotstar LIVE" with "4Cr Views" written underneath. The action level appears to be an active play moment, as the player is in motion and seems to have just thrown the ball.
+
+  -- t=1336 path=none V=Y matched='thrown' --
+     The camera shows a medium shot of two cricket players on the field. The player on the right is wearing a light blue uniform with the number 22 on his back and appears to be walking away from the camera, while the player on the left is wearing an orange uniform and a blue helmet and seems to be walking in the same direction. 
+     
+     There are several graphical overlays in the top left corner, including a TATA IPL logo, an SBI logo, and a JioHotstar LIVE logo in the top right corner with "4Cr Views" underneath it. The action level appears to be a post-action moment, as the ball is visible in the air to the right of the players, suggesting that it has been recently thrown or hit.
+
+=== Prose with delivery-verb language: t=1445-1455 (missed wicket ball) ===
+
+  -- t=1447 path=none V=n matched='in mid-air' --
+     The frame shows a blurry, close-up view of a cricket ball in mid-air. The ball appears to be traveling quickly, and there are no people visible in the frame. 
+     
+     There are several graphical overlays on the screen, including logos for "TATA IPL", "YONO SBI", and "JioHotstar LIVE" with a view count of 4.2Cr. Additionally, there is an orange bar at the bottom of the screen displaying "WICKET BALL SPEED" and "90.9 kph". 
+     
+     The action level appears to be a paused moment during a replay, likely showing a key moment such as a wicket being taken.
+
+  -- t=1448 path=none V=Y matched='just bowled' --
+     The camera shows a close-up view of a cricket ball on the ground and the lower part of a player's leg and foot. The player appears to have just bowled the ball, as indicated by their position and the ball's proximity to them. Graphical overlays include logos for TATA IPL and Yono SBI, as well as a "WICKET BALL SPEED" graphic displaying 90.9 kph. The action level appears to be a post-action moment, likely immediately after a wicket has fallen.
+
+  -- t=1451 path=none V=Y matched='just hit' --
+     The camera shows a medium shot of two cricket players. The player on the right is wearing a red and blue jersey and white gloves, with his arms raised above his head as if he has just hit or is about to hit a ball. The player on the left is wearing a light blue jersey and appears to be a wicket-keeper, standing behind the batter.
+     
+     There are several graphical overlays on the frame, including sponsor logos in the top-left corner, a "JioHotstar LIVE" label in the top-right corner indicating 4.2 crore views, and a banner at the bottom that reads "WICKET BALL SPEED 90.9 kph". The action level appears to be a moment during active play, possibly immediately after a delivery has been bowled.
+
+  -- t=1455 path=none V=Y matched='running on the field' --
+     The camera shows two cricket players running on the field with a third player in the background. The two players in the foreground are wearing light blue uniforms and appear to be celebrating, with one player raising his right fist in the air. A blue advertisement board with the Kingfisher logo is visible behind them, and there are graphical overlays in the top left and right corners of the screen, including logos for Tata IPL, SBI, and JioHotstar. The action level appears to be a post-action moment, with the players celebrating.
+

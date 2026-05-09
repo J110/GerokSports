@@ -1,0 +1,286 @@
+=== c49 region — anchor t=2256 path=A (t=2245-2260) ===
+
+-- t=2245 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows two cricket players standing on the field. The player on the left is holding a cricket bat and wearing a blue helmet, orange jersey, and white gloves. The player on the right is also wearing a blue helmet and an orange jersey, and ap
+          ... (664 total chars)
+
+-- t=2246 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows two cricket players on the field. The player on the right is wearing a light blue uniform and appears to be celebrating, with his right arm raised. The player on the left is wearing an orange uniform and blue protective gear, holding
+          ... (622 total chars)
+
+-- t=2247 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a medium shot of a cricket player in action. The player, wearing a blue helmet, orange shirt, and blue pants with an orange stripe, is positioned behind a wicket, with his body angled to the right and his hands outstretched as if he 
+          ... (482 total chars)
+
+-- t=2248 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a wide field view of a cricket field with three players in frame. The player on the left is diving to catch a ball, while another player stands near the wicket, and a third player is partially visible on the right edge of the frame. 
+          ... (627 total chars)
+
+-- t=2249 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'in motion'  via  \bin\s+motion\b
+   prose: The camera shows a wide field view of a cricket match in progress. The players are positioned around the field, with two batters standing near the wicket on the left side of the frame, while the other players are scattered around the field, some stan
+          ... (601 total chars)
+
+-- t=2250 | path=A | D=1 | V=Y V_post=Y | M2=Y W=Y K=Y SS=Y --
+   V matches:
+     'hit the ball'  via  \bhit\s+the\s+ball\b
+   V_post matches:
+     'hit the ball'  via  \bhit\s+the\s+ball\b
+   prose: The camera shows a wide field view of a cricket match in progress. The players are positioned around the field, with one batter standing at the crease, holding a bat and preparing to hit the ball, while fielders are scattered around the field. A scor
+          ... (729 total chars)
+
+-- t=2251 | path=A | D=1 | V=Y V_post=n | M2=n W=Y K=Y SS=Y --
+   V matches:
+     'hitting the ball'  via  \b(?:throwing|throws|swinging|delivering|bowling|hitting)\s+(?:the\s+|a\s+)?(?:white\s+)?(?:ball|object)\b
+   V_post matches: (none)
+   prose: The camera shows a wide field view of a cricket match in progress. The players are not actively engaged in a specific moment of play; one batter wearing an orange uniform appears to be walking back to their position after hitting the ball, while thre
+          ... (600 total chars)
+
+-- t=2252 | path=A | D=1 | V=Y V_post=Y | M2=Y W=n K=Y SS=Y --
+   V matches:
+     'just played'  via  \b(?:just|having\s+just)\s+(?:hit|played|struck|made\s+contact)\b
+     'just hit'  via  \b(?:just|having\s+just)\s+(?:hit|played|struck|made\s+contact)\b
+     'hit the ball'  via  \bhit\s+the\s+ball\b
+   V_post matches:
+     'just played'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+     'just hit'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+     'hit the ball'  via  \bhit\s+the\s+ball\b
+   V_loose-only (pre-action) matches:
+     'in motion'  via  \bin\s+motion\b
+   prose: The camera shows a medium shot of a cricket player in an orange and blue uniform, holding a bat and standing near a wicket. He appears to have just played a shot or is preparing to play one. Two players in teal uniforms are positioned behind him, one
+          ... (987 total chars)
+
+-- t=2253 | path=none | D=0 | V=n V_post=n | M2=Y W=n K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a close-up view of a cricket player wearing an orange and blue uniform and a blue helmet. He appears to be on the field, likely preparing to bat. A teammate or fellow player in a green uniform crouches behind him.  The player in the 
+          ... (779 total chars)
+
+-- t=2254 | path=A | D=1 | V=Y V_post=Y | M2=Y W=n K=Y SS=Y --
+   V matches:
+     'just swung'  via  \bjust\s+swung\b
+     'just swung'  via  \bjust\s+swung\b
+   V_post matches:
+     'just swung'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+     'having just swung'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+     'just swung'  via  \bjust\s+swung\b
+     'just swung'  via  \bjust\s+swung\b
+   prose: The camera shows a batter in an orange uniform mid-swing, with a wicketkeeper in a light blue uniform crouched behind him. The batter appears to have just swung his bat, and the wicketkeeper is positioned to catch the ball. A large crowd of spectator
+          ... (643 total chars)
+
+-- t=2255 | path=A | D=1 | V=Y V_post=Y | M2=Y W=n K=Y SS=Y --
+   V matches:
+     'just swung'  via  \bjust\s+swung\b
+     'just swung'  via  \bjust\s+swung\b
+   V_post matches:
+     'just swung'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+     'just swung'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+     'just swung'  via  \bjust\s+swung\b
+     'just swung'  via  \bjust\s+swung\b
+   prose: The camera shows a batter in mid-swing on a cricket pitch, with a crowd of spectators in the background. The batter is wearing an orange and blue uniform, holding a bat, and appears to have just swung it. A fielder in a light blue uniform is position
+          ... (638 total chars)
+
+-- t=2256 | path=A | D=1 | V=Y V_post=Y | M2=Y W=Y K=Y SS=Y --
+   V matches:
+     'just released'  via  \b(?:just\s+)?(?:released|bowled|delivered|thrown)\b
+     'delivered'  via  \b(?:just\s+)?(?:released|bowled|delivered|thrown)\b
+   V_post matches:
+     'just released'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+   prose: The camera shows a wide field view of the cricket pitch, capturing several players and a staff member. The bowler in a teal uniform appears to have just released the ball, with their arm raised, while two batters stand at the wickets, one preparing t
+          ... (696 total chars)
+
+-- t=2257 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a wide field view of a crowded stadium with a scoreboard overlay. The people in the frame are seated spectators, and they appear to be watching the game intently. There are several graphical overlays, including a red banner with the 
+          ... (501 total chars)
+
+-- t=2258 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a wide field view of a cricket field with a few players on it and a large crowd in the background. The players on the field are wearing light blue uniforms and are walking around; one player appears to be standing near the bottom cen
+          ... (575 total chars)
+
+-- t=2259 | path=none | D=0 | V=Y V_post=Y | M2=n W=n K=Y SS=Y --
+   V matches:
+     'just thrown'  via  \b(?:just\s+)?(?:released|bowled|delivered|thrown)\b
+   V_post matches:
+     'just thrown'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+   V_loose-only (pre-action) matches:
+     'running'  via  \brunning\b
+     'running'  via  \brunning\b
+   prose: The camera shows two cricket players in teal uniforms running on a green field. The player on the left appears to have just thrown a ball and is turning to look at the player on the right, who is running towards him.   There are graphical overlays in
+          ... (569 total chars)
+
+-- t=2260 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a partial view of a cricket player's head and shoulder. The player appears to be facing away from the camera.   The player seems to be stationary.   There are several graphical overlays on the frame, including a logo for TATA IPL in 
+          ... (542 total chars)
+
+=== c50 region — anchor t=2347 path=A (t=2340-2360) ===
+
+-- t=2340 | path=none | D=0 | V=n V_post=n | M2=n W=n K=n SS=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The frame shows a cricket player, Axar Patel, in an orange uniform with blue accents, wearing a blue helmet and holding a white face guard. He appears to be walking off the field. A second player in a green uniform is visible in the background, seemi
+          ... (427 total chars)
+
+-- t=2341 | path=none | D=0 | V=n V_post=n | M2=n W=n K=n SS=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The frame shows a cricket player in an orange uniform and blue helmet on the right side, with a blurred player in a teal uniform in the background. On the left side of the frame, there is a player's profile picture with his name, Axar Patel, and some
+          ... (449 total chars)
+
+-- t=2342 | path=none | D=0 | V=n V_post=n | M2=n W=n K=n SS=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a player in an orange uniform with blue accents and a blue helmet, standing on the field. He appears to be looking down at something. A second player in a teal uniform is visible behind him, and a graphic overlay on the left side of 
+          ... (714 total chars)
+
+-- t=2343 | path=none | D=0 | V=n V_post=n | M2=n W=n K=n SS=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The frame shows a cricket player, Axar Patel, in an orange uniform with blue accents. He is shown in two different views: a headshot on the left side of the frame and a full-body shot on the right side, where he is wearing a helmet and holding his gl
+          ... (600 total chars)
+
+-- t=2344 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a close-up of a cricket player. The player is wearing a blue helmet, an orange uniform with blue accents, and white gloves. He appears to be clapping his hands together.  The player seems to be celebrating or acknowledging something.
+          ... (824 total chars)
+
+-- t=2345 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'in motion' [NEGATED]  via  \bin\s+motion\b
+   prose: The camera shows a close-up view of a cricket player. The player is wearing a blue helmet with an orange visor, an orange jersey with blue trim, and white gloves. He appears to be adjusting or putting on his gloves.  The player is standing still, foc
+          ... (812 total chars)
+
+-- t=2346 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'in motion' [NEGATED]  via  \bin\s+motion\b
+   prose: The camera shows a wide field view of a cricket player standing on the field. The player, wearing a light blue uniform, appears to be walking or standing still, with his hands by his sides and looking to the left.   There are several graphical overla
+          ... (684 total chars)
+
+-- t=2347 | path=A | D=1 | V=Y V_post=Y | M2=Y W=Y K=n SS=Y --
+   V matches:
+     'about to bowl'  via  \babout\s+to\s+(?:bowl|deliver|release|throw)\b
+   V_post matches:
+     'in the process of bowling'  via  \bin\s+(?:the\s+)?process\s+of\s+(?:bowling|delivering)\b
+   prose: The camera shows a wide field view of a cricket player standing on the field. The player, wearing a light blue uniform, appears to be in the process of bowling or about to bowl, with his right arm raised and bent at the elbow.   There are graphical o
+          ... (522 total chars)
+
+-- t=2348 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=n SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'in motion' [NEGATED]  via  \bin\s+motion\b
+   prose: The camera shows a wide field view of a cricket player standing on the field. The player, wearing a light blue uniform, appears to be waiting or observing the game. He is standing still with his hands clasped in front of him.  There are several graph
+          ... (536 total chars)
+
+-- t=2349 | path=C | D=1 | V=n V_post=n | M2=Y W=Y K=n SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a wide field view of a cricket field with players scattered around. The people in the frame are primarily standing still, with one player preparing to bat and another player at the bowling position, while the rest of the players appe
+          ... (608 total chars)
+
+-- t=2350 | path=C | D=1 | V=n V_post=n | M2=Y W=Y K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'running' [NEGATED]  via  \brunning\b
+     'in motion' [NEGATED]  via  \bin\s+motion\b
+   prose: The camera shows a wide field view of a cricket field with players positioned around it. The players are standing still, with one player at the bowler's end and another at the batter's end, while the rest are fielders positioned around the field.   T
+          ... (623 total chars)
+
+-- t=2351 | path=C | D=1 | V=n V_post=n | M2=Y W=Y K=n SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame are standing still, with one player preparing to bat and others positioned as fielders.   There are several graphical overlays on the scr
+          ... (750 total chars)
+
+-- t=2352 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=n SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'in motion'  via  \bin\s+motion\b
+   prose: The camera shows a wide field view of a cricket field with players scattered around. The people in the frame are primarily focused on their positions on the field, with some fielders standing still and others in motion, while the crowd in the backgro
+          ... (703 total chars)
+
+-- t=2353 | path=C | D=1 | V=n V_post=n | M2=Y W=Y K=n SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a wide field view of a cricket field with players on the field and a crowd in the background. The people in the frame are standing still, with some fielders scattered around the field and a batter and umpire standing near the wicket.
+          ... (619 total chars)
+
+-- t=2354 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=n SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'in motion'  via  \bin\s+motion\b
+   prose: The camera shows a wide field view of a cricket pitch with players scattered around it. The people in the frame are primarily focused on the game, with some players standing still and others in motion, such as one player bending down near the center 
+          ... (684 total chars)
+
+-- t=2355 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a view of the ceiling lights in the stadium. There are no people visible in the frame.  There are several graphical overlays on the screen, including a score graphic at the bottom that displays the teams "DC" and "CSK", the current s
+          ... (631 total chars)
+
+-- t=2356 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a ceiling with numerous square lights shining brightly. There are no people visible in the frame.   There are several graphical overlays present, including a score graphic at the bottom of the screen displaying the teams "DC" and "CS
+          ... (581 total chars)
+
+-- t=2357 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=n SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'in motion' [NEGATED]  via  \bin\s+motion\b
+   prose: The camera shows a wide field view of a cricket player standing on the field. The player, wearing a light blue uniform and a brown turban, appears to be walking or standing still, looking to his left.  There are graphical overlays at the bottom of th
+          ... (589 total chars)
+
+-- t=2358 | path=A | D=1 | V=Y V_post=Y | M2=n W=Y K=Y SS=Y --
+   V matches:
+     'just thrown'  via  \b(?:just\s+)?(?:released|bowled|delivered|thrown)\b
+     'just delivered'  via  \b(?:just\s+)?(?:released|bowled|delivered|thrown)\b
+     'follow-through'  via  \bfollow[-\s]through\b
+   V_post matches:
+     'just thrown'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+     'just delivered'  via  \b(?:just|having\s+just)\s+(?:released|bowled|delivered|thrown|hit|swung|played|struck|made\s+contact)\b
+     'follow-through'  via  \bfollow[-\s]through\b
+   V_loose-only (pre-action) matches:
+     'in motion'  via  \bin\s+motion\b
+   prose: The camera shows a wide field view of a cricket player on the field. The player, wearing a teal uniform and a brown cap, appears to be in motion, with his right leg bent and his left leg extended behind him, as if he has just thrown a ball, which is 
+          ... (795 total chars)
+
+-- t=2359 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   prose: The camera shows a player walking on a green field. The player, wearing a blue uniform and white shoes, appears to be walking casually while holding a ball in his right hand.   The frame includes several graphical overlays, including a logo for the T
+          ... (730 total chars)
+
+-- t=2360 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'running'  via  \brunning\b
+   prose: The camera shows a single player on a green field. The player, wearing a light blue uniform with a brown hat, appears to be walking while holding a ball in his right hand.   The frame includes several graphical overlays, including a TATA IPL logo in 
+          ... (696 total chars)
+

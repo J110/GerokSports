@@ -1,0 +1,1787 @@
+{
+  "n_frames_scout": 247,
+  "n_frames_qwen_file": 247,
+  "n_frames_merged": 247,
+  "qwen_api_error_rows": 0,
+  "qwen_empty_description_merged": 0,
+  "latency_ms": {
+    "scout_from_usage_total_time": {
+      "n": 247,
+      "median": 353
+    },
+    "qwen_wall": {
+      "n": 247,
+      "median": 2021,
+      "p90": 2557
+    }
+  },
+  "rule_v1_binary_action_vs_rest": {
+    "scout_literal": {
+      "tp": 60,
+      "fp": 21,
+      "fn": 12,
+      "precision": 0.7407,
+      "recall": 0.8333,
+      "f1": 0.7843
+    },
+    "qwen_literal_substring_wide_field_view": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 72,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null
+    },
+    "qwen_equivalent_wide_camera_paraphrase": {
+      "tp": 57,
+      "fp": 25,
+      "fn": 15,
+      "precision": 0.6951,
+      "recall": 0.7917,
+      "f1": 0.7403
+    },
+    "either_literal_OR": {
+      "tp": 60,
+      "fp": 21,
+      "fn": 12,
+      "precision": 0.7407,
+      "recall": 0.8333,
+      "f1": 0.7843
+    },
+    "both_literal_AND": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 72,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null
+    },
+    "agreement_literal_both_must_match": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 72,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null
+    },
+    "either_scout_literal_OR_qwen_equiv": {
+      "tp": 61,
+      "fp": 28,
+      "fn": 11,
+      "precision": 0.6854,
+      "recall": 0.8472,
+      "f1": 0.7578
+    },
+    "both_scout_literal_AND_qwen_equiv": {
+      "tp": 56,
+      "fp": 18,
+      "fn": 16,
+      "precision": 0.7568,
+      "recall": 0.7778,
+      "f1": 0.7671
+    }
+  },
+  "pattern_detection": {
+    "replay": {
+      "scout": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 6,
+        "tn": 238,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": null,
+        "support_pos": 6
+      },
+      "qwen": {
+        "tp": 0,
+        "fp": 11,
+        "fn": 6,
+        "tn": 230,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": null,
+        "support_pos": 6
+      }
+    },
+    "ad": {
+      "scout": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 1,
+        "tn": 244,
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support_pos": 3
+      },
+      "qwen": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 1,
+        "tn": 244,
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support_pos": 3
+      }
+    },
+    "umpire": {
+      "scout": {
+        "tp": 2,
+        "fp": 3,
+        "fn": 6,
+        "tn": 236,
+        "precision": 0.4,
+        "recall": 0.25,
+        "f1": 0.3077,
+        "support_pos": 8
+      },
+      "qwen": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 4,
+        "tn": 239,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6667,
+        "support_pos": 8
+      }
+    }
+  },
+  "five_class_accuracy": {
+    "scout_classify_full_v1": {
+      "correct": 201,
+      "n": 247,
+      "rate": 0.8138
+    },
+    "qwen_classify_full_equiv_wide_rule": {
+      "correct": 191,
+      "n": 247,
+      "rate": 0.7733
+    },
+    "combo_OR_literal_both": {
+      "correct": 193,
+      "n": 247,
+      "rate": 0.7814
+    },
+    "combo_AND_literal_both": {
+      "correct": 152,
+      "n": 247,
+      "rate": 0.6154
+    },
+    "combo_agreement_literal_both": {
+      "correct": 152,
+      "n": 247,
+      "rate": 0.6154
+    },
+    "combo_OR_scout_literal_qwen_equiv": {
+      "correct": 190,
+      "n": 247,
+      "rate": 0.7692
+    },
+    "combo_AND_scout_literal_qwen_equiv": {
+      "correct": 192,
+      "n": 247,
+      "rate": 0.7773
+    },
+    "combo_agreement_scout_literal_qwen_equiv": {
+      "correct": 192,
+      "n": 247,
+      "rate": 0.7773
+    }
+  },
+  "qwen_ngrams_summary": {
+    "action": {
+      "2grams_top": [
+        [
+          "wide view",
+          57
+        ],
+        [
+          "view cricket",
+          57
+        ],
+        [
+          "camera shows",
+          54
+        ],
+        [
+          "shows wide",
+          54
+        ],
+        [
+          "graphical overlays",
+          50
+        ],
+        [
+          "several graphical",
+          42
+        ],
+        [
+          "cricket field",
+          39
+        ],
+        [
+          "action level",
+          39
+        ],
+        [
+          "sponsor logos",
+          36
+        ],
+        [
+          "overlays including",
+          33
+        ],
+        [
+          "logos like",
+          29
+        ],
+        [
+          "level appears",
+          25
+        ],
+        [
+          "player statistics",
+          24
+        ],
+        [
+          "capturing bowler",
+          22
+        ],
+        [
+          "player names",
+          22
+        ],
+        [
+          "field match",
+          22
+        ],
+        [
+          "score player",
+          21
+        ],
+        [
+          "cricket match",
+          21
+        ],
+        [
+          "green field",
+          21
+        ],
+        [
+          "match capturing",
+          20
+        ]
+      ],
+      "3grams_top": [
+        [
+          "wide view cricket",
+          57
+        ],
+        [
+          "camera shows wide",
+          54
+        ],
+        [
+          "shows wide view",
+          54
+        ],
+        [
+          "several graphical overlays",
+          42
+        ],
+        [
+          "view cricket field",
+          36
+        ],
+        [
+          "graphical overlays including",
+          33
+        ],
+        [
+          "sponsor logos like",
+          29
+        ],
+        [
+          "action level appears",
+          25
+        ],
+        [
+          "cricket field match",
+          22
+        ],
+        [
+          "view cricket match",
+          21
+        ],
+        [
+          "match capturing bowler",
+          18
+        ],
+        [
+          "overlays including score",
+          16
+        ],
+        [
+          "score player names",
+          15
+        ],
+        [
+          "cricket match capturing",
+          15
+        ],
+        [
+          "positioned across green",
+          15
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "sierra",
+          "count_in_class": 7,
+          "log_ratio": 2.8212168249875798
+        },
+        {
+          "term": "outfield",
+          "count_in_class": 13,
+          "log_ratio": 2.6876854323630575
+        },
+        {
+          "term": "insurance",
+          "count_in_class": 6,
+          "log_ratio": 2.6876854323630575
+        },
+        {
+          "term": "spread",
+          "count_in_class": 12,
+          "log_ratio": 2.6135774602093353
+        },
+        {
+          "term": "running",
+          "count_in_class": 18,
+          "log_ratio": 2.5876019738060747
+        },
+        {
+          "term": "rolling",
+          "count_in_class": 5,
+          "log_ratio": 2.533534752535799
+        },
+        {
+          "term": "delivered",
+          "count_in_class": 5,
+          "log_ratio": 2.533534752535799
+        },
+        {
+          "term": "stride",
+          "count_in_class": 10,
+          "log_ratio": 2.4465233755461693
+        },
+        {
+          "term": "positioned",
+          "count_in_class": 31,
+          "log_ratio": 2.4157517168794156
+        },
+        {
+          "term": "fielders",
+          "count_in_class": 30,
+          "log_ratio": 2.3840030185648353
+        },
+        {
+          "term": "ground",
+          "count_in_class": 4,
+          "log_ratio": 2.3512131957418445
+        },
+        {
+          "term": "black",
+          "count_in_class": 4,
+          "log_ratio": 2.3512131957418445
+        },
+        {
+          "term": "fielder",
+          "count_in_class": 17,
+          "log_ratio": 2.245852680084018
+        },
+        {
+          "term": "deliver",
+          "count_in_class": 12,
+          "log_ratio": 2.2081123521011707
+        },
+        {
+          "term": "release",
+          "count_in_class": 3,
+          "log_ratio": 2.1280696444276344
+        },
+        {
+          "term": "suryakumar",
+          "count_in_class": 3,
+          "log_ratio": 2.1280696444276344
+        },
+        {
+          "term": "diving",
+          "count_in_class": 3,
+          "log_ratio": 2.1280696444276344
+        },
+        {
+          "term": "fanpark",
+          "count_in_class": 3,
+          "log_ratio": 2.1280696444276344
+        },
+        {
+          "term": "across",
+          "count_in_class": 29,
+          "log_ratio": 2.0635311232900633
+        },
+        {
+          "term": "middle",
+          "count_in_class": 21,
+          "log_ratio": 1.8869075876107464
+        },
+        {
+          "term": "notification",
+          "count_in_class": 2,
+          "log_ratio": 1.8403875719758538
+        },
+        {
+          "term": "maroon",
+          "count_in_class": 2,
+          "log_ratio": 1.8403875719758538
+        },
+        {
+          "term": "position",
+          "count_in_class": 2,
+          "log_ratio": 1.8403875719758538
+        },
+        {
+          "term": "slowly",
+          "count_in_class": 2,
+          "log_ratio": 1.8403875719758538
+        },
+        {
+          "term": "angelone",
+          "count_in_class": 5,
+          "log_ratio": 1.8403875719758538
+        }
+      ]
+    },
+    "ad": {
+      "2grams_top": [
+        [
+          "image shows",
+          3
+        ],
+        [
+          "shows woman",
+          3
+        ],
+        [
+          "woman sitting",
+          3
+        ],
+        [
+          "sitting desk",
+          3
+        ],
+        [
+          "desk looks",
+          2
+        ],
+        [
+          "looks like",
+          2
+        ],
+        [
+          "hands clasped",
+          2
+        ],
+        [
+          "clasped desk",
+          2
+        ],
+        [
+          "looking down",
+          2
+        ],
+        [
+          "down serious",
+          2
+        ],
+        [
+          "serious expression",
+          2
+        ],
+        [
+          "desk right",
+          2
+        ],
+        [
+          "right scene",
+          2
+        ],
+        [
+          "setting appears",
+          2
+        ],
+        [
+          "sports event",
+          2
+        ],
+        [
+          "people background",
+          2
+        ],
+        [
+          "large purple",
+          2
+        ],
+        [
+          "purple text",
+          2
+        ],
+        [
+          "pinky vs",
+          2
+        ],
+        [
+          "vs home",
+          2
+        ]
+      ],
+      "3grams_top": [
+        [
+          "image shows woman",
+          3
+        ],
+        [
+          "shows woman sitting",
+          3
+        ],
+        [
+          "woman sitting desk",
+          3
+        ],
+        [
+          "sitting desk looks",
+          2
+        ],
+        [
+          "desk looks like",
+          2
+        ],
+        [
+          "hands clasped desk",
+          2
+        ],
+        [
+          "looking down serious",
+          2
+        ],
+        [
+          "down serious expression",
+          2
+        ],
+        [
+          "desk right scene",
+          2
+        ],
+        [
+          "large purple text",
+          2
+        ],
+        [
+          "pinky vs home",
+          2
+        ],
+        [
+          "vs home loan",
+          2
+        ],
+        [
+          "laptop visible desk",
+          2
+        ],
+        [
+          "looks like office",
+          1
+        ],
+        [
+          "like office service",
+          1
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "desk",
+          "count_in_class": 8,
+          "log_ratio": 6.418609604208035
+        },
+        {
+          "term": "office",
+          "count_in_class": 3,
+          "log_ratio": 5.607679387991706
+        },
+        {
+          "term": "laptop",
+          "count_in_class": 3,
+          "log_ratio": 5.607679387991706
+        },
+        {
+          "term": "service",
+          "count_in_class": 2,
+          "log_ratio": 5.319997315539926
+        },
+        {
+          "term": "clasped",
+          "count_in_class": 2,
+          "log_ratio": 5.319997315539926
+        },
+        {
+          "term": "setting",
+          "count_in_class": 2,
+          "log_ratio": 5.319997315539926
+        },
+        {
+          "term": "sports",
+          "count_in_class": 2,
+          "log_ratio": 5.319997315539926
+        },
+        {
+          "term": "event",
+          "count_in_class": 2,
+          "log_ratio": 5.319997315539926
+        },
+        {
+          "term": "bank",
+          "count_in_class": 2,
+          "log_ratio": 5.319997315539926
+        },
+        {
+          "term": "pinky",
+          "count_in_class": 2,
+          "log_ratio": 5.319997315539926
+        },
+        {
+          "term": "home",
+          "count_in_class": 2,
+          "log_ratio": 5.319997315539926
+        },
+        {
+          "term": "loan",
+          "count_in_class": 2,
+          "log_ratio": 5.319997315539926
+        },
+        {
+          "term": "commercial",
+          "count_in_class": 2,
+          "log_ratio": 4.62685013497998
+        },
+        {
+          "term": "woman",
+          "count_in_class": 3,
+          "log_ratio": 4.221385026871816
+        },
+        {
+          "term": "vs",
+          "count_in_class": 2,
+          "log_ratio": 3.933702954420035
+        },
+        {
+          "term": "hands",
+          "count_in_class": 2,
+          "log_ratio": 3.52823784631187
+        },
+        {
+          "term": "text",
+          "count_in_class": 2,
+          "log_ratio": 3.2405557738600894
+        },
+        {
+          "term": "image",
+          "count_in_class": 3,
+          "log_ratio": 3.0427300305301697
+        },
+        {
+          "term": "sitting",
+          "count_in_class": 3,
+          "log_ratio": 2.9686220583764475
+        },
+        {
+          "term": "people",
+          "count_in_class": 3,
+          "log_ratio": 2.8350906657519253
+        },
+        {
+          "term": "looks",
+          "count_in_class": 2,
+          "log_ratio": 2.486783971483709
+        },
+        {
+          "term": "serious",
+          "count_in_class": 2,
+          "log_ratio": 2.2289548621816095
+        },
+        {
+          "term": "purple",
+          "count_in_class": 3,
+          "log_ratio": 2.14194348519198
+        },
+        {
+          "term": "right",
+          "count_in_class": 2,
+          "log_ratio": 1.9527014855534512
+        },
+        {
+          "term": "expression",
+          "count_in_class": 2,
+          "log_ratio": 1.8860101110547791
+        }
+      ]
+    },
+    "other": {
+      "2grams_top": [
+        [
+          "camera focused",
+          130
+        ],
+        [
+          "graphical overlays",
+          111
+        ],
+        [
+          "several graphical",
+          93
+        ],
+        [
+          "quiet moment",
+          76
+        ],
+        [
+          "moment deliveries",
+          74
+        ],
+        [
+          "close up",
+          66
+        ],
+        [
+          "scene appears",
+          64
+        ],
+        [
+          "active play",
+          63
+        ],
+        [
+          "focused close",
+          60
+        ],
+        [
+          "overlays screen",
+          55
+        ],
+        [
+          "screen including",
+          55
+        ],
+        [
+          "appears quiet",
+          50
+        ],
+        [
+          "wearing brown",
+          49
+        ],
+        [
+          "score graphic",
+          44
+        ],
+        [
+          "score player",
+          44
+        ],
+        [
+          "player statistics",
+          41
+        ],
+        [
+          "showing match",
+          39
+        ],
+        [
+          "sponsor logos",
+          38
+        ],
+        [
+          "overlays including",
+          37
+        ],
+        [
+          "looking down",
+          37
+        ]
+      ],
+      "3grams_top": [
+        [
+          "several graphical overlays",
+          93
+        ],
+        [
+          "camera focused close",
+          60
+        ],
+        [
+          "focused close up",
+          60
+        ],
+        [
+          "graphical overlays screen",
+          55
+        ],
+        [
+          "overlays screen including",
+          55
+        ],
+        [
+          "quiet moment deliveries",
+          53
+        ],
+        [
+          "appears quiet moment",
+          49
+        ],
+        [
+          "scene appears quiet",
+          46
+        ],
+        [
+          "graphical overlays including",
+          37
+        ],
+        [
+          "close up cricketer",
+          33
+        ],
+        [
+          "active play happening",
+          32
+        ],
+        [
+          "detailed score graphic",
+          32
+        ],
+        [
+          "camera focused cricket",
+          31
+        ],
+        [
+          "moment deliveries active",
+          29
+        ],
+        [
+          "deliveries active play",
+          29
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "cricketer",
+          "count_in_class": 37,
+          "log_ratio": 3.0279720917797452
+        },
+        {
+          "term": "break",
+          "count_in_class": 19,
+          "log_ratio": 2.3861182056073504
+        },
+        {
+          "term": "reacting",
+          "count_in_class": 19,
+          "log_ratio": 2.3861182056073504
+        },
+        {
+          "term": "close",
+          "count_in_class": 71,
+          "log_ratio": 2.280757689949524
+        },
+        {
+          "term": "name",
+          "count_in_class": 35,
+          "log_ratio": 2.280757689949524
+        },
+        {
+          "term": "helmet",
+          "count_in_class": 42,
+          "log_ratio": 2.0529737590788124
+        },
+        {
+          "term": "four",
+          "count_in_class": 13,
+          "log_ratio": 2.0294432616686184
+        },
+        {
+          "term": "birla",
+          "count_in_class": 13,
+          "log_ratio": 2.0294432616686184
+        },
+        {
+          "term": "player's",
+          "count_in_class": 13,
+          "log_ratio": 2.0294432616686184
+        },
+        {
+          "term": "off",
+          "count_in_class": 12,
+          "log_ratio": 1.9553352895148963
+        },
+        {
+          "term": "fans",
+          "count_in_class": 12,
+          "log_ratio": 1.9553352895148963
+        },
+        {
+          "term": "estates",
+          "count_in_class": 12,
+          "log_ratio": 1.9553352895148963
+        },
+        {
+          "term": "always",
+          "count_in_class": 11,
+          "log_ratio": 1.87529258184136
+        },
+        {
+          "term": "kph",
+          "count_in_class": 11,
+          "log_ratio": 1.87529258184136
+        },
+        {
+          "term": "cheering",
+          "count_in_class": 10,
+          "log_ratio": 1.78828120485173
+        },
+        {
+          "term": "group",
+          "count_in_class": 10,
+          "log_ratio": 1.78828120485173
+        },
+        {
+          "term": "looking",
+          "count_in_class": 86,
+          "log_ratio": 1.7768525090281073
+        },
+        {
+          "term": "side",
+          "count_in_class": 31,
+          "log_ratio": 1.7575095461849763
+        },
+        {
+          "term": "crowd",
+          "count_in_class": 51,
+          "log_ratio": 1.7321917382006866
+        },
+        {
+          "term": "expression",
+          "count_in_class": 30,
+          "log_ratio": 1.725760847870396
+        },
+        {
+          "term": "google",
+          "count_in_class": 9,
+          "log_ratio": 1.6929710250474053
+        },
+        {
+          "term": "waving",
+          "count_in_class": 9,
+          "log_ratio": 1.6929710250474053
+        },
+        {
+          "term": "intently",
+          "count_in_class": 9,
+          "log_ratio": 1.6929710250474053
+        },
+        {
+          "term": "beard",
+          "count_in_class": 9,
+          "log_ratio": 1.6929710250474053
+        },
+        {
+          "term": "tournament",
+          "count_in_class": 8,
+          "log_ratio": 1.587610509389579
+        }
+      ]
+    },
+    "replay": {
+      "2grams_top": [
+        [
+          "camera shows",
+          5
+        ],
+        [
+          "shows wide",
+          5
+        ],
+        [
+          "wide view",
+          5
+        ],
+        [
+          "view cricket",
+          5
+        ],
+        [
+          "including tata",
+          5
+        ],
+        [
+          "action level",
+          4
+        ],
+        [
+          "capturing bowler",
+          4
+        ],
+        [
+          "batter ready",
+          4
+        ],
+        [
+          "sponsor logos",
+          4
+        ],
+        [
+          "go live",
+          4
+        ],
+        [
+          "live button",
+          4
+        ],
+        [
+          "standing crease",
+          3
+        ],
+        [
+          "behind stumps",
+          3
+        ],
+        [
+          "graphical overlays",
+          3
+        ],
+        [
+          "tata ipl",
+          3
+        ],
+        [
+          "ipl logo",
+          3
+        ],
+        [
+          "bowler mid",
+          3
+        ],
+        [
+          "delivery batter",
+          3
+        ],
+        [
+          "several sponsor",
+          3
+        ],
+        [
+          "logos visible",
+          3
+        ]
+      ],
+      "3grams_top": [
+        [
+          "camera shows wide",
+          5
+        ],
+        [
+          "shows wide view",
+          5
+        ],
+        [
+          "wide view cricket",
+          5
+        ],
+        [
+          "go live button",
+          4
+        ],
+        [
+          "including tata ipl",
+          3
+        ],
+        [
+          "tata ipl logo",
+          3
+        ],
+        [
+          "capturing bowler mid",
+          3
+        ],
+        [
+          "delivery batter ready",
+          3
+        ],
+        [
+          "several sponsor logos",
+          3
+        ],
+        [
+          "sponsor logos visible",
+          3
+        ],
+        [
+          "action level high",
+          3
+        ],
+        [
+          "wicketkeeper crouched behind",
+          2
+        ],
+        [
+          "crouched behind stumps",
+          2
+        ],
+        [
+          "graphical overlays including",
+          2
+        ],
+        [
+          "overlays including tata",
+          2
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "holds",
+          "count_in_class": 2,
+          "log_ratio": 3.7302358680186916
+        },
+        {
+          "term": "go",
+          "count_in_class": 4,
+          "log_ratio": 3.547914311224737
+        },
+        {
+          "term": "button",
+          "count_in_class": 4,
+          "log_ratio": 3.547914311224737
+        },
+        {
+          "term": "follow",
+          "count_in_class": 2,
+          "log_ratio": 3.3247707599105274
+        },
+        {
+          "term": "players'",
+          "count_in_class": 2,
+          "log_ratio": 3.3247707599105274
+        },
+        {
+          "term": "releasing",
+          "count_in_class": 2,
+          "log_ratio": 3.037088687458746
+        },
+        {
+          "term": "air",
+          "count_in_class": 2,
+          "log_ratio": 2.8139451361445365
+        },
+        {
+          "term": "live",
+          "count_in_class": 7,
+          "log_ratio": 2.631623579350582
+        },
+        {
+          "term": "progress",
+          "count_in_class": 4,
+          "log_ratio": 2.5363133995462572
+        },
+        {
+          "term": "mid",
+          "count_in_class": 3,
+          "log_ratio": 2.513840543694198
+        },
+        {
+          "term": "wonder",
+          "count_in_class": 2,
+          "log_ratio": 2.4774728995233235
+        },
+        {
+          "term": "cement",
+          "count_in_class": 2,
+          "log_ratio": 2.4774728995233235
+        },
+        {
+          "term": "displayed",
+          "count_in_class": 2,
+          "log_ratio": 2.343941506898801
+        },
+        {
+          "term": "aig",
+          "count_in_class": 3,
+          "log_ratio": 2.313169848232047
+        },
+        {
+          "term": "hoardings",
+          "count_in_class": 2,
+          "log_ratio": 2.226158471242418
+        },
+        {
+          "term": "high",
+          "count_in_class": 4,
+          "log_ratio": 2.1616199501048463
+        },
+        {
+          "term": "crouched",
+          "count_in_class": 2,
+          "log_ratio": 2.1207979555845915
+        },
+        {
+          "term": "stance",
+          "count_in_class": 3,
+          "log_ratio": 1.9384763987906366
+        },
+        {
+          "term": "gear",
+          "count_in_class": 2,
+          "log_ratio": 1.715332847476427
+        },
+        {
+          "term": "stumps",
+          "count_in_class": 4,
+          "log_ratio": 1.715332847476427
+        },
+        {
+          "term": "broadcast",
+          "count_in_class": 2,
+          "log_ratio": 1.6507943263388558
+        },
+        {
+          "term": "ready",
+          "count_in_class": 6,
+          "log_ratio": 1.6330947492394547
+        },
+        {
+          "term": "face",
+          "count_in_class": 2,
+          "log_ratio": 1.4789440694121967
+        },
+        {
+          "term": "top",
+          "count_in_class": 3,
+          "log_ratio": 1.4529685830089358
+        },
+        {
+          "term": "bat",
+          "count_in_class": 4,
+          "log_ratio": 1.4078481477284663
+        }
+      ]
+    },
+    "umpire": {
+      "2grams_top": [
+        [
+          "his arms",
+          8
+        ],
+        [
+          "camera focused",
+          7
+        ],
+        [
+          "arms outstretched",
+          7
+        ],
+        [
+          "player orange",
+          6
+        ],
+        [
+          "match official",
+          5
+        ],
+        [
+          "orange jersey",
+          5
+        ],
+        [
+          "brown purple",
+          4
+        ],
+        [
+          "graphical overlays",
+          4
+        ],
+        [
+          "ipl logo",
+          4
+        ],
+        [
+          "player statistics",
+          4
+        ],
+        [
+          "bottom showing",
+          4
+        ],
+        [
+          "moment deliveries",
+          4
+        ],
+        [
+          "score player",
+          4
+        ],
+        [
+          "scene appears",
+          4
+        ],
+        [
+          "player names",
+          4
+        ],
+        [
+          "ball speed",
+          4
+        ],
+        [
+          "cricket field",
+          3
+        ],
+        [
+          "field his",
+          3
+        ],
+        [
+          "several graphical",
+          3
+        ],
+        [
+          "appears pause",
+          3
+        ]
+      ],
+      "3grams_top": [
+        [
+          "his arms outstretched",
+          7
+        ],
+        [
+          "player orange jersey",
+          5
+        ],
+        [
+          "field his arms",
+          3
+        ],
+        [
+          "several graphical overlays",
+          3
+        ],
+        [
+          "appears pause play",
+          3
+        ],
+        [
+          "detailed score graphic",
+          3
+        ],
+        [
+          "score graphic bottom",
+          3
+        ],
+        [
+          "graphic bottom showing",
+          3
+        ],
+        [
+          "along tata ipl",
+          3
+        ],
+        [
+          "tata ipl logo",
+          3
+        ],
+        [
+          "moment deliveries active",
+          3
+        ],
+        [
+          "deliveries active play",
+          3
+        ],
+        [
+          "active play happening",
+          3
+        ],
+        [
+          "match official brown",
+          3
+        ],
+        [
+          "camera focused close",
+          3
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "outstretched",
+          "count_in_class": 7,
+          "log_ratio": 5.1539081141074785
+        },
+        {
+          "term": "decision",
+          "count_in_class": 6,
+          "log_ratio": 5.020376721482956
+        },
+        {
+          "term": "signaling",
+          "count_in_class": 5,
+          "log_ratio": 4.866226041655698
+        },
+        {
+          "term": "official",
+          "count_in_class": 9,
+          "log_ratio": 4.683904484861743
+        },
+        {
+          "term": "polo",
+          "count_in_class": 2,
+          "log_ratio": 4.173078861095752
+        },
+        {
+          "term": "93",
+          "count_in_class": 2,
+          "log_ratio": 4.173078861095752
+        },
+        {
+          "term": "made",
+          "count_in_class": 2,
+          "log_ratio": 3.4799316805358065
+        },
+        {
+          "term": "making",
+          "count_in_class": 3,
+          "log_ratio": 3.3621486448794236
+        },
+        {
+          "term": "gesture",
+          "count_in_class": 3,
+          "log_ratio": 3.3621486448794236
+        },
+        {
+          "term": "arms",
+          "count_in_class": 8,
+          "log_ratio": 3.0744665724276423
+        },
+        {
+          "term": "partially",
+          "count_in_class": 2,
+          "log_ratio": 3.0744665724276423
+        },
+        {
+          "term": "shirt",
+          "count_in_class": 4,
+          "log_ratio": 2.892145015633688
+        },
+        {
+          "term": "seemingly",
+          "count_in_class": 2,
+          "log_ratio": 2.7867844999758615
+        },
+        {
+          "term": "umpire",
+          "count_in_class": 8,
+          "log_ratio": 2.632633820148603
+        },
+        {
+          "term": "man",
+          "count_in_class": 2,
+          "log_ratio": 2.381319391867697
+        },
+        {
+          "term": "cap",
+          "count_in_class": 4,
+          "log_ratio": 1.6881722113077517
+        },
+        {
+          "term": "speed",
+          "count_in_class": 4,
+          "log_ratio": 1.6393820471383198
+        },
+        {
+          "term": "number",
+          "count_in_class": 2,
+          "log_ratio": 1.6081295036342151
+        },
+        {
+          "term": "has",
+          "count_in_class": 6,
+          "log_ratio": 1.4940161968667942
+        },
+        {
+          "term": "right",
+          "count_in_class": 4,
+          "log_ratio": 1.3880676188574135
+        },
+        {
+          "term": "purple",
+          "count_in_class": 4,
+          "log_ratio": 1.2499172803765963
+        },
+        {
+          "term": "jersey",
+          "count_in_class": 5,
+          "log_ratio": 1.128556423372329
+        },
+        {
+          "term": "his",
+          "count_in_class": 10,
+          "log_ratio": 1.077912690553574
+        },
+        {
+          "term": "pause",
+          "count_in_class": 3,
+          "log_ratio": 1.0267737290623866
+        },
+        {
+          "term": "ipl",
+          "count_in_class": 6,
+          "log_ratio": 0.9095028573096442
+        }
+      ]
+    }
+  },
+  "cost_note": {
+    "scout_reference": "eyes/config.py — ~$0.09/match at CAPTURE_FPS=2-style broadcast (Groq Scout comment; per-window not per-frame).",
+    "qwen_fireworks_list": "Qwen3-VL-30B Instruct ≈ $0.15/1M input + $0.60/1M output tokens on Fireworks; sum usage.* from qwen JSONL for empirical totals.",
+    "qwen_empirical_usd_summed_from_jsonl": 0.0437
+  },
+  "multiclass_detail_scout": {
+    "confusion_gt_rows_pred_cols": {
+      "action": {
+        "action": 60,
+        "replay": 0,
+        "ad": 0,
+        "other": 12,
+        "umpire": 0
+      },
+      "replay": {
+        "action": 1,
+        "replay": 0,
+        "ad": 0,
+        "other": 2,
+        "umpire": 3
+      },
+      "ad": {
+        "action": 0,
+        "replay": 0,
+        "ad": 2,
+        "other": 1,
+        "umpire": 0
+      },
+      "other": {
+        "action": 19,
+        "replay": 2,
+        "ad": 0,
+        "other": 137,
+        "umpire": 0
+      },
+      "umpire": {
+        "action": 0,
+        "replay": 1,
+        "ad": 0,
+        "other": 5,
+        "umpire": 2
+      }
+    },
+    "per_class_prf": {
+      "action": {
+        "precision": 0.75,
+        "recall": 0.8333,
+        "f1": 0.7895,
+        "support": 72
+      },
+      "replay": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": null,
+        "support": 6
+      },
+      "ad": {
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support": 3
+      },
+      "other": {
+        "precision": 0.8726,
+        "recall": 0.8671,
+        "f1": 0.8698,
+        "support": 158
+      },
+      "umpire": {
+        "precision": 0.4,
+        "recall": 0.25,
+        "f1": 0.3077,
+        "support": 8
+      }
+    }
+  },
+  "multiclass_detail_qwen": {
+    "confusion_gt_rows_pred_cols": {
+      "action": {
+        "action": 57,
+        "replay": 1,
+        "ad": 0,
+        "other": 14,
+        "umpire": 0
+      },
+      "replay": {
+        "action": 5,
+        "replay": 0,
+        "ad": 0,
+        "other": 1,
+        "umpire": 0
+      },
+      "ad": {
+        "action": 0,
+        "replay": 0,
+        "ad": 2,
+        "other": 1,
+        "umpire": 0
+      },
+      "other": {
+        "action": 20,
+        "replay": 9,
+        "ad": 0,
+        "other": 129,
+        "umpire": 0
+      },
+      "umpire": {
+        "action": 0,
+        "replay": 1,
+        "ad": 0,
+        "other": 4,
+        "umpire": 3
+      }
+    },
+    "per_class_prf": {
+      "action": {
+        "precision": 0.6951,
+        "recall": 0.7917,
+        "f1": 0.7403,
+        "support": 72
+      },
+      "replay": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": null,
+        "support": 6
+      },
+      "ad": {
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support": 3
+      },
+      "other": {
+        "precision": 0.8658,
+        "recall": 0.8165,
+        "f1": 0.8404,
+        "support": 158
+      },
+      "umpire": {
+        "precision": 1.0,
+        "recall": 0.375,
+        "f1": 0.5455,
+        "support": 8
+      }
+    }
+  },
+  "multiclass_detail_combo_or": {
+    "confusion_gt_rows_pred_cols": {
+      "action": {
+        "action": 60,
+        "replay": 1,
+        "ad": 0,
+        "other": 11,
+        "umpire": 0
+      },
+      "replay": {
+        "action": 1,
+        "replay": 0,
+        "ad": 0,
+        "other": 2,
+        "umpire": 3
+      },
+      "ad": {
+        "action": 0,
+        "replay": 0,
+        "ad": 2,
+        "other": 1,
+        "umpire": 0
+      },
+      "other": {
+        "action": 19,
+        "replay": 11,
+        "ad": 0,
+        "other": 128,
+        "umpire": 0
+      },
+      "umpire": {
+        "action": 0,
+        "replay": 2,
+        "ad": 0,
+        "other": 3,
+        "umpire": 3
+      }
+    },
+    "per_class_prf": {
+      "action": {
+        "precision": 0.75,
+        "recall": 0.8333,
+        "f1": 0.7895,
+        "support": 72
+      },
+      "replay": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": null,
+        "support": 6
+      },
+      "ad": {
+        "precision": 1.0,
+        "recall": 0.6667,
+        "f1": 0.8,
+        "support": 3
+      },
+      "other": {
+        "precision": 0.8828,
+        "recall": 0.8101,
+        "f1": 0.8449,
+        "support": 158
+      },
+      "umpire": {
+        "precision": 0.5,
+        "recall": 0.375,
+        "f1": 0.4286,
+        "support": 8
+      }
+    }
+  },
+  "verdict_sketch": {
+    "binary_f1_scout_literal": 0.7843,
+    "binary_f1_qwen_literal": null,
+    "binary_f1_qwen_equivalent_rule": 0.7403,
+    "best_binary_strategy_key": "either_literal_OR",
+    "best_binary_f1": 0.7843,
+    "note": "Literal substring 'wide field view' matches Scout's prompt-echo; Qwen paraphrases ('wide view of the cricket field'). Use equivalent rule for fair Qwen v1 intent."
+  }
+}

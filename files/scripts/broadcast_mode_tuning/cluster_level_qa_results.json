@@ -1,0 +1,1164 @@
+{
+  "model": "llama-3.3-70b-versatile",
+  "wall_time_s": 14.02807903289795,
+  "cluster_count": 15,
+  "selected_count": 15,
+  "results": [
+    {
+      "cluster_id": 2,
+      "payload": {
+        "cluster_id": 2,
+        "start_t": 101.0,
+        "end_t": 103.0,
+        "duration_s": 2.0,
+        "frame_count": 3,
+        "signal_summary": {
+          "V": 0,
+          "S": 3,
+          "M": 3,
+          "W": 3,
+          "K": 3
+        },
+        "path_summary": {
+          "A": 0,
+          "B": 0,
+          "C": 3,
+          "none": 0
+        },
+        "sampled_frames": [
+          {
+            "t": 101.0,
+            "open_description": "The camera shows a wide field view of a cricket field with players on it and a crowd in the background. The people in the frame are standing still, with some players positioned around the field and others near the wickets. There are several graphical overlays, including a score graphic that reads \"DC WON TOSS BAT FIRST,\" a banner at the bottom showing the teams \"CAPITALS\" and \"SUPER KINGS,\" and sponsor logos along the field's boundary. The action level appears to be between deliveries, as the players are not actively engaged in play.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 102.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame are standing still, with the players on the field not actively engaged in play and the crowd watching from the stands. There are several graphical overlays, including a score graphic showing \"DC WON TOSS BAT FIRST,\" team logos for \"CAPITALS\" and \"SUPER KINGS,\" and sponsor logos along the bottom and sides of the screen. The action level appears to be between deliveries, as the players are not actively engaged in play.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 103.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame are standing still, with some players positioned at various points on the field and others standing near the pitch. Graphical overlays include a score graphic showing \"DC WON TOSS BAT FIRST,\" team logos for \"Capitals\" and \"Super Kings,\" and sponsor logos along the field's boundary. The action level appears to be between deliveries, as the players are not actively engaged in play.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster shows a series of frames with a wide field view of a cricket pitch, where players are standing still and not actively engaged in play. The frames display various graphical overlays, including score graphics and sponsor logos. None of the frames in this cluster show a live delivery, as they all lack the bowler's-end framing with bowler motion. The frames at 101.0s, 102.0s, and 103.0s all show between-delivery scenes. There are no live delivery frames visible in this cluster.\n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show a wide field view of a cricket pitch with players standing still and not actively engaged in play, with various graphical overlays.",
+        "confidence": 1.0
+      },
+      "error": null,
+      "gate_kept": false,
+      "gate_reason": "no-live-moments"
+    },
+    {
+      "cluster_id": 3,
+      "payload": {
+        "cluster_id": 3,
+        "start_t": 109.0,
+        "end_t": 110.0,
+        "duration_s": 1.0,
+        "frame_count": 2,
+        "signal_summary": {
+          "V": 1,
+          "S": 2,
+          "M": 2,
+          "W": 2,
+          "K": 2
+        },
+        "path_summary": {
+          "A": 1,
+          "B": 0,
+          "C": 1,
+          "none": 0
+        },
+        "sampled_frames": [
+          {
+            "t": 109.0,
+            "open_description": "The camera shows a wide field view of the cricket pitch, capturing several players and the umpire. The bowler in a light blue uniform is in mid-action, with his right arm extended upward as if he has just released the ball, while the batter in an orange uniform stands ready with his bat. The other players are positioned around the field, with two crouching behind the wicket and one fielding on the off side.\n\nThere are graphical overlays on the screen, including a score graphic at the bottom showing \"TATA IPL 2026 - MATCH 48\" and \"HOSEIN 0-0 0\", as well as logos for \"DC vs CSK TATA IPL\" in the top-left corner and \"SUPER KINGS\" in the bottom-right corner. The action level appears to be during active play, likely between deliveries, as the bowler has just released the ball and the players are waiting for its outcome.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 110.0,
+            "open_description": "The camera shows a wide field view of three cricket players on the field. The player on the left is crouched down, likely a fielder, while another player in a blue helmet and orange uniform is positioned closer to the camera, likely the batter, with a wicketkeeper standing behind him. \n\nThere are graphical overlays at the top left and bottom of the frame, including a logo that reads \"DC vs CSK TATA IPL\" and a score graphic that reads \"TATA IPL 2026 - MATCH 48.\" The action level appears to be between deliveries, as the players seem to be waiting for the next play.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster shows a brief moment of a cricket match, with the first frame capturing the bowler in mid-action after releasing the ball, and the second frame showing the players waiting for the next play. A live delivery is visible at t=109.0s, where the bowler is shown with his right arm extended upward as if he has just released the ball. The other frame in the cluster does not show a live delivery. The players are positioned around the field, indicating that the action is taking place between deliveries. \n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [
+          {
+            "t": 109.0,
+            "evidence": "The camera shows a wide field view of the cricket pitch, capturing several players and the umpire. The bowler in a light blue uniform is in mid-action, with his right arm extended upward as if he has just released the ball, while the batter in an orange uniform stands ready with his bat."
+          }
+        ],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frame shows the players waiting for the next play, with a fielder crouched down and a wicketkeeper standing behind the batter.",
+        "confidence": 0.8
+      },
+      "error": null,
+      "gate_kept": true,
+      "gate_reason": "kept"
+    },
+    {
+      "cluster_id": 1,
+      "payload": {
+        "cluster_id": 1,
+        "start_t": 63.0,
+        "end_t": 65.0,
+        "duration_s": 2.0,
+        "frame_count": 3,
+        "signal_summary": {
+          "V": 2,
+          "S": 2,
+          "M": 2,
+          "W": 3,
+          "K": 2
+        },
+        "path_summary": {
+          "A": 2,
+          "B": 0,
+          "C": 0,
+          "none": 1
+        },
+        "sampled_frames": [
+          {
+            "t": 63.0,
+            "open_description": "The frame shows a wide field view of a cricket match in progress. The players are scattered around the field, with some standing still and others in motion, such as a bowler who appears to have just bowled the ball and a batter preparing to play a shot. \n\nThere are several graphical overlays on the screen, including sponsor logos like \"TATA IPL\", \"JioHotstar LIVE\", and \"#ROAR MACHA\", as well as a score graphic showing \"15/0\" in a blue box. The action level appears to be between deliveries, with players waiting for the next play.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 64.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players on it and a crowd in the background. The people in the frame are standing still, with some players positioned around the pitch and others in the stands watching. Graphical overlays include sponsor logos, team logos, and a \"#ROAR MACHHA\" hashtag at the bottom of the screen, as well as a blue square with \"15:15\" written on it. The action level appears to be between deliveries, as the players are not actively engaged in play.",
+            "signals": {
+              "V": 0,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 0
+            }
+          },
+          {
+            "t": 65.0,
+            "open_description": "The camera shows a wide field view of a cricket field with players on the field and a crowd in the stands. The people in the frame are primarily standing still, with a few players positioned around the field; one player appears to be preparing to bowl, while others are fielding or standing near the wickets.\n\nThere are several graphical overlays visible, including sponsor logos along the boundary of the field, team logos (Delhi Capitals), and a hashtag \"#ROAR MACHAA\" at the bottom center of the screen. A blue square displaying \"15/1\" is also visible on the field.\n\nThe action level appears to be low, as if the frame captures a moment between deliveries or before the next play begins. The overall atmosphere suggests that the game is live and being broadcast to a large audience, as indicated by the \"1.3Cr Views\" label in the upper right corner.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 0,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show moments between deliveries in a cricket match, with players standing still or preparing for the next play. The frames do not show a live delivery, as there is no bowler's-end framing with bowler motion. None of the frames (63.0s, 64.0s, 65.0s) show a live delivery. The atmosphere suggests a live broadcast, but the action level is low, indicating a break between plays. The frames primarily show a wide field view of the cricket field with players and a crowd.",
+      "verdict": {
+        "live_delivery_moments": [],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show a wide field view of the cricket field with players standing still or preparing for the next play, indicating a break between deliveries.",
+        "confidence": 1.0
+      },
+      "error": null,
+      "gate_kept": false,
+      "gate_reason": "no-live-moments"
+    },
+    {
+      "cluster_id": 4,
+      "payload": {
+        "cluster_id": 4,
+        "start_t": 122.0,
+        "end_t": 128.0,
+        "duration_s": 6.0,
+        "frame_count": 7,
+        "signal_summary": {
+          "V": 5,
+          "S": 0,
+          "M": 7,
+          "W": 7,
+          "K": 6
+        },
+        "path_summary": {
+          "A": 0,
+          "B": 4,
+          "C": 0,
+          "none": 3
+        },
+        "sampled_frames": [
+          {
+            "t": 122.0,
+            "open_description": "The camera shows a wide field view of a cricket match with six players on the field. The bowler is in the process of delivering the ball, with their arm raised and about to release it, while the batter stands ready with their bat and the wicketkeeper crouches behind them. A fielder stands to the left in a catching position, and another player stands on the right side of the frame. \n\nThere are graphical overlays including a \"Delhi Capitals\" logo in the top-left corner and a \"JioHotstar LIVE\" logo in the top-right corner along with a view count. The action level appears to be an active play moment, just before the bowler releases the ball.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 124.0,
+            "open_description": "The camera shows a wide field view of a cricket match in progress. The players are positioned around the field, with one player in a blue helmet and orange uniform preparing to hit the ball, another player in a blue uniform behind him, and two players in light blue uniforms on either side; a fifth player in an orange uniform and blue helmet stands off to the side. \n\nThere are several graphical overlays, including a \"JioHotstar LIVE\" logo in the top-right corner indicating 1.5 crore views, a \"Delhi Capitals\" logo in the top-left corner, and a purple and orange \"Yono SBI\" rectangle below it. The action level appears to be an active play moment, as the batter seems to be in the process of hitting the ball.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 126.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players positioned around it. A bowler in a light blue uniform appears to be in the process of bowling, with their arm extended, while two batters in orange and purple uniforms stand at the wickets, one holding a bat and the other walking behind. A wicketkeeper in light blue crouches behind the wickets, and an umpire in black stands on the left side of the frame.\n\nThere are several graphical overlays, including sponsor logos such as \"TATA AIG\" and \"SBI,\" as well as a logo for the \"Delhi Capitals\" team. The action level appears to be an active play moment, likely just before or as the bowler releases the ball.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 128.0,
+            "open_description": "The camera shows a wide field view of a cricket field with several players scattered around. A player in a light blue uniform appears to be diving or falling to the ground, while another player in a dark uniform stands nearby, and two other players are visible in the background. \n\nThere are graphical overlays in the top-left corner, including a logo for \"Delhi Capitals\" and an advertisement for \"Yono SBI.\" In the top-right corner, there is a \"JioHotstar LIVE\" logo with \"1.5Cr Views\" underneath it.\n\nThe action level appears to be a post-action moment, as one player is on the ground, suggesting that a play has just concluded.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show a live cricket match with various players on the field. The frames at t=122.0s, t=126.0s show a live delivery with the bowler in motion, about to release the ball. The other frames in the cluster seem to show the players in different positions, possibly between plays or after a play has concluded. The frame at t=124.0s shows a batter preparing to hit the ball, and the frame at t=128.0s shows a player diving or falling to the ground.\n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [
+          {
+            "t": 122.0,
+            "evidence": "The camera shows a wide field view of a cricket match with six players on the field. The bowler is in the process of delivering the ball, with their arm raised and about to release it, while the batter stands ready with their bat and the wicketkeeper crouches behind them."
+          },
+          {
+            "t": 126.0,
+            "evidence": "The camera shows a wide field view of a cricket pitch with players positioned around it. A bowler in a light blue uniform appears to be in the process of bowling, with their arm extended, while two batters in orange and purple uniforms stand at the wickets, one holding a bat and the other walking behind."
+          }
+        ],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show players in different positions, possibly between plays or after a play has concluded, with some players preparing to hit the ball or diving to the ground.",
+        "confidence": 0.8
+      },
+      "error": null,
+      "gate_kept": true,
+      "gate_reason": "kept"
+    },
+    {
+      "cluster_id": 5,
+      "payload": {
+        "cluster_id": 5,
+        "start_t": 134.0,
+        "end_t": 134.0,
+        "duration_s": 0.0,
+        "frame_count": 1,
+        "signal_summary": {
+          "V": 1,
+          "S": 1,
+          "M": 0,
+          "W": 0,
+          "K": 1
+        },
+        "path_summary": {
+          "A": 1,
+          "B": 0,
+          "C": 0,
+          "none": 0
+        },
+        "sampled_frames": [
+          {
+            "t": 134.0,
+            "open_description": "The camera shows a full shot of a cricket player standing on the field. The player, wearing an orange uniform with blue accents and protective gear, holds a bat in both hands and appears to be preparing to bat. A score graphic overlay at the bottom displays the teams, Delhi Capitals (DC) and Chennai Super Kings (CSK), along with the current score and player information. The scene suggests a moment between deliveries.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 0,
+              "W": 0,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster shows a single frame at 134.0s, which appears to be a moment between deliveries, as it features a cricket player preparing to bat. There is no evidence of a live delivery in this cluster, as the frame description does not mention the bowler's-end camera shot or the bowler in motion. The scene suggests a brief pause in the game, possibly between balls or overs. No live delivery is visible in this cluster. \n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [],
+        "replay_moments": [],
+        "non_live_summary": "The frame shows a closeup of a cricket player standing on the field, preparing to bat, indicating a moment between deliveries.",
+        "confidence": 1.0
+      },
+      "error": null,
+      "gate_kept": false,
+      "gate_reason": "no-live-moments"
+    },
+    {
+      "cluster_id": 6,
+      "payload": {
+        "cluster_id": 6,
+        "start_t": 141.0,
+        "end_t": 147.0,
+        "duration_s": 6.0,
+        "frame_count": 7,
+        "signal_summary": {
+          "V": 3,
+          "S": 6,
+          "M": 6,
+          "W": 5,
+          "K": 5
+        },
+        "path_summary": {
+          "A": 3,
+          "B": 0,
+          "C": 2,
+          "none": 2
+        },
+        "sampled_frames": [
+          {
+            "t": 141.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players positioned around it. The players are standing still, with one batter holding a bat and preparing to play, while another player appears to be getting into position to bowl. \n\nThere are graphical overlays at the bottom of the screen displaying information such as the teams playing (DC vs CSK), the current score (4-0), and player names. The action level appears to be between deliveries, as the players are not in motion.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 0
+            }
+          },
+          {
+            "t": 142.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with seven players and an umpire. The players are positioned around the pitch, with two batters standing at the wickets, a bowler getting into position, a wicketkeeper crouched behind the wickets, and two fielders standing nearby. The players appear to be waiting for the bowler to deliver the ball.\n\nThere are several graphical overlays on the screen, including logos for TATA IPL and JioHotstar LIVE in the top corners, a score graphic at the bottom showing the score (DC 4-0, CSK 0-0), and a circular control graphic on the left side. The action level appears to be between deliveries, as the bowler is getting into position and the batters are preparing to face the ball.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 143.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with eight players and an umpire. The bowler appears to have just released the ball, and the batter is standing ready. A wicketkeeper and a fielder are crouched behind the batter, while three other fielders are positioned around the pitch.\n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the score (DC 4-0, CSK 0-0), a TATA IPL logo in the top-left corner, and a JioHotstar LIVE logo in the top-right corner. The action level appears to be an active play moment, as the bowler has just released the ball and the batter is preparing to react.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 147.0,
+            "open_description": "The camera shows a close-up of a cricket player wearing a blue helmet and an orange jersey. The player appears to be standing still, likely between deliveries or preparing to bat. \n\nThere are several graphical overlays on the screen, including a score graphic at the bottom that displays the teams playing (DC vs CSK), the current score (4-0), and other game-related information. Additional overlays include sponsor logos and advertisements.\n\nThe action level appears to be low, as there is no active play happening in this frame; it seems to be a moment between deliveries or a pre-action moment.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 0,
+              "W": 0,
+              "K": 0
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: \nThis cluster shows a sequence of frames capturing different moments in a cricket game, including players preparing for a delivery, a bowler releasing the ball, and a close-up of a player between deliveries. The live delivery is visible at t=143.0s, where the bowler appears to have just released the ball and the batter is standing ready. The other frames in the cluster show moments between deliveries or close-ups of players.",
+      "verdict": {
+        "live_delivery_moments": [
+          {
+            "t": 143.0,
+            "evidence": "The bowler appears to have just released the ball, and the batter is standing ready."
+          }
+        ],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show players preparing for a delivery, close-ups of players, and moments between deliveries.",
+        "confidence": 0.8
+      },
+      "error": null,
+      "gate_kept": true,
+      "gate_reason": "kept"
+    },
+    {
+      "cluster_id": 7,
+      "payload": {
+        "cluster_id": 7,
+        "start_t": 161.0,
+        "end_t": 164.0,
+        "duration_s": 3.0,
+        "frame_count": 4,
+        "signal_summary": {
+          "V": 3,
+          "S": 2,
+          "M": 4,
+          "W": 4,
+          "K": 2
+        },
+        "path_summary": {
+          "A": 2,
+          "B": 1,
+          "C": 0,
+          "none": 1
+        },
+        "sampled_frames": [
+          {
+            "t": 161.0,
+            "open_description": "The camera shows a wide field view of a cricket field with players on the field and a crowd in the background. The people in the frame appear to be engaged in a moment of relative calm, with some players standing on the field and others sitting or standing in the stands. \n\nThere are several graphical overlays, including a score graphic in the bottom-left corner showing \"DC 4-0 B 0.2,\" a row of player portraits across the bottom center of the frame, and various sponsor logos along the top and bottom edges of the frame. The action level appears to be between deliveries, as there are no players actively running or in motion, suggesting a brief pause in play.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 0
+            }
+          },
+          {
+            "t": 162.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame are standing still, with two batters at the wickets, three fielders positioned around the pitch, and an umpire standing behind the batters.\n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the score and player names, sponsor logos in the corners, and a \"LIVE\" indicator in the top-right corner. The action level appears to be between deliveries, as the players are standing still and not actively engaged in play.",
+            "signals": {
+              "V": 0,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 0
+            }
+          },
+          {
+            "t": 163.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with seven players and an umpire. The players are positioned around the pitch, with two batters standing at the wickets, a bowler in a follow-through position with their right arm raised, a wicketkeeper crouched behind the wickets, and three fielders standing in various positions. The players appear to be in the middle of active play.\n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the score and team logos, as well as a \"TATA IPL\" logo in the top-left corner and a \"JioHotstar LIVE\" logo in the top-right corner. The action level appears to be an active play moment, as the bowler has just delivered the ball and the players are reacting to the play.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 164.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with several players positioned around it. The players are in various states of motion, with one player in a light blue uniform throwing a ball, another player in an orange uniform holding a bat, and other players standing or crouching around the pitch.\n\nThere are graphical overlays at the bottom of the screen displaying information such as the teams playing (DC vs CSK), the score (4-0), and player names. The action level appears to be an active play moment, as indicated by the dynamic positioning of the players and the fact that the score graphic shows a low over number (0.2). \n\nThe scene suggests that the game is in its early stages, with the Delhi Capitals (DC) batting and the Chennai Super Kings (CSK) bowling.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show a mix of between-delivery moments and active play in a cricket game. The frames at t=163.0s show a live delivery, as the bowler is in a follow-through position, indicating that the ball has just been delivered. The other frames in the cluster show players standing still or in various states of motion, but not in a bowler's-end framing with bowler motion. The live delivery is only visible at t=163.0s. \n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [
+          {
+            "t": 163.0,
+            "evidence": "The players are positioned around the pitch, with two batters standing at the wickets, a bowler in a follow-through position with their right arm raised, a wicketkeeper crouched behind the wickets, and three fielders standing in various positions."
+          }
+        ],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show players standing still or in various states of motion, with between-delivery moments and crowd shots.",
+        "confidence": 0.8
+      },
+      "error": null,
+      "gate_kept": true,
+      "gate_reason": "kept"
+    },
+    {
+      "cluster_id": 8,
+      "payload": {
+        "cluster_id": 8,
+        "start_t": 172.0,
+        "end_t": 173.0,
+        "duration_s": 1.0,
+        "frame_count": 2,
+        "signal_summary": {
+          "V": 1,
+          "S": 2,
+          "M": 2,
+          "W": 2,
+          "K": 2
+        },
+        "path_summary": {
+          "A": 1,
+          "B": 0,
+          "C": 1,
+          "none": 0
+        },
+        "sampled_frames": [
+          {
+            "t": 172.0,
+            "open_description": "The camera shows a wide field view of a cricket field with players on the field and a crowd in the stands. The people in the frame appear to be engaged in a pre-game or between-overs moment, as some players are standing still while others are walking around.\n\nThere are several graphical overlays, including a score graphic in the bottom-left corner showing the Delhi Capitals logo, a score of \"4-0,\" and an over number of \"0.3.\" Additionally, there is a row of player headshots with their names below, labeled \"DC - Impact Sub Options.\" The background also features various sponsor logos and advertisements.\n\nThe action level appears to be relatively low, with no immediate action happening on the field; it seems to be a paused moment during the game.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 173.0,
+            "open_description": "The camera shows a wide field view of a cricket field with players on the field and a crowd in the stands. The people in the frame appear to be mostly stationary, with some players standing near the wickets and others scattered around the field. \n\nThere are several graphical overlays, including a score graphic in the bottom-left corner showing the Delhi Capitals logo, player names and photos, and a \"DC - Impact Sub Options\" banner. The action level appears to be between deliveries, as the players are not in motion and the bowler does not appear to be running up to bowl.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show a paused moment during the game, with players standing still and no immediate action happening on the field. The frames at t=172.0s and t=173.0s do not show a live delivery, as they lack bowler's-end framing with bowler motion. There are no frames in this cluster that show a live delivery. The frames describe a wide field view of the cricket field with players and a crowd, indicating a between-deliveries or pre-game moment.\n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [],
+        "replay_moments": [],
+        "non_live_summary": "The frames show a wide field view of the cricket field with players standing still and a crowd in the stands, indicating a between-deliveries or paused moment.",
+        "confidence": 1.0
+      },
+      "error": null,
+      "gate_kept": false,
+      "gate_reason": "no-live-moments"
+    },
+    {
+      "cluster_id": 9,
+      "payload": {
+        "cluster_id": 9,
+        "start_t": 176.0,
+        "end_t": 179.0,
+        "duration_s": 3.0,
+        "frame_count": 4,
+        "signal_summary": {
+          "V": 1,
+          "S": 3,
+          "M": 3,
+          "W": 4,
+          "K": 3
+        },
+        "path_summary": {
+          "A": 0,
+          "B": 0,
+          "C": 2,
+          "none": 2
+        },
+        "sampled_frames": [
+          {
+            "t": 176.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players on the field and a crowd in the stands. The people in the frame are standing still, with some players positioned around the pitch and others sitting or standing in the stands. There are several graphical overlays, including a score graphic in the bottom-left corner showing the Delhi Capitals logo, player names and photos, and a \"DC - IMPACT SUB OPTIONS\" label. The action level appears to be between deliveries, as the players are not actively engaged in play.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 177.0,
+            "open_description": "The camera shows a wide field view of a cricket stadium at night, with the field and stands visible. The people in the frame are primarily spectators in the stands, while on the field, a few players are standing around, and one player appears to be preparing to bowl or is in the process of bowling.\n\nThere are several graphical overlays, including a logo for the Delhi Capitals team in the top-left corner, a score graphic in the bottom-left corner showing the team's name and player options, and sponsor logos along the perimeter of the field. The action level appears to be between deliveries, as the players on the field seem to be waiting or preparing for the next play.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 0,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 178.0,
+            "open_description": "The camera shows a wide field view of a cricket field with players on the field and a crowd in the stands. The people in the frame appear to be engaged in a moment of inactivity, with some players standing still and others walking around. There are several graphical overlays, including a score graphic showing \"DC 4-0\" and a list of player names and images labeled \"DC - IMPACT SUB OPTIONS,\" as well as sponsor logos and stadium information. The action level appears to be between deliveries, as the players are not in active motion.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 0
+            }
+          },
+          {
+            "t": 179.0,
+            "open_description": "The camera shows a wide field view of a cricket field with players on the field and a crowd in the stands. The people in the frame are standing still, with some players on the field and others in the background, while the crowd is seated and watching the game. \n\nThere are several graphical overlays, including a score graphic in the bottom-left corner showing the Delhi Capitals logo, player names, and a \"DC - Impact Sub Options\" banner. The action level appears to be between deliveries, as the players are not actively engaged in play and the field is relatively still.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show moments between deliveries in a cricket match, with players standing still or preparing for the next play. None of the frames in this cluster show a live delivery, as they lack the bowler's-end framing with bowler motion. The frames at 176.0s, 177.0s, 178.0s, and 179.0s all show wide field views of the cricket pitch with players and crowd, but no bowler in motion. There are no live delivery frames visible in this cluster.",
+      "verdict": {
+        "live_delivery_moments": [],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show wide field views of the cricket pitch with players standing still or preparing for the next play, and a crowd in the stands.",
+        "confidence": 1.0
+      },
+      "error": null,
+      "gate_kept": false,
+      "gate_reason": "no-live-moments"
+    },
+    {
+      "cluster_id": 10,
+      "payload": {
+        "cluster_id": 10,
+        "start_t": 182.0,
+        "end_t": 185.0,
+        "duration_s": 3.0,
+        "frame_count": 4,
+        "signal_summary": {
+          "V": 3,
+          "S": 4,
+          "M": 3,
+          "W": 1,
+          "K": 3
+        },
+        "path_summary": {
+          "A": 3,
+          "B": 0,
+          "C": 1,
+          "none": 0
+        },
+        "sampled_frames": [
+          {
+            "t": 182.0,
+            "open_description": "The camera shows a wide field view of a cricket field with players on the field and a crowd in the background. The people in the frame appear to be standing still, with some players on the field and others in the stands watching. There are graphical overlays including a score graphic in the bottom-left corner showing the Delhi Capitals logo, player names and photos, and a \"DC - Impact Sub Options\" section. The action level appears to be between deliveries, as the players are not in motion and there is no indication of active play happening.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 183.0,
+            "open_description": "The camera shows a medium shot of a cricketer in a light blue jersey, standing and holding a white ball in his hands. He appears to be preparing to bowl or has just finished bowling, as he is not in an active bowling motion but seems focused on the game. \n\nThere are graphical overlays at the bottom of the frame displaying information about the match, including the teams playing (DC vs CSK), the current score, and player names. The background is dark, suggesting that the match is taking place at night.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 0,
+              "W": 0,
+              "K": 0
+            }
+          },
+          {
+            "t": 184.0,
+            "open_description": "The camera shows a medium close-up shot of a cricket player. The player, wearing a light blue jersey with various sponsor logos, appears to be in motion, with his right arm bent at the elbow and his left hand holding a cricket ball.\n\nIn the frame, the player seems to be walking or running while looking to his right. \n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the teams Delhi Capitals (DC) and Chennai Super Kings (CSK), the current score, and player names. In the top-left corner, there is a Tata IPL logo, and in the top-right corner, there is a JioHotstar LIVE logo with 1.5 crore views. \n\nThe action level appears to be between deliveries, as the player is not in a dynamic pose indicative of active play.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 0,
+              "K": 1
+            }
+          },
+          {
+            "t": 185.0,
+            "open_description": "The camera shows a close-up shot of a single cricket player standing in the center of the frame. The player is holding a ball and appears to be preparing to bowl, with his hands clasped together in front of him. \n\nThere are graphical overlays at the bottom of the frame displaying information about the match, including the teams playing (DC vs CSK), the current score and over, and player names. The player's jersey features several sponsor logos, and there is also a logo in the top-left corner indicating that this is a TATA IPL broadcast. \n\nThe action level appears to be between deliveries, as the player is not actively bowling or running. The overall atmosphere suggests a moment of anticipation before the next delivery.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 0,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show moments between cricket deliveries, with players standing still or preparing to bowl. None of the frames in this cluster show a live delivery with bowler's-end framing and bowler motion. The frames at t=182.0s, t=183.0s, t=184.0s, and t=185.0s all describe scenes where the players are not in active play, with graphical overlays displaying match information. There are no frames in this cluster that show a live delivery.\n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show closeups of players, between-play moments, and graphical overlays displaying match information.",
+        "confidence": 1.0
+      },
+      "error": null,
+      "gate_kept": false,
+      "gate_reason": "no-live-moments"
+    },
+    {
+      "cluster_id": 11,
+      "payload": {
+        "cluster_id": 11,
+        "start_t": 192.0,
+        "end_t": 197.0,
+        "duration_s": 5.0,
+        "frame_count": 6,
+        "signal_summary": {
+          "V": 4,
+          "S": 3,
+          "M": 6,
+          "W": 5,
+          "K": 5
+        },
+        "path_summary": {
+          "A": 1,
+          "B": 1,
+          "C": 2,
+          "none": 2
+        },
+        "sampled_frames": [
+          {
+            "t": 192.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame are standing still, with one player preparing to bowl, another batter standing at the wicket, a wicketkeeper crouched behind the batter, and fielders positioned in various spots. \n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the teams Delhi Capitals (DC) and Chennai Super Kings (CSK), the current score, and player information. The action level appears to be between deliveries, as the players are not actively engaged in play.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 193.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with several players positioned around it. The people in the frame are standing still, with two batters at the wickets, two umpires standing behind them, and three fielders positioned around the field. \n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the teams Delhi Capitals (DC) and Chennai Super Kings (CSK), the current score, and player information. A sponsor logo for Tata IPL is visible in the top-left corner, and another for JioHotstar in the top-right corner. \n\nThe action level appears to be between deliveries, as the players are standing still and not actively engaged in play.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 195.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with seven players and an umpire. The bowler, wearing a teal uniform, appears to have just released the ball, which is visible in mid-air, while the batter in an orange uniform stands ready. A fielder in teal is crouched behind the batter, and another fielder in teal is positioned on the left side of the pitch.\n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the teams' names, scores, and player information, as well as logos for TATA IPL and JioHotstar. The action level appears to be an active play moment, likely immediately after the bowler has delivered the ball.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 197.0,
+            "open_description": "The camera shows a wide field view of three cricket players on the field. The player on the left is walking with his arms raised, while the player on the right has his arms raised above his head. A batter in an orange uniform stands between two players in teal uniforms, holding a cricket bat and appears to be walking off the field.\n\nThere are several graphical overlays at the bottom of the screen, including a scoreboard with team names, scores, and player information. The scoreboard displays \"DC\" versus \"CSK,\" with DC having 4 runs and 0 wickets lost, and CSK having 0 runs and 0 wickets lost. Additional overlays include logos for Tata IPL and JioHotstar Live, as well as a view count of 1.5 crore views.\n\nThe action level appears to be a post-action moment, as the players seem to be celebrating or reacting to something that has just happened. The overall atmosphere suggests that it is an exciting moment in the game.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show a mix of between-delivery moments and a potential live delivery. The frames at t=192.0s and t=193.0s show players standing still, indicating a break in play. However, the frame at t=195.0s shows the bowler having just released the ball, suggesting a live delivery. The frame at t=197.0s shows players celebrating or reacting to something that has just happened. Live delivery is visible at t=195.0s.\n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [
+          {
+            "t": 195.0,
+            "evidence": "The bowler, wearing a teal uniform, appears to have just released the ball, which is visible in mid-air, while the batter in an orange uniform stands ready."
+          }
+        ],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show players standing still between deliveries, with some frames showing players celebrating or reacting to a recent event.",
+        "confidence": 0.8
+      },
+      "error": null,
+      "gate_kept": true,
+      "gate_reason": "kept"
+    },
+    {
+      "cluster_id": 12,
+      "payload": {
+        "cluster_id": 12,
+        "start_t": 224.0,
+        "end_t": 224.0,
+        "duration_s": 0.0,
+        "frame_count": 1,
+        "signal_summary": {
+          "V": 1,
+          "S": 0,
+          "M": 1,
+          "W": 1,
+          "K": 1
+        },
+        "path_summary": {
+          "A": 0,
+          "B": 1,
+          "C": 0,
+          "none": 0
+        },
+        "sampled_frames": [
+          {
+            "t": 224.0,
+            "open_description": "The camera shows a wide field view of a cricket match in progress. The players are positioned around the pitch, with one batter wearing orange and blue protective gear, holding a bat and preparing to hit the ball, while another player in orange walks away; three players in light blue are positioned around the batter. \n\nThere are graphical overlays including a \"Delhi Capitals\" logo in the top-left corner and a \"JioHotstar LIVE 1.8Cr Views\" text in the top-right corner. The action level appears to be a moment of active play, with the batter poised to hit the ball, which is visible on the pitch.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster shows a wide field view of a cricket match in progress, with players positioned around the pitch and a batter preparing to hit the ball. The action level appears to be a moment of active play, with the batter poised to hit the ball. However, there is no bowler's-end framing with bowler motion visible in this cluster, so there are no live delivery frames. The frame at t=224.0s does not show a live delivery. \n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [],
+        "replay_moments": [],
+        "non_live_summary": "The cluster shows a wide field view of a cricket match in progress with players positioned around the pitch and a batter preparing to hit the ball.",
+        "confidence": 1.0
+      },
+      "error": null,
+      "gate_kept": false,
+      "gate_reason": "no-live-moments"
+    },
+    {
+      "cluster_id": 13,
+      "payload": {
+        "cluster_id": 13,
+        "start_t": 234.0,
+        "end_t": 244.0,
+        "duration_s": 10.0,
+        "frame_count": 11,
+        "signal_summary": {
+          "V": 6,
+          "S": 7,
+          "M": 10,
+          "W": 10,
+          "K": 7
+        },
+        "path_summary": {
+          "A": 4,
+          "B": 0,
+          "C": 2,
+          "none": 5
+        },
+        "sampled_frames": [
+          {
+            "t": 234.0,
+            "open_description": "The camera shows a wide field view of a cricket player standing on the field. The player, wearing a light blue uniform, appears to be in a moment of stillness, with his hands clasped together in front of him. \n\nThere are several graphical overlays present, including a score graphic at the bottom of the screen displaying the teams \"DC\" and \"CSK\", the current score \"4-0\", and the player statistics. Additionally, there are logos for \"Delhi Capitals\" and \"JioHotstar LIVE\" visible in the top corners of the screen.\n\nThe action level appears to be between deliveries, as the player is not actively engaged in play and there is no visible movement or activity around him.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 235.0,
+            "open_description": "The camera shows a wide field view of a cricket player in a teal uniform running on the field. The player appears to be in motion, with his arms bent and legs slightly bent as if he is about to throw or has just thrown the ball. \n\nThere are several graphical overlays at the bottom of the screen, including a scoreboard with team names \"DC\" and \"CSK\", player names \"PATHUM\" and \"HOSEIN\", and various statistics such as scores and standings. In the top-left corner, there is a logo for \"DELHI CAPITALS\". \n\nThe action level appears to be an active play moment, likely between deliveries, as the player is in motion and the scoreboard suggests that the game is ongoing.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 237.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with seven players and an umpire visible. The players are positioned around the pitch, with two batters standing at the wickets, a bowler in a crouched position ready to bowl, and three fielders standing behind them. A fourth fielder is visible on the left side of the frame, slightly crouched.\n\nThe scene appears to be a moment just before the bowler delivers the ball, as indicated by their stance. The batters are standing still, looking towards the bowler. The umpire is standing behind the wicketkeeper.\n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the teams Delhi Capitals (DC) and Chennai Super Kings (CSK), the current score, and player names. The TATA IPL logo is visible in the top-left corner, and a \"JioHotstar LIVE\" logo is in the top-right corner. The action level appears to be a pre-delivery moment, with the bowler preparing to bowl and the players focused",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 244.0,
+            "open_description": "The camera shows a wide field view of a cricket player in a light blue uniform walking on the field. The player, with the number 15 on his back, appears to be walking away from the camera towards the field. In the background, spectators are seated behind a railing, watching the game.\n\nThere are several graphical overlays visible, including a score graphic at the bottom of the screen displaying the teams \"DC\" and \"CSK\", their current standings, and the player names \"PATHUM\" and \"RAHUL\". Additionally, there are sponsor logos along the field boundary, including \"helBindaa\", \"TATA IPL\", and \"JioHotstar LIVE\". A speedometer in the bottom right corner shows a speed of 95.0 kph.\n\nThe action level appears to be a moment between deliveries, as the player is walking on the field and not in an active playing position. The overall atmosphere suggests that the game is live and being broadcast on television.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show various moments between cricket deliveries, with players standing still or walking on the field. The frames at t=237.0s show a pre-delivery moment with the bowler in a crouched position, but no live delivery is visible in this cluster as the bowler's-end framing with bowler motion is not present. The frames show a mix of field views, player closeups, and score graphics. No live delivery is visible in this cluster.\n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show closeups of players, field views, and score graphics, indicating moments between deliveries or pre-delivery preparations.",
+        "confidence": 0.8
+      },
+      "error": null,
+      "gate_kept": false,
+      "gate_reason": "no-live-moments"
+    },
+    {
+      "cluster_id": 14,
+      "payload": {
+        "cluster_id": 14,
+        "start_t": 259.0,
+        "end_t": 261.0,
+        "duration_s": 2.0,
+        "frame_count": 3,
+        "signal_summary": {
+          "V": 3,
+          "S": 0,
+          "M": 3,
+          "W": 3,
+          "K": 3
+        },
+        "path_summary": {
+          "A": 0,
+          "B": 3,
+          "C": 0,
+          "none": 0
+        },
+        "sampled_frames": [
+          {
+            "t": 259.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players positioned around it. The players are standing still, with one player on the left appearing to have just thrown their arm back after bowling, and another player on the right ready to field. \n\nThere are graphical overlays across the top of the frame, including sponsor logos such as \"KINGFISHER\" and \"#KhelBindaaS\", as well as a purple box with \"YONO SBI\" and a cricket player logo and \"TATA IPL\" on the top left. The action level appears to be between deliveries, as the players are not actively engaged in play.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 260.0,
+            "open_description": "The camera shows a wide field view of a cricket match in progress. The players are positioned around the field, with two batters standing at the wickets on the left side of the frame and fielders scattered across the field; one batter appears to be preparing to play a shot while the other batter walks down the pitch. \n\nThere are several graphical overlays visible, including sponsor logos such as \"KINGFISHER,\" \"#KhelBindaas,\" and \"Yono SBI,\" as well as a \"TATA IPL\" logo in the top-left corner and a \"JioHotstar LIVE\" label in the top-right corner indicating that this is a live broadcast. The action level appears to be an active play moment, with the batter preparing to hit the ball.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 261.0,
+            "open_description": "The camera shows a wide field view of a cricket field with several players on it. The players are scattered around the field, with two batters standing near the wicket on the right side of the frame, while other players are positioned in various spots around the field; one player appears to be bending down, possibly fielding or adjusting their position, and others are walking or standing still. \n\nThere are several graphical overlays visible, including sponsor logos such as \"TATA IPL\", \"KINGFISHER\", \"SBI\", and \"#KhelBindaas\", as well as a \"JioHotstar LIVE\" indicator in the top-right corner showing 1.8 crore views. The action level appears to be a moment between deliveries, as the players are not in highly active or dynamic positions.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show moments between deliveries in a cricket match, with players standing still or walking around the field. None of the frames in this cluster show a bowler's-end framing with bowler motion, as the camera shots are wide field views of the cricket pitch with players positioned around it. The frames at t=259.0s, t=260.0s, and t=261.0s do not show a live delivery. The players are not actively engaged in play, with some frames showing batters preparing to play a shot or fielders scattered across the field.\n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show closeups of players standing still or walking around the field, with some frames showing batters preparing to play a shot or fielders scattered across the field.",
+        "confidence": 1.0
+      },
+      "error": null,
+      "gate_kept": false,
+      "gate_reason": "no-live-moments"
+    },
+    {
+      "cluster_id": 15,
+      "payload": {
+        "cluster_id": 15,
+        "start_t": 272.0,
+        "end_t": 278.0,
+        "duration_s": 6.0,
+        "frame_count": 7,
+        "signal_summary": {
+          "V": 2,
+          "S": 5,
+          "M": 7,
+          "W": 6,
+          "K": 7
+        },
+        "path_summary": {
+          "A": 1,
+          "B": 1,
+          "C": 3,
+          "none": 2
+        },
+        "sampled_frames": [
+          {
+            "t": 272.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with several players positioned around it. The people in the frame are standing still, with two players near the wickets, one batter holding a bat and another player behind him, likely a wicket-keeper, and two umpires standing nearby. \n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the teams Delhi Capitals (DC) and Chennai Super Kings (CSK), the current score, and player statistics for Pathum Nissanka. The action level appears to be between deliveries, as the players seem to be waiting for the next play.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 273.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with six people on it. The batter is standing near the wicket on the right side of the frame, holding a bat and looking down; a wicketkeeper in a light-blue uniform is crouched behind him; and a bowler in a matching uniform is standing on the left side of the frame, holding a ball. A man in a black uniform with \"umpire\" on his back and another man in a light-blue uniform are standing on the pitch facing away from the camera.\n\nThere are several graphical overlays at the bottom of the frame, including a score graphic showing the teams Delhi Capitals (DC) and Chennai Super Kings (CSK), the current score (B-0), and player statistics for Pathum Nissanka. There are also sponsor logos in the corners of the frame. The action level appears to be between deliveries, as the bowler is not in motion and the batter is not actively batting.",
+            "signals": {
+              "V": 0,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 276.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with six people on it. The bowler, wearing a teal uniform, is bending over and appears to be about to deliver the ball, while the batter, wearing an orange uniform, is standing with their back to the camera and holding a bat. A wicketkeeper in teal is crouching behind the batter, and an umpire in black is standing behind the wicketkeeper.\n\nThere are several graphical overlays, including a score graphic at the bottom of the screen showing the teams Delhi Capitals (DC) and Chennai Super Kings (CSK), the current score, and player statistics for Pathum Nissanka. The action level appears to be just before the delivery of the ball, as the bowler is in motion and the batter is preparing to hit the ball.",
+            "signals": {
+              "V": 1,
+              "S": 1,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          },
+          {
+            "t": 278.0,
+            "open_description": "The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame appear to be in a moment between deliveries, with the bowler having just delivered the ball and the batter preparing to play a shot; one fielder is walking towards the wicketkeeper, while another stands on the boundary. \n\nThere are several graphical overlays, including sponsor logos along the top and bottom of the frame, a score graphic at the bottom showing the teams' standings and player statistics, and a \"JioHotstar LIVE\" label in the upper right corner indicating 1.9 crore views. The action level appears to be relatively calm, with players not actively running or celebrating, suggesting a pause in play.",
+            "signals": {
+              "V": 1,
+              "S": 0,
+              "M": 1,
+              "W": 1,
+              "K": 1
+            }
+          }
+        ]
+      },
+      "prose": "PART 1: This cluster appears to show a sequence of events between deliveries in a cricket match, with players standing still or preparing for the next play. The frame at t=276.0s shows a live delivery moment, as the bowler is bending over and about to deliver the ball. The other frames in the cluster show the players in a calm state, with no active running or celebrating, suggesting a pause in play. The live delivery is visible at t=276.0s.\n\nPART 2:",
+      "verdict": {
+        "live_delivery_moments": [
+          {
+            "t": 276.0,
+            "evidence": "The camera shows a wide field view of a cricket pitch with six people on it. The bowler, wearing a teal uniform, is bending over and appears to be about to deliver the ball, while the batter, wearing an orange uniform, is standing with their back to the camera and holding a bat."
+          }
+        ],
+        "replay_moments": [],
+        "non_live_summary": "The non-delivery frames show the players standing still or preparing for the next play, with the bowler not in motion and the batter not actively batting, indicating a pause in play.",
+        "confidence": 0.8
+      },
+      "error": null,
+      "gate_kept": true,
+      "gate_reason": "kept"
+    }
+  ],
+  "anchor_groups": [
+    {
+      "earliest": 109.0,
+      "latest": 109.0,
+      "anchors": [
+        {
+          "t": 109.0,
+          "evidence": "The camera shows a wide field view of the cricket pitch, capturing several players and the umpire. The bowler in a light blue uniform is in mid-action, with his right arm extended upward as if he has just released the ball, while the batter in an orange uniform stands ready with his bat.",
+          "cluster_id": 3,
+          "confidence": 0.8
+        }
+      ]
+    },
+    {
+      "earliest": 122.0,
+      "latest": 126.0,
+      "anchors": [
+        {
+          "t": 122.0,
+          "evidence": "The camera shows a wide field view of a cricket match with six players on the field. The bowler is in the process of delivering the ball, with their arm raised and about to release it, while the batter stands ready with their bat and the wicketkeeper crouches behind them.",
+          "cluster_id": 4,
+          "confidence": 0.8
+        },
+        {
+          "t": 126.0,
+          "evidence": "The camera shows a wide field view of a cricket pitch with players positioned around it. A bowler in a light blue uniform appears to be in the process of bowling, with their arm extended, while two batters in orange and purple uniforms stand at the wickets, one holding a bat and the other walking behind.",
+          "cluster_id": 4,
+          "confidence": 0.8
+        }
+      ]
+    },
+    {
+      "earliest": 143.0,
+      "latest": 143.0,
+      "anchors": [
+        {
+          "t": 143.0,
+          "evidence": "The bowler appears to have just released the ball, and the batter is standing ready.",
+          "cluster_id": 6,
+          "confidence": 0.8
+        }
+      ]
+    },
+    {
+      "earliest": 163.0,
+      "latest": 163.0,
+      "anchors": [
+        {
+          "t": 163.0,
+          "evidence": "The players are positioned around the pitch, with two batters standing at the wickets, a bowler in a follow-through position with their right arm raised, a wicketkeeper crouched behind the wickets, and three fielders standing in various positions.",
+          "cluster_id": 7,
+          "confidence": 0.8
+        }
+      ]
+    },
+    {
+      "earliest": 195.0,
+      "latest": 195.0,
+      "anchors": [
+        {
+          "t": 195.0,
+          "evidence": "The bowler, wearing a teal uniform, appears to have just released the ball, which is visible in mid-air, while the batter in an orange uniform stands ready.",
+          "cluster_id": 11,
+          "confidence": 0.8
+        }
+      ]
+    },
+    {
+      "earliest": 276.0,
+      "latest": 276.0,
+      "anchors": [
+        {
+          "t": 276.0,
+          "evidence": "The camera shows a wide field view of a cricket pitch with six people on it. The bowler, wearing a teal uniform, is bending over and appears to be about to deliver the ball, while the batter, wearing an orange uniform, is standing with their back to the camera and holding a bat.",
+          "cluster_id": 15,
+          "confidence": 0.8
+        }
+      ]
+    }
+  ]
+}

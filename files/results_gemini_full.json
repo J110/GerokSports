@@ -1,0 +1,977 @@
+[
+  {
+    "id": "delivery_018",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.85,\n  \"narrative\": \"Kagiso Rabada bowled a good length delivery outside off-stump. The batsman, Seifert, played a front-foot drive along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "Kagiso Rabada bowled a good length delivery outside off-stump. The batsman, Seifert, played a front-foot drive along the ground towards the offside."
+    },
+    "wall_ms": 10216,
+    "pipeline_pred": "yorker / wide_outside_off / along_ground \u2192 behind_wicket",
+    "pipeline_runs": "4"
+  },
+  {
+    "id": "delivery_021",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off stump. The batsman played a powerful shot along the ground towards the offside, scoring a single run.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off stump. The batsman played a powerful shot along the ground towards the offside, scoring a single run."
+    },
+    "wall_ms": 8909,
+    "pipeline_pred": "short / leg_stump / along_ground \u2192 offside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_022",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"full\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a full ball outside off stump. The batsman played a front-foot drive, hitting the ball along the ground towards the offside for a single run.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "full",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a full ball outside off stump. The batsman played a front-foot drive, hitting the ball along the ground towards the offside for a single run."
+    },
+    "wall_ms": 15652,
+    "pipeline_pred": "short / on_pads / along_ground \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_024",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off stump. The batsman played a controlled shot, hitting the ball along the ground towards the offside, resulting in a single run.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off stump. The batsman played a controlled shot, hitting the ball along the ground towards the offside, resulting in a single run."
+    },
+    "wall_ms": 6932,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_028",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.8,\n  \"narrative\": \"The bowler delivered a good length ball outside off-stump. The batsman played a defensive shot with a straight bat, pushing the ball along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "The bowler delivered a good length ball outside off-stump. The batsman played a defensive shot with a straight bat, pushing the ball along the ground towards the offside."
+    },
+    "wall_ms": 13336,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_029",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.75,\n  \"narrative\": \"The bowler delivered the ball, and the batsman hit it along the ground towards the offside. A fielder made a sliding stop, and the batsmen ran two runs before the ball was returned.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.75,
+      "narrative": "The bowler delivered the ball, and the batsman hit it along the ground towards the offside. A fielder made a sliding stop, and the batsmen ran two runs before the ball was returned."
+    },
+    "wall_ms": 13909,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 straight",
+    "pipeline_runs": "2"
+  },
+  {
+    "id": "delivery_030",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"on_stumps\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"straight\",\n  \"confidence\": 0.8,\n  \"narrative\": \"The bowler delivers a good length ball on the stumps. The batsman plays a front-foot shot along the ground. The bowler celebrates intensely, suggesting a wicket or significant event during the delivery.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "straight",
+      "confidence": 0.8,
+      "narrative": "The bowler delivers a good length ball on the stumps. The batsman plays a front-foot shot along the ground. The bowler celebrates intensely, suggesting a wicket or significant event during the delivery."
+    },
+    "wall_ms": 15011,
+    "pipeline_pred": "short / wide_outside_off / in_the_air \u2192 offside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_031",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"straight\",\n  \"confidence\": 0.9,\n  \"narrative\": \"Kagiso Rabada bowls a good length delivery outside off-stump. The batsman, Powell, plays a defensive shot with a straight bat, hitting the ball along the ground towards the wicketkeeper.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "straight",
+      "confidence": 0.9,
+      "narrative": "Kagiso Rabada bowls a good length delivery outside off-stump. The batsman, Powell, plays a defensive shot with a straight bat, hitting the ball along the ground towards the wicketkeeper."
+    },
+    "wall_ms": 7832,
+    "pipeline_pred": "yorker / wide_outside_off / defended \u2192 no_shot",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_032",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"in_the_air\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The fast bowler delivered a good length ball outside off-stump. The batsman played an aerial shot towards the offside, with the ball seen flying high after contact.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "in_the_air",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The fast bowler delivered a good length ball outside off-stump. The batsman played an aerial shot towards the offside, with the ball seen flying high after contact."
+    },
+    "wall_ms": 9695,
+    "pipeline_pred": "yorker / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_035",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.85,\n  \"narrative\": \"The bowler delivers a good length ball outside off stump. The batsman plays a front-foot drive, making good contact and hitting the ball along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "The bowler delivers a good length ball outside off stump. The batsman plays a front-foot drive, making good contact and hitting the ball along the ground towards the offside."
+    },
+    "wall_ms": 9726,
+    "pipeline_pred": "full / outside_off / in_the_air \u2192 straight",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_036",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"Bowler Prasidh delivered a good length ball outside off to Powell. The batsman leaned forward and played the ball along the ground towards the offside. No runs were visibly scored on this delivery.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Bowler Prasidh delivered a good length ball outside off to Powell. The batsman leaned forward and played the ball along the ground towards the offside. No runs were visibly scored on this delivery."
+    },
+    "wall_ms": 10864,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_039",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off-stump. The batsman played a grounded shot towards the offside, scoring a single run, taking the score to 40-3.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off-stump. The batsman played a grounded shot towards the offside, scoring a single run, taking the score to 40-3."
+    },
+    "wall_ms": 13202,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_040",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off-stump. The batsman played a forward drive, hitting the ball along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off-stump. The batsman played a forward drive, hitting the ball along the ground towards the offside."
+    },
+    "wall_ms": 33545,
+    "pipeline_pred": "short / wide_outside_off / in_the_air \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_041",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball just outside off-stump. The batsman stepped forward and played a front-foot drive, hitting the ball along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball just outside off-stump. The batsman stepped forward and played a front-foot drive, hitting the ball along the ground towards the offside."
+    },
+    "wall_ms": 7198,
+    "pipeline_pred": "good_length / outside_off / in_the_air \u2192 straight",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_043",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"A good length delivery outside off-stump was played along the ground by Powell towards the offside. Two runs were scored, updating the total to KKR 48-3.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "A good length delivery outside off-stump was played along the ground by Powell towards the offside. Two runs were scored, updating the total to KKR 48-3."
+    },
+    "wall_ms": 11095,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "2"
+  },
+  {
+    "id": "delivery_044",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside the off-stump. The batsman played a grounded shot towards the offside, connecting with the ball with his bat angled down.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside the off-stump. The batsman played a grounded shot towards the offside, connecting with the ball with his bat angled down."
+    },
+    "wall_ms": 11211,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_045",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside the off-stump. The batsman played a controlled shot with a straight bat, keeping the ball along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside the off-stump. The batsman played a controlled shot with a straight bat, keeping the ball along the ground towards the offside."
+    },
+    "wall_ms": 12671,
+    "pipeline_pred": "short / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_046",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.8,\n  \"narrative\": \"The bowler bowled a good length delivery outside off, which the batsman played with a straight bat, driving it along the ground towards the offside. It was a dot ball.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "The bowler bowled a good length delivery outside off, which the batsman played with a straight bat, driving it along the ground towards the offside. It was a dot ball."
+    },
+    "wall_ms": 17133,
+    "pipeline_pred": "short / down_leg / in_the_air \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_049",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.85,\n  \"narrative\": \"Bowler Ashok delivers a good length ball outside off stump to batsman Powell, who plays a defensive shot along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "Bowler Ashok delivers a good length ball outside off stump to batsman Powell, who plays a defensive shot along the ground towards the offside."
+    },
+    "wall_ms": 13944,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_054",
+    "raw": "ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 10.898185433s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '10s'}]}}",
+    "parsed": null,
+    "wall_ms": 815,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "2"
+  },
+  {
+    "id": "delivery_055",
+    "raw": "ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 6.083205656s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '6s'}]}}",
+    "parsed": null,
+    "wall_ms": 743,
+    "pipeline_pred": "good_length / down_leg / in_the_air \u2192 offside",
+    "pipeline_runs": "2"
+  },
+  {
+    "id": "delivery_056",
+    "raw": "ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 1.050407414s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '1s'}]}}",
+    "parsed": null,
+    "wall_ms": 750,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 legside",
+    "pipeline_runs": "4"
+  },
+  {
+    "id": "delivery_057",
+    "raw": "ERROR: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\\nPlease retry in 56.294975359s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '56s'}]}}",
+    "parsed": null,
+    "wall_ms": 738,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_058",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"A right-arm bowler bowls a good length delivery just outside off-stump to the left-handed batsman, who plays it along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "A right-arm bowler bowls a good length delivery just outside off-stump to the left-handed batsman, who plays it along the ground towards the offside."
+    },
+    "wall_ms": 8798,
+    "pipeline_pred": "full / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_064",
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"release\", \"length\": \"good_length\", \"line\": \"outside_off\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.85, \"narrative\": \"The bowler delivered a good length ball outside off stump. The right-handed batsman played a front-foot drive, hitting the ball along the ground towards the offside for a single run.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "The bowler delivered a good length ball outside off stump. The right-handed batsman played a front-foot drive, hitting the ball along the ground towards the offside for a single run."
+    },
+    "wall_ms": 11555,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_065",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off stump. The batsman played a forward shot, connecting with the ball and likely pushing it along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off stump. The batsman played a forward shot, connecting with the ball and likely pushing it along the ground towards the offside."
+    },
+    "wall_ms": 10124,
+    "pipeline_pred": "full / down_leg / along_ground \u2192 straight",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_066",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off-stump, which the batsman played along the ground towards the offside. This delivery was a free hit after the previous ball was a no-ball.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off-stump, which the batsman played along the ground towards the offside. This delivery was a free hit after the previous ball was a no-ball."
+    },
+    "wall_ms": 8146,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_069",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.85,\n  \"narrative\": \"The bowler delivered a good length ball outside off stump. The batsman played a front-foot shot, driving the ball along the ground towards the offside. A fielder collected the ball after the shot.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "The bowler delivered a good length ball outside off stump. The batsman played a front-foot shot, driving the ball along the ground towards the offside. A fielder collected the ball after the shot."
+    },
+    "wall_ms": 7154,
+    "pipeline_pred": "full / wide_outside_off / along_ground \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_070",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"unknown\",\n  \"line\": \"wide_outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.85,\n  \"narrative\": \"The bowler delivered a ball that was too wide outside off stump. The batsman attempted to play an along-ground shot but missed, and the umpire signaled a wide.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "unknown",
+      "line": "wide_outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "The bowler delivered a ball that was too wide outside off stump. The batsman attempted to play an along-ground shot but missed, and the umpire signaled a wide."
+    },
+    "wall_ms": 20542,
+    "pipeline_pred": "full / down_leg / in_the_air \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_074",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"on_stumps\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"legside\",\n  \"confidence\": 0.85,\n  \"narrative\": \"The bowler delivered a good length ball on the stumps to the left-handed batsman, who attempted to play it along the ground. The ball rolled towards the legside, resulting in 1 leg-bye as indicated by the scoreboard.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "legside",
+      "confidence": 0.85,
+      "narrative": "The bowler delivered a good length ball on the stumps to the left-handed batsman, who attempted to play it along the ground. The ball rolled towards the legside, resulting in 1 leg-bye as indicated by the scoreboard."
+    },
+    "wall_ms": 19565,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_075",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball just outside the off-stump, which the batsman drove along the ground through the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball just outside the off-stump, which the batsman drove along the ground through the offside."
+    },
+    "wall_ms": 9558,
+    "pipeline_pred": "short / outside_off / along_ground \u2192 offside",
+    "pipeline_runs": "4"
+  },
+  {
+    "id": "delivery_077",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"short\",\n  \"line\": \"on_stumps\",\n  \"shot\": \"in_the_air\",\n  \"direction\": \"legside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a short ball on the stumps. The batter, Cameron Green, played a powerful pull shot, hitting the ball in the air towards the leg side for a boundary.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "short",
+      "line": "on_stumps",
+      "shot": "in_the_air",
+      "direction": "legside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a short ball on the stumps. The batter, Cameron Green, played a powerful pull shot, hitting the ball in the air towards the leg side for a boundary."
+    },
+    "wall_ms": 12470,
+    "pipeline_pred": "good_length / off_stump / defended \u2192 no_shot",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_081",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"in_the_air\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.8,\n  \"narrative\": \"The bowler delivered a good length ball outside off-stump. The batsman made contact and hit the ball powerfully in the air, likely towards the offside, causing the camera to pan rapidly.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "in_the_air",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "The bowler delivered a good length ball outside off-stump. The batsman made contact and hit the ball powerfully in the air, likely towards the offside, causing the camera to pan rapidly."
+    },
+    "wall_ms": 11616,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 straight",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_084",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"short_of_a_length\",\n  \"line\": \"on_stumps\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"legside\",\n  \"confidence\": 0.8,\n  \"narrative\": \"The bowler delivered a short of a length ball on the stumps. The batsman played an aggressive pull shot, hitting the ball along the ground towards the leg side, where it came to rest.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "short_of_a_length",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "legside",
+      "confidence": 0.8,
+      "narrative": "The bowler delivered a short of a length ball on the stumps. The batsman played an aggressive pull shot, hitting the ball along the ground towards the leg side, where it came to rest."
+    },
+    "wall_ms": 13315,
+    "pipeline_pred": "short / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "4"
+  },
+  {
+    "id": "delivery_086",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"in_the_air\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.7,\n  \"narrative\": \"A batsman prepares for a delivery, then plays an attacking shot with an upward bat angle, likely hitting the ball in the air towards the offside. The sequence concludes with a TATA IPL broadcast transition.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "in_the_air",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "A batsman prepares for a delivery, then plays an attacking shot with an upward bat angle, likely hitting the ball in the air towards the offside. The sequence concludes with a TATA IPL broadcast transition."
+    },
+    "wall_ms": 14180,
+    "pipeline_pred": "short / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_089",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.8,\n  \"narrative\": \"The bowler delivered a good length ball outside off stump. The batsman is seen preparing to play a shot, likely along the ground towards the offside, as the ball is in flight.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "The bowler delivered a good length ball outside off stump. The batsman is seen preparing to play a shot, likely along the ground towards the offside, as the ball is in flight."
+    },
+    "wall_ms": 9174,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_091",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"on_stumps\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.75,\n  \"narrative\": \"A batsman played a shot along the ground to a good length delivery on the stumps, directing the ball towards the offside. Graphical overlays with boundary statistics are visible.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.75,
+      "narrative": "A batsman played a shot along the ground to a good length delivery on the stumps, directing the ball towards the offside. Graphical overlays with boundary statistics are visible."
+    },
+    "wall_ms": 11970,
+    "pipeline_pred": "short / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "4"
+  },
+  {
+    "id": "delivery_100",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"post_shot\",\n  \"length\": \"unknown\",\n  \"line\": \"unknown\",\n  \"shot\": \"in_the_air\",\n  \"direction\": \"unknown\",\n  \"confidence\": 0.9,\n  \"narrative\": \"A KKR batsman hit a six from this delivery. The sequence shows an umpire during the play, followed by the batsman walking away, with the score overlay confirming the maximum.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "post_shot",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "in_the_air",
+      "direction": "unknown",
+      "confidence": 0.9,
+      "narrative": "A KKR batsman hit a six from this delivery. The sequence shows an umpire during the play, followed by the batsman walking away, with the score overlay confirming the maximum."
+    },
+    "wall_ms": 15902,
+    "pipeline_pred": "good_length / wide_outside_off / in_the_air \u2192 offside",
+    "pipeline_runs": "6"
+  },
+  {
+    "id": "delivery_101",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.85,\n  \"narrative\": \"The right-arm bowler delivers a good length ball outside off-stump. The right-handed batsman plays a front-foot drive along the ground to the offside, failing to score any runs.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "The right-arm bowler delivers a good length ball outside off-stump. The right-handed batsman plays a front-foot drive along the ground to the offside, failing to score any runs."
+    },
+    "wall_ms": 17793,
+    "pipeline_pred": "yorker / down_leg / along_ground \u2192 straight",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_102",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.95,\n  \"narrative\": \"Rabada bowls a good length delivery outside off stump. The batsman, Ramandeep, plays it along the ground through the offside, scoring two runs.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.95,
+      "narrative": "Rabada bowls a good length delivery outside off stump. The batsman, Ramandeep, plays it along the ground through the offside, scoring two runs."
+    },
+    "wall_ms": 9213,
+    "pipeline_pred": "short / down_leg / along_ground \u2192 straight",
+    "pipeline_runs": "2"
+  },
+  {
+    "id": "delivery_105",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"full\",\n  \"line\": \"on_stumps\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"Bowler Ashok delivered a full ball on the stumps at 142.2 kph. Ramandeep Green played a front-foot drive, hitting the ball along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "full",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "Bowler Ashok delivered a full ball on the stumps at 142.2 kph. Ramandeep Green played a front-foot drive, hitting the ball along the ground towards the offside."
+    },
+    "wall_ms": 11903,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "4"
+  },
+  {
+    "id": "delivery_107",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"unknown\",\n  \"line\": \"unknown\",\n  \"shot\": \"unknown\",\n  \"direction\": \"no_shot\",\n  \"confidence\": 0.5,\n  \"narrative\": \"A bowler completes their run-up and releases the ball during an IPL match. The subsequent frame, however, is a close-up of a player's face, preventing any determination of the ball's trajectory, the batter's shot, or the delivery's outcome.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "no_shot",
+      "confidence": 0.5,
+      "narrative": "A bowler completes their run-up and releases the ball during an IPL match. The subsequent frame, however, is a close-up of a player's face, preventing any determination of the ball's trajectory, the batter's shot, or the delivery's outcome."
+    },
+    "wall_ms": 9902,
+    "pipeline_pred": "full / on_pads / along_ground \u2192 straight",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_110",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.85,\n  \"narrative\": \"Bowler Siraj delivered a good length ball outside off to the right-handed batter. The batter played an offside shot, hitting the ball along the ground for a single run.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "Bowler Siraj delivered a good length ball outside off to the right-handed batter. The batter played an offside shot, hitting the ball along the ground for a single run."
+    },
+    "wall_ms": 14262,
+    "pipeline_pred": "full / wide_outside_off / along_ground \u2192 offside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_113",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off-stump. The batsman played a front-foot shot, hitting the ball along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off-stump. The batsman played a front-foot shot, hitting the ball along the ground towards the offside."
+    },
+    "wall_ms": 7370,
+    "pipeline_pred": "good_length / on_stumps / along_ground \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_115",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"straight\",\n  \"confidence\": 0.8,\n  \"narrative\": \"The bowler delivered a good length ball outside off-stump, which the batsman drove straight down the ground along the turf. A fielder is seen chasing the ball towards the boundary.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "straight",
+      "confidence": 0.8,
+      "narrative": "The bowler delivered a good length ball outside off-stump, which the batsman drove straight down the ground along the turf. A fielder is seen chasing the ball towards the boundary."
+    },
+    "wall_ms": 8254,
+    "pipeline_pred": "good_length / down_leg / in_the_air \u2192 legside",
+    "pipeline_runs": "6"
+  },
+  {
+    "id": "delivery_116",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"in_the_air\",\n  \"direction\": \"behind_wicket\",\n  \"confidence\": 0.8,\n  \"narrative\": \"A right-arm fast bowler delivers a good length ball angling outside off. The batsman plays a shot, and immediately after the ball leaves the hand, the umpire raises his finger, indicating a dismissal, likely caught behind.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "in_the_air",
+      "direction": "behind_wicket",
+      "confidence": 0.8,
+      "narrative": "A right-arm fast bowler delivers a good length ball angling outside off. The batsman plays a shot, and immediately after the ball leaves the hand, the umpire raises his finger, indicating a dismissal, likely caught behind."
+    },
+    "wall_ms": 19271,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 offside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_119",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"defended\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.85,\n  \"narrative\": \"A fast bowler delivered a good length ball outside the off stump. The batsman brought his bat down to defend the ball, playing it along the ground towards the offside for no runs.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "defended",
+      "direction": "offside",
+      "confidence": 0.85,
+      "narrative": "A fast bowler delivered a good length ball outside the off stump. The batsman brought his bat down to defend the ball, playing it along the ground towards the offside for no runs."
+    },
+    "wall_ms": 14705,
+    "pipeline_pred": "yorker / down_leg / in_the_air \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_122",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"unknown\",\n  \"direction\": \"unknown\",\n  \"confidence\": 0.7,\n  \"narrative\": \"A right-arm bowler bowls a delivery, likely a good length ball just outside off stump, as the batsman prepares to play. The exact shot and its direction are not visible.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 0.7,
+      "narrative": "A right-arm bowler bowls a delivery, likely a good length ball just outside off stump, as the batsman prepares to play. The exact shot and its direction are not visible."
+    },
+    "wall_ms": 16307,
+    "pipeline_pred": "full / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_123",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivers a good length ball outside the off-stump. The batsman plays a front-foot shot, making contact with the ball and hitting it along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivers a good length ball outside the off-stump. The batsman plays a front-foot shot, making contact with the ball and hitting it along the ground towards the offside."
+    },
+    "wall_ms": 7043,
+    "pipeline_pred": "short / down_leg / defended \u2192 no_shot",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_125",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"on_stumps\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.8,\n  \"narrative\": \"The bowler delivers a good length ball on the stumps. The batsman plays a straight bat shot along the ground towards the offside. An umpire is visible in the immediate aftermath.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "The bowler delivers a good length ball on the stumps. The batsman plays a straight bat shot along the ground towards the offside. An umpire is visible in the immediate aftermath."
+    },
+    "wall_ms": 14978,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_127",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off-stump. The batsman played a shot along the ground, driving the ball towards the offside fielders.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off-stump. The batsman played a shot along the ground, driving the ball towards the offside fielders."
+    },
+    "wall_ms": 98956,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "2"
+  },
+  {
+    "id": "delivery_128",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"on_stumps\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.7,\n  \"narrative\": \"The bowler completes his run-up and releases a good length delivery on the stumps. Right-handed batsman Sudharsan plays an along-the-ground shot, scoring a single run, advancing the team's score from 8/0 to 9/0 at the end of the over.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "The bowler completes his run-up and releases a good length delivery on the stumps. Right-handed batsman Sudharsan plays an along-the-ground shot, scoring a single run, advancing the team's score from 8/0 to 9/0 at the end of the over."
+    },
+    "wall_ms": 24506,
+    "pipeline_pred": "short / off_stump / in_the_air \u2192 behind_wicket",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_006",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler runs up and delivers a good length ball just outside off-stump. The batsman plays a grounded shot towards the offside, successfully defending the delivery.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler runs up and delivers a good length ball just outside off-stump. The batsman plays a grounded shot towards the offside, successfully defending the delivery."
+    },
+    "wall_ms": 9013,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "0"
+  },
+  {
+    "id": "delivery_003",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"on_stumps\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.75,\n  \"narrative\": \"Bowler Anukul delivers a good length ball attacking the stumps. The batsman plays a shot, keeping the ball along the ground, likely towards the offside field.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.75,
+      "narrative": "Bowler Anukul delivers a good length ball attacking the stumps. The batsman plays a shot, keeping the ball along the ground, likely towards the offside field."
+    },
+    "wall_ms": 10697,
+    "pipeline_pred": "short / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_004",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off, which the batsman played along the ground towards the offside, scoring a single run.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off, which the batsman played along the ground towards the offside, scoring a single run."
+    },
+    "wall_ms": 10439,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 offside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_005",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler delivered a good length ball outside off-stump. The batsman played a firm drive along the ground towards the offside, scoring four runs.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off-stump. The batsman played a firm drive along the ground towards the offside, scoring four runs."
+    },
+    "wall_ms": 9810,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 legside",
+    "pipeline_runs": "4"
+  },
+  {
+    "id": "delivery_008",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"full\",\n  \"line\": \"outside_off\",\n  \"shot\": \"in_the_air\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The bowler bowled a full delivery outside off stump. The batter played an aggressive, aerial shot on the offside, connecting well and sending the ball high.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "full",
+      "line": "outside_off",
+      "shot": "in_the_air",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The bowler bowled a full delivery outside off stump. The batter played an aggressive, aerial shot on the offside, connecting well and sending the ball high."
+    },
+    "wall_ms": 13407,
+    "pipeline_pred": "yorker / down_leg / along_ground \u2192 offside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_010",
+    "raw": "ERROR: [Errno 32] Broken pipe",
+    "parsed": null,
+    "wall_ms": 239519,
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 legside",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_017",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"shot\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.9,\n  \"narrative\": \"A right-arm bowler delivers a good length ball outside the off-stump. The right-handed batsman, Buttler, plays a front-foot drive, hitting the ball along the ground towards the offside.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "A right-arm bowler delivers a good length ball outside the off-stump. The right-handed batsman, Buttler, plays a front-foot drive, hitting the ball along the ground towards the offside."
+    },
+    "wall_ms": 10505,
+    "pipeline_pred": "good_length / leg_stump / along_ground \u2192 straight",
+    "pipeline_runs": "1"
+  },
+  {
+    "id": "delivery_019",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.8,\n  \"narrative\": \"Washington bowled a good length delivery outside off. The batsman, Gill, played it along the ground towards the offside, resulting in a single run.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "Washington bowled a good length delivery outside off. The batsman, Gill, played it along the ground towards the offside, resulting in a single run."
+    },
+    "wall_ms": 14790,
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 offside",
+    "pipeline_runs": "1"
+  }
+]

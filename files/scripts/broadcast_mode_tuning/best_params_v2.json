@@ -1,0 +1,15 @@
+{
+  "open_strip_mean_max": 0.15,
+  "open_flow_peak_min": 15,
+  "close_strip_mean_max": 0.275,
+  "close_flow_peak_min": 10,
+  "window_s": 10.0,
+  "min_active_s": 1.5,
+  "min_inactive_s": 3.0,
+  "real_delivery_active_frac": 0.5073,
+  "ad_active_frac": 0.0,
+  "replay_active_frac": 0.0564,
+  "noise_active_frac": 0.2272,
+  "score": 0.4787,
+  "score_version": "v2"
+}

@@ -1,0 +1,61 @@
+# --- Secrets / credentials -----------------------------------------------
+.env
+.env.local
+*.key
+*.pem
+credentials.json
+
+# --- Python build / venv -------------------------------------------------
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- OS / editor ---------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# --- Pipeline runtime data (large, regenerated on every run) -------------
+logs/
+debug_frames/
+debug_frames_archive/
+benchmark_frames/
+ball_test_frames/
+ball_diff_results/
+ball_diff_results_v2/
+bakeoff_out/
+scout_burst_results/
+audit_v1/
+test_logs/
+
+# --- Standalone log files (root-of-files/) -------------------------------
+*.log
+
+# --- Media / model weights / archives ------------------------------------
+*.mp4
+*.mov
+*.avi
+*.pt
+*.pth
+*.onnx
+*.bin
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# --- Generated outputs / caches ------------------------------------------
+*.cache
+*.tmp
+.coverage
+htmlcov/

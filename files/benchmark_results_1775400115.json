@@ -1,0 +1,235 @@
+{
+  "summary": {
+    "frames": 10,
+    "together_avg_latency": 5.58,
+    "groq_avg_latency": 0.58,
+    "together_accuracy": "13/70",
+    "groq_accuracy": "15/70",
+    "speed_ratio": 9.7
+  },
+  "frames": [
+    {
+      "frame": "f1.jpg",
+      "together": {
+        "latency": 4.22,
+        "score": 7,
+        "found": [
+          "type:SCOREBOARD",
+          "score:76-1",
+          "overs:8.0",
+          "players:PADIKKAL,SALT,NOOR",
+          "bowler:yes",
+          "team:yes"
+        ],
+        "text": "SCOREBOARD \u2014 bottom scoreboard strip is visible with score/overs/batter info\n\nLIVE SCOREBOARD STRIP:\nRCB 76-1 (8) \u2014 overs: 8.0\nBatters:\n> SALT 41(24)\nPADIKKAL 5(6)\nBowler:\nNOOR 0-10 (1)\nRun-rate: 9.50\n\nINFO_PANEL: Not visible.\n\nSPEED: Not visible.\n\nEXTRAS: Not visible.\n\nTHIS OVER: Not visible.\n\nREST",
+        "full_text": "SCOREBOARD \u2014 bottom scoreboard strip is visible with score/overs/batter info\n\nLIVE SCOREBOARD STRIP:\nRCB 76-1 (8) \u2014 overs: 8.0\nBatters:\n> SALT 41(24)\nPADIKKAL 5(6)\nBowler:\nNOOR 0-10 (1)\nRun-rate: 9.50\n\nINFO_PANEL: Not visible.\n\nSPEED: Not visible.\n\nEXTRAS: Not visible.\n\nTHIS OVER: Not visible.\n\nREST OF FRAME:\nThe ball is in play, traveling towards the boundary. A fielder is visible in the background at deep cover. The batter is in the process of playing a shot. The scoreboard is visible in the background. The stadium is filled with spectators. The scoreboard shows the current over is 8.0. The match is in progress. The batter is running between wickets. The bowler is walking back to their mark. The fielder is diving to catch the ball. The batter is celebrating. The scoreboard is visible in the background. The stadium is filled with spectators. The match is in progress. The batter is running between wickets. The bowler is walking back to their mark. The fielder is diving to catch the ball. The batter is celebrating. The scoreboard is visible in the background. The stadium is filled with spectators. The match is in progress. The batter is running between wickets. The bowler is walking back to their mark. The fielder is diving to catch the ball. The batter is celebrating. The scoreboard is visible in the background. The stadium is filled with spectators. The match is in progress. The batter is running between wickets. The bowler is walking back to their mark. The fielder is diving to catch the ball. The batter is celebrating. The scoreboard is visible in the background. The stadium is filled with spectators. The match is in progress. The batter is"
+      },
+      "groq": {
+        "latency": 1.05,
+        "score": 6,
+        "found": [
+          "type:SCOREBOARD",
+          "score:76-1",
+          "players:PADIKKAL,SALT,NOOR",
+          "bowler:yes",
+          "team:yes"
+        ],
+        "text": "SCOREBOARD \u2014 bottom scoreboard strip is visible with score/overs/batter info\n\nThe live scoreboard strip at the bottom shows:\n\nRCB v CSK \n76-1 (8)\n>SALT 41(24) \nPADIKKAL 5(6)\nNOOR 0-10(1)\n\nThe rest of the frame shows a packed stadium with a large screen displaying the RCB logo and various advertiseme",
+        "full_text": "SCOREBOARD \u2014 bottom scoreboard strip is visible with score/overs/batter info\n\nThe live scoreboard strip at the bottom shows:\n\nRCB v CSK \n76-1 (8)\n>SALT 41(24) \nPADIKKAL 5(6)\nNOOR 0-10(1)\n\nThe rest of the frame shows a packed stadium with a large screen displaying the RCB logo and various advertisements. The field appears to be in play, with a batter (likely Salt) standing at the crease. A fielder is visible in the background. No delivery is being bowled at the moment, and it seems the game is in a relatively calm state, possibly between overs or with a batter settling in."
+      },
+      "winner": "Together"
+    },
+    {
+      "frame": "f2.jpg",
+      "together": {
+        "latency": 15.08,
+        "score": 0,
+        "found": [],
+        "text": "",
+        "full_text": ""
+      },
+      "groq": {
+        "latency": 0.43,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "winner": "Groq"
+    },
+    {
+      "frame": "f3.jpg",
+      "together": {
+        "latency": 1.16,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.39,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "winner": "Tie \u2192 Groq faster"
+    },
+    {
+      "frame": "f4.jpg",
+      "together": {
+        "latency": 0.96,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.51,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "winner": "Tie \u2192 Groq faster"
+    },
+    {
+      "frame": "f5.jpg",
+      "together": {
+        "latency": 15.17,
+        "score": 0,
+        "found": [],
+        "text": "",
+        "full_text": ""
+      },
+      "groq": {
+        "latency": 0.5,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "winner": "Groq"
+    },
+    {
+      "frame": "f6.jpg",
+      "together": {
+        "latency": 1.02,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.61,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "winner": "Tie \u2192 Groq faster"
+    },
+    {
+      "frame": "f7.jpg",
+      "together": {
+        "latency": 1.01,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.43,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "winner": "Tie \u2192 Groq faster"
+    },
+    {
+      "frame": "f8.jpg",
+      "together": {
+        "latency": 1.0,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.55,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "winner": "Tie \u2192 Groq faster"
+    },
+    {
+      "frame": "f9.jpg",
+      "together": {
+        "latency": 15.11,
+        "score": 0,
+        "found": [],
+        "text": "",
+        "full_text": ""
+      },
+      "groq": {
+        "latency": 0.65,
+        "score": 1,
+        "found": [
+          "type:CLOSEUP"
+        ],
+        "text": "CLOSEUP \u2014 A man in a brown jersey with \"Birla Estates\" and \"Torrent\" on it is standing in the center, with two people on either side of him, and a few more people in the background; a fielder can be seen in the background.",
+        "full_text": "CLOSEUP \u2014 A man in a brown jersey with \"Birla Estates\" and \"Torrent\" on it is standing in the center, with two people on either side of him, and a few more people in the background; a fielder can be seen in the background."
+      },
+      "winner": "Groq"
+    },
+    {
+      "frame": "f10.jpg",
+      "together": {
+        "latency": 1.04,
+        "score": 1,
+        "found": [
+          "type:ADVERTISEMENT"
+        ],
+        "text": "ADVERTISEMENT",
+        "full_text": "ADVERTISEMENT"
+      },
+      "groq": {
+        "latency": 0.64,
+        "score": 1,
+        "found": [
+          "type:CLOSEUP"
+        ],
+        "text": "CLOSEUP \nThe image shows a man and woman watching a cricket match with a group of people, the man in the middle is wearing a brown jersey with \"TORRENT\" and \"BIRLA ESTATE\" written on it, and there is a fielder visible in the background. The atmosphere seems tense as they watch the match.",
+        "full_text": "CLOSEUP \nThe image shows a man and woman watching a cricket match with a group of people, the man in the middle is wearing a brown jersey with \"TORRENT\" and \"BIRLA ESTATE\" written on it, and there is a fielder visible in the background. The atmosphere seems tense as they watch the match."
+      },
+      "winner": "Tie \u2192 Groq faster"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+session,clip_id,manual_label,event_type,action_ratio_v2,max_run_v2,replay_frames,ad_frames,clip_duration_s,hard_close_count,n_spans_after_hardclose,raw_start_s,raw_end_s,padded_start_s,padded_end_s,padding_clamp_flags,selected_frames,selection_note
+20260420_202239,d012,real_delivery,1_RUNS,1.0,13,0,0,12.976,0,1,0.0,12.0,0.0,12.976,"clamped_start,clamped_end",13,single_qualifying_span
+20260420_202239,d032,real_delivery,1_RUNS,0.885,11,0,0,25.511,0,2,0.0,10.0,0.0,12.0,clamped_start,11,multi_qualifying_n=2_picked_longest
+20260421_195050,d013,real_delivery,1_RUNS,0.941,16,0,0,16.521,0,1,0.0,15.0,0.0,16.521,"clamped_start,clamped_end",16,single_qualifying_span
+20260420_202239,d033,real_delivery,SIX,0.591,11,3,0,21.857,3,1,0.0,13.0,0.0,15.0,clamped_start,13,single_qualifying_span
+20260420_202239,d005,real_delivery,DOT,0.688,6,1,0,15.322,1,1,0.0,5.0,0.0,7.0,clamped_start,6,single_qualifying_span
+20260421_195050,d066,real_delivery,FOUR,0.625,7,0,0,15.152,0,1,0.0,11.0,0.0,13.0,clamped_start,10,single_qualifying_span
+20260421_195050,d008,real_delivery,1_RUNS,0.565,10,9,0,22.39,9,1,11.0,20.0,9.0,22.0,,10,single_qualifying_span
+20260420_202239,d017,real_delivery,1_RUNS,0.48,7,0,0,24.745,0,1,13.0,18.0,11.0,20.0,,6,single_qualifying_span
+20260421_195050,d021,real_delivery,1_RUNS,0.238,2,13,0,20.336,13,0,0.0,0.0,0.0,0.0,,0,no_qualifying_span
+20260421_195050,d027,real_delivery,SIX,0.389,6,0,0,17.861,0,1,2.0,6.0,0.0,8.0,,5,single_qualifying_span

@@ -1,0 +1,7 @@
+ollama
+ultralytics
+aiohttp
+opencv-python-headless
+numpy
+pyobjc-framework-Quartz
+pydantic>=2.5,<3

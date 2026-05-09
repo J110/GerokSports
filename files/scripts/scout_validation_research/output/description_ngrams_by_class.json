@@ -1,0 +1,2814 @@
+{
+  "source_jsonl": "output/scout_responses_open.jsonl",
+  "n_frames_total": 247,
+  "n_frames_by_gt_class": {
+    "action": 72,
+    "ad": 3,
+    "other": 158,
+    "replay": 6,
+    "umpire": 8
+  },
+  "duplicate_description_strings_ge4": [],
+  "per_class": {
+    "action": {
+      "1grams_top": [
+        [
+          "player",
+          158
+        ],
+        [
+          "field",
+          143
+        ],
+        [
+          "score",
+          99
+        ],
+        [
+          "players",
+          97
+        ],
+        [
+          "appears",
+          96
+        ],
+        [
+          "frame",
+          94
+        ],
+        [
+          "action",
+          93
+        ],
+        [
+          "bottom",
+          77
+        ],
+        [
+          "shows",
+          76
+        ],
+        [
+          "camera",
+          75
+        ],
+        [
+          "graphical",
+          72
+        ],
+        [
+          "overlays",
+          72
+        ],
+        [
+          "cricket",
+          71
+        ],
+        [
+          "standing",
+          70
+        ],
+        [
+          "level",
+          70
+        ],
+        [
+          "several",
+          68
+        ],
+        [
+          "play",
+          68
+        ],
+        [
+          "including",
+          65
+        ],
+        [
+          "wide",
+          62
+        ],
+        [
+          "view",
+          62
+        ],
+        [
+          "pitch",
+          51
+        ],
+        [
+          "names",
+          51
+        ],
+        [
+          "statistics",
+          51
+        ],
+        [
+          "deliveries",
+          50
+        ],
+        [
+          "batter",
+          48
+        ],
+        [
+          "screen",
+          45
+        ],
+        [
+          "positioned",
+          44
+        ],
+        [
+          "moment",
+          44
+        ],
+        [
+          "people",
+          42
+        ],
+        [
+          "logos",
+          42
+        ]
+      ],
+      "2grams_top": [
+        [
+          "camera shows",
+          71
+        ],
+        [
+          "graphical overlays",
+          71
+        ],
+        [
+          "action level",
+          70
+        ],
+        [
+          "level appears",
+          70
+        ],
+        [
+          "shows wide",
+          60
+        ],
+        [
+          "wide field",
+          60
+        ],
+        [
+          "field view",
+          60
+        ],
+        [
+          "view cricket",
+          60
+        ],
+        [
+          "several graphical",
+          50
+        ],
+        [
+          "player statistics",
+          45
+        ],
+        [
+          "score graphic",
+          39
+        ],
+        [
+          "people frame",
+          38
+        ],
+        [
+          "including score",
+          35
+        ],
+        [
+          "overlays bottom",
+          32
+        ],
+        [
+          "bottom screen",
+          32
+        ],
+        [
+          "appears deliveries",
+          32
+        ],
+        [
+          "cricket pitch",
+          31
+        ],
+        [
+          "active play",
+          28
+        ],
+        [
+          "graphic bottom",
+          28
+        ],
+        [
+          "standing still",
+          26
+        ],
+        [
+          "player names",
+          25
+        ],
+        [
+          "bottom frame",
+          24
+        ],
+        [
+          "frame including",
+          24
+        ],
+        [
+          "sponsor logos",
+          23
+        ],
+        [
+          "cricket field",
+          23
+        ],
+        [
+          "statistics well",
+          23
+        ],
+        [
+          "current score",
+          22
+        ],
+        [
+          "score target",
+          22
+        ],
+        [
+          "target player",
+          21
+        ],
+        [
+          "deliveries players",
+          20
+        ]
+      ],
+      "3grams_top": [
+        [
+          "action level appears",
+          70
+        ],
+        [
+          "camera shows wide",
+          60
+        ],
+        [
+          "shows wide field",
+          60
+        ],
+        [
+          "wide field view",
+          60
+        ],
+        [
+          "field view cricket",
+          60
+        ],
+        [
+          "several graphical overlays",
+          50
+        ],
+        [
+          "graphical overlays bottom",
+          32
+        ],
+        [
+          "level appears deliveries",
+          32
+        ],
+        [
+          "view cricket pitch",
+          31
+        ],
+        [
+          "including score graphic",
+          30
+        ],
+        [
+          "score graphic bottom",
+          28
+        ],
+        [
+          "view cricket field",
+          23
+        ],
+        [
+          "player statistics well",
+          22
+        ],
+        [
+          "score target player",
+          21
+        ],
+        [
+          "overlays bottom frame",
+          17
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "referee",
+          "count_in_class": 7,
+          "log_ratio": 2.8962362081695754
+        },
+        {
+          "term": "insurance",
+          "count_in_class": 7,
+          "log_ratio": 2.8962362081695754
+        },
+        {
+          "term": "swing",
+          "count_in_class": 6,
+          "log_ratio": 2.7627048155450527
+        },
+        {
+          "term": "catch",
+          "count_in_class": 6,
+          "log_ratio": 2.7627048155450527
+        },
+        {
+          "term": "barrier",
+          "count_in_class": 6,
+          "log_ratio": 2.7627048155450527
+        },
+        {
+          "term": "wickets",
+          "count_in_class": 12,
+          "log_ratio": 2.6885968433913305
+        },
+        {
+          "term": "legs",
+          "count_in_class": 5,
+          "log_ratio": 2.608554135717794
+        },
+        {
+          "term": "pink",
+          "count_in_class": 5,
+          "log_ratio": 2.608554135717794
+        },
+        {
+          "term": "batters",
+          "count_in_class": 5,
+          "log_ratio": 2.608554135717794
+        },
+        {
+          "term": "positioned",
+          "count_in_class": 44,
+          "log_ratio": 2.544015614580223
+        },
+        {
+          "term": "scattered",
+          "count_in_class": 10,
+          "log_ratio": 2.5215427587281645
+        },
+        {
+          "term": "end",
+          "count_in_class": 4,
+          "log_ratio": 2.4262325789238397
+        },
+        {
+          "term": "fielders",
+          "count_in_class": 24,
+          "log_ratio": 2.4262325789238397
+        },
+        {
+          "term": "diving",
+          "count_in_class": 4,
+          "log_ratio": 2.4262325789238397
+        },
+        {
+          "term": "car",
+          "count_in_class": 4,
+          "log_ratio": 2.4262325789238397
+        },
+        {
+          "term": "aig",
+          "count_in_class": 8,
+          "log_ratio": 2.3208720632660134
+        },
+        {
+          "term": "umpires",
+          "count_in_class": 3,
+          "log_ratio": 2.20308902760963
+        },
+        {
+          "term": "perimeter",
+          "count_in_class": 3,
+          "log_ratio": 2.20308902760963
+        },
+        {
+          "term": "empty",
+          "count_in_class": 3,
+          "log_ratio": 2.20308902760963
+        },
+        {
+          "term": "surface",
+          "count_in_class": 3,
+          "log_ratio": 2.20308902760963
+        },
+        {
+          "term": "attempting",
+          "count_in_class": 3,
+          "log_ratio": 2.20308902760963
+        },
+        {
+          "term": "outfield",
+          "count_in_class": 3,
+          "log_ratio": 2.20308902760963
+        },
+        {
+          "term": "turf",
+          "count_in_class": 3,
+          "log_ratio": 2.20308902760963
+        },
+        {
+          "term": "crouching",
+          "count_in_class": 3,
+          "log_ratio": 2.20308902760963
+        },
+        {
+          "term": "boundary",
+          "count_in_class": 20,
+          "log_ratio": 2.0695576349851073
+        },
+        {
+          "term": "near",
+          "count_in_class": 33,
+          "log_ratio": 2.040570098111855
+        },
+        {
+          "term": "line",
+          "count_in_class": 9,
+          "log_ratio": 2.020767470815675
+        },
+        {
+          "term": "sierra",
+          "count_in_class": 2,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "air",
+          "count_in_class": 5,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "toward",
+          "count_in_class": 2,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "curved",
+          "count_in_class": 2,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "field's",
+          "count_in_class": 2,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "positioning",
+          "count_in_class": 2,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "labels",
+          "count_in_class": 2,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "circles",
+          "count_in_class": 2,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "kneeling",
+          "count_in_class": 2,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "angelone",
+          "count_in_class": 2,
+          "log_ratio": 1.9154069551578488
+        },
+        {
+          "term": "pitch",
+          "count_in_class": 51,
+          "log_ratio": 1.823599405904726
+        },
+        {
+          "term": "ground",
+          "count_in_class": 7,
+          "log_ratio": 1.7976239195014654
+        },
+        {
+          "term": "wide",
+          "count_in_class": 62,
+          "log_ratio": 1.7818755625333262
+        }
+      ],
+      "description_lengths": {
+        "n": 72,
+        "mean_chars": 640.2361111111111,
+        "median_chars": 640.0,
+        "min_chars": 432,
+        "max_chars": 925
+      },
+      "verbatim_samples": [
+        {
+          "frame_path": "output/frames/20260420_214218_d001_0.jpg",
+          "description": "The camera shows a wide field view of a cricket pitch with several players and umpires on the field. The people in the frame are standing still, with two umpires positioned in the middle of the pitch, a batter standing at one end holding a bat, and another player at the other end of the pitch. \n\nThere are graphical overlays at the bottom of the screen displaying information such as the score, team standings, player names, and play-by-play details. The action level appears to be between deliveries, as there is no active play happening and the players seem to be waiting for the next delivery."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_1.jpg",
+          "description": "The camera shows a wide field view of a cricket pitch with several players and a wicketkeeper. The batter is preparing to hit the ball, which is visible on the pitch; the wicketkeeper is crouched behind the wickets; and another player is standing nearby. A third player appears to be bending over to pick up a piece of equipment. \n\nThere are graphical overlays at the bottom of the screen displaying information about the game, including the score, team standings, and player statistics. \n\nThe action level appears to be a moment of active play, likely between deliveries, as the batter seems poised to hit the ball and the wicketkeeper and fielder are positioned and focused."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_2.jpg",
+          "description": "The camera shows a full shot of a cricket player in the middle of the frame, with their back to the camera and a cricket bat raised over their left shoulder. The player is wearing a brown uniform and a helmet, and appears to be preparing to play a shot or has just played one. A bowler's legs are visible at the top of the frame, and another person's head is visible in the bottom-left corner. The field is green and there are several stumps and bails on the ground.\n\nThere are several graphical overlays at the bottom of the frame, including a score graphic showing the teams' names, scores, and standings, as well as information about the current batter and bowler. The action level appears to be a moment between deliveries, as the batter is not actively playing a shot but is still holding the bat up."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_3.jpg",
+          "description": "The camera shows a wide field view of a cricket pitch with two players on it. The people in the frame appear to be between active plays, as one player in a red uniform is walking towards the left side of the frame while another player in a different uniform is standing near the wickets. \n\nThere are several graphical overlays at the bottom of the frame, including a score graphic showing the teams' standings, player names and stats, and a \"DISMISSED BATTER\" notification. Additionally, there are sponsor logos visible along the perimeter of the field and on the large screen behind the field. \n\nThe action level appears to be between deliveries, with no immediate action happening but evidence of recent play."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_4.jpg",
+          "description": "The camera shows a wide field view of a cricket pitch with a green field and a crowd of spectators in the background. The people in the frame are largely still, with a few individuals visible on the field; one person appears to be a player standing near the right edge of the frame.\n\nThere are several graphical overlays on the screen, including a pink banner advertising \"PLAY IPL FANTASY @IPLT20.COM\", a blue advertisement for Tata Sierra, and a score graphic at the bottom of the screen displaying team standings, player names, and statistics. \n\nThe action level appears to be between deliveries, as the field is relatively still and there is no immediate action happening."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_5.jpg",
+          "description": "The camera shows a wide field view of a cricket pitch with a pink advertisement banner running across the frame. The people in the frame are mostly seated spectators in the background, with one person standing near the advertisement banner. There are several graphical overlays, including a score graphic at the bottom of the screen showing the teams' standings, player names and stats, and a target score; sponsor logos are also visible on the advertisement banner and elsewhere. The action level appears to be between deliveries, as the field is empty and there are no players in motion."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d002_10.jpg",
+          "description": "The camera shows a wide field view of a cricket pitch with several players and a referee. The batter is standing with their back to the camera, having just thrown a ball into the air, while the bowler stands to the right with their hands on their hips. A referee stands between them, and another batter and two fielders are visible in the background. \n\nThe frame includes several graphical overlays at the bottom, including a score display showing the current score, target, and player statistics. The scene appears to be an active moment during the match, likely immediately after a delivery."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d002_11.jpg",
+          "description": "The camera shows a wide field view of a cricket field with several players. A batter is mid-swing with their bat raised and a white ball in the air near them. A fielder in an orange uniform appears to be jumping up with their right arm extended, likely having just thrown the ball. A player on the right appears to be walking toward the batter.\n\nThere are several graphical overlays on the frame, including a score graphic at the bottom showing the score, target, and player statistics, as well as logos for the TATA IPL and other sponsors. The action level appears to be an active play moment, with the fielder having just thrown the ball and the batter in the process of swinging."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d002_12.jpg",
+          "description": "The camera shows two cricket players on a green field. The players are wearing orange uniforms and are positioned in a fielding stance, with one player bending over and the other standing with their legs apart. \n\nThere are several graphical overlays at the bottom of the frame, including a scoreboard with team names, scores, and player statistics. A blue logo with white text reading \"TATA IPL\" is visible in the top-left corner.\n\nThe action level appears to be a moment between deliveries or a break in play, as the players are not actively engaged in a play. The players seem to be waiting or discussing something."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d002_9.jpg",
+          "description": "The camera shows a wide field view of a cricket pitch with several players and a wicketkeeper. The people in the frame are standing still, with one batter holding a bat near the wicket and another player walking towards the wicket from the left side of the frame. \n\nThere are graphical overlays at the bottom of the frame, including a scoreboard that displays the teams' names, scores, and player statistics, as well as logos for the TATA IPL and other sponsors. The action level appears to be between deliveries, as the players are not in motion and there is no indication of active play happening."
+        }
+      ]
+    },
+    "ad": {
+      "1grams_top": [
+        [
+          "desk",
+          7
+        ],
+        [
+          "woman",
+          6
+        ],
+        [
+          "appears",
+          6
+        ],
+        [
+          "camera",
+          4
+        ],
+        [
+          "image",
+          4
+        ],
+        [
+          "shows",
+          3
+        ],
+        [
+          "sitting",
+          3
+        ],
+        [
+          "hands",
+          3
+        ],
+        [
+          "clasped",
+          3
+        ],
+        [
+          "together",
+          3
+        ],
+        [
+          "front",
+          3
+        ],
+        [
+          "people",
+          3
+        ],
+        [
+          "background",
+          3
+        ],
+        [
+          "standing",
+          3
+        ],
+        [
+          "action",
+          3
+        ],
+        [
+          "level",
+          3
+        ],
+        [
+          "static",
+          3
+        ],
+        [
+          "active",
+          3
+        ],
+        [
+          "play",
+          3
+        ],
+        [
+          "happening",
+          3
+        ],
+        [
+          "does",
+          3
+        ],
+        [
+          "home",
+          3
+        ],
+        [
+          "loan",
+          3
+        ],
+        [
+          "office",
+          2
+        ],
+        [
+          "setting",
+          2
+        ],
+        [
+          "looking",
+          2
+        ],
+        [
+          "laptop",
+          2
+        ],
+        [
+          "depict",
+          2
+        ],
+        [
+          "professional",
+          2
+        ],
+        [
+          "cricket",
+          2
+        ]
+      ],
+      "2grams_top": [
+        [
+          "shows woman",
+          3
+        ],
+        [
+          "woman sitting",
+          3
+        ],
+        [
+          "sitting desk",
+          3
+        ],
+        [
+          "hands clasped",
+          3
+        ],
+        [
+          "clasped together",
+          3
+        ],
+        [
+          "action level",
+          3
+        ],
+        [
+          "level appears",
+          3
+        ],
+        [
+          "play happening",
+          3
+        ],
+        [
+          "home loan",
+          3
+        ],
+        [
+          "camera shows",
+          2
+        ],
+        [
+          "desk appears",
+          2
+        ],
+        [
+          "office setting",
+          2
+        ],
+        [
+          "together desk",
+          2
+        ],
+        [
+          "desk front",
+          2
+        ],
+        [
+          "appears static",
+          2
+        ],
+        [
+          "static active",
+          2
+        ],
+        [
+          "active play",
+          2
+        ],
+        [
+          "image does",
+          2
+        ],
+        [
+          "does depict",
+          2
+        ],
+        [
+          "depict professional",
+          2
+        ],
+        [
+          "professional cricket",
+          2
+        ],
+        [
+          "cricket match",
+          2
+        ],
+        [
+          "match broadcast",
+          2
+        ],
+        [
+          "broadcast television",
+          2
+        ],
+        [
+          "several people",
+          2
+        ],
+        [
+          "people standing",
+          2
+        ],
+        [
+          "reads pinky",
+          2
+        ],
+        [
+          "pinky vs",
+          2
+        ],
+        [
+          "vs home",
+          2
+        ],
+        [
+          "large purple",
+          2
+        ]
+      ],
+      "3grams_top": [
+        [
+          "shows woman sitting",
+          3
+        ],
+        [
+          "woman sitting desk",
+          3
+        ],
+        [
+          "hands clasped together",
+          3
+        ],
+        [
+          "action level appears",
+          3
+        ],
+        [
+          "camera shows woman",
+          2
+        ],
+        [
+          "sitting desk appears",
+          2
+        ],
+        [
+          "clasped together desk",
+          2
+        ],
+        [
+          "together desk front",
+          2
+        ],
+        [
+          "level appears static",
+          2
+        ],
+        [
+          "appears static active",
+          2
+        ],
+        [
+          "static active play",
+          2
+        ],
+        [
+          "active play happening",
+          2
+        ],
+        [
+          "image does depict",
+          2
+        ],
+        [
+          "does depict professional",
+          2
+        ],
+        [
+          "depict professional cricket",
+          2
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "desk",
+          "count_in_class": 7,
+          "log_ratio": 6.17306405851299
+        },
+        {
+          "term": "woman",
+          "count_in_class": 6,
+          "log_ratio": 6.039532665888467
+        },
+        {
+          "term": "home",
+          "count_in_class": 3,
+          "log_ratio": 5.479916877953045
+        },
+        {
+          "term": "loan",
+          "count_in_class": 3,
+          "log_ratio": 5.479916877953045
+        },
+        {
+          "term": "office",
+          "count_in_class": 2,
+          "log_ratio": 5.192234805501264
+        },
+        {
+          "term": "laptop",
+          "count_in_class": 2,
+          "log_ratio": 5.192234805501264
+        },
+        {
+          "term": "depict",
+          "count_in_class": 2,
+          "log_ratio": 5.192234805501264
+        },
+        {
+          "term": "pinky",
+          "count_in_class": 2,
+          "log_ratio": 5.192234805501264
+        },
+        {
+          "term": "together",
+          "count_in_class": 3,
+          "log_ratio": 4.786769697393099
+        },
+        {
+          "term": "setting",
+          "count_in_class": 2,
+          "log_ratio": 4.4990876249413185
+        },
+        {
+          "term": "clasped",
+          "count_in_class": 3,
+          "log_ratio": 4.381304589284936
+        },
+        {
+          "term": "static",
+          "count_in_class": 3,
+          "log_ratio": 4.381304589284936
+        },
+        {
+          "term": "image",
+          "count_in_class": 4,
+          "log_ratio": 4.093622516833154
+        },
+        {
+          "term": "does",
+          "count_in_class": 3,
+          "log_ratio": 4.093622516833154
+        },
+        {
+          "term": "television",
+          "count_in_class": 2,
+          "log_ratio": 3.2463246564459505
+        },
+        {
+          "term": "vs",
+          "count_in_class": 2,
+          "log_ratio": 3.2463246564459505
+        },
+        {
+          "term": "front",
+          "count_in_class": 3,
+          "log_ratio": 3.1773317849589993
+        },
+        {
+          "term": "professional",
+          "count_in_class": 2,
+          "log_ratio": 2.5531774758860055
+        },
+        {
+          "term": "hands",
+          "count_in_class": 3,
+          "log_ratio": 2.484184604399054
+        },
+        {
+          "term": "large",
+          "count_in_class": 2,
+          "log_ratio": 2.484184604399054
+        },
+        {
+          "term": "sitting",
+          "count_in_class": 3,
+          "log_ratio": 2.261041053084844
+        },
+        {
+          "term": "purple",
+          "count_in_class": 2,
+          "log_ratio": 2.147712367777841
+        },
+        {
+          "term": "reads",
+          "count_in_class": 2,
+          "log_ratio": 2.101192352142948
+        },
+        {
+          "term": "broadcast",
+          "count_in_class": 2,
+          "log_ratio": 1.7910374238391085
+        },
+        {
+          "term": "looking",
+          "count_in_class": 2,
+          "log_ratio": 1.4310346898077015
+        },
+        {
+          "term": "background",
+          "count_in_class": 3,
+          "log_ratio": 0.9690573714361947
+        },
+        {
+          "term": "happening",
+          "count_in_class": 3,
+          "log_ratio": 0.9581283009040047
+        },
+        {
+          "term": "people",
+          "count_in_class": 3,
+          "log_ratio": 0.9260399863525041
+        },
+        {
+          "term": "match",
+          "count_in_class": 2,
+          "log_ratio": 0.8747466919649535
+        },
+        {
+          "term": "active",
+          "count_in_class": 3,
+          "log_ratio": 0.8451878897234091
+        },
+        {
+          "term": "play",
+          "count_in_class": 3,
+          "log_ratio": 0.15690689881463676
+        },
+        {
+          "term": "standing",
+          "count_in_class": 3,
+          "log_ratio": 0.14237879825172692
+        },
+        {
+          "term": "camera",
+          "count_in_class": 4,
+          "log_ratio": 0.13854002194456133
+        },
+        {
+          "term": "appears",
+          "count_in_class": 6,
+          "log_ratio": 0.06572305401920651
+        },
+        {
+          "term": "level",
+          "count_in_class": 3,
+          "log_ratio": 0.0076462042815702135
+        },
+        {
+          "term": "several",
+          "count_in_class": 2,
+          "log_ratio": -0.07045538340362158
+        },
+        {
+          "term": "shows",
+          "count_in_class": 3,
+          "log_ratio": -0.11107010255781166
+        },
+        {
+          "term": "cricket",
+          "count_in_class": 2,
+          "log_ratio": -0.145303274200054
+        },
+        {
+          "term": "graphical",
+          "count_in_class": 2,
+          "log_ratio": -0.3090234050434629
+        },
+        {
+          "term": "action",
+          "count_in_class": 3,
+          "log_ratio": -0.3978189038265942
+        }
+      ],
+      "description_lengths": {
+        "n": 3,
+        "mean_chars": 578.3333333333334,
+        "median_chars": 475,
+        "min_chars": 427,
+        "max_chars": 833
+      },
+      "verbatim_samples": [
+        {
+          "frame_path": "output/frames/20260430_195352_d104_7.jpg",
+          "description": "The camera shows a woman sitting at a desk in what appears to be an office setting. The woman, who is blue-tinted, sits with her hands clasped together on the desk in front of her, looking forward. There are people in the background, some standing and facing away from the camera, and a laptop on the desk to her right with a \"Go Live\" button on the screen. The action level appears to be static, with no active play happening."
+        },
+        {
+          "frame_path": "output/frames/20260430_195352_d104_8.jpg",
+          "description": "The image does not depict a professional cricket match broadcast on television. Instead, it shows a woman sitting at a desk with her hands clasped together in front of her. The camera appears to be showing a medium shot of the woman, who is seated at a desk with a laptop and other items on it. In the background, several people are standing around, some of whom appear to be waiting in line or interacting with each other.\n\nThere is a graphical overlay that reads \"PINKY VS HOME LOAN\" in large purple letters across the center of the image. The action level appears to be relatively static, as there does not seem to be any active movement or play happening in the scene. Overall, the image suggests that it may be related to a financial or banking context, possibly an advertisement or promotional material for a home loan product."
+        },
+        {
+          "frame_path": "output/frames/20260430_195352_d104_9.jpg",
+          "description": "The image does not depict a professional cricket match broadcast on television. \n\nThe camera shows a woman sitting at a desk in what appears to be a bank or office setting, with several people standing or working in the background. The woman is looking down, her hands clasped together on the desk in front of her. There are graphical overlays, including large purple text that reads \"PINKY VS HOME LOAN\". The action level appears to be static, with no active play happening."
+        }
+      ]
+    },
+    "other": {
+      "1grams_top": [
+        [
+          "player",
+          377
+        ],
+        [
+          "appears",
+          275
+        ],
+        [
+          "action",
+          245
+        ],
+        [
+          "frame",
+          203
+        ],
+        [
+          "shows",
+          174
+        ],
+        [
+          "camera",
+          168
+        ],
+        [
+          "overlays",
+          165
+        ],
+        [
+          "graphical",
+          158
+        ],
+        [
+          "level",
+          157
+        ],
+        [
+          "score",
+          156
+        ],
+        [
+          "bottom",
+          151
+        ],
+        [
+          "including",
+          150
+        ],
+        [
+          "standing",
+          129
+        ],
+        [
+          "play",
+          127
+        ],
+        [
+          "cricket",
+          125
+        ],
+        [
+          "several",
+          112
+        ],
+        [
+          "moment",
+          112
+        ],
+        [
+          "deliveries",
+          108
+        ],
+        [
+          "brown",
+          101
+        ],
+        [
+          "left",
+          99
+        ],
+        [
+          "field",
+          99
+        ],
+        [
+          "wearing",
+          90
+        ],
+        [
+          "names",
+          88
+        ],
+        [
+          "statistics",
+          82
+        ],
+        [
+          "logos",
+          81
+        ],
+        [
+          "still",
+          72
+        ],
+        [
+          "background",
+          72
+        ],
+        [
+          "up",
+          72
+        ],
+        [
+          "corner",
+          70
+        ],
+        [
+          "players",
+          70
+        ]
+      ],
+      "2grams_top": [
+        [
+          "action level",
+          157
+        ],
+        [
+          "graphical overlays",
+          156
+        ],
+        [
+          "level appears",
+          150
+        ],
+        [
+          "camera shows",
+          149
+        ],
+        [
+          "several graphical",
+          109
+        ],
+        [
+          "overlays bottom",
+          72
+        ],
+        [
+          "standing still",
+          66
+        ],
+        [
+          "frame including",
+          66
+        ],
+        [
+          "bottom frame",
+          65
+        ],
+        [
+          "score graphic",
+          59
+        ],
+        [
+          "close up",
+          58
+        ],
+        [
+          "player statistics",
+          56
+        ],
+        [
+          "player appears",
+          55
+        ],
+        [
+          "left corner",
+          55
+        ],
+        [
+          "active play",
+          54
+        ],
+        [
+          "appears deliveries",
+          54
+        ],
+        [
+          "post action",
+          54
+        ],
+        [
+          "action moment",
+          54
+        ],
+        [
+          "shows close",
+          54
+        ],
+        [
+          "including score",
+          53
+        ],
+        [
+          "cricket player",
+          51
+        ],
+        [
+          "top left",
+          48
+        ],
+        [
+          "play happening",
+          47
+        ],
+        [
+          "appears post",
+          46
+        ],
+        [
+          "wearing brown",
+          40
+        ],
+        [
+          "up shot",
+          40
+        ],
+        [
+          "people frame",
+          39
+        ],
+        [
+          "brown uniform",
+          37
+        ],
+        [
+          "tata ipl",
+          37
+        ],
+        [
+          "including scoreboard",
+          36
+        ]
+      ],
+      "3grams_top": [
+        [
+          "action level appears",
+          150
+        ],
+        [
+          "several graphical overlays",
+          109
+        ],
+        [
+          "graphical overlays bottom",
+          72
+        ],
+        [
+          "post action moment",
+          54
+        ],
+        [
+          "shows close up",
+          54
+        ],
+        [
+          "level appears deliveries",
+          53
+        ],
+        [
+          "camera shows close",
+          51
+        ],
+        [
+          "overlays bottom frame",
+          51
+        ],
+        [
+          "top left corner",
+          48
+        ],
+        [
+          "active play happening",
+          46
+        ],
+        [
+          "level appears post",
+          46
+        ],
+        [
+          "appears post action",
+          46
+        ],
+        [
+          "bottom frame including",
+          42
+        ],
+        [
+          "close up shot",
+          40
+        ],
+        [
+          "including score graphic",
+          35
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "close",
+          "count_in_class": 58,
+          "log_ratio": 3.4120145428678694
+        },
+        {
+          "term": "jersey",
+          "count_in_class": 37,
+          "log_ratio": 2.972063258688536
+        },
+        {
+          "term": "out",
+          "count_in_class": 27,
+          "log_ratio": 2.666681609137354
+        },
+        {
+          "term": "helmet",
+          "count_in_class": 49,
+          "log_ratio": 2.5533529238303507
+        },
+        {
+          "term": "teal",
+          "count_in_class": 24,
+          "log_ratio": 2.5533529238303507
+        },
+        {
+          "term": "lehar",
+          "count_in_class": 22,
+          "log_ratio": 2.4699713148913
+        },
+        {
+          "term": "player's",
+          "count_in_class": 17,
+          "log_ratio": 2.2248488568583147
+        },
+        {
+          "term": "focus",
+          "count_in_class": 33,
+          "log_ratio": 2.167690443018366
+        },
+        {
+          "term": "dollar",
+          "count_in_class": 12,
+          "log_ratio": 1.899426456423687
+        },
+        {
+          "term": "blurred",
+          "count_in_class": 25,
+          "log_ratio": 1.899426456423687
+        },
+        {
+          "term": "up",
+          "count_in_class": 72,
+          "log_ratio": 1.8331770708824862
+        },
+        {
+          "term": "masti",
+          "count_in_class": 11,
+          "log_ratio": 1.8193837487501503
+        },
+        {
+          "term": "ki",
+          "count_in_class": 11,
+          "log_ratio": 1.8193837487501503
+        },
+        {
+          "term": "event",
+          "count_in_class": 11,
+          "log_ratio": 1.8193837487501503
+        },
+        {
+          "term": "crowd",
+          "count_in_class": 46,
+          "log_ratio": 1.798330339552318
+        },
+        {
+          "term": "accents",
+          "count_in_class": 45,
+          "log_ratio": 1.7768241343313544
+        },
+        {
+          "term": "tournament",
+          "count_in_class": 10,
+          "log_ratio": 1.7323723717605206
+        },
+        {
+          "term": "156",
+          "count_in_class": 10,
+          "log_ratio": 1.7323723717605206
+        },
+        {
+          "term": "titans",
+          "count_in_class": 29,
+          "log_ratio": 1.6370621919561958
+        },
+        {
+          "term": "question",
+          "count_in_class": 9,
+          "log_ratio": 1.6370621919561956
+        },
+        {
+          "term": "captures",
+          "count_in_class": 9,
+          "log_ratio": 1.6370621919561956
+        },
+        {
+          "term": "always",
+          "count_in_class": 9,
+          "log_ratio": 1.6370621919561956
+        },
+        {
+          "term": "facing",
+          "count_in_class": 18,
+          "log_ratio": 1.585768897568645
+        },
+        {
+          "term": "rather",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "fours",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "waving",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "stadium",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "written",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "short",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "foreground",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "group",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "expression",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "shubman",
+          "count_in_class": 8,
+          "log_ratio": 1.5317016762983693
+        },
+        {
+          "term": "looking",
+          "count_in_class": 40,
+          "log_ratio": 1.4386112532323576
+        },
+        {
+          "term": "chest",
+          "count_in_class": 7,
+          "log_ratio": 1.413918640641986
+        },
+        {
+          "term": "flags",
+          "count_in_class": 7,
+          "log_ratio": 1.413918640641986
+        },
+        {
+          "term": "hair",
+          "count_in_class": 7,
+          "log_ratio": 1.413918640641986
+        },
+        {
+          "term": "conversation",
+          "count_in_class": 7,
+          "log_ratio": 1.413918640641986
+        },
+        {
+          "term": "14",
+          "count_in_class": 7,
+          "log_ratio": 1.413918640641986
+        },
+        {
+          "term": "name",
+          "count_in_class": 7,
+          "log_ratio": 1.413918640641986
+        }
+      ],
+      "description_lengths": {
+        "n": 158,
+        "mean_chars": 647.9873417721519,
+        "median_chars": 627.0,
+        "min_chars": 408,
+        "max_chars": 1082
+      },
+      "verbatim_samples": [
+        {
+          "frame_path": "output/frames/20260420_214218_d001_10.jpg",
+          "description": "The camera shows a player in a brown uniform with blue accents, wearing a helmet and facing away from the camera. The player appears to be standing still, likely between deliveries or after an action. \n\nIn the background, there are other people present but they are out of focus. \n\nThere are several graphical overlays on the screen, including a score graphic at the bottom showing the teams' standings, player names, and current scores, as well as sponsor logos. The action level appears to be relatively calm, with no active play happening at the moment."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_11.jpg",
+          "description": "The frame shows a man sitting on a couch with another person partially visible behind him. The man on the couch appears to be watching the cricket match on television, as indicated by the screen in front of him displaying a game. \n\nThe frame features several graphical overlays, including a scoreboard at the bottom showing the teams' standings and player statistics, as well as advertisements for Dollar, Lehar, and other sponsors. The action level appears to be between deliveries or during a break in play, as there is no active gameplay visible."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_12.jpg",
+          "description": "The camera shows a man sitting in a chair, likely in a press conference or interview setting. He appears to be a player for a cricket team, wearing a brown jersey with various sponsor logos, including \"Jio\" on his left sleeve. The man seems to be looking to the left of the camera, possibly listening to a question or comment.\n\nThere are graphical overlays on the screen, including a large red circle with a white \"L\" and a purple sign with white text that reads \"THE FIZZ.\" Additionally, there is a black bar at the bottom of the screen with the word \"FOUR\" in white text. The action level appears to be low, as if the man is not actively participating in a game but rather engaged in a post-game or pre-game interview."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_13.jpg",
+          "description": "The camera shows a man sitting in a chair, likely on the sidelines or in a dugout. He appears to be a player for a team, wearing a brown jersey with various sponsor logos, including \"Jio\" on his left chest. The man seems to be looking to his right, possibly watching something off-camera.\n\nThere are graphical overlays on the frame, including a large red circle with a white \"L\" in the top-left corner and a brown bar at the bottom with white text that reads \"TOURNAMENT FOURS\" on the left and \"FOUR\" in the center. Additionally, there are several sponsor logos visible behind the man and on his jersey. \n\nThe action level appears to be low, as if the man is not actively participating in play but rather observing or waiting for his turn. The overall atmosphere suggests a break in the action, possibly between deliveries or during a commercial timeout."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_14.jpg",
+          "description": "The camera shows a crowd shot of spectators in the stands at a cricket match. The people in the frame are sitting or standing and waving orange flags, with some appearing to be cheering or clapping. There are graphical overlays on the frame, including a logo for the \"TATA IPL\" in the top-left corner, a statistic reading \"919 TOURNAMENT FOURS\" at the bottom left, and the word \"FOUR\" at the bottom center. The action level appears to be a post-action moment, as the crowd is reacting to something that has just happened, likely a four being scored."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_15.jpg",
+          "description": "The camera shows a packed stadium with spectators sitting in the stands, many of whom are holding orange flags. The people in the frame appear to be watching the game and waving their flags. There are graphical overlays at the bottom of the screen displaying information such as the score, tournament standings, player names, and target score. The action level appears to be between deliveries, as there is no visible active play happening."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_16.jpg",
+          "description": "The frame shows a lively scene from a professional cricket match, with the camera capturing a wide view of the stadium. Three cheerleaders are prominently featured, bending over and wearing red and green outfits; they appear to be blurred due to motion. The crowd is visible in the background, seated in the stands. \n\nThe frame includes several graphical overlays, including a score display showing \"919 TOURNAMENT FOURS,\" team and player information, and a target score of 200. The action level appears to be between deliveries or during a break in play, as there are no players actively engaged in the game."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_17.jpg",
+          "description": "The camera shows a wide field view of three cheerleaders on the field. The cheerleaders are standing on the field, smiling and holding green pom-poms. They are wearing matching red, white, and blue uniforms with \"Air Asia\" written across their chests.\n\nThere are graphical overlays at the bottom of the screen displaying information about the match, including the score, tournament standings, and player statistics. The action level appears to be between deliveries or during a break in play, as there are no players actively engaged in the game."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_18.jpg",
+          "description": "The camera shows a batter who has just hit a four, with a large orange graphic overlay reading \"FOUR\" in the center of the frame. The batter is on the right side of the frame, appearing to celebrate or react to their shot, while another player is visible behind the overlay. \n\nThere are several graphical overlays, including a score graphic at the bottom of the frame showing the score and player statistics, as well as logos for the TATA IPL and the two teams playing, Gujarat Titans (GT) and Mumbai Indians (MI). The action level appears to be a post-action moment, with the batter having just hit the ball and the crowd likely cheering."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d001_6.jpg",
+          "description": "The camera shows a close-up of a man with blue-tinted skin and short, gray hair wearing a red-orange jacket with metal studs on the shoulders. He appears to be looking down, possibly focused on something below the frame. A graphical overlay at the bottom displays information about a cricket match, including team names, scores, and player statistics. The action level seems to be low, as if the frame captures a moment between play or a pause in the action."
+        }
+      ]
+    },
+    "replay": {
+      "1grams_top": [
+        [
+          "right",
+          13
+        ],
+        [
+          "corner",
+          11
+        ],
+        [
+          "uniform",
+          8
+        ],
+        [
+          "batter",
+          7
+        ],
+        [
+          "camera",
+          6
+        ],
+        [
+          "shows",
+          6
+        ],
+        [
+          "field",
+          6
+        ],
+        [
+          "cricket",
+          6
+        ],
+        [
+          "bat",
+          6
+        ],
+        [
+          "player",
+          6
+        ],
+        [
+          "left",
+          6
+        ],
+        [
+          "graphical",
+          6
+        ],
+        [
+          "overlays",
+          6
+        ],
+        [
+          "action",
+          6
+        ],
+        [
+          "appears",
+          6
+        ],
+        [
+          "view",
+          5
+        ],
+        [
+          "raised",
+          5
+        ],
+        [
+          "top",
+          5
+        ],
+        [
+          "umpire",
+          5
+        ],
+        [
+          "bowler",
+          5
+        ],
+        [
+          "mid",
+          5
+        ],
+        [
+          "behind",
+          5
+        ],
+        [
+          "live",
+          5
+        ],
+        [
+          "ball",
+          4
+        ],
+        [
+          "wearing",
+          4
+        ],
+        [
+          "brown",
+          4
+        ],
+        [
+          "while",
+          4
+        ],
+        [
+          "another",
+          4
+        ],
+        [
+          "stands",
+          4
+        ],
+        [
+          "visible",
+          4
+        ]
+      ],
+      "2grams_top": [
+        [
+          "right corner",
+          7
+        ],
+        [
+          "camera shows",
+          6
+        ],
+        [
+          "graphical overlays",
+          6
+        ],
+        [
+          "brown uniform",
+          4
+        ],
+        [
+          "left corner",
+          4
+        ],
+        [
+          "go live",
+          4
+        ],
+        [
+          "cricket field",
+          3
+        ],
+        [
+          "tata ipl",
+          3
+        ],
+        [
+          "top left",
+          3
+        ],
+        [
+          "right leg",
+          3
+        ],
+        [
+          "sponsor logos",
+          3
+        ],
+        [
+          "live button",
+          3
+        ],
+        [
+          "shows medium",
+          3
+        ],
+        [
+          "medium shot",
+          3
+        ],
+        [
+          "shot cricket",
+          3
+        ],
+        [
+          "several graphical",
+          3
+        ],
+        [
+          "bottom right",
+          3
+        ],
+        [
+          "shows wide",
+          2
+        ],
+        [
+          "wide field",
+          2
+        ],
+        [
+          "field view",
+          2
+        ],
+        [
+          "view cricket",
+          2
+        ],
+        [
+          "hit ball",
+          2
+        ],
+        [
+          "wearing brown",
+          2
+        ],
+        [
+          "while another",
+          2
+        ],
+        [
+          "another player",
+          2
+        ],
+        [
+          "uniform number",
+          2
+        ],
+        [
+          "number back",
+          2
+        ],
+        [
+          "overlays include",
+          2
+        ],
+        [
+          "top right",
+          2
+        ],
+        [
+          "players umpire",
+          2
+        ]
+      ],
+      "3grams_top": [
+        [
+          "top left corner",
+          3
+        ],
+        [
+          "go live button",
+          3
+        ],
+        [
+          "camera shows medium",
+          3
+        ],
+        [
+          "shows medium shot",
+          3
+        ],
+        [
+          "medium shot cricket",
+          3
+        ],
+        [
+          "several graphical overlays",
+          3
+        ],
+        [
+          "bottom right corner",
+          3
+        ],
+        [
+          "camera shows wide",
+          2
+        ],
+        [
+          "shows wide field",
+          2
+        ],
+        [
+          "wide field view",
+          2
+        ],
+        [
+          "field view cricket",
+          2
+        ],
+        [
+          "view cricket field",
+          2
+        ],
+        [
+          "wearing brown uniform",
+          2
+        ],
+        [
+          "brown uniform number",
+          2
+        ],
+        [
+          "uniform number back",
+          2
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "stride",
+          "count_in_class": 2,
+          "log_ratio": 4.474059429906804
+        },
+        {
+          "term": "lifted",
+          "count_in_class": 2,
+          "log_ratio": 4.474059429906804
+        },
+        {
+          "term": "high",
+          "count_in_class": 2,
+          "log_ratio": 3.7809122493468585
+        },
+        {
+          "term": "ready",
+          "count_in_class": 3,
+          "log_ratio": 3.6631292136904756
+        },
+        {
+          "term": "go",
+          "count_in_class": 4,
+          "log_ratio": 3.598590692552904
+        },
+        {
+          "term": "leg",
+          "count_in_class": 3,
+          "log_ratio": 3.3754471412386944
+        },
+        {
+          "term": "button",
+          "count_in_class": 3,
+          "log_ratio": 3.1523035899244847
+        },
+        {
+          "term": "mid",
+          "count_in_class": 5,
+          "log_ratio": 3.0877650687869136
+        },
+        {
+          "term": "number",
+          "count_in_class": 2,
+          "log_ratio": 2.864621517472704
+        },
+        {
+          "term": "captured",
+          "count_in_class": 3,
+          "log_ratio": 2.5645169250223656
+        },
+        {
+          "term": "wicketkeeper",
+          "count_in_class": 2,
+          "log_ratio": 2.528149280851491
+        },
+        {
+          "term": "include",
+          "count_in_class": 2,
+          "log_ratio": 2.528149280851491
+        },
+        {
+          "term": "umpire",
+          "count_in_class": 5,
+          "log_ratio": 2.4591564093645393
+        },
+        {
+          "term": "raised",
+          "count_in_class": 5,
+          "log_ratio": 2.394617888226968
+        },
+        {
+          "term": "indicated",
+          "count_in_class": 2,
+          "log_ratio": 2.394617888226968
+        },
+        {
+          "term": "fielder",
+          "count_in_class": 4,
+          "log_ratio": 2.276834852570585
+        },
+        {
+          "term": "includes",
+          "count_in_class": 2,
+          "log_ratio": 2.276834852570585
+        },
+        {
+          "term": "medium",
+          "count_in_class": 3,
+          "log_ratio": 2.1967921448970484
+        },
+        {
+          "term": "scene",
+          "count_in_class": 2,
+          "log_ratio": 2.1714743369127585
+        },
+        {
+          "term": "views",
+          "count_in_class": 2,
+          "log_ratio": 2.0761641571084337
+        },
+        {
+          "term": "bowler",
+          "count_in_class": 5,
+          "log_ratio": 2.0761641571084337
+        },
+        {
+          "term": "third",
+          "count_in_class": 2,
+          "log_ratio": 2.0761641571084337
+        },
+        {
+          "term": "live",
+          "count_in_class": 5,
+          "log_ratio": 1.7014707076670228
+        },
+        {
+          "term": "right",
+          "count_in_class": 13,
+          "log_ratio": 1.6837711305676222
+        },
+        {
+          "term": "arm",
+          "count_in_class": 3,
+          "log_ratio": 1.6706990490002693
+        },
+        {
+          "term": "behind",
+          "count_in_class": 5,
+          "log_ratio": 1.670699049000269
+        },
+        {
+          "term": "back",
+          "count_in_class": 2,
+          "log_ratio": 1.640846085850588
+        },
+        {
+          "term": "hit",
+          "count_in_class": 2,
+          "log_ratio": 1.478327156352813
+        },
+        {
+          "term": "corner",
+          "count_in_class": 11,
+          "log_ratio": 1.4177025345363783
+        },
+        {
+          "term": "fielders",
+          "count_in_class": 2,
+          "log_ratio": 1.178222563902475
+        },
+        {
+          "term": "bat",
+          "count_in_class": 6,
+          "log_ratio": 1.1166646709030417
+        },
+        {
+          "term": "while",
+          "count_in_class": 4,
+          "log_ratio": 1.1136840427649037
+        },
+        {
+          "term": "uniform",
+          "count_in_class": 8,
+          "log_ratio": 1.0508831415258735
+        },
+        {
+          "term": "batter",
+          "count_in_class": 7,
+          "log_ratio": 0.9889805642639468
+        },
+        {
+          "term": "another",
+          "count_in_class": 4,
+          "log_ratio": 0.9595333629376456
+        },
+        {
+          "term": "ball",
+          "count_in_class": 4,
+          "log_ratio": 0.890540491450694
+        },
+        {
+          "term": "stands",
+          "count_in_class": 4,
+          "log_ratio": 0.890540491450694
+        },
+        {
+          "term": "logo",
+          "count_in_class": 4,
+          "log_ratio": 0.8577506686277032
+        },
+        {
+          "term": "tata",
+          "count_in_class": 4,
+          "log_ratio": 0.8104977837771576
+        },
+        {
+          "term": "along",
+          "count_in_class": 2,
+          "log_ratio": 0.689869795988543
+        }
+      ],
+      "description_lengths": {
+        "n": 6,
+        "mean_chars": 567.8333333333334,
+        "median_chars": 585.0,
+        "min_chars": 418,
+        "max_chars": 745
+      },
+      "verbatim_samples": [
+        {
+          "frame_path": "output/frames/20260420_214218_d001_19.jpg",
+          "description": "The camera shows a wide field view of a cricket field, focusing on a batter preparing to hit the ball. The batter, wearing a brown uniform and protective gear, is poised with their bat raised, while another player in a similar uniform stands nearby, watching. A wicketkeeper in an orange uniform is visible in the bottom-left corner, and another player in a brown uniform with the number 7 on their back is on the right side of the frame. Graphical overlays include a logo for the TATA IPL in the top-left corner and a small text indicating \"15Cr Views\" in the top-right corner."
+        },
+        {
+          "frame_path": "output/frames/20260430_195352_d102_6.jpg",
+          "description": "The camera shows a wide field view of a cricket field with several players and an umpire. The bowler is captured mid-stride with their right leg lifted high and their left arm raised, likely having just bowled; the batter stands ready with their bat lifted, while another fielder and the umpire observe from behind. A third fielder is visible in the background. Graphical overlays include sponsor logos along the field boundary and a view count of \"18.4Cr Views\" in the upper right corner. The action appears to be happening live, as indicated by a \"Go Live\" button in the lower right corner."
+        },
+        {
+          "frame_path": "output/frames/20260430_195352_d102_7.jpg",
+          "description": "The camera shows a medium shot of a cricket player in mid-action, with other players and the umpire visible in the frame. The bowler is captured in mid-throw, with his right arm raised and the ball airborne, while the batter prepares to hit the ball with his bat. The umpire stands to the right, observing the play, and two fielders are positioned behind the batter.\n\nThe frame includes several graphical overlays, including a \"TATA IPL\" logo in the top-left corner and a \"WONDER CEMENT\" logo on the umpire's shirt. A translucent gray box in the bottom-right corner displays the text \"Go Live.\" The action level appears to be an active moment during the match, as indicated by the bowler's throwing motion and the positions of the other players."
+        },
+        {
+          "frame_path": "output/frames/20260430_195352_d102_8.jpg",
+          "description": "The camera shows a medium shot of a cricket bowler in mid-action on the pitch. The bowler, wearing a blue uniform, is captured with their right leg raised high and their left arm extended downward. Behind them, a batter in a brown uniform holds a bat, while a wicketkeeper and another fielder stand ready. A third fielder and an umpire are also visible.\n\nThe scene includes several graphical overlays, such as sponsor logos for Tata AIG, Angel One, and SBI, along with a \"Go Live\" button in the bottom-right corner. The action appears to be happening in real-time, capturing a dynamic moment during the match."
+        },
+        {
+          "frame_path": "output/frames/20260430_195352_d102_9.jpg",
+          "description": "The camera shows a medium shot of a cricket field with four players in view. The bowler, wearing a blue uniform, appears to have just thrown the ball and is in mid-stride with their right leg raised behind them. Two fielders are crouched down behind the wicket, and a batter stands ready with their bat. The scene features several graphical overlays, including sponsor logos and a view counter in the top-right corner."
+        },
+        {
+          "frame_path": "output/frames/20260430_195352_d105_9.jpg",
+          "description": "The camera shows a single player standing on a cricket pitch, holding a bat. The player, wearing a brown uniform with the number 7 on their back, appears to be preparing to play or has just played a shot. \n\nThere are graphical overlays in the top-left corner featuring the TATA IPL logo and in the bottom-right corner with a \"Go Live\" button. The action level appears to be a moment between deliveries or after a play, as the player seems to be waiting or reacting."
+        }
+      ]
+    },
+    "umpire": {
+      "1grams_top": [
+        [
+          "man",
+          20
+        ],
+        [
+          "appears",
+          15
+        ],
+        [
+          "his",
+          14
+        ],
+        [
+          "action",
+          12
+        ],
+        [
+          "camera",
+          11
+        ],
+        [
+          "shows",
+          11
+        ],
+        [
+          "wearing",
+          11
+        ],
+        [
+          "player",
+          11
+        ],
+        [
+          "arms",
+          10
+        ],
+        [
+          "frame",
+          10
+        ],
+        [
+          "names",
+          10
+        ],
+        [
+          "outstretched",
+          9
+        ],
+        [
+          "overlays",
+          9
+        ],
+        [
+          "scoreboard",
+          9
+        ],
+        [
+          "right",
+          9
+        ],
+        [
+          "several",
+          8
+        ],
+        [
+          "graphical",
+          8
+        ],
+        [
+          "bottom",
+          8
+        ],
+        [
+          "including",
+          8
+        ],
+        [
+          "level",
+          8
+        ],
+        [
+          "left",
+          8
+        ],
+        [
+          "standing",
+          7
+        ],
+        [
+          "field",
+          7
+        ],
+        [
+          "logos",
+          7
+        ],
+        [
+          "has",
+          7
+        ],
+        [
+          "shirt",
+          6
+        ],
+        [
+          "seems",
+          6
+        ],
+        [
+          "something",
+          6
+        ],
+        [
+          "scores",
+          6
+        ],
+        [
+          "play",
+          6
+        ]
+      ],
+      "2grams_top": [
+        [
+          "his arms",
+          9
+        ],
+        [
+          "arms outstretched",
+          9
+        ],
+        [
+          "several graphical",
+          8
+        ],
+        [
+          "graphical overlays",
+          8
+        ],
+        [
+          "overlays bottom",
+          8
+        ],
+        [
+          "action level",
+          8
+        ],
+        [
+          "level appears",
+          8
+        ],
+        [
+          "camera shows",
+          7
+        ],
+        [
+          "including scoreboard",
+          7
+        ],
+        [
+          "names scores",
+          6
+        ],
+        [
+          "scores player",
+          6
+        ],
+        [
+          "bottom frame",
+          6
+        ],
+        [
+          "frame including",
+          6
+        ],
+        [
+          "polo shirt",
+          5
+        ],
+        [
+          "cricket field",
+          5
+        ],
+        [
+          "man left",
+          5
+        ],
+        [
+          "has his",
+          5
+        ],
+        [
+          "orange uniform",
+          5
+        ],
+        [
+          "man right",
+          5
+        ],
+        [
+          "man standing",
+          4
+        ],
+        [
+          "shirt cap",
+          4
+        ],
+        [
+          "active play",
+          4
+        ],
+        [
+          "scoreboard team",
+          4
+        ],
+        [
+          "team names",
+          4
+        ],
+        [
+          "tata ipl",
+          4
+        ],
+        [
+          "appears post",
+          4
+        ],
+        [
+          "post action",
+          4
+        ],
+        [
+          "action moment",
+          4
+        ],
+        [
+          "shows medium",
+          4
+        ],
+        [
+          "medium shot",
+          4
+        ]
+      ],
+      "3grams_top": [
+        [
+          "his arms outstretched",
+          8
+        ],
+        [
+          "several graphical overlays",
+          8
+        ],
+        [
+          "graphical overlays bottom",
+          8
+        ],
+        [
+          "action level appears",
+          8
+        ],
+        [
+          "names scores player",
+          6
+        ],
+        [
+          "overlays bottom frame",
+          6
+        ],
+        [
+          "bottom frame including",
+          6
+        ],
+        [
+          "frame including scoreboard",
+          5
+        ],
+        [
+          "has his arms",
+          5
+        ],
+        [
+          "including scoreboard team",
+          4
+        ],
+        [
+          "scoreboard team names",
+          4
+        ],
+        [
+          "level appears post",
+          4
+        ],
+        [
+          "appears post action",
+          4
+        ],
+        [
+          "post action moment",
+          4
+        ],
+        [
+          "camera shows medium",
+          4
+        ]
+      ],
+      "discriminative_log_ratio_terms": [
+        {
+          "term": "outstretched",
+          "count_in_class": 9,
+          "log_ratio": 5.332658152290244
+        },
+        {
+          "term": "signaling",
+          "count_in_class": 3,
+          "log_ratio": 4.416367420416089
+        },
+        {
+          "term": "coach",
+          "count_in_class": 2,
+          "log_ratio": 4.128685347964307
+        },
+        {
+          "term": "someone",
+          "count_in_class": 2,
+          "log_ratio": 3.435538167404362
+        },
+        {
+          "term": "arms",
+          "count_in_class": 10,
+          "log_ratio": 3.3485267904147324
+        },
+        {
+          "term": "gesture",
+          "count_in_class": 2,
+          "log_ratio": 3.030073059296198
+        },
+        {
+          "term": "polo",
+          "count_in_class": 5,
+          "log_ratio": 2.7423909868444167
+        },
+        {
+          "term": "member",
+          "count_in_class": 2,
+          "log_ratio": 2.7423909868444167
+        },
+        {
+          "term": "partially",
+          "count_in_class": 2,
+          "log_ratio": 2.7423909868444167
+        },
+        {
+          "term": "men",
+          "count_in_class": 5,
+          "log_ratio": 2.7423909868444167
+        },
+        {
+          "term": "man",
+          "count_in_class": 20,
+          "log_ratio": 2.4110338508899742
+        },
+        {
+          "term": "shirt",
+          "count_in_class": 6,
+          "log_ratio": 2.3369258787362526
+        },
+        {
+          "term": "away",
+          "count_in_class": 3,
+          "log_ratio": 2.3369258787362526
+        },
+        {
+          "term": "dark",
+          "count_in_class": 2,
+          "log_ratio": 2.3369258787362526
+        },
+        {
+          "term": "medium",
+          "count_in_class": 4,
+          "log_ratio": 2.154604321942298
+        },
+        {
+          "term": "staff",
+          "count_in_class": 2,
+          "log_ratio": 2.0492438062844713
+        },
+        {
+          "term": "mi",
+          "count_in_class": 2,
+          "log_ratio": 1.9314607706280882
+        },
+        {
+          "term": "cap",
+          "count_in_class": 5,
+          "log_ratio": 1.8773935493578124
+        },
+        {
+          "term": "also",
+          "count_in_class": 5,
+          "log_ratio": 1.8261002549702618
+        },
+        {
+          "term": "back",
+          "count_in_class": 3,
+          "log_ratio": 1.6437786981763074
+        },
+        {
+          "term": "person",
+          "count_in_class": 4,
+          "log_ratio": 1.5949885340068752
+        },
+        {
+          "term": "umpire",
+          "count_in_class": 3,
+          "log_ratio": 1.5831540763598724
+        },
+        {
+          "term": "his",
+          "count_in_class": 14,
+          "log_ratio": 1.579240177038736
+        },
+        {
+          "term": "black",
+          "count_in_class": 3,
+          "log_ratio": 1.3718449826926655
+        },
+        {
+          "term": "has",
+          "count_in_class": 7,
+          "log_ratio": 1.3253249670577727
+        },
+        {
+          "term": "something",
+          "count_in_class": 6,
+          "log_ratio": 1.19179357443325
+        },
+        {
+          "term": "purple",
+          "count_in_class": 2,
+          "log_ratio": 1.0841629102408845
+        },
+        {
+          "term": "possibly",
+          "count_in_class": 4,
+          "log_ratio": 1.028593059086074
+        },
+        {
+          "term": "scoreboard",
+          "count_in_class": 9,
+          "log_ratio": 0.9888527304365597
+        },
+        {
+          "term": "sponsors",
+          "count_in_class": 3,
+          "log_ratio": 0.9823802159309424
+        },
+        {
+          "term": "right",
+          "count_in_class": 9,
+          "log_ratio": 0.950631517616362
+        },
+        {
+          "term": "scores",
+          "count_in_class": 6,
+          "log_ratio": 0.8816386461294105
+        },
+        {
+          "term": "200",
+          "count_in_class": 2,
+          "log_ratio": 0.8705888099428254
+        },
+        {
+          "term": "wearing",
+          "count_in_class": 11,
+          "log_ratio": 0.8421508746222919
+        },
+        {
+          "term": "seems",
+          "count_in_class": 6,
+          "log_ratio": 0.8328484819599786
+        },
+        {
+          "term": "two",
+          "count_in_class": 4,
+          "log_ratio": 0.8328484819599786
+        },
+        {
+          "term": "various",
+          "count_in_class": 2,
+          "log_ratio": 0.8328484819599784
+        },
+        {
+          "term": "teams'",
+          "count_in_class": 3,
+          "log_ratio": 0.7787812606897027
+        },
+        {
+          "term": "while",
+          "count_in_class": 4,
+          "log_ratio": 0.7683099608224075
+        },
+        {
+          "term": "reacting",
+          "count_in_class": 3,
+          "log_ratio": 0.7027953537117807
+        }
+      ],
+      "description_lengths": {
+        "n": 8,
+        "mean_chars": 695.875,
+        "median_chars": 706.5,
+        "min_chars": 586,
+        "max_chars": 770
+      },
+      "verbatim_samples": [
+        {
+          "frame_path": "output/frames/20260420_214218_d002_14.jpg",
+          "description": "The camera shows a man standing on a green field with his arms outstretched. He is wearing a brown polo shirt and cap with logos on them, and he appears to be a staff member or coach. \n\nThe man seems to be gesturing or explaining something, possibly to players nearby who are not visible in the frame. \n\nThere are several graphical overlays at the bottom of the screen, including a scoreboard that displays the teams' names, scores, and player statistics. The scoreboard shows \"GT\" with 9 runs for 2 wickets, and \"MI\" with 10; it also shows the target score as 200. \n\nThe action level appears to be between deliveries, as there is no active play happening and no indication of replay or slow-motion."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d002_15.jpg",
+          "description": "The frame shows a man standing on a cricket field with his arms outstretched to the sides. He is wearing a brown polo shirt and cap with blue accents and white logos. The man appears to be an umpire, as indicated by his attire.\n\nThere are several graphical overlays at the bottom of the frame, including a scoreboard that displays the teams' names, scores, and player statistics. The scoreboard shows \"GT\" versus \"MI,\" with \"GT\" batting and having a score of 9-2. The target score is 200, and various player names and stats are also visible.\n\nThe action level appears to be between deliveries, as the umpire is standing still with his arms outstretched, possibly signaling something to someone off-camera. There does not appear to be active play happening in this frame."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d004_21.jpg",
+          "description": "The camera shows a man standing with his arms outstretched, likely an umpire, and another person partially visible to his right. The man appears to be signaling something, possibly a no-ball or a boundary, while the other individual seems to be walking away from him. \n\nThere are several graphical overlays at the bottom of the frame, including a scoreboard with team names, scores, player names, and statistics. In the top-left corner, there is a logo for the TATA IPL.\n\nThe action level appears to be a post-action moment, as there is no active play happening, and the umpire's gesture suggests that he has just made a decision."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d004_22.jpg",
+          "description": "The camera shows a medium shot of two men on a cricket field. The man on the left appears to be a team staff member or coach, wearing a brown polo shirt with purple accents and a matching baseball cap; he has his arms bent at the elbows with fists clenched and seems to be cheering or reacting to something. To his right is another man in an orange uniform with his back to the camera.\n\nThere are several graphical overlays at the bottom of the frame, including a scoreboard with team names, scores, and player information, as well as logos for sponsors and the IPL. The action level appears to be a post-action moment, as the man on the left seems to be celebrating or reacting to something that has just happened, while the man on the right stands still."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d004_23.jpg",
+          "description": "The camera shows a medium shot of a man standing on the field, with another person partially visible to his right. The man is wearing a black shirt and cap with purple accents and logos, while the other person is wearing an orange uniform. \n\nThe man appears to be standing still, looking to the right, while the other person is also standing still but their body is angled away from the camera. There are several graphical overlays at the bottom of the screen, including a scoreboard with team names, scores, and player information, as well as a logo for the TATA IPL in the top-left corner. The action level appears to be low, as if the frame is captured between deliveries or during a break in play."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d007_11.jpg",
+          "description": "The camera shows a medium shot of two men on a cricket field. The man on the left is a player wearing an orange uniform with various sponsor logos, and he appears to be in motion, possibly walking or jogging. The man on the right is wearing a black polo shirt with a cap and has his arms outstretched.\n\nThere are several graphical overlays at the bottom of the frame, including a scoreboard displaying the teams' names, scores, and player statistics, as well as a speedometer showing the ball's speed at 141.1 kph. The action level appears to be between deliveries, as the player on the left seems to be moving but not actively engaged in play, and the man on the right seems to be signaling or directing someone."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d007_12.jpg",
+          "description": "The camera shows two men on a cricket field. The man on the left is wearing an orange uniform with the number 33 on the back and has his arms outstretched. The man on the right is wearing a black uniform and also has his arms outstretched.\n\nThere are several graphical overlays at the bottom of the frame, including a score graphic that displays the score, target, and player information. The overlays also include logos for the Tata IPL and other sponsors.\n\nThe action level appears to be a post-action moment, as both men have their arms outstretched in a gesture that suggests they are communicating or reacting to something. The overall atmosphere suggests a moment of tension or discussion during the match."
+        },
+        {
+          "frame_path": "output/frames/20260420_214218_d007_13.jpg",
+          "description": "The camera shows a medium shot of two men on a cricket field. The man on the left is wearing an orange uniform with \"93\" on the back, and he appears to be walking away from the camera; the man on the right is wearing a dark polo shirt and dark pants and has his arms outstretched. \n\nThere are several graphical overlays at the bottom of the frame, including a scoreboard with team names, player names, and statistics, as well as logos for the TATA IPL and other sponsors. The action level appears to be a post-action moment, as the players do not seem to be in the midst of active play."
+        }
+      ]
+    }
+  },
+  "candidate_signal_evaluation": [
+    {
+      "signal": "word_replay_upper",
+      "target_ground_truth": "replay",
+      "tp": 0,
+      "fp": 3,
+      "fn": 6,
+      "tn": 238,
+      "n_eval_frames": 247,
+      "true_positive_rate": 0.0,
+      "false_positive_rate": 0.012448132780082987
+    },
+    {
+      "signal": "phrase_slow_motion",
+      "target_ground_truth": "replay",
+      "tp": 0,
+      "fp": 3,
+      "fn": 6,
+      "tn": 238,
+      "n_eval_frames": 247,
+      "true_positive_rate": 0.0,
+      "false_positive_rate": 0.012448132780082987
+    },
+    {
+      "signal": "running_bowler_language",
+      "target_ground_truth": "action",
+      "tp": 1,
+      "fp": 1,
+      "fn": 71,
+      "tn": 174,
+      "n_eval_frames": 247,
+      "true_positive_rate": 0.013888888888888888,
+      "false_positive_rate": 0.005714285714285714
+    },
+    {
+      "signal": "umpire_signal_language",
+      "target_ground_truth": "umpire",
+      "tp": 2,
+      "fp": 3,
+      "fn": 6,
+      "tn": 236,
+      "n_eval_frames": 247,
+      "true_positive_rate": 0.25,
+      "false_positive_rate": 0.012552301255230125
+    },
+    {
+      "signal": "ad_commercial_any",
+      "target_ground_truth": "ad",
+      "tp": 0,
+      "fp": 3,
+      "fn": 3,
+      "tn": 241,
+      "n_eval_frames": 247,
+      "true_positive_rate": 0.0,
+      "false_positive_rate": 0.012295081967213115
+    }
+  ]
+}

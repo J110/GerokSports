@@ -1,0 +1,463 @@
+{
+  "version": "v5_prod_eval",
+  "created": "2026-04-25",
+  "source_log": "files/logs/machine-1-2026-04-25.log",
+  "frame_archive": "files/debug_frames/",
+  "labeling_rubric": "files/docs/scout_labeling_rubric_v1.md",
+  "labeler": "assistant",
+  "selection_method": "stratified random across innings phase from V5 bowlers_end emissions",
+  "total_v5_emissions": 238,
+  "total_bowlers_end_emissions": 47,
+  "stratification": {
+    "powerplay_inn1_pool": 9,
+    "powerplay_inn1_sampled": 6,
+    "middle_inn1_pool": 12,
+    "middle_inn1_sampled": 9,
+    "death_inn1_pool": 5,
+    "death_inn1_sampled": 0,
+    "powerplay_inn2_pool": 21,
+    "powerplay_inn2_sampled": 8
+  },
+  "total_frames": 23,
+  "match": "DC vs PBKS, IPL 2026 (match 35)",
+  "scout_prompt": "V5 (multi-example with 3 STEP-1 examples)",
+  "frames": [
+    {
+      "frame_id": "f0105",
+      "frame_count": 105,
+      "path": "debug_frames/f105_scoreboard.jpg",
+      "timestamp": "15:41:40",
+      "phase_bucket": "powerplay_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "shot"
+      },
+      "human_label": {
+        "camera_view": "closeup",
+        "frame_phase": null
+      },
+      "confidence": "medium",
+      "notes": "tight shot of batter mid-stroke from bowler's-end direction; no bowler, no full pitch view",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f0249",
+      "frame_count": 249,
+      "path": "debug_frames/f249_scoreboard.jpg",
+      "timestamp": "15:46:36",
+      "phase_bucket": "powerplay_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "human_label": {
+        "camera_view": "other",
+        "frame_phase": null
+      },
+      "confidence": "high",
+      "notes": "pure crowd/stand shot, TATA IPL banner, no pitch or players",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f0337",
+      "frame_count": 337,
+      "path": "debug_frames/f337_scoreboard.jpg",
+      "timestamp": "15:49:54",
+      "phase_bucket": "powerplay_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "release"
+      },
+      "human_label": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "release"
+      },
+      "confidence": "high",
+      "notes": "classic delivery angle; KINGS-DROPPED-CATCHES M29 v LSG promo banner indicates clip from prior match (visually still bowlers_end)",
+      "is_tp_for_bowlers_end": true
+    },
+    {
+      "frame_id": "f0516",
+      "frame_count": 516,
+      "path": "debug_frames/f516_scoreboard.jpg",
+      "timestamp": "15:57:50",
+      "phase_bucket": "powerplay_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "shot"
+      },
+      "human_label": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "shot"
+      },
+      "confidence": "high",
+      "notes": "classic delivery angle, '6' graphic + RAHUL BOUNDARIES IN PP overlay; ball mid-flight",
+      "is_tp_for_bowlers_end": true
+    },
+    {
+      "frame_id": "f0518",
+      "frame_count": 518,
+      "path": "debug_frames/f518_graphic.jpg",
+      "timestamp": "15:57:55",
+      "phase_bucket": "powerplay_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "shot"
+      },
+      "human_label": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "release"
+      },
+      "confidence": "high",
+      "notes": "classic delivery angle, ball mid-flight, banner overlay (filename was 'graphic' due to overlay but visual is bowlers_end)",
+      "is_tp_for_bowlers_end": true
+    },
+    {
+      "frame_id": "f0716",
+      "frame_count": 716,
+      "path": "debug_frames/f716_scoreboard.jpg",
+      "timestamp": "16:06:41",
+      "phase_bucket": "powerplay_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "release"
+      },
+      "human_label": {
+        "camera_view": "other",
+        "frame_phase": null
+      },
+      "confidence": "high",
+      "notes": "low ground-level hero camera shot from behind Rahul; stadium dominant; no bowler/pitch",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f0915",
+      "frame_count": 915,
+      "path": "debug_frames/f915_scoreboard.jpg",
+      "timestamp": "16:14:19",
+      "phase_bucket": "middle_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "flight"
+      },
+      "human_label": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "flight"
+      },
+      "confidence": "medium-high",
+      "notes": "classic delivery angle; KL Rahul career-stats banner overlay (career montage style)",
+      "is_tp_for_bowlers_end": true
+    },
+    {
+      "frame_id": "f0976",
+      "frame_count": 976,
+      "path": "debug_frames/f976_scoreboard.jpg",
+      "timestamp": "16:17:27",
+      "phase_bucket": "middle_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "release"
+      },
+      "human_label": {
+        "camera_view": "ad",
+        "frame_phase": null
+      },
+      "confidence": "high",
+      "notes": "desert/mountain commercial \u2014 no cricket content; extreme false positive",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f1082",
+      "frame_count": 1082,
+      "path": "debug_frames/f1082_scoreboard.jpg",
+      "timestamp": "16:22:26",
+      "phase_bucket": "middle_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "shot"
+      },
+      "human_label": {
+        "camera_view": "closeup",
+        "frame_phase": null
+      },
+      "confidence": "high",
+      "notes": "tight shot of one batter against stadium stand, no bowler, no full pitch",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f1252",
+      "frame_count": 1252,
+      "path": "debug_frames/f1252_scoreboard.jpg",
+      "timestamp": "16:29:45",
+      "phase_bucket": "middle_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "human_label": {
+        "camera_view": "other",
+        "frame_phase": null
+      },
+      "confidence": "high",
+      "notes": "outfield shot of two fielders, TATA AIG advertising backdrop, no pitch view",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f1281",
+      "frame_count": 1281,
+      "path": "debug_frames/f1281_scoreboard.jpg",
+      "timestamp": "16:31:02",
+      "phase_bucket": "middle_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "human_label": {
+        "camera_view": "other",
+        "frame_phase": null
+      },
+      "confidence": "medium",
+      "notes": "high wide-angle aerial; partial pitch but more aerial than bowler's-end",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f1361",
+      "frame_count": 1361,
+      "path": "debug_frames/f1361_scoreboard.jpg",
+      "timestamp": "16:33:28",
+      "phase_bucket": "middle_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "human_label": {
+        "camera_view": "other",
+        "frame_phase": null
+      },
+      "confidence": "high",
+      "notes": "pure stand/crowd close-up, no pitch or players",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f1657",
+      "frame_count": 1657,
+      "path": "debug_frames/f1657_scoreboard.jpg",
+      "timestamp": "16:45:54",
+      "phase_bucket": "middle_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "release"
+      },
+      "human_label": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "release"
+      },
+      "confidence": "high",
+      "notes": "classic delivery angle, bowler running up, batter facing, Rana visible as non-striker",
+      "is_tp_for_bowlers_end": true
+    },
+    {
+      "frame_id": "f1764",
+      "frame_count": 1764,
+      "path": "debug_frames/f1764_scoreboard.jpg",
+      "timestamp": "16:50:57",
+      "phase_bucket": "middle_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "shot"
+      },
+      "human_label": {
+        "camera_view": "other",
+        "frame_phase": null
+      },
+      "confidence": "high",
+      "notes": "low-angle hero camera shot from behind Rahul; stadium dominant; no bowler/pitch",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f1827",
+      "frame_count": 1827,
+      "path": "debug_frames/f1827_scoreboard.jpg",
+      "timestamp": "16:54:01",
+      "phase_bucket": "middle_inn1",
+      "innings": 1,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "shot"
+      },
+      "human_label": {
+        "camera_view": "closeup",
+        "frame_phase": null
+      },
+      "confidence": "medium",
+      "notes": "tight crop of batter mid-stroke from bowler's-end direction; no bowler, no full pitch",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f3066",
+      "frame_count": 3066,
+      "path": "debug_frames/f3066_nostripforce.jpg",
+      "timestamp": "17:38:51",
+      "phase_bucket": "powerplay_inn2",
+      "innings": 2,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "human_label": {
+        "camera_view": "closeup",
+        "frame_phase": null
+      },
+      "confidence": "high",
+      "notes": "single batter portrait against crowd, RuPay banner, no delivery action; filename 'nostripforce'",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f3090",
+      "frame_count": 3090,
+      "path": "debug_frames/f3090_scoreboard.jpg",
+      "timestamp": "17:39:46",
+      "phase_bucket": "powerplay_inn2",
+      "innings": 2,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "human_label": {
+        "camera_view": "other",
+        "frame_phase": null
+      },
+      "confidence": "medium-high",
+      "notes": "high wide aerial of field with broadcast strip, partial pitch, between-balls",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f3099",
+      "frame_count": 3099,
+      "path": "debug_frames/f3099_scoreboard.jpg",
+      "timestamp": "17:40:28",
+      "phase_bucket": "powerplay_inn2",
+      "innings": 2,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "release"
+      },
+      "human_label": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "release"
+      },
+      "confidence": "medium-high",
+      "notes": "mid-pitch view down the pitch from bowler's end; ball just delivered visible on ground; bowler partially in frame",
+      "is_tp_for_bowlers_end": true
+    },
+    {
+      "frame_id": "f3113",
+      "frame_count": 3113,
+      "path": "debug_frames/f3113_scoreboard.jpg",
+      "timestamp": "17:41:06",
+      "phase_bucket": "powerplay_inn2",
+      "innings": 2,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "human_label": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "confidence": "high",
+      "notes": "classic delivery angle, bowler running up, batter facing, full pitch and crease lines",
+      "is_tp_for_bowlers_end": true
+    },
+    {
+      "frame_id": "f3125",
+      "frame_count": 3125,
+      "path": "debug_frames/f3125_scoreboard.jpg",
+      "timestamp": "17:41:58",
+      "phase_bucket": "powerplay_inn2",
+      "innings": 2,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "human_label": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "confidence": "medium",
+      "notes": "wide elevated bowler's-end view, batters mid-pitch (running between wickets), bowler in frame; higher elevation than typical but correct angle",
+      "is_tp_for_bowlers_end": true
+    },
+    {
+      "frame_id": "f3143",
+      "frame_count": 3143,
+      "path": "debug_frames/f3143_scoreboard.jpg",
+      "timestamp": "17:42:34",
+      "phase_bucket": "powerplay_inn2",
+      "innings": 2,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "between_play"
+      },
+      "human_label": {
+        "camera_view": "other",
+        "frame_phase": null
+      },
+      "confidence": "high",
+      "notes": "broad aerial/establishing shot of entire ground showing Gautam Gambhir Stand; field setup view, not delivery",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f3144",
+      "frame_count": 3144,
+      "path": "debug_frames/f3144_scoreboard.jpg",
+      "timestamp": "17:42:37",
+      "phase_bucket": "powerplay_inn2",
+      "innings": 2,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "shot"
+      },
+      "human_label": {
+        "camera_view": "closeup",
+        "frame_phase": null
+      },
+      "confidence": "medium",
+      "notes": "tight shot of one batter mid-stroke; angle is bowler's-end direction but framing is closeup",
+      "is_tp_for_bowlers_end": false
+    },
+    {
+      "frame_id": "f3358",
+      "frame_count": 3358,
+      "path": "debug_frames/f3358_scoreboard.jpg",
+      "timestamp": "17:50:52",
+      "phase_bucket": "powerplay_inn2",
+      "innings": 2,
+      "scout_emit": {
+        "camera_view": "bowlers_end",
+        "frame_phase": "shot"
+      },
+      "human_label": {
+        "camera_view": "closeup",
+        "frame_phase": null
+      },
+      "confidence": "medium",
+      "notes": "tight shot of batter mid-stroke against crowd umbrellas + RuPay banner; partial wickets visible; no bowler",
+      "is_tp_for_bowlers_end": false
+    }
+  ]
+}

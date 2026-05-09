@@ -11,3 +11,5 @@ files/scripts/broadcast_mode_tuning/*_5min_inspection/
 files/scripts/broadcast_mode_tuning/anchor_clips/
 files/scripts/broadcast_mode_tuning/live_raw/
 *.mp4
+.env
+files/.env

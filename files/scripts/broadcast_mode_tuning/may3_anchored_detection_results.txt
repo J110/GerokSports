@@ -1,0 +1,113 @@
+============================================================
+[CLIP d001] frames=10 truth_has_delivery=False
+
+  Anchor candidates:
+    (none — no bowlers_end+release frame)
+
+  Validation:
+    (no anchors)
+
+  Delivery windows:
+    (none)
+
+============================================================
+[CLIP d002] frames=10 truth_has_delivery=False
+
+  Anchor candidates:
+    (none — no bowlers_end+release frame)
+
+  Validation:
+    (no anchors)
+
+  Delivery windows:
+    (none)
+
+============================================================
+[CLIP d003] frames=10 truth_has_delivery=False
+
+  Anchor candidates:
+    (none — no bowlers_end+release frame)
+
+  Validation:
+    (no anchors)
+
+  Delivery windows:
+    (none)
+
+============================================================
+[CLIP d004] frames=10 truth_has_delivery=True
+
+  Anchor candidates:
+    (none — no bowlers_end+release frame)
+
+  Validation:
+    (no anchors)
+
+  Delivery windows:
+    (none)
+
+============================================================
+[CLIP d005] frames=10 truth_has_delivery=True
+
+  Anchor candidates:
+    2.00s (bowlers_end + release) v2=LIVE class=umpire
+
+  Validation:
+    2.00s OK  neighbor=cam=bowlers_end+phase=shot@0.00s, broadcast=LIVE, no_replay_pattern, no_fielder_reaction
+
+  Delivery windows:
+    [2.00s, 4.00s] anchor=2.00s
+
+============================================================
+[CLIP d006] frames=10 truth_has_delivery=False
+
+  Anchor candidates:
+    (none — no bowlers_end+release frame)
+
+  Validation:
+    (no anchors)
+
+  Delivery windows:
+    (none)
+
+============================================================
+[CLIP d007] frames=10 truth_has_delivery=True
+
+  Anchor candidates:
+    0.00s (bowlers_end + release) v2=LIVE class=action
+    6.00s (bowlers_end + release) v2=LIVE class=action
+
+  Validation:
+    0.00s OK  neighbor=cam=bowlers_end+phase=shot@1.00s, broadcast=LIVE, no_replay_pattern, no_fielder_reaction
+    6.00s OK  neighbor=cam=closeup+phase=between_play@4.00s, broadcast=LIVE, no_replay_pattern, no_fielder_reaction
+
+  Delivery windows:
+    [0.00s, 5.00s] anchor=0.00s
+    [1.00s, 9.00s] anchor=6.00s
+
+============================================================
+[CLIP d008] frames=10 truth_has_delivery=False
+
+  Anchor candidates:
+    (none — no bowlers_end+release frame)
+
+  Validation:
+    (no anchors)
+
+  Delivery windows:
+    (none)
+
+============================================================
+SUMMARY (truth vs detection)
+
+  Clip   Truth   Detected  Match
+  d001   no      no        OK
+  d002   no      no        OK
+  d003   no      no        OK
+  d004   yes     no        MISS
+  d005   yes     yes       OK
+  d006   no      no        OK
+  d007   yes     yes       OK
+  d008   no      no        OK
+
+  accuracy: 7/8

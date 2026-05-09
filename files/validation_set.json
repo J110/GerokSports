@@ -1,0 +1,287 @@
+[
+  {
+    "id": "delivery_018",
+    "ts": "2026-04-17T19:48:54",
+    "innings": "KKR",
+    "runs_scored": "4",
+    "pipeline_pred": "yorker / wide_outside_off / along_ground \u2192 behind_wicket",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "shot",
+      "confidence": 0.85,
+      "narrative": "Kagiso Rabada bowled a good length delivery outside off-stump. The batsman, Seifert, played a front-foot drive along the ground towards the offside."
+    },
+    "is_modal": true,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_022",
+    "ts": "2026-04-17T19:50:40",
+    "innings": "KKR",
+    "runs_scored": "1",
+    "pipeline_pred": "short / on_pads / along_ground \u2192 legside",
+    "gemini_pred": {
+      "length": "full",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "shot",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a full ball outside off stump. The batsman played a front-foot drive, hitting the ball along the ground towards the offside for a single run."
+    },
+    "is_modal": false,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_035",
+    "ts": "2026-04-17T20:01:27",
+    "innings": "KKR",
+    "runs_scored": "0",
+    "pipeline_pred": "full / outside_off / in_the_air \u2192 straight",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "release",
+      "confidence": 0.85,
+      "narrative": "The bowler delivers a good length ball outside off stump. The batsman plays a front-foot drive, making good contact and hitting the ball along the ground towards the offside."
+    },
+    "is_modal": true,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_043",
+    "ts": "2026-04-17T20:06:49",
+    "innings": "KKR",
+    "runs_scored": "2",
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "shot",
+      "confidence": 0.9,
+      "narrative": "A good length delivery outside off-stump was played along the ground by Powell towards the offside. Two runs were scored, updating the total to KKR 48-3."
+    },
+    "is_modal": true,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_064",
+    "ts": "2026-04-17T20:23:27",
+    "innings": "KKR",
+    "runs_scored": "0",
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 legside",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "release",
+      "confidence": 0.85,
+      "narrative": "The bowler delivered a good length ball outside off stump. The right-handed batsman played a front-foot drive, hitting the ball along the ground towards the offside for a single run."
+    },
+    "is_modal": true,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_077",
+    "ts": "2026-04-17T20:34:04",
+    "innings": "KKR",
+    "runs_scored": "0",
+    "pipeline_pred": "good_length / off_stump / defended \u2192 no_shot",
+    "gemini_pred": {
+      "length": "short",
+      "line": "on_stumps",
+      "shot": "in_the_air",
+      "direction": "legside",
+      "phase": "shot",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a short ball on the stumps. The batter, Cameron Green, played a powerful pull shot, hitting the ball in the air towards the leg side for a boundary."
+    },
+    "is_modal": false,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_089",
+    "ts": "2026-04-17T20:47:09",
+    "innings": "KKR",
+    "runs_scored": "1",
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "release",
+      "confidence": 0.8,
+      "narrative": "The bowler delivered a good length ball outside off stump. The batsman is seen preparing to play a shot, likely along the ground towards the offside, as the ball is in flight."
+    },
+    "is_modal": true,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_105",
+    "ts": "2026-04-17T21:01:29",
+    "innings": "KKR",
+    "runs_scored": "4",
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "gemini_pred": {
+      "length": "full",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "shot",
+      "confidence": 0.9,
+      "narrative": "Bowler Ashok delivered a full ball on the stumps at 142.2 kph. Ramandeep Green played a front-foot drive, hitting the ball along the ground towards the offside."
+    },
+    "is_modal": false,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_127",
+    "ts": "2026-04-17T21:37:41",
+    "innings": "GT",
+    "runs_scored": "2",
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 offside",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "shot",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off-stump. The batsman played a shot along the ground, driving the ball towards the offside fielders."
+    },
+    "is_modal": true,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_128",
+    "ts": "2026-04-17T21:39:50",
+    "innings": "GT",
+    "runs_scored": "1",
+    "pipeline_pred": "short / off_stump / in_the_air \u2192 behind_wicket",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "release",
+      "confidence": 0.7,
+      "narrative": "The bowler completes his run-up and releases a good length delivery on the stumps. Right-handed batsman Sudharsan plays an along-the-ground shot, scoring a single run, advancing the team's score from 8/0 to 9/0 at the end of the over."
+    },
+    "is_modal": false,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_006",
+    "ts": "2026-04-17T21:52:28",
+    "innings": "GT",
+    "runs_scored": "0",
+    "pipeline_pred": "good_length / down_leg / along_ground \u2192 legside",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "release",
+      "confidence": 0.9,
+      "narrative": "The bowler runs up and delivers a good length ball just outside off-stump. The batsman plays a grounded shot towards the offside, successfully defending the delivery."
+    },
+    "is_modal": true,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_003",
+    "ts": "2026-04-17T22:06:50",
+    "innings": "GT",
+    "runs_scored": "1",
+    "pipeline_pred": "short / down_leg / along_ground \u2192 offside",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "on_stumps",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "shot",
+      "confidence": 0.75,
+      "narrative": "Bowler Anukul delivers a good length ball attacking the stumps. The batsman plays a shot, keeping the ball along the ground, likely towards the offside field."
+    },
+    "is_modal": false,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_005",
+    "ts": "2026-04-17T22:07:52",
+    "innings": "GT",
+    "runs_scored": "4",
+    "pipeline_pred": "short / wide_outside_off / along_ground \u2192 legside",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "shot",
+      "confidence": 0.9,
+      "narrative": "The bowler delivered a good length ball outside off-stump. The batsman played a firm drive along the ground towards the offside, scoring four runs."
+    },
+    "is_modal": true,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_008",
+    "ts": "2026-04-17T22:10:33",
+    "innings": "GT",
+    "runs_scored": "1",
+    "pipeline_pred": "yorker / down_leg / along_ground \u2192 offside",
+    "gemini_pred": {
+      "length": "full",
+      "line": "outside_off",
+      "shot": "in_the_air",
+      "direction": "offside",
+      "phase": "shot",
+      "confidence": 0.9,
+      "narrative": "The bowler bowled a full delivery outside off stump. The batter played an aggressive, aerial shot on the offside, connecting well and sending the ball high."
+    },
+    "is_modal": false,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  },
+  {
+    "id": "delivery_017",
+    "ts": "2026-04-17T22:16:37",
+    "innings": "GT",
+    "runs_scored": "1",
+    "pipeline_pred": "good_length / leg_stump / along_ground \u2192 straight",
+    "gemini_pred": {
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "phase": "shot",
+      "confidence": 0.9,
+      "narrative": "A right-arm bowler delivers a good length ball outside the off-stump. The right-handed batsman, Buttler, plays a front-foot drive, hitting the ball along the ground towards the offside."
+    },
+    "is_modal": true,
+    "cricbuzz_label": null,
+    "cricbuzz_text": null
+  }
+]

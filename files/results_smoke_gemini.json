@@ -1,0 +1,78 @@
+[
+  {
+    "clip": "ball_test_clip_30fps.mp4",
+    "truth": "Clip 1 (15s) \u2014 LEFT-handed Pant, played square of wicket",
+    "wall_s": 12.46,
+    "result": {
+      "length": "good_length",
+      "line": "outside_off",
+      "bowling_angle": "over",
+      "bounce": "normal",
+      "shot_type": "along_ground",
+      "shot_elevation": "along_ground",
+      "shot_action": "defend",
+      "shot_intent": "defended",
+      "shot_direction": {
+        "side": "off",
+        "zone": "mid",
+        "confidence": "high"
+      },
+      "swing_or_seam": "not_visible",
+      "ball_speed_visible": false,
+      "ball_speed_kph_vlm": null,
+      "runs": 0,
+      "detections": 0,
+      "detection_rate": 0.0,
+      "commentary_line": "medium, good length, outside off, defended into the mid, along the ground",
+      "batsman_handed": "left",
+      "bowling_arm": "left",
+      "bowling_type": "medium",
+      "contact_quality": "middled",
+      "narrative": "The left-arm bowler delivers a good length ball outside off stump. The left-handed batsman leans forward and plays a solid defensive shot toward the off side, making clean contact along the ground.",
+      "_method": "gemini",
+      "_gemini_model": "gemini-3-flash-preview",
+      "_gemini_ms": 12460,
+      "_gemini_confidence": "high",
+      "_gemini_raw": "{\"is_valid_delivery\": true, \"batsman_handed\": \"left\", \"bowling_arm\": \"left\", \"bowling_angle\": \"over_the_wicket\", \"bowling_type\": \"medium\", \"length\": \"good_length\", \"line\": \"outside_off\", \"bounce\": \"normal\", \"shot_played\": true, \"shot_type\": \"defend\", \"shot_side\": \"off\", \"shot_angle\": \"mid\", \"elevation\": \"along_ground\", \"contact_quality\": \"middled\", \"narrative\": \"The left-arm bowler delivers a good length ball outside off stump. The left-handed batsman leans forward and plays a solid defensive shot toward the off side, making clean contact along the ground.\", \"confidence\": \"high\"}",
+      "_is_valid_delivery": true
+    }
+  },
+  {
+    "clip": "ball_test_clip_60fps_long.mp4",
+    "truth": "Clip 3 (45s) \u2014 SHORT delivery, steep bounce, dab (right-handed)",
+    "wall_s": 16.31,
+    "result": {
+      "length": "short_of_length",
+      "line": "outside_off",
+      "bowling_angle": "over",
+      "bounce": "steep",
+      "shot_type": "defended",
+      "shot_elevation": "unknown",
+      "shot_action": "pull",
+      "shot_intent": "missed",
+      "shot_direction": {
+        "side": "leg",
+        "zone": "square",
+        "confidence": "high"
+      },
+      "swing_or_seam": "not_visible",
+      "ball_speed_visible": false,
+      "ball_speed_kph_vlm": null,
+      "runs": 0,
+      "detections": 0,
+      "detection_rate": 0.0,
+      "commentary_line": "fast, short of a length, outside off, steep bounce, pulled square of the wicket, beaten",
+      "batsman_handed": "right",
+      "bowling_arm": "right",
+      "bowling_type": "fast",
+      "contact_quality": "beaten",
+      "narrative": "A right-arm fast bowler delivers a short-of-length delivery over the wicket that rises sharply towards the batter. The right-handed batsman attempts an aggressive pull shot to the leg side but is beaten by the extra bounce, and the ball carries through to the wicketkeeper.",
+      "_method": "gemini",
+      "_gemini_model": "gemini-3-flash-preview",
+      "_gemini_ms": 16304,
+      "_gemini_confidence": "high",
+      "_gemini_raw": "{\"is_valid_delivery\": true, \"batsman_handed\": \"right\", \"bowling_arm\": \"right\", \"bowling_angle\": \"over_the_wicket\", \"bowling_type\": \"fast\", \"length\": \"short_of_length\", \"line\": \"outside_off\", \"bounce\": \"steep\", \"shot_played\": true, \"shot_type\": \"pull\", \"shot_side\": \"leg\", \"shot_angle\": \"square\", \"elevation\": \"no_shot\", \"contact_quality\": \"beaten\", \"narrative\": \"A right-arm fast bowler delivers a short-of-length delivery over the wicket that rises sharply towards the batter. The right-handed batsman attempts an aggressive pull shot to the leg side but is beaten by the extra bounce, and the ball ",
+      "_is_valid_delivery": true
+    }
+  }
+]

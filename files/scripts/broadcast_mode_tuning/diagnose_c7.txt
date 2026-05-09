@@ -1,0 +1,56 @@
+=== Per-frame signals for t=1755-1768 ===
+
+   t | V S M M2 W K SS SSlo CG HARD | A B C D | path | rc
+---------------------------------------------------------
+1755 | n Y Y  n n Y  Y    n  Y    n | n n n n | none | 1
+1756 | n n Y  n n Y  Y    n  n    n | n n n n | none | 2
+1757 | Y n Y  Y Y n  Y    n  Y    n | n Y Y n |    B | 6
+1758 | Y n Y  n n n  Y    n  n    n | n n n n | none | 2
+1759 | n n Y  n Y Y  Y    n  n    n | n n n n | none | 2
+1760 | n n Y  n Y Y  Y    n  Y    n | n n n n | none | 1
+1761 | n n Y  n Y n  Y    Y  Y    n | n n n n | none | 2
+1762 | Y n Y  n Y Y  Y    n  Y    n | n Y n n |    B | 1
+1763 | n n Y  n Y n  Y    n  Y    n | n n n n | none | 2
+1764 | Y n Y  Y Y Y  Y    n  Y    n | n Y Y Y |    B | 4
+1765 | n n Y  n Y n  Y    n  Y    n | n n n n | none | 2
+1766 | n n Y  n n Y  Y    n  Y    n | n n n n | none | 1
+1767 | n n Y  n n n  Y    n  Y    n | n n n n | none | 1
+1768 | n n Y  n n Y  Y    n  Y    n | n n n n | none | 1
+
+=== Spotlight: t=1757 ===
+  V=Y S=n M=Y M2=Y W=Y K=n SS=Y(n) CG=Y HARD=n rc=6
+  K2 (K OR (SS AND CG)) = Y
+  Path A fires: n (need V+S+(W|M2))
+  Path B fires: Y (need V+M+W+K2+SS)
+  Path C fires: Y (need M2+W+K2+SS)
+  Path D fires: n (need V+M2+K+SS)
+  Final classification: path=B is_delivery=True
+
+  Prose:
+    The camera shows a wide field view of a cricket pitch with several players positioned around it. The bowler is captured in mid-action, having just released the ball, while two batters stand at the wickets, and another player crouches behind them. A wicket-keeper is positioned behind the bowler.
+    
+    The frame features several graphical overlays, including a score graphic at the bottom displaying the teams' names, scores, and standings, as well as sponsor logos and player statistics. The action level appears to be one of active play, as the bowler has just released the ball and the players are in motion.
+
+=== Cluster builder trace, t=1755-1768 ===
+  t=1755: idle (HARD=n D=n path=none)
+  t=1756: idle (HARD=n D=n path=none)
+  t=1757: OPEN cluster (path=B)
+  t=1758: gap=1 (D=N path=none)
+  t=1759: gap=2 (D=N path=none)
+  t=1760: gap=3 (D=N path=none)
+  t=1761: gap>3 -> close at last_d=1757
+  t=1762: OPEN cluster (path=B)
+  t=1763: gap=1 (D=N path=none)
+  t=1764: extend cluster (path=B), last_d=1764
+  t=1765: gap=1 (D=N path=none)
+  t=1766: gap=2 (D=N path=none)
+  t=1767: gap=3 (D=N path=none)
+  t=1768: gap>3 -> close at last_d=1764
+
+=== Closed clusters: 2 ===
+  start=1757 end=1757 reason=gap>3 delivery_count=1 any_v=Y pass_min_run(2)=n pass_v_filter=Y
+  start=1762 end=1764 reason=gap>3 delivery_count=2 any_v=Y pass_min_run(2)=Y pass_v_filter=Y
+
+=== build_clusters() output (cross-check) ===
+  Found 1 cluster(s)
+  cluster 1762-1764s (3 frames)

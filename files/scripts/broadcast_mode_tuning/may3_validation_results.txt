@@ -1,0 +1,172 @@
+════════════════════
+[CLIP d001]
+duration=12.50s
+mp4: files/logs/deliveries/20260503_205835/d001/delivery_window.mp4
+event_ts: at 10.00s in clip
+BMF (motion-based):
+- no opens
+Scout/BB (semantic):
+- no spans
+Scout raw tags (cam/phase per 1Hz frame):
+   0.00s  cam=ad  phase=advertisement
+   1.01s  cam=ad  phase=advertisement
+   2.01s  cam=ad  phase=advertisement
+   3.02s  cam=closeup  phase=between_play
+   4.03s  cam=closeup  phase=between_play
+   5.03s  cam=closeup  phase=between_play
+   6.04s  cam=closeup  phase=between_play
+   7.05s  cam=closeup  phase=between_play
+   8.06s  cam=closeup  phase=between_play
+   9.06s  cam=graphic  phase=graphic
+════════════════════
+════════════════════
+[CLIP d002]
+duration=12.50s
+mp4: files/logs/deliveries/20260503_205835/d002/delivery_window.mp4
+event_ts: at 10.00s in clip
+BMF (motion-based):
+- no opens
+Scout/BB (semantic):
+- no spans
+Scout raw tags (cam/phase per 1Hz frame):
+   0.00s  cam=other  phase=between_play
+   1.00s  cam=other  phase=between_play
+   2.01s  cam=other  phase=between_play
+   3.01s  cam=graphic  phase=graphic
+   4.01s  cam=graphic  phase=graphic
+   5.02s  cam=graphic  phase=graphic
+   6.02s  cam=graphic  phase=graphic
+   7.03s  cam=graphic  phase=graphic
+   8.03s  cam=closeup  phase=between_play
+   9.03s  cam=other  phase=between_play
+════════════════════
+════════════════════
+[CLIP d003]
+duration=12.50s
+mp4: files/logs/deliveries/20260503_205835/d003/delivery_window.mp4
+event_ts: at 10.00s in clip
+BMF (motion-based):
+- no opens
+Scout/BB (semantic):
+- no spans
+Scout raw tags (cam/phase per 1Hz frame):
+   0.00s  cam=bowlers_end  phase=between_play
+   0.99s  cam=bowlers_end  phase=between_play
+   1.99s  cam=bowlers_end  phase=between_play
+   2.98s  cam=closeup  phase=between_play
+   3.98s  cam=None  phase=between_play
+   4.97s  cam=None  phase=between_play
+   5.96s  cam=closeup  phase=between_play
+   6.96s  cam=closeup  phase=between_play
+   7.95s  cam=closeup  phase=between_play
+   8.95s  cam=closeup  phase=between_play
+   9.94s  cam=closeup  phase=between_play
+════════════════════
+════════════════════
+[CLIP d004]
+duration=12.50s
+mp4: files/logs/deliveries/20260503_205835/d004/delivery_window.mp4
+event_ts: at 10.00s in clip
+BMF (motion-based):
+- no opens
+Scout/BB (semantic):
+- span at 1.00-3.01s (between_play*@1.0, release@2.0, between_play*@3.0)
+Scout raw tags (cam/phase per 1Hz frame):
+   0.00s  cam=closeup  phase=between_play
+   1.00s  cam=bowlers_end  phase=between_play
+   2.01s  cam=bowlers_end  phase=release
+   3.01s  cam=bowlers_end  phase=between_play
+   4.01s  cam=closeup  phase=between_play
+   5.01s  cam=closeup  phase=between_play
+   6.02s  cam=closeup  phase=between_play
+   7.02s  cam=closeup  phase=between_play
+   8.02s  cam=closeup  phase=between_play
+   9.02s  cam=closeup  phase=between_play
+════════════════════
+════════════════════
+[CLIP d005]
+duration=12.50s
+mp4: files/logs/deliveries/20260503_205835/d005/delivery_window.mp4
+event_ts: at 10.00s in clip
+BMF (motion-based):
+- no opens
+Scout/BB (semantic):
+- span at 0.00-4.02s (shot@0.0, release@2.0, between_play*@3.0, between_play*@4.0)
+Scout raw tags (cam/phase per 1Hz frame):
+   0.00s  cam=bowlers_end  phase=shot
+   1.00s  cam=closeup  phase=between_play
+   2.01s  cam=bowlers_end  phase=release
+   3.01s  cam=bowlers_end  phase=between_play
+   4.02s  cam=bowlers_end  phase=between_play
+   5.02s  cam=ad  phase=advertisement
+   6.03s  cam=graphic  phase=graphic
+   7.03s  cam=bowlers_end  phase=between_play
+   8.04s  cam=bowlers_end  phase=between_play
+   9.04s  cam=bowlers_end  phase=between_play
+════════════════════
+════════════════════
+[CLIP d006]
+duration=12.50s
+mp4: files/logs/deliveries/20260503_205835/d006/delivery_window.mp4
+event_ts: at 10.00s in clip
+BMF (motion-based):
+- no opens
+Scout/BB (semantic):
+- no spans
+Scout raw tags (cam/phase per 1Hz frame):
+   0.00s  cam=closeup  phase=between_play
+   1.00s  cam=closeup  phase=between_play
+   2.00s  cam=closeup  phase=between_play
+   3.00s  cam=other  phase=between_play
+   3.99s  cam=other  phase=between_play
+   4.99s  cam=other  phase=between_play
+   5.99s  cam=other  phase=between_play
+   6.99s  cam=closeup  phase=between_play
+   7.99s  cam=closeup  phase=between_play
+   8.99s  cam=other  phase=between_play
+════════════════════
+════════════════════
+[CLIP d007]
+duration=12.50s
+mp4: files/logs/deliveries/20260503_205835/d007/delivery_window.mp4
+event_ts: at 10.00s in clip
+BMF (motion-based):
+- no opens
+Scout/BB (semantic):
+- span at 0.00-1.99s (release@0.0, between_play*@1.0, between_play*@2.0)
+- span at 5.96-5.96s (release@6.0)
+Scout raw tags (cam/phase per 1Hz frame):
+   0.00s  cam=bowlers_end  phase=release
+   0.99s  cam=bowlers_end  phase=between_play
+   1.99s  cam=bowlers_end  phase=between_play
+   2.98s  cam=closeup  phase=between_play
+   3.97s  cam=closeup  phase=between_play
+   4.97s  cam=closeup  phase=between_play
+   5.96s  cam=bowlers_end  phase=release
+   6.95s  cam=closeup  phase=fielder_reaction
+   7.95s  cam=closeup  phase=fielder_reaction
+   8.94s  cam=closeup  phase=between_play
+   9.93s  cam=closeup  phase=between_play
+════════════════════
+════════════════════
+[CLIP d008]
+duration=12.50s
+mp4: files/logs/deliveries/20260503_205835/d008/delivery_window.mp4
+event_ts: at 10.00s in clip
+BMF (motion-based):
+- no opens
+Scout/BB (semantic):
+- no spans
+Scout raw tags (cam/phase per 1Hz frame):
+   0.00s  cam=closeup  phase=between_play
+   1.00s  cam=closeup  phase=between_play
+   1.99s  cam=graphic  phase=graphic
+   2.99s  cam=closeup  phase=between_play
+   3.98s  cam=closeup  phase=between_play
+   4.98s  cam=closeup  phase=between_play
+   5.97s  cam=closeup  phase=between_play
+   6.97s  cam=closeup  phase=between_play
+   7.97s  cam=closeup  phase=between_play
+   8.96s  cam=closeup  phase=between_play
+   9.96s  cam=graphic  phase=graphic
+════════════════════

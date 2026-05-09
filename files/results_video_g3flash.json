@@ -1,0 +1,66 @@
+[
+  {
+    "clip": "ball_test_clip_30fps.mp4",
+    "truth": "Clip 1 (15s) \u2014 LEFT-handed batsman, played square of wicket",
+    "model": "gemini-3-flash-preview",
+    "structured": {
+      "wall_ms": 15333,
+      "raw": "{\"is_valid_delivery\": true, \"batsman_handed\": \"left\", \"bowling_angle\": \"over\", \"length\": \"good_length\", \"line\": \"middle\", \"bounce\": \"normal\", \"shot_played\": true, \"footwork\": \"crease\", \"shot_type\": \"defend\", \"shot_side\": \"leg\", \"shot_angle\": \"mid_on\", \"elevation\": \"along_ground\", \"bowler_speed_kph\": null, \"bowler_name\": \"McCOY\", \"batsman_name\": \"PANT\", \"narrative\": \"Obed McCoy bowls a good length delivery on middle stump to Rishabh Pant, who defends it towards the mid-on region.\", \"confidence\": \"high\"}",
+      "parsed": {
+        "is_valid_delivery": true,
+        "batsman_handed": "left",
+        "bowling_angle": "over",
+        "length": "good_length",
+        "line": "middle",
+        "bounce": "normal",
+        "shot_played": true,
+        "footwork": "crease",
+        "shot_type": "defend",
+        "shot_side": "leg",
+        "shot_angle": "mid_on",
+        "elevation": "along_ground",
+        "bowler_speed_kph": null,
+        "bowler_name": "McCOY",
+        "batsman_name": "PANT",
+        "narrative": "Obed McCoy bowls a good length delivery on middle stump to Rishabh Pant, who defends it towards the mid-on region.",
+        "confidence": "high"
+      }
+    },
+    "commentator": {
+      "wall_ms": 11189,
+      "raw": "Obed McCoy runs in left-arm over the wicket and delivers a full-length ball outside off stump to the left-handed Rishabh Pant. Pant plays a defensive push towards point, where the fielder gathers it cleanly for no run. The scoreboard shows India at 17 for 2 in the third over, with McCoy maintaining exceptional figures of two wickets for no runs."
+    }
+  },
+  {
+    "clip": "ball_test_clip_60fps_long.mp4",
+    "truth": "Clip 3 (45s) \u2014 SHORT delivery, steep bounce, dab",
+    "model": "gemini-3-flash-preview",
+    "structured": {
+      "wall_ms": 16230,
+      "raw": "{\"is_valid_delivery\": true, \"batsman_handed\": \"right\", \"bowling_angle\": \"over\", \"length\": \"short\", \"line\": \"middle\", \"bounce\": \"steep\", \"shot_played\": true, \"footwork\": \"crease\", \"shot_type\": \"pull\", \"shot_side\": \"no_shot\", \"shot_angle\": \"no_shot\", \"elevation\": \"no_shot\", \"bowler_speed_kph\": 137, \"bowler_name\": \"Joseph\", \"batsman_name\": \"Hardik\", \"narrative\": \"Alzarri Joseph delivers a short, steep bouncer at 137 kph to Hardik Pandya, who attempts a pull shot but fails to make contact.\", \"confidence\": \"high\"}",
+      "parsed": {
+        "is_valid_delivery": true,
+        "batsman_handed": "right",
+        "bowling_angle": "over",
+        "length": "short",
+        "line": "middle",
+        "bounce": "steep",
+        "shot_played": true,
+        "footwork": "crease",
+        "shot_type": "pull",
+        "shot_side": "no_shot",
+        "shot_angle": "no_shot",
+        "elevation": "no_shot",
+        "bowler_speed_kph": 137,
+        "bowler_name": "Joseph",
+        "batsman_name": "Hardik",
+        "narrative": "Alzarri Joseph delivers a short, steep bouncer at 137 kph to Hardik Pandya, who attempts a pull shot but fails to make contact.",
+        "confidence": "high"
+      }
+    },
+    "commentator": {
+      "wall_ms": 11834,
+      "raw": "Alzarri Joseph runs in and delivers a 137 kph length ball to the right-handed Hardik Pandya. Hardik stays in his crease and defends the ball solidly back down the pitch for a dot ball. The scoreboard shows India at 44 for 3 as Joseph finishes the fourth ball of his second over."
+    }
+  }
+]

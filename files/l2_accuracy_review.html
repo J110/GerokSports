@@ -1,0 +1,209 @@
+<!doctype html>
+<html><head><meta charset=utf-8><title>L2-DENSIFY Accuracy Check (n=12)</title>
+<style>
+  body { font: 14px/1.4 system-ui, sans-serif; margin: 1.5em; max-width: 900px; color: #222; }
+  h1 { border-bottom: 2px solid #2563eb; padding-bottom: .3em; }
+  .card { margin: 1.2em 0; padding: 1em; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+  .card h2 { margin: 0 0 .3em 0; font-size: 1.05em; }
+  .ctx { color: #555; margin: .2em 0 .6em 0; font-size: .9em; }
+  video { display: block; margin-bottom: .6em; border-radius: 4px; }
+  table { border-collapse: collapse; width: 100%; font-size: .9em; }
+  th, td { border: 1px solid #ddd; padding: 4px 8px; text-align: left; }
+  th { background: #eee; }
+  td input { width: 100%; border: 1px solid #bbb; padding: 2px 4px; font-family: monospace; }
+  .note input { font-family: sans-serif; font-size: .9em; }
+  summary { cursor: pointer; font-weight: 600; }
+</style></head>
+<body>
+<h1>L2-DENSIFY accuracy check — 12 deliveries, MI vs CSK (n_burst=30)</h1>
+<details><summary>Aggregate patterns across all 71 samples (hover-reveal)</summary>
+<pre>
+length:        short_of_length=35  good_length=36  [NO full/short/yorker/bouncer committed — binary collapse]
+line:          unknown=42          leg_stump=17    outside_off=10  down_leg=2  [no on_stumps/middle]
+bounce:        normal=70           steep=1         [modal collapse risk]
+bowling_type:  medium=52           unknown=15      fast=3          spin=1  [always suppressed — not in UI]
+shot_type:     pull=56             cut=10          defend=3        flick=1  [79% pull — modal collapse risk]
+</pre>
+</details>
+<p>For each clip, watch the delivery and fill in the actual truth columns. Bowler name shown from pipeline — cross-check against the scoreboard overlay in the clip itself.</p>
+
+<section class="card" id="s1">
+  <h2>#1 — 20260423_205558/d003 · Over 16.5 · WICKET (0 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>Jasprit Bumrah 1-20</b> · Batters: <b>Sanju Samson(78) Kartik Sharma(18)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_205558/d003/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>short_of_length</td><td>0.8</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>unknown</td><td>0.0</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>unknown</td><td>0.0</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.7</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s2">
+  <h2>#2 — 20260423_205558/d015 · Over 18.3 · 1_RUNS (1 run)</h2>
+  <p class="ctx">Bowler (pipeline): <b>Jasprit Bumrah 1-24</b> · Batters: <b>Sanju Samson*(80) Jamie Overton(15)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_205558/d015/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>short_of_length</td><td>0.9</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>leg_stump</td><td>0.9</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.8</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.8</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s3">
+  <h2>#3 — 20260423_200954/d011 · Over 9.5 · SIX (6 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>Mitchell Santner 1-24</b> · Batters: <b>Sanju Samson*(48) Dewald Brevis(10)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_200954/d011/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>good_length</td><td>0.9</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>leg_stump</td><td>0.9</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>steep</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.8</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>flick</td><td>0.9</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s4">
+  <h2>#4 — 20260423_200954/d010 · Over 9.4 · DOT (0 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>Mitchell Santner 1-18</b> · Batters: <b>Sanju Samson*(48) Dewald Brevis(10)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_200954/d010/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>short_of_length</td><td>0.8</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>leg_stump</td><td>0.9</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.7</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.8</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s5">
+  <h2>#5 — 20260423_200954/d016 · Over 10.3 · FOUR (4 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>Ashwani Kumar 1-14</b> · Batters: <b>Sanju Samson(53) Dewald Brevis*(17)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_200954/d016/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>good_length</td><td>0.9</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>leg_stump</td><td>0.9</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.8</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.9</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s6">
+  <h2>#6 — 20260423_200954/d036 · Over 13.5 · SIX (6 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>Ashwani Kumar 2-22</b> · Batters: <b>Sanju Samson(60) Kartik Sharma*(15)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_200954/d036/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>good_length</td><td>0.9</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>unknown</td><td>0.0</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.7</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.8</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s7">
+  <h2>#7 — 20260423_200954/d028 · Over 12.3 · DOT (0 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>Ashwani Kumar 2-20</b> · Batters: <b>Sanju Samson(58) Kartik Sharma(2)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_200954/d028/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>short_of_length</td><td>0.8</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>unknown</td><td>0.0</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.8</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>defend</td><td>0.7</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s8">
+  <h2>#8 — 20260423_200954/d046 · Over 15.3 · FOUR (4 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>AM Ghazanfar 2-35</b> · Batters: <b>Sanju Samson*(72) Kartik Sharma(18)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_200954/d046/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>good_length</td><td>0.9</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>leg_stump</td><td>0.9</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.7</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.8</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s9">
+  <h2>#9 — 20260423_200954/d045 · Over 15.2 · SIX (6 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>AM Ghazanfar 2-31</b> · Batters: <b>Sanju Samson(68) Kartik Sharma*(18)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_200954/d045/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>good_length</td><td>0.9</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>unknown</td><td>0.0</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.7</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.8</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s10">
+  <h2>#10 — 20260423_200954/d038 · Over 14.1 · 1_RUNS (1 run)</h2>
+  <p class="ctx">Bowler (pipeline): <b>AM Ghazanfar 2-22</b> · Batters: <b>Sanju Samson*(60) Kartik Sharma(17)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_200954/d038/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>short_of_length</td><td>0.8</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>leg_stump</td><td>0.9</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.7</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.8</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s11">
+  <h2>#11 — 20260423_211133/d006 · Over 19.4 · SIX (6 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>Krish Bhagat 0-27</b> · Batters: <b>Sanju Samson(97) Ruturaj Gaikwad(0)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_211133/d006/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>short_of_length</td><td>0.8</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>unknown</td><td>0.0</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>medium</td><td>0.7</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.9</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+
+<section class="card" id="s12">
+  <h2>#12 — 20260423_205558/d001 · Over 16.3 · DOT (0 runs)</h2>
+  <p class="ctx">Bowler (pipeline): <b>Jasprit Bumrah 0-0</b> · Batters: <b>Sanju Samson(0) Kartik Sharma(0)</b></p>
+  <video controls muted preload="metadata" src="file:///Users/anmolmohan/Projects/SportsComm/files/logs/deliveries/20260423_205558/d001/delivery_window.mp4" width="640" playsinline></video>
+  <table>
+    <tr><th></th><th>Model</th><th>Conf</th><th>Ground truth (you)</th></tr>
+    <tr><td>length</td><td>good_length</td><td>0.8</td><td><input placeholder="full/good/short_of/short/yorker/bouncer"></td></tr>
+    <tr><td>line</td><td>unknown</td><td>0.0</td><td><input placeholder="outside_off/on_stumps/leg_stump/down_leg/wide"></td></tr>
+    <tr><td>bounce</td><td>normal</td><td>0.9</td><td><input placeholder="normal/steep/low/shooter"></td></tr>
+    <tr><td>bowling_type</td><td>unknown</td><td>0.0</td><td><input placeholder="fast/medium/spin/off_spin/leg_spin/left_arm_spin"></td></tr>
+    <tr><td>shot_type</td><td>pull</td><td>0.8</td><td><input placeholder="drive/pull/cut/defend/leave/flick/sweep/pull/loft"></td></tr>
+  </table>
+  <p class="note">Notes: <input style="width:80%" placeholder="camera angle quality, bounce visibility, anything odd"></p>
+</section>
+</body></html>

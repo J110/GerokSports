@@ -1,0 +1,151 @@
+# Verdict: Weak
+Temporal action weak or span pass 14/15. Stop S3 fired (naive action min(P,R)<0.5 — recall dominates failure); span table kept for Section 5 audit.
+
+## Stop flags
+S3 (naive action min(P,R) <0.5): True
+S4 (temporal 4-class acc < naive): True
+
+## Temporal reclassification (naive action → temporal replay)
+{
+  "naive_action_frames_reclassified_to_replay": 7,
+  "of_those_with_ground_truth_replay": 1,
+  "of_those_with_ground_truth_action": 6,
+  "of_those_with_ground_truth_other_bucket": 0
+}
+
+## Failure pattern counts (temporal)
+{
+  "P1_action_as_other": 52,
+  "P1b_action_as_replay_demotion_or_model": 6,
+  "P3_umpire_frame": 8,
+  "P4_ad_other_cross": 4,
+  "P2_replay_as_action_after_temporal": 4,
+  "P5_other": 2
+}
+
+## Example paths (max 5 per pattern)
+{
+  "P1_action_as_other": [
+    "output/frames/20260420_214218_d001_1.jpg",
+    "output/frames/20260420_214218_d001_2.jpg",
+    "output/frames/20260420_214218_d001_4.jpg",
+    "output/frames/20260420_214218_d001_5.jpg",
+    "output/frames/20260420_214218_d002_9.jpg"
+  ],
+  "P1b_action_as_replay_demotion_or_model": [
+    "output/frames/20260420_214218_d001_3.jpg",
+    "output/frames/20260420_214218_d003_7.jpg",
+    "output/frames/20260420_214218_d003_8.jpg",
+    "output/frames/20260420_214218_d003_9.jpg",
+    "output/frames/20260420_214218_d003_11.jpg"
+  ],
+  "P3_umpire_frame": [
+    "output/frames/20260420_214218_d002_14.jpg",
+    "output/frames/20260420_214218_d002_15.jpg",
+    "output/frames/20260420_214218_d004_21.jpg",
+    "output/frames/20260420_214218_d004_22.jpg",
+    "output/frames/20260420_214218_d004_23.jpg"
+  ],
+  "P4_ad_other_cross": [
+    "output/frames/20260420_214218_d004_0.jpg",
+    "output/frames/20260420_214218_d004_1.jpg",
+    "output/frames/20260420_214218_d004_2.jpg",
+    "output/frames/20260420_214218_d004_5.jpg"
+  ],
+  "P2_replay_as_action_after_temporal": [
+    "output/frames/20260430_195352_d102_6.jpg",
+    "output/frames/20260430_195352_d102_7.jpg",
+    "output/frames/20260430_195352_d102_8.jpg",
+    "output/frames/20260430_195352_d102_9.jpg"
+  ],
+  "P5_other": [
+    "output/frames/20260430_195352_d105_0.jpg",
+    "output/frames/20260430_195352_d105_9.jpg"
+  ]
+}
+
+## Span simulation (temporal labels, audit)
+{
+  "positive_pass": 9,
+  "positive_total": 9,
+  "negative_pass": 5,
+  "negative_total": 6,
+  "clip_pass_total": 14,
+  "clip_denominator": 15
+}
+
+## Umpire frames (Scout behavior)
+[
+  {
+    "frame_path": "output/frames/20260420_214218_d002_14.jpg",
+    "scout_label_naive": "other",
+    "scout_label_temporal": "other",
+    "frame_type": "SCOREBOARD",
+    "last_camera_view": "closeup",
+    "last_frame_phase": "between_play",
+    "description_preview": "STRIP: GT 9-2 (1.4) | Gill 4(2) | Washington 4(1) | Hardik 1-8 (0.4)\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe on-field personnel appear to be discussing or strategizing during a break in play."
+  },
+  {
+    "frame_path": "output/frames/20260420_214218_d002_15.jpg",
+    "scout_label_naive": "other",
+    "scout_label_temporal": "other",
+    "frame_type": "SCOREBOARD",
+    "last_camera_view": "closeup",
+    "last_frame_phase": "between_play",
+    "description_preview": "STRIP: GT 9-2 (1.4) | Washington 4(2) | Gill 0(1) | Hardik 1-8 (0.4)"
+  },
+  {
+    "frame_path": "output/frames/20260420_214218_d004_21.jpg",
+    "scout_label_naive": "other",
+    "scout_label_temporal": "other",
+    "frame_type": "SCOREBOARD",
+    "last_camera_view": "closeup",
+    "last_frame_phase": "between_play",
+    "description_preview": "STRIP: GT 14-2 (1.5) | Washington 8(3) | Gill 0(1) | Hardik 1-13 (0.5)"
+  },
+  {
+    "frame_path": "output/frames/20260420_214218_d004_22.jpg",
+    "scout_label_naive": "other",
+    "scout_label_temporal": "other",
+    "frame_type": "SCOREBOARD",
+    "last_camera_view": "closeup",
+    "last_frame_phase": "between_play",
+    "description_preview": "STRIP: GT 15-2 (1.5) | Washington 8(3) | Gill 0(1) | \n\nINFO_PANEL: \nSPEED: 131.8 kph\nEXTRA: \nTHIS OVER: 4 W 4 WD 4 WD\nFULL SCORECARD: \n\nThe umpire or a team member appears to be celebrating or reacting to a wide ball or a dismissal."
+  },
+  {
+    "frame_path": "output/frames/20260420_214218_d004_23.jpg",
+    "scout_label_naive": "other",
+    "scout_label_temporal": "other",
+    "frame_type": "SCOREBOARD",
+    "last_camera_view": "closeup",
+    "last_frame_phase": "between_play",
+    "description_preview": "STRIP: GT 15-2 (1.5) | Washington 8(3) | Gill 0(1) | \n\nINFO_PANEL: \nSPEED: 131.8 \nEXTRA: \nTHIS OVER: 4 W 4 WD 4 WD \nFULL SCORECARD: \n\nThe camera shows two players standing still, likely during a break in play."
+  },
+  {
+    "frame_path": "output/frames/20260420_214218_d007_11.jpg",
+    "scout_label_naive": "other",
+    "scout_label_temporal": "other",
+    "frame_type": "SCOREBOARD",
+    "last_camera_view": "closeup",
+    "last_frame_phase": "between_play",
+    "description_preview": "STRIP: GT 19-2 (2.1) | Washington 12(4) | Gill > 4(2) | \nINFO_PANEL: \nSPEED: 141.1 kph\nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \nThe game is currently paused with a bowler and a team staff member on the field."
+  },
+  {
+    "frame_path": "output/frames/20260420_214218_d007_12.jpg",
+    "scout_label_naive": "other",
+    "scout_label_temporal": "other",
+    "frame_type": "SCOREBOARD",
+    "last_camera_view": "closeup",
+    "last_frame_phase": "between_play",
+    "description_preview": "STRIP: GT 19-2 (2.1) | Washington 12(4) | Gill >0(2)\n\nSPEED: 141.1 kph"
+  },
+  {
+    "frame_path": "output/frames/20260420_214218_d007_13.jpg",
+    "scout_label_naive": "other",
+    "scout_label_temporal": "other",
+    "frame_type": "SCOREBOARD",
+    "last_camera_view": "closeup",
+    "last_frame_phase": "between_play",
+    "description_preview": "STRIP: GT 19-2 (2.1) | Washington 12(4) | Gill >0(2) |"
+  }
+]

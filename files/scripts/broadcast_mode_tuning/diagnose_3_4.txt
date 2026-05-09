@@ -1,0 +1,78 @@
+=== Per-frame signals for t=940-960 ===
+
+   t | V S M M2 W K SS SSlo CG HARD | A B C | path | rc
+-------------------------------------------------------
+ 940 | n Y Y  n n Y  Y    n  Y    n | n n n | none | 1
+ 941 | n Y Y  n n Y  Y    n  n    n | n n n | none | 1
+ 942 | n Y Y  n n Y  Y    n  n    n | n n n | none | 1
+ 943 | n n Y  n n Y  Y    n  Y    n | n n n | none | 1
+ 944 | n Y Y  Y n Y  Y    n  n    n | n n n | none | 2
+ 945 | n n Y  n Y Y  Y    n  Y    n | n n n | none | 2
+ 946 | Y n Y  n Y Y  Y    n  Y    n | n n n | none | 3
+ 947 | n n Y  Y Y Y  Y    n  Y    n | n n Y |    C | 3
+ 948 | n n Y  n Y n  Y    Y  Y    n | n n n | none | 3
+ 949 | n n Y  Y Y n  Y    Y  Y    n | n n Y |    C | 4
+ 950 | n Y Y  Y Y Y  Y    n  Y    n | n n Y |    C | 5
+ 951 | n n Y  n Y n  Y    n  Y    n | n n n | none | 2
+ 952 | n n Y  n Y Y  Y    Y  n    n | n n n | none | 2
+ 953 | n n Y  n Y Y  Y    n  Y    n | n n n | none | 2
+ 954 | n n Y  n Y Y  Y    n  Y    n | n n n | none | 2
+ 955 | n Y Y  n n Y  Y    n  n    n | n n n | none | 2
+ 956 | n n Y  n n n  Y    n  n    n | n n n | none | 1
+ 957 | n n Y  n n n  n    n  n    n | n n n | none | 2
+ 958 | n n Y  n n n  n    n  n    n | n n n | none | 1
+ 959 | n n n  n n Y  n    n  n    Y | n n n | none | 0
+ 960 | n n Y  n n n  Y    n  n    Y | n n n | none | 1
+
+=== Spotlight: t=945, 946, 947 ===
+
+  t=945: V=n S=n M=Y M2=n W=Y K=Y SS=Y(strict) CG=Y HARD=n rc=2
+        Path A fires: n (need V+S+(W|M2))
+        Path B fires: n (need V+M2+W+(K|SS&CG)+SS)
+        Path C fires: n (need M2+W+(K|SS&CG)+SS)
+        Final classification: path=none is_delivery=False
+        Missing for each path: ['A:V,S', 'B:V,M2', 'C:M2']
+
+  t=946: V=Y S=n M=Y M2=n W=Y K=Y SS=Y(strict) CG=Y HARD=n rc=3
+        Path A fires: n (need V+S+(W|M2))
+        Path B fires: n (need V+M2+W+(K|SS&CG)+SS)
+        Path C fires: n (need M2+W+(K|SS&CG)+SS)
+        Final classification: path=none is_delivery=False
+        Missing for each path: ['A:S', 'B:M2', 'C:M2']
+
+  t=947: V=n S=n M=Y M2=Y W=Y K=Y SS=Y(strict) CG=Y HARD=n rc=3
+        Path A fires: n (need V+S+(W|M2))
+        Path B fires: n (need V+M2+W+(K|SS&CG)+SS)
+        Path C fires: Y (need M2+W+(K|SS&CG)+SS)
+        Final classification: path=C is_delivery=True
+        Missing for each path: ['A:V,S', 'B:V']
+
+=== Cluster builder trace, t=940-960 ===
+
+  t=940: idle (HARD=n D=n)
+  t=941: idle (HARD=n D=n)
+  t=942: idle (HARD=n D=n)
+  t=943: idle (HARD=n D=n)
+  t=944: idle (HARD=n D=n)
+  t=945: idle (HARD=n D=n)
+  t=946: idle (HARD=n D=n)
+  t=947: OPEN cluster (path=C)
+  t=948: gap=1 (D=N path=none)
+  t=949: extend cluster (path=C), last_d=949
+  t=950: extend cluster (path=C), last_d=950
+  t=951: gap=1 (D=N path=none)
+  t=952: gap=2 (D=N path=none)
+  t=953: gap>2 -> close at last_d=950
+  t=954: idle (HARD=n D=n)
+  t=955: idle (HARD=n D=n)
+  t=956: idle (HARD=n D=n)
+  t=957: idle (HARD=n D=n)
+  t=958: idle (HARD=n D=n)
+  t=959: idle (HARD=Y D=n)
+  t=960: idle (HARD=Y D=n)
+
+=== Closed clusters in 940-960: 1 ===
+  start=947 end=950 reason=gap>2 delivery_count=3 any_v=n pass_min_run(2)=Y pass_v_filter=n
+
+=== build_clusters() output (for cross-check) ===
+  Found 0 cluster(s) in window [935, 965]

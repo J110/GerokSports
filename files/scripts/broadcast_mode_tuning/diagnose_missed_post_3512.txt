@@ -1,0 +1,423 @@
+=== Per-frame signals + prose for t=3520-3600 ===
+
+-- t=3520 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=n SS=Y SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a close-up shot of a single cricket player. The player is wearing a light blue jersey and cap, with his right hand raised to adjust or remove his cap. He appears to be looking to the left with his mouth open.  There are several graphical overlays at the bottom of the frame, includin
+          ... (735 total chars)
+
+-- t=3521 | path=none | D=0 | V=n V_post=n S=Y M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a close-up of a cricket player wearing a teal uniform and helmet, with their right hand raised to their face. The player appears to be celebrating or reacting to something.   The frame includes several graphical overlays, such as a score graphic at the bottom showing "DC 76-5" and "R
+          ... (595 total chars)
+
+-- t=3522 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=Y SS=n SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame are standing still, with one batter holding a bat and another player in a light blue uniform with their arm raised. There are graphical overlays including sponsor logos along the boundary
+          ... (468 total chars)
+
+-- t=3523 | path=none | D=0 | V=Y V_post=n S=n M=Y M2=Y W=Y K=Y SS=n SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket field with several players on it. The players are in motion; two batters are running toward one end of the pitch while a fielder appears to be throwing the ball and another fielder is running. A referee stands on the left side of the field. There are g
+          ... (512 total chars)
+
+-- t=3524 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=Y SS=n SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket match in progress. The players are actively running between wickets, with two players in orange uniforms sprinting down the pitch while other players in blue and orange uniforms are positioned around the field.   There are several graphical overlays vi
+          ... (557 total chars)
+
+-- t=3525 | path=none | D=0 | V=n V_post=n S=n M=Y M2=Y W=Y K=Y SS=n SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket match in progress. The players are positioned around the field, with two batters standing at the wickets and fielders scattered around; one batter appears to be preparing to play a shot while the other batter watches. A graphical overlay displays spons
+          ... (550 total chars)
+
+-- t=3526 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=Y SS=n SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket pitch with five players visible. The players are positioned around the pitch, with one player in a teal uniform bending down near the crease and another player in an orange uniform on the opposite side of the pitch.  There are several graphical overlay
+          ... (634 total chars)
+
+-- t=3527 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=Y SS=n SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket pitch with three players on it. The players are not actively engaged in play; one player in a blue uniform faces away from the camera, another player in a black uniform appears to be walking or jogging towards the left side of the frame, and a batter i
+          ... (721 total chars)
+
+-- t=3528 | path=none | D=0 | V=Y V_post=Y S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a batter in mid-air, having just played a shot. The batter is wearing an orange uniform with blue accents and protective gear, and is swinging their bat to the right. The batter appears to have just jumped up and rotated their body to hit the ball.  There are several graphical overl
+          ... (580 total chars)
+
+-- t=3529 | path=none | D=0 | V=n V_post=n S=n M=Y M2=Y W=Y K=Y SS=n SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket player standing on the pitch. The player, wearing an orange and blue uniform, blue helmet, and white gloves, is holding a cricket bat and appears to be preparing to play.   There are graphical overlays in the top-left corner featuring logos for the Tat
+          ... (636 total chars)
+
+-- t=3530 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a cricket player in an orange uniform and blue helmet crouching low to the ground, likely reacting to a delivery. A wicketkeeper in a white uniform and cap stands behind him, holding a blue cricket bat. The scene appears to be a moment of active play or immediately after, with the p
+          ... (475 total chars)
+
+-- t=3531 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a medium shot of a single cricket player standing on the field. The player, wearing a light blue uniform with "ETIHAD AIRWAYS" on the chest, appears to be looking up with his hands clasped in front of him. In the background, spectators are visible sitting in the stands and standing 
+          ... (434 total chars)
+
+-- t=3532 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a close-up shot of a single cricket player. The player is wearing a teal uniform with various sponsor logos on the sleeves and torso. He appears to be emotionally distraught, with his head tilted back and his hands clasped in front of him.  There are graphical overlays in the top co
+          ... (584 total chars)
+
+-- t=3533 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a close-up of a single cricket player. The player is wearing a teal uniform with black stripes and sponsor logos on the sleeves. He appears to be celebrating, with his right arm raised and his head tilted back.  There are graphical overlays in the top corners of the frame, including
+          ... (603 total chars)
+
+-- t=3534 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a promotional graphic for the TATA IPL. There are no people in the frame.  There are several graphical overlays, including a large TATA IPL logo with a silhouette of a cricket player swinging a bat, a smaller TATA IPL logo in the top-left corner, and a JioHotstar LIVE tag in the top
+          ... (384 total chars)
+
+-- t=3535 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=Y CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket stadium with a crowd of people watching the game. The people in the frame are seated and appear to be watching the game, with no players visible on the field. There are graphical overlays at the bottom of the screen displaying information such as the s
+          ... (546 total chars)
+
+-- t=3536 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=Y CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a crowded stadium with a cricket field on the right side. The people in the frame are primarily spectators sitting in the stands, with no players visible on the field. There are graphical overlays at the bottom of the screen displaying information such as team n
+          ... (456 total chars)
+
+-- t=3537 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=Y K=Y SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a crowded stadium during a cricket match. The people in the frame are primarily spectators sitting in the stands, with a few people standing and walking around.   There are several graphical overlays on the frame, including a score graphic at the bottom that dis
+          ... (555 total chars)
+
+-- t=3538 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=Y CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a crowded stadium during a cricket match. The people in the frame are spectators sitting or standing in the stands, watching the game.   There are graphical overlays at the bottom of the screen displaying information about the teams, scores, and player statistic
+          ... (452 total chars)
+
+-- t=3539 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=Y CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a packed stadium with a large crowd of people, primarily wearing blue and orange clothing. The people in the frame appear to be watching the game intently, with some standing up and cheering.   There are graphical overlays at the bottom of the screen displaying information about the
+          ... (569 total chars)
+
+-- t=3540 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=Y CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide-angle view of a crowded stadium with spectators seated in the stands. The people in the frame are watching the game, with many standing and cheering.   There are graphical overlays at the bottom of the screen displaying information about the game, including the score, team na
+          ... (434 total chars)
+
+-- t=3541 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=n SS=Y SS_loose=Y CG=n HARD=n | STRONG=- --
+   prose: The camera shows a wide shot of a crowded stadium filled with spectators. The people in the frame are seated and appear to be watching the game, with some standing up and cheering.   There are graphical overlays at the bottom of the screen displaying information about the game, including the score, 
+          ... (453 total chars)
+
+-- t=3542 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=n SS=Y SS_loose=Y CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide shot of a crowded stadium during a cricket match. The people in the frame are seated and appear to be watching the game, with some standing up and looking around.   There are graphical overlays at the bottom of the screen displaying information about the game, including the t
+          ... (548 total chars)
+
+-- t=3543 | path=C | D=1 | V=n V_post=n S=Y M=Y M2=Y W=Y K=Y SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame appear to be in a moment between deliveries, with one batter standing at the wicket and another near the non-striker's end, while fielders are positioned around the pitch and an umpire st
+          ... (680 total chars)
+
+-- t=3544 | path=C | D=1 | V=n V_post=n S=n M=Y M2=Y W=Y K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket pitch with players positioned around it. The players are standing still, with one batter holding a bat and ready to play, and another batter walking toward the wicket; a wicketkeeper and fielder are positioned behind the batter.   There are several gra
+          ... (598 total chars)
+
+-- t=3545 | path=none | D=0 | V=Y V_post=Y S=n M=Y M2=Y W=n K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a medium shot of a cricket player in the middle of the frame, with a wicketkeeper behind him and another player in the bottom-right corner. The batter is wearing an orange and blue uniform and is mid-swing with his bat, while the wicketkeeper is crouched down behind the wickets, wea
+          ... (707 total chars)
+
+-- t=3546 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket field with players scattered around. The players are standing still or walking around the field, with no one actively engaged in a specific action like bowling or batting; they appear to be between deliveries.   There are several graphical overlays on 
+          ... (565 total chars)
+
+-- t=3547 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket field with players scattered around. The players are standing still or walking around the field, with no one actively running or in motion. There are several graphical overlays on the screen, including a score graphic at the bottom showing the score an
+          ... (540 total chars)
+
+-- t=3548 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=Y SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket field with players on it. The people in the frame are primarily players standing around the field, with some appearing to be in motion and others stationary; there are no players actively engaged in a specific action like bowling or batting at this mom
+          ... (722 total chars)
+
+-- t=3549 | path=C | D=1 | V=n V_post=n S=n M=Y M2=Y W=Y K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket field with players scattered around. The people in the frame are primarily focused on their positions on the field; one player appears to be at bat while another player is bowling, and other players are positioned as fielders.  There are several graphi
+          ... (672 total chars)
+
+-- t=3550 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=Y CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a close-up shot of a cricket player standing on the field. The player is wearing a teal uniform and cap, with both hands raised to his head. He appears to be adjusting his cap.  There are graphical overlays at the bottom of the screen displaying information about the game, including
+          ... (837 total chars)
+
+-- t=3551 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a player standing still, wearing a light blue jersey and cap with various sponsor logos. He appears to be looking straight ahead, likely at the field or another player. The player is not actively engaged in play, as he is not moving or reacting to anything in the immediate vicinity.
+          ... (700 total chars)
+
+-- t=3552 | path=none | D=0 | V=n V_post=n S=Y M=Y M2=n W=n K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a close-up shot of a cricket player standing on the field. The player, wearing a light blue uniform with various sponsor logos, appears to be focused and possibly sweating, with his hands clasped together in front of him.  There are graphical overlays at the bottom of the screen dis
+          ... (672 total chars)
+
+-- t=3553 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a close-up shot of a cricket player wearing a teal uniform and cap. The player appears to be in motion, with their hands clasped in front of them.   The frame features several graphical overlays, including a score graphic at the bottom with team names, scores, and player information
+          ... (503 total chars)
+
+-- t=3554 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a close-up shot of a single cricket player. The player appears to be preparing to bowl or react to a play, with his right hand raised near his chest.   The frame includes several graphical overlays, including a score graphic at the bottom showing the score and player statistics, as 
+          ... (650 total chars)
+
+-- t=3555 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a close-up shot of a single cricket player. The player appears to be talking or reacting to something off-camera, with their hands raised near their chest.   The frame includes several graphical overlays, including a score graphic at the bottom showing the score and team logos for D
+          ... (569 total chars)
+
+-- t=3556 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a close-up shot of a cricket player wearing a light blue jersey and cap. The player appears to be standing still with his hands clasped in front of him, looking to the left.  There are several graphical overlays on the frame, including a score graphic at the bottom that displays the
+          ... (635 total chars)
+
+-- t=3557 | path=none | D=0 | V=n V_post=n S=Y M=Y M2=n W=n K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a medium shot of two men on a cricket field. The man on the right is a batter wearing an orange jersey and blue helmet, while the man on the left appears to be a coach or trainer, wearing a black polo shirt and hat.  The people in the frame appear to be engaged in a conversation, wi
+          ... (682 total chars)
+
+-- t=3558 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The frame shows a cricket player in an orange jersey and blue helmet, with another person behind him wearing a black shirt and cap. The player appears to be preparing to bat or reacting to something, while the person behind him has their hands raised near their face.   There are several graphical ov
+          ... (644 total chars)
+
+-- t=3559 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=Y CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a man in a black shirt and cap standing on the field, gesturing with his arms outstretched. He appears to be a coach or trainer for one of the teams. The man is the primary focus of the frame, with a green field visible behind him.  There are graphical overlays at the bottom of the 
+          ... (625 total chars)
+
+-- t=3560 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=Y SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a crowded stadium with a large screen displaying a tire advertisement. The people in the frame are mostly seated spectators, but their actions are not clearly visible due to the distance and low light.   There are several graphical overlays on the screen, includ
+          ... (542 total chars)
+
+-- t=3561 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=n SS=Y SS_loose=Y CG=n HARD=n | STRONG=- --
+   prose: The camera shows a television broadcast of a cricket match, with a crowd shot in the background and graphical overlays on the right and bottom of the frame. The people in the frame are mostly spectators in the stands, who appear to be watching the game.   The graphical overlays display information a
+          ... (528 total chars)
+
+-- t=3562 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a television broadcast of a cricket match between the Delhi Capitals (DC) and the Chennai Super Kings (CSK), with a crowd visible in the background. The people in the frame are not actively participating in the game; instead, they appear to be spectators watching the match.   There 
+          ... (926 total chars)
+
+-- t=3563 | path=none | D=0 | V=n V_post=n S=Y M=Y M2=n W=Y K=Y SS=Y SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket stadium with a crowd in the background and a large screen displaying an advertisement for CEAT tires. The people in the frame appear to be spectators watching the game, with some standing and others sitting.   There are several graphical overlays on th
+          ... (575 total chars)
+
+-- t=3564 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a television broadcast of a cricket match, with a wide field view of the stadium and a score graphic overlay on the right side. The people in the frame are mostly seated in the stands, watching the game, while a few individuals are visible on the field.   The score graphic overlay d
+          ... (510 total chars)
+
+-- t=3565 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=n CG=Y HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket stadium with a score graphic overlay on the right side and a commercial for CEAT tires on the left. The people in the frame are mostly seated spectators, with a few people standing on the field.   The score graphic overlay displays the current score, i
+          ... (583 total chars)
+
+-- t=3566 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a television broadcast of a cricket match, with a crowd visible in the background. The people in the frame are primarily spectators watching the game, with no players actively engaged in play visible.  There are several graphical overlays on the screen, including a score graphic sho
+          ... (753 total chars)
+
+-- t=3567 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=Y SS=Y SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a wide field view of a cricket stadium with a crowd in the background and a large screen displaying various graphics. The people in the frame appear to be spectators watching the match, with no players visible in this particular frame.   There are several graphical overlays on the s
+          ... (603 total chars)
+
+-- t=3568 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a man in a brown suit jacket and purple shirt standing in front of a vibrant background, holding a large red check. He appears to be presenting an award, as the check reads "PLAYER OF THE MATCH" in teal text. The background features a gradient of yellow, orange, pink, and purple hues
+          ... (481 total chars)
+
+-- t=3569 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a man in a suit standing in front of a colorful background. He appears to be mid-dance or mid-gesture, with his right arm extended and his left hand near his stomach. The man is wearing a brown suit with a purple shirt underneath, and there is a watch on his left wrist. There are gr
+          ... (387 total chars)
+
+-- t=3570 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a man standing in front of a colorful background. He is wearing a brown suit jacket over a purple shirt and has short dark hair. The man appears to be speaking or presenting, as he is pointing upwards with his right index finger. There are graphical overlays in the top-right corner 
+          ... (346 total chars)
+
+-- t=3571 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with a pink screen displaying the text "JioHotstar T20 LEAGUE" in white and blue letters. The background of the frame is a gradient of orange, pink, and purple colors. There are no people or players visible in the frame, only the phone graphic. The action level appears t
+          ... (414 total chars)
+
+-- t=3572 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with a pink screen displaying the JioHotstar logo and text. A blue-tinted hand with white-painted nails is pointing at the phone screen. The background of the frame features a gradient that transitions from orange to pink to purple.  There are no people in the frame acti
+          ... (672 total chars)
+
+-- t=3573 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a vibrant graphic with a pink and orange background, featuring a smartphone with the JioHotstar logo and text that reads "T20 LEAGUE" and "WINNER OF THE MATCH." The image does not depict a live cricket match scene but rather a promotional or celebratory graphic. There are no people i
+          ... (405 total chars)
+
+-- t=3574 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a graphic overlay on a vibrant background, with no visible cricket players or action. The background features a gradient of orange, pink, and purple hues. A large smartphone graphic is centered, displaying "JioHotstar T20 LEAGUE" and "WINNER OF THE MATCH" in bold text. The overall sc
+          ... (407 total chars)
+
+-- t=3575 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a man standing next to a large smartphone screen. The man is wearing a brown suit jacket and purple shirt, and he appears to be speaking or reacting to something. The smartphone screen displays an advertisement for "JEETO DHAN DHANA DHAN" with a "FREE TO PLAY" button below it. The ba
+          ... (414 total chars)
+
+-- t=3576 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a man in a suit standing against a pink and orange background, with a phone graphic to his left displaying a cricket stadium. The man appears to be speaking or presenting, with his hands raised as if gesturing. There are graphical overlays including text at the bottom of the frame i
+          ... (493 total chars)
+
+-- t=3577 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a man in a brown suit pointing at a smartphone with a colorful screen. The phone displays an advertisement for "Jeeto Dhan Dhan Dhan," a game where users can win prizes. The man appears to be promoting the game, and there are various graphical overlays on the image, including text th
+          ... (418 total chars)
+
+-- t=3578 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The camera shows a smartphone with a game on the screen. The people in the frame are not visible except for the phone screen, which displays a game titled "JEETO DHAN DHANA DHAN." There are graphical overlays on the phone screen, including the game title and a "NEW" graphic, as well as text in the t
+          ... (457 total chars)
+
+-- t=3579 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with a colorful screen, displaying an advertisement for a contest. The phone is centered in the frame and has a black border around it. The screen displays a gradient background that transitions from orange to pink, with white text that reads "JEETO DHAN DHANA DHAN" and 
+          ... (668 total chars)
+
+-- t=3580 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with a quiz question on its screen, set against a vibrant background. The phone displays a question about the defending champion of the T-20 League, with options for Bengaluru, Mumbai, Chennai, and Punjab. The background features a gradient of orange, pink, and purple hu
+          ... (446 total chars)
+
+-- t=3581 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with a quiz question on its screen, set against a vibrant background. The phone displays a question asking which team is the defending champion of the T-20 League, with options including Bengaluru, Mumbai, Chennai, and Punjab.   The background features a gradient of oran
+          ... (688 total chars)
+
+-- t=3582 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with the words "EXCITING" superimposed over it. The phone displays a colorful screen featuring a game called "JEETO DHAN DHANA DHAN" with a "Play Now" button, suggesting an interactive or gaming element.  There are no people visible in the frame, only the phone and text.
+          ... (864 total chars)
+
+-- t=3583 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with the words "EXCITING PRIZES" superimposed over it. The phone displays a game titled "JEETO DHAN DHANA DHAN," which appears to be a quiz or trivia game. The background of the frame features a vibrant gradient that transitions from orange to pink.  There are no people 
+          ... (672 total chars)
+
+-- t=3584 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a vibrant advertisement for a game or contest, with a smartphone at its center. The phone displays a colorful screen with the words "JEETO DHAN DHANA DHAN" and "FREE TO PLAY," surrounded by confetti and gift boxes. The background features a gradient of orange, pink, and purple hues. 
+          ... (585 total chars)
+
+-- t=3585 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a colorful advertisement for a game or contest, with the words "EXCITING PRIZES" in large white letters. The background is a gradient of orange and pink, with confetti and gift boxes scattered around. A smartphone displays a game screen with the words "JEETO DHAN DHANA DHAN" and "FRE
+          ... (453 total chars)
+
+-- t=3586 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a promotional graphic for a game or contest, not a live cricket match. The central focus is a smartphone with the words "EXCITING PRIZES" prominently displayed in large white letters across the center of the image. The phone is surrounded by various items such as blue dice, gift boxe
+          ... (591 total chars)
+
+-- t=3587 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a promotional graphic for a game or contest, not a live cricket match. The central focus is a smartphone with the words "EXCITING PRIZES" superimposed over it in large white letters. The phone displays an advertisement for "JEETO DHAN DHANA DHAN," accompanied by several gift boxes an
+          ... (475 total chars)
+
+-- t=3588 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with a colorful screen, displaying the words "JEETO DHAN DHANA DHAN" in large white letters and "FREE TO PLAY" in smaller text below. The background of the frame is a gradient of orange, pink, and purple hues, with small white dots scattered throughout, resembling a star
+          ... (537 total chars)
+
+-- t=3589 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with a colorful screen, not a cricket match. The phone displays an advertisement for "JEETO DHAN DHANA DHAN" with a "FREE TO PLAY" button. There are no people in the frame, only the phone and its screen. The background of the image is a vibrant orange, pink, and purple g
+          ... (350 total chars)
+
+-- t=3590 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with a colorful screen, displaying the words "JEETO DHAN DHANA DHAN" in large white letters. The phone is centered on a vibrant background that transitions from orange to pink to purple, adorned with white lines and dots resembling fireworks or sparks. A small text at th
+          ... (512 total chars)
+
+-- t=3591 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n | STRONG=- --
+   prose: The frame shows a smartphone with a colorful screen, not a cricket match broadcast. The phone displays a vibrant orange-to-purple gradient background with white speckles and the text "JEETO DHAN DHANA DHAN" in large white letters, accompanied by a purple button that reads "FREE TO PLAY".   There are
+          ... (517 total chars)
+
+-- t=3592 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=Y | STRONG=- --
+   prose: The frame shows a woman sitting at a desk in what appears to be a bank or office setting. She is looking directly at the camera with her hands clasped together on the desk in front of her. The background is filled with people standing around, some facing away from the camera and others obscured. A l
+          ... (378 total chars)
+
+-- t=3593 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=Y | STRONG=- --
+   prose: The frame shows a woman sitting at a desk with her hands clasped together in front of her. The woman appears to be in an office setting, with several people standing around her. A laptop and other office supplies are on the desk in front of her.  The image features a prominent purple overlay that re
+          ... (520 total chars)
+
+-- t=3594 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=Y | STRONG=- --
+   prose: The camera shows a man sitting at a desk in an office setting. The man is holding a pen and appears to be engaged in paperwork. He is wearing a white shirt and a black vest, and there are various papers and office supplies on the desk in front of him. The scene seems to be a still moment, with no ap
+          ... (326 total chars)
+
+-- t=3595 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=Y | STRONG=- --
+   prose: The frame shows a woman sitting at a desk, with her eyes closed and a blue tinted filter applied to the entire scene. She appears to be in an office setting, surrounded by other people who are also present in the background, engaged in various activities such as talking on the phone or working on co
+          ... (456 total chars)
+
+-- t=3596 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=Y | STRONG=- --
+   prose: The image does not depict a professional cricket match broadcast on television. Instead, it shows a woman sitting at a desk in what appears to be an office setting, with blue-tinted skin and a green top adorned with floral patterns. The desk in front of her holds a laptop, papers, and other office s
+          ... (525 total chars)
+
+-- t=3597 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=Y | STRONG=- --
+   prose: The camera shows a man sitting at a desk in an office setting. He appears to be handing a small white and blue box to someone whose arm is visible in the bottom left corner of the frame. The man is wearing a white shirt and a dark vest, and there are various office supplies and papers on the desk in
+          ... (389 total chars)
+
+-- t=3598 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=Y | STRONG=- --
+   prose: The camera shows a single man sitting at a desk in an office setting. The man is holding a small white and blue bucket with a handle in his right hand, and his left hand is resting on the desk. He appears to be in the middle of a conversation or interaction with someone outside of the frame, as indi
+          ... (452 total chars)
+
+-- t=3599 | path=none | D=0 | V=n V_post=n S=n M=n M2=n W=n K=n SS=n SS_loose=n CG=n HARD=Y | STRONG=- --
+   prose: The camera shows a man sitting at a desk in an office setting. He is holding a white and blue ballot box with his right hand and resting his left hand on the desk. The man appears to be looking directly at the camera with a serious expression. There are papers, pens, and other office supplies on the
+          ... (322 total chars)
+
+-- t=3600: SIDECAR MISSING --
+
+=== Cluster builder trace t=3520-3600 (gap_max=3) ===
+  t=3520: idle (HARD=n D=0 path=none)
+  t=3521: idle (HARD=n D=0 path=none)
+  t=3522: idle (HARD=n D=0 path=none)
+  t=3523: idle (HARD=n D=0 path=none)
+  t=3524: idle (HARD=n D=0 path=none)
+  t=3525: idle (HARD=n D=0 path=none)
+  t=3526: idle (HARD=n D=0 path=none)
+  t=3527: idle (HARD=n D=0 path=none)
+  t=3528: idle (HARD=n D=0 path=none)
+  t=3529: idle (HARD=n D=0 path=none)
+  t=3530: idle (HARD=n D=0 path=none)
+  t=3531: idle (HARD=n D=0 path=none)
+  t=3532: idle (HARD=n D=0 path=none)
+  t=3533: idle (HARD=n D=0 path=none)
+  t=3534: idle (HARD=n D=0 path=none)
+  t=3535: idle (HARD=n D=0 path=none)
+  t=3536: idle (HARD=n D=0 path=none)
+  t=3537: idle (HARD=n D=0 path=none)
+  t=3538: idle (HARD=n D=0 path=none)
+  t=3539: idle (HARD=n D=0 path=none)
+  t=3540: idle (HARD=n D=0 path=none)
+  t=3541: idle (HARD=n D=0 path=none)
+  t=3542: idle (HARD=n D=0 path=none)
+  t=3543: OPEN (path=C)
+  t=3544: extend (path=C), last_d=3544
+  t=3545: gap=1 (path=none)
+  t=3546: gap=2 (path=none)
+  t=3547: gap=3 (path=none)
+  t=3548: gap>3 -> close at last_d=3544
+  t=3549: OPEN (path=C)
+  t=3550: gap=1 (path=none)
+  t=3551: gap=2 (path=none)
+  t=3552: gap=3 (path=none)
+  t=3553: gap>3 -> close at last_d=3549
+  t=3554: idle (HARD=n D=0 path=none)
+  t=3555: idle (HARD=n D=0 path=none)
+  t=3556: idle (HARD=n D=0 path=none)
+  t=3557: idle (HARD=n D=0 path=none)
+  t=3558: idle (HARD=n D=0 path=none)
+  t=3559: idle (HARD=n D=0 path=none)
+  t=3560: idle (HARD=n D=0 path=none)
+  t=3561: idle (HARD=n D=0 path=none)
+  t=3562: idle (HARD=n D=0 path=none)
+  t=3563: idle (HARD=n D=0 path=none)
+  t=3564: idle (HARD=n D=0 path=none)
+  t=3565: idle (HARD=n D=0 path=none)
+  t=3566: idle (HARD=n D=0 path=none)
+  t=3567: idle (HARD=n D=0 path=none)
+  t=3568: idle (HARD=n D=0 path=none)
+  t=3569: idle (HARD=n D=0 path=none)
+  t=3570: idle (HARD=n D=0 path=none)
+  t=3571: idle (HARD=n D=0 path=none)
+  t=3572: idle (HARD=n D=0 path=none)
+  t=3573: idle (HARD=n D=0 path=none)
+  t=3574: idle (HARD=n D=0 path=none)
+  t=3575: idle (HARD=n D=0 path=none)
+  t=3576: idle (HARD=n D=0 path=none)
+  t=3577: idle (HARD=n D=0 path=none)
+  t=3578: idle (HARD=n D=0 path=none)
+  t=3579: idle (HARD=n D=0 path=none)
+  t=3580: idle (HARD=n D=0 path=none)
+  t=3581: idle (HARD=n D=0 path=none)
+  t=3582: idle (HARD=n D=0 path=none)
+  t=3583: idle (HARD=n D=0 path=none)
+  t=3584: idle (HARD=n D=0 path=none)
+  t=3585: idle (HARD=n D=0 path=none)
+  t=3586: idle (HARD=n D=0 path=none)
+  t=3587: idle (HARD=n D=0 path=none)
+  t=3588: idle (HARD=n D=0 path=none)
+  t=3589: idle (HARD=n D=0 path=none)
+  t=3590: idle (HARD=n D=0 path=none)
+  t=3591: idle (HARD=n D=0 path=none)
+  t=3592: idle (HARD=Y D=0 path=none)
+  t=3593: idle (HARD=Y D=0 path=none)
+  t=3594: idle (HARD=Y D=0 path=none)
+  t=3595: idle (HARD=Y D=0 path=none)
+  t=3596: idle (HARD=Y D=0 path=none)
+  t=3597: idle (HARD=Y D=0 path=none)
+  t=3598: idle (HARD=Y D=0 path=none)
+  t=3599: idle (HARD=Y D=0 path=none)
+  t=3600: missing
+
+=== Closed clusters in window: 2 ===
+  start=3543 end=3544 reason=gap>3 delivery_count=2 any_V=n all_C=Y paths=['C', 'C']
+  start=3549 end=3549 reason=gap>3 delivery_count=1 any_V=n all_C=Y paths=['C']
+
+=== Focus: t=3528 ===
+  flags: V=Y V_post=Y S=n M=Y M2=n W=n K=Y SS=n SS_loose=n CG=n HARD=n
+  k2 fallback = K or (SS and CG) = Y
+  Path eligibility:
+    A = V & S & (W|M2)        -> n
+    B = V & M & W & k2 & SS    -> n
+    C = M2 & W & k2 & SS       -> n
+    D = V & M2 & K & SS        -> n
+  result: path=none is_delivery=0
+
+=== Strong post-action hits anywhere in window ===
+  (none)

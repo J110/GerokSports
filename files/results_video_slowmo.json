@@ -1,0 +1,64 @@
+[
+  {
+    "clip": "ball_test_clip_30fps_slow3x.mp4",
+    "truth": "Clip 1 SLOW 3x  (45s) \u2014 LEFT-handed batsman, square of wicket",
+    "structured": {
+      "wall_ms": 17232,
+      "raw": "{\"is_valid_delivery\": true, \"batsman_handed\": \"left\", \"bowling_angle\": \"over\", \"length\": \"good_length\", \"line\": \"outside_off\", \"bounce\": \"normal\", \"shot_played\": true, \"footwork\": \"front_foot\", \"shot_type\": \"defend\", \"shot_side\": \"off\", \"shot_angle\": \"mid_off\", \"elevation\": \"along_ground\", \"bowler_speed_kph\": null, \"bowler_name\": \"McCoy\", \"batsman_name\": \"PANT\", \"narrative\": \"The left-handed batsman Rishabh Pant plays a front-foot defensive shot to a good length delivery outside off stump, pushing the ball along the ground to the off side.\", \"confidence\": \"high\"}",
+      "parsed": {
+        "is_valid_delivery": true,
+        "batsman_handed": "left",
+        "bowling_angle": "over",
+        "length": "good_length",
+        "line": "outside_off",
+        "bounce": "normal",
+        "shot_played": true,
+        "footwork": "front_foot",
+        "shot_type": "defend",
+        "shot_side": "off",
+        "shot_angle": "mid_off",
+        "elevation": "along_ground",
+        "bowler_speed_kph": null,
+        "bowler_name": "McCoy",
+        "batsman_name": "PANT",
+        "narrative": "The left-handed batsman Rishabh Pant plays a front-foot defensive shot to a good length delivery outside off stump, pushing the ball along the ground to the off side.",
+        "confidence": "high"
+      }
+    },
+    "commentator": {
+      "wall_ms": 18043,
+      "raw": "The clip opens with Rishabh Pant, batting left-handed for India, preparing at the crease. The West Indies bowler McCoy then begins his run-up, delivering a full-length ball around the off stump. Pant plays a front-foot drive, hitting the ball towards mid-off, where it is fielded. The score graphic shows India on 17 for 2, with Shreyas at 6 runs off 6 balls, and Pant yet to score, while McCoy's figures are 2 wickets for 11 runs from 2.1 overs."
+    }
+  },
+  {
+    "clip": "ball_test_clip_60fps_long_slow2x.mp4",
+    "truth": "Clip 3 SLOW 2x  (90s) \u2014 SHORT delivery, steep bounce, dab",
+    "structured": {
+      "wall_ms": 13339,
+      "raw": "{\"is_valid_delivery\": true, \"batsman_handed\": \"right\", \"bowling_angle\": \"over\", \"length\": \"good_length\", \"line\": \"outside_off\", \"bounce\": \"normal\", \"shot_played\": true, \"footwork\": \"front_foot\", \"shot_type\": \"defend\", \"shot_side\": \"off\", \"shot_angle\": \"cover\", \"elevation\": \"along_ground\", \"bowler_speed_kph\": 137, \"bowler_name\": \"JOSEPH\", \"batsman_name\": \"HARDIK PANT\", \"narrative\": \"The bowler Joseph bowls a good length delivery outside off stump to the right-handed batsman Hardik Pant, who plays a defensive shot along the ground towards cover.\", \"confidence\": \"high\"}",
+      "parsed": {
+        "is_valid_delivery": true,
+        "batsman_handed": "right",
+        "bowling_angle": "over",
+        "length": "good_length",
+        "line": "outside_off",
+        "bounce": "normal",
+        "shot_played": true,
+        "footwork": "front_foot",
+        "shot_type": "defend",
+        "shot_side": "off",
+        "shot_angle": "cover",
+        "elevation": "along_ground",
+        "bowler_speed_kph": 137,
+        "bowler_name": "JOSEPH",
+        "batsman_name": "HARDIK PANT",
+        "narrative": "The bowler Joseph bowls a good length delivery outside off stump to the right-handed batsman Hardik Pant, who plays a defensive shot along the ground towards cover.",
+        "confidence": "high"
+      }
+    },
+    "commentator": {
+      "wall_ms": 13994,
+      "raw": "West Indies seamer Alzarri Joseph delivers a short-of-a-length ball outside the off stump at 137 KPH to the right-handed Hardik Pant. Pant attempts a pull shot but misses, and the ball goes through to the wicketkeeper. The scoreboard shows India at 44 for 3 wickets after 4.4 overs, with Pant on 0 from 2 balls and Joseph's figures at 1 for 17 from 1.4 overs."
+    }
+  }
+]

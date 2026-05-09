@@ -1,0 +1,32 @@
+{
+  "detections": 21,
+  "classification": {
+    "bowling_angle": "round",
+    "length": "good_length",
+    "line": "leg_side",
+    "bounce": "unknown",
+    "shot_type": "along_ground",
+    "shot_direction": {
+      "zone": "cover",
+      "side": "offside",
+      "angle_degrees": 109.1,
+      "confidence": 1.0
+    },
+    "offside_legside": "offside",
+    "commentary_feed": "round the wicket, good length, on the pads, driven along the ground through cover"
+  },
+  "phases": {
+    "flight": 6,
+    "bounce_point": {
+      "frame": 25,
+      "x": 383,
+      "y": 634,
+      "area": 24.0
+    },
+    "post_shot": 6,
+    "gap_frames": [
+      26,
+      47
+    ]
+  }
+}

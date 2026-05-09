@@ -1,0 +1,101 @@
+{
+  "cluster_id": 46,
+  "cluster_window": [
+    2514.0,
+    2525.0
+  ],
+  "anchor_t": 2516.0,
+  "anchor_path": "B",
+  "anchor_signals": {
+    "V": true,
+    "S": false,
+    "M": true,
+    "W": true,
+    "K": true,
+    "SS": true,
+    "HARD": false,
+    "role_count": 6
+  },
+  "clip_window": [
+    2514.0,
+    2528.0
+  ],
+  "clip_duration": 14.0,
+  "back_extent": 2514.0,
+  "fwd_extent": 2528.0,
+  "note": "",
+  "frames": [
+    {
+      "t": 2514.0,
+      "path": "C",
+      "is_delivery": true,
+      "signals": "Vn Sn MY M2Y WY Kn SSY CGY rc=4"
+    },
+    {
+      "t": 2515.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY Kn SSY CGY rc=3"
+    },
+    {
+      "t": 2516.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2Y WY KY SSY CGY rc=6"
+    },
+    {
+      "t": 2517.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2Y WY KY SSY CGY rc=4"
+    },
+    {
+      "t": 2518.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY Kn SSY CGY rc=2"
+    },
+    {
+      "t": 2519.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY Kn SSY CGY rc=1"
+    },
+    {
+      "t": 2520.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2n WY Kn SSY CGY rc=1"
+    },
+    {
+      "t": 2521.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY KY SSY CGY rc=1"
+    },
+    {
+      "t": 2522.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY Kn SSY CGY rc=1"
+    },
+    {
+      "t": 2523.0,
+      "path": "C",
+      "is_delivery": true,
+      "signals": "Vn Sn MY M2Y WY KY SSY CGY rc=4"
+    },
+    {
+      "t": 2524.0,
+      "path": "C",
+      "is_delivery": true,
+      "signals": "Vn Sn MY M2Y WY KY SSY CGY rc=4"
+    },
+    {
+      "t": 2525.0,
+      "path": "C",
+      "is_delivery": true,
+      "signals": "Vn Sn MY M2Y WY KY SSY CGY rc=4"
+    }
+  ]
+}

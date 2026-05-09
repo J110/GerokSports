@@ -1,0 +1,185 @@
+=== Per-frame signals + prose for t=3270-3290 ===
+
+-- t=3270 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=n HARD=n --
+   prose:
+     The camera shows a close-up of two cricket players leaning their heads together. The players are wearing helmets and their jerseys; one player is wearing a blue jersey and a blue helmet, while the other player is wearing an orange jersey. 
+     
+     The players appear to be engaged in conversation. 
+     
+     There are several graphical overlays on the screen, including a score graphic at the bottom that displays the teams' names, scores, and other statistics. A blue and orange circular heatmap-like graphic is on the bottom left. The logos for TATA IPL and JioHotstar are in the top corners. 
+     
+     The action level appears to be a post-action moment, as the players are not in an active playing position.
+
+-- t=3271 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=n SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a medium close-up shot of two cricket players. The player on the right is wearing an orange jersey and bending over, while the player on the left is wearing a blue jersey and wearing a helmet. 
+     
+     The player on the right appears to be talking to or listening to the player on the left. The player on the left has their helmet on and seems to be explaining something to the player on the right.
+     
+     There are several graphical overlays at the bottom of the frame, including a score graphic showing the teams' names, scores, and standings, as well as player statistics and a small inset diagram of the cricket field. The action level appears to be between deliveries, as both players seem to be engaged in conversation rather than actively playing.
+
+-- t=3272 | path=none | D=0 | V=n V_post=n S=Y M=Y M2=n W=n K=n SS=Y SS_loose=n CG=n HARD=n --
+   prose:
+     The camera shows a close-up shot of two cricket players, one wearing a blue helmet and shirt and the other wearing an orange shirt and blue helmet. The players appear to be walking together, with their heads bowed and helmets touching as if discussing something. 
+     
+     There are several graphical overlays on the screen, including a scoreboard at the bottom that displays the teams' names, scores, and player statistics. The scoreboard shows "DC 72-5" and "CSK 6", along with other information such as run rate and player names. 
+     
+     The action level appears to be low, as there is no active play happening in this frame; it seems to be a moment between deliveries or a post-action moment.
+
+-- t=3273 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=Y SS=Y SS_loose=n CG=n HARD=n --
+   prose:
+     The camera shows a close-up shot of two cricket players. The player on the right is wearing a blue helmet and an orange jersey with various sponsor logos, while the player on the left wears a teal jersey and helmet. They appear to be engaged in conversation.
+     
+     The frame features several graphical overlays, including a score graphic at the bottom displaying team names, scores, and player statistics, as well as logos for Tata IPL and JioHotstar Live in the top corners. The action level appears to be a post-delivery moment, with the players not actively engaged in play but rather discussing something. The background is dark, suggesting that the game is taking place at night.
+
+-- t=3274 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=Y SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame are standing still, with two players on the pitch and fielders and umpires positioned around them.
+     
+     There are several graphical overlays on the screen, including a score graphic at the bottom showing the teams' names, scores, and standings, as well as sponsor logos such as "TATA IPL" and "JioHotstar LIVE". The action level appears to be between deliveries, as the players seem to be waiting for the next play. The overall atmosphere suggests a live broadcast of a professional cricket match.
+
+-- t=3275 | path=C | D=1 | V=n V_post=n S=n M=Y M2=Y W=Y K=Y SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame are standing still, with a batter and a wicketkeeper in position and two umpires standing nearby. 
+     
+     There are several graphical overlays on the screen, including a score graphic at the bottom showing the teams' names, scores, and player statistics, as well as logos for the TATA IPL and JioHotstar in the top corners. The action level appears to be between deliveries, as the players are not actively engaged in play and there is no indication of a replay or slow-motion sequence.
+
+-- t=3276 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=Y SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of the cricket pitch with players positioned around it. The people in the frame are standing still, with one batter walking off the pitch and another player, likely the non-striker, standing at the opposite end.
+     
+     There are several graphical overlays on the frame, including a score graphic at the bottom showing the teams' names, scores, and player statistics, as well as logos for TATA IPL and JioHotstar LIVE in the top corners. The action level appears to be between deliveries, as the players are not in motion and there is no indication of active play happening.
+
+-- t=3277 | path=C | D=1 | V=n V_post=n S=n M=Y M2=Y W=Y K=n SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of the cricket pitch with several players positioned around it. The players are standing still, with one batter holding a bat and preparing to play, a wicketkeeper crouched behind him, and another fielder in the background. A few graphical overlays are visible at the bottom of the screen, including a score graphic showing the teams' names, scores, and player statistics.
+     
+     The action level appears to be a moment of anticipation before the next delivery, as the players are poised and waiting for the bowler to throw the ball. The overall scene suggests that the game is currently in progress, but there is no active play happening at this specific moment.
+
+-- t=3278 | path=C | D=1 | V=n V_post=n S=n M=Y M2=Y W=Y K=Y SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of a cricket pitch with players positioned around it. A batter in an orange uniform is mid-swing with their bat, while a fielder in a matching uniform stands nearby, and another player in a teal uniform lunges to catch the ball. A wicketkeeper in teal crouches behind the batter.
+     
+     Graphical overlays include a scoreboard at the bottom with team names, scores, and player information, as well as logos for the IPL and JioHotstar in the corners. The action appears to be active play, with the batter swinging at the ball and a fielder attempting to catch it. The scene suggests a tense moment in the match.
+
+-- t=3279 | path=C | D=1 | V=n V_post=n S=n M=Y M2=Y W=Y K=n SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of a cricket field with players scattered around. The people in the frame are mostly standing still, with a few fielders positioned on the pitch and one umpire standing behind the wicket; the batters are not visible. 
+     
+     There are several graphical overlays, including a score graphic at the bottom of the screen showing the score, overs, and run rate, as well as logos for sponsors and the IPL. The action level appears to be between deliveries, as the players are not in motion and the bowler does not appear to be running up to the wicket.
+
+-- t=3280 | path=none | D=0 | V=n V_post=n S=Y M=Y M2=n W=Y K=n SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of a cricket pitch with players scattered around it. The people in the frame are primarily focused on the game, with some players standing near the pitch and others positioned in the field. A graphical overlay at the bottom displays various statistics, including the score (DC 72-5), run rate (6.17), and player information.
+     
+     The action level appears to be between deliveries, as the players seem to be waiting for the next play. The field is well-lit, suggesting that the match is taking place at night. The crowd in the stands appears to be watching intently.
+
+-- t=3281 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of a cricket field with players scattered around. The people in the frame are primarily standing still, with a few players positioned around the field and a crowd of spectators visible in the background. 
+     
+     There are several graphical overlays on the frame, including a score graphic at the bottom showing the score, team logos, and player information, as well as sponsor logos along the field's boundary. The action level appears to be between deliveries, as the players seem to be waiting for the next play.
+
+-- t=3282 | path=none | D=0 | V=n V_post=n S=Y M=Y M2=n W=n K=n SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a medium close-up shot of two cricket players on the field. The player on the left is wearing a light blue jersey and appears to be gesturing with his right arm, while the player on the right is wearing an orange jersey and a blue helmet with a face guard, holding a piece of paper.
+     
+     There are several graphical overlays at the bottom of the screen, including a score graphic showing "DC 72-5" and "RUN-RATE 6.17", as well as logos for the teams and sponsors. The action level appears to be relatively calm, with no active play happening, suggesting that this is a moment between deliveries or a break in play.
+
+-- t=3283 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=n SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a medium close-up shot of two cricket players on the field. The player on the right is wearing an orange jersey and a blue helmet, holding a cricket bat, while the player on the left is wearing a teal jersey.
+     
+     The player on the right appears to be preparing to bat, while the player on the left seems to be engaged in conversation with him. 
+     
+     There are several graphical overlays present, including a score graphic at the bottom of the screen displaying the teams' names, scores, and other game statistics, as well as sponsor logos on the players' jerseys and helmets. 
+     
+     The action level appears to be relatively low, suggesting that the frame captures a moment between deliveries or a brief pause in play.
+
+-- t=3284 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=n SS=Y SS_loose=n CG=Y HARD=n --
+   prose:
+     The camera shows a player in a teal uniform walking on a cricket field. The player appears to be walking casually, with his left arm swinging down and to the side. 
+     
+     There are several graphical overlays at the bottom of the frame, including a score graphic with team names and scores, player names and stats, and sponsor logos. 
+     
+     The action level appears to be a post-action moment or between deliveries, as there is no active play happening and the player seems to be walking calmly.
+
+-- t=3285 | path=none | D=0 | V=n V_post=n S=Y M=Y M2=Y W=n K=n SS=Y SS_loose=n CG=n HARD=n --
+   prose:
+     The camera shows a player in a teal uniform with the name "OVERTON" and the number "88" on the back, standing on a green field. The player appears to be walking or standing still, looking to his left, with no other players or batters in immediate view. 
+     
+     There are graphical overlays at the bottom of the screen displaying information about the game, including the score (DC 73-5), run rate (6.17), and player statistics. The scene suggests a moment between deliveries or a break in active play.
+
+-- t=3286 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=n CG=n HARD=n --
+   prose:
+     The camera shows a wide field view of two men on a green field. The man on the left is wearing a light blue uniform with "21 HOSEIN" on the back and appears to be walking away from the camera, while the man on the right is wearing a black uniform and seems to be bending over, possibly retrieving a hat or water bottle.
+     
+     There are several graphical overlays at the bottom of the frame, including a score graphic with team names and scores, player statistics, and sponsor logos in the top corners. The action level appears to be low, as both individuals seem to be between actions, with no intense play happening in this moment.
+
+-- t=3287 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=Y CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of a cricket player walking on the field. The player, wearing a light blue uniform with the number 49 on his back, is holding a ball in his left hand and appears to be walking casually across the field. 
+     
+     There are graphical overlays at the bottom of the screen displaying information about the game, including the score, run rate, and player statistics. The scene suggests that the action has paused momentarily, and the player is likely between deliveries or taking a break.
+
+-- t=3288 | path=C | D=1 | V=n V_post=n S=n M=Y M2=Y W=Y K=n SS=Y SS_loose=Y CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of a cricket player standing on the field. The player, wearing a light blue uniform with the number 21 on his back, appears to be preparing to bowl, holding a ball in his right hand. 
+     
+     There are graphical overlays at the bottom of the screen displaying information about the game, including the score, team standings, and player statistics. The action level appears to be between deliveries, as the player is not actively bowling or running, but rather poised to do so.
+
+-- t=3289 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=Y K=n SS=Y SS_loose=Y CG=Y HARD=n --
+   prose:
+     The camera shows a wide field view of a cricket player walking on the field. The player, wearing a light blue uniform with the number 21 and the name "HOSEIN" on the back, appears to be casually walking across the field. 
+     
+     There are graphical overlays at the bottom of the screen displaying the score, including the teams "DC" and "CSK", the current score "73-5", and various player statistics. The scene suggests a moment between deliveries or a break in active play.
+
+-- t=3290 | path=none | D=0 | V=n V_post=n S=n M=Y M2=n W=n K=n SS=Y SS_loose=n CG=n HARD=n --
+   prose:
+     The camera shows a close-up shot of a single cricket player. The player appears to be standing still, looking to the right with a serious expression on his face. He is wearing a teal-colored jersey with various logos and text on it.
+     
+     There are several graphical overlays at the bottom of the frame, including a scoreboard with team names, scores, and player statistics. The background is blurry but appears to be a stadium with colorful lights or advertisements. The action level seems to be relatively calm, suggesting that the frame might be captured between deliveries or during a break in play.
+
+=== Cluster builder trace t=3270-3290 (gap_max=3) ===
+  t=3270: idle (HARD=n D=0 path=none)
+  t=3271: idle (HARD=n D=0 path=none)
+  t=3272: idle (HARD=n D=0 path=none)
+  t=3273: idle (HARD=n D=0 path=none)
+  t=3274: idle (HARD=n D=0 path=none)
+  t=3275: OPEN (path=C)
+  t=3276: gap=1 (path=none)
+  t=3277: extend (path=C), last_d=3277
+  t=3278: extend (path=C), last_d=3278
+  t=3279: extend (path=C), last_d=3279
+  t=3280: gap=1 (path=none)
+  t=3281: gap=2 (path=none)
+  t=3282: gap=3 (path=none)
+  t=3283: gap>3 -> close at last_d=3279
+  t=3284: idle (HARD=n D=0 path=none)
+  t=3285: idle (HARD=n D=0 path=none)
+  t=3286: idle (HARD=n D=0 path=none)
+  t=3287: idle (HARD=n D=0 path=none)
+  t=3288: OPEN (path=C)
+  t=3289: gap=1 (path=none)
+  t=3290: gap=2 (path=none)
+
+=== Closed clusters in window: 2 ===
+  start=3275 end=3279 reason=gap>3
+  start=3288 end=3288 reason=window-end
+
+=== Focus: t=3278 ===
+  flags: V=n V_post=n S=n M=Y M2=Y W=Y K=Y SS=Y SS_loose=n CG=Y HARD=n
+  k2 fallback = K or (SS and CG) = Y
+  Path eligibility:
+    A = V & S & (W|M2)        -> n
+    B = V & M & W & k2 & SS    -> n
+    C = M2 & W & k2 & SS       -> Y
+    D = V & M2 & K & SS        -> n
+  result: path=C is_delivery=1
+
+=== c71 window context (t=3251-3257 reported) ===
+  t=3260 D=0 path=none HARD=n
+  t=3261 D=0 path=none HARD=n
+  t=3262 D=0 path=none HARD=n
+  t=3263 D=0 path=none HARD=n
+  t=3264 D=0 path=none HARD=n

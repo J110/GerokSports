@@ -1,0 +1,593 @@
+{
+  "n_frames": 247,
+  "invalid_focused_parses": 0,
+  "invalid_rate": 0.0,
+  "confusion_production_naive": {
+    "action": {
+      "action": 20,
+      "other": 52
+    },
+    "replay": {
+      "action": 5,
+      "other": 1
+    },
+    "ad": {
+      "ad": 3
+    },
+    "other": {
+      "other": 153,
+      "ad": 4,
+      "action": 1
+    },
+    "umpire": {
+      "other": 8
+    },
+    "unknown": {}
+  },
+  "confusion_focused_naive_full": {
+    "action": {
+      "other": 62,
+      "action": 8,
+      "umpire": 2
+    },
+    "replay": {
+      "action": 5,
+      "other": 1
+    },
+    "ad": {
+      "other": 1,
+      "ad": 2
+    },
+    "other": {
+      "other": 152,
+      "replay": 1,
+      "ad": 1,
+      "action": 2,
+      "umpire": 2
+    },
+    "umpire": {
+      "other": 3,
+      "umpire": 5
+    },
+    "unknown": {}
+  },
+  "confusion_focused_temporal_full": {
+    "action": {
+      "other": 62,
+      "action": 6,
+      "replay": 2,
+      "umpire": 2
+    },
+    "replay": {
+      "replay": 1,
+      "action": 4,
+      "other": 1
+    },
+    "ad": {
+      "other": 1,
+      "ad": 2
+    },
+    "other": {
+      "other": 152,
+      "replay": 1,
+      "ad": 1,
+      "action": 2,
+      "umpire": 2
+    },
+    "umpire": {
+      "other": 3,
+      "umpire": 5
+    },
+    "unknown": {}
+  },
+  "confusion_focused_naive_4class_collapsed": {
+    "action": {
+      "other": 64,
+      "action": 8
+    },
+    "replay": {
+      "action": 5,
+      "other": 1
+    },
+    "ad": {
+      "other": 1,
+      "ad": 2
+    },
+    "other": {
+      "other": 154,
+      "replay": 1,
+      "ad": 1,
+      "action": 2
+    },
+    "umpire": {
+      "other": 8
+    },
+    "unknown": {}
+  },
+  "confusion_focused_temporal_4class_collapsed": {
+    "action": {
+      "other": 64,
+      "action": 6,
+      "replay": 2
+    },
+    "replay": {
+      "replay": 1,
+      "action": 4,
+      "other": 1
+    },
+    "ad": {
+      "other": 1,
+      "ad": 2
+    },
+    "other": {
+      "other": 154,
+      "replay": 1,
+      "ad": 1,
+      "action": 2
+    },
+    "umpire": {
+      "other": 8
+    },
+    "unknown": {}
+  },
+  "per_class_production_naive": {
+    "action": {
+      "precision": 0.7692,
+      "recall": 0.2778,
+      "f1": 0.4082,
+      "support": 72
+    },
+    "replay": {
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "support": 6
+    },
+    "ad": {
+      "precision": 0.4286,
+      "recall": 1.0,
+      "f1": 0.6,
+      "support": 3
+    },
+    "other": {
+      "precision": 0.715,
+      "recall": 0.9684,
+      "f1": 0.8226,
+      "support": 158
+    },
+    "umpire": {
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "support": 8
+    }
+  },
+  "per_class_focused_naive_full": {
+    "action": {
+      "precision": 0.5333,
+      "recall": 0.1111,
+      "f1": 0.1839,
+      "support": 72
+    },
+    "replay": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null,
+      "support": 6
+    },
+    "ad": {
+      "precision": 0.6667,
+      "recall": 0.6667,
+      "f1": 0.6667,
+      "support": 3
+    },
+    "other": {
+      "precision": 0.6941,
+      "recall": 0.962,
+      "f1": 0.8064,
+      "support": 158
+    },
+    "umpire": {
+      "precision": 0.5556,
+      "recall": 0.625,
+      "f1": 0.5882,
+      "support": 8
+    }
+  },
+  "per_class_focused_temporal_full": {
+    "action": {
+      "precision": 0.5,
+      "recall": 0.0833,
+      "f1": 0.1429,
+      "support": 72
+    },
+    "replay": {
+      "precision": 0.25,
+      "recall": 0.1667,
+      "f1": 0.2,
+      "support": 6
+    },
+    "ad": {
+      "precision": 0.6667,
+      "recall": 0.6667,
+      "f1": 0.6667,
+      "support": 3
+    },
+    "other": {
+      "precision": 0.6941,
+      "recall": 0.962,
+      "f1": 0.8064,
+      "support": 158
+    },
+    "umpire": {
+      "precision": 0.5556,
+      "recall": 0.625,
+      "f1": 0.5882,
+      "support": 8
+    }
+  },
+  "accuracy": {
+    "fourclass_production_naive": {
+      "rate": 0.7364,
+      "correct": 176,
+      "n": 239
+    },
+    "fourclass_focused_naive_collapsed": {
+      "rate": 0.6862,
+      "correct": 164,
+      "n": 239
+    },
+    "fourclass_focused_temporal_collapsed": {
+      "rate": 0.682,
+      "correct": 163,
+      "n": 239
+    },
+    "fiveclass_production_naive": {
+      "rate": 0.7126,
+      "correct": 176,
+      "n": 247
+    },
+    "fiveclass_focused_naive": {
+      "rate": 0.6761,
+      "correct": 167,
+      "n": 247
+    },
+    "fiveclass_focused_temporal": {
+      "rate": 0.6721,
+      "correct": 166,
+      "n": 247
+    }
+  },
+  "comparison_table": [
+    {
+      "metric": "action_precision_naive",
+      "production": 0.7692,
+      "focused": 0.5333,
+      "delta": -0.2359
+    },
+    {
+      "metric": "action_recall_naive",
+      "production": 0.2778,
+      "focused": 0.1111,
+      "delta": -0.1667
+    },
+    {
+      "metric": "action_f1_naive",
+      "production": 0.4082,
+      "focused": 0.1839,
+      "delta": -0.2243
+    },
+    {
+      "metric": "replay_precision_naive",
+      "production": null,
+      "focused": 0.0,
+      "delta": null
+    },
+    {
+      "metric": "replay_recall_naive",
+      "production": 0.0,
+      "focused": 0.0,
+      "delta": 0.0
+    },
+    {
+      "metric": "umpire_precision_naive",
+      "production": null,
+      "focused": 0.5556,
+      "delta": null
+    },
+    {
+      "metric": "umpire_recall_naive",
+      "production": 0.0,
+      "focused": 0.625,
+      "delta": 0.625
+    },
+    {
+      "metric": "overall_acc_4class_gt",
+      "production": 0.7364,
+      "focused": 0.6862,
+      "delta": -0.0502
+    },
+    {
+      "metric": "overall_acc_5class_gt",
+      "production": 0.7126,
+      "focused": 0.6761,
+      "delta": -0.0364
+    }
+  ],
+  "cohorts": {
+    "action_gt_focused_wrong": {
+      "n": 64,
+      "focused_label_histogram": {
+        "other": 62,
+        "umpire": 2
+      },
+      "sample_frame_paths": [
+        "output/frames/20260420_214218_d001_0.jpg",
+        "output/frames/20260420_214218_d001_1.jpg",
+        "output/frames/20260420_214218_d001_3.jpg",
+        "output/frames/20260420_214218_d001_4.jpg",
+        "output/frames/20260420_214218_d001_5.jpg"
+      ]
+    },
+    "action_gt_production_other_focused_action_wins": {
+      "n": 1,
+      "sample_frame_paths": [
+        "output/frames/20260420_214218_d001_2.jpg"
+      ]
+    },
+    "action_gt_both_prompts_miss": {
+      "n": 51,
+      "sample_frame_paths": [
+        "output/frames/20260420_214218_d001_1.jpg",
+        "output/frames/20260420_214218_d001_4.jpg",
+        "output/frames/20260420_214218_d001_5.jpg",
+        "output/frames/20260420_214218_d002_9.jpg",
+        "output/frames/20260420_214218_d002_10.jpg"
+      ]
+    },
+    "action_gt_production_miss_count": 52
+  },
+  "temporal_on_focused": {
+    "focused_action_naive_full": {
+      "precision": 0.5333,
+      "recall": 0.1111,
+      "f1": 0.1839,
+      "support": 72
+    },
+    "focused_action_temporal_collapsed_4pred": {
+      "precision": 0.5,
+      "recall": 0.0833,
+      "f1": 0.1429,
+      "support": 72
+    },
+    "focused_action_temporal_full": {
+      "precision": 0.5,
+      "recall": 0.0833,
+      "f1": 0.1429,
+      "support": 72
+    },
+    "delta_recall_temporal_minus_naive_collapsed": -0.0278,
+    "delta_recall_temporal_full_minus_naive_full": -0.0278
+  },
+  "span_simulation_focused_temporal_4class": {
+    "per_clip": {
+      "20260420_214218/d001": {
+        "truth_action_spans": [
+          {
+            "start_s": 0.0,
+            "end_s": 5.0,
+            "frames": 6
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 2.0,
+            "end_s": 2.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d002": {
+        "truth_action_spans": [
+          {
+            "start_s": 9.0,
+            "end_s": 12.0,
+            "frames": 4
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 4.0,
+            "end_s": 4.0,
+            "frames": 1
+          }
+        ],
+        "overlap": false,
+        "verdict_clip": "fail"
+      },
+      "20260420_214218/d003": {
+        "truth_action_spans": [
+          {
+            "start_s": 0.0,
+            "end_s": 11.0,
+            "frames": 12
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 4.0,
+            "end_s": 4.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d004": {
+        "truth_action_spans": [
+          {
+            "start_s": 9.0,
+            "end_s": 18.0,
+            "frames": 10
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 15.0,
+            "end_s": 15.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d005": {
+        "truth_action_spans": [
+          {
+            "start_s": 4.0,
+            "end_s": 5.0,
+            "frames": 2
+          },
+          {
+            "start_s": 14.0,
+            "end_s": 21.0,
+            "frames": 8
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 3.0,
+            "end_s": 4.0,
+            "frames": 2
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d006": {
+        "truth_action_spans": [
+          {
+            "start_s": 7.0,
+            "end_s": 13.0,
+            "frames": 7
+          }
+        ],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "fail"
+      },
+      "20260420_214218/d007": {
+        "truth_action_spans": [
+          {
+            "start_s": 6.0,
+            "end_s": 10.0,
+            "frames": 5
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 8.0,
+            "end_s": 8.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d008": {
+        "truth_action_spans": [
+          {
+            "start_s": 9.0,
+            "end_s": 15.0,
+            "frames": 7
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 11.0,
+            "end_s": 11.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d010": {
+        "truth_action_spans": [
+          {
+            "start_s": 6.0,
+            "end_s": 12.0,
+            "frames": 7
+          }
+        ],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "fail"
+      },
+      "20260430_195352/d001": {
+        "truth_action_spans": [],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "pass"
+      },
+      "20260430_195352/d002": {
+        "truth_action_spans": [],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "pass"
+      },
+      "20260430_195352/d010": {
+        "truth_action_spans": [
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "frames": 4
+          }
+        ],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "fail"
+      },
+      "20260430_195352/d102": {
+        "truth_action_spans": [],
+        "pred_action_spans": [
+          {
+            "start_s": 6.0,
+            "end_s": 9.0,
+            "frames": 4
+          }
+        ],
+        "overlap": false,
+        "verdict_clip": "fail"
+      },
+      "20260430_195352/d104": {
+        "truth_action_spans": [],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "pass"
+      },
+      "20260430_195352/d105": {
+        "truth_action_spans": [],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "pass"
+      }
+    },
+    "summary": {
+      "positive_pass": 6,
+      "positive_total": 9,
+      "negative_pass": 4,
+      "negative_total": 6,
+      "clip_pass_total": 10,
+      "clip_denominator": 15
+    }
+  },
+  "verdict_focused_temporal": "Weak",
+  "verdict_notes": "Temporal action weak or span pass 10/15. (Focused stop S3: action P or R \u22640.5.)",
+  "flags": {
+    "focused_stop_s3_action_pr_le_0_5": true,
+    "s3_ab_recall_within_5pp": false
+  }
+}

@@ -1,0 +1,433 @@
+{
+  "groq_llama4_scout": {
+    "model_id": "meta-llama/llama-4-scout-17b-16e-instruct",
+    "accuracy": 88.11881188118812,
+    "total_points": 89,
+    "total_possible": 101,
+    "avg_time_s": 0.698,
+    "total_time_s": 7.0,
+    "json_fails": 0,
+    "cases": [
+      {
+        "case": 1,
+        "points": 16,
+        "total": 17,
+        "time": 0.8464539051055908,
+        "issues": [
+          "bat[0].striker: got=None exp=True"
+        ]
+      },
+      {
+        "case": 2,
+        "points": 11,
+        "total": 12,
+        "time": 0.4797859191894531,
+        "issues": [
+          "bat[0].striker: got=None exp=True"
+        ]
+      },
+      {
+        "case": 3,
+        "points": 12,
+        "total": 13,
+        "time": 0.6264829635620117,
+        "issues": [
+          "bat[0].striker: got=None exp=True"
+        ]
+      },
+      {
+        "case": 4,
+        "points": 4,
+        "total": 4,
+        "time": 0.6567058563232422,
+        "issues": []
+      },
+      {
+        "case": 5,
+        "points": 16,
+        "total": 18,
+        "time": 0.5903980731964111,
+        "issues": [
+          "bat[1].striker: got=None exp=True",
+          "this_over: got=[4, 1, 'wd'] exp=['4', '.', '1', 'wd']"
+        ]
+      },
+      {
+        "case": 6,
+        "points": 1,
+        "total": 5,
+        "time": 0.4556119441986084,
+        "issues": [
+          "ground_truth: got=None exp=True",
+          "graphic_type: got=None exp=bowling_scorecard",
+          "graphic_team: got='' exp contains 'Rajasthan'",
+          "bowlers_count: got=0 exp=4"
+        ]
+      },
+      {
+        "case": 7,
+        "points": 14,
+        "total": 16,
+        "time": 1.7306320667266846,
+        "issues": [
+          "required_rate: got=None exp=11.35",
+          "bat[1].striker: got=None exp=True"
+        ]
+      },
+      {
+        "case": 8,
+        "points": 1,
+        "total": 1,
+        "time": 0.45650506019592285,
+        "issues": []
+      },
+      {
+        "case": 9,
+        "points": 13,
+        "total": 14,
+        "time": 0.6156978607177734,
+        "issues": [
+          "bat[0].striker: got=None exp=True"
+        ]
+      },
+      {
+        "case": 10,
+        "points": 1,
+        "total": 1,
+        "time": 0.5198988914489746,
+        "issues": []
+      }
+    ],
+    "value": 126.24471616216064
+  },
+  "groq_qwen3_32b": {
+    "model_id": "qwen/qwen3-32b",
+    "accuracy": 100.0,
+    "total_points": 1,
+    "total_possible": 1,
+    "avg_time_s": 5.333,
+    "total_time_s": 53.3,
+    "json_fails": 9,
+    "cases": [
+      {
+        "case": 1,
+        "json_fail": true,
+        "time": 1.0628187656402588
+      },
+      {
+        "case": 2,
+        "json_fail": true,
+        "time": 1.076216220855713
+      },
+      {
+        "case": 3,
+        "json_fail": true,
+        "time": 1.1237781047821045
+      },
+      {
+        "case": 4,
+        "json_fail": true,
+        "time": 1.1364080905914307
+      },
+      {
+        "case": 5,
+        "json_fail": true,
+        "time": 4.150593042373657
+      },
+      {
+        "case": 6,
+        "json_fail": true,
+        "time": 9.419825792312622
+      },
+      {
+        "case": 7,
+        "json_fail": true,
+        "time": 9.251926898956299
+      },
+      {
+        "case": 8,
+        "points": 1,
+        "total": 1,
+        "time": 8.761478900909424,
+        "issues": []
+      },
+      {
+        "case": 9,
+        "json_fail": true,
+        "time": 8.162450075149536
+      },
+      {
+        "case": 10,
+        "json_fail": true,
+        "time": 9.181169033050537
+      }
+    ],
+    "value": 18.751171948246764
+  },
+  "groq_llama70b": {
+    "model_id": "llama-3.3-70b-versatile",
+    "accuracy": 91.0891089108911,
+    "total_points": 92,
+    "total_possible": 101,
+    "avg_time_s": 0.701,
+    "total_time_s": 7.0,
+    "json_fails": 0,
+    "cases": [
+      {
+        "case": 1,
+        "points": 16,
+        "total": 17,
+        "time": 0.8712201118469238,
+        "issues": [
+          "bat[0].striker: got=False exp=True"
+        ]
+      },
+      {
+        "case": 2,
+        "points": 11,
+        "total": 12,
+        "time": 0.7233529090881348,
+        "issues": [
+          "bat[0].striker: got=False exp=True"
+        ]
+      },
+      {
+        "case": 3,
+        "points": 13,
+        "total": 13,
+        "time": 0.8937301635742188,
+        "issues": []
+      },
+      {
+        "case": 4,
+        "points": 4,
+        "total": 4,
+        "time": 0.5949828624725342,
+        "issues": []
+      },
+      {
+        "case": 5,
+        "points": 16,
+        "total": 18,
+        "time": 0.7785568237304688,
+        "issues": [
+          "bat[1].striker: got=False exp=True",
+          "this_over: got=['4', '1', 'wd'] exp=['4', '.', '1', 'wd']"
+        ]
+      },
+      {
+        "case": 6,
+        "points": 2,
+        "total": 5,
+        "time": 0.6363410949707031,
+        "issues": [
+          "graphic_type: got=None exp=bowling_scorecard",
+          "graphic_team: got='' exp contains 'Rajasthan'",
+          "bowlers_count: got=0 exp=4"
+        ]
+      },
+      {
+        "case": 7,
+        "points": 14,
+        "total": 16,
+        "time": 0.7996196746826172,
+        "issues": [
+          "required_rate: got=None exp=11.35",
+          "bat[1].striker: got=False exp=True"
+        ]
+      },
+      {
+        "case": 8,
+        "points": 1,
+        "total": 1,
+        "time": 0.5996208190917969,
+        "issues": []
+      },
+      {
+        "case": 9,
+        "points": 14,
+        "total": 14,
+        "time": 0.5477349758148193,
+        "issues": []
+      },
+      {
+        "case": 10,
+        "points": 1,
+        "total": 1,
+        "time": 0.5622720718383789,
+        "issues": []
+      }
+    ],
+    "value": 129.9416674905722
+  },
+  "groq_llama8b": {
+    "model_id": "llama-3.1-8b-instant",
+    "accuracy": 100.0,
+    "total_points": 1,
+    "total_possible": 1,
+    "avg_time_s": 4.645,
+    "total_time_s": 46.5,
+    "json_fails": 0,
+    "cases": [
+      {
+        "case": 1,
+        "error": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` ",
+        "time": 0.05505776405334473
+      },
+      {
+        "case": 2,
+        "error": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` ",
+        "time": 0.05329108238220215
+      },
+      {
+        "case": 3,
+        "error": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` ",
+        "time": 0.11089301109313965
+      },
+      {
+        "case": 4,
+        "error": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` ",
+        "time": 0.12544012069702148
+      },
+      {
+        "case": 5,
+        "error": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` ",
+        "time": 0.1476140022277832
+      },
+      {
+        "case": 6,
+        "error": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` ",
+        "time": 0.09644317626953125
+      },
+      {
+        "case": 7,
+        "error": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` ",
+        "time": 0.11725306510925293
+      },
+      {
+        "case": 8,
+        "error": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` ",
+        "time": 0.09823083877563477
+      },
+      {
+        "case": 9,
+        "error": "ERROR: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` ",
+        "time": 0.12476682662963867
+      },
+      {
+        "case": 10,
+        "points": 1,
+        "total": 1,
+        "time": 45.52487301826477,
+        "issues": []
+      }
+    ],
+    "value": 21.528525296017225
+  },
+  "together_qwen7b": {
+    "model_id": "Qwen/Qwen2.5-7B-Instruct-Turbo",
+    "accuracy": 84.15841584158416,
+    "total_points": 85,
+    "total_possible": 101,
+    "avg_time_s": 2.45,
+    "total_time_s": 24.5,
+    "json_fails": 0,
+    "cases": [
+      {
+        "case": 1,
+        "points": 15,
+        "total": 17,
+        "time": 4.311976194381714,
+        "issues": [
+          "wickets: got=2 exp=0",
+          "match_overs: got=None exp=5.5"
+        ]
+      },
+      {
+        "case": 2,
+        "points": 11,
+        "total": 12,
+        "time": 2.798048973083496,
+        "issues": [
+          "match_overs: got=None exp=6"
+        ]
+      },
+      {
+        "case": 3,
+        "points": 9,
+        "total": 13,
+        "time": 3.0405433177948,
+        "issues": [
+          "wickets: got=2 exp=0",
+          "match_overs: got=None exp=6.2",
+          "speed: got=None exp=98.8",
+          "bat[0].striker: got=False exp=True"
+        ]
+      },
+      {
+        "case": 4,
+        "points": 1,
+        "total": 4,
+        "time": 2.3956449031829834,
+        "issues": [
+          "score: got=65 exp=62",
+          "wickets: got=1 exp=0",
+          "match_overs: got=None exp=6.2"
+        ]
+      },
+      {
+        "case": 5,
+        "points": 16,
+        "total": 18,
+        "time": 2.4463508129119873,
+        "issues": [
+          "bat[1].striker: got=False exp=True",
+          "this_over: got=['4', '1 wd'] exp=['4', '.', '1', 'wd']"
+        ]
+      },
+      {
+        "case": 6,
+        "points": 3,
+        "total": 5,
+        "time": 2.0153648853302,
+        "issues": [
+          "graphic_type: got=None exp=bowling_scorecard",
+          "bowlers_count: got=0 exp=4"
+        ]
+      },
+      {
+        "case": 7,
+        "points": 15,
+        "total": 16,
+        "time": 2.2793378829956055,
+        "issues": [
+          "required_rate: got=None exp=11.35"
+        ]
+      },
+      {
+        "case": 8,
+        "points": 1,
+        "total": 1,
+        "time": 0.6699137687683105,
+        "issues": []
+      },
+      {
+        "case": 9,
+        "points": 13,
+        "total": 14,
+        "time": 2.4270920753479004,
+        "issues": [
+          "bat[0].striker: got=False exp=True"
+        ]
+      },
+      {
+        "case": 10,
+        "points": 1,
+        "total": 1,
+        "time": 2.1188981533050537,
+        "issues": []
+      }
+    ],
+    "value": 34.35037381289149
+  }
+}

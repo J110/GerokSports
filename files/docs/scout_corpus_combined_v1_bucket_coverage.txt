@@ -1,0 +1,53 @@
+Wrote files/docs/scout_corpus_combined_v1.stage.json (50 frames)
+
+=== bucket_coverage JSON ===
+[
+  {
+    "bucket": "powerplay_inn1",
+    "pool": 277,
+    "reason": "",
+    "sampled": 10,
+    "status": "OK",
+    "target": 10
+  },
+  {
+    "bucket": "middle_inn1",
+    "pool": 277,
+    "reason": "",
+    "sampled": 10,
+    "status": "OK",
+    "target": 10
+  },
+  {
+    "bucket": "death_inn1",
+    "pool": 650,
+    "reason": "",
+    "sampled": 10,
+    "status": "OK",
+    "target": 10
+  },
+  {
+    "bucket": "powerplay_inn2",
+    "pool": 133,
+    "reason": "",
+    "sampled": 10,
+    "status": "OK",
+    "target": 10
+  },
+  {
+    "bucket": "middle_inn2",
+    "pool": 134,
+    "reason": "",
+    "sampled": 10,
+    "status": "OK",
+    "target": 10
+  },
+  {
+    "bucket": "death_inn2",
+    "pool": 0,
+    "reason": "",
+    "sampled": 0,
+    "status": "OK",
+    "target": 10
+  }
+]

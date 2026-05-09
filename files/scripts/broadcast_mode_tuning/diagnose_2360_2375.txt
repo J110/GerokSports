@@ -1,0 +1,184 @@
+=== Per-frame V / V_post + prose for t=2360-2375 ===
+
+-- t=2360 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'running'  via  \brunning\b
+   prose:
+     The camera shows a single player on a green field. The player, wearing a light blue uniform with a brown hat, appears to be walking while holding a ball in his right hand. 
+     
+     The frame includes several graphical overlays, including a TATA IPL logo in the top-left corner, a JioHotstar LIVE logo in the top-right corner, and a score graphic at the bottom that displays "DC 52-3 8" on the left and player information for Gurjapneet Singh on the right. The player information includes his name, matches played (6), wickets taken (3), and economy rate (9.8).
+     
+     The action level appears to be a moment between deliveries or a break in play, as the player is not in an active bowling or running position.
+
+-- t=2361 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose:
+     The camera shows a player in a teal uniform walking on a green field. The player, Gurjapneet Singh, appears to be casually walking while holding a ball in his right hand. He seems to be between actions, as he is not in a dynamic pose but rather in a transitional state.
+     
+     There are several graphical overlays on the screen, including a score graphic at the bottom left showing "DC 52-3" and "8" in white and blue text on a brown background, and another graphic at the bottom center displaying the player's name, "GURJAPNEET SINGH," along with his IPL career statistics: "MATCHES 6," "WICKETS 3," and "ECONOMY 9.8." The TATA IPL logo is visible in the top-left corner, and a "JioHotstar LIVE" logo with "5.8Cr Views" is in the top-right corner. 
+     
+     The action level appears to be a post-action moment or between deliveries, as there is no intense action happening in the frame.
+
+-- t=2362 | path=none | D=0 | V=n V_post=n | M2=n W=n K=n SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'running'  via  \brunning\b
+     'in motion'  via  \bin\s+motion\b
+     'in motion'  via  \bin\s+motion\b
+   prose:
+     The camera shows a medium shot of a cricket player in motion. The player, wearing a light blue uniform, appears to be running towards the left side of the frame. 
+     
+     There are several graphical overlays on the screen, including a score graphic in the bottom-left corner showing "DC 52-3" and "8" on an orange background, and a teal box with the player's name, "GURJAPNEET SINGH," along with his IPL career statistics. The background is a green field, suggesting that the action is taking place during a live match. The player appears to be in motion, likely between deliveries or in the midst of active play.
+
+-- t=2363 | path=none | D=0 | V=Y V_post=n | M2=n W=n K=Y SS=Y HARD=n --
+   V matches:
+     'running on the field'  via  \brunning\s+on\s+the\s+field\b
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'running'  via  \brunning\b
+     'in motion'  via  \bin\s+motion\b
+   prose:
+     The camera shows a medium shot of a cricket player running on the field. The player is wearing a light blue uniform and appears to be sprinting towards the left side of the frame, with another player partially visible in the background. 
+     
+     There are several graphical overlays, including a score graphic in the bottom-left corner that reads "DC 52-3 8" and a logo for the Tata IPL in the top-left corner and bottom center. The action level appears to be an active play moment, as the player is in motion and the score graphic suggests that the game is ongoing.
+
+-- t=2364 | path=A | D=1 | V=Y V_post=n | M2=n W=Y K=n SS=Y HARD=n --
+   V matches:
+     'running on the field'  via  \brunning\s+on\s+the\s+field\b
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'running'  via  \brunning\b
+     'in motion'  via  \bin\s+motion\b
+   prose:
+     The camera shows a wide field view of a cricket player running on the field. The player, wearing a light blue uniform and a dark head covering, appears to be in motion, with one leg lifted behind him.
+     
+     There are graphical overlays at the bottom of the screen displaying information about the match, including the teams playing (DC vs CSK), the current score (52-3), and player names. The action level appears to be an active play moment, as indicated by the player's movement and the score graphic showing that the game is in progress.
+
+-- t=2365 | path=B | D=1 | V=Y V_post=n | M2=Y W=Y K=n SS=Y HARD=n --
+   V matches:
+     'about to bowl'  via  \babout\s+to\s+(?:bowl|deliver|release|throw)\b
+   V_post matches: (none)
+   prose:
+     The camera shows a wide field view of a cricket pitch with six people on it. The players are positioned for a bowling action to happen, with one player in a teal uniform about to bowl and two players in orange and blue standing at the wickets, while a third player in teal stands behind the wicket-keeper and two other people stand on or near the pitch.
+     
+     There are several graphical overlays, including a score graphic at the bottom showing the score and player information, sponsor logos in the top-left and center of the frame, and a live view count in the top-right corner. The action level appears to be just before active play, as the bowler is in a starting position and the batsmen are standing ready.
+
+-- t=2366 | path=B | D=1 | V=Y V_post=n | M2=Y W=Y K=Y SS=Y HARD=n --
+   V matches:
+     'throwing a ball'  via  \b(?:throwing|throws|swinging|delivering|bowling|hitting)\s+(?:the\s+|a\s+)?(?:white\s+)?(?:ball|object)\b
+   V_post matches: (none)
+   prose:
+     The camera shows a wide field view of a cricket field with five players and an umpire. The players are positioned around the field, with one player in a blue uniform throwing a ball and another player in an orange uniform holding a bat, standing near another player in an orange uniform.
+     
+     There are several graphical overlays on the screen, including a red rectangle with "TATA AIG CAR INSURANCE" written in white text at the top center, a score graphic at the bottom showing the teams Delhi Capitals (DC) and Chennai Super Kings (CSK), their current scores, and player information. 
+     
+     The action level appears to be an active play moment, as indicated by the positioning of the players and the presence of the ball. The scene suggests that the game is currently in progress.
+
+-- t=2367 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=n SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'running'  via  \brunning\b
+   prose:
+     The camera shows a wide field view of a cricket field with players scattered around. The players are standing still or walking around the field; one player in a light blue uniform appears to be running towards the center of the field. 
+     
+     There are several graphical overlays on the frame, including a score graphic at the bottom showing the score and team logos, as well as advertisements along the boundary of the field. The action level appears to be between deliveries, as the players are not in active motion, and the field seems relatively calm.
+
+-- t=2368 | path=C | D=1 | V=n V_post=n | M2=Y W=Y K=n SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose:
+     The camera shows a wide field view of a cricket field with players scattered around. The people in the frame appear to be in a moment between deliveries, with some fielders walking or standing still and one batter standing near the wicket. 
+     
+     There are several graphical overlays, including a score graphic at the bottom showing the score and team information, sponsor logos along the field's boundary, and a broadcast network logo in the top-left corner. The action level appears to be relatively calm, with no immediate action happening but players positioned for the next play.
+
+-- t=2369 | path=none | D=0 | V=n V_post=n | M2=n W=Y K=n SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'running'  via  \brunning\b
+     'in motion'  via  \bin\s+motion\b
+   prose:
+     The camera shows a wide field view of a cricket pitch with a player in motion on the left side and a ball on the ground. The player appears to be running or walking towards the left side of the frame, while the background is blurry but shows spectators in the stands. 
+     
+     There are graphical overlays at the bottom of the screen displaying information about the game, including team logos, scores, player names, run rate, and speed. The action level appears to be a moment during active play, likely between deliveries, as the player is moving but not in a dramatic or dynamic pose.
+
+-- t=2370 | path=B | D=1 | V=Y V_post=n | M2=n W=Y K=Y SS=Y HARD=n --
+   V matches:
+     'about to throw'  via  \babout\s+to\s+(?:bowl|deliver|release|throw)\b
+   V_post matches: (none)
+   V_loose-only (pre-action) matches:
+     'in motion'  via  \bin\s+motion\b
+   prose:
+     The camera shows a wide field view of a cricket player in action on the field. The player, wearing a teal uniform and cap, appears to be about to throw a ball back to a teammate. A teammate stands behind him on the field. The background features a large crowd and a wall with advertisements.
+     
+     There are several graphical overlays, including a score graphic at the bottom showing the teams Delhi Capitals (DC) and Chennai Super Kings (CSK), the current score (52-3), and player information. Other overlays include logos for TATA IPL and JioHotstar, as well as a speed indicator showing 130.5 kph.
+     
+     The action level appears to be an active play moment, as the player is in motion and seems to be participating in the game. The overall atmosphere suggests a live broadcast of a professional cricket match.
+
+-- t=2371 | path=none | D=0 | V=n V_post=n | M2=n W=n K=n SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose:
+     The camera shows a medium shot of two cricket players in orange uniforms. The player on the left is wearing a blue helmet and holding a cricket bat, while the player on the right is out of focus and appears to be walking. A third player and a man in a green shirt are partially visible on the left and right sides of the frame.
+     
+     There are several graphical overlays at the bottom of the frame, including a score graphic with team logos, player names, and statistics such as run rate and speed. The action level appears to be a post-action moment, as the players do not seem to be in the midst of active play. The overall atmosphere suggests that the game is being broadcast live, with a "LIVE" indicator in the upper right corner and a view count displayed.
+
+-- t=2372 | path=none | D=0 | V=n V_post=n | M2=n W=n K=n SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose:
+     The camera shows a close-up shot of two cricket players in orange jerseys and blue helmets. The player in the foreground appears to be walking off the field, looking down, while another player behind him is also walking. 
+     
+     There are graphical overlays at the bottom of the screen displaying the score, team logos, and sponsor information. The action level appears to be a post-action moment, as the players seem to be walking off the field rather than actively playing.
+
+-- t=2373 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose:
+     The camera shows a medium shot of several cricket players on the field. The players appear to be in conversation, with one player in a teal uniform standing with his back to the camera and his head down, while another player in an orange uniform and blue helmet looks down at him. A third player in orange is partially visible on the right side of the frame.
+     
+     There are several graphical overlays, including a score graphic at the bottom of the screen showing the teams "DC" and "CSK," the current score "53-3," and the run rate "6.49." The frame also features sponsor logos, including FedEx, and a promotional tagline that reads "Play like a pro, ship like one too." The action level appears to be a moment between deliveries, as the players are not in active play but rather engaged in conversation.
+
+-- t=2374 | path=none | D=0 | V=n V_post=n | M2=n W=n K=Y SS=Y HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose:
+     The camera shows a close-up shot of a large orange cricket ball with the word "WICKET" superimposed over it. The people in the frame are not directly visible, but there are several players visible in the bottom right corner and background, and they appear to be standing still. 
+     
+     There are several graphical overlays, including a score graphic at the bottom of the screen showing the score and team logos, as well as sponsor logos for FedEx and the Chennai Super Kings. The action level appears to be a post-action moment, as indicated by the "WICKET" graphic and the fact that the players in the background are not actively engaged in play.
+
+-- t=2375 | path=none | D=0 | V=n V_post=n | M2=Y W=n K=Y SS=n HARD=n --
+   V matches: (none)
+   V_post matches: (none)
+   prose:
+     The camera shows a cricket player in an orange uniform with blue accents, wearing a blue helmet and holding a bat, standing on the field. He appears to be preparing to play a shot or taking a defensive stance. The player is positioned centrally in the frame, with another player partially visible on the left side of the image.
+     
+     There are several graphical overlays present, including sponsor logos such as FedEx and Google, as well as a "JioHotstar LIVE" label in the top-right corner indicating that this is a live broadcast. At the bottom of the frame, there is a promotional message that reads, "Play like a pro, ship like one too," along with the FedEx logo and the Chennai Super Kings team logo.
+     
+     The action level appears to be a moment of anticipation or preparation, as the batter seems poised to react to an incoming delivery. The overall atmosphere suggests that this is a live broadcast of a professional cricket match, likely during a critical phase of play.
+
+=== Cluster builder trace t=2360-2375 ===
+  t=2360: idle (HARD=n D=0 path=none V_post=n)
+  t=2361: idle (HARD=n D=0 path=none V_post=n)
+  t=2362: idle (HARD=n D=0 path=none V_post=n)
+  t=2363: idle (HARD=n D=0 path=none V_post=n)
+  t=2364: OPEN (path=A V_post=n)
+  t=2365: extend (path=B V_post=n), last_d=2365
+  t=2366: extend (path=B V_post=n), last_d=2366
+  t=2367: gap=1 (path=none V_post=n)
+  t=2368: extend (path=C V_post=n), last_d=2368
+  t=2369: gap=1 (path=none V_post=n)
+  t=2370: extend (path=B V_post=n), last_d=2370
+  t=2371: gap=1 (path=none V_post=n)
+  t=2372: gap=2 (path=none V_post=n)
+  t=2373: gap=3 (path=none V_post=n)
+  t=2374: gap>3 -> close at last_d=2370
+  t=2375: idle (HARD=n D=0 path=none V_post=n)
+
+=== Closed clusters: 1 ===
+  start=2364 end=2370 reason=gap>3 delivery_count=5 any_V=Y any_V_post=n

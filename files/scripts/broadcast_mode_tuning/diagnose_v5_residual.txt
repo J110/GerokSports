@@ -1,0 +1,218 @@
+=== t=1325-1340 — medium-shot ball — why SS=N? ===
+
+Per-frame signals:
+  t=1325 D=0 path=none V=n S=n M=n M2=n W=n K=Y SS=Y(n) CG=Y HARD=n rc=0
+  t=1326 D=0 path=none V=Y S=n M=Y M2=Y W=n K=n SS=n(n) CG=n HARD=n rc=4
+  t=1327 D=0 path=none V=Y S=n M=Y M2=Y W=n K=n SS=n(n) CG=n HARD=n rc=4
+  t=1328 D=0 path=none V=Y S=n M=Y M2=Y W=n K=Y SS=n(n) CG=Y HARD=n rc=4
+  t=1329 D=0 path=none V=n S=n M=Y M2=Y W=n K=Y SS=n(n) CG=Y HARD=n rc=6
+  t=1330 D=0 path=none V=n S=n M=Y M2=n W=n K=Y SS=n(n) CG=Y HARD=n rc=2
+  t=1331 D=0 path=none V=n S=n M=Y M2=n W=n K=Y SS=n(n) CG=n HARD=n rc=2
+  t=1332 D=0 path=none V=Y S=n M=Y M2=n W=n K=Y SS=n(n) CG=n HARD=n rc=1
+  t=1333 D=0 path=none V=n S=n M=Y M2=n W=Y K=Y SS=n(n) CG=Y HARD=n rc=1
+  t=1334 D=0 path=none V=n S=n M=Y M2=n W=n K=Y SS=n(n) CG=Y HARD=n rc=1
+  t=1335 D=0 path=none V=n S=n M=Y M2=n W=Y K=Y SS=n(n) CG=Y HARD=n rc=2
+  t=1336 D=0 path=none V=Y S=n M=Y M2=n W=n K=Y SS=n(n) CG=Y HARD=n rc=2
+  t=1337 D=0 path=none V=n S=n M=n M2=n W=n K=Y SS=n(n) CG=Y HARD=n rc=0
+  t=1338 D=0 path=none V=n S=n M=n M2=n W=n K=n SS=n(n) CG=n HARD=n rc=0
+  t=1339 D=0 path=none V=n S=n M=n M2=n W=n K=Y SS=n(n) CG=n HARD=n rc=0
+  t=1340 D=0 path=none V=n S=n M=n M2=n W=n K=Y SS=n(n) CG=n HARD=n rc=0
+
+Prose excerpts (first 280 chars per frame):
+  -- t=1325 --
+     The frame shows a large orange circle with the word "FOUR" in the center, surrounded by bright yellow lights and lines radiating from it. The camera appears to be showing a graphic overlay rather than a live shot of the field. There are no people visible in the frame, but there a
+     ... (598 total chars)
+  -- t=1326 --
+     The camera shows a medium shot of a cricket player in mid-air, about to bowl the ball. The bowler, wearing a teal uniform with the number 47 on his back, is captured in a dynamic pose, with his right leg lifted high and his left arm cocked back to release the ball. Behind him, a 
+     ... (532 total chars)
+  -- t=1327 --
+     The camera shows a medium shot of a cricket player in a teal uniform throwing a ball. The player in teal appears to be mid-action with their arm extended to the right. A batter in an orange uniform and a wicketkeeper in teal stand to the left, while an umpire in a black uniform s
+     ... (359 total chars)
+  -- t=1328 --
+     The camera shows a medium shot of two cricket players in action. The player on the right is wearing a light blue uniform and appears to be jumping up and throwing a ball towards the wicket, while the player on the left, wearing an orange uniform, is holding a bat and standing beh
+     ... (589 total chars)
+  -- t=1329 --
+     The camera shows a medium shot of three cricket players on the field. The player on the right is airborne, having jumped to catch a ball; the player in the middle is a batter in a batting stance, holding a cricket bat; and the player on the left is a wicket-keeper crouching behin
+     ... (583 total chars)
+  -- t=1330 --
+     The camera shows a medium shot of three cricket players on the field. The player on the right is wearing a light blue uniform with the number 47 on his back and appears to be running; the player in the middle, wearing orange and blue protective gear, is holding a cricket bat and 
+     ... (601 total chars)
+  -- t=1331 --
+     The camera shows two cricket players in the frame, with one player facing away from the camera. The player facing away appears to be walking or jogging, while the other player, who is partially obscured, seems to be walking or standing still.   There are several graphical overlay
+     ... (578 total chars)
+  -- t=1332 --
+     The camera shows a medium shot of a cricket player in a light blue uniform, with their back to the camera, throwing a ball. The player appears to be in motion, with their right leg lifted and their left foot planted on the ground. A partial view of another player in a blue and wh
+     ... (591 total chars)
+  -- t=1333 --
+     The frame shows a white cricket ball on a green field. The camera appears to be capturing a wide field view of the pitch. There are no people visible in the frame.  There are several graphical overlays in the top-left corner, including logos for "TATA IPL", "SBI", and "YONO SBI".
+     ... (558 total chars)
+  -- t=1334 --
+     The camera shows a single player in action on the field. The player, wearing an orange uniform with blue accents and a blue helmet, is mid-swing with their bat raised high.   There are graphical overlays in the top left and right corners of the frame, including a "TATA IPL" logo,
+     ... (462 total chars)
+  -- t=1335 --
+     The camera shows a wide field view of four cricket players on the field. The players are in motion; one player in a teal uniform is diving to catch a ball on the ground, while another player in teal walks across the field and a third player in teal bends over near a player in an 
+     ... (582 total chars)
+  -- t=1336 --
+     The camera shows a medium shot of two cricket players on the field. The player on the right is wearing a light blue uniform with the number 22 on his back and appears to be walking away from the camera, while the player on the left is wearing an orange uniform and a blue helmet a
+     ... (679 total chars)
+  -- t=1337 --
+     The camera shows a close-up shot of a man in the crowd, with his body painted orange and blue. He is holding a large flag above his head with one hand and a stick with the other. The man appears to be cheering, with his mouth open.  There are several graphical overlays on the fra
+     ... (569 total chars)
+  -- t=1338 --
+     The camera shows a close-up shot of a man in the crowd, with his body and face painted blue and orange. He appears to be cheering, with his mouth open and one arm raised while holding a flag or banner. The background shows a stadium with bright lights and advertisements on the sc
+     ... (402 total chars)
+  -- t=1339 --
+     The camera shows a close-up shot of a man in the crowd, with his body and face painted blue and orange. He is holding an orange flag above his head with both hands. The man appears to be cheering or celebrating.  There are several graphical overlays on the frame, including a "TAT
+     ... (736 total chars)
+  -- t=1340 --
+     The camera shows a close-up shot of a man in the crowd, with other spectators visible behind and around him. The man has his face and upper body painted blue and orange, and he appears to be cheering or celebrating while holding up a flag or banner. There are graphical overlays i
+     ... (478 total chars)
+
+=== t=1275-1295 — c29 replay-of-just-bowled — markers? ===
+
+Per-frame signals:
+  t=1275 D=1 path=   C V=n S=Y M=Y M2=Y W=Y K=Y SS=Y(n) CG=Y HARD=n rc=2
+  t=1276 D=1 path=   C V=n S=n M=Y M2=Y W=Y K=n SS=Y(n) CG=Y HARD=n rc=2
+  t=1277 D=1 path=   B V=Y S=n M=Y M2=Y W=Y K=n SS=Y(n) CG=Y HARD=n rc=3
+  t=1278 D=1 path=   B V=Y S=n M=Y M2=Y W=Y K=n SS=Y(n) CG=Y HARD=n rc=4
+  t=1279 D=0 path=none V=n S=n M=n M2=n W=n K=Y SS=n(n) CG=n HARD=n rc=0
+  t=1280 D=0 path=none V=n S=n M=Y M2=Y W=Y K=Y SS=n(n) CG=Y HARD=n rc=4
+  t=1281 D=0 path=none V=Y S=n M=Y M2=Y W=Y K=Y SS=n(n) CG=Y HARD=n rc=3
+  t=1282 D=0 path=none V=Y S=n M=Y M2=Y W=Y K=Y SS=n(n) CG=Y HARD=n rc=3
+  t=1283 D=0 path=none V=n S=n M=Y M2=Y W=Y K=Y SS=n(n) CG=Y HARD=n rc=4
+  t=1284 D=0 path=none V=n S=n M=Y M2=n W=Y K=Y SS=n(n) CG=Y HARD=n rc=3
+  t=1285 D=0 path=none V=Y S=n M=Y M2=Y W=n K=Y SS=n(n) CG=n HARD=n rc=6
+  t=1286 D=0 path=none V=n S=n M=Y M2=n W=Y K=Y SS=n(n) CG=Y HARD=n rc=3
+  t=1287 D=0 path=none V=n S=n M=Y M2=Y W=Y K=Y SS=n(n) CG=Y HARD=n rc=4
+  t=1288 D=0 path=none V=Y S=n M=Y M2=n W=Y K=Y SS=n(n) CG=Y HARD=n rc=3
+  t=1289 D=0 path=none V=n S=n M=Y M2=Y W=n K=Y SS=n(n) CG=Y HARD=n rc=4
+  t=1290 D=0 path=none V=Y S=n M=Y M2=Y W=n K=Y SS=n(n) CG=Y HARD=n rc=4
+  t=1291 D=0 path=none V=n S=n M=Y M2=Y W=Y K=Y SS=n(n) CG=Y HARD=n rc=5
+  t=1292 D=0 path=none V=Y S=n M=Y M2=Y W=Y K=Y SS=n(n) CG=Y HARD=n rc=5
+  t=1293 D=0 path=none V=Y S=n M=Y M2=Y W=Y K=Y SS=n(n) CG=Y HARD=n rc=4
+  t=1294 D=0 path=none V=n S=n M=Y M2=Y W=Y K=Y SS=n(n) CG=Y HARD=n rc=4
+  t=1295 D=0 path=none V=n S=n M=Y M2=n W=Y K=Y SS=n(n) CG=Y HARD=n rc=1
+
+Prose excerpts (first 280 chars per frame):
+  -- t=1275 --
+     The camera shows a wide field view of a cricket field with players positioned around it. The people in the frame are engaged in a moment of relative calm, with one player in a blue uniform standing near the wickets, another player in an orange uniform preparing to bat, and other 
+     ... (635 total chars)
+  -- t=1276 --
+     The camera shows a wide field view of a cricket field with players positioned around it. The people in the frame are engaged in a moment of play, with one player in an orange uniform holding a bat and standing near the wicket, while another player in a light blue uniform appears 
+     ... (686 total chars)
+  -- t=1277 --
+     The camera shows a wide field view of a cricket match in progress. The people in the frame are engaged in active play, with a batter standing near the wicket, a bowler in a follow-through position on the left side of the frame, and two fielders positioned behind him.  There are s
+     ... (568 total chars)
+  -- t=1278 --
+     The camera shows a wide field view of a cricket field with four people visible. A player in a light blue uniform appears to be celebrating, with their left arm raised above their head and their right hand on their helmet; another player in a similar uniform walks towards them, wh
+     ... (728 total chars)
+  -- t=1279 --
+     The frame shows a stylized graphic with large, colorful letters. A person in a cricket uniform and helmet appears to be standing in the background, holding a cricket bat and seemingly walking through the graphic. The frame includes several graphical overlays, including a logo for
+     ... (456 total chars)
+  -- t=1280 --
+     The camera shows a wide field view of a cricket pitch with four players visible. The batter is standing with the bat leaning on the wicket, while another player in an orange uniform walks towards the wicket, and a third player in blue appears to be throwing something. A wicketkee
+     ... (786 total chars)
+  -- t=1281 --
+     The camera shows a wide field view of a cricket match in progress. A batter wearing orange and blue protective gear and uniform appears to have just hit the ball and is walking away from the wickets, while two players in blue uniforms are moving toward the area where the ball app
+     ... (858 total chars)
+  -- t=1282 --
+     The camera shows a wide field view of a cricket pitch with three players in the frame. A batter wearing an orange uniform and blue helmet and pads is holding a bat and appears to have just played a shot, as a fielder in a blue uniform lunges to catch the ball. A teammate of the b
+     ... (772 total chars)
+  -- t=1283 --
+     The camera shows a wide field view of a cricket pitch with three players in the frame. The batter, wearing an orange and blue uniform, is mid-swing with their bat raised high, while a fielder in a blue uniform appears to be throwing or catching a ball. A second player in an orang
+     ... (682 total chars)
+  -- t=1284 --
+     The camera shows a wide field view of a cricket pitch with players positioned around it. A batter stands at the center, holding a bat and wearing an orange uniform with blue accents and a blue helmet, while another player in a similar uniform stands to the right; a third player i
+     ... (586 total chars)
+  -- t=1285 --
+     The camera shows a medium shot of a cricket player in the middle of a batting motion, with the bowler's legs visible at the top of the frame and two other players on either side. The batter is swinging a bat at an incoming ball, while the bowler appears to be finishing their deli
+     ... (764 total chars)
+  -- t=1286 --
+     The camera shows a wide field view of a cricket pitch with several players. The players are positioned around the pitch; one player appears to be mid-swing with a bat, while another player is running toward the background. A third player walks toward the batter with a bat in hand
+     ... (589 total chars)
+  -- t=1287 --
+     The camera shows a wide field view of a cricket pitch with several players. A batter in an orange uniform and blue helmet appears to be mid-swing, with three red balls seemingly suspended in mid-air around the bat. A wicketkeeper in protective gear crouches behind the batter, whi
+     ... (708 total chars)
+  -- t=1288 --
+     The camera shows a wide field view of a cricket pitch with three players and a portion of a fourth player visible. The batter, wearing orange and blue protective gear, appears to be reacting to balls flying past them; three red balls are depicted in mid-air to their right. Two ot
+     ... (892 total chars)
+  -- t=1289 --
+     The camera shows a medium field view of a cricket match in progress. A batter wearing an orange uniform and blue helmet and pads appears to be preparing to play a delivery, holding a bat and standing in the batter's box; three red balls are superimposed over the frame near the ba
+     ... (828 total chars)
+  -- t=1290 --
+     The camera captures a moment during a cricket match, showing a batter in an orange and blue uniform preparing to hit the ball. The batter is positioned centrally, with a wicketkeeper behind him and another player in an orange uniform on the right side of the frame. A fielder in a
+     ... (850 total chars)
+  -- t=1291 --
+     The camera shows a wide field view of a cricket match in progress. The players are positioned around the pitch, with two batters standing at the wickets and fielders scattered around the field; one fielder appears to be walking towards the umpire with their arm outstretched.   Th
+     ... (632 total chars)
+  -- t=1292 --
+     The camera shows a wide field view of a cricket pitch with several players. The batter is standing with their bat raised, poised to hit an incoming ball, while another player in a similar uniform stands behind them. A wicketkeeper and a fielder are positioned behind and beside th
+     ... (604 total chars)
+  -- t=1293 --
+     The camera shows a wide field view of a cricket pitch with four players visible. The batter, wearing a purple helmet and orange uniform, stands ready to hit the ball while holding a bat, with a wicketkeeper in a blue uniform crouched behind him. A player in an orange uniform with
+     ... (666 total chars)
+  -- t=1294 --
+     The camera shows a wide field view of a cricket pitch with four players visible. The player in the center is standing with their back to the camera and their hands raised near their head, while another player in a blue uniform walks towards the right side of the frame. A batter w
+     ... (762 total chars)
+  -- t=1295 --
+     The camera shows a wide field view of a cricket field with two players in teal uniforms walking across the green field. The players appear to be walking casually, not in a state of urgency or action. In the background, there is a large crowd of spectators seated in the stands, an
+     ... (538 total chars)
+
+=== t=1418-1430 — c32 wicket catch — forward extension content ===
+
+Per-frame signals:
+  t=1418 D=1 path=   B V=Y S=n M=Y M2=Y W=Y K=n SS=Y(n) CG=Y HARD=n rc=5
+  t=1419 D=1 path=   C V=n S=n M=Y M2=Y W=Y K=n SS=Y(n) CG=Y HARD=n rc=4
+  t=1420 D=1 path=   C V=n S=n M=Y M2=Y W=Y K=Y SS=Y(n) CG=Y HARD=n rc=5
+  t=1421 D=0 path=none V=Y S=n M=Y M2=Y W=n K=n SS=Y(n) CG=Y HARD=n rc=3
+  t=1422 D=0 path=none V=n S=n M=Y M2=n W=Y K=Y SS=Y(n) CG=Y HARD=n rc=1
+  t=1423 D=0 path=none V=n S=n M=Y M2=n W=Y K=Y SS=Y(n) CG=n HARD=n rc=2
+  t=1424 D=0 path=none V=n S=n M=Y M2=n W=Y K=n SS=Y(Y) CG=Y HARD=n rc=2
+  t=1425 D=0 path=none V=n S=n M=Y M2=n W=Y K=Y SS=Y(n) CG=n HARD=n rc=1
+  t=1426 D=0 path=none V=n S=n M=Y M2=n W=n K=Y SS=Y(n) CG=Y HARD=n rc=1
+  t=1427 D=0 path=none V=n S=n M=Y M2=n W=n K=Y SS=Y(n) CG=Y HARD=n rc=2
+  t=1428 D=0 path=none V=Y S=n M=Y M2=n W=n K=n SS=Y(n) CG=Y HARD=n rc=2
+  t=1429 D=0 path=none V=n S=n M=Y M2=n W=n K=Y SS=Y(n) CG=n HARD=n rc=2
+  t=1430 D=0 path=none V=n S=n M=Y M2=n W=n K=n SS=Y(n) CG=n HARD=n rc=2
+
+Prose excerpts (first 280 chars per frame):
+  -- t=1418 --
+     The camera shows a wide field view of a cricket pitch with players positioned around it. The players are standing still, with one batter holding a bat near the wickets and a wicketkeeper crouched behind them, while another player walks towards the wickets and a bowler appears to 
+     ... (590 total chars)
+  -- t=1419 --
+     The camera shows a wide field view of a cricket pitch with players positioned around it. The people in the frame are standing still, with one batter holding a bat and another player crouched behind the wickets, while two other players and an umpire stand nearby. Graphical overlay
+     ... (503 total chars)
+  -- t=1420 --
+     The camera shows a wide field view of a cricket pitch with players positioned around it. The players are not actively engaged in play; two batsmen are walking off the pitch, while the wicketkeeper crouches behind the stumps and a fielder walks towards them.   There are several gr
+     ... (582 total chars)
+  -- t=1421 --
+     The camera shows a batter in mid-swing on a cricket pitch, with a wicketkeeper standing behind him and another player crouched down in the foreground. The batter is wearing an orange uniform and blue pads, while the wicketkeeper is dressed in a light blue uniform. A score graphic
+     ... (648 total chars)
+  -- t=1422 --
+     The camera shows a wide field view of the Arun Jaitley Stadium at night. The people in the frame are not actively engaged in play; instead, they appear to be spectators or individuals on the field between plays.   There are several graphical overlays present, including a score gr
+     ... (720 total chars)
+  -- t=1423 --
+     The frame shows a dark background with a subtle gradient transitioning from brown to black. The camera appears to be capturing a wide field view, but there are no visible players or action in the frame.  There are several graphical overlays present, including a score graphic at t
+     ... (818 total chars)
+  -- t=1424 --
+     The frame shows a dark screen with a small white dot in the center, likely a ball. The camera appears to be showing a wide field view of the pitch. There are no people visible in the frame, but there are graphical overlays at the bottom displaying information such as team logos, 
+     ... (606 total chars)
+  -- t=1425 --
+     The frame shows a wide field view of a crowded stadium during a cricket match. The people in the frame appear to be seated spectators, with no players visible in this particular frame.  There are several graphical overlays on the screen, including a score graphic at the bottom th
+     ... (738 total chars)
+  -- t=1426 --
+     The camera shows a player in a teal uniform running on a green field. The player appears to be retrieving a water bottle from the field.   The frame includes several graphical overlays, including a score graphic at the bottom with team names and scores, a Tata IPL logo in the top
+     ... (647 total chars)
+  -- t=1427 --
+     The camera shows two cricket players on the field. The player on the left is holding a ball and appears to be in motion, while the player on the right is blurred and appears to be running.   The frame includes several graphical overlays, including a score graphic at the bottom wi
+     ... (518 total chars)
+  -- t=1428 --
+     The camera shows two cricket players in teal uniforms running on the field. The player on the right appears to be leading the way, with his mouth open and looking to the right; the player on the left is behind him with his right arm extended.   There are several graphical overlay
+     ... (528 total chars)
+  -- t=1429 --
+     The camera shows two players in teal uniforms on a green field. The player on the right is holding a ball up in the air with his right hand and appears to be celebrating, while the player on the left has his hands raised in a clapping position.   There are several graphical overl
+     ... (587 total chars)
+  -- t=1430 --
+     The camera shows a group of players in teal uniforms, with one player covering his face with his hand. The players appear to be disappointed or frustrated, and are likely reacting to a play that did not go in their favor.   There are several graphical overlays on the screen, incl
+     ... (480 total chars)
+

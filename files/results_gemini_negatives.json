@@ -1,0 +1,242 @@
+[
+  {
+    "id": "delivery_094",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\"is_delivery\": true, \"phase_visible\": \"fielding\", \"length\": \"unknown\", \"line\": \"unknown\", \"shot\": \"along_ground\", \"direction\": \"offside\", \"confidence\": 0.9, \"narrative\": \"The sequence shows a cricket ball on the ground in the offside region, with a fielder bending to collect it during the 14.3 over. This indicates a shot played along the ground.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "fielding",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.9,
+      "narrative": "The sequence shows a cricket ball on the ground in the offside region, with a fielder bending to collect it during the 14.3 over. This indicates a shot played along the ground."
+    },
+    "wall_ms": 11587
+  },
+  {
+    "id": "delivery_006",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\n  \"is_delivery\": true,\n  \"phase_visible\": \"release\",\n  \"length\": \"good_length\",\n  \"line\": \"outside_off\",\n  \"shot\": \"along_ground\",\n  \"direction\": \"offside\",\n  \"confidence\": 0.7,\n  \"narrative\": \"Jasprit Bumrah completes his follow-through after bowling. The ball has just landed at a good length outside off-stump, and the batsman for Punjab Kings (PBKS) is reacting, having likely played a defensive shot along the ground.\"\n}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.7,
+      "narrative": "Jasprit Bumrah completes his follow-through after bowling. The ball has just landed at a good length outside off-stump, and the batsman for Punjab Kings (PBKS) is reacting, having likely played a defensive shot along the ground."
+    },
+    "wall_ms": 16318
+  },
+  {
+    "id": "delivery_012",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\"is_delivery\": false, \"phase_visible\": \"unknown\", \"length\": \"unknown\", \"line\": \"unknown\", \"shot\": \"unknown\", \"direction\": \"unknown\", \"confidence\": 1.0, \"narrative\": \"The sequence starts with an augmented reality graphic featuring Jos Buttler and his 300 T20 catches achievement. It then transitions to a live score update overlaid with a translucent player graphic, not showing a bowled delivery.\"}\n```",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 1.0,
+      "narrative": "The sequence starts with an augmented reality graphic featuring Jos Buttler and his 300 T20 catches achievement. It then transitions to a live score update overlaid with a translucent player graphic, not showing a bowled delivery."
+    },
+    "wall_ms": 7904
+  },
+  {
+    "id": "delivery_038",
+    "kind": "failed_triplet",
+    "raw": "{\"is_delivery\": false, \"phase_visible\": \"unknown\", \"length\": \"unknown\", \"line\": \"unknown\", \"shot\": \"unknown\", \"direction\": \"unknown\", \"confidence\": 1.0, \"narrative\": \"The frames show a wide, elevated view of a cricket stadium with augmented reality graphics displaying the Purple Cap Leaderboard and player statistics. No live bowling delivery is happening.\"}",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 1.0,
+      "narrative": "The frames show a wide, elevated view of a cricket stadium with augmented reality graphics displaying the Purple Cap Leaderboard and player statistics. No live bowling delivery is happening."
+    },
+    "wall_ms": 6471
+  },
+  {
+    "id": "delivery_090",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\"is_delivery\": false, \"phase_visible\": \"unknown\", \"length\": \"unknown\", \"line\": \"unknown\", \"shot\": \"unknown\", \"direction\": \"unknown\", \"confidence\": 1.0, \"narrative\": \"The frames show a fielder making a diving stop in the outfield to collect a ball that has been hit by the batsman, and then standing up after the successful fielding effort.\"}\n```",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 1.0,
+      "narrative": "The frames show a fielder making a diving stop in the outfield to collect a ball that has been hit by the batsman, and then standing up after the successful fielding effort."
+    },
+    "wall_ms": 9194
+  },
+  {
+    "id": "delivery_013",
+    "kind": "failed_triplet",
+    "raw": "{\"is_delivery\": false, \"phase_visible\": \"unknown\", \"length\": \"unknown\", \"line\": \"unknown\", \"shot\": \"unknown\", \"direction\": \"unknown\", \"confidence\": 1.0, \"narrative\": \"This sequence shows the bowler walking back between deliveries or overs, accompanied by an umpire. There is no bowling action, ball in flight, or batsman visible, indicating it's not a live delivery.\"}",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 1.0,
+      "narrative": "This sequence shows the bowler walking back between deliveries or overs, accompanied by an umpire. There is no bowling action, ball in flight, or batsman visible, indicating it's not a live delivery."
+    },
+    "wall_ms": 7438
+  },
+  {
+    "id": "delivery_061",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\"is_delivery\": true,\n   \"phase_visible\": \"release\",\n   \"length\": \"good_length\",\n   \"line\": \"outside_off\",\n   \"shot\": \"along_ground\",\n   \"direction\": \"offside\",\n   \"confidence\": 0.8,\n   \"narrative\": \"A bowler completes his action, releasing a good length delivery outside off-stump. The batsman, Powell, plays a front-foot shot along the ground towards the offside.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "release",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 0.8,
+      "narrative": "A bowler completes his action, releasing a good length delivery outside off-stump. The batsman, Powell, plays a front-foot shot along the ground towards the offside."
+    },
+    "wall_ms": 10011
+  },
+  {
+    "id": "delivery_021",
+    "kind": "failed_triplet",
+    "raw": "{\"is_delivery\": false, \"phase_visible\": \"unknown\", \"length\": \"unknown\", \"line\": \"unknown\", \"shot\": \"unknown\", \"direction\": \"unknown\", \"confidence\": 1.0, \"narrative\": \"A fielder runs from the right side of the frame to collect a stationary or slowly moving cricket ball on the pitch. He then bends down to pick it up.\"}",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 1.0,
+      "narrative": "A fielder runs from the right side of the frame to collect a stationary or slowly moving cricket ball on the pitch. He then bends down to pick it up."
+    },
+    "wall_ms": 7480
+  },
+  {
+    "id": "delivery_011",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\"is_delivery\": true,\n   \"phase_visible\": \"bat_contact\",\n   \"length\": \"good_length\",\n   \"line\": \"leg_stump\",\n   \"shot\": \"lofted\",\n   \"direction\": \"legside\",\n   \"confidence\": 0.9,\n   \"narrative\": \"A batsman on one knee plays a lofted shot towards the leg side after making contact with a good length delivery on leg stump. Fielders prepare to take the catch as the ball flies.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "bat_contact",
+      "length": "good_length",
+      "line": "leg_stump",
+      "shot": "lofted",
+      "direction": "legside",
+      "confidence": 0.9,
+      "narrative": "A batsman on one knee plays a lofted shot towards the leg side after making contact with a good length delivery on leg stump. Fielders prepare to take the catch as the ball flies."
+    },
+    "wall_ms": 19400
+  },
+  {
+    "id": "delivery_019",
+    "kind": "failed_triplet",
+    "raw": "{\"is_delivery\": false, \"phase_visible\": \"unknown\", \"length\": \"unknown\", \"line\": \"unknown\", \"shot\": \"unknown\", \"direction\": \"unknown\", \"confidence\": 0.9, \"narrative\": \"The frames show a batsman standing still, looking towards the bowler's end, with the scoreboard indicating a match in progress. No ball or bowler is visible, and the batsman is not performing a shot. This is likely footage between deliveries.\"}",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 0.9,
+      "narrative": "The frames show a batsman standing still, looking towards the bowler's end, with the scoreboard indicating a match in progress. No ball or bowler is visible, and the batsman is not performing a shot. This is likely footage between deliveries."
+    },
+    "wall_ms": 10747
+  },
+  {
+    "id": "delivery_051",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\"is_delivery\": false, \"phase_visible\": \"unknown\", \"length\": \"unknown\", \"line\": \"unknown\", \"shot\": \"unknown\", \"direction\": \"unknown\", \"confidence\": 1.0, \"narrative\": \"The frames show cricketer Rashid walking on the field with his back to the camera, wearing his team jersey. There is no bowling action visible, indicating this is not a live bowled delivery.\"}\n```",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 1.0,
+      "narrative": "The frames show cricketer Rashid walking on the field with his back to the camera, wearing his team jersey. There is no bowling action visible, indicating this is not a live bowled delivery."
+    },
+    "wall_ms": 6938
+  },
+  {
+    "id": "delivery_068",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\"is_delivery\": false,\n   \"phase_visible\": \"unknown\",\n   \"length\": \"unknown\",\n   \"line\": \"unknown\",\n   \"shot\": \"unknown\",\n   \"direction\": \"unknown\",\n   \"confidence\": 0.9,\n   \"narrative\": \"The frames show a wicketkeeper in a ready stance on the field with a live score overlay. However, no cricket ball is visible at any point, and the wicketkeeper is not reacting to a delivery, indicating this is not a bowled ball.\"}\n```",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 0.9,
+      "narrative": "The frames show a wicketkeeper in a ready stance on the field with a live score overlay. However, no cricket ball is visible at any point, and the wicketkeeper is not reacting to a delivery, indicating this is not a bowled ball."
+    },
+    "wall_ms": 9168
+  },
+  {
+    "id": "delivery_010",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\"is_delivery\": true,\n   \"phase_visible\": \"shot\",\n   \"length\": \"good_length\",\n   \"line\": \"outside_off\",\n   \"shot\": \"along_ground\",\n   \"direction\": \"offside\",\n   \"confidence\": 1.0,\n   \"narrative\": \"A bowler delivers a good length, outside off ball. The batsman plays a grounded shot, driving it towards the offside, with the ball travelling at 130.6 kph.\"}\n```",
+    "parsed": {
+      "is_delivery": true,
+      "phase_visible": "shot",
+      "length": "good_length",
+      "line": "outside_off",
+      "shot": "along_ground",
+      "direction": "offside",
+      "confidence": 1.0,
+      "narrative": "A bowler delivers a good length, outside off ball. The batsman plays a grounded shot, driving it towards the offside, with the ball travelling at 130.6 kph."
+    },
+    "wall_ms": 11205
+  },
+  {
+    "id": "delivery_097",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\"is_delivery\": false, \"phase_visible\": \"unknown\", \"length\": \"unknown\", \"line\": \"unknown\", \"shot\": \"unknown\", \"direction\": \"unknown\", \"confidence\": 1.0, \"narrative\": \"The frames display unrelated media, specifically scenes from \\\"Marvel Studios: Loki\\\" featuring a character with green energy, and another scene from \\\"Mobland\\\" with a blue-skinned character. This is not a cricket delivery.\"}\n```",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 1.0,
+      "narrative": "The frames display unrelated media, specifically scenes from \"Marvel Studios: Loki\" featuring a character with green energy, and another scene from \"Mobland\" with a blue-skinned character. This is not a cricket delivery."
+    },
+    "wall_ms": 7360
+  },
+  {
+    "id": "delivery_076",
+    "kind": "failed_triplet",
+    "raw": "```json\n{\n  \"is_delivery\": false,\n  \"phase_visible\": \"unknown\",\n  \"length\": \"unknown\",\n  \"line\": \"unknown\",\n  \"shot\": \"unknown\",\n  \"direction\": \"unknown\",\n  \"confidence\": 0.9,\n  \"narrative\": \"The frames show a fielder in a brown uniform walking and then running on the field. A white ball is visible on the ground in the first two frames but disappears in the third. The player is gesturing in the final frame. While the scoreboard updates to reflect a delivery (1 run, 11.4 overs, 1LB), the footage itself is not from the bowler's-end camera and does not show a bowling action or a shot being played.\"\n}\n```",
+    "parsed": {
+      "is_delivery": false,
+      "phase_visible": "unknown",
+      "length": "unknown",
+      "line": "unknown",
+      "shot": "unknown",
+      "direction": "unknown",
+      "confidence": 0.9,
+      "narrative": "The frames show a fielder in a brown uniform walking and then running on the field. A white ball is visible on the ground in the first two frames but disappears in the third. The player is gesturing in the final frame. While the scoreboard updates to reflect a delivery (1 run, 11.4 overs, 1LB), the footage itself is not from the bowler's-end camera and does not show a bowling action or a shot being played."
+    },
+    "wall_ms": 13949
+  }
+]

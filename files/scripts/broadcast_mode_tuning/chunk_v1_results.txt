@@ -1,0 +1,1312 @@
+Test set 1 — 8 May 3 clips (20260503_205835):
+  20260503_205835/d001
+  20260503_205835/d002
+  20260503_205835/d003
+  20260503_205835/d004
+  20260503_205835/d005
+  20260503_205835/d006
+  20260503_205835/d007
+  20260503_205835/d008
+
+Test set 2 — 10 random clips (seed=42):
+  20260421_195050/d046  manual_label=real_delivery
+  20260420_202239/d015  manual_label=real_delivery
+  20260420_202239/d004  manual_label=real_delivery
+  20260421_195050/d059  manual_label=real_delivery
+  20260420_202239/d036  manual_label=real_delivery
+  20260420_202239/d032  manual_label=real_delivery
+  20260420_202239/d029  manual_label=real_delivery
+  20260420_202239/d018  manual_label=real_delivery
+  20260420_202239/d014  manual_label=real_delivery
+  20260421_195050/d051  manual_label=real_delivery
+
+Sampling at 3.0 fps; 3 prompts per frame in parallel.
+Model: meta-llama/llama-4-scout-17b-16e-instruct
+
+############################################################
+# Test set 1 — 8 May 3 clips
+############################################################
+============================================================
+[CLIP 20260503_205835/d001]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s umpire_signal
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s delivery
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+
+  After smoothing:
+     6.67s delivery -> pre_post  (smoothed:celeb_neighbor)
+
+  Final chunks:
+    [ 0.00s -  4.67s] pre_post  (15 frames)
+    [ 5.00s -  5.00s] umpire_signal  (1 frames)
+    [ 5.33s -  9.67s] pre_post  (14 frames)
+
+  Consequential chunks (would be saved as videos):
+    umpire_signal: [ 5.00s -  5.00s]
+
+============================================================
+[CLIP 20260503_205835/d002]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  9.67s] pre_post  (30 frames)
+
+  Consequential chunks (would be saved as videos):
+    none
+
+============================================================
+[CLIP 20260503_205835/d003]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  9.67s] pre_post  (30 frames)
+
+  Consequential chunks (would be saved as videos):
+    none
+
+============================================================
+[CLIP 20260503_205835/d004]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s delivery
+     2.00s delivery
+     2.33s delivery
+     2.67s delivery
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  1.33s] pre_post  (5 frames)
+    [ 1.67s -  2.67s] delivery  (4 frames)
+    [ 3.00s -  9.67s] pre_post  (21 frames)
+
+  Consequential chunks (would be saved as videos):
+    delivery: [ 1.67s -  2.67s]
+
+============================================================
+[CLIP 20260503_205835/d005]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+
+  Per-frame tentative types:
+     0.00s delivery
+     0.33s replay
+     0.67s replay
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s delivery
+     2.33s pre_post
+     2.67s delivery
+     3.00s delivery
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s replay
+     6.33s pre_post
+     6.67s pre_post
+     7.00s umpire_signal
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s delivery
+     9.00s delivery
+     9.33s pre_post
+     9.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  0.00s] delivery  (1 frames)
+    [ 0.33s -  0.67s] replay  (2 frames)
+    [ 1.00s -  1.67s] pre_post  (3 frames)
+    [ 2.00s -  2.00s] delivery  (1 frames)
+    [ 2.33s -  2.33s] pre_post  (1 frames)
+    [ 2.67s -  3.00s] delivery  (2 frames)
+    [ 3.33s -  5.67s] pre_post  (8 frames)
+    [ 6.00s -  6.00s] replay  (1 frames)
+    [ 6.33s -  6.67s] pre_post  (2 frames)
+    [ 7.00s -  7.00s] umpire_signal  (1 frames)
+    [ 7.33s -  8.33s] pre_post  (4 frames)
+    [ 8.67s -  9.00s] delivery  (2 frames)
+    [ 9.33s -  9.67s] pre_post  (2 frames)
+
+  Consequential chunks (would be saved as videos):
+    delivery: [ 0.00s -  0.00s]
+    replay: [ 0.33s -  0.67s]
+    delivery: [ 2.00s -  2.00s]
+    delivery: [ 2.67s -  3.00s]
+    replay: [ 6.00s -  6.00s]
+    umpire_signal: [ 7.00s -  7.00s]
+    delivery: [ 8.67s -  9.00s]
+
+============================================================
+[CLIP 20260503_205835/d006]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  9.67s] pre_post  (30 frames)
+
+  Consequential chunks (would be saved as videos):
+    none
+
+============================================================
+[CLIP 20260503_205835/d007]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s delivery
+     0.67s pre_post
+     1.00s pre_post
+     1.33s delivery
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s delivery
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+
+  After smoothing:
+     0.33s delivery -> pre_post  (smoothed:celeb_neighbor)
+     6.00s delivery -> pre_post  (smoothed:celeb_neighbor)
+
+  Final chunks:
+    [ 0.00s -  1.00s] pre_post  (4 frames)
+    [ 1.33s -  1.33s] delivery  (1 frames)
+    [ 1.67s -  9.67s] pre_post  (25 frames)
+
+  Consequential chunks (would be saved as videos):
+    delivery: [ 1.33s -  1.33s]
+
+============================================================
+[CLIP 20260503_205835/d008]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  9.67s] pre_post  (30 frames)
+
+  Consequential chunks (would be saved as videos):
+    none
+
+############################################################
+# Test set 2 — 10 random clips
+############################################################
+============================================================
+[CLIP 20260421_195050/d046]
+  duration=15.54s event_ts=18.72s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s delivery
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s delivery
+     6.00s delivery
+     6.33s delivery
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s pre_post
+    10.67s pre_post
+    11.00s pre_post
+    11.33s pre_post
+    11.67s pre_post
+    12.00s pre_post
+    12.33s pre_post
+    12.67s pre_post
+    13.00s pre_post
+    13.33s pre_post
+    13.67s pre_post
+    14.00s pre_post
+    14.33s pre_post
+    14.67s pre_post
+    15.00s pre_post
+    15.33s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  2.00s] pre_post  (7 frames)
+    [ 2.33s -  2.33s] delivery  (1 frames)
+    [ 2.67s -  5.33s] pre_post  (9 frames)
+    [ 5.67s -  6.33s] delivery  (3 frames)
+    [ 6.67s - 15.33s] pre_post  (27 frames)
+
+  Consequential chunks (would be saved as videos):
+    delivery: [ 2.33s -  2.33s]
+    delivery: [ 5.67s -  6.33s]
+
+============================================================
+[CLIP 20260420_202239/d015]
+  duration=23.11s event_ts=24.05s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s pre_post
+    10.67s pre_post
+    11.00s pre_post
+    11.33s pre_post
+    11.67s pre_post
+    12.00s pre_post
+    12.33s pre_post
+    12.67s pre_post
+    13.00s pre_post
+    13.33s pre_post
+    13.67s pre_post
+    14.00s pre_post
+    14.33s pre_post
+    14.67s pre_post
+    15.00s pre_post
+    15.33s pre_post
+    15.67s pre_post
+    16.00s pre_post
+    16.33s pre_post
+    16.67s pre_post
+    17.00s pre_post
+    17.33s pre_post
+    17.67s pre_post
+    18.00s pre_post
+    18.33s pre_post
+    18.67s pre_post
+    19.00s pre_post
+    19.33s pre_post
+    19.67s pre_post
+    20.00s pre_post
+    20.33s pre_post
+    20.67s pre_post
+    21.00s pre_post
+    21.33s pre_post
+    21.67s replay
+    22.00s replay
+    22.33s pre_post
+    22.67s pre_post
+    23.00s delivery
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s - 21.33s] pre_post  (65 frames)
+    [21.67s - 22.00s] replay  (2 frames)
+    [22.33s - 22.67s] pre_post  (2 frames)
+    [23.00s - 23.00s] delivery  (1 frames)
+
+  Consequential chunks (would be saved as videos):
+    replay: [21.67s - 22.00s]
+    delivery: [23.00s - 23.00s]
+
+============================================================
+[CLIP 20260420_202239/d004]
+  duration=21.37s event_ts=25.05s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s delivery
+     6.67s pre_post
+     7.00s delivery
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s delivery
+    10.67s pre_post
+    11.00s pre_post
+    11.33s pre_post
+    11.67s pre_post
+    12.00s pre_post
+    12.33s pre_post
+    12.67s pre_post
+    13.00s pre_post
+    13.33s pre_post
+    13.67s pre_post
+    14.00s delivery
+    14.33s pre_post
+    14.67s pre_post
+    15.00s pre_post
+    15.33s pre_post
+    15.67s pre_post
+    16.00s pre_post
+    16.33s pre_post
+    16.67s pre_post
+    17.00s pre_post
+    17.33s pre_post
+    17.67s delivery
+    18.00s pre_post
+    18.33s pre_post
+    18.67s delivery
+    19.00s pre_post
+    19.33s pre_post
+    19.67s pre_post
+    20.00s pre_post
+    20.33s pre_post
+    20.67s pre_post
+    21.00s pre_post
+
+  After smoothing:
+    17.67s delivery -> pre_post  (smoothed:celeb_neighbor)
+
+  Final chunks:
+    [ 0.00s -  6.00s] pre_post  (19 frames)
+    [ 6.33s -  6.33s] delivery  (1 frames)
+    [ 6.67s -  6.67s] pre_post  (1 frames)
+    [ 7.00s -  7.00s] delivery  (1 frames)
+    [ 7.33s - 10.00s] pre_post  (9 frames)
+    [10.33s - 10.33s] delivery  (1 frames)
+    [10.67s - 13.67s] pre_post  (10 frames)
+    [14.00s - 14.00s] delivery  (1 frames)
+    [14.33s - 18.33s] pre_post  (13 frames)
+    [18.67s - 18.67s] delivery  (1 frames)
+    [19.00s - 21.00s] pre_post  (7 frames)
+
+  Consequential chunks (would be saved as videos):
+    delivery: [ 6.33s -  6.33s]
+    delivery: [ 7.00s -  7.00s]
+    delivery: [10.33s - 10.33s]
+    delivery: [14.00s - 14.00s]
+    delivery: [18.67s - 18.67s]
+
+============================================================
+[CLIP 20260421_195050/d059]
+  duration=11.01s event_ts=20.50s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s drs
+     4.00s delivery
+     4.33s delivery
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s delivery
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s pre_post
+    10.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  3.33s] pre_post  (11 frames)
+    [ 3.67s -  3.67s] drs  (1 frames)
+    [ 4.00s -  4.33s] delivery  (2 frames)
+    [ 4.67s -  6.33s] pre_post  (6 frames)
+    [ 6.67s -  6.67s] delivery  (1 frames)
+    [ 7.00s - 10.67s] pre_post  (12 frames)
+
+  Consequential chunks (would be saved as videos):
+    drs: [ 3.67s -  3.67s]
+    delivery: [ 4.00s -  4.33s]
+    delivery: [ 6.67s -  6.67s]
+
+============================================================
+[CLIP 20260420_202239/d036]
+  duration=25.12s event_ts=26.90s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s delivery
+     0.33s delivery
+     0.67s pre_post
+     1.00s replay
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s replay
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s replay
+     6.33s replay
+     6.67s replay
+     7.00s pre_post
+     7.33s delivery
+     7.67s pre_post
+     8.00s pre_post
+     8.33s replay
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s pre_post
+    10.67s pre_post
+    11.00s pre_post
+    11.33s pre_post
+    11.67s replay
+    12.00s pre_post
+    12.33s pre_post
+    12.67s pre_post
+    13.00s pre_post
+    13.33s delivery
+    13.67s delivery
+    14.00s pre_post
+    14.33s pre_post
+    14.67s pre_post
+    15.00s pre_post
+    15.33s pre_post
+    15.67s pre_post
+    16.00s pre_post
+    16.33s pre_post
+    16.67s pre_post
+    17.00s pre_post
+    17.33s pre_post
+    17.67s pre_post
+    18.00s pre_post
+    18.33s pre_post
+    18.67s pre_post
+    19.00s pre_post
+    19.33s pre_post
+    19.67s pre_post
+    20.00s pre_post
+    20.33s pre_post
+    20.67s pre_post
+    21.00s pre_post
+    21.33s pre_post
+    21.67s pre_post
+    22.00s pre_post
+    22.33s pre_post
+    22.67s pre_post
+    23.00s pre_post
+    23.33s pre_post
+    23.67s pre_post
+    24.00s pre_post
+    24.33s pre_post
+    24.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  0.33s] delivery  (2 frames)
+    [ 0.67s -  0.67s] pre_post  (1 frames)
+    [ 1.00s -  1.00s] replay  (1 frames)
+    [ 1.33s -  3.33s] pre_post  (7 frames)
+    [ 3.67s -  3.67s] replay  (1 frames)
+    [ 4.00s -  5.67s] pre_post  (6 frames)
+    [ 6.00s -  6.67s] replay  (3 frames)
+    [ 7.00s -  7.00s] pre_post  (1 frames)
+    [ 7.33s -  7.33s] delivery  (1 frames)
+    [ 7.67s -  8.00s] pre_post  (2 frames)
+    [ 8.33s -  8.33s] replay  (1 frames)
+    [ 8.67s - 11.33s] pre_post  (9 frames)
+    [11.67s - 11.67s] replay  (1 frames)
+    [12.00s - 13.00s] pre_post  (4 frames)
+    [13.33s - 13.67s] delivery  (2 frames)
+    [14.00s - 24.67s] pre_post  (33 frames)
+
+  Consequential chunks (would be saved as videos):
+    delivery: [ 0.00s -  0.33s]
+    replay: [ 1.00s -  1.00s]
+    replay: [ 3.67s -  3.67s]
+    replay: [ 6.00s -  6.67s]
+    delivery: [ 7.33s -  7.33s]
+    replay: [ 8.33s -  8.33s]
+    replay: [11.67s - 11.67s]
+    delivery: [13.33s - 13.67s]
+
+============================================================
+[CLIP 20260420_202239/d032]
+  duration=25.51s event_ts=26.79s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s pre_post
+    10.67s pre_post
+    11.00s pre_post
+    11.33s pre_post
+    11.67s pre_post
+    12.00s pre_post
+    12.33s pre_post
+    12.67s pre_post
+    13.00s pre_post
+    13.33s pre_post
+    13.67s pre_post
+    14.00s pre_post
+    14.33s pre_post
+    14.67s pre_post
+    15.00s umpire_signal
+    15.33s pre_post
+    15.67s pre_post
+    16.00s delivery
+    16.33s delivery
+    16.67s delivery
+    17.00s pre_post
+    17.33s pre_post
+    17.67s pre_post
+    18.00s pre_post
+    18.33s pre_post
+    18.67s pre_post
+    19.00s pre_post
+    19.33s delivery
+    19.67s pre_post
+    20.00s pre_post
+    20.33s pre_post
+    20.67s pre_post
+    21.00s pre_post
+    21.33s pre_post
+    21.67s pre_post
+    22.00s pre_post
+    22.33s pre_post
+    22.67s pre_post
+    23.00s pre_post
+    23.33s pre_post
+    23.67s pre_post
+    24.00s pre_post
+    24.33s pre_post
+    24.67s pre_post
+    25.00s pre_post
+    25.33s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s - 14.67s] pre_post  (45 frames)
+    [15.00s - 15.00s] umpire_signal  (1 frames)
+    [15.33s - 15.67s] pre_post  (2 frames)
+    [16.00s - 16.67s] delivery  (3 frames)
+    [17.00s - 19.00s] pre_post  (7 frames)
+    [19.33s - 19.33s] delivery  (1 frames)
+    [19.67s - 25.33s] pre_post  (18 frames)
+
+  Consequential chunks (would be saved as videos):
+    umpire_signal: [15.00s - 15.00s]
+    delivery: [16.00s - 16.67s]
+    delivery: [19.33s - 19.33s]
+
+============================================================
+[CLIP 20260420_202239/d029]
+  duration=20.01s event_ts=21.01s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s pre_post
+    10.67s pre_post
+    11.00s delivery
+    11.33s delivery
+    11.67s delivery
+    12.00s pre_post
+    12.33s pre_post
+    12.67s pre_post
+    13.00s pre_post
+    13.33s pre_post
+    13.67s pre_post
+    14.00s pre_post
+    14.33s pre_post
+    14.67s delivery
+    15.00s pre_post
+    15.33s pre_post
+    15.67s pre_post
+    16.00s pre_post
+    16.33s pre_post
+    16.67s pre_post
+    17.00s pre_post
+    17.33s pre_post
+    17.67s pre_post
+    18.00s pre_post
+    18.33s pre_post
+    18.67s pre_post
+    19.00s pre_post
+    19.33s pre_post
+    19.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s - 10.67s] pre_post  (33 frames)
+    [11.00s - 11.67s] delivery  (3 frames)
+    [12.00s - 14.33s] pre_post  (8 frames)
+    [14.67s - 14.67s] delivery  (1 frames)
+    [15.00s - 19.67s] pre_post  (15 frames)
+
+  Consequential chunks (would be saved as videos):
+    delivery: [11.00s - 11.67s]
+    delivery: [14.67s - 14.67s]
+
+============================================================
+[CLIP 20260420_202239/d018]
+  duration=24.42s event_ts=25.06s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s pre_post
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s pre_post
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s delivery
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s pre_post
+    10.67s pre_post
+    11.00s pre_post
+    11.33s pre_post
+    11.67s delivery
+    12.00s delivery
+    12.33s delivery
+    12.67s pre_post
+    13.00s pre_post
+    13.33s pre_post
+    13.67s pre_post
+    14.00s pre_post
+    14.33s pre_post
+    14.67s pre_post
+    15.00s pre_post
+    15.33s pre_post
+    15.67s delivery
+    16.00s delivery
+    16.33s pre_post
+    16.67s pre_post
+    17.00s pre_post
+    17.33s pre_post
+    17.67s pre_post
+    18.00s pre_post
+    18.33s pre_post
+    18.67s pre_post
+    19.00s pre_post
+    19.33s pre_post
+    19.67s pre_post
+    20.00s pre_post
+    20.33s pre_post
+    20.67s pre_post
+    21.00s delivery
+    21.33s pre_post
+    21.67s pre_post
+    22.00s delivery
+    22.33s pre_post
+    22.67s pre_post
+    23.00s pre_post
+    23.33s pre_post
+    23.67s pre_post
+    24.00s pre_post
+    24.33s pre_post
+
+  After smoothing:
+     8.33s delivery -> pre_post  (smoothed:celeb_neighbor)
+    11.67s delivery -> pre_post  (smoothed:celeb_neighbor)
+
+  Final chunks:
+    [ 0.00s - 11.67s] pre_post  (36 frames)
+    [12.00s - 12.33s] delivery  (2 frames)
+    [12.67s - 15.33s] pre_post  (9 frames)
+    [15.67s - 16.00s] delivery  (2 frames)
+    [16.33s - 20.67s] pre_post  (14 frames)
+    [21.00s - 21.00s] delivery  (1 frames)
+    [21.33s - 21.67s] pre_post  (2 frames)
+    [22.00s - 22.00s] delivery  (1 frames)
+    [22.33s - 24.33s] pre_post  (7 frames)
+
+  Consequential chunks (would be saved as videos):
+    delivery: [12.00s - 12.33s]
+    delivery: [15.67s - 16.00s]
+    delivery: [21.00s - 21.00s]
+    delivery: [22.00s - 22.00s]
+
+============================================================
+[CLIP 20260420_202239/d014]
+  duration=11.95s event_ts=13.28s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s pre_post
+     0.33s pre_post
+     0.67s umpire_signal
+     1.00s pre_post
+     1.33s pre_post
+     1.67s umpire_signal
+     2.00s pre_post
+     2.33s pre_post
+     2.67s pre_post
+     3.00s delivery
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s pre_post
+     6.33s pre_post
+     6.67s pre_post
+     7.00s pre_post
+     7.33s pre_post
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s pre_post
+    10.67s pre_post
+    11.00s pre_post
+    11.33s pre_post
+    11.67s pre_post
+
+  After smoothing:
+     3.00s delivery -> pre_post  (smoothed:celeb_neighbor)
+
+  Final chunks:
+    [ 0.00s -  0.33s] pre_post  (2 frames)
+    [ 0.67s -  0.67s] umpire_signal  (1 frames)
+    [ 1.00s -  1.33s] pre_post  (2 frames)
+    [ 1.67s -  1.67s] umpire_signal  (1 frames)
+    [ 2.00s - 11.67s] pre_post  (30 frames)
+
+  Consequential chunks (would be saved as videos):
+    umpire_signal: [ 0.67s -  0.67s]
+    umpire_signal: [ 1.67s -  1.67s]
+
+============================================================
+[CLIP 20260421_195050/d051]
+  duration=22.91s event_ts=26.66s
+  manual_label=real_delivery
+
+  Per-frame tentative types:
+     0.00s delivery
+     0.33s pre_post
+     0.67s pre_post
+     1.00s pre_post
+     1.33s pre_post
+     1.67s delivery
+     2.00s delivery
+     2.33s delivery
+     2.67s delivery
+     3.00s delivery
+     3.33s pre_post
+     3.67s pre_post
+     4.00s pre_post
+     4.33s pre_post
+     4.67s pre_post
+     5.00s pre_post
+     5.33s pre_post
+     5.67s pre_post
+     6.00s umpire_signal
+     6.33s umpire_signal
+     6.67s pre_post
+     7.00s umpire_signal
+     7.33s umpire_signal
+     7.67s pre_post
+     8.00s pre_post
+     8.33s pre_post
+     8.67s pre_post
+     9.00s pre_post
+     9.33s pre_post
+     9.67s pre_post
+    10.00s pre_post
+    10.33s pre_post
+    10.67s pre_post
+    11.00s pre_post
+    11.33s pre_post
+    11.67s pre_post
+    12.00s pre_post
+    12.33s pre_post
+    12.67s pre_post
+    13.00s pre_post
+    13.33s pre_post
+    13.67s pre_post
+    14.00s pre_post
+    14.33s pre_post
+    14.67s pre_post
+    15.00s pre_post
+    15.33s pre_post
+    15.67s pre_post
+    16.00s pre_post
+    16.33s pre_post
+    16.67s pre_post
+    17.00s pre_post
+    17.33s pre_post
+    17.67s pre_post
+    18.00s pre_post
+    18.33s pre_post
+    18.67s pre_post
+    19.00s pre_post
+    19.33s pre_post
+    19.67s pre_post
+    20.00s pre_post
+    20.33s pre_post
+    20.67s pre_post
+    21.00s pre_post
+    21.33s pre_post
+    21.67s pre_post
+    22.00s pre_post
+    22.33s pre_post
+    22.67s pre_post
+
+  After smoothing:
+    (no reassignments)
+
+  Final chunks:
+    [ 0.00s -  0.00s] delivery  (1 frames)
+    [ 0.33s -  1.33s] pre_post  (4 frames)
+    [ 1.67s -  3.00s] delivery  (5 frames)
+    [ 3.33s -  5.67s] pre_post  (8 frames)
+    [ 6.00s -  6.33s] umpire_signal  (2 frames)
+    [ 6.67s -  6.67s] pre_post  (1 frames)
+    [ 7.00s -  7.33s] umpire_signal  (2 frames)
+    [ 7.67s - 22.67s] pre_post  (46 frames)
+
+  Consequential chunks (would be saved as videos):
+    delivery: [ 0.00s -  0.00s]
+    delivery: [ 1.67s -  3.00s]
+    umpire_signal: [ 6.00s -  6.33s]
+    umpire_signal: [ 7.00s -  7.33s]
+
+============================================================
+Summary — Test set 1 (8 May 3 clips)
+
+| clip | chunks detected | consequential chunks |
+| ---- | ---- | ---- |
+| 20260503_205835/d001 | pre_post, umpire_signal, pre_post | umpire_signal [5.00-5.00] |
+| 20260503_205835/d002 | pre_post | none |
+| 20260503_205835/d003 | pre_post | none |
+| 20260503_205835/d004 | pre_post, delivery, pre_post | delivery [1.67-2.67] |
+| 20260503_205835/d005 | delivery, replay, pre_post, delivery, pre_post, delivery, pre_post, replay, pre_post, umpire_signal, pre_post, delivery, pre_post | delivery [0.00-0.00], replay [0.33-0.67], delivery [2.00-2.00], delivery [2.67-3.00], replay [6.00-6.00], umpire_signal [7.00-7.00], delivery [8.67-9.00] |
+| 20260503_205835/d006 | pre_post | none |
+| 20260503_205835/d007 | pre_post, delivery, pre_post | delivery [1.33-1.33] |
+| 20260503_205835/d008 | pre_post | none |
+
+============================================================
+Summary — Test set 2 (10 random clips with manual_label)
+
+| clip | label | chunks detected | consequential chunks |
+| ---- | ---- | ---- | ---- |
+| 20260421_195050/d046 | real_delivery | pre_post, delivery, pre_post, delivery, pre_post | delivery [2.33-2.33], delivery [5.67-6.33] |
+| 20260420_202239/d015 | real_delivery | pre_post, replay, pre_post, delivery | replay [21.67-22.00], delivery [23.00-23.00] |
+| 20260420_202239/d004 | real_delivery | pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post | delivery [6.33-6.33], delivery [7.00-7.00], delivery [10.33-10.33], delivery [14.00-14.00], delivery [18.67-18.67] |
+| 20260421_195050/d059 | real_delivery | pre_post, drs, delivery, pre_post, delivery, pre_post | drs [3.67-3.67], delivery [4.00-4.33], delivery [6.67-6.67] |
+| 20260420_202239/d036 | real_delivery | delivery, pre_post, replay, pre_post, replay, pre_post, replay, pre_post, delivery, pre_post, replay, pre_post, replay, pre_post, delivery, pre_post | delivery [0.00-0.33], replay [1.00-1.00], replay [3.67-3.67], replay [6.00-6.67], delivery [7.33-7.33], replay [8.33-8.33], replay [11.67-11.67], delivery [13.33-13.67] |
+| 20260420_202239/d032 | real_delivery | pre_post, umpire_signal, pre_post, delivery, pre_post, delivery, pre_post | umpire_signal [15.00-15.00], delivery [16.00-16.67], delivery [19.33-19.33] |
+| 20260420_202239/d029 | real_delivery | pre_post, delivery, pre_post, delivery, pre_post | delivery [11.00-11.67], delivery [14.67-14.67] |
+| 20260420_202239/d018 | real_delivery | pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post | delivery [12.00-12.33], delivery [15.67-16.00], delivery [21.00-21.00], delivery [22.00-22.00] |
+| 20260420_202239/d014 | real_delivery | pre_post, umpire_signal, pre_post, umpire_signal, pre_post | umpire_signal [0.67-0.67], umpire_signal [1.67-1.67] |
+| 20260421_195050/d051 | real_delivery | delivery, pre_post, delivery, pre_post, umpire_signal, pre_post, umpire_signal, pre_post | delivery [0.00-0.00], delivery [1.67-3.00], umpire_signal [6.00-6.33], umpire_signal [7.00-7.33] |
+
+Wrote /Users/anmolmohan/Projects/SportsComm/files/scripts/broadcast_mode_tuning/chunk_v1_combined_data.csv (845 frame rows)

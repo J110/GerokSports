@@ -1,0 +1,495 @@
+{
+  "n_frames": 247,
+  "confusion_matrix_naive_rows_gt_cols_pred": {
+    "action": {
+      "action": 20,
+      "other": 52
+    },
+    "replay": {
+      "action": 5,
+      "other": 1
+    },
+    "ad": {
+      "ad": 3
+    },
+    "other": {
+      "other": 153,
+      "ad": 4,
+      "action": 1
+    },
+    "umpire": {
+      "other": 8
+    },
+    "unknown": {}
+  },
+  "confusion_matrix_temporal_rows_gt_cols_pred": {
+    "action": {
+      "action": 14,
+      "other": 52,
+      "replay": 6
+    },
+    "replay": {
+      "replay": 1,
+      "action": 4,
+      "other": 1
+    },
+    "ad": {
+      "ad": 3
+    },
+    "other": {
+      "other": 153,
+      "ad": 4,
+      "action": 1
+    },
+    "umpire": {
+      "other": 8
+    },
+    "unknown": {}
+  },
+  "per_class_metrics_naive": {
+    "action": {
+      "precision": 0.7692,
+      "recall": 0.2778,
+      "f1": 0.4082,
+      "support": 72
+    },
+    "replay": {
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "support": 6
+    },
+    "ad": {
+      "precision": 0.4286,
+      "recall": 1.0,
+      "f1": 0.6,
+      "support": 3
+    },
+    "other": {
+      "precision": 0.715,
+      "recall": 0.9684,
+      "f1": 0.8226,
+      "support": 158
+    }
+  },
+  "per_class_metrics_temporal": {
+    "action": {
+      "precision": 0.7368,
+      "recall": 0.1944,
+      "f1": 0.3077,
+      "support": 72
+    },
+    "replay": {
+      "precision": 0.1429,
+      "recall": 0.1667,
+      "f1": 0.1538,
+      "support": 6
+    },
+    "ad": {
+      "precision": 0.4286,
+      "recall": 1.0,
+      "f1": 0.6,
+      "support": 3
+    },
+    "other": {
+      "precision": 0.715,
+      "recall": 0.9684,
+      "f1": 0.8226,
+      "support": 158
+    }
+  },
+  "accuracy_fourclass_only": {
+    "naive": {
+      "rate": 0.7364,
+      "correct": 176,
+      "n": 239
+    },
+    "temporal": {
+      "rate": 0.7155,
+      "correct": 171,
+      "n": 239
+    }
+  },
+  "stop_s3_naive_action_min_pr_below_0_5": true,
+  "stop_s4_temporal_accuracy_lower_than_naive": true,
+  "temporal_reclassification_stats": {
+    "naive_action_frames_reclassified_to_replay": 7,
+    "of_those_with_ground_truth_replay": 1,
+    "of_those_with_ground_truth_action": 6,
+    "of_those_with_ground_truth_other_bucket": 0
+  },
+  "failure_pattern_counts_temporal": {
+    "P1_action_as_other": 52,
+    "P1b_action_as_replay_demotion_or_model": 6,
+    "P3_umpire_frame": 8,
+    "P4_ad_other_cross": 4,
+    "P2_replay_as_action_after_temporal": 4,
+    "P5_other": 2
+  },
+  "failure_pattern_example_paths_max5": {
+    "P1_action_as_other": [
+      "output/frames/20260420_214218_d001_1.jpg",
+      "output/frames/20260420_214218_d001_2.jpg",
+      "output/frames/20260420_214218_d001_4.jpg",
+      "output/frames/20260420_214218_d001_5.jpg",
+      "output/frames/20260420_214218_d002_9.jpg"
+    ],
+    "P1b_action_as_replay_demotion_or_model": [
+      "output/frames/20260420_214218_d001_3.jpg",
+      "output/frames/20260420_214218_d003_7.jpg",
+      "output/frames/20260420_214218_d003_8.jpg",
+      "output/frames/20260420_214218_d003_9.jpg",
+      "output/frames/20260420_214218_d003_11.jpg"
+    ],
+    "P3_umpire_frame": [
+      "output/frames/20260420_214218_d002_14.jpg",
+      "output/frames/20260420_214218_d002_15.jpg",
+      "output/frames/20260420_214218_d004_21.jpg",
+      "output/frames/20260420_214218_d004_22.jpg",
+      "output/frames/20260420_214218_d004_23.jpg"
+    ],
+    "P4_ad_other_cross": [
+      "output/frames/20260420_214218_d004_0.jpg",
+      "output/frames/20260420_214218_d004_1.jpg",
+      "output/frames/20260420_214218_d004_2.jpg",
+      "output/frames/20260420_214218_d004_5.jpg"
+    ],
+    "P2_replay_as_action_after_temporal": [
+      "output/frames/20260430_195352_d102_6.jpg",
+      "output/frames/20260430_195352_d102_7.jpg",
+      "output/frames/20260430_195352_d102_8.jpg",
+      "output/frames/20260430_195352_d102_9.jpg"
+    ],
+    "P5_other": [
+      "output/frames/20260430_195352_d105_0.jpg",
+      "output/frames/20260430_195352_d105_9.jpg"
+    ]
+  },
+  "umpire_frame_scout_outputs": [
+    {
+      "frame_path": "output/frames/20260420_214218_d002_14.jpg",
+      "scout_label_naive": "other",
+      "scout_label_temporal": "other",
+      "frame_type": "SCOREBOARD",
+      "last_camera_view": "closeup",
+      "last_frame_phase": "between_play",
+      "description_preview": "STRIP: GT 9-2 (1.4) | Gill 4(2) | Washington 4(1) | Hardik 1-8 (0.4)\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe on-field personnel appear to be discussing or strategizing during a break in play."
+    },
+    {
+      "frame_path": "output/frames/20260420_214218_d002_15.jpg",
+      "scout_label_naive": "other",
+      "scout_label_temporal": "other",
+      "frame_type": "SCOREBOARD",
+      "last_camera_view": "closeup",
+      "last_frame_phase": "between_play",
+      "description_preview": "STRIP: GT 9-2 (1.4) | Washington 4(2) | Gill 0(1) | Hardik 1-8 (0.4)"
+    },
+    {
+      "frame_path": "output/frames/20260420_214218_d004_21.jpg",
+      "scout_label_naive": "other",
+      "scout_label_temporal": "other",
+      "frame_type": "SCOREBOARD",
+      "last_camera_view": "closeup",
+      "last_frame_phase": "between_play",
+      "description_preview": "STRIP: GT 14-2 (1.5) | Washington 8(3) | Gill 0(1) | Hardik 1-13 (0.5)"
+    },
+    {
+      "frame_path": "output/frames/20260420_214218_d004_22.jpg",
+      "scout_label_naive": "other",
+      "scout_label_temporal": "other",
+      "frame_type": "SCOREBOARD",
+      "last_camera_view": "closeup",
+      "last_frame_phase": "between_play",
+      "description_preview": "STRIP: GT 15-2 (1.5) | Washington 8(3) | Gill 0(1) | \n\nINFO_PANEL: \nSPEED: 131.8 kph\nEXTRA: \nTHIS OVER: 4 W 4 WD 4 WD\nFULL SCORECARD: \n\nThe umpire or a team member appears to be celebrating or reacting to a wide ball or a dismissal."
+    },
+    {
+      "frame_path": "output/frames/20260420_214218_d004_23.jpg",
+      "scout_label_naive": "other",
+      "scout_label_temporal": "other",
+      "frame_type": "SCOREBOARD",
+      "last_camera_view": "closeup",
+      "last_frame_phase": "between_play",
+      "description_preview": "STRIP: GT 15-2 (1.5) | Washington 8(3) | Gill 0(1) | \n\nINFO_PANEL: \nSPEED: 131.8 \nEXTRA: \nTHIS OVER: 4 W 4 WD 4 WD \nFULL SCORECARD: \n\nThe camera shows two players standing still, likely during a break in play."
+    },
+    {
+      "frame_path": "output/frames/20260420_214218_d007_11.jpg",
+      "scout_label_naive": "other",
+      "scout_label_temporal": "other",
+      "frame_type": "SCOREBOARD",
+      "last_camera_view": "closeup",
+      "last_frame_phase": "between_play",
+      "description_preview": "STRIP: GT 19-2 (2.1) | Washington 12(4) | Gill > 4(2) | \nINFO_PANEL: \nSPEED: 141.1 kph\nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \nThe game is currently paused with a bowler and a team staff member on the field."
+    },
+    {
+      "frame_path": "output/frames/20260420_214218_d007_12.jpg",
+      "scout_label_naive": "other",
+      "scout_label_temporal": "other",
+      "frame_type": "SCOREBOARD",
+      "last_camera_view": "closeup",
+      "last_frame_phase": "between_play",
+      "description_preview": "STRIP: GT 19-2 (2.1) | Washington 12(4) | Gill >0(2)\n\nSPEED: 141.1 kph"
+    },
+    {
+      "frame_path": "output/frames/20260420_214218_d007_13.jpg",
+      "scout_label_naive": "other",
+      "scout_label_temporal": "other",
+      "frame_type": "SCOREBOARD",
+      "last_camera_view": "closeup",
+      "last_frame_phase": "between_play",
+      "description_preview": "STRIP: GT 19-2 (2.1) | Washington 12(4) | Gill >0(2) |"
+    }
+  ],
+  "span_simulation_temporal": {
+    "per_clip": {
+      "20260420_214218/d001": {
+        "truth_action_spans": [
+          {
+            "start_s": 0.0,
+            "end_s": 5.0,
+            "frames": 6
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 0.0,
+            "end_s": 0.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d002": {
+        "truth_action_spans": [
+          {
+            "start_s": 9.0,
+            "end_s": 12.0,
+            "frames": 4
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 11.0,
+            "end_s": 12.0,
+            "frames": 2
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d003": {
+        "truth_action_spans": [
+          {
+            "start_s": 0.0,
+            "end_s": 11.0,
+            "frames": 12
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 4.0,
+            "end_s": 4.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d004": {
+        "truth_action_spans": [
+          {
+            "start_s": 9.0,
+            "end_s": 18.0,
+            "frames": 10
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 15.0,
+            "end_s": 16.0,
+            "frames": 2
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d005": {
+        "truth_action_spans": [
+          {
+            "start_s": 4.0,
+            "end_s": 5.0,
+            "frames": 2
+          },
+          {
+            "start_s": 14.0,
+            "end_s": 21.0,
+            "frames": 8
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 4.0,
+            "end_s": 4.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d006": {
+        "truth_action_spans": [
+          {
+            "start_s": 7.0,
+            "end_s": 13.0,
+            "frames": 7
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 10.0,
+            "end_s": 10.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d007": {
+        "truth_action_spans": [
+          {
+            "start_s": 6.0,
+            "end_s": 10.0,
+            "frames": 5
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 7.0,
+            "end_s": 8.0,
+            "frames": 2
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d008": {
+        "truth_action_spans": [
+          {
+            "start_s": 9.0,
+            "end_s": 15.0,
+            "frames": 7
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 10.0,
+            "end_s": 11.0,
+            "frames": 2
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260420_214218/d010": {
+        "truth_action_spans": [
+          {
+            "start_s": 6.0,
+            "end_s": 12.0,
+            "frames": 7
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 8.0,
+            "end_s": 8.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260430_195352/d001": {
+        "truth_action_spans": [],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "pass"
+      },
+      "20260430_195352/d002": {
+        "truth_action_spans": [],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "pass"
+      },
+      "20260430_195352/d010": {
+        "truth_action_spans": [
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "frames": 4
+          }
+        ],
+        "pred_action_spans": [
+          {
+            "start_s": 0.0,
+            "end_s": 0.0,
+            "frames": 1
+          }
+        ],
+        "overlap": true,
+        "verdict_clip": "pass"
+      },
+      "20260430_195352/d102": {
+        "truth_action_spans": [],
+        "pred_action_spans": [
+          {
+            "start_s": 6.0,
+            "end_s": 9.0,
+            "frames": 4
+          }
+        ],
+        "overlap": false,
+        "verdict_clip": "fail"
+      },
+      "20260430_195352/d104": {
+        "truth_action_spans": [],
+        "pred_action_spans": [],
+        "overlap": false,
+        "verdict_clip": "pass"
+      },
+      "20260430_195352/d105": {
+        "truth_action_spans": [],
+        "pred_action_spans": [
+          {
+            "start_s": 0.0,
+            "end_s": 0.0,
+            "frames": 1
+          }
+        ],
+        "overlap": false,
+        "verdict_clip": "pass"
+      }
+    },
+    "summary": {
+      "positive_pass": 9,
+      "positive_total": 9,
+      "negative_pass": 5,
+      "negative_total": 6,
+      "clip_pass_total": 14,
+      "clip_denominator": 15
+    }
+  },
+  "verdict": "Weak",
+  "verdict_notes": "Temporal action weak or span pass 14/15. Stop S3 fired (naive action min(P,R)<0.5 \u2014 recall dominates failure); span table kept for Section 5 audit.",
+  "action_metrics_temporal": {
+    "precision": 0.7368,
+    "recall": 0.1944,
+    "f1": 0.3077,
+    "support": 72
+  },
+  "action_metrics_naive": {
+    "precision": 0.7692,
+    "recall": 0.2778,
+    "f1": 0.4082,
+    "support": 72
+  }
+}

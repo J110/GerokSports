@@ -1,0 +1,1397 @@
+======================================================================
+[CLIP 20260503_205835/d001]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s graphic
+    ts= 0.33s graphic
+    ts= 0.67s graphic
+    ts= 1.00s graphic
+    ts= 1.33s graphic
+    ts= 1.67s graphic
+    ts= 2.00s graphic
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s pre_post
+    ts= 4.00s pre_post
+    ts= 4.33s pre_post
+    ts= 4.67s graphic
+    ts= 5.00s umpire_signal
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post
+    ts= 6.00s pre_post
+    ts= 6.33s pre_post
+    ts= 6.67s delivery [prod=release]
+    ts= 7.00s delivery [tentative=pre_post, forward_extension]
+    ts= 7.33s delivery [tentative=pre_post, forward_extension]
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s graphic
+    ts= 8.67s graphic
+    ts= 9.00s graphic
+    ts= 9.33s pre_post
+    ts= 9.67s graphic
+
+  Chunks:
+    [ 0.00s -  2.00s] graphic  (7 frames)
+    [ 2.33s -  4.33s] pre_post  (7 frames)
+    [ 4.67s -  4.67s] graphic  (1 frames)
+    [ 5.00s -  5.00s] umpire_signal  (1 frames)
+    [ 5.33s -  6.33s] pre_post  (4 frames)
+    [ 6.67s -  7.33s] delivery  (3 frames)
+    [ 7.67s -  8.00s] pre_post  (2 frames)
+    [ 8.33s -  9.67s] graphic  (5 frames)
+
+  Consequential chunks (saved as videos):
+    umpire_signal: [ 5.00s -  5.00s]
+    delivery: [ 6.67s -  7.33s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 3
+    n_prod_delivery_phase_frames: 1
+    n_anchor_promotions: 0
+    n_backfill_extensions: 0
+    n_forward_extensions: 2
+
+======================================================================
+[CLIP 20260503_205835/d002]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s graphic
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s graphic
+    ts= 2.00s pre_post
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s graphic
+    ts= 3.67s graphic
+    ts= 4.00s graphic
+    ts= 4.33s graphic
+    ts= 4.67s graphic
+    ts= 5.00s graphic
+    ts= 5.33s graphic
+    ts= 5.67s pre_post
+    ts= 6.00s graphic
+    ts= 6.33s graphic
+    ts= 6.67s graphic
+    ts= 7.00s graphic
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post
+    ts= 8.67s pre_post
+    ts= 9.00s graphic
+    ts= 9.33s graphic
+    ts= 9.67s graphic
+
+  Chunks:
+    [ 0.00s -  0.00s] graphic  (1 frames)
+    [ 0.33s -  1.33s] pre_post  (4 frames)
+    [ 1.67s -  1.67s] graphic  (1 frames)
+    [ 2.00s -  3.00s] pre_post  (4 frames)
+    [ 3.33s -  7.00s] graphic  (12 frames)
+    [ 7.33s -  8.67s] pre_post  (5 frames)
+    [ 9.00s -  9.67s] graphic  (3 frames)
+
+  Consequential chunks (saved as videos):
+    none
+
+  Diagnostic counts:
+    n_action_verb_frames: 0
+    n_prod_delivery_phase_frames: 0
+    n_anchor_promotions: 0
+    n_backfill_extensions: 0
+    n_forward_extensions: 0
+
+======================================================================
+[CLIP 20260503_205835/d003]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post [tentative=delivery_candidate]
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s pre_post
+    ts= 4.00s pre_post
+    ts= 4.33s pre_post
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post
+    ts= 6.00s pre_post
+    ts= 6.33s pre_post
+    ts= 6.67s pre_post
+    ts= 7.00s pre_post
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post
+    ts= 8.67s pre_post
+    ts= 9.00s pre_post
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+
+  Chunks:
+    [ 0.00s -  9.67s] pre_post  (30 frames)
+
+  Consequential chunks (saved as videos):
+    none
+
+  Diagnostic counts:
+    n_action_verb_frames: 1
+    n_prod_delivery_phase_frames: 0
+    n_anchor_promotions: 0
+    n_backfill_extensions: 0
+    n_forward_extensions: 0
+
+======================================================================
+[CLIP 20260503_205835/d004]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post [tentative=delivery_candidate]
+    ts= 1.33s pre_post
+    ts= 1.67s delivery [prod=post_shot]
+    ts= 2.00s delivery [prod=release]
+    ts= 2.33s delivery [prod=shot]
+    ts= 2.67s delivery [prod=shot]
+    ts= 3.00s delivery [tentative=pre_post, forward_extension]
+    ts= 3.33s delivery [tentative=pre_post, forward_extension]
+    ts= 3.67s delivery [tentative=pre_post, forward_extension]
+    ts= 4.00s pre_post
+    ts= 4.33s pre_post
+    ts= 4.67s pre_post [tentative=delivery_candidate]
+    ts= 5.00s pre_post [tentative=delivery_candidate]
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post
+    ts= 6.00s pre_post
+    ts= 6.33s pre_post
+    ts= 6.67s pre_post
+    ts= 7.00s pre_post
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post
+    ts= 8.67s pre_post
+    ts= 9.00s pre_post
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+
+  Chunks:
+    [ 0.00s -  1.33s] pre_post  (5 frames)
+    [ 1.67s -  3.67s] delivery  (7 frames)
+    [ 4.00s -  9.67s] pre_post  (18 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [ 1.67s -  3.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 6
+    n_prod_delivery_phase_frames: 4
+    n_anchor_promotions: 0
+    n_backfill_extensions: 0
+    n_forward_extensions: 3
+
+======================================================================
+[CLIP 20260503_205835/d005]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s delivery [prod=shot]
+    ts= 0.33s replay
+    ts= 0.67s replay
+    ts= 1.00s pre_post [tentative=delivery_candidate]
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s delivery [prod=release]
+    ts= 2.33s delivery [tentative=pre_post, forward_extension]
+    ts= 2.67s delivery [prod=shot]
+    ts= 3.00s delivery [prod=release]
+    ts= 3.33s delivery [tentative=pre_post, forward_extension]
+    ts= 3.67s delivery [tentative=pre_post, forward_extension]
+    ts= 4.00s delivery [tentative=pre_post, forward_extension]
+    ts= 4.33s pre_post
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post
+    ts= 6.00s replay
+    ts= 6.33s graphic
+    ts= 6.67s pre_post
+    ts= 7.00s umpire_signal
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s delivery [tentative=delivery_candidate, backward_backfill]
+    ts= 8.67s delivery [prod=shot]
+    ts= 9.00s delivery [prod=shot]
+    ts= 9.33s delivery [tentative=pre_post, forward_extension]
+    ts= 9.67s delivery [tentative=pre_post, forward_extension]
+
+  Chunks:
+    [ 0.00s -  0.00s] delivery  (1 frames)
+    [ 0.33s -  0.67s] replay  (2 frames)
+    [ 1.00s -  1.67s] pre_post  (3 frames)
+    [ 2.00s -  4.00s] delivery  (7 frames)
+    [ 4.33s -  5.67s] pre_post  (5 frames)
+    [ 6.00s -  6.00s] replay  (1 frames)
+    [ 6.33s -  6.33s] graphic  (1 frames)
+    [ 6.67s -  6.67s] pre_post  (1 frames)
+    [ 7.00s -  7.00s] umpire_signal  (1 frames)
+    [ 7.33s -  8.00s] pre_post  (3 frames)
+    [ 8.33s -  9.67s] delivery  (5 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [ 0.00s -  0.00s]
+    replay: [ 0.33s -  0.67s]
+    delivery: [ 2.00s -  4.00s]
+    replay: [ 6.00s -  6.00s]
+    umpire_signal: [ 7.00s -  7.00s]
+    delivery: [ 8.33s -  9.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 11
+    n_prod_delivery_phase_frames: 7
+    n_anchor_promotions: 0
+    n_backfill_extensions: 1
+    n_forward_extensions: 6
+
+======================================================================
+[CLIP 20260503_205835/d006]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s pre_post
+    ts= 4.00s pre_post
+    ts= 4.33s pre_post
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s pre_post
+    ts= 5.67s graphic
+    ts= 6.00s graphic
+    ts= 6.33s pre_post
+    ts= 6.67s pre_post
+    ts= 7.00s pre_post
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post
+    ts= 8.67s pre_post
+    ts= 9.00s graphic
+    ts= 9.33s graphic
+    ts= 9.67s pre_post
+
+  Chunks:
+    [ 0.00s -  5.33s] pre_post  (17 frames)
+    [ 5.67s -  6.00s] graphic  (2 frames)
+    [ 6.33s -  8.67s] pre_post  (8 frames)
+    [ 9.00s -  9.33s] graphic  (2 frames)
+    [ 9.67s -  9.67s] pre_post  (1 frames)
+
+  Consequential chunks (saved as videos):
+    none
+
+  Diagnostic counts:
+    n_action_verb_frames: 0
+    n_prod_delivery_phase_frames: 0
+    n_anchor_promotions: 0
+    n_backfill_extensions: 0
+    n_forward_extensions: 0
+
+======================================================================
+[CLIP 20260503_205835/d007]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post [tentative=delivery_candidate]
+    ts= 0.33s delivery [prod=post_shot]
+    ts= 0.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 1.00s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 1.33s delivery [prod=shot]
+    ts= 1.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 2.00s pre_post
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s pre_post [tentative=delivery_candidate]
+    ts= 4.00s pre_post
+    ts= 4.33s pre_post [tentative=delivery_candidate]
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post [tentative=delivery_candidate]
+    ts= 6.00s pre_post [tentative=delivery]
+    ts= 6.33s pre_post
+    ts= 6.67s pre_post
+    ts= 7.00s pre_post
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post
+    ts= 8.67s pre_post
+    ts= 9.00s pre_post
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+
+  Smoothing reassignments:
+    ts= 6.00s delivery -> pre_post  (celeb_neighbor_isolated)
+
+  Chunks:
+    [ 0.00s -  0.00s] pre_post  (1 frames)
+    [ 0.33s -  1.67s] delivery  (5 frames)
+    [ 2.00s -  9.67s] pre_post  (24 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [ 0.33s -  1.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 11
+    n_prod_delivery_phase_frames: 3
+    n_anchor_promotions: 0
+    n_backfill_extensions: 0
+    n_forward_extensions: 3
+
+======================================================================
+[CLIP 20260503_205835/d008]
+  duration=12.50s event_ts=10.00s
+  manual_label=N/A
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s pre_post
+    ts= 4.00s pre_post
+    ts= 4.33s pre_post
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post
+    ts= 6.00s pre_post
+    ts= 6.33s pre_post
+    ts= 6.67s pre_post
+    ts= 7.00s pre_post
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post
+    ts= 8.67s graphic
+    ts= 9.00s pre_post
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+
+  Chunks:
+    [ 0.00s -  8.33s] pre_post  (26 frames)
+    [ 8.67s -  8.67s] graphic  (1 frames)
+    [ 9.00s -  9.67s] pre_post  (3 frames)
+
+  Consequential chunks (saved as videos):
+    none
+
+  Diagnostic counts:
+    n_action_verb_frames: 0
+    n_prod_delivery_phase_frames: 0
+    n_anchor_promotions: 0
+    n_backfill_extensions: 0
+    n_forward_extensions: 0
+
+======================================================================
+[CLIP 20260421_195050/d046]
+  duration=15.54s event_ts=18.72s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post
+    ts= 2.33s delivery [prod=flight]
+    ts= 2.67s delivery [tentative=pre_post, forward_extension]
+    ts= 3.00s delivery [tentative=pre_post, forward_extension]
+    ts= 3.33s delivery [tentative=pre_post, forward_extension]
+    ts= 3.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 4.00s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 4.33s delivery [tentative=pre_post, forward_extension]
+    ts= 4.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 5.00s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 5.33s delivery [tentative=pre_post, forward_extension]
+    ts= 5.67s delivery [prod=flight]
+    ts= 6.00s delivery [prod=shot]
+    ts= 6.33s delivery [prod=shot]
+    ts= 6.67s delivery [tentative=pre_post, forward_extension]
+    ts= 7.00s delivery [tentative=pre_post, forward_extension]
+    ts= 7.33s delivery [tentative=pre_post, forward_extension]
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post
+    ts= 8.67s pre_post
+    ts= 9.00s pre_post
+    ts= 9.33s pre_post [tentative=delivery_candidate]
+    ts= 9.67s pre_post
+    ts=10.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts=10.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts=10.67s delivery [tentative=delivery_candidate, action_anchor]
+    ts=11.00s delivery [tentative=pre_post, forward_extension]
+    ts=11.33s delivery [tentative=pre_post, forward_extension]
+    ts=11.67s delivery [tentative=pre_post, forward_extension]
+    ts=12.00s pre_post
+    ts=12.33s pre_post
+    ts=12.67s pre_post
+    ts=13.00s pre_post
+    ts=13.33s pre_post
+    ts=13.67s pre_post
+    ts=14.00s pre_post
+    ts=14.33s pre_post
+    ts=14.67s pre_post
+    ts=15.00s pre_post
+    ts=15.33s pre_post
+
+  Chunks:
+    [ 0.00s -  2.00s] pre_post  (7 frames)
+    [ 2.33s -  7.33s] delivery  (16 frames)
+    [ 7.67s -  9.67s] pre_post  (7 frames)
+    [10.00s - 11.67s] delivery  (6 frames)
+    [12.00s - 15.33s] pre_post  (11 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [ 2.33s -  7.33s]
+    delivery: [10.00s - 11.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 11
+    n_prod_delivery_phase_frames: 4
+    n_anchor_promotions: 1
+    n_backfill_extensions: 0
+    n_forward_extensions: 15
+
+======================================================================
+[CLIP 20260420_202239/d015]
+  duration=23.11s event_ts=24.05s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s pre_post
+    ts= 4.00s pre_post
+    ts= 4.33s pre_post
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post
+    ts= 6.00s pre_post
+    ts= 6.33s pre_post
+    ts= 6.67s pre_post
+    ts= 7.00s pre_post
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 8.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 8.67s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 9.00s delivery [tentative=pre_post, forward_extension]
+    ts= 9.33s delivery [tentative=pre_post, forward_extension]
+    ts= 9.67s delivery [tentative=pre_post, forward_extension]
+    ts=10.00s delivery [tentative=delivery_candidate, forward_extension]
+    ts=10.33s delivery [tentative=pre_post, forward_extension]
+    ts=10.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts=11.00s delivery [tentative=pre_post, forward_extension]
+    ts=11.33s delivery [tentative=pre_post, forward_extension]
+    ts=11.67s delivery [tentative=pre_post, forward_extension]
+    ts=12.00s pre_post
+    ts=12.33s pre_post [tentative=delivery_candidate]
+    ts=12.67s pre_post [tentative=delivery_candidate]
+    ts=13.00s pre_post
+    ts=13.33s pre_post [tentative=delivery_candidate]
+    ts=13.67s pre_post [tentative=delivery_candidate]
+    ts=14.00s pre_post
+    ts=14.33s pre_post
+    ts=14.67s pre_post
+    ts=15.00s pre_post
+    ts=15.33s pre_post
+    ts=15.67s pre_post
+    ts=16.00s pre_post
+    ts=16.33s pre_post
+    ts=16.67s pre_post
+    ts=17.00s pre_post
+    ts=17.33s pre_post
+    ts=17.67s pre_post
+    ts=18.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts=18.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts=18.67s delivery [tentative=delivery_candidate, action_anchor]
+    ts=19.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts=19.33s delivery [tentative=pre_post, forward_extension]
+    ts=19.67s delivery [tentative=pre_post, forward_extension]
+    ts=20.00s delivery [tentative=pre_post, forward_extension]
+    ts=20.33s pre_post
+    ts=20.67s pre_post
+    ts=21.00s pre_post
+    ts=21.33s pre_post
+    ts=21.67s replay
+    ts=22.00s replay
+    ts=22.33s pre_post
+    ts=22.67s pre_post
+    ts=23.00s delivery [prod=release]
+
+  Chunks:
+    [ 0.00s -  7.67s] pre_post  (24 frames)
+    [ 8.00s - 11.67s] delivery  (12 frames)
+    [12.00s - 17.67s] pre_post  (18 frames)
+    [18.00s - 20.00s] delivery  (7 frames)
+    [20.33s - 21.33s] pre_post  (4 frames)
+    [21.67s - 22.00s] replay  (2 frames)
+    [22.33s - 22.67s] pre_post  (2 frames)
+    [23.00s - 23.00s] delivery  (1 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [ 8.00s - 11.67s]
+    delivery: [18.00s - 20.00s]
+    replay: [21.67s - 22.00s]
+    delivery: [23.00s - 23.00s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 13
+    n_prod_delivery_phase_frames: 1
+    n_anchor_promotions: 2
+    n_backfill_extensions: 0
+    n_forward_extensions: 12
+
+======================================================================
+[CLIP 20260420_202239/d004]
+  duration=21.37s event_ts=25.05s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s pre_post
+    ts= 4.00s pre_post
+    ts= 4.33s pre_post
+    ts= 4.67s delivery [tentative=delivery_candidate, backward_backfill]
+    ts= 5.00s delivery [tentative=pre_post, backward_backfill]
+    ts= 5.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 5.67s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 6.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 6.33s delivery [prod=shot]
+    ts= 6.67s delivery [tentative=pre_post, forward_extension]
+    ts= 7.00s delivery [prod=post_shot]
+    ts= 7.33s delivery [tentative=pre_post, forward_extension]
+    ts= 7.67s delivery [prod=shot]
+    ts= 8.00s delivery [tentative=pre_post, forward_extension]
+    ts= 8.33s delivery [tentative=pre_post, forward_extension]
+    ts= 8.67s delivery [tentative=pre_post, forward_extension]
+    ts= 9.00s pre_post
+    ts= 9.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 9.67s delivery [tentative=delivery_candidate, action_anchor]
+    ts=10.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts=10.33s delivery [prod=flight]
+    ts=10.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts=11.00s delivery [tentative=pre_post, forward_extension]
+    ts=11.33s delivery [tentative=delivery_candidate, forward_extension]
+    ts=11.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts=12.00s delivery [tentative=pre_post, forward_extension]
+    ts=12.33s delivery [tentative=pre_post, forward_extension]
+    ts=12.67s graphic
+    ts=13.00s pre_post
+    ts=13.33s pre_post
+    ts=13.67s pre_post [tentative=delivery_candidate]
+    ts=14.00s delivery [prod=release]
+    ts=14.33s delivery [tentative=pre_post, forward_extension]
+    ts=14.67s delivery [tentative=delivery_candidate, action_anchor]
+    ts=15.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts=15.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts=15.67s delivery [tentative=delivery_candidate, action_anchor]
+    ts=16.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts=16.33s delivery [tentative=pre_post, forward_extension]
+    ts=16.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts=17.00s delivery [tentative=pre_post, forward_extension]
+    ts=17.33s delivery [tentative=delivery_candidate, forward_extension]
+    ts=17.67s delivery [prod=release]
+    ts=18.00s delivery [tentative=pre_post, forward_extension]
+    ts=18.33s pre_post [tentative=delivery_candidate]
+    ts=18.67s delivery [prod=release]
+    ts=19.00s delivery [tentative=pre_post, forward_extension]
+    ts=19.33s delivery [tentative=pre_post, forward_extension]
+    ts=19.67s delivery [tentative=pre_post, forward_extension]
+    ts=20.00s pre_post
+    ts=20.33s pre_post
+    ts=20.67s pre_post
+    ts=21.00s pre_post
+
+  Chunks:
+    [ 0.00s -  4.33s] pre_post  (14 frames)
+    [ 4.67s - 12.33s] delivery  (24 frames)
+    [12.67s - 12.67s] graphic  (1 frames)
+    [13.00s - 13.67s] pre_post  (3 frames)
+    [14.00s - 19.67s] delivery  (18 frames)
+    [20.00s - 21.00s] pre_post  (4 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [ 4.67s - 12.33s]
+    delivery: [14.00s - 19.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 24
+    n_prod_delivery_phase_frames: 7
+    n_anchor_promotions: 3
+    n_backfill_extensions: 2
+    n_forward_extensions: 20
+
+======================================================================
+[CLIP 20260421_195050/d059]
+  duration=11.01s event_ts=20.50s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post
+    ts= 2.33s delivery [tentative=delivery_candidate, backward_backfill]
+    ts= 2.67s delivery [tentative=pre_post, backward_backfill]
+    ts= 3.00s delivery [tentative=pre_post, backward_backfill]
+    ts= 3.33s delivery [tentative=delivery_candidate, backward_backfill]
+    ts= 3.67s delivery [tentative=drs, prod=release, backward_backfill]
+    ts= 4.00s delivery [prod=shot]
+    ts= 4.33s delivery [prod=shot]
+    ts= 4.67s delivery [tentative=pre_post, forward_extension]
+    ts= 5.00s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 5.33s graphic
+    ts= 5.67s pre_post
+    ts= 6.00s pre_post
+    ts= 6.33s delivery [tentative=delivery_candidate, backward_backfill]
+    ts= 6.67s delivery [prod=post_shot]
+    ts= 7.00s delivery [tentative=pre_post, forward_extension]
+    ts= 7.33s delivery [tentative=pre_post, forward_extension]
+    ts= 7.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 8.00s delivery [tentative=pre_post, forward_extension]
+    ts= 8.33s delivery [tentative=pre_post, forward_extension]
+    ts= 8.67s delivery [tentative=pre_post, forward_extension]
+    ts= 9.00s pre_post
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+    ts=10.00s pre_post
+    ts=10.33s pre_post
+    ts=10.67s pre_post
+
+  Chunks:
+    [ 0.00s -  2.00s] pre_post  (7 frames)
+    [ 2.33s -  5.00s] delivery  (9 frames)
+    [ 5.33s -  5.33s] graphic  (1 frames)
+    [ 5.67s -  6.00s] pre_post  (2 frames)
+    [ 6.33s -  8.67s] delivery  (8 frames)
+    [ 9.00s - 10.67s] pre_post  (6 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [ 2.33s -  5.00s]
+    delivery: [ 6.33s -  8.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 8
+    n_prod_delivery_phase_frames: 4
+    n_anchor_promotions: 0
+    n_backfill_extensions: 6
+    n_forward_extensions: 8
+
+======================================================================
+[CLIP 20260420_202239/d036]
+  duration=25.12s event_ts=26.90s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s delivery [prod=release]
+    ts= 0.33s delivery [prod=post_shot]
+    ts= 0.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 1.00s replay
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s replay
+    ts= 4.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 4.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 4.67s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 5.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 5.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 5.67s delivery [tentative=pre_post, forward_extension]
+    ts= 6.00s replay
+    ts= 6.33s replay
+    ts= 6.67s replay
+    ts= 7.00s delivery [tentative=delivery_candidate, backward_backfill]
+    ts= 7.33s delivery [prod=post_shot]
+    ts= 7.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 8.00s delivery [tentative=pre_post, forward_extension]
+    ts= 8.33s replay
+    ts= 8.67s pre_post
+    ts= 9.00s pre_post
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+    ts=10.00s pre_post
+    ts=10.33s pre_post
+    ts=10.67s pre_post
+    ts=11.00s pre_post
+    ts=11.33s pre_post
+    ts=11.67s replay
+    ts=12.00s graphic
+    ts=12.33s pre_post [tentative=delivery_candidate]
+    ts=12.67s pre_post
+    ts=13.00s pre_post
+    ts=13.33s delivery [prod=shot]
+    ts=13.67s delivery [prod=shot]
+    ts=14.00s delivery [tentative=pre_post, forward_extension]
+    ts=14.33s delivery [tentative=pre_post, forward_extension]
+    ts=14.67s graphic
+    ts=15.00s pre_post
+    ts=15.33s graphic
+    ts=15.67s pre_post
+    ts=16.00s pre_post [tentative=delivery_candidate]
+    ts=16.33s pre_post
+    ts=16.67s pre_post [tentative=delivery_candidate]
+    ts=17.00s pre_post
+    ts=17.33s pre_post
+    ts=17.67s pre_post
+    ts=18.00s pre_post [tentative=delivery_candidate]
+    ts=18.33s pre_post
+    ts=18.67s pre_post
+    ts=19.00s pre_post
+    ts=19.33s pre_post
+    ts=19.67s pre_post
+    ts=20.00s pre_post
+    ts=20.33s pre_post
+    ts=20.67s pre_post
+    ts=21.00s pre_post
+    ts=21.33s pre_post
+    ts=21.67s pre_post
+    ts=22.00s pre_post
+    ts=22.33s pre_post
+    ts=22.67s pre_post [tentative=delivery_candidate]
+    ts=23.00s pre_post
+    ts=23.33s pre_post [tentative=delivery_candidate]
+    ts=23.67s pre_post
+    ts=24.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts=24.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts=24.67s delivery [tentative=delivery_candidate, action_anchor]
+
+  Chunks:
+    [ 0.00s -  0.67s] delivery  (3 frames)
+    [ 1.00s -  1.00s] replay  (1 frames)
+    [ 1.33s -  3.33s] pre_post  (7 frames)
+    [ 3.67s -  3.67s] replay  (1 frames)
+    [ 4.00s -  5.67s] delivery  (6 frames)
+    [ 6.00s -  6.67s] replay  (3 frames)
+    [ 7.00s -  8.00s] delivery  (4 frames)
+    [ 8.33s -  8.33s] replay  (1 frames)
+    [ 8.67s - 11.33s] pre_post  (9 frames)
+    [11.67s - 11.67s] replay  (1 frames)
+    [12.00s - 12.00s] graphic  (1 frames)
+    [12.33s - 13.00s] pre_post  (3 frames)
+    [13.33s - 14.33s] delivery  (4 frames)
+    [14.67s - 15.33s] graphic  (3 frames)
+    [15.67s - 23.67s] pre_post  (25 frames)
+    [24.00s - 24.67s] delivery  (3 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [ 0.00s -  0.67s]
+    replay: [ 1.00s -  1.00s]
+    replay: [ 3.67s -  3.67s]
+    delivery: [ 4.00s -  5.67s]
+    replay: [ 6.00s -  6.67s]
+    delivery: [ 7.00s -  8.00s]
+    replay: [ 8.33s -  8.33s]
+    replay: [11.67s - 11.67s]
+    delivery: [13.33s - 14.33s]
+    delivery: [24.00s - 24.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 27
+    n_prod_delivery_phase_frames: 5
+    n_anchor_promotions: 2
+    n_backfill_extensions: 1
+    n_forward_extensions: 6
+
+======================================================================
+[CLIP 20260420_202239/d032]
+  duration=25.51s event_ts=26.79s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s pre_post
+    ts= 4.00s graphic
+    ts= 4.33s graphic
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s graphic
+    ts= 5.67s graphic
+    ts= 6.00s graphic
+    ts= 6.33s graphic
+    ts= 6.67s graphic
+    ts= 7.00s graphic
+    ts= 7.33s graphic
+    ts= 7.67s graphic
+    ts= 8.00s graphic
+    ts= 8.33s graphic
+    ts= 8.67s graphic
+    ts= 9.00s graphic
+    ts= 9.33s graphic
+    ts= 9.67s graphic
+    ts=10.00s graphic
+    ts=10.33s pre_post
+    ts=10.67s pre_post
+    ts=11.00s pre_post
+    ts=11.33s pre_post
+    ts=11.67s pre_post
+    ts=12.00s pre_post
+    ts=12.33s pre_post
+    ts=12.67s pre_post
+    ts=13.00s pre_post [tentative=delivery_candidate]
+    ts=13.33s pre_post
+    ts=13.67s pre_post
+    ts=14.00s pre_post
+    ts=14.33s pre_post
+    ts=14.67s pre_post
+    ts=15.00s umpire_signal
+    ts=15.33s delivery [tentative=delivery_candidate, backward_backfill]
+    ts=15.67s delivery [tentative=delivery_candidate, backward_backfill]
+    ts=16.00s delivery [prod=post_shot]
+    ts=16.33s delivery [prod=shot]
+    ts=16.67s delivery [prod=post_shot]
+    ts=17.00s delivery [tentative=pre_post, forward_extension]
+    ts=17.33s delivery [tentative=pre_post, forward_extension]
+    ts=17.67s delivery [tentative=pre_post, forward_extension]
+    ts=18.00s pre_post
+    ts=18.33s pre_post
+    ts=18.67s pre_post
+    ts=19.00s pre_post
+    ts=19.33s delivery [prod=release]
+    ts=19.67s delivery [tentative=pre_post, forward_extension]
+    ts=20.00s delivery [tentative=delivery_candidate, forward_extension]
+    ts=20.33s delivery [tentative=pre_post, forward_extension]
+    ts=20.67s delivery [tentative=pre_post, forward_extension]
+    ts=21.00s pre_post [tentative=delivery_candidate]
+    ts=21.33s pre_post
+    ts=21.67s pre_post
+    ts=22.00s pre_post
+    ts=22.33s pre_post
+    ts=22.67s pre_post
+    ts=23.00s pre_post
+    ts=23.33s pre_post
+    ts=23.67s pre_post
+    ts=24.00s pre_post
+    ts=24.33s pre_post
+    ts=24.67s pre_post
+    ts=25.00s pre_post
+    ts=25.33s pre_post
+
+  Chunks:
+    [ 0.00s -  3.67s] pre_post  (12 frames)
+    [ 4.00s - 10.00s] graphic  (19 frames)
+    [10.33s - 14.67s] pre_post  (14 frames)
+    [15.00s - 15.00s] umpire_signal  (1 frames)
+    [15.33s - 17.67s] delivery  (8 frames)
+    [18.00s - 19.00s] pre_post  (4 frames)
+    [19.33s - 20.67s] delivery  (5 frames)
+    [21.00s - 25.33s] pre_post  (14 frames)
+
+  Consequential chunks (saved as videos):
+    umpire_signal: [15.00s - 15.00s]
+    delivery: [15.33s - 17.67s]
+    delivery: [19.33s - 20.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 8
+    n_prod_delivery_phase_frames: 4
+    n_anchor_promotions: 0
+    n_backfill_extensions: 2
+    n_forward_extensions: 7
+
+======================================================================
+[CLIP 20260420_202239/d029]
+  duration=20.01s event_ts=21.01s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post [tentative=delivery_candidate]
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post [tentative=delivery_candidate]
+    ts= 1.33s pre_post
+    ts= 1.67s graphic
+    ts= 2.00s graphic
+    ts= 2.33s graphic
+    ts= 2.67s graphic
+    ts= 3.00s graphic
+    ts= 3.33s graphic
+    ts= 3.67s graphic
+    ts= 4.00s graphic
+    ts= 4.33s graphic
+    ts= 4.67s graphic
+    ts= 5.00s graphic
+    ts= 5.33s pre_post [tentative=delivery_candidate]
+    ts= 5.67s graphic
+    ts= 6.00s graphic
+    ts= 6.33s graphic
+    ts= 6.67s graphic
+    ts= 7.00s graphic
+    ts= 7.33s graphic
+    ts= 7.67s graphic
+    ts= 8.00s graphic
+    ts= 8.33s graphic
+    ts= 8.67s graphic
+    ts= 9.00s graphic
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+    ts=10.00s pre_post
+    ts=10.33s pre_post
+    ts=10.67s pre_post
+    ts=11.00s delivery [prod=post_shot]
+    ts=11.33s delivery [prod=post_shot]
+    ts=11.67s delivery [prod=shot]
+    ts=12.00s delivery [tentative=pre_post, forward_extension]
+    ts=12.33s delivery [tentative=pre_post, forward_extension]
+    ts=12.67s pre_post
+    ts=13.00s pre_post
+    ts=13.33s pre_post
+    ts=13.67s pre_post
+    ts=14.00s pre_post
+    ts=14.33s pre_post
+    ts=14.67s delivery [prod=release]
+    ts=15.00s delivery [tentative=pre_post, forward_extension]
+    ts=15.33s delivery [tentative=pre_post, forward_extension]
+    ts=15.67s pre_post
+    ts=16.00s pre_post
+    ts=16.33s pre_post
+    ts=16.67s pre_post
+    ts=17.00s pre_post
+    ts=17.33s pre_post
+    ts=17.67s pre_post
+    ts=18.00s pre_post
+    ts=18.33s pre_post
+    ts=18.67s pre_post
+    ts=19.00s pre_post
+    ts=19.33s pre_post
+    ts=19.67s pre_post
+
+  Chunks:
+    [ 0.00s -  1.33s] pre_post  (5 frames)
+    [ 1.67s -  9.00s] graphic  (23 frames)
+    [ 9.33s - 10.67s] pre_post  (5 frames)
+    [11.00s - 12.33s] delivery  (5 frames)
+    [12.67s - 14.33s] pre_post  (6 frames)
+    [14.67s - 15.33s] delivery  (3 frames)
+    [15.67s - 19.67s] pre_post  (13 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [11.00s - 12.33s]
+    delivery: [14.67s - 15.33s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 6
+    n_prod_delivery_phase_frames: 4
+    n_anchor_promotions: 0
+    n_backfill_extensions: 0
+    n_forward_extensions: 4
+
+======================================================================
+[CLIP 20260420_202239/d018]
+  duration=24.42s event_ts=25.06s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s pre_post
+    ts= 1.00s pre_post
+    ts= 1.33s pre_post
+    ts= 1.67s pre_post
+    ts= 2.00s pre_post
+    ts= 2.33s pre_post
+    ts= 2.67s pre_post [tentative=delivery_candidate]
+    ts= 3.00s pre_post
+    ts= 3.33s pre_post
+    ts= 3.67s pre_post
+    ts= 4.00s pre_post
+    ts= 4.33s pre_post
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post
+    ts= 6.00s pre_post
+    ts= 6.33s pre_post
+    ts= 6.67s pre_post
+    ts= 7.00s pre_post
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post [tentative=delivery]
+    ts= 8.67s pre_post
+    ts= 9.00s pre_post [tentative=delivery_candidate]
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+    ts=10.00s pre_post
+    ts=10.33s pre_post
+    ts=10.67s pre_post
+    ts=11.00s pre_post
+    ts=11.33s pre_post
+    ts=11.67s delivery [prod=release]
+    ts=12.00s delivery [prod=shot]
+    ts=12.33s delivery [prod=shot]
+    ts=12.67s delivery [tentative=pre_post, forward_extension]
+    ts=13.00s graphic
+    ts=13.33s pre_post
+    ts=13.67s graphic
+    ts=14.00s graphic
+    ts=14.33s pre_post [tentative=delivery_candidate]
+    ts=14.67s pre_post
+    ts=15.00s pre_post
+    ts=15.33s pre_post
+    ts=15.67s delivery [prod=flight]
+    ts=16.00s delivery [prod=post_shot]
+    ts=16.33s delivery [tentative=delivery_candidate, forward_extension]
+    ts=16.67s delivery [tentative=pre_post, forward_extension]
+    ts=17.00s delivery [tentative=delivery_candidate, forward_extension]
+    ts=17.33s delivery [tentative=delivery_candidate, forward_extension]
+    ts=17.67s delivery [tentative=pre_post, forward_extension]
+    ts=18.00s delivery [tentative=pre_post, forward_extension]
+    ts=18.33s delivery [tentative=delivery_candidate, forward_extension]
+    ts=18.67s delivery [tentative=pre_post, forward_extension]
+    ts=19.00s delivery [tentative=delivery_candidate, forward_extension]
+    ts=19.33s delivery [tentative=pre_post, forward_extension]
+    ts=19.67s delivery [tentative=pre_post, forward_extension]
+    ts=20.00s graphic
+    ts=20.33s pre_post
+    ts=20.67s delivery [tentative=delivery_candidate, backward_backfill]
+    ts=21.00s delivery [prod=post_shot]
+    ts=21.33s delivery [tentative=delivery_candidate, forward_extension]
+    ts=21.67s delivery [tentative=pre_post, forward_extension]
+    ts=22.00s delivery [prod=post_shot]
+    ts=22.33s delivery [tentative=pre_post, forward_extension]
+    ts=22.67s delivery [tentative=pre_post, forward_extension]
+    ts=23.00s pre_post
+    ts=23.33s pre_post
+    ts=23.67s pre_post
+    ts=24.00s pre_post
+    ts=24.33s pre_post
+
+  Smoothing reassignments:
+    ts= 8.33s delivery -> pre_post  (celeb_neighbor_isolated)
+
+  Chunks:
+    [ 0.00s - 11.33s] pre_post  (35 frames)
+    [11.67s - 12.67s] delivery  (4 frames)
+    [13.00s - 14.00s] graphic  (4 frames)
+    [14.33s - 15.33s] pre_post  (4 frames)
+    [15.67s - 19.67s] delivery  (13 frames)
+    [20.00s - 20.00s] graphic  (1 frames)
+    [20.33s - 20.33s] pre_post  (1 frames)
+    [20.67s - 22.67s] delivery  (7 frames)
+    [23.00s - 24.33s] pre_post  (5 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [11.67s - 12.67s]
+    delivery: [15.67s - 19.67s]
+    delivery: [20.67s - 22.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 18
+    n_prod_delivery_phase_frames: 8
+    n_anchor_promotions: 0
+    n_backfill_extensions: 1
+    n_forward_extensions: 16
+
+======================================================================
+[CLIP 20260420_202239/d014]
+  duration=11.95s event_ts=13.28s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s pre_post
+    ts= 0.33s pre_post
+    ts= 0.67s umpire_signal
+    ts= 1.00s pre_post
+    ts= 1.33s delivery [tentative=delivery_candidate, backward_backfill]
+    ts= 1.67s delivery [tentative=umpire_signal, backward_backfill]
+    ts= 2.00s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 2.33s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 2.67s delivery [tentative=delivery_candidate, action_anchor]
+    ts= 3.00s delivery [prod=shot]
+    ts= 3.33s delivery [tentative=pre_post, forward_extension]
+    ts= 3.67s delivery [tentative=pre_post, forward_extension]
+    ts= 4.00s pre_post [tentative=delivery_candidate]
+    ts= 4.33s pre_post
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post
+    ts= 6.00s pre_post
+    ts= 6.33s pre_post
+    ts= 6.67s pre_post
+    ts= 7.00s pre_post
+    ts= 7.33s pre_post
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post
+    ts= 8.67s pre_post
+    ts= 9.00s pre_post
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+    ts=10.00s pre_post
+    ts=10.33s pre_post
+    ts=10.67s pre_post
+    ts=11.00s pre_post
+    ts=11.33s pre_post
+    ts=11.67s pre_post
+
+  Chunks:
+    [ 0.00s -  0.33s] pre_post  (2 frames)
+    [ 0.67s -  0.67s] umpire_signal  (1 frames)
+    [ 1.00s -  1.00s] pre_post  (1 frames)
+    [ 1.33s -  3.67s] delivery  (8 frames)
+    [ 4.00s - 11.67s] pre_post  (24 frames)
+
+  Consequential chunks (saved as videos):
+    umpire_signal: [ 0.67s -  0.67s]
+    delivery: [ 1.33s -  3.67s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 6
+    n_prod_delivery_phase_frames: 1
+    n_anchor_promotions: 1
+    n_backfill_extensions: 2
+    n_forward_extensions: 2
+
+======================================================================
+[CLIP 20260421_195050/d051]
+  duration=22.91s event_ts=26.66s
+  manual_label=real_delivery
+  truth_window=N/A
+
+  Per-frame classification (v2):
+    ts= 0.00s delivery [prod=post_shot]
+    ts= 0.33s delivery [tentative=pre_post, forward_extension]
+    ts= 0.67s delivery [tentative=pre_post, forward_extension]
+    ts= 1.00s delivery [tentative=pre_post, forward_extension]
+    ts= 1.33s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 1.67s delivery [prod=post_shot]
+    ts= 2.00s delivery [prod=post_shot]
+    ts= 2.33s delivery [prod=post_shot]
+    ts= 2.67s delivery [prod=shot]
+    ts= 3.00s delivery [prod=shot]
+    ts= 3.33s delivery [tentative=pre_post, forward_extension]
+    ts= 3.67s delivery [tentative=delivery_candidate, forward_extension]
+    ts= 4.00s delivery [tentative=pre_post, forward_extension]
+    ts= 4.33s delivery [tentative=pre_post, forward_extension]
+    ts= 4.67s pre_post
+    ts= 5.00s pre_post
+    ts= 5.33s pre_post
+    ts= 5.67s pre_post
+    ts= 6.00s umpire_signal
+    ts= 6.33s umpire_signal
+    ts= 6.67s pre_post
+    ts= 7.00s umpire_signal
+    ts= 7.33s umpire_signal
+    ts= 7.67s pre_post
+    ts= 8.00s pre_post
+    ts= 8.33s pre_post
+    ts= 8.67s pre_post
+    ts= 9.00s pre_post
+    ts= 9.33s pre_post
+    ts= 9.67s pre_post
+    ts=10.00s pre_post
+    ts=10.33s pre_post
+    ts=10.67s pre_post
+    ts=11.00s pre_post
+    ts=11.33s pre_post
+    ts=11.67s pre_post
+    ts=12.00s pre_post
+    ts=12.33s pre_post [tentative=delivery_candidate]
+    ts=12.67s pre_post
+    ts=13.00s pre_post
+    ts=13.33s pre_post
+    ts=13.67s pre_post
+    ts=14.00s pre_post
+    ts=14.33s pre_post
+    ts=14.67s pre_post
+    ts=15.00s pre_post
+    ts=15.33s pre_post
+    ts=15.67s pre_post
+    ts=16.00s pre_post
+    ts=16.33s pre_post
+    ts=16.67s pre_post
+    ts=17.00s pre_post
+    ts=17.33s pre_post
+    ts=17.67s pre_post
+    ts=18.00s graphic
+    ts=18.33s pre_post
+    ts=18.67s graphic
+    ts=19.00s pre_post
+    ts=19.33s pre_post
+    ts=19.67s pre_post
+    ts=20.00s pre_post
+    ts=20.33s pre_post
+    ts=20.67s pre_post
+    ts=21.00s pre_post
+    ts=21.33s pre_post
+    ts=21.67s pre_post
+    ts=22.00s pre_post
+    ts=22.33s pre_post
+    ts=22.67s pre_post
+
+  Chunks:
+    [ 0.00s -  4.33s] delivery  (14 frames)
+    [ 4.67s -  5.67s] pre_post  (4 frames)
+    [ 6.00s -  7.33s] umpire_signal  (5 frames)
+    [ 7.67s - 17.67s] pre_post  (31 frames)
+    [18.00s - 18.67s] graphic  (3 frames)
+    [19.00s - 22.67s] pre_post  (12 frames)
+
+  Consequential chunks (saved as videos):
+    delivery: [ 0.00s -  4.33s]
+    umpire_signal: [ 6.00s -  7.33s]
+
+  Diagnostic counts:
+    n_action_verb_frames: 7
+    n_prod_delivery_phase_frames: 6
+    n_anchor_promotions: 0
+    n_backfill_extensions: 0
+    n_forward_extensions: 8
+
+======================================================================
+Summary — Test set 1 (8 May 3 clips)
+
+| clip | v1 chunks | v2 chunks | v1 -> v2 delta |
+| ---- | ---- | ---- | ---- |
+| 20260503_205835/d001 | pre_post, umpire_signal, pre_post | graphic, pre_post, graphic, umpire_signal, pre_post, delivery, pre_post, graphic | delivery 0->1 |
+| 20260503_205835/d002 | pre_post | graphic, pre_post, graphic, pre_post, graphic, pre_post, graphic | no chunk-count change |
+| 20260503_205835/d003 | pre_post | pre_post | no chunk-count change |
+| 20260503_205835/d004 | pre_post, delivery, pre_post | pre_post, delivery, pre_post | no chunk-count change |
+| 20260503_205835/d005 | delivery, replay, pre_post, delivery, pre_post, delivery, pre_post, replay, pre_post, umpire_signal, pre_post, delivery, pre_post | delivery, replay, pre_post, delivery, pre_post, replay, graphic, pre_post, umpire_signal, pre_post, delivery | delivery 4->3 |
+| 20260503_205835/d006 | pre_post | pre_post, graphic, pre_post, graphic, pre_post | no chunk-count change |
+| 20260503_205835/d007 | pre_post, delivery, pre_post | pre_post, delivery, pre_post | no chunk-count change |
+| 20260503_205835/d008 | pre_post | pre_post, graphic, pre_post | no chunk-count change |
+
+======================================================================
+Summary — Test set 2 (10 random clips)
+
+| clip | label | truth window | v1 chunks | v2 chunks | match |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 20260421_195050/d046 | real_delivery | N/A | pre_post, delivery, pre_post, delivery, pre_post | pre_post, delivery, pre_post, delivery, pre_post | partial (n=2) |
+| 20260420_202239/d015 | real_delivery | N/A | pre_post, replay, pre_post, delivery | pre_post, delivery, pre_post, delivery, pre_post, replay, pre_post, delivery | partial (n=3) |
+| 20260420_202239/d004 | real_delivery | N/A | pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post | pre_post, delivery, graphic, pre_post, delivery, pre_post | partial (n=2) |
+| 20260421_195050/d059 | real_delivery | N/A | pre_post, drs, delivery, pre_post, delivery, pre_post | pre_post, delivery, graphic, pre_post, delivery, pre_post | partial (n=2) |
+| 20260420_202239/d036 | real_delivery | N/A | delivery, pre_post, replay, pre_post, replay, pre_post, replay, pre_post, delivery, pre_post, replay, pre_post, replay, pre_post, delivery, pre_post | delivery, replay, pre_post, replay, delivery, replay, delivery, replay, pre_post, replay, graphic, pre_post, delivery, graphic, pre_post, delivery | partial (n=5) |
+| 20260420_202239/d032 | real_delivery | N/A | pre_post, umpire_signal, pre_post, delivery, pre_post, delivery, pre_post | pre_post, graphic, pre_post, umpire_signal, delivery, pre_post, delivery, pre_post | partial (n=2) |
+| 20260420_202239/d029 | real_delivery | N/A | pre_post, delivery, pre_post, delivery, pre_post | pre_post, graphic, pre_post, delivery, pre_post, delivery, pre_post | partial (n=2) |
+| 20260420_202239/d018 | real_delivery | N/A | pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post, delivery, pre_post | pre_post, delivery, graphic, pre_post, delivery, graphic, pre_post, delivery, pre_post | partial (n=3) |
+| 20260420_202239/d014 | real_delivery | N/A | pre_post, umpire_signal, pre_post, umpire_signal, pre_post | pre_post, umpire_signal, pre_post, delivery, pre_post | yes |
+| 20260421_195050/d051 | real_delivery | N/A | delivery, pre_post, delivery, pre_post, umpire_signal, pre_post, umpire_signal, pre_post | delivery, pre_post, umpire_signal, pre_post, graphic, pre_post | yes |
+
+======================================================================
+Flag-for-review (v2 detected MORE delivery chunks than ground truth for real_delivery clips, which truth says is 1):
+  20260421_195050/d046: 2 delivery chunks (truth implies 1)
+  20260420_202239/d015: 3 delivery chunks (truth implies 1)
+  20260420_202239/d004: 2 delivery chunks (truth implies 1)
+  20260421_195050/d059: 2 delivery chunks (truth implies 1)
+  20260420_202239/d036: 5 delivery chunks (truth implies 1)
+  20260420_202239/d032: 2 delivery chunks (truth implies 1)
+  20260420_202239/d029: 2 delivery chunks (truth implies 1)
+  20260420_202239/d018: 3 delivery chunks (truth implies 1)
+

@@ -1,0 +1,2587 @@
+{
+  "source_log": "../logs/pipeline-2026-04-29-194416-mi-srh-live.log",
+  "total_events": 82,
+  "events": [
+    {
+      "frame_count": 23,
+      "ts": "19:45:48",
+      "event": "FOUR",
+      "over": "2.5"
+    },
+    {
+      "frame_count": 24,
+      "ts": "19:45:53",
+      "event": "DOT",
+      "over": "3.0"
+    },
+    {
+      "frame_count": 53,
+      "ts": "19:47:22",
+      "event": "DOT",
+      "over": "3.1"
+    },
+    {
+      "frame_count": 150,
+      "ts": "19:51:30",
+      "event": "EXTRA",
+      "over": "3.5"
+    },
+    {
+      "frame_count": 193,
+      "ts": "19:54:17",
+      "event": "MULTI_BALL",
+      "over": "\u2014"
+    },
+    {
+      "frame_count": 195,
+      "ts": "19:54:31",
+      "event": "SIX",
+      "over": "4.4"
+    },
+    {
+      "frame_count": 209,
+      "ts": "19:55:04",
+      "event": "DOT",
+      "over": "4.5"
+    },
+    {
+      "frame_count": 253,
+      "ts": "19:56:49",
+      "event": "FOUR",
+      "over": "5.0"
+    },
+    {
+      "frame_count": 270,
+      "ts": "19:57:35",
+      "event": "SIX",
+      "over": "5.1"
+    },
+    {
+      "frame_count": 275,
+      "ts": "19:57:59",
+      "event": "DOT",
+      "over": "5.2"
+    },
+    {
+      "frame_count": 282,
+      "ts": "19:58:34",
+      "event": "SIX",
+      "over": "5.3"
+    },
+    {
+      "frame_count": 310,
+      "ts": "20:00:21",
+      "event": "MULTI_BALL",
+      "over": "\u2014"
+    },
+    {
+      "frame_count": 424,
+      "ts": "20:06:01",
+      "event": "DOT",
+      "over": "6.3"
+    },
+    {
+      "frame_count": 427,
+      "ts": "20:06:19",
+      "event": "EXTRA",
+      "over": "6.3"
+    },
+    {
+      "frame_count": 442,
+      "ts": "20:07:05",
+      "event": "SIX",
+      "over": "6.4"
+    },
+    {
+      "frame_count": 443,
+      "ts": "20:07:14",
+      "event": "DOT",
+      "over": "6.5"
+    },
+    {
+      "frame_count": 445,
+      "ts": "20:07:24",
+      "event": "EXTRA",
+      "over": "6.5"
+    },
+    {
+      "frame_count": 449,
+      "ts": "20:07:43",
+      "event": "FOUR",
+      "over": "7.0"
+    },
+    {
+      "frame_count": 474,
+      "ts": "20:09:19",
+      "event": "WICKET",
+      "over": "7.1"
+    },
+    {
+      "frame_count": 528,
+      "ts": "20:12:03",
+      "event": "FOUR",
+      "over": "7.2"
+    },
+    {
+      "frame_count": 546,
+      "ts": "20:13:27",
+      "event": "FOUR",
+      "over": "7.4"
+    },
+    {
+      "frame_count": 564,
+      "ts": "20:14:24",
+      "event": "SIX",
+      "over": "7.5"
+    },
+    {
+      "frame_count": 652,
+      "ts": "20:17:17",
+      "event": "DOT",
+      "over": "8.1"
+    },
+    {
+      "frame_count": 654,
+      "ts": "20:17:30",
+      "event": "DOT",
+      "over": "8.2"
+    },
+    {
+      "frame_count": 663,
+      "ts": "20:18:17",
+      "event": "WICKET",
+      "over": "8.3"
+    },
+    {
+      "frame_count": 811,
+      "ts": "20:24:41",
+      "event": "DOT",
+      "over": "9.1"
+    },
+    {
+      "frame_count": 849,
+      "ts": "20:27:06",
+      "event": "FOUR",
+      "over": "9.4"
+    },
+    {
+      "frame_count": 856,
+      "ts": "20:27:35",
+      "event": "DOT",
+      "over": "9.5"
+    },
+    {
+      "frame_count": 861,
+      "ts": "20:27:49",
+      "event": "EXTRA",
+      "over": "9.5"
+    },
+    {
+      "frame_count": 888,
+      "ts": "20:29:12",
+      "event": "FOUR",
+      "over": "10.0"
+    },
+    {
+      "frame_count": 924,
+      "ts": "20:31:02",
+      "event": "EXTRA",
+      "over": "10.1"
+    },
+    {
+      "frame_count": 956,
+      "ts": "20:32:54",
+      "event": "FOUR",
+      "over": "10.4"
+    },
+    {
+      "frame_count": 1021,
+      "ts": "20:34:53",
+      "event": "FOUR",
+      "over": "11.0"
+    },
+    {
+      "frame_count": 1029,
+      "ts": "20:35:38",
+      "event": "SIX",
+      "over": "11.1"
+    },
+    {
+      "frame_count": 1053,
+      "ts": "20:36:55",
+      "event": "SIX",
+      "over": "11.2"
+    },
+    {
+      "frame_count": 1075,
+      "ts": "20:38:24",
+      "event": "DOT",
+      "over": "11.5"
+    },
+    {
+      "frame_count": 1128,
+      "ts": "20:39:42",
+      "event": "FOUR",
+      "over": "12.0"
+    },
+    {
+      "frame_count": 1176,
+      "ts": "20:41:54",
+      "event": "EXTRA",
+      "over": "12.2"
+    },
+    {
+      "frame_count": 1183,
+      "ts": "20:42:25",
+      "event": "MULTI_BALL",
+      "over": "\u2014"
+    },
+    {
+      "frame_count": 1198,
+      "ts": "20:43:29",
+      "event": "EXTRA",
+      "over": "12.5"
+    },
+    {
+      "frame_count": 1274,
+      "ts": "20:47:30",
+      "event": "DOT",
+      "over": "13.3"
+    },
+    {
+      "frame_count": 1281,
+      "ts": "20:48:03",
+      "event": "WICKET",
+      "over": "13.4"
+    },
+    {
+      "frame_count": 1409,
+      "ts": "20:53:38",
+      "event": "MULTI_BALL",
+      "over": "\u2014"
+    },
+    {
+      "frame_count": 1420,
+      "ts": "20:54:03",
+      "event": "SIX",
+      "over": "14.4"
+    },
+    {
+      "frame_count": 1430,
+      "ts": "20:54:46",
+      "event": "DOT",
+      "over": "14.5"
+    },
+    {
+      "frame_count": 1456,
+      "ts": "20:56:04",
+      "event": "EXTRA",
+      "over": "14.5"
+    },
+    {
+      "frame_count": 1538,
+      "ts": "20:58:41",
+      "event": "FOUR",
+      "over": "15.1"
+    },
+    {
+      "frame_count": 1581,
+      "ts": "21:00:13",
+      "event": "FOUR",
+      "over": "15.3"
+    },
+    {
+      "frame_count": 1583,
+      "ts": "21:00:22",
+      "event": "SIX",
+      "over": "15.4"
+    },
+    {
+      "frame_count": 1619,
+      "ts": "21:01:51",
+      "event": "FOUR",
+      "over": "15.5"
+    },
+    {
+      "frame_count": 1801,
+      "ts": "21:10:19",
+      "event": "DOT",
+      "over": "17.0"
+    },
+    {
+      "frame_count": 1840,
+      "ts": "21:11:15",
+      "event": "EXTRA",
+      "over": "17.0"
+    },
+    {
+      "frame_count": 1853,
+      "ts": "21:12:09",
+      "event": "SIX",
+      "over": "17.1"
+    },
+    {
+      "frame_count": 1879,
+      "ts": "21:13:06",
+      "event": "EXTRA",
+      "over": "17.2"
+    },
+    {
+      "frame_count": 2014,
+      "ts": "21:16:39",
+      "event": "EXTRA",
+      "over": "17.3"
+    },
+    {
+      "frame_count": 2031,
+      "ts": "21:17:41",
+      "event": "DOT",
+      "over": "17.5"
+    },
+    {
+      "frame_count": 2103,
+      "ts": "21:20:29",
+      "event": "WICKET",
+      "over": "18.1"
+    },
+    {
+      "frame_count": 2105,
+      "ts": "21:20:40",
+      "event": "WICKET_LATE",
+      "over": "18.1"
+    },
+    {
+      "frame_count": 2136,
+      "ts": "21:22:44",
+      "event": "MULTI_BALL",
+      "over": "\u2014"
+    },
+    {
+      "frame_count": 2148,
+      "ts": "21:23:31",
+      "event": "DRS_NOT_OUT",
+      "over": "18.3"
+    },
+    {
+      "frame_count": 2154,
+      "ts": "21:24:04",
+      "event": "EXTRA",
+      "over": "18.4"
+    },
+    {
+      "frame_count": 2167,
+      "ts": "21:24:37",
+      "event": "DOT",
+      "over": "18.5"
+    },
+    {
+      "frame_count": 2171,
+      "ts": "21:24:54",
+      "event": "DOT",
+      "over": "19.0"
+    },
+    {
+      "frame_count": 2285,
+      "ts": "21:30:35",
+      "event": "WICKET",
+      "over": "19.3"
+    },
+    {
+      "frame_count": 2339,
+      "ts": "21:32:47",
+      "event": "MULTI_BALL",
+      "over": "\u2014"
+    },
+    {
+      "frame_count": 2346,
+      "ts": "21:33:07",
+      "event": "FOUR",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3016,
+      "ts": "21:58:15",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3021,
+      "ts": "21:58:32",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3038,
+      "ts": "21:59:14",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3092,
+      "ts": "22:01:16",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3154,
+      "ts": "22:03:30",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3170,
+      "ts": "22:04:16",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3258,
+      "ts": "22:07:17",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3286,
+      "ts": "22:08:46",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3302,
+      "ts": "22:09:17",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3315,
+      "ts": "22:10:08",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3317,
+      "ts": "22:10:26",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3352,
+      "ts": "22:11:29",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3371,
+      "ts": "22:12:48",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3405,
+      "ts": "22:13:52",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3425,
+      "ts": "22:14:20",
+      "event": "EXTRA",
+      "over": "20.0"
+    },
+    {
+      "frame_count": 3428,
+      "ts": "22:14:38",
+      "event": "EXTRA",
+      "over": "20.0"
+    }
+  ],
+  "frames": [
+    {
+      "frame_count": 2,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f2_scoreboard.jpg",
+      "all_files": [
+        "f2_scoreboard.jpg"
+      ],
+      "ts": "19:44:36",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "release",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 768,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "2.5",
+        "delta_frames": 21,
+        "delta_sec": 72,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 3,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f3_scoreboard.jpg",
+      "all_files": [
+        "f3_scoreboard.jpg"
+      ],
+      "ts": "19:44:40",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "release",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 788,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "2.5",
+        "delta_frames": 20,
+        "delta_sec": 68,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 4,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f4_scoreboard.jpg",
+      "all_files": [
+        "f4_scoreboard.jpg"
+      ],
+      "ts": "19:44:44",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1575,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "2.5",
+        "delta_frames": 19,
+        "delta_sec": 64,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 5,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f5_scoreboard.jpg",
+      "all_files": [
+        "f5_scoreboard.jpg"
+      ],
+      "ts": "19:44:54",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1890,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "2.5",
+        "delta_frames": 18,
+        "delta_sec": 54,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 6,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f6_scoreboard.jpg",
+      "all_files": [
+        "f6_scoreboard.jpg"
+      ],
+      "ts": "19:44:59",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 973,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "2.5",
+        "delta_frames": 17,
+        "delta_sec": 49,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 7,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f7_scoreboard.jpg",
+      "all_files": [
+        "f7_scoreboard.jpg"
+      ],
+      "ts": "19:45:06",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 2447,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "2.5",
+        "delta_frames": 16,
+        "delta_sec": 42,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 8,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f8_scoreboard.jpg",
+      "all_files": [
+        "f8_scoreboard.jpg"
+      ],
+      "ts": "19:45:13",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 914,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "2.5",
+        "delta_frames": 15,
+        "delta_sec": 35,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 21,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f21_scoreboard.jpg",
+      "all_files": [
+        "f21_scoreboard.jpg"
+      ],
+      "ts": "19:45:36",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": false,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 828,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "2.5",
+        "delta_frames": 2,
+        "delta_sec": 12,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 24,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f24_scoreboard.jpg",
+      "all_files": [
+        "f24_scoreboard.jpg"
+      ],
+      "ts": "19:45:50",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 860,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.0",
+        "delta_frames": 0,
+        "delta_sec": 3,
+        "direction": "at"
+      }
+    },
+    {
+      "frame_count": 37,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f37_scoreboard.jpg",
+      "all_files": [
+        "f37_scoreboard.jpg"
+      ],
+      "ts": "19:46:05",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1381,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.0",
+        "delta_frames": -13,
+        "delta_sec": -12,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 41,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f41_scoreboard.jpg",
+      "all_files": [
+        "f41_scoreboard.jpg"
+      ],
+      "ts": "19:46:17",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1195,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": 12,
+        "delta_sec": 65,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 46,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f46_scoreboard.jpg",
+      "all_files": [
+        "f46_scoreboard.jpg"
+      ],
+      "ts": "19:46:31",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1631,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": 7,
+        "delta_sec": 51,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 47,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f47_scoreboard.jpg",
+      "all_files": [
+        "f47_scoreboard.jpg"
+      ],
+      "ts": "19:46:40",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1083,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": 6,
+        "delta_sec": 42,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 48,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f48_scoreboard.jpg",
+      "all_files": [
+        "f48_scoreboard.jpg"
+      ],
+      "ts": "19:46:47",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1122,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": 5,
+        "delta_sec": 35,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 49,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f49_scoreboard.jpg",
+      "all_files": [
+        "f49_scoreboard.jpg"
+      ],
+      "ts": "19:46:52",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1086,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": 4,
+        "delta_sec": 30,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 50,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f50_scoreboard.jpg",
+      "all_files": [
+        "f50_scoreboard.jpg"
+      ],
+      "ts": "19:46:57",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1346,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": 3,
+        "delta_sec": 25,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 51,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f51_scoreboard.jpg",
+      "all_files": [
+        "f51_scoreboard.jpg"
+      ],
+      "ts": "19:47:02",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 692,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": 2,
+        "delta_sec": 20,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 52,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f52_scoreboard.jpg",
+      "all_files": [
+        "f52_scoreboard.jpg"
+      ],
+      "ts": "19:47:13",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 6150,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": 1,
+        "delta_sec": 9,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 53,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f53_scoreboard.jpg",
+      "all_files": [
+        "f53_scoreboard.jpg"
+      ],
+      "ts": "19:47:19",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 880,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": 0,
+        "delta_sec": 3,
+        "direction": "at"
+      }
+    },
+    {
+      "frame_count": 74,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f74_scoreboard.jpg",
+      "all_files": [
+        "f74_scoreboard.jpg"
+      ],
+      "ts": "19:47:42",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": false,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 923,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": -21,
+        "delta_sec": -20,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 77,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f77_pixskip.jpg",
+      "all_files": [
+        "f77_pixskip.jpg"
+      ],
+      "ts": "19:47:50",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1248,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": -24,
+        "delta_sec": -28,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 80,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f80_scoreboard.jpg",
+      "all_files": [
+        "f80_scoreboard.jpg"
+      ],
+      "ts": "19:47:59",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1022,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": -27,
+        "delta_sec": -37,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 87,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f87_pixskip.jpg",
+      "all_files": [
+        "f87_pixskip.jpg"
+      ],
+      "ts": "19:48:26",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "None",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1053,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": -34,
+        "delta_sec": -64,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 92,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f92_scoreboard.jpg",
+      "all_files": [
+        "f92_scoreboard.jpg"
+      ],
+      "ts": "19:48:52",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1138,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": -39,
+        "delta_sec": -90,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 93,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f93_scoreboard.jpg",
+      "all_files": [
+        "f93_scoreboard.jpg"
+      ],
+      "ts": "19:48:57",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 901,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "3.1",
+        "delta_frames": -40,
+        "delta_sec": -95,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 103,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f103_scoreboard.jpg",
+      "all_files": [
+        "f103_scoreboard.jpg"
+      ],
+      "ts": "19:49:10",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 807,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 47,
+        "delta_sec": 140,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 104,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f104_scoreboard.jpg",
+      "all_files": [
+        "f104_scoreboard.jpg"
+      ],
+      "ts": "19:49:16",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1498,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 46,
+        "delta_sec": 134,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 105,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f105_scoreboard.jpg",
+      "all_files": [
+        "f105_scoreboard.jpg"
+      ],
+      "ts": "19:49:24",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 864,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 45,
+        "delta_sec": 126,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 106,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f106_scoreboard.jpg",
+      "all_files": [
+        "f106_scoreboard.jpg"
+      ],
+      "ts": "19:49:30",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1329,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 44,
+        "delta_sec": 120,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 107,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f107_scoreboard.jpg",
+      "all_files": [
+        "f107_scoreboard.jpg"
+      ],
+      "ts": "19:49:35",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "release",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 987,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 43,
+        "delta_sec": 115,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 128,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f128_scoreboard.jpg",
+      "all_files": [
+        "f128_scoreboard.jpg"
+      ],
+      "ts": "19:50:15",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "release",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 6790,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 22,
+        "delta_sec": 75,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 129,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f129_scoreboard.jpg",
+      "all_files": [
+        "f129_scoreboard.jpg"
+      ],
+      "ts": "19:50:22",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1438,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 21,
+        "delta_sec": 68,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 130,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f130_scoreboard.jpg",
+      "all_files": [
+        "f130_scoreboard.jpg"
+      ],
+      "ts": "19:50:33",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1848,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 20,
+        "delta_sec": 57,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 131,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f131_scoreboard.jpg",
+      "all_files": [
+        "f131_scoreboard.jpg"
+      ],
+      "ts": "19:50:44",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 2615,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 19,
+        "delta_sec": 46,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 132,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f132_scoreboard.jpg",
+      "all_files": [
+        "f132_scoreboard.jpg"
+      ],
+      "ts": "19:50:50",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1520,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 18,
+        "delta_sec": 40,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 148,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f148_scoreboard.jpg",
+      "all_files": [
+        "f148_scoreboard.jpg"
+      ],
+      "ts": "19:51:17",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 3236,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 2,
+        "delta_sec": 13,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 150,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f150_scoreboard.jpg",
+      "all_files": [
+        "f150_pixskip.jpg",
+        "f150_scoreboard.jpg"
+      ],
+      "ts": "19:51:25",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 854,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": 0,
+        "delta_sec": 5,
+        "direction": "at"
+      }
+    },
+    {
+      "frame_count": 154,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f154_scoreboard.jpg",
+      "all_files": [
+        "f154_pixskip.jpg",
+        "f154_scoreboard.jpg"
+      ],
+      "ts": "19:51:33",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1492,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": -4,
+        "delta_sec": -3,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 158,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f158_scoreboard.jpg",
+      "all_files": [
+        "f158_pixskip.jpg",
+        "f158_scoreboard.jpg"
+      ],
+      "ts": "19:51:41",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": false,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 1358,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": -8,
+        "delta_sec": -11,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 162,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f162_scoreboard.jpg",
+      "all_files": [
+        "f162_pixskip.jpg",
+        "f162_scoreboard.jpg"
+      ],
+      "ts": "19:51:47",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": false,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 856,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": -12,
+        "delta_sec": -17,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 166,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f166_scoreboard.jpg",
+      "all_files": [
+        "f166_pixskip.jpg",
+        "f166_scoreboard.jpg"
+      ],
+      "ts": "19:51:58",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1190,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": -16,
+        "delta_sec": -28,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 167,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f167_scoreboard.jpg",
+      "all_files": [
+        "f167_scoreboard.jpg"
+      ],
+      "ts": "19:52:01",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 609,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": -17,
+        "delta_sec": -31,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 170,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f170_scoreboard.jpg",
+      "all_files": [
+        "f170_scoreboard.jpg"
+      ],
+      "ts": "19:52:10",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 2079,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": -20,
+        "delta_sec": -40,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 171,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f171_scoreboard.jpg",
+      "all_files": [
+        "f171_scoreboard.jpg"
+      ],
+      "ts": "19:52:33",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 907,
+      "nearest_event": {
+        "event": "EXTRA",
+        "event_over": "3.5",
+        "delta_frames": -21,
+        "delta_sec": -63,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 172,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f172_scoreboard.jpg",
+      "all_files": [
+        "f172_scoreboard.jpg"
+      ],
+      "ts": "19:52:42",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 872,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 21,
+        "delta_sec": 95,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 173,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f173_scoreboard.jpg",
+      "all_files": [
+        "f173_scoreboard.jpg"
+      ],
+      "ts": "19:52:51",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1232,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 20,
+        "delta_sec": 86,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 174,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f174_scoreboard.jpg",
+      "all_files": [
+        "f174_scoreboard.jpg"
+      ],
+      "ts": "19:53:00",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1025,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 19,
+        "delta_sec": 77,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 175,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f175_scoreboard.jpg",
+      "all_files": [
+        "f175_scoreboard.jpg"
+      ],
+      "ts": "19:53:10",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": false,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 665,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 18,
+        "delta_sec": 67,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 176,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f176_scoreboard.jpg",
+      "all_files": [
+        "f176_scoreboard.jpg"
+      ],
+      "ts": "19:53:13",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 670,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 17,
+        "delta_sec": 64,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 177,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f177_scoreboard.jpg",
+      "all_files": [
+        "f177_scoreboard.jpg"
+      ],
+      "ts": "19:53:20",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 769,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 16,
+        "delta_sec": 57,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 178,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f178_scoreboard.jpg",
+      "all_files": [
+        "f178_scoreboard.jpg"
+      ],
+      "ts": "19:53:24",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 733,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 15,
+        "delta_sec": 53,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 179,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f179_scoreboard.jpg",
+      "all_files": [
+        "f179_scoreboard.jpg"
+      ],
+      "ts": "19:53:29",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "None",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 774,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 14,
+        "delta_sec": 48,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 182,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f182_scoreboard.jpg",
+      "all_files": [
+        "f182_scoreboard.jpg"
+      ],
+      "ts": "19:53:51",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "other",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1023,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 11,
+        "delta_sec": 26,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 185,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f185_scoreboard.jpg",
+      "all_files": [
+        "f185_scoreboard.jpg"
+      ],
+      "ts": "19:54:01",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1649,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 8,
+        "delta_sec": 16,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 193,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f193_scoreboard.jpg",
+      "all_files": [
+        "f193_scoreboard.jpg"
+      ],
+      "ts": "19:54:13",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 2077,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 0,
+        "delta_sec": 4,
+        "direction": "at"
+      }
+    },
+    {
+      "frame_count": 209,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f209_scoreboard.jpg",
+      "all_files": [
+        "f209_pixskip.jpg",
+        "f209_scoreboard.jpg"
+      ],
+      "ts": "19:55:01",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 782,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "4.5",
+        "delta_frames": 0,
+        "delta_sec": 3,
+        "direction": "at"
+      }
+    },
+    {
+      "frame_count": 213,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f213_scoreboard.jpg",
+      "all_files": [
+        "f213_pixskip.jpg",
+        "f213_scoreboard.jpg"
+      ],
+      "ts": "19:55:17",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 853,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "4.5",
+        "delta_frames": -4,
+        "delta_sec": -13,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 240,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f240_scoreboard.jpg",
+      "all_files": [
+        "f240_scoreboard.jpg"
+      ],
+      "ts": "19:55:58",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1338,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "5.0",
+        "delta_frames": 13,
+        "delta_sec": 51,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 241,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f241_scoreboard.jpg",
+      "all_files": [
+        "f241_scoreboard.jpg"
+      ],
+      "ts": "19:56:11",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 5131,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "5.0",
+        "delta_frames": 12,
+        "delta_sec": 38,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 249,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f249_scoreboard.jpg",
+      "all_files": [
+        "f249_pixskip.jpg",
+        "f249_scoreboard.jpg"
+      ],
+      "ts": "19:56:33",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "other",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 830,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "5.0",
+        "delta_frames": 4,
+        "delta_sec": 16,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 253,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f253_pixskip.jpg",
+      "all_files": [
+        "f253_pixskip.jpg"
+      ],
+      "ts": "19:56:46",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 750,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "5.0",
+        "delta_frames": 0,
+        "delta_sec": 3,
+        "direction": "at"
+      }
+    },
+    {
+      "frame_count": 254,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f254_scoreboard.jpg",
+      "all_files": [
+        "f254_scoreboard.jpg"
+      ],
+      "ts": "19:56:53",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 2315,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "5.0",
+        "delta_frames": -1,
+        "delta_sec": -4,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 255,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f255_scoreboard.jpg",
+      "all_files": [
+        "f255_scoreboard.jpg"
+      ],
+      "ts": "19:57:00",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "release",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1187,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "5.0",
+        "delta_frames": -2,
+        "delta_sec": -11,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 257,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f257_scoreboard.jpg",
+      "all_files": [
+        "f257_scoreboard.jpg"
+      ],
+      "ts": "19:57:08",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "other",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1349,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "5.0",
+        "delta_frames": -4,
+        "delta_sec": -19,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 258,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f258_scoreboard.jpg",
+      "all_files": [
+        "f258_scoreboard.jpg"
+      ],
+      "ts": "19:57:11",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 1119,
+      "nearest_event": {
+        "event": "FOUR",
+        "event_over": "5.0",
+        "delta_frames": -5,
+        "delta_sec": -22,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 269,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f269_scoreboard.jpg",
+      "all_files": [
+        "f269_scoreboard.jpg"
+      ],
+      "ts": "19:57:28",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "release",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 805,
+      "nearest_event": {
+        "event": "SIX",
+        "event_over": "5.1",
+        "delta_frames": 1,
+        "delta_sec": 7,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 277,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f277_scoreboard.jpg",
+      "all_files": [
+        "f277_pixskip.jpg",
+        "f277_scoreboard.jpg"
+      ],
+      "ts": "19:58:08",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 863,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "5.2",
+        "delta_frames": -2,
+        "delta_sec": -9,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 278,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f278_scoreboard.jpg",
+      "all_files": [
+        "f278_scoreboard.jpg"
+      ],
+      "ts": "19:58:13",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 818,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "5.2",
+        "delta_frames": -3,
+        "delta_sec": -14,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 282,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f282_scoreboard.jpg",
+      "all_files": [
+        "f282_pixskip.jpg",
+        "f282_scoreboard.jpg"
+      ],
+      "ts": "19:58:31",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 810,
+      "nearest_event": {
+        "event": "SIX",
+        "event_over": "5.3",
+        "delta_frames": 0,
+        "delta_sec": 3,
+        "direction": "at"
+      }
+    },
+    {
+      "frame_count": 289,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f289_scoreboard.jpg",
+      "all_files": [
+        "f289_pixskip.jpg",
+        "f289_scoreboard.jpg"
+      ],
+      "ts": "19:58:47",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1010,
+      "nearest_event": {
+        "event": "SIX",
+        "event_over": "5.3",
+        "delta_frames": -7,
+        "delta_sec": -13,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 290,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f290_scoreboard.jpg",
+      "all_files": [
+        "f290_scoreboard.jpg"
+      ],
+      "ts": "19:58:53",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 733,
+      "nearest_event": {
+        "event": "SIX",
+        "event_over": "5.3",
+        "delta_frames": -8,
+        "delta_sec": -19,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 291,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f291_scoreboard.jpg",
+      "all_files": [
+        "f291_scoreboard.jpg"
+      ],
+      "ts": "19:58:58",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1037,
+      "nearest_event": {
+        "event": "SIX",
+        "event_over": "5.3",
+        "delta_frames": -9,
+        "delta_sec": -24,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 292,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f292_scoreboard.jpg",
+      "all_files": [
+        "f292_scoreboard.jpg"
+      ],
+      "ts": "19:59:03",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 749,
+      "nearest_event": {
+        "event": "SIX",
+        "event_over": "5.3",
+        "delta_frames": -10,
+        "delta_sec": -29,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 297,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f297_pixskip.jpg",
+      "all_files": [
+        "f297_pixskip.jpg"
+      ],
+      "ts": "19:59:21",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "shot",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 594,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 13,
+        "delta_sec": 60,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 301,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f301_pixskip.jpg",
+      "all_files": [
+        "f301_pixskip.jpg"
+      ],
+      "ts": "19:59:39",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": true,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 819,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 9,
+        "delta_sec": 42,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 305,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f305_pixskip.jpg",
+      "all_files": [
+        "f305_pixskip.jpg"
+      ],
+      "ts": "19:59:45",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 927,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 5,
+        "delta_sec": 36,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 307,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f307_scoreboard.jpg",
+      "all_files": [
+        "f307_scoreboard.jpg"
+      ],
+      "ts": "20:00:02",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1892,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": 3,
+        "delta_sec": 19,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 315,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f315_scoreboard.jpg",
+      "all_files": [
+        "f315_pixskip.jpg",
+        "f315_scoreboard.jpg"
+      ],
+      "ts": "20:00:37",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": true,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 739,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -5,
+        "delta_sec": -16,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 319,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f319_scoreboard.jpg",
+      "all_files": [
+        "f319_pixskip.jpg",
+        "f319_scoreboard.jpg"
+      ],
+      "ts": "20:00:50",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": true,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 971,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -9,
+        "delta_sec": -29,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 323,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f323_scoreboard.jpg",
+      "all_files": [
+        "f323_pixskip.jpg",
+        "f323_scoreboard.jpg"
+      ],
+      "ts": "20:01:05",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 905,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -13,
+        "delta_sec": -44,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 324,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f324_ad.jpg",
+      "all_files": [
+        "f324_ad.jpg"
+      ],
+      "ts": "20:01:09",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "closeup",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1139,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -14,
+        "delta_sec": -48,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 328,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f328_scoreboard.jpg",
+      "all_files": [
+        "f328_pixskip.jpg",
+        "f328_scoreboard.jpg"
+      ],
+      "ts": "20:01:33",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 759,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -18,
+        "delta_sec": -72,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 332,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f332_pixskip.jpg",
+      "all_files": [
+        "f332_pixskip.jpg"
+      ],
+      "ts": "20:01:42",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 635,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -22,
+        "delta_sec": -81,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 333,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f333_scoreboard.jpg",
+      "all_files": [
+        "f333_scoreboard.jpg"
+      ],
+      "ts": "20:01:51",
+      "scout_frame_type": "ADVERTISEMENT",
+      "scout_cam": "ad",
+      "scout_phase": "advertisement",
+      "scout_has_strip": false,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1084,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -23,
+        "delta_sec": -90,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 345,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f345_scoreboard.jpg",
+      "all_files": [
+        "f345_scoreboard.jpg"
+      ],
+      "ts": "20:02:35",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "release",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1925,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -35,
+        "delta_sec": -134,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 346,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f346_scoreboard.jpg",
+      "all_files": [
+        "f346_scoreboard.jpg"
+      ],
+      "ts": "20:02:39",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": true,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 902,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -36,
+        "delta_sec": -138,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 347,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f347_scoreboard.jpg",
+      "all_files": [
+        "f347_scoreboard.jpg"
+      ],
+      "ts": "20:02:43",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 704,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -37,
+        "delta_sec": -142,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 348,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f348_scoreboard.jpg",
+      "all_files": [
+        "f348_pixskip.jpg",
+        "f348_scoreboard.jpg"
+      ],
+      "ts": "20:02:49",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "bowlers_end",
+      "scout_phase": "shot",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 1301,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -38,
+        "delta_sec": -148,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 359,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f359_scoreboard.jpg",
+      "all_files": [
+        "f359_scoreboard.jpg"
+      ],
+      "ts": "20:03:17",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": false,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 1046,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -49,
+        "delta_sec": -176,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 363,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f363_scoreboard.jpg",
+      "all_files": [
+        "f363_scoreboard.jpg"
+      ],
+      "ts": "20:03:24",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": false,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 2274,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -53,
+        "delta_sec": -183,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 367,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f367_scoreboard.jpg",
+      "all_files": [
+        "f367_scoreboard.jpg"
+      ],
+      "ts": "20:03:30",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": false,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 1255,
+      "nearest_event": {
+        "event": "MULTI_BALL",
+        "event_over": "\u2014",
+        "delta_frames": -57,
+        "delta_sec": -189,
+        "direction": "before"
+      }
+    },
+    {
+      "frame_count": 371,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f371_scoreboard.jpg",
+      "all_files": [
+        "f371_pixskip.jpg",
+        "f371_scoreboard.jpg"
+      ],
+      "ts": "20:03:56",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 768,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "6.3",
+        "delta_frames": 53,
+        "delta_sec": 125,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 372,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f372_scoreboard.jpg",
+      "all_files": [
+        "f372_scoreboard.jpg"
+      ],
+      "ts": "20:04:00",
+      "scout_frame_type": "GRAPHIC",
+      "scout_cam": "graphic",
+      "scout_phase": "graphic",
+      "scout_has_strip": false,
+      "scout_has_overlay": true,
+      "scout_drs": false,
+      "scout_ms": 673,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "6.3",
+        "delta_frames": 52,
+        "delta_sec": 121,
+        "direction": "after"
+      }
+    },
+    {
+      "frame_count": 376,
+      "frame_path": "debug_frames_archive/2026-04-29_194431/f376_scoreboard.jpg",
+      "all_files": [
+        "f376_pixskip.jpg",
+        "f376_scoreboard.jpg"
+      ],
+      "ts": "20:04:08",
+      "scout_frame_type": "SCOREBOARD",
+      "scout_cam": "other",
+      "scout_phase": "between_play",
+      "scout_has_strip": true,
+      "scout_has_overlay": false,
+      "scout_drs": false,
+      "scout_ms": 2536,
+      "nearest_event": {
+        "event": "DOT",
+        "event_over": "6.3",
+        "delta_frames": 48,
+        "delta_sec": 113,
+        "direction": "after"
+      }
+    }
+  ],
+  "match_id": "mi_srh"
+}

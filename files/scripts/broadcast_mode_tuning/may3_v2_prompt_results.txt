@@ -1,0 +1,194 @@
+====================
+[CLIP d001] dur=12.50s event_ts=10.00s
+
+   0.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a static graphic with no visible players or action. The camera framing is a full view of the graphic, which features a red background with white lines and dots, and p"
+   1.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame features a wide field view with no players visible, as it appears to be a title card or opening graphic for a broadcast. The on-screen graphics include the "JioHotstar | Se"
+   2.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame features a wide field view with no players in sight, only a graphic overlay. The camera framing is static, showcasing a red and black background with white lines and dots. "
+   3.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player in a brown jersey with teal accents, standing in front of a blurred crowd. On-screen graphics include a scoreboard displaying the "
+   4.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium close-up shot of a cricket player in a brown jersey with teal accents, standing in front of a blurred crowd. On-screen graphics include a scoreboard with tea"
+   5.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player in a brown jersey with his arm raised, standing in front of a blurred crowd. On-screen graphics include a scoreboard displaying th"
+   6.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player in a brown jersey with his arm raised, standing in front of a blurred crowd. On-screen graphics include a scoreboard displaying th"
+   7.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player in action, with his arms outstretched and hands holding a ball, standing in front of a blurred crowd. On-screen graphics include a"
+   8.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a medium shot of a cricket player in a brown uniform with green accents, mid-stride and in motion, with a blurred crowd in the background. On-screen graphics include "
+   9.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium shot of two cricket players, one wearing a blue jersey and the other in an orange and black jersey, with the blue-jerseyed player appearing to be in motion. "
+
+====================
+[CLIP d002] dur=12.50s event_ts=10.00s
+
+   0.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a crowd shot of a lively audience at a cricket match, with several people wearing green shirts and holding up signs and foam shapes. The camera captures a wide field "
+   1.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a crowd shot of a group of people wearing green shirts and white hats, with some holding up signs and cheering. The camera captures a wide field view of the crowd, wi"
+   2.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a crowd shot with a green banner held up by several people, and their hands are raised in excitement. The camera captures a wide field view of the scene. Persistent o"
+   3.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a crowd shot with a wide field view of spectators holding up a large green banner and signs. The on-screen graphics include a blue and orange score bar at the bottom "
+   4.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a crowd holding up large cut-out shapes in front of a green advertisement banner. The camera captures a section of the crowd and the banner, with"
+   5.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a crowd shot with people cheering and holding up signs, with a green overlay and a semi-transparent watermark. The on-screen graphics include a b"
+   6.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a crowd shot of a group of people, mostly wearing green shirts and white hats, holding up a large green banner and circular signs. The camera captures a wide field vi"
+   7.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a crowd shot of a group of people, mostly women, wearing green shirts and holding up foam fingers and a large green banner. The camera captures a wide field view of t"
+   8.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a crowd shot of a group of people cheering and holding up signs, with a green banner behind them that reads "WIN M" and "www. GREEN DOT". The camera captures a wide f"
+   9.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a crowd shot of a group of people cheering and holding up props, with a green banner and signs behind them. The camera captures a wide field view of the enthusiastic "
+
+====================
+[CLIP d003] dur=12.50s event_ts=10.00s
+
+   0.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players scattered across the green field and a crowd visible in the stands. The score bar at the bottom of the "
+   1.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players scattered across the green field and a crowd visible in the stands. The on-screen graphics include a bl"
+   2.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players scattered across the green field and a crowd visible in the stands. The score bar at the bottom of the "
+   3.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of two cricket players walking on the field, with one player wearing a blue helmet and the other wearing a dark-colored uniform. The score bar at th"
+   4.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket field, with two players walking across the field and a security guard following behind them. The score bar at the bottom of the screen "
+   5.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket field with three players walking on the field, one wearing a blue and orange uniform and the other two wearing dark-colored uniforms. T"
+   6.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a single cricket player, with his head and shoulders filling most of the frame. He appears to be on the field, wearing a brown jersey with teal acc"
+   7.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player, likely reacting to a play or decision, with another player partially visible in the background. The on-screen graphics include a "
+   8.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame features a medium close-up shot of a cricket player wearing a brown jersey with various sponsor logos, standing in front of a blurred crowd. At the bottom of the screen, a "
+   9.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium close-up shot of a cricket player wearing a brown jersey with various sponsor logos, standing in front of a blurred crowd. The player's facial expression app"
+
+====================
+[CLIP d004] dur=12.50s event_ts=10.00s
+
+   0.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player, Marcus Stoinis, wearing a blue helmet and a purple and orange jersey. The on-screen graphics include a score bar at the bottom di"
+   1.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players on the field and a scoreboard at the bottom. The players are positioned in various locations, including"
+   2.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players on the field and a scoreboard at the bottom. The players are positioned at various points on the field,"
+   3.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match, with two players in focus: one wearing a blue and red uniform, standing near a wicket, and another in a brown uniform, running i"
+   4.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket player, likely a fielder, crouching down to catch a ball on a green field. The player is wearing a maroon uniform and green gloves, wit"
+   5.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket player in mid-stride, running across the field. The player is wearing a maroon uniform with various sponsor logos and is captured in a "
+   6.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a man standing on a cricket field with his arms outstretched, likely in a coaching or umpiring role. The camera framing is a medium shot, capturing the man from the w"
+   7.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium shot of a man standing on a cricket field, wearing a black and blue uniform with various logos. He appears to be a staff member or coach, with his hands by h"
+   8.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium shot of a man standing on a cricket field, wearing a black and blue uniform with various sponsor logos. He appears to be a staff member or official, with his"
+   9.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame features a close-up shot of a cricket player, Marcus Stoinis, wearing a purple helmet and jersey with various sponsor logos. He appears to be walking or standing still, wit"
+
+====================
+[CLIP d005] dur=12.50s event_ts=10.00s
+
+   0.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket player in mid-swing, with the bat raised high and the legs bent in a batting stance. The player is wearing a blue helmet, blue and oran"
+   1.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket player in mid-stride, holding a bat and wearing a blue helmet and orange-and-blue uniform, with a crowd of spectators in the background"
+   2.00s  class=umpire
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket player in mid-action, with his arm raised and about to throw the ball, while an umpire stands behind the wickets. Persistent on-screen "
+   3.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players in blue and purple uniforms positioned on the field. The on-screen graphics include a "TATA IPL" logo i"
+   4.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a crowded stadium during a cricket match, with spectators seated in the stands. The on-screen graphics include a blue banner at the bottom with ""
+   5.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a crowded stadium, with the audience seated and likely watching a cricket match. There are on-screen graphics, including a logo in the top-left c"
+   6.00s  class=replay
+    raw: "[BROADCAST: TELESTRATOR] The frame shows a close-up shot of a cricket player in mid-swing, with the player's face partially obscured by a translucent white circle and lines. The player wears a blue he"
+   7.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players on the field and two umpires standing near the pitch. The score bar at the bottom displays the current "
+   8.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players positioned around the field and one player mid-swing with the bat. The on-screen graphics include a blu"
+   9.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket player in mid-swing, with the bat blurred from motion. The player is wearing a blue helmet, shirt, and leg guards with maroon pants and"
+
+====================
+[CLIP d006] dur=12.50s event_ts=10.00s
+
+   0.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player wearing a blue helmet and a blue jersey with orange accents and sponsor logos. The player appears to be standing still, likely dur"
+   1.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium shot of two women in the crowd, clapping and smiling, with a man in a brown jersey with green accents and logos visible behind them. The on-screen graphics i"
+   2.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium shot of a person wearing a brown jersey with blue accents, facing away from the camera, with their hands raised in celebration. A yellow flag with a logo is "
+   3.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a crowded stadium, with spectators cheering and waving orange flags. The on-screen graphics include a score bar with the "TATA IPL" logo, a water"
+   4.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a crowded stadium, with spectators cheering and waving yellow and purple flags. The on-screen graphics include a green score bar at the top, a "T"
+   5.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a crowded stadium, with spectators waving yellow flags and cheering. The on-screen graphics include a score bar at the bottom with team names "PB"
+   6.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a crowded stadium, with spectators in the stands, many of whom are wearing yellow and blue clothing and waving flags. The camera appears to be ca"
+   7.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame features a close-up shot of a cricket player wearing a purple helmet and an orange shirt, with a metal face guard covering his face. The on-screen graphics include a blue s"
+   8.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame features a close-up shot of a cricket player wearing a purple helmet and orange shirt, with a focused expression on his face. The on-screen graphics include a blue score ba"
+   9.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a crowded stadium, with spectators waving orange flags and cheering. The camera captures a large section of the stands, with a railing separating"
+
+====================
+[CLIP d007] dur=12.50s event_ts=10.00s
+
+   0.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players positioned around the pitch and two umpires standing nearby. The score bar at the bottom displays the c"
+   1.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match in progress, with players positioned around the field and one player mid-swing with the bat. Persistent on-screen graphics includ"
+   2.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket match, with two players in the foreground and a third player's leg visible in the top right corner. The player on the right is wearing "
+   3.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium close-up shot of a cricket player in a brown jersey with various sponsor logos, standing in front of a blurred crowd. The player appears to be walking or rea"
+   4.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a mid-stride shot of a cricket player in a brown uniform, with a blurred crowd in the background. The on-screen graphics include a blue score bar at the bottom with t"
+   5.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket player in mid-stride, wearing a brown uniform with white logos, walking on the field. Persistent on-screen graphics include a blue scor"
+   6.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket player in mid-stride, with his arms outstretched as if he has just thrown the ball. In the background, another player is visible, while"
+   7.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket field, with two players in brown uniforms walking and high-fiving each other, while a third player stands behind them. Persistent on-sc"
+   8.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket field, with four players in brown uniforms standing together, high-fiving and celebrating. Persistent on-screen graphics include a scor"
+   9.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a crowd shot of a lively audience at a cricket match, with people cheering and clapping. The camera captures a wide field view of the crowd, with a woman in a white s"
+
+====================
+[CLIP d008] dur=12.50s event_ts=10.00s
+
+   0.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame features a close-up shot of a single cricket player wearing a brown jersey with blue accents and a matching cap, standing in front of a blurred background of spectators. At"
+   1.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame features a close-up shot of a cricket player wearing a brown uniform with blue accents and a brown cap, looking down with a focused expression. The on-screen graphics inclu"
+   2.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium shot of a man wearing a brown jersey with the number 18 on it, facing away from the camera. On-screen graphics include a score bar at the bottom with team na"
+   3.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player wearing a brown jersey with the number 18 on it, and a black cap with white text. The player appears to be standing still, likely "
+   4.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame features a close-up shot of a cricket player wearing a brown jersey and cap, looking to the left. Persistent on-screen graphics include a score bar at the bottom showing th"
+   5.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a medium shot of a cricket player wearing a brown jersey with the number 19 on the back, facing away from the camera. On-screen graphics include a score bar at the bo"
+   6.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame features a close-up shot of a cricket player wearing a brown jersey and cap, with a blurred crowd in the background. The player appears to be walking or standing still, wit"
+   7.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player wearing a brown uniform and cap, with his hand on his head, likely expressing frustration or disappointment. On-screen graphics in"
+   8.00s  class=other
+    raw: "[BROADCAST: LIVE] The frame shows a close-up shot of a cricket player wearing a brown cap and jersey with blue accents, with a blurred crowd in the background. The player appears to be sitting or stan"
+   9.00s  class=action
+    raw: "[BROADCAST: LIVE] The frame shows a wide field view of a cricket player standing on the field, covering his face with his hands, while the crowd is visible in the background. Persistent on-screen grap"
+
+====================
+Total class counts across 8 clips: action=47, replay=1, ad=0, umpire=1, other=31

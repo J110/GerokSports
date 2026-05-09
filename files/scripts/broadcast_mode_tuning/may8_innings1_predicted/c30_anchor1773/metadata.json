@@ -1,0 +1,101 @@
+{
+  "cluster_id": 30,
+  "cluster_window": [
+    1773.0,
+    1784.0
+  ],
+  "anchor_t": 1773.0,
+  "anchor_path": "A",
+  "anchor_signals": {
+    "V": true,
+    "S": true,
+    "M": true,
+    "W": false,
+    "K": true,
+    "SS": true,
+    "HARD": false,
+    "role_count": 3
+  },
+  "clip_window": [
+    1773.0,
+    1785.0
+  ],
+  "clip_duration": 12.0,
+  "back_extent": 1773.0,
+  "fwd_extent": 1785.0,
+  "note": "",
+  "frames": [
+    {
+      "t": 1773.0,
+      "path": "A",
+      "is_delivery": true,
+      "signals": "VY SY MY M2Y Wn KY SSY CGY rc=3"
+    },
+    {
+      "t": 1774.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2Y Wn KY SSY CGn rc=3"
+    },
+    {
+      "t": 1775.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2Y WY KY SSY CGY rc=5"
+    },
+    {
+      "t": 1776.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2Y WY KY SSY CGY rc=6"
+    },
+    {
+      "t": 1777.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2Y WY KY SSY CGY rc=3"
+    },
+    {
+      "t": 1778.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY KY SSn CGY rc=2"
+    },
+    {
+      "t": 1779.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY KY SSY CGY rc=2"
+    },
+    {
+      "t": 1780.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY Kn SSY CGY rc=2"
+    },
+    {
+      "t": 1781.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2Y WY KY SSY CGY rc=3"
+    },
+    {
+      "t": 1782.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY KY SSY CGY rc=2"
+    },
+    {
+      "t": 1783.0,
+      "path": "none",
+      "is_delivery": false,
+      "signals": "Vn Sn MY M2n WY Kn SSY CGn rc=1"
+    },
+    {
+      "t": 1784.0,
+      "path": "B",
+      "is_delivery": true,
+      "signals": "VY Sn MY M2n WY Kn SSY CGY rc=1"
+    }
+  ]
+}

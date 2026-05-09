@@ -1,0 +1,125 @@
+{
+  "keyword_action_f1": 0.4980544747081712,
+  "production_mapped_action_f1": 0.4081829226361032,
+  "overall_five_class_exact_match_naive_keyword": {
+    "correct": 103,
+    "n": 247,
+    "rate": 0.41700404858299595
+  },
+  "keyword_classifier_note": "Order: replay(upper overlays) → tight ad phrases/brands → umpire(umpire+signal) → action(ACTION_WORDS) → other.",
+  "ACTION_WORDS_sorted": [
+    "batsman",
+    "batter",
+    "batting",
+    "bowler",
+    "bowlers",
+    "bowling",
+    "creases",
+    "deliveries",
+    "delivery",
+    "flight",
+    "released",
+    "releasing",
+    "run",
+    "running",
+    "runup",
+    "stride",
+    "stumps",
+    "umpiring"
+  ],
+  "AD_BRANCH": {
+    "phrases": [
+      "commercial break",
+      "television advertisement",
+      "during a commercial",
+      "full-screen advertisement"
+    ],
+    "brand_substrings_sorted": [
+      "dream11",
+      "rupeeplay",
+      "vivo"
+    ]
+  },
+  "confusion_matrix_naive_keyword": {
+    "action": {
+      "action": 64,
+      "other": 8
+    },
+    "replay": {
+      "action": 3,
+      "umpire": 3
+    },
+    "ad": {
+      "other": 3
+    },
+    "other": {
+      "other": 37,
+      "action": 116,
+      "replay": 2,
+      "ad": 3
+    },
+    "umpire": {
+      "replay": 1,
+      "umpire": 2,
+      "other": 3,
+      "action": 2
+    }
+  },
+  "per_class_naive_keyword": {
+    "action": {
+      "precision": 0.34594594594594597,
+      "recall": 0.8888888888888888,
+      "f1": 0.4980544747081712
+    },
+    "replay": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "ad": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "other": {
+      "precision": 0.7254901960784313,
+      "recall": 0.23417721518987342,
+      "f1": 0.354066985645933
+    },
+    "umpire": {
+      "precision": 0.4,
+      "recall": 0.25,
+      "f1": 0.3076923076923077
+    }
+  },
+  "baselines_from_prior_runs_action_class": {
+    "production_naive_mapper": {
+      "precision": 0.7692,
+      "recall": 0.2778
+    },
+    "focused_single_task_prompt": {
+      "precision": 0.5333,
+      "recall": 0.1111
+    },
+    "keyword_open_description": {
+      "precision": 0.34594594594594597,
+      "recall": 0.8888888888888888
+    }
+  },
+  "perception_verdict_codes": {
+    "ordinal_plain": 2,
+    "code": "mixed_recall_but_prompt_language_bleed",
+    "notes": [
+      "Recall improves to 0.889 vs production 0.278, but precision collapses (0.346 vs 0.769) — prompt-echo vocabulary (e.g., deliveries, between play rhetoric) spills across GT other frames."
+    ],
+    "signals": {
+      "vague_short_fraction": 0.0,
+      "lexical_log_ratio_peak": 3.4120145428678694,
+      "keyword_action_recall": 0.8888888888888888,
+      "keyword_action_precision": 0.34594594594594597
+    }
+  },
+  "memo_hooks": {
+    "duplicate_templates": []
+  }
+}

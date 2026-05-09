@@ -1,0 +1,258 @@
+{
+  "pipeline_path": "/Users/anmolmohan/Projects/SportsComm/logs/pipeline-2026-04-30-gt-rcb-live.log",
+  "machine_path": "/Users/anmolmohan/Projects/SportsComm/files/logs/machine-1-2026-04-30.log",
+  "pipeline_lines_total": 37775,
+  "pipeline_lines_live_window_ge_1950": 34751,
+  "telemetry_counts_live_ge_1950": {
+    "SM_INNINGS_2_RESET": 0,
+    "WS_SLOT_INVARIANT": 345,
+    "STRIPS_ROW_MISALIGNED": 119,
+    "CAM_GRAPHIC_FAST_PATH_READ": 46,
+    "CAM_GRAPHIC_FAST_PATH_REJECT": 39,
+    "CAM_GRAPHIC_FAST_PATH_NOOP": 2,
+    "SM_W8_DISMISSED_GUARD": 0,
+    "STRIKER_SM_CUTOVER": 48,
+    "BATTERS_INVARIANT": 79,
+    "TEAM_ATTRIBUTION_POISON": 13,
+    "FRAME_POISONED_STRIP_TRUST": 0,
+    "DELIVERY_ENQUEUED": 121,
+    "FRAME_POISONED_CHANGES": 444,
+    "JSON_PARSE_FAILED": 3,
+    "CONNECTION_ERROR": 1,
+    "EXTRACT_ERROR_LINE": 4,
+    "MULTI_BALL": 31
+  },
+  "telemetry_samples": {
+    "WS_SLOT_INVARIANT": [
+      "[20:11:12 F383 TEST] WARN:   [WS-SLOT-INVARIANT] duplicate slots 'Rajat Patidar'; cleared non (no alternate active batter)",
+      "[20:11:19 F384 TEST] WARN:   [WS-SLOT-INVARIANT] duplicate slots 'Rajat Patidar'; cleared non (no alternate active batter)",
+      "[20:11:21 F386 TEST] WARN:   [WS-SLOT-INVARIANT] duplicate slots 'Rajat Patidar'; cleared non (no alternate active batter)",
+      "[20:11:22 F388 TEST] WARN:   [WS-SLOT-INVARIANT] duplicate slots 'Rajat Patidar'; cleared non (no alternate active batter)"
+    ],
+    "STRIPS_ROW_MISALIGNED": [
+      "[20:01:55 F187 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F187 row_delta=21 popped=batters preserved=score,match_overs,bowler row_pair=Devdutt Padikkal strip_runs=36 card_runs=15",
+      "[20:05:09 F271 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F271 row_delta=107 popped=batters preserved=score,match_overs,bowler row_pair=Devdutt Padikkal strip_runs=126 card_runs=19",
+      "[20:05:15 F272 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F272 row_delta=107 popped=batters preserved=score,match_overs,bowler row_pair=Devdutt Padikkal strip_runs=126 card_runs=19",
+      "[20:07:03 F297 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F297 row_delta=25 popped=batters preserved=score,match_overs,bowler row_pair=Devdutt Padikkal strip_runs=0 card_runs=25"
+    ],
+    "CAM_GRAPHIC_FAST_PATH_READ": [
+      "[19:55:44 F23 TEST] INFO: [F23] [CAM-GRAPHIC-FAST-PATH-READ] score=49 overs=4.5 changes=['score', 'overs']",
+      "[19:55:59 F31 TEST] INFO: [F31] [CAM-GRAPHIC-FAST-PATH-READ] score=49 overs=4.5 changes=['score', 'overs']",
+      "[19:58:39 F110 TEST] INFO: [F110] [CAM-GRAPHIC-FAST-PATH-READ] score=57 overs=5.3 changes=['score', 'overs']",
+      "[19:59:04 F120 TEST] INFO: [F120] [CAM-GRAPHIC-FAST-PATH-READ] score=57 overs=5.4 changes=['score', 'overs']"
+    ],
+    "CAM_GRAPHIC_FAST_PATH_REJECT": [
+      "[19:58:43 F111 TEST] INFO: [F111] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup",
+      "[19:58:49 F115 TEST] INFO: [F115] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup",
+      "[20:03:37 F230 TEST] INFO: [F230] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup",
+      "[20:03:41 F231 TEST] INFO: [F231] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup"
+    ],
+    "CAM_GRAPHIC_FAST_PATH_NOOP": [
+      "[21:39:04 F2717 TEST] INFO: [F2717] [CAM-GRAPHIC-FAST-PATH-NOOP] score=11 overs=0.3 (state unchanged; no broadcast)",
+      "[21:42:10 F2803 TEST] INFO: [F2803] [CAM-GRAPHIC-FAST-PATH-NOOP] score=16 overs=1.1 (state unchanged; no broadcast)"
+    ],
+    "STRIKER_SM_CUTOVER": [
+      "[19:56:26 F40 TEST] INFO:   [STRIKER-SM-CUTOVER] mirrored striker='Rajat Patidar' reason=over-end \u2014 SM+_inn lockstep",
+      "[19:56:26 F40 TEST] INFO:   [STRIKER-SM-CUTOVER] mirrored non='Devdutt Padikkal' reason=over-end \u2014 SM+_inn lockstep",
+      "[19:59:25 F124 TEST] INFO:   [STRIKER-SM-CUTOVER] mirrored striker='Rajat Patidar' reason=broadcast-indicator \u2014 SM+_inn lockstep",
+      "[19:59:25 F124 TEST] INFO:   [STRIKER-SM-CUTOVER] mirrored non='Devdutt Padikkal' reason=broadcast-indicator-swap \u2014 SM+_inn lockstep"
+    ],
+    "BATTERS_INVARIANT": [
+      "[20:11:41 F402 TEST] WARN:   [BATTERS-INVARIANT] rule=C violation=striker_non_collision active=Rajat Patidar witnessed_out=- striker=Rajat Patidar non=Rajat Patidar upstream_step3_fired=false upstream_step3_tags=- upstream_step4_returned_false=false action=noop_phase1 target=Rajat Patidar frame=F402",
+      "[20:11:46 F403 TEST] WARN:   [BATTERS-INVARIANT] rule=C violation=striker_non_collision active=Rajat Patidar witnessed_out=- striker=Rajat Patidar non=Rajat Patidar upstream_step3_fired=false upstream_step3_tags=- upstream_step4_returned_false=false action=noop_phase1 target=Rajat Patidar frame=F403",
+      "[20:11:54 F406 TEST] WARN:   [BATTERS-INVARIANT] rule=C violation=striker_non_collision active=Rajat Patidar witnessed_out=- striker=Rajat Patidar non=Rajat Patidar upstream_step3_fired=false upstream_step3_tags=- upstream_step4_returned_false=false action=noop_phase1 target=Rajat Patidar frame=F406",
+      "[20:12:04 F412 TEST] WARN:   [BATTERS-INVARIANT] rule=C violation=striker_non_collision active=Rajat Patidar witnessed_out=- striker=Rajat Patidar non=Rajat Patidar upstream_step3_fired=false upstream_step3_tags=- upstream_step4_returned_false=false action=noop_phase1 target=Rajat Patidar frame=F412"
+    ],
+    "TEAM_ATTRIBUTION_POISON": [
+      "[21:26:42 F2310 TEST] INFO:   [TEAM-ATTRIBUTION-POISON-RATE] rate=0.33 window=30 threshold=0.56 inn_break_pending=True frame=2310",
+      "[21:45:00 F2850 TEST] INFO:   [TEAM-ATTRIBUTION-POISON-RATE] rate=0.53 window=30 threshold=0.56 inn_break_pending=True frame=2850",
+      "[21:45:54 F2880 TEST] INFO:   [TEAM-ATTRIBUTION-POISON-RATE] rate=0.53 window=30 threshold=0.56 inn_break_pending=True frame=2880",
+      "[21:47:14 F2910 TEST] INFO:   [TEAM-ATTRIBUTION-POISON-RATE] rate=0.47 window=30 threshold=0.56 inn_break_pending=True frame=2910"
+    ],
+    "DELIVERY_ENQUEUED": [
+      "[19:51:45 F11 TEST] INFO:   [DELIVERY ENQUEUED] dnum=1 evt=DOT runs=0 (submit_ms=1, method=gemini_async) \u2014 awaiting async classification",
+      "[19:52:04 F17 TEST] INFO:   [DELIVERY ENQUEUED] dnum=2 evt=DOT runs=0 (submit_ms=0, method=gemini_async) \u2014 awaiting async classification",
+      "[19:52:44 F24 TEST] INFO:   [DELIVERY ENQUEUED] dnum=3 evt=SIX runs=6 (submit_ms=0, method=gemini_async) \u2014 awaiting async classification",
+      "[19:55:19 F14 TEST] INFO:   [DELIVERY ENQUEUED] dnum=1 evt=DOT runs=0 (submit_ms=1, method=gemini_async) \u2014 awaiting async classification"
+    ],
+    "FRAME_POISONED_CHANGES": [
+      "[19:52:57 F25 TEST] INFO:   [S 1408ms] Changes: ['FRAME_POISONED:None']",
+      "[19:52:57 F25 TEST] INFO: DETAIL|F25|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 0-0 (0.0) | Padikkal* 0(0) | Patidar 0(0) | Siraj 0-0 (0.0)|action=A batter is playing a shot.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=0|BEFORE_score=45-2(4.2)|BEFORE_bat1=Devdutt Padikkal 6(4)|BEFORE_bat2=Rajat Patidar 4(4)|BEFORE_bowl=Mohammed Siraj 1-18 (2.1)|BEFORE_this_over=['.', '6']|AFTER_score=45-2(4.2)|AFTER_bat1=Devdutt Padikkal 6(4)|AFTER_bat2=Rajat Patidar 4(4)|AFTER_bowl=Mohammed Siraj 1-18 (2.1)|AFTER_th",
+      "[19:54:06 F2 TEST] INFO:   [S 1355ms] Changes: ['FRAME_POISONED:49']",
+      "[19:54:06 F2 TEST] INFO: DETAIL|F2|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 49-2 (4.3) | Devdutt Padikkal 126(64) | MATCH 42 INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:  Th|action=\u2014|ext_score=49-2(4.3)|ext_bat=Devdutt Padikkal 126(64)|ext_bowl=|scorer_changes=['FRAME_POISONED:49']|yolo=2|BEFORE_score=None-None(None)|BEFORE_bat1=\u2014|BEFORE_bat2=\u2014|BEFORE_bowl=\u2014 ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=\u2014|AFTER_bat2=\u2014|AFTER_bowl=\u2014 ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=\u2014|AFTER_non=\u2014|AFTE"
+    ],
+    "JSON_PARSE_FAILED": [
+      "[19:59:42 F128 EXTRACT] ERROR: JSON parse failed: Here is the JSON output based on the provided RAW OBSERVATION:",
+      "[20:30:59 F912 EXTRACT] ERROR: JSON parse failed: Here is the JSON output based on the provided RAW OBSERVATION:",
+      "[20:35:03 F997 EXTRACT] ERROR: JSON parse failed: Here is the extracted data in JSON format:"
+    ],
+    "CONNECTION_ERROR": [
+      "[20:16:08 F531 EXTRACT] ERROR: Extractor call failed: Connection error."
+    ],
+    "EXTRACT_ERROR_LINE": [
+      "[19:59:42 F128 EXTRACT] ERROR: JSON parse failed: Here is the JSON output based on the provided RAW OBSERVATION:",
+      "[20:16:08 F531 EXTRACT] ERROR: Extractor call failed: Connection error.",
+      "[20:30:59 F912 EXTRACT] ERROR: JSON parse failed: Here is the JSON output based on the provided RAW OBSERVATION:",
+      "[20:35:03 F997 EXTRACT] ERROR: JSON parse failed: Here is the extracted data in JSON format:"
+    ],
+    "MULTI_BALL": [
+      "[20:05:23 F273 COMMENTARY] INFO: [BALL ?] MULTI_BALL | 6.3 +5 runs (\u0394balls=2)",
+      "[20:05:23 F273 TEST] INFO:   [THIS-OVER] Ball MULTI_BALL appended to over 6",
+      "[20:05:23 F273 SCORE_MGR] INFO: [SM] MULTI_BALL  68/2 (6.3)  striker=Devdutt Padikkal",
+      "[20:05:23 F273 TEST] INFO:   [SHADOW] SM=MULTI_BALL BED=MULTI_BALL MATCH"
+    ]
+  },
+  "delivery_enqueued_total_live": 121,
+  "delivery_enqueued_by_innings_guess": {
+    "1": 86,
+    "null": 1,
+    "2": 34
+  },
+  "striker_sm_cutover_reasons": {
+    "over-end": 40,
+    "broadcast-indicator": 3,
+    "broadcast-indicator-swap": 2,
+    "active-slot-dedup": 3
+  },
+  "batters_invariant_rules": {
+    "C": 79
+  },
+  "ball_event_on_detail_lines_per_innings": {
+    "1": {
+      "EM_DASH": 509,
+      "DOT": 32,
+      "SIX": 6,
+      "FOUR": 8,
+      "1_RUNS": 29,
+      "MULTI_BALL": 2,
+      "2_RUNS": 2,
+      "WICKET": 8,
+      "3_RUNS": 1,
+      "EXTRA": 1
+    },
+    "2": {
+      "EM_DASH": 315,
+      "DOT": 12,
+      "EXTRA": 5,
+      "SIX": 3,
+      "1_RUNS": 7,
+      "FOUR": 4,
+      "MULTI_BALL": 3,
+      "5_RUNS": 1,
+      "2_RUNS": 1,
+      "WICKET": 1
+    }
+  },
+  "ball_event_extra_wide_lines_live": 6,
+  "frame_time_span": {
+    "first_ts": "19:50:35",
+    "last_ts": "22:17:45",
+    "approx_wall_seconds": 8830,
+    "frame_span_F": 3725,
+    "approx_fps_frames_per_sec": 0.4218573046432616
+  },
+  "first_detail_after_innings2": {
+    "ts_bracket": "21:25:07",
+    "frame": 2275,
+    "line_1based": 24611
+  },
+  "over_jump_candidate_prev_le_4_2_to_ge_5": {
+    "before_ts": "22:00:50",
+    "before_frame": 3293,
+    "before_over": 3.5,
+    "after_ts": "22:02:41",
+    "after_frame": 3346,
+    "after_over": 5.0,
+    "gap_seconds": 111
+  },
+  "scout_timing_ms_summary": {
+    "count_lines_with_pattern": 1310,
+    "p50": 830.0,
+    "p95": 1659.0,
+    "p99": 2519.0,
+    "mean": 942.9320610687023
+  },
+  "scout_cam_on_scout_lines": {
+    "closeup": 594,
+    "bowlers_end": 335,
+    "graphic": 191,
+    "ad": 132,
+    "other": 32,
+    "None": 19,
+    "side_on": 7
+  },
+  "sm_innings_2_reset_full_lines": [],
+  "last_detail_line_live_window": {
+    "line_1based": 37754,
+    "ts": "22:17:30",
+    "frame": 3720,
+    "AFTER_innings": 2,
+    "AFTER_score_raw": "92-3(7.3)",
+    "prefix_240": "[22:17:30 F3720 TEST] INFO: DETAIL|F3720|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: GT 20-0 (2.5) | Gill 8(6) | Sudharsan 11(9) | Kumar 0-9 (2.5)|action=The crowd is cheering and clapping as the players are in between deliveries.|ext_score=20-0"
+  },
+  "stop_conditions": {
+    "S1_pipeline_truncated_before_match_end": true,
+    "S2_machine1_dwr_timestamps_absent_evening_subset_used_full_day_windows": true,
+    "S4_ground_truth_via_public_live_snapshot_partial_not_final_at_log_cutoff": true
+  },
+  "innings_transition_evidence": {
+    "innings_break_line_23683_sample": "[21:19:38 F2125] INNINGS-BREAK Innings 1 end detected ... overs=19.2 wickets=10",
+    "innings_transition_line_24563_sample": "[21:25:06 F2275] INNINGS-TRANSITION-TELEMETRY ... pre_state=155/10 (19.2) target=156",
+    "trackers_reset_line_24564_sample": "[21:25:06 F2275 BOARD] INNINGS Set to 2 ... All trackers reset.",
+    "first_detail_innings2": {
+      "ts_bracket": "21:25:07",
+      "frame": 2275,
+      "line_1based": 24611
+    }
+  },
+  "dwr_machine1_full_file_parser_windows": {
+    "note": "[DWR] window lines lack wall-clock prefix; stats computed across entire machine-1-2026-04-30.log (may include non-evening traffic).",
+    "typed_windows_total": 127,
+    "sources": {
+      "retrospective_span": 5,
+      "fallback_pre_event_window": 122
+    },
+    "retrospective_span_pct_of_typed": 3.94,
+    "frames_retrospective_span": {
+      "median": 56,
+      "mean": 57.0,
+      "max": 61,
+      "count": 5
+    },
+    "frames_fallback_pre_event_window": {
+      "median": 161,
+      "mean": 160.6,
+      "max": 169,
+      "count": 122
+    },
+    "rejecting_stale_span_substring_lines": 23
+  },
+  "delivery_sequence_innings_break": {
+    "last_enqueued_innings1_proxy": {
+      "line": 23696,
+      "ts": "21:19:38",
+      "frame": 2125,
+      "dnum": 84,
+      "evt": "WICKET"
+    },
+    "first_enqueued_after_transition_gap": {
+      "line": 25341,
+      "ts": "21:28:01",
+      "frame": 2347,
+      "dnum": 85,
+      "evt": "DOT"
+    },
+    "interpretation": "No [DELIVERY ENQUEUED] lines between 21:19:38 and 21:28:01 in tee log; gap spans formal innings transition at 21:25:06."
+  },
+  "pass2_failures": {
+    "Pass_2_lines_total_substring": 5,
+    "Pass_2_with_error_code_524_substring": 1
+  },
+  "groq_cloudflare_524_in_any_line_live_window_estimate": "grep -c 524 on full log inflated by overs/scores; treat Pass-2 row as authoritative burst.",
+  "lever1_ws_slot_comparison_note": {
+    "gt_rcb_live_ge_1950_ws_slot_count": 345,
+    "mi_srh_approx_ws_slot_count_same_heuristic_ts_ge_194425": 122,
+    "approx_ws_slot_per_min_gt_rcb": 2.344,
+    "caution": "Wall duration and inning phases differ; MI number uses loose ts>=19:44:25 filter \u2014 comparative leverage magnitude directional only."
+  }
+}

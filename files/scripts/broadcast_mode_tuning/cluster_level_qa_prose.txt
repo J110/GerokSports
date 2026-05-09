@@ -1,0 +1,69 @@
+=== Cluster 2: 101.0-103.0s (2.0s, 3 frames) ===
+PART 1: This cluster shows a series of frames with a wide field view of a cricket pitch, where players are standing still and not actively engaged in play. The frames display various graphical overlays, including score graphics and sponsor logos. None of the frames in this cluster show a live delivery, as they all lack the bowler's-end framing with bowler motion. The frames at 101.0s, 102.0s, and 103.0s all show between-delivery scenes. There are no live delivery frames visible in this cluster.
+
+PART 2:
+
+=== Cluster 3: 109.0-110.0s (1.0s, 2 frames) ===
+PART 1: This cluster shows a brief moment of a cricket match, with the first frame capturing the bowler in mid-action after releasing the ball, and the second frame showing the players waiting for the next play. A live delivery is visible at t=109.0s, where the bowler is shown with his right arm extended upward as if he has just released the ball. The other frame in the cluster does not show a live delivery. The players are positioned around the field, indicating that the action is taking place between deliveries. 
+
+PART 2:
+
+=== Cluster 1: 63.0-65.0s (2.0s, 3 frames) ===
+PART 1: This cluster appears to show moments between deliveries in a cricket match, with players standing still or preparing for the next play. The frames do not show a live delivery, as there is no bowler's-end framing with bowler motion. None of the frames (63.0s, 64.0s, 65.0s) show a live delivery. The atmosphere suggests a live broadcast, but the action level is low, indicating a break between plays. The frames primarily show a wide field view of the cricket field with players and a crowd.
+
+=== Cluster 4: 122.0-128.0s (6.0s, 7 frames) ===
+PART 1: This cluster appears to show a live cricket match with various players on the field. The frames at t=122.0s, t=126.0s show a live delivery with the bowler in motion, about to release the ball. The other frames in the cluster seem to show the players in different positions, possibly between plays or after a play has concluded. The frame at t=124.0s shows a batter preparing to hit the ball, and the frame at t=128.0s shows a player diving or falling to the ground.
+
+PART 2:
+
+=== Cluster 5: 134.0-134.0s (0.0s, 1 frames) ===
+PART 1: This cluster shows a single frame at 134.0s, which appears to be a moment between deliveries, as it features a cricket player preparing to bat. There is no evidence of a live delivery in this cluster, as the frame description does not mention the bowler's-end camera shot or the bowler in motion. The scene suggests a brief pause in the game, possibly between balls or overs. No live delivery is visible in this cluster. 
+
+PART 2:
+
+=== Cluster 6: 141.0-147.0s (6.0s, 7 frames) ===
+PART 1: 
+This cluster shows a sequence of frames capturing different moments in a cricket game, including players preparing for a delivery, a bowler releasing the ball, and a close-up of a player between deliveries. The live delivery is visible at t=143.0s, where the bowler appears to have just released the ball and the batter is standing ready. The other frames in the cluster show moments between deliveries or close-ups of players.
+
+=== Cluster 7: 161.0-164.0s (3.0s, 4 frames) ===
+PART 1: This cluster appears to show a mix of between-delivery moments and active play in a cricket game. The frames at t=163.0s show a live delivery, as the bowler is in a follow-through position, indicating that the ball has just been delivered. The other frames in the cluster show players standing still or in various states of motion, but not in a bowler's-end framing with bowler motion. The live delivery is only visible at t=163.0s. 
+
+PART 2:
+
+=== Cluster 8: 172.0-173.0s (1.0s, 2 frames) ===
+PART 1: This cluster appears to show a paused moment during the game, with players standing still and no immediate action happening on the field. The frames at t=172.0s and t=173.0s do not show a live delivery, as they lack bowler's-end framing with bowler motion. There are no frames in this cluster that show a live delivery. The frames describe a wide field view of the cricket field with players and a crowd, indicating a between-deliveries or pre-game moment.
+
+PART 2:
+
+=== Cluster 9: 176.0-179.0s (3.0s, 4 frames) ===
+PART 1: This cluster appears to show moments between deliveries in a cricket match, with players standing still or preparing for the next play. None of the frames in this cluster show a live delivery, as they lack the bowler's-end framing with bowler motion. The frames at 176.0s, 177.0s, 178.0s, and 179.0s all show wide field views of the cricket pitch with players and crowd, but no bowler in motion. There are no live delivery frames visible in this cluster.
+
+=== Cluster 10: 182.0-185.0s (3.0s, 4 frames) ===
+PART 1: This cluster appears to show moments between cricket deliveries, with players standing still or preparing to bowl. None of the frames in this cluster show a live delivery with bowler's-end framing and bowler motion. The frames at t=182.0s, t=183.0s, t=184.0s, and t=185.0s all describe scenes where the players are not in active play, with graphical overlays displaying match information. There are no frames in this cluster that show a live delivery.
+
+PART 2:
+
+=== Cluster 11: 192.0-197.0s (5.0s, 6 frames) ===
+PART 1: This cluster appears to show a mix of between-delivery moments and a potential live delivery. The frames at t=192.0s and t=193.0s show players standing still, indicating a break in play. However, the frame at t=195.0s shows the bowler having just released the ball, suggesting a live delivery. The frame at t=197.0s shows players celebrating or reacting to something that has just happened. Live delivery is visible at t=195.0s.
+
+PART 2:
+
+=== Cluster 12: 224.0-224.0s (0.0s, 1 frames) ===
+PART 1: This cluster shows a wide field view of a cricket match in progress, with players positioned around the pitch and a batter preparing to hit the ball. The action level appears to be a moment of active play, with the batter poised to hit the ball. However, there is no bowler's-end framing with bowler motion visible in this cluster, so there are no live delivery frames. The frame at t=224.0s does not show a live delivery. 
+
+PART 2:
+
+=== Cluster 13: 234.0-244.0s (10.0s, 11 frames) ===
+PART 1: This cluster appears to show various moments between cricket deliveries, with players standing still or walking on the field. The frames at t=237.0s show a pre-delivery moment with the bowler in a crouched position, but no live delivery is visible in this cluster as the bowler's-end framing with bowler motion is not present. The frames show a mix of field views, player closeups, and score graphics. No live delivery is visible in this cluster.
+
+PART 2:
+
+=== Cluster 14: 259.0-261.0s (2.0s, 3 frames) ===
+PART 1: This cluster appears to show moments between deliveries in a cricket match, with players standing still or walking around the field. None of the frames in this cluster show a bowler's-end framing with bowler motion, as the camera shots are wide field views of the cricket pitch with players positioned around it. The frames at t=259.0s, t=260.0s, and t=261.0s do not show a live delivery. The players are not actively engaged in play, with some frames showing batters preparing to play a shot or fielders scattered across the field.
+
+PART 2:
+
+=== Cluster 15: 272.0-278.0s (6.0s, 7 frames) ===
+PART 1: This cluster appears to show a sequence of events between deliveries in a cricket match, with players standing still or preparing for the next play. The frame at t=276.0s shows a live delivery moment, as the bowler is bending over and about to deliver the ball. The other frames in the cluster show the players in a calm state, with no active running or celebrating, suggesting a pause in play. The live delivery is visible at t=276.0s.
+
+PART 2:
