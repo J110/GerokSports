@@ -1887,7 +1887,18 @@ class Scoreboard:
     def update_batter(self, name: str, runs: int | None = None,
                       balls: int | None = None, fours: int | None = None,
                       sixes: int | None = None, striker: bool | None = None,
-                      frame: int = 0) -> bool:
+                      frame: int = 0,
+                      runs_delta: int | None = None,
+                      balls_delta: int | None = None,
+                      fours_delta: int | None = None,
+                      sixes_delta: int | None = None) -> bool:
+        if any(d is not None for d in
+               (runs_delta, balls_delta, fours_delta, sixes_delta)):
+            return self._apply_batter_delta(
+                name,
+                int(runs_delta or 0), int(balls_delta or 0),
+                int(fours_delta or 0), int(sixes_delta or 0),
+                frame=frame)
         resolved = self.resolve_name(name)
         if resolved is None:
             log.warn(f"Batter '{name}' not in any squad")
@@ -2515,6 +2526,91 @@ class Scoreboard:
         counts[reason] = counts.get(reason, 0) + 1
 
     # ------------------------------------------------------------------
+    # Event-driven stat accumulation (single-writer derivation path).
+    # Bypasses extractor-trust guards (consensus, XI-gate consensus,
+    # graphic-gate, wickets-regression). Caller is the SM event log,
+    # not the broadcast strip — guards that exist to defend against
+    # bad detection are by definition irrelevant here. Preserved
+    # invariants: row must exist, must be in playing XI, batter must
+    # not be dismissed.
+    # ------------------------------------------------------------------
+    def _apply_batter_delta(self, name: str, runs_delta: int,
+                            balls_delta: int, fours_delta: int,
+                            sixes_delta: int, frame: int = 0) -> bool:
+        resolved = self.resolve_name(name)
+        if resolved is None:
+            log.warn(f"  [BAT-DELTA] '{name}' not in any squad — drop")
+            return False
+        card_key = self._find_card_key(resolved, self.batting_card)
+        if card_key is None:
+            log.warn(f"  [BAT-DELTA] '{name}' not in batting card "
+                     f"(resolved: {resolved})")
+            return False
+        name = card_key
+        entry = self.batting_card[name]
+        if not entry.get("is_playing_xi", True):
+            log.warn(f"  [BAT-DELTA] '{name}' not in playing XI — drop")
+            return False
+        if entry["status"] == "out":
+            log.warn(
+                f"  [BAT-DELTA] refusing event-driven increment for "
+                f"'{name}' — status=out")
+            return False
+        if entry["status"] == "yet_to_bat":
+            entry["status"] = "batting"
+        cur_runs = int(entry.get("runs") or 0)
+        cur_balls = int(entry.get("balls") or 0)
+        cur_fours = int(entry.get("fours") or 0)
+        cur_sixes = int(entry.get("sixes") or 0)
+        entry["runs"] = cur_runs + runs_delta
+        entry["balls"] = cur_balls + balls_delta
+        entry["fours"] = cur_fours + fours_delta
+        entry["sixes"] = cur_sixes + sixes_delta
+        if entry["balls"] > 0:
+            entry["sr"] = round(entry["runs"] / entry["balls"] * 100, 2)
+        log.info(
+            f"  [BAT-DELTA] {name} +runs={runs_delta} +balls={balls_delta} "
+            f"+4s={fours_delta} +6s={sixes_delta} → "
+            f"runs={entry['runs']} balls={entry['balls']} "
+            f"4s={entry['fours']} 6s={entry['sixes']} frame={frame}")
+        return True
+
+    def _apply_bowler_delta(self, name: str, runs_delta: int,
+                            balls_delta: int, wickets_delta: int,
+                            frame: int = 0) -> bool:
+        if frame > self._last_bowler_scout_frame:
+            self._last_bowler_scout_frame = frame
+        resolved = self.resolve_name(name)
+        if resolved is None:
+            log.warn(f"  [BOWL-DELTA] '{name}' not in any squad — drop")
+            return False
+        card_key = self._find_card_key(resolved, self.bowling_card)
+        if card_key is None:
+            log.warn(f"  [BOWL-DELTA] '{name}' not in bowling card "
+                     f"(resolved: {resolved})")
+            return False
+        name = card_key
+        entry = self.bowling_card[name]
+        if not entry.get("is_playing_xi", True):
+            log.warn(f"  [BOWL-DELTA] '{name}' not in playing XI — drop")
+            return False
+        cur_runs = int(entry.get("runs") or 0)
+        cur_wkts = int(entry.get("wickets") or 0)
+        cur_balls = self._overs_to_balls(entry.get("overs"))
+        new_balls = cur_balls + balls_delta
+        entry["runs"] = cur_runs + runs_delta
+        entry["wickets"] = cur_wkts + wickets_delta
+        if balls_delta != 0:
+            entry["overs"] = f"{new_balls // 6}.{new_balls % 6}"
+        if new_balls > 0:
+            entry["econ"] = round(entry["runs"] / new_balls * 6, 2)
+        log.info(
+            f"  [BOWL-DELTA] {name} +runs={runs_delta} +balls={balls_delta} "
+            f"+wkts={wickets_delta} → runs={entry['runs']} "
+            f"overs={entry['overs']} wkts={entry['wickets']} frame={frame}")
+        return True
+
+    # ------------------------------------------------------------------
     # Bowler updates — write to pre-built bowling card
     # ------------------------------------------------------------------
 
@@ -2573,7 +2669,16 @@ class Scoreboard:
     def update_bowler(self, name: str, overs: str | None = None,
                       runs: int | None = None, wickets: int | None = None,
                       maidens: int | None = None, frame: int = 0,
-                      vision_desc: str | None = None) -> bool:
+                      vision_desc: str | None = None,
+                      runs_delta: int | None = None,
+                      balls_delta: int | None = None,
+                      wickets_delta: int | None = None) -> bool:
+        if any(d is not None for d in
+               (runs_delta, balls_delta, wickets_delta)):
+            return self._apply_bowler_delta(
+                name,
+                int(runs_delta or 0), int(balls_delta or 0),
+                int(wickets_delta or 0), frame=frame)
         # Fix #2 (2026-04-23): record frame of this Scout bowler read
         # before any early-exit.  BOWLER-AUTO uses this to detect
         # "Scout is actively reading the bowler strip right now" and
