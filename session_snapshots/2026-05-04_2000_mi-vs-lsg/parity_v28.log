@@ -1,0 +1,194 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151818/srh-vs-csk-27th-match-indian-premier-league-2026
+
+[20:39:05  iter#1]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: SRH 149-5 (14.1)  crr=10.52  ps=2(2)  recent=1
+  CB BAT: Heinrich Klaasen* 42(28), Salil Arora 2(2)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'klaasen', 'arora'} (ui=set(), cb={'klaasen', 'arora'}) | BOWLER: ui=None cb=Jamie Overton
+
+[20:39:27  iter#2]
+  UI: Sunrisers Hyderabad 0-0 (0.0)  str=Abhishek Sharma nstr=Travis Head  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 149-5 (14.2)  crr=10.4  ps=2(3)  recent=1 0
+  CB BAT: Heinrich Klaasen* 42(29), Salil Arora 2(2)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=149 | WICKETS: ui=0 cb=5 | OVERS: ui=0.0 cb=14.2 | STRIKER: ui=Abhishek Sharma cb=Heinrich Klaasen | BATTERS_MISSING_IN_UI: {'klaasen', 'arora'} (ui={'sharma', 'head'}, cb={'klaasen', 'arora'}) | BOWLER: ui=None cb=Jamie Overton
+
+[20:39:47  iter#3]
+  UI: Sunrisers Hyderabad 0-0 (0.0)  str=Abhishek Sharma nstr=Travis Head  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 149-5 (14.2)  crr=10.4  ps=2(3)  recent=1 0
+  CB BAT: Heinrich Klaasen* 42(29), Salil Arora 2(2)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=149 | WICKETS: ui=0 cb=5 | OVERS: ui=0.0 cb=14.2 | STRIKER: ui=Abhishek Sharma cb=Heinrich Klaasen | BATTERS_MISSING_IN_UI: {'klaasen', 'arora'} (ui={'sharma', 'head'}, cb={'klaasen', 'arora'}) | BOWLER: ui=None cb=Jamie Overton
+
+[20:40:08  iter#4]
+  UI: Sunrisers Hyderabad 0-0 (0.0)  str=Abhishek Sharma nstr=Travis Head  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 150-5 (14.3)  crr=10.34  ps=3(4)  recent=1 0 1
+  CB BAT: Salil Arora* 2(2), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=150 | WICKETS: ui=0 cb=5 | OVERS: ui=0.0 cb=14.3 | STRIKER: ui=Abhishek Sharma cb=Salil Arora | BATTERS_MISSING_IN_UI: {'klaasen', 'arora'} (ui={'sharma', 'head'}, cb={'klaasen', 'arora'}) | BOWLER: ui=None cb=Jamie Overton
+
+[20:40:29  iter#5]
+  UI: Sunrisers Hyderabad 0-0 (0.0)  str=Abhishek Sharma nstr=Travis Head  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 150-5 (14.3)  crr=10.34  ps=3(4)  recent=1 0 1
+  CB BAT: Salil Arora* 2(2), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=150 | WICKETS: ui=0 cb=5 | OVERS: ui=0.0 cb=14.3 | STRIKER: ui=Abhishek Sharma cb=Salil Arora | BATTERS_MISSING_IN_UI: {'klaasen', 'arora'} (ui={'sharma', 'head'}, cb={'klaasen', 'arora'}) | BOWLER: ui=None cb=Jamie Overton
+
+[20:40:50  iter#6]
+  UI: Sunrisers Hyderabad 0-0 (0.0)  str=Abhishek Sharma nstr=Travis Head  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 150-5 (14.4)  crr=10.23  ps=3(5)  recent=1 0 1 0
+  CB BAT: Salil Arora* 2(3), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=150 | WICKETS: ui=0 cb=5 | OVERS: ui=0.0 cb=14.4 | STRIKER: ui=Abhishek Sharma cb=Salil Arora | BATTERS_MISSING_IN_UI: {'klaasen', 'arora'} (ui={'sharma', 'head'}, cb={'klaasen', 'arora'}) | BOWLER: ui=None cb=Jamie Overton
+
+[20:41:11  iter#7]
+  UI: Sunrisers Hyderabad 0-0 (0.0)  str=Abhishek Sharma nstr=Travis Head  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 150-5 (14.4)  crr=10.23  ps=3(5)  recent=1 0 1 0
+  CB BAT: Salil Arora* 2(3), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=150 | WICKETS: ui=0 cb=5 | OVERS: ui=0.0 cb=14.4 | STRIKER: ui=Abhishek Sharma cb=Salil Arora | BATTERS_MISSING_IN_UI: {'klaasen', 'arora'} (ui={'sharma', 'head'}, cb={'klaasen', 'arora'}) | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:41:33  iter#8]
+  UI: Sunrisers Hyderabad 0-0 (0.0)  str=Abhishek Sharma nstr=Travis Head  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 154-5 (14.5)  crr=10.38  ps=7(6)  recent=1 0 1 0 4
+  CB BAT: Salil Arora* 6(4), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=0 cb=5 | OVERS: ui=0.0 cb=14.5 | STRIKER: ui=Abhishek Sharma cb=Salil Arora | BATTERS_MISSING_IN_UI: {'klaasen', 'arora'} (ui={'sharma', 'head'}, cb={'klaasen', 'arora'}) | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:41:55  iter#9]
+  UI: Sunrisers Hyderabad 0-0 (0.5)  str=Salil Arora nstr=Heinrich Klaasen  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=['?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 154-5 (14.5)  crr=10.38  ps=7(6)  recent=1 0 1 0 4
+  CB BAT: Salil Arora* 6(4), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=0 cb=5 | OVERS: ui=0.5 cb=14.5 | BAT_arora: ui=0(0) cb=6(4) | BAT_klaasen: ui=0(0) cb=43(30) | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:42:15  iter#10]
+  UI: Sunrisers Hyderabad 0-0 (0.5)  str=Salil Arora nstr=None  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Heinrich Klaasen', 'score': 0, 'overs': '0.5'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 154-5 (14.5)  crr=10.38  ps=7(6)  recent=1 0 1 0 4
+  CB BAT: Salil Arora* 6(4), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=0 cb=5 | OVERS: ui=0.5 cb=14.5 | BATTERS_MISSING_IN_UI: {'klaasen'} (ui={'arora'}, cb={'klaasen', 'arora'}) | BAT_arora: ui=None(None) cb=6(4) | FOW_COUNT: ui=1 vs wickets=0 | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:42:36  iter#11]
+  UI: Sunrisers Hyderabad 0-0 (0.5)  str=Salil Arora nstr=None  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Heinrich Klaasen', 'score': 0, 'overs': '0.5'}
+  delivery: (none yet on UI)
+  extras: this_over=1 innings=4 [w4/nb0/b0/lb0]
+  extras_log: [{'over': '0.5', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: SRH 154-5 (14.5)  crr=10.38  ps=7(6)  recent=... 0
+  CB BAT: Salil Arora* 6(4), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=0 cb=5 | OVERS: ui=0.5 cb=14.5 | BATTERS_MISSING_IN_UI: {'klaasen'} (ui={'arora'}, cb={'klaasen', 'arora'}) | BAT_arora: ui=None(None) cb=6(4) | FOW_COUNT: ui=1 vs wickets=0 | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:42:57  iter#12]
+  UI: Sunrisers Hyderabad 0-0 (0.5)  str=Salil Arora nstr=None  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Heinrich Klaasen', 'score': 0, 'overs': '0.5'}
+  delivery: (none yet on UI)
+  extras: this_over=3 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '0.5', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 154-5 (14.5)  crr=10.38  ps=7(6)  recent=... 0
+  CB BAT: Salil Arora* 6(4), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=0 cb=5 | OVERS: ui=0.5 cb=14.5 | BATTERS_MISSING_IN_UI: {'klaasen'} (ui={'arora'}, cb={'klaasen', 'arora'}) | BAT_arora: ui=None(None) cb=6(4) | FOW_COUNT: ui=1 vs wickets=0 | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:43:19  iter#13]
+  UI: Sunrisers Hyderabad 0-0 (0.5)  str=Salil Arora nstr=None  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Heinrich Klaasen', 'score': 0, 'overs': '0.5'}
+  delivery: (none yet on UI)
+  extras: this_over=9 innings=12 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 154-5 (14.5)  crr=10.38  ps=7(6)  recent=... 0
+  CB BAT: Salil Arora* 6(4), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=0 cb=5 | OVERS: ui=0.5 cb=14.5 | BATTERS_MISSING_IN_UI: {'klaasen'} (ui={'arora'}, cb={'klaasen', 'arora'}) | BAT_arora: ui=0(1) cb=6(4) | FOW_COUNT: ui=1 vs wickets=0 | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:43:40  iter#14]
+  UI: Sunrisers Hyderabad 0-1 (0.5)  str=Salil Arora nstr=None  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Heinrich Klaasen', 'score': 0, 'overs': '0.5'}
+  delivery: (none yet on UI)
+  extras: this_over=12 innings=15 [w15/nb0/b0/lb0]
+  extras_log: [{'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 154-5 (14.5)  crr=10.38  ps=7(6)  recent=... 0
+  CB BAT: Salil Arora* 6(4), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=1 cb=5 | OVERS: ui=0.5 cb=14.5 | BATTERS_MISSING_IN_UI: {'klaasen'} (ui={'arora'}, cb={'klaasen', 'arora'}) | BAT_arora: ui=0(3) cb=6(4) | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:44:02  iter#15]
+  UI: Sunrisers Hyderabad 0-1 (0.5)  str=Salil Arora nstr=None  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Heinrich Klaasen', 'score': 0, 'overs': '0.5'}
+  delivery: (none yet on UI)
+  extras: this_over=14 innings=17 [w17/nb0/b0/lb0]
+  extras_log: [{'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 154-5 (14.5)  crr=10.38  ps=7(6)  recent=... 0
+  CB BAT: Salil Arora* 6(4), Heinrich Klaasen 43(30)
+  CB BOWL: Jamie Overton 3-23 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=1 cb=5 | OVERS: ui=0.5 cb=14.5 | BATTERS_MISSING_IN_UI: {'klaasen'} (ui={'arora'}, cb={'klaasen', 'arora'}) | BAT_arora: ui=0(5) cb=6(4) | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:44:24  iter#16]
+  UI: Sunrisers Hyderabad 0-1 (0.5)  str=Salil Arora nstr=None  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Heinrich Klaasen', 'score': 0, 'overs': '0.5'}
+  delivery: (none yet on UI)
+  extras: this_over=15 innings=18 [w18/nb0/b0/lb0]
+  extras_log: [{'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 154-5 (15)  crr=10.27  ps=7(7)  recent=...
+  CB BAT: Heinrich Klaasen* 43(30), Salil Arora 6(5)
+  CB BOWL: Gurjapneet Singh 0-26 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=1 cb=5 | OVERS: ui=0.5 cb=15 | STRIKER: ui=Salil Arora cb=Heinrich Klaasen | BATTERS_MISSING_IN_UI: {'klaasen'} (ui={'arora'}, cb={'klaasen', 'arora'}) | BAT_arora: ui=0(5) cb=6(5) | BOWL_R: ui=22 cb=26 | BOWL_O: ui=2.4 cb=3
+
+[20:44:45  iter#17]
+  UI: Sunrisers Hyderabad 0-1 (0.5)  str=Salil Arora nstr=None  bowl=Gurjapneet Singh 0-22 (2.4)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Heinrich Klaasen', 'score': 0, 'overs': '0.5'}
+  delivery: (none yet on UI)
+  extras: this_over=15 innings=18 [w18/nb0/b0/lb0]
+  extras_log: [{'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '0.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 154-5 (15)  crr=10.27  ps=7(7)  recent=...
+  CB BAT: Heinrich Klaasen* 43(30), Salil Arora 6(5)
+  CB BOWL: Gurjapneet Singh 0-26 (3)
+  LAST WKT: Nitish Kumar Reddy  c Matthew Short b Jamie Overton 12(8)  - 147/5 in 13.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=154 | WICKETS: ui=1 cb=5 | OVERS: ui=0.5 cb=15 | STRIKER: ui=Salil Arora cb=Heinrich Klaasen | BATTERS_MISSING_IN_UI: {'klaasen'} (ui={'arora'}, cb={'klaasen', 'arora'}) | BAT_arora: ui=0(5) cb=6(5) | BOWL_R: ui=22 cb=26 | BOWL_O: ui=2.4 cb=3

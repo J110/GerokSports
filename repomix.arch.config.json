@@ -1,0 +1,20 @@
+{
+  "output": {
+    "filePath": "repomix-architecture.xml",
+    "style": "xml",
+    "showLineNumbers": true,
+    "topFilesLength": 20
+  },
+  "include": [
+    "files/eyes/scoreboard.py",
+    "files/test_pipeline.py",
+    "files/score_manager.py"
+  ],
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true
+  },
+  "security": {
+    "enableSecurityCheck": true
+  }
+}

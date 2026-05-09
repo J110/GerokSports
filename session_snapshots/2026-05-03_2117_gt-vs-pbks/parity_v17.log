@@ -1,0 +1,170 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151807/rcb-vs-dc-26th-match-indian-premier-league-2026
+
+[19:09:12  iter#1]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: RCB 175-8 (20)  crr=8.39  ps=3(3)  recent=1 1
+  CB BAT: Tristan Stubbs* 40(35), David Miller 1(1)
+  CB BOWL: Bhuvneshwar Kumar 3-14 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:09:36  iter#2]
+  UI: DC 0-0 (0.0)  str=David Miller nstr=Tristan Stubbs  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.36  ps=4(4)  recent=1 1 1
+  CB BAT: David Miller* 1(1), Tristan Stubbs 41(36)
+  CB BOWL: Bhuvneshwar Kumar 3-14 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=175 | WICKETS: ui=0 cb=8 | OVERS: ui=0.0 cb=20 | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:09:56  iter#3]
+  UI: Delhi Capitals None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.36  ps=4(4)  recent=1 1 1
+  CB BAT: David Miller* 1(1), Tristan Stubbs 41(36)
+  CB BOWL: Bhuvneshwar Kumar 3-14 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:10:18  iter#4]
+  UI: Delhi Capitals 138-4 (16.3)  str=Tristan Stubbs nstr=David Miller  bowl=None None-None (None)
+  this_over=[]  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.36  ps=4(4)  recent=1 1 1
+  CB BAT: David Miller* 1(1), Tristan Stubbs 41(36)
+  CB BOWL: Bhuvneshwar Kumar 3-14 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=138 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=16.3 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:10:38  iter#5]
+  UI: Delhi Capitals 139-4 (16.4)  str=Tristan Stubbs nstr=David Miller  bowl=None None-None (None)
+  this_over=['1']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.34  ps=5(5)  recent=1 1 1 1
+  CB BAT: Tristan Stubbs* 41(36), David Miller 2(2)
+  CB BOWL: Bhuvneshwar Kumar 3-14 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=139 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=16.4 cb=20 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:10:59  iter#6]
+  UI: Delhi Capitals 139-4 (16.4)  str=Tristan Stubbs nstr=David Miller  bowl=None None-None (None)
+  this_over=['1']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.34  ps=5(5)  recent=1 1 1 1
+  CB BAT: Tristan Stubbs* 41(36), David Miller 2(2)
+  CB BOWL: Bhuvneshwar Kumar 3-14 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=139 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=16.4 cb=20 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:11:23  iter#7]
+  WS ERR: ''
+  CB: RCB 175-8 (20)  crr=8.18  ps=5(7)  recent=1 1 1 1 0 0
+  CB BAT: David Miller* 2(2), Tristan Stubbs 41(38)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:11:47  iter#8]
+  UI: Delhi Capitals 139-4 (17.0)  str=Tristan Stubbs nstr=David Miller  bowl=Josh Hazlewood 0-38 (4.0)
+  this_over=['1', '.', '.']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.18  ps=5(7)  recent=1 1 1 1 0 0
+  CB BAT: David Miller* 2(2), Tristan Stubbs 41(38)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=139 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=17.0 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=4.0 cb=4
+
+[19:12:08  iter#9]
+  UI: Delhi Capitals 139-4 (17.0)  str=Tristan Stubbs nstr=David Miller  bowl=Josh Hazlewood 0-38 (4.0)
+  this_over=['1', '.', '.']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.18  ps=5(7)  recent=1 1 1 1 0 0
+  CB BAT: David Miller* 2(2), Tristan Stubbs 41(38)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=139 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=17.0 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=4.0 cb=4
+
+[19:12:29  iter#10]
+  UI: Delhi Capitals 139-4 (17.0)  str=Tristan Stubbs nstr=David Miller  bowl=Josh Hazlewood 0-38 (4.0)
+  this_over=['1', '.', '.']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.18  ps=5(7)  recent=1 1 1 1 0 0
+  CB BAT: David Miller* 2(2), Tristan Stubbs 41(38)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=139 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=17.0 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=4.0 cb=4
+
+[19:12:51  iter#11]
+  UI: Delhi Capitals 139-4 (17.0)  str=Tristan Stubbs nstr=David Miller  bowl=Bhuvneshwar Kumar 3-14 (3)
+  this_over=['1', '.', '.']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.18  ps=5(7)  recent=...
+  CB BAT: David Miller* 2(2), Tristan Stubbs 41(38)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=139 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=17.0 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | BAT_miller: ui=None(None) cb=2(2) | BAT_stubbs: ui=None(None) cb=41(38) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:13:13  iter#12]
+  UI: Delhi Capitals 139-4 (17.0)  str=Tristan Stubbs nstr=David Miller  bowl=Bhuvneshwar Kumar 3-14 (3)
+  this_over=['1', '.', '.']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.16  ps=6(8)  recent=1
+  CB BAT: Tristan Stubbs* 41(38), David Miller 3(3)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=139 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=17.0 cb=20 | BAT_miller: ui=2(2) cb=3(3) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:13:34  iter#13]
+  UI: Delhi Capitals 140-4 (17.1)  str=Tristan Stubbs nstr=David Miller  bowl=Bhuvneshwar Kumar 3-15 (3.1)
+  this_over=['1']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.16  ps=6(8)  recent=1
+  CB BAT: Tristan Stubbs* 41(38), David Miller 3(3)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=140 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=17.1 cb=20 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:14:00  iter#14]
+  WS ERR: ''
+  CB: RCB 175-8 (20)  crr=8.13  ps=7(9)  recent=1 1
+  CB BAT: David Miller* 3(3), Tristan Stubbs 42(39)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:14:21  iter#15]
+  UI: Delhi Capitals 141-4 (17.2)  str=David Miller nstr=Tristan Stubbs  bowl=Bhuvneshwar Kumar 3-16 (3.2)
+  this_over=['1', '1']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.13  ps=7(9)  recent=1 1
+  CB BAT: David Miller* 3(3), Tristan Stubbs 42(39)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=141 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=17.2 cb=20 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:14:46  iter#16]
+  UI: Delhi Capitals 142-4 (17.3)  str=Tristan Stubbs nstr=David Miller  bowl=Bhuvneshwar Kumar 3-16 (3.2)
+  this_over=['1', '1', '1']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.11  ps=8(10)  recent=1 1 1
+  CB BAT: Tristan Stubbs* 42(39), David Miller 4(4)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=142 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=17.3 cb=20 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood

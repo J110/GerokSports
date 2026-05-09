@@ -1,0 +1,270 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151807/rcb-vs-dc-26th-match-indian-premier-league-2026
+
+[16:01:15  iter#1]
+  UI: Royal Challengers Bengaluru 57-1 (5.5)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Lungi Ngidi 1-5 (0.5)
+  this_over=['.', '2']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.77  ps=5(4)  recent=W 1 2 0 2
+  CB BAT: Philip Salt* 34(21), Devdutt Padikkal 1(1)
+  CB BOWL: Auqib Nabi Dar 0-36 (3)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Lungi Ngidi cb=Auqib Nabi Dar
+
+[16:01:37  iter#2]
+  UI: Royal Challengers Bengaluru 57-1 (5.5)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Lungi Ngidi 1-5 (0.5)
+  this_over=['.', '2']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.83  ps=7(5)  recent=W 1 2 0 2 2
+  CB BAT: Devdutt Padikkal* 1(1), Philip Salt 36(22)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Philip Salt cb=Devdutt Padikkal | BAT_salt: ui=34(21) cb=36(22) | BOWL_R: ui=5 cb=7 | BOWL_O: ui=0.5 cb=1
+
+[16:01:59  iter#3]
+  UI: Royal Challengers Bengaluru 59-1 (6.0)  str=Devdutt Padikkal nstr=Philip Salt  bowl=Lungi Ngidi 1-5 (1.0)
+  this_over=['.', '2', '2']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.83  ps=7(5)  recent=W 1 2 0 2 2
+  CB BAT: Devdutt Padikkal* 1(1), Philip Salt 36(22)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWL_R: ui=5 cb=7 | BOWL_O: ui=1.0 cb=1
+
+[16:02:21  iter#4]
+  UI: Royal Challengers Bengaluru 59-1 (6.0)  str=Devdutt Padikkal nstr=Philip Salt  bowl=Lungi Ngidi 1-5 (1.0)
+  this_over=[]  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.83  ps=7(5)  recent=...
+  CB BAT: Devdutt Padikkal* 1(1), Philip Salt 36(22)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWL_R: ui=5 cb=7 | BOWL_O: ui=1.0 cb=1
+
+[16:02:43  iter#5]
+  UI: Royal Challengers Bengaluru 59-1 (6.0)  str=Devdutt Padikkal nstr=Philip Salt  bowl=Lungi Ngidi 1-5 (1.0)
+  this_over=[]  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.83  ps=7(5)  recent=...
+  CB BAT: Devdutt Padikkal* 1(1), Philip Salt 36(22)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWL_R: ui=5 cb=7 | BOWL_O: ui=1.0 cb=1
+
+[16:03:07  iter#6]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.73  ps=8(6)  recent=1
+  CB BAT: Philip Salt* 36(22), Devdutt Padikkal 2(2)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Lungi Ngidi
+
+[16:03:28  iter#7]
+  UI: Royal Challengers Bengaluru 60-1 (6.1)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Kuldeep Yadav 0-1 (0.1)
+  this_over=['1']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.73  ps=8(6)  recent=1
+  CB BAT: Philip Salt* 36(22), Devdutt Padikkal 2(2)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=Lungi Ngidi
+
+[16:03:52  iter#8]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.63  ps=9(7)  recent=1 1
+  CB BAT: Devdutt Padikkal* 2(2), Philip Salt 37(23)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Lungi Ngidi
+
+[16:04:16  iter#9]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.45  ps=11(9)  recent=1 1 1 1
+  CB BAT: Devdutt Padikkal* 3(3), Philip Salt 38(24)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Lungi Ngidi
+
+[16:04:40  iter#10]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.45  ps=11(9)  recent=1 1 1 1
+  CB BAT: Devdutt Padikkal* 3(3), Philip Salt 38(24)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Lungi Ngidi
+
+[16:05:15  iter#11]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.37  ps=12(10)  recent=1 1 1 1 1
+  CB BAT: Philip Salt* 38(24), Devdutt Padikkal 4(4)
+  CB BOWL: Lungi Ngidi 1-7 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Lungi Ngidi
+
+[16:05:37  iter#12]
+  UI: Royal Challengers Bengaluru 64-1 (6.5)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Kuldeep Yadav 0-5 (0.5)
+  this_over=['1', '1', '1', '1', '1']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.29  ps=13(11)  recent=1 1 1 1 1 1
+  CB BAT: Philip Salt* 39(25), Devdutt Padikkal 4(4)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BAT_salt: ui=38(24) cb=39(25) | BOWL_R: ui=5 cb=6 | BOWL_O: ui=0.5 cb=1
+
+[16:06:01  iter#13]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.29  ps=13(11)  recent=1 1 1 1 1 1
+  CB BAT: Philip Salt* 39(25), Devdutt Padikkal 4(4)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:06:25  iter#14]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.29  ps=13(11)  recent=...
+  CB BAT: Philip Salt* 39(25), Devdutt Padikkal 4(4)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:06:47  iter#15]
+  UI: Royal Challengers Bengaluru 65-1 (7.0)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Mukesh Kumar 0-15 (1.5)
+  this_over=[]  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.63  ps=17(12)  recent=4
+  CB BAT: Philip Salt* 43(26), Devdutt Padikkal 4(4)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BAT_salt: ui=39(25) cb=43(26) | BOWLER: ui=Mukesh Kumar cb=Kuldeep Yadav
+
+[16:07:12  iter#16]
+  UI: Royal Challengers Bengaluru 69-1 (7.1)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Mukesh Kumar 0-15 (1.5)
+  this_over=['4']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.63  ps=17(12)  recent=4
+  CB BAT: Philip Salt* 43(26), Devdutt Padikkal 4(4)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Mukesh Kumar cb=Kuldeep Yadav
+
+[16:07:33  iter#17]
+  UI: Royal Challengers Bengaluru 69-1 (7.1)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Mukesh Kumar 0-15 (1.5)
+  this_over=['4']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.55  ps=18(13)  recent=4 1
+  CB BAT: Devdutt Padikkal* 4(4), Philip Salt 44(27)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Philip Salt cb=Devdutt Padikkal | BAT_salt: ui=43(26) cb=44(27) | BOWLER: ui=Mukesh Kumar cb=Kuldeep Yadav
+
+[16:07:57  iter#18]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.55  ps=18(13)  recent=4 1
+  CB BAT: Devdutt Padikkal* 4(4), Philip Salt 44(27)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:08:19  iter#19]
+  UI: Royal Challengers Bengaluru 76-1 (7.3)  str=Devdutt Padikkal nstr=Philip Salt  bowl=T Natarajan 0-11 (0.3)
+  this_over=['4', '1', '6']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=10.13  ps=24(14)  recent=4 1 6
+  CB BAT: Devdutt Padikkal* 10(5), Philip Salt 44(27)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=T Natarajan cb=Kuldeep Yadav
+
+[16:08:42  iter#20]
+  UI: Royal Challengers Bengaluru 76-1 (7.3)  str=Philip Salt nstr=Devdutt Padikkal  bowl=T Natarajan 0-11 (0.3)
+  this_over=['4', '1', '6']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=10.13  ps=24(14)  recent=4 1 6
+  CB BAT: Devdutt Padikkal* 10(5), Philip Salt 44(27)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Philip Salt cb=Devdutt Padikkal | BOWLER: ui=T Natarajan cb=Kuldeep Yadav
+
+[16:09:06  iter#21]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.91  ps=24(15)  recent=4 1 6 0
+  CB BAT: Devdutt Padikkal* 10(6), Philip Salt 44(27)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:09:27  iter#22]
+  UI: Royal Challengers Bengaluru 76-1 (7.4)  str=Devdutt Padikkal nstr=Philip Salt  bowl=T Natarajan 0-11 (0.4)
+  this_over=['4', '1', '6', '.']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=10.04  ps=25(15)  recent=4 1 6 0 W
+  CB BAT: Devdutt Padikkal* 10(6), Philip Salt 44(27)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=T Natarajan cb=Kuldeep Yadav
+
+[16:09:48  iter#23]
+  UI: Royal Challengers Bengaluru 77-1 (7.4)  str=Devdutt Padikkal nstr=Philip Salt  bowl=T Natarajan 0-12 (0.4)
+  this_over=['1', '6', '.', '1']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.96  ps=26(16)  recent=4 1 6 0 W
+  CB BAT: Philip Salt* 44(27), Devdutt Padikkal 11(7)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Devdutt Padikkal cb=Philip Salt | BAT_padikkal: ui=10(6) cb=11(7) | BOWLER: ui=T Natarajan cb=Kuldeep Yadav
+
+[16:10:22  iter#24]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.96  ps=26(16)  recent=4 1 6 0 W
+  CB BAT: Philip Salt* 44(27), Devdutt Padikkal 11(7)
+  CB BOWL: Kuldeep Yadav 0-6 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:10:50  iter#25]
+  UI: Royal Challengers Bengaluru 78-1 (7.5)  str=Devdutt Padikkal nstr=Philip Salt  bowl=T Natarajan 0-13 (0.5)
+  this_over=['6', '.', '1', '1', '.']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.88  ps=27(17)  recent=4 1 6 0 W
+  CB BAT: Philip Salt* 45(28), Devdutt Padikkal 11(7)
+  CB BOWL: T Natarajan 0-14 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Devdutt Padikkal cb=Philip Salt | BAT_salt: ui=44(27) cb=45(28) | BOWL_R: ui=13 cb=14 | BOWL_O: ui=0.5 cb=1
+
+[16:11:14  iter#26]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.88  ps=27(17)  recent=4 1 6 0 W
+  CB BAT: Philip Salt* 45(28), Devdutt Padikkal 11(7)
+  CB BOWL: T Natarajan 0-14 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=T Natarajan
+
+[16:11:34  iter#27]
+  UI: Royal Challengers Bengaluru 79-1 (8.0)  str=Philip Salt nstr=Devdutt Padikkal  bowl=T Natarajan 0-13 (1.0)
+  this_over=[]  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=9.88  ps=27(17)  recent=4 1 6 0 W
+  CB BAT: Philip Salt* 45(28), Devdutt Padikkal 11(7)
+  CB BOWL: T Natarajan 0-14 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWL_R: ui=13 cb=14 | BOWL_O: ui=1.0 cb=1
+
+[16:12:08  iter#28]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.92  ps=29(18)  recent=2
+  CB BAT: Philip Salt* 47(29), Devdutt Padikkal 11(7)
+  CB BOWL: T Natarajan 0-14 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'padikkal', 'salt'} (ui=set(), cb={'padikkal', 'salt'}) | BOWLER: ui=None cb=T Natarajan
+
+[16:12:30  iter#29]
+  UI: Royal Challengers Bengaluru 81-1 (8.1)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Kuldeep Yadav 0-8 (1.1)
+  this_over=['2']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=10.44  ps=35(19)  recent=2 6
+  CB BAT: Philip Salt* 53(30), Devdutt Padikkal 11(7)
+  CB BOWL: T Natarajan 0-14 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BAT_salt: ui=47(29) cb=53(30) | BOWLER: ui=Kuldeep Yadav cb=T Natarajan
+
+[16:12:53  iter#30]
+  UI: Royal Challengers Bengaluru 87-1 (8.2)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Kuldeep Yadav 0-8 (1.1)
+  this_over=['2', '6']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=10.44  ps=35(19)  recent=2 6
+  CB BAT: Philip Salt* 53(30), Devdutt Padikkal 11(7)
+  CB BOWL: T Natarajan 0-14 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=T Natarajan
+
+[16:13:13  iter#31]
+  UI: Royal Challengers Bengaluru 87-1 (8.2)  str=Philip Salt nstr=Devdutt Padikkal  bowl=Kuldeep Yadav 0-8 (1.1)
+  this_over=['2', '6']  fow=1  last_fow={'wicket': 1, 'batter': 'Virat Kohli', 'score': 55, 'overs': '5.3'}
+  CB: None None-None (None)  crr=10.44  ps=35(19)  recent=2 6
+  CB BAT: Philip Salt* 53(30), Devdutt Padikkal 11(7)
+  CB BOWL: T Natarajan 0-14 (1)
+  LAST WKT: Virat Kohli  c Pathum Nissanka b Lungi Ngidi 19(13)  - 52/1 in 5.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=T Natarajan

@@ -1,0 +1,11 @@
+{
+  "delivery_num": 3,
+  "event_ts": 1777903414.2927601,
+  "ready_ts": 1777903429.2927601,
+  "over_number": 0.4,
+  "event_type": "DOT",
+  "runs": 0,
+  "replay_tag_count": 0,
+  "saved_frame_count": 0,
+  "tags": []
+}

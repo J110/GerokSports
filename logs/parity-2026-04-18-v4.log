@@ -1,0 +1,315 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151807/rcb-vs-dc-26th-match-indian-premier-league-2026
+
+[16:21:50  iter#1]
+  UI: Royal Challengers Bengaluru 99-2 (10.0)  str=Philip Salt nstr=None  bowl=Axar Patel 1-9 (1.0)
+  this_over=[]  fow=2  last_fow={'wicket': 2, 'batter': 'Devdutt Padikkal', 'score': 99, 'overs': '10.0'}
+  CB: None None-None (None)  crr=9.9  ps=47(29)  recent=1 2 4 1 1 W
+  CB BAT: Philip Salt* 57(34), Kuldeep Yadav 2(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Devdutt Padikkal  c David Miller b Axar Patel 18(13)  - 99/2 in 9.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'yadav'} (ui={'salt'}, cb={'yadav', 'salt'}) | BOWL_O: ui=1.0 cb=1
+
+[16:22:11  iter#2]
+  UI: Royal Challengers Bengaluru 99-2 (10.0)  str=Philip Salt nstr=None  bowl=Axar Patel 1-9 (1.0)
+  this_over=[]  fow=2  last_fow={'wicket': 2, 'batter': 'Devdutt Padikkal', 'score': 99, 'overs': '10.0'}
+  CB: None None-None (None)  crr=9.9  ps=47(29)  recent=1 2 4 1 1 W
+  CB BAT: Philip Salt* 57(34), Kuldeep Yadav 2(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Devdutt Padikkal  c David Miller b Axar Patel 18(13)  - 99/2 in 9.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'yadav'} (ui={'salt'}, cb={'yadav', 'salt'}) | BOWL_O: ui=1.0 cb=1
+
+[16:22:34  iter#3]
+  UI: Royal Challengers Bengaluru 99-2 (10.0)  str=Philip Salt nstr=None  bowl=Axar Patel 1-9 (1.0)
+  this_over=[]  fow=2  last_fow={'wicket': 2, 'batter': 'Devdutt Padikkal', 'score': 99, 'overs': '10.0'}
+  CB: None None-None (None)  crr=9.9  ps=0(0)  recent=...
+  CB BAT: Philip Salt* 57(34), Rajat Patidar 0(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Devdutt Padikkal  c David Miller b Axar Patel 18(13)  - 99/2 in 9.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patidar'} (ui={'salt'}, cb={'patidar', 'salt'}) | BOWL_O: ui=1.0 cb=1
+
+[16:22:57  iter#4]
+  UI: Royal Challengers Bengaluru 99-2 (10.0)  str=Philip Salt nstr=Rajat Patidar  bowl=Kuldeep Yadav 0-16 (2)
+  this_over=[]  fow=2  last_fow={'wicket': 2, 'batter': 'Devdutt Padikkal', 'score': 99, 'overs': '10.0'}
+  CB: None None-None (None)  crr=10.33  ps=6(1)  recent=6
+  CB BAT: Philip Salt* 63(35), Rajat Patidar 0(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Devdutt Padikkal  c David Miller b Axar Patel 18(13)  - 99/2 in 9.6 ov.
+  ⚠ DIVERGENCE: BAT_salt: ui=57(34) cb=63(35) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:23:18  iter#5]
+  UI: Royal Challengers Bengaluru 105-2 (10.1)  str=Philip Salt nstr=Rajat Patidar  bowl=Kuldeep Yadav 0-22 (2.1)
+  this_over=['6']  fow=2  last_fow={'wicket': 2, 'batter': 'Devdutt Padikkal', 'score': 99, 'overs': '10.0'}
+  CB: None None-None (None)  crr=10.33  ps=6(1)  recent=6
+  CB BAT: Philip Salt* 63(35), Rajat Patidar 0(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Devdutt Padikkal  c David Miller b Axar Patel 18(13)  - 99/2 in 9.6 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:23:52  iter#6]
+  WS ERR: ''
+  CB: None None-None (None)  crr=10.16  ps=6(2)  recent=6 0
+  CB BAT: Philip Salt* 63(36), Rajat Patidar 0(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Devdutt Padikkal  c David Miller b Axar Patel 18(13)  - 99/2 in 9.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patidar', 'salt'} (ui=set(), cb={'patidar', 'salt'}) | BOWLER: ui=None cb=Axar Patel
+
+[16:24:15  iter#7]
+  UI: Royal Challengers Bengaluru 105-2 (10.2)  str=Philip Salt nstr=Rajat Patidar  bowl=Kuldeep Yadav 0-22 (2.2)
+  this_over=['6', '.']  fow=2  last_fow={'wicket': 2, 'batter': 'Devdutt Padikkal', 'score': 99, 'overs': '10.0'}
+  CB: None None-None (None)  crr=10.0  ps=6(3)  recent=6 0 0
+  CB BAT: Philip Salt* 63(37), Rajat Patidar 0(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Devdutt Padikkal  c David Miller b Axar Patel 18(13)  - 99/2 in 9.6 ov.
+  ⚠ DIVERGENCE: BAT_salt: ui=63(36) cb=63(37) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:24:49  iter#8]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.84  ps=6(4)  recent=6 0 0 W
+  CB BAT: Rajat Patidar* 0(0), Axar Patel 1(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patidar', 'patel'} (ui=set(), cb={'patidar', 'patel'}) | BOWLER: ui=None cb=Axar Patel
+
+[16:25:12  iter#9]
+  UI: Royal Challengers Bengaluru 105-3 (10.4)  str=Rajat Patidar nstr=Rajat Patidar  bowl=Kuldeep Yadav 1-22 (2.4)
+  this_over=['6', '.', '.', '.']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=9.84  ps=0(0)  recent=... 1 0
+  CB BAT: Tim David* 0(0), Rajat Patidar 0(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Rajat Patidar cb=Tim David | BATTERS_MISSING_IN_UI: {'david'} (ui={'patidar'}, cb={'patidar', 'david'}) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:25:33  iter#10]
+  UI: Royal Challengers Bengaluru 105-3 (10.4)  str=Rajat Patidar nstr=Tim David  bowl=Kuldeep Yadav 1-22 (2.4)
+  this_over=['6', '.', '.', '.']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=9.84  ps=0(0)  recent=... 1 0
+  CB BAT: Tim David* 0(0), Rajat Patidar 0(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Rajat Patidar cb=Tim David | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:25:56  iter#11]
+  UI: Royal Challengers Bengaluru 105-3 (10.4)  str=Rajat Patidar nstr=Tim David  bowl=Kuldeep Yadav 1-22 (2.4)
+  this_over=['6', '.', '.', '.']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=9.84  ps=0(0)  recent=... 1 0
+  CB BAT: Tim David* 0(0), Rajat Patidar 0(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Rajat Patidar cb=Tim David | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:26:17  iter#12]
+  UI: Royal Challengers Bengaluru 105-3 (10.4)  str=Rajat Patidar nstr=Tim David  bowl=Kuldeep Yadav 1-22 (2.4)
+  this_over=['6', '.', '.', '.']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=10.06  ps=4(1)  recent=6 0 0 W 4
+  CB BAT: Tim David* 4(1), Rajat Patidar 0(0)
+  CB BOWL: Axar Patel 1-9 (1)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Rajat Patidar cb=Tim David | BAT_david: ui=0(0) cb=4(1) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:26:41  iter#13]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=10.0  ps=5(2)  recent=6 0 0 W 4 1
+  CB BAT: Tim David* 5(2), Rajat Patidar 0(0)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patidar', 'david'} (ui=set(), cb={'patidar', 'david'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:27:05  iter#14]
+  WS ERR: ''
+  CB: None None-None (None)  crr=10.0  ps=5(2)  recent=6 0 0 W 4 1
+  CB BAT: Tim David* 5(2), Rajat Patidar 0(0)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patidar', 'david'} (ui=set(), cb={'patidar', 'david'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:27:28  iter#15]
+  UI: Royal Challengers Bengaluru 109-3 (10.5)  str=Tim David nstr=Rajat Patidar  bowl=Kuldeep Yadav 1-26 (2.5)
+  this_over=['6', '.', '.', '.', '4']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=10.0  ps=5(2)  recent=6 0 0 W 4 1
+  CB BAT: Tim David* 5(2), Rajat Patidar 0(0)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BAT_david: ui=4(1) cb=5(2) | BOWL_R: ui=26 cb=27 | BOWL_O: ui=2.5 cb=3
+
+[16:27:52  iter#16]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.85  ps=5(3)  recent=0
+  CB BAT: Tim David* 5(3), Rajat Patidar 0(0)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patidar', 'david'} (ui=set(), cb={'patidar', 'david'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:28:13  iter#17]
+  UI: Royal Challengers Bengaluru 110-3 (11.1)  str=Tim David nstr=Rajat Patidar  bowl=Lungi Ngidi 1-5 (1)
+  this_over=['.']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=9.85  ps=5(3)  recent=0
+  CB BAT: Tim David* 5(3), Rajat Patidar 0(0)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[16:28:34  iter#18]
+  UI: Royal Challengers Bengaluru 110-3 (11.1)  str=Tim David nstr=Rajat Patidar  bowl=Lungi Ngidi 1-7 (1.1)
+  this_over=['.']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=10.24  ps=11(4)  recent=... 4 1 1 W
+  CB BAT: Tim David* 11(4), Rajat Patidar 0(0)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BAT_david: ui=5(3) cb=11(4) | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[16:29:02  iter#19]
+  WS ERR: ''
+  CB: None None-None (None)  crr=10.24  ps=11(4)  recent=... 4 1 1 W
+  CB BAT: Tim David* 11(4), Rajat Patidar 0(0)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patidar', 'david'} (ui=set(), cb={'patidar', 'david'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:29:29  iter#20]
+  WS ERR: ''
+  CB: None None-None (None)  crr=10.09  ps=11(5)  recent=0 6 0
+  CB BAT: Tim David* 11(5), Rajat Patidar 0(0)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patidar', 'david'} (ui=set(), cb={'patidar', 'david'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[16:29:52  iter#21]
+  UI: Royal Challengers Bengaluru 116-3 (11.3)  str=Tim David nstr=Rajat Patidar  bowl=Lungi Ngidi 1-13 (1.3)
+  this_over=['.', '6', '.']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=10.03  ps=12(6)  recent=... 1 W
+  CB BAT: Rajat Patidar* 0(0), Tim David 12(6)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Rajat Patidar | BAT_david: ui=11(5) cb=12(6) | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[16:30:13  iter#22]
+  UI: Royal Challengers Bengaluru 117-3 (11.4)  str=Tim David nstr=Rajat Patidar  bowl=Lungi Ngidi 1-13 (1.3)
+  this_over=['.', '6', '.', '1']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=10.03  ps=12(6)  recent=... 1 W
+  CB BAT: Rajat Patidar* 0(0), Tim David 12(6)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Rajat Patidar | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[16:30:34  iter#23]
+  UI: Royal Challengers Bengaluru 117-3 (11.4)  str=Tim David nstr=Rajat Patidar  bowl=Lungi Ngidi 1-14 (1.4)
+  this_over=['.', '6', '.', '1']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=10.03  ps=12(6)  recent=... 1 W
+  CB BAT: Rajat Patidar* 0(0), Tim David 12(6)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Rajat Patidar | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[16:30:54  iter#24]
+  UI: Royal Challengers Bengaluru 117-3 (11.4)  str=Tim David nstr=Rajat Patidar  bowl=Lungi Ngidi 1-14 (1.4)
+  this_over=['.', '6', '.', '1']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=9.97  ps=13(7)  recent=0 6 0 1 1
+  CB BAT: Tim David* 12(6), Rajat Patidar 1(1)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BAT_patidar: ui=0(0) cb=1(1) | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[16:31:15  iter#25]
+  UI: Royal Challengers Bengaluru 118-3 (11.5)  str=Tim David nstr=Rajat Patidar  bowl=Kuldeep Yadav 0-26 (2.5)
+  this_over=['.', '6', '.', '1', '1']  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=9.97  ps=13(7)  recent=0 6 0 1 1
+  CB BAT: Tim David* 12(6), Rajat Patidar 1(1)
+  CB BOWL: Kuldeep Yadav 1-27 (3)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BOWL_W: ui=0 cb=1 | BOWL_R: ui=26 cb=27 | BOWL_O: ui=2.5 cb=3
+
+[16:31:48  iter#26]
+  WS ERR: ''
+  CB: None None-None (None)  crr=10.17  ps=17(8)  recent=0 6 0 1 1 4
+  CB BAT: Rajat Patidar* 1(1), Tim David 16(7)
+  CB BOWL: Lungi Ngidi 1-19 (2)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patidar', 'david'} (ui=set(), cb={'patidar', 'david'}) | BOWLER: ui=None cb=Lungi Ngidi
+
+[16:32:10  iter#27]
+  UI: Royal Challengers Bengaluru 122-3 (12.0)  str=Rajat Patidar nstr=Tim David  bowl=Lungi Ngidi 1-19 (2)
+  this_over=[]  fow=3  last_fow={'wicket': 3, 'batter': 'Philip Salt', 'score': 105, 'overs': '10.4'}
+  CB: None None-None (None)  crr=10.17  ps=17(8)  recent=...
+  CB BAT: Rajat Patidar* 1(1), Tim David 16(7)
+  CB BOWL: Lungi Ngidi 1-19 (2)
+  LAST WKT: Philip Salt  c Tristan Stubbs b Kuldeep Yadav 63(38)  - 105/3 in 10.4 ov.
+  ⚠ DIVERGENCE: BAT_patidar: ui=7(1) cb=1(1)
+Traceback (most recent call last):
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 124, in _connect
+    stream = await self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_backends/auto.py", line 31, in connect_tcp
+    return await self._backend.connect_tcp(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 113, in connect_tcp
+    with map_exceptions(exc_map):
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/anmolmohan/Projects/SportsComm/files/parity_monitor.py", line 303, in <module>
+    asyncio.run(main())
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/parity_monitor.py", line 250, in main
+    ws_raw, cb = await asyncio.gather(fetch_ws_state(), fetch_cb())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/parity_monitor.py", line 90, in fetch_cb
+    r = await c.get(CB_FALLBACK,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1768, in get
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout

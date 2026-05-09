@@ -1,0 +1,507 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151818/srh-vs-csk-27th-match-indian-premier-league-2026
+
+[19:39:30  iter#1]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: SRH 21-0 (2.2)  crr=9.0  ps=21(14)  recent=1 6
+  CB BAT: Abhishek Sharma* 17(7), Travis Head 2(7)
+  CB BOWL: Mukesh Choudhary 0-9 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'head'} (ui=set(), cb={'sharma', 'head'}) | BOWLER: ui=None cb=Mukesh Choudhary
+
+[19:39:54  iter#2]
+  WS ERR: ''
+  CB: SRH 21-0 (2.2)  crr=9.0  ps=21(14)  recent=1 6
+  CB BAT: Abhishek Sharma* 17(7), Travis Head 2(7)
+  CB BOWL: Mukesh Choudhary 0-9 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'head'} (ui=set(), cb={'sharma', 'head'}) | BOWLER: ui=None cb=Mukesh Choudhary
+
+[19:40:18  iter#3]
+  UI: Sunrisers Hyderabad 22-0 (2.3)  str=Travis Head nstr=Abhishek Sharma  bowl=None None-None (None)
+  this_over=['?', '?', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 22-0 (2.3)  crr=8.8  ps=22(15)  recent=1 6 1
+  CB BAT: Travis Head* 2(7), Abhishek Sharma 18(8)
+  CB BOWL: Mukesh Choudhary 0-9 (1)
+  ⚠ DIVERGENCE: BAT_head: ui=0(7) cb=2(7) | BAT_sharma: ui=0(0) cb=18(8) | BOWLER: ui=None cb=Mukesh Choudhary
+
+[19:40:41  iter#4]
+  UI: Sunrisers Hyderabad 22-0 (2.4)  str=Travis Head nstr=Abhishek Sharma  bowl=Matthew Short 0-1 (0.3)
+  this_over=['?', '?', '1', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 22-0 (2.4)  crr=8.25  ps=22(16)  recent=1 6 1 0
+  CB BAT: Travis Head* 2(8), Abhishek Sharma 18(8)
+  CB BOWL: Mukesh Choudhary 0-9 (1)
+  ⚠ DIVERGENCE: BAT_sharma: ui=0(0) cb=18(8) | BOWLER: ui=Matthew Short cb=Mukesh Choudhary
+
+[19:41:02  iter#5]
+  UI: Sunrisers Hyderabad 22-0 (2.5)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-12 (1.5)
+  this_over=['?', '?', '1', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 22-0 (2.5)  crr=7.76  ps=22(17)  recent=1 6 1 0 0
+  CB BAT: Travis Head* 2(9), Abhishek Sharma 18(8)
+  CB BOWL: Mukesh Choudhary 0-9 (1)
+  ⚠ DIVERGENCE: STRIKER: ui=Abhishek Sharma cb=Travis Head | BOWLER: ui=Matthew Short cb=Mukesh Choudhary
+
+[19:41:23  iter#6]
+  UI: Sunrisers Hyderabad 22-0 (2.5)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-12 (1.5)
+  this_over=['?', '?', '1', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 23-0 (3)  crr=7.67  ps=23(18)  recent=1 6 1 0 0 1
+  CB BAT: Travis Head* 3(10), Abhishek Sharma 18(8)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: SCORE: ui=22 cb=23 | OVERS: ui=2.5 cb=3 | STRIKER: ui=Abhishek Sharma cb=Travis Head | BAT_head: ui=2(9) cb=3(10) | BOWL_R: ui=12 cb=13 | BOWL_O: ui=1.5 cb=2
+
+[19:41:44  iter#7]
+  UI: Sunrisers Hyderabad 23-0 (3.0)  str=Travis Head nstr=Abhishek Sharma  bowl=Matthew Short 0-13 (2)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 23-0 (3)  crr=7.67  ps=23(18)  recent=1 6 1 0 0 1
+  CB BAT: Travis Head* 3(10), Abhishek Sharma 18(8)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: OVERS: ui=3.0 cb=3
+
+[19:42:05  iter#8]
+  UI: Sunrisers Hyderabad 23-0 (3.0)  str=Travis Head nstr=Abhishek Sharma  bowl=Matthew Short 0-13 (3.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 29-0 (3.1)  crr=9.16  ps=29(19)  recent=6
+  CB BAT: Travis Head* 9(11), Abhishek Sharma 18(8)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: SCORE: ui=23 cb=29 | OVERS: ui=3.0 cb=3.1 | BAT_head: ui=3(10) cb=9(11) | BOWL_O: ui=3.0 cb=2
+
+[19:42:26  iter#9]
+  UI: Sunrisers Hyderabad 23-0 (3.0)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-13 (3.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 29-0 (3.1)  crr=9.16  ps=29(19)  recent=6
+  CB BAT: Travis Head* 9(11), Abhishek Sharma 18(8)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: SCORE: ui=23 cb=29 | OVERS: ui=3.0 cb=3.1 | STRIKER: ui=Abhishek Sharma cb=Travis Head | BAT_head: ui=18(10) cb=9(11) | BAT_sharma: ui=18(10) cb=18(8) | BOWL_O: ui=3.0 cb=2
+
+[19:42:49  iter#10]
+  UI: Sunrisers Hyderabad 29-0 (3.1)  str=Travis Head nstr=Abhishek Sharma  bowl=Matthew Short 0-13 (3.0)
+  this_over=['6']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 29-0 (3.1)  crr=9.16  ps=29(19)  recent=6
+  CB BAT: Travis Head* 9(11), Abhishek Sharma 18(8)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: BAT_head: ui=18(10) cb=9(11) | BAT_sharma: ui=18(10) cb=18(8) | BOWL_O: ui=3.0 cb=2
+
+[19:43:10  iter#11]
+  UI: Sunrisers Hyderabad 29-0 (3.2)  str=Travis Head nstr=Abhishek Sharma  bowl=Anshul Kamboj 0-6 (0.2)
+  this_over=['6', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 29-0 (3.2)  crr=8.7  ps=29(20)  recent=6 0
+  CB BAT: Travis Head* 9(12), Abhishek Sharma 18(8)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: BAT_sharma: ui=18(10) cb=18(8) | BOWLER: ui=Anshul Kamboj cb=Matthew Short
+
+[19:43:32  iter#12]
+  UI: Sunrisers Hyderabad 29-0 (3.2)  str=Travis Head nstr=Abhishek Sharma  bowl=Anshul Kamboj 0-6 (0.2)
+  this_over=['6', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 29-0 (3.3)  crr=8.29  ps=29(21)  recent=6 0 0
+  CB BAT: Travis Head* 9(13), Abhishek Sharma 18(8)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: OVERS: ui=3.2 cb=3.3 | BAT_head: ui=9(12) cb=9(13) | BAT_sharma: ui=18(10) cb=18(8) | BOWLER: ui=Anshul Kamboj cb=Matthew Short
+
+[19:43:53  iter#13]
+  UI: Sunrisers Hyderabad 29-0 (3.3)  str=Abhishek Sharma nstr=Travis Head  bowl=Anshul Kamboj 0-6 (0.3)
+  this_over=['6', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=full_toss line=on_stumps shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 29-0 (3.3)  crr=8.29  ps=29(21)  recent=6 0 0
+  CB BAT: Travis Head* 9(13), Abhishek Sharma 18(8)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: STRIKER: ui=Abhishek Sharma cb=Travis Head | BAT_head: ui=18(13) cb=9(13) | BAT_sharma: ui=18(13) cb=18(8) | BOWLER: ui=Anshul Kamboj cb=Matthew Short
+
+[19:44:15  iter#14]
+  UI: Sunrisers Hyderabad 29-0 (3.3)  str=Abhishek Sharma nstr=Travis Head  bowl=Anshul Kamboj 0-6 (0.3)
+  this_over=['6', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=full_toss line=on_stumps shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 30-0 (3.4)  crr=8.18  ps=30(22)  recent=6 0 0 1
+  CB BAT: Abhishek Sharma* 18(8), Travis Head 10(14)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: SCORE: ui=29 cb=30 | OVERS: ui=3.3 cb=3.4 | BAT_sharma: ui=18(13) cb=18(8) | BAT_head: ui=9(13) cb=10(14) | BOWLER: ui=Anshul Kamboj cb=Matthew Short
+
+[19:44:38  iter#15]
+  UI:  None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 30-0 (3.4)  crr=8.18  ps=30(22)  recent=6 0 0 1
+  CB BAT: Abhishek Sharma* 18(8), Travis Head 10(14)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'head'} (ui=set(), cb={'sharma', 'head'}) | BOWLER: ui=None cb=Matthew Short
+
+[19:45:01  iter#16]
+  UI: Sunrisers Hyderabad 30-0 (3.4)  str=Abhishek Sharma nstr=Travis Head  bowl=Anshul Kamboj 0-7 (0.4)
+  this_over=['?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 34-0 (3.5)  crr=8.87  ps=34(23)  recent=6 0 0 1 4
+  CB BAT: Abhishek Sharma* 22(9), Travis Head 10(14)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: SCORE: ui=30 cb=34 | OVERS: ui=3.4 cb=3.5 | BAT_sharma: ui=18(8) cb=22(9) | BOWLER: ui=Anshul Kamboj cb=Matthew Short
+
+[19:45:22  iter#17]
+  UI: Sunrisers Hyderabad 34-0 (3.5)  str=Abhishek Sharma nstr=Travis Head  bowl=Anshul Kamboj 0-11 (0.5)
+  this_over=['?', '?', '?', '?', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=full_toss line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 34-0 (3.5)  crr=8.87  ps=34(23)  recent=6 0 0 1 4
+  CB BAT: Abhishek Sharma* 22(9), Travis Head 10(14)
+  CB BOWL: Matthew Short 0-13 (2)
+  ⚠ DIVERGENCE: BAT_sharma: ui=18(14) cb=22(9) | BAT_head: ui=22(14) cb=10(14) | BOWLER: ui=Anshul Kamboj cb=Matthew Short
+
+[19:45:48  iter#18]
+  WS ERR: ''
+  CB: SRH 38-0 (4)  crr=9.5  ps=38(24)  recent=6 0 0 1 4 4
+  CB BAT: Travis Head* 10(14), Abhishek Sharma 26(10)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'head'} (ui=set(), cb={'sharma', 'head'}) | BOWLER: ui=None cb=Anshul Kamboj
+
+[19:46:12  iter#19]
+  WS ERR: ''
+  CB: SRH 38-0 (4)  crr=9.5  ps=38(24)  recent=6 0 0 1 4 4
+  CB BAT: Travis Head* 10(14), Abhishek Sharma 26(10)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'head'} (ui=set(), cb={'sharma', 'head'}) | BOWLER: ui=None cb=Anshul Kamboj
+
+[19:46:34  iter#20]
+  UI: SRH 39-0 (4.1)  str=Travis Head nstr=SHARMA  bowl=None None-None (None)
+  this_over=['1']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 39-0 (4.1)  crr=9.36  ps=39(25)  recent=1
+  CB BAT: Abhishek Sharma* 26(10), Travis Head 11(15)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: STRIKER: ui=Travis Head cb=Abhishek Sharma | BOWLER: ui=None cb=Anshul Kamboj
+
+[19:46:55  iter#21]
+  UI: Sunrisers Hyderabad 39-0 (4.1)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-14 (2.1)
+  this_over=['1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 43-0 (4.2)  crr=9.92  ps=43(26)  recent=1 4
+  CB BAT: Abhishek Sharma* 30(11), Travis Head 11(15)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: SCORE: ui=39 cb=43 | OVERS: ui=4.1 cb=4.2 | BAT_sharma: ui=26(14) cb=30(11) | BOWLER: ui=Matthew Short cb=Anshul Kamboj
+
+[19:47:17  iter#22]
+  UI: Sunrisers Hyderabad 43-0 (4.2)  str=Travis Head nstr=Abhishek Sharma  bowl=Matthew Short 0-13 (2.1)
+  this_over=['1', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 43-0 (4.2)  crr=9.92  ps=43(26)  recent=1 4
+  CB BAT: Abhishek Sharma* 30(11), Travis Head 11(15)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: STRIKER: ui=Travis Head cb=Abhishek Sharma | BAT_sharma: ui=30(14) cb=30(11) | BAT_head: ui=24(16) cb=11(15) | BOWLER: ui=Matthew Short cb=Anshul Kamboj
+
+[19:47:38  iter#23]
+  UI: Sunrisers Hyderabad 43-0 (4.2)  str=Travis Head nstr=Abhishek Sharma  bowl=Matthew Short 0-13 (2.1)
+  this_over=['1', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 47-0 (4.3)  crr=10.44  ps=47(27)  recent=1 4 4
+  CB BAT: Abhishek Sharma* 34(12), Travis Head 11(15)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: SCORE: ui=43 cb=47 | OVERS: ui=4.2 cb=4.3 | STRIKER: ui=Travis Head cb=Abhishek Sharma | BAT_sharma: ui=30(14) cb=34(12) | BAT_head: ui=30(15) cb=11(15) | BOWLER: ui=Matthew Short cb=Anshul Kamboj
+
+[19:48:01  iter#24]
+  UI: Sunrisers Hyderabad 47-0 (4.3)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-13 (2.1)
+  this_over=['1', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 47-0 (4.3)  crr=10.44  ps=47(27)  recent=1 4 4
+  CB BAT: Abhishek Sharma* 34(12), Travis Head 11(15)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: BAT_sharma: ui=34(14) cb=34(12) | BAT_head: ui=30(15) cb=11(15) | BOWLER: ui=Matthew Short cb=Anshul Kamboj
+
+[19:48:25  iter#25]
+  UI: SRH 51-0 (4.4)  str=Travis Head nstr=SHARMA  bowl=None None-None (None)
+  this_over=['1', '4', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 51-0 (4.4)  crr=10.93  ps=51(28)  recent=1 4 4 4
+  CB BAT: Abhishek Sharma* 38(13), Travis Head 11(15)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: STRIKER: ui=Travis Head cb=Abhishek Sharma | BOWLER: ui=None cb=Anshul Kamboj
+
+[19:48:48  iter#26]
+  UI: Sunrisers Hyderabad 51-0 (4.4)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-13 (2.4)
+  this_over=['1', '4', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=unknown [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 57-0 (4.5)  crr=11.79  ps=57(29)  recent=1 4 4 4 6
+  CB BAT: Abhishek Sharma* 44(14), Travis Head 11(15)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: SCORE: ui=51 cb=57 | OVERS: ui=4.4 cb=4.5 | BAT_sharma: ui=38(13) cb=44(14) | BOWLER: ui=Matthew Short cb=Anshul Kamboj
+
+[19:49:10  iter#27]
+  UI: Sunrisers Hyderabad 51-0 (4.4)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-13 (2.4)
+  this_over=['1', '4', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=unknown [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 57-0 (4.5)  crr=11.79  ps=57(29)  recent=1 4 4 4 6
+  CB BAT: Abhishek Sharma* 44(14), Travis Head 11(15)
+  CB BOWL: Anshul Kamboj 0-15 (1)
+  ⚠ DIVERGENCE: SCORE: ui=51 cb=57 | OVERS: ui=4.4 cb=4.5 | BAT_sharma: ui=38(13) cb=44(14) | BOWLER: ui=Matthew Short cb=Anshul Kamboj
+
+[19:49:33  iter#28]
+  UI: Sunrisers Hyderabad 63-0 (5.0)  str=Travis Head nstr=Abhishek Sharma  bowl=Matthew Short 0-13 (3.0)
+  this_over=['1', '4', '4', '4', '6', '6']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 63-0 (5)  crr=12.6  ps=63(30)  recent=1 4 4 4 6 6
+  CB BAT: Travis Head* 11(15), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: OVERS: ui=5.0 cb=5 | BOWL_R: ui=13 cb=38 | BOWL_O: ui=3.0 cb=3
+
+[19:49:54  iter#29]
+  UI: Sunrisers Hyderabad 63-0 (5.0)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-13 (3)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 63-0 (5)  crr=12.6  ps=63(30)  recent=1 4 4 4 6 6
+  CB BAT: Travis Head* 11(15), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: OVERS: ui=5.0 cb=5 | STRIKER: ui=Abhishek Sharma cb=Travis Head | BOWL_R: ui=13 cb=38
+
+[19:50:15  iter#30]
+  UI: Sunrisers Hyderabad 63-0 (5.0)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-13 (3)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 63-0 (5)  crr=12.6  ps=63(30)  recent=1 4 4 4 6 6
+  CB BAT: Travis Head* 11(15), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: OVERS: ui=5.0 cb=5 | STRIKER: ui=Abhishek Sharma cb=Travis Head | BOWL_R: ui=13 cb=38
+
+[19:50:38  iter#31]
+  UI: Sunrisers Hyderabad 63-0 (5.0)  str=Abhishek Sharma nstr=Travis Head  bowl=Matthew Short 0-13 (3)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 67-0 (5.1)  crr=12.97  ps=67(31)  recent=4
+  CB BAT: Travis Head* 15(16), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: SCORE: ui=63 cb=67 | OVERS: ui=5.0 cb=5.1 | STRIKER: ui=Abhishek Sharma cb=Travis Head | BAT_head: ui=11(15) cb=15(16) | BOWL_R: ui=13 cb=38
+
+[19:51:03  iter#32]
+  WS ERR: ''
+  CB: SRH 67-0 (5.1)  crr=12.97  ps=67(31)  recent=4
+  CB BAT: Travis Head* 15(16), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'head'} (ui=set(), cb={'sharma', 'head'}) | BOWLER: ui=None cb=Matthew Short
+
+[19:51:26  iter#33]
+  UI: Sunrisers Hyderabad 67-0 (5.1)  str=Travis Head nstr=Abhishek Sharma  bowl=Mukesh Choudhary 0-13 (1.1)
+  this_over=['.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 67-0 (5.1)  crr=12.97  ps=67(31)  recent=4
+  CB BAT: Travis Head* 15(16), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:51:47  iter#34]
+  UI: Sunrisers Hyderabad 67-0 (5.1)  str=Abhishek Sharma nstr=Travis Head  bowl=Mukesh Choudhary 0-13 (1.1)
+  this_over=['.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 67-0 (5.2)  crr=12.56  ps=67(32)  recent=4 0
+  CB BAT: Travis Head* 15(17), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: OVERS: ui=5.1 cb=5.2 | STRIKER: ui=Abhishek Sharma cb=Travis Head | BAT_head: ui=15(16) cb=15(17) | BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:52:11  iter#35]
+  UI: Sunrisers Hyderabad 67-0 (5.2)  str=Travis Head nstr=Abhishek Sharma  bowl=Mukesh Choudhary 0-13 (1.2)
+  this_over=['.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 67-0 (5.2)  crr=12.56  ps=67(32)  recent=4 0
+  CB BAT: Travis Head* 15(17), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:52:32  iter#36]
+  UI: Sunrisers Hyderabad 67-0 (5.2)  str=Abhishek Sharma nstr=Travis Head  bowl=Mukesh Choudhary 0-13 (1.2)
+  this_over=['.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 71-0 (5.3)  crr=12.91  ps=71(33)  recent=4 0 4
+  CB BAT: Travis Head* 19(18), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: SCORE: ui=67 cb=71 | OVERS: ui=5.2 cb=5.3 | STRIKER: ui=Abhishek Sharma cb=Travis Head | BAT_head: ui=15(17) cb=19(18) | BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:52:55  iter#37]
+  UI: Sunrisers Hyderabad 71-0 (5.3)  str=Travis Head nstr=Abhishek Sharma  bowl=Mukesh Choudhary 0-13 (1.2)
+  this_over=['.', '.', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=unknown [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-0 (5.4)  crr=13.24  ps=75(34)  recent=4 0 4 4
+  CB BAT: Travis Head* 23(19), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: SCORE: ui=71 cb=75 | OVERS: ui=5.3 cb=5.4 | BAT_head: ui=19(18) cb=23(19) | BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:53:19  iter#38]
+  UI: Sunrisers Hyderabad 75-0 (5.4)  str=Travis Head nstr=Abhishek Sharma  bowl=Mukesh Choudhary 0-17 (1.3)
+  this_over=['.', '.', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-0 (5.4)  crr=13.24  ps=75(34)  recent=4 0 4 4
+  CB BAT: Travis Head* 23(19), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:53:40  iter#39]
+  UI: Sunrisers Hyderabad 75-0 (5.4)  str=Travis Head nstr=Abhishek Sharma  bowl=Mukesh Choudhary 0-17 (1.3)
+  this_over=['.', '.', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-0 (5.4)  crr=13.24  ps=75(34)  recent=4 0 4 4
+  CB BAT: Travis Head* 23(19), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  ⚠ DIVERGENCE: BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:54:04  iter#40]
+  WS ERR: ''
+  CB: SRH 75-1 (5.5)  crr=12.86  ps=75(35)  recent=4 0 4 4 W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Matthew Short 0-38 (3)
+  LAST WKT: Travis Head  c Ruturaj Gaikwad b Mukesh Choudhary 23(20)  - 75/1 in 5.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'short', 'sharma'} (ui=set(), cb={'short', 'sharma'}) | BOWLER: ui=None cb=Matthew Short
+
+[19:54:26  iter#41]
+  UI: Sunrisers Hyderabad 75-0 (5.4)  str=Travis Head nstr=Abhishek Sharma  bowl=Mukesh Choudhary 0-21 (1.4)
+  this_over=['.', '.', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-1 (5.5)  crr=12.86  ps=75(35)  recent=4 0 4 4 W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Matthew Short 0-38 (3)
+  LAST WKT: Travis Head  c Ruturaj Gaikwad b Mukesh Choudhary 23(20)  - 75/1 in 5.5 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=0 cb=1 | OVERS: ui=5.4 cb=5.5 | STRIKER: ui=Travis Head cb=Abhishek Sharma | BATTERS_MISSING_IN_UI: {'short'} (ui={'sharma', 'head'}, cb={'short', 'sharma'}) | BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:54:46  iter#42]
+  UI: Sunrisers Hyderabad 75-1 (5.5)  str=Travis Head nstr=Abhishek Sharma  bowl=Mukesh Choudhary 0-21 (1.4)
+  this_over=['.', '.', '4', '4', 'W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-1 (5.5)  crr=12.86  ps=75(35)  recent=4 0 4 4 W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Matthew Short 0-38 (3)
+  LAST WKT: Travis Head  c Ruturaj Gaikwad b Mukesh Choudhary 23(20)  - 75/1 in 5.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Travis Head cb=Abhishek Sharma | BATTERS_MISSING_IN_UI: {'short'} (ui={'sharma', 'head'}, cb={'short', 'sharma'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:55:07  iter#43]
+  UI: Sunrisers Hyderabad 75-1 (5.5)  str=Travis Head nstr=Abhishek Sharma  bowl=Mukesh Choudhary 0-21 (1.4)
+  this_over=['.', '.', '4', '4', 'W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-1 (5.5)  crr=12.86  ps=0(0)  recent=... 4
+  CB BAT: Ishan Kishan* 0(0), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  LAST WKT: Travis Head  c Ruturaj Gaikwad b Mukesh Choudhary 23(20)  - 75/1 in 5.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Travis Head cb=Ishan Kishan | BATTERS_MISSING_IN_UI: {'kishan'} (ui={'sharma', 'head'}, cb={'sharma', 'kishan'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:55:27  iter#44]
+  UI: Sunrisers Hyderabad 75-1 (5.5)  str=Travis Head nstr=Abhishek Sharma  bowl=Mukesh Choudhary 0-21 (2.0)
+  this_over=['.', '.', '4', '4', 'W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-1 (5.5)  crr=12.86  ps=0(0)  recent=... 4
+  CB BAT: Ishan Kishan* 0(0), Abhishek Sharma 50(15)
+  CB BOWL: Matthew Short 0-38 (3)
+  LAST WKT: Travis Head  c Ruturaj Gaikwad b Mukesh Choudhary 23(20)  - 75/1 in 5.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Travis Head cb=Ishan Kishan | BATTERS_MISSING_IN_UI: {'kishan'} (ui={'sharma', 'head'}, cb={'sharma', 'kishan'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mukesh Choudhary cb=Matthew Short
+
+[19:55:47  iter#45]
+  UI: Sunrisers Hyderabad 75-1 (5.5)  str=Ishan Kishan nstr=Travis Head  bowl=Mukesh Choudhary 0-21 (2)
+  this_over=['.', '.', '4', '4', 'W']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Abhishek Sharma', 'score': 75, 'overs': '5.5'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-2 (6)  crr=12.5  ps=0(1)  recent=4 0 4 4 W W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Mukesh Choudhary 2-21 (2)
+  LAST WKT: Ishan Kishan  c Ruturaj Gaikwad b Mukesh Choudhary 0(1)  - 75/2 in 5.6 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=2 | OVERS: ui=5.5 cb=6 | STRIKER: ui=Ishan Kishan cb=Abhishek Sharma | BATTERS_MISSING_IN_UI: {'short', 'sharma'} (ui={'kishan', 'head'}, cb={'short', 'sharma'}) | BOWL_W: ui=0 cb=2
+
+[19:56:10  iter#46]
+  UI: Sunrisers Hyderabad 75-2 (6.0)  str=Ishan Kishan nstr=Abhishek Sharma  bowl=Mukesh Choudhary 2-21 (2)
+  this_over=['.', '.', '4', '4', 'W', 'W', '4']  fow=2 (unk=0)  last_fow={'wicket': 2, 'batter': 'Ishan Kishan', 'score': 75, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-2 (6)  crr=12.5  ps=0(1)  recent=4 0 4 4 W W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Mukesh Choudhary 2-21 (2)
+  LAST WKT: Ishan Kishan  c Ruturaj Gaikwad b Mukesh Choudhary 0(1)  - 75/2 in 5.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=6.0 cb=6 | STRIKER: ui=Ishan Kishan cb=Abhishek Sharma | BATTERS_MISSING_IN_UI: {'short'} (ui={'kishan', 'sharma'}, cb={'short', 'sharma'})
+
+[19:56:33  iter#47]
+  UI: Sunrisers Hyderabad 75-2 (6.0)  str=Ishan Kishan nstr=Abhishek Sharma  bowl=Mukesh Choudhary 2-21 (2)
+  this_over=[]  fow=2 (unk=0)  last_fow={'wicket': 2, 'batter': 'Ishan Kishan', 'score': 75, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-2 (6)  crr=12.5  ps=0(1)  recent=4 0 4 4 W W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Mukesh Choudhary 2-21 (2)
+  LAST WKT: Ishan Kishan  c Ruturaj Gaikwad b Mukesh Choudhary 0(1)  - 75/2 in 5.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=6.0 cb=6 | STRIKER: ui=Ishan Kishan cb=Abhishek Sharma | BATTERS_MISSING_IN_UI: {'short'} (ui={'kishan', 'sharma'}, cb={'short', 'sharma'})
+
+[19:56:54  iter#48]
+  UI: Sunrisers Hyderabad 75-2 (6.0)  str=Ishan Kishan nstr=Abhishek Sharma  bowl=Mukesh Choudhary 2-21 (2)
+  this_over=[]  fow=2 (unk=0)  last_fow={'wicket': 2, 'batter': 'Ishan Kishan', 'score': 75, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-2 (6)  crr=12.5  ps=0(1)  recent=4 0 4 4 W W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Mukesh Choudhary 2-21 (2)
+  LAST WKT: Ishan Kishan  c Ruturaj Gaikwad b Mukesh Choudhary 0(1)  - 75/2 in 5.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=6.0 cb=6 | STRIKER: ui=Ishan Kishan cb=Abhishek Sharma | BATTERS_MISSING_IN_UI: {'short'} (ui={'kishan', 'sharma'}, cb={'short', 'sharma'})
+
+[19:57:15  iter#49]
+  UI: Sunrisers Hyderabad 75-2 (6.0)  str=Ishan Kishan nstr=Abhishek Sharma  bowl=Mukesh Choudhary 2-21 (2)
+  this_over=[]  fow=2 (unk=0)  last_fow={'wicket': 2, 'batter': 'Ishan Kishan', 'score': 75, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-2 (6)  crr=12.5  ps=0(1)  recent=4 0 4 4 W W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Mukesh Choudhary 2-21 (2)
+  LAST WKT: Ishan Kishan  c Ruturaj Gaikwad b Mukesh Choudhary 0(1)  - 75/2 in 5.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=6.0 cb=6 | STRIKER: ui=Ishan Kishan cb=Abhishek Sharma | BATTERS_MISSING_IN_UI: {'short'} (ui={'kishan', 'sharma'}, cb={'short', 'sharma'})
+
+[19:57:38  iter#50]
+  UI: Sunrisers Hyderabad 75-2 (6.0)  str=Ishan Kishan nstr=Abhishek Sharma  bowl=Mukesh Choudhary 2-21 (2)
+  this_over=[]  fow=2 (unk=0)  last_fow={'wicket': 2, 'batter': 'Ishan Kishan', 'score': 75, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-2 (6)  crr=12.5  ps=0(1)  recent=4 0 4 4 W W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Mukesh Choudhary 2-21 (2)
+  LAST WKT: Ishan Kishan  c Ruturaj Gaikwad b Mukesh Choudhary 0(1)  - 75/2 in 5.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=6.0 cb=6 | STRIKER: ui=Ishan Kishan cb=Abhishek Sharma | BATTERS_MISSING_IN_UI: {'short'} (ui={'kishan', 'sharma'}, cb={'short', 'sharma'})
+
+[19:58:00  iter#51]
+  UI: Sunrisers Hyderabad 75-2 (6.0)  str=Ishan Kishan nstr=Abhishek Sharma  bowl=Mukesh Choudhary 2-21 (2)
+  this_over=[]  fow=2 (unk=0)  last_fow={'wicket': 2, 'batter': 'Ishan Kishan', 'score': 75, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 75-2 (6)  crr=12.5  ps=0(1)  recent=4 0 4 4 W W
+  CB BAT: Abhishek Sharma* 50(15), Matthew Short 3(0)
+  CB BOWL: Mukesh Choudhary 2-21 (2)
+  LAST WKT: Ishan Kishan  c Ruturaj Gaikwad b Mukesh Choudhary 0(1)  - 75/2 in 5.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=6.0 cb=6 | STRIKER: ui=Ishan Kishan cb=Abhishek Sharma | BATTERS_MISSING_IN_UI: {'short'} (ui={'kishan', 'sharma'}, cb={'short', 'sharma'})

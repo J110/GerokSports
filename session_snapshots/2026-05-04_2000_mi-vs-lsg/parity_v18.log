@@ -1,0 +1,62 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151807/rcb-vs-dc-26th-match-indian-premier-league-2026
+
+[19:14:53  iter#1]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: RCB 175-8 (20)  crr=8.11  ps=8(10)  recent=1 1 1
+  CB BAT: Tristan Stubbs* 42(39), David Miller 4(4)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:15:17  iter#2]
+  UI: Delhi Capitals None-6 (17.3)  str=Tristan Stubbs nstr=David Miller  bowl=Bhuvneshwar Kumar 3-17 (3.3)
+  this_over=['?', '?', '?']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.38  ps=14(11)  recent=1 1 1 6
+  CB BAT: Tristan Stubbs* 48(40), David Miller 4(4)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=8 | OVERS: ui=17.3 cb=20 | BAT_stubbs: ui=None(None) cb=48(40) | BAT_miller: ui=None(None) cb=4(4) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:15:38  iter#3]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: RCB 175-8 (20)  crr=8.38  ps=14(11)  recent=1 1 1 6
+  CB BAT: Tristan Stubbs* 48(40), David Miller 4(4)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:15:59  iter#4]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: RCB 175-8 (20)  crr=8.41  ps=16(12)  recent=1 1 1 6 2
+  CB BAT: Tristan Stubbs* 50(41), David Miller 4(4)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:16:19  iter#5]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: RCB 175-8 (20)  crr=8.41  ps=16(12)  recent=1 1 1 6 2
+  CB BAT: Tristan Stubbs* 50(41), David Miller 4(4)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:16:39  iter#6]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: RCB 175-8 (20)  crr=8.41  ps=16(12)  recent=1 1 1 6 2
+  CB BAT: Tristan Stubbs* 50(41), David Miller 4(4)
+  CB BOWL: Josh Hazlewood 0-38 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:17:00  iter#7]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: RCB 175-8 (20)  crr=8.39  ps=17(13)  recent=1 1 1 6 2 1
+  CB BAT: Tristan Stubbs* 51(42), David Miller 4(4)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar

@@ -1,0 +1,54 @@
+{
+  "agent": {
+    "default_profile": "minimal",
+    "always_allow_tool_actions": false,
+    "preferred_completion_mode": "normal",
+    "play_sound_when_agent_done": false
+  },
+  "edit_predictions": {
+    "mode": "subtle",
+    "disabled_globs": [
+      "**/*.md",
+      "**/*.json",
+      "**/*.yaml",
+      "**/*.yml",
+      "**/*.toml",
+      "**/*.lock",
+      "**/*.txt",
+      "**/package-lock.json",
+      "**/pnpm-lock.yaml",
+      "**/yarn.lock"
+    ]
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/.next",
+    "**/.turbo",
+    "**/target",
+    "**/.cache",
+    "**/coverage",
+    "**/__pycache__",
+    "**/.venv",
+    "**/.pytest_cache",
+    "**/.mypy_cache",
+    "**/.ruff_cache",
+    "**/public/audio",
+    "**/public/renders",
+    "**/public/generated",
+    "**/output/audio",
+    "**/output/music",
+    "**/*.lock",
+    "**/package-lock.json",
+    "**/pnpm-lock.yaml",
+    "**/yarn.lock",
+    "**/Cargo.lock"
+  ]
+}

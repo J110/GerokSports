@@ -1,0 +1,1094 @@
+WARNING ⚠️ torchvision==0.26 is incompatible with torch==2.10.
+Run 'pip install torchvision==0.25' to fix torchvision or 'pip install -U torch torchvision' to update both.
+For a full compatibility table see https://github.com/pytorch/vision#installation
+[37m[21:18:45 F0 TEST] INFO: [WS] Server started on ws://0.0.0.0:8765[0m
+[37m[21:18:45 F0 TEST] INFO: [WS] Commentary server on ws://0.0.0.0:8766[0m
+[37m[21:18:45 F0 TEST] INFO: ============================================================[0m
+[37m[21:18:45 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[21:18:45 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/151924/lsg-vs-kkr-38th-match-indian-premier-league-2026[0m
+[37m[21:18:45 F0 SQUAD] INFO:   Lucknow Super Giants: 11 XI + 14 bench[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Aiden Markram — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Mitchell Marsh — bat_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Rishabh Pant (C,WK) — wk_batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Nicholas Pooran (WK) — wk_batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Ayush Badoni — bat_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Mukul Choudhary (WK) — wk_batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     George Linde — bat_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Mohammed Shami — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Prince Yadav — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Digvesh Singh Rathi — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Mohsin Khan — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Himmat Singh — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Akshat Raghuwanshi — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Abdul Samad — bat_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Avesh Khan — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Manimaran Siddharth — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Matthew Breetzke — wk_batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Josh Inglis — wk_batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Anrich Nortje — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Arjun Tendulkar — bowl_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Shahbaz Ahmed — bowl_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Akash Maharaj Singh — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Arshin Kulkarni — bat_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Naman Tiwari — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Mayank Yadav — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:   Kolkata Knight Riders: 11 XI + 14 bench[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Ajinkya Rahane (C) — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Tim Seifert (WK) — wk_batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Cameron Green — bat_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Angkrish Raghuvanshi — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Rovman Powell — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Rinku Singh — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Sunil Narine — bowl_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Ramandeep Singh — bat_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Anukul Roy — bat_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Vaibhav Arora — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     Kartik Tyagi — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Manish Pandey — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Finn Allen — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Tejasvi Dahiya — wk_batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Navdeep Saini — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Varun Chakaravarthy — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Rahul Tripathi — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Sarthak Ranjan — batter[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Rachin Ravindra — bat_allrounder[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Prashant Solanki — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Blessing Muzarabani — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Saurabh Dubey — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Matheesha Pathirana — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Umran Malik — bowler[0m
+[37m[21:18:45 F0 SQUAD] INFO:     [bench] Daksh Kamra — bowl_allrounder[0m
+[37m[21:18:45 F0 TEST] INFO: Teams: ['Lucknow Super Giants', 'Kolkata Knight Riders'][0m
+[37m[21:18:45 F0 ENRICH] INFO: Loaded cached styles from player_styles_242f360951fc.json (50 players)[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache] Lucknow Super Giants — styles:[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Aiden Markram            RHB  | Right-arm off spin[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Mitchell Marsh           RHB  | Right-arm medium[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Rishabh Pant             LHB  | None[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Nicholas Pooran          LHB  | None[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Ayush Badoni             LHB  | Right-arm medium[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Mukul Choudhary          RHB  | None[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   George Linde             LHB  | Slow left-arm orthodox[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Mohammed Shami           RHB  | Right-arm fast[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Prince Yadav             RHB  | Right-arm medium-fast[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Digvesh Singh Rathi      unknown | unknown[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Mohsin Khan              RHB  | Left-arm fast[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache] Kolkata Knight Riders — styles:[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Ajinkya Rahane           RHB  | Right-arm medium[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Tim Seifert              RHB  | None[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Cameron Green            RHB  | Right-arm fast-medium[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Angkrish Raghuvanshi     LHB  | Right-arm off spin[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Rovman Powell            RHB  | Right-arm medium-fast[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Rinku Singh              LHB  | None[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Sunil Narine             LHB  | Right-arm off spin[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Ramandeep Singh          RHB  | Right-arm medium[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Anukul Roy               LHB  | Slow left-arm orthodox[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Vaibhav Arora            RHB  | Right-arm fast-medium[0m
+[37m[21:18:45 F0 ENRICH] INFO: [cache]   Kartik Tyagi             RHB  | Right-arm fast[0m
+[37m[21:18:45 F0 TEST] INFO: Team variants: ['GIA', 'GIANTS', 'KKR', 'KNI', 'KNIGHT', 'KO', 'KOL', 'KOLKATA', 'KOLKATA KNIGHT RIDERS', 'LKN', 'LSG', 'LU', 'LUC', 'LUCKNOW', 'LUCKNOW SUPER GIANTS', 'RID', 'RIDERS', 'SUP', 'SUPER'][0m
+[37m[21:18:45 F0 TEST] INFO: Found Firefox window (on-screen): id=955 1018.0x811.0 "LSG vs KKR Live video streaming | TATA IPL 2026"[0m
+[37m[21:18:45 F0 TEST] INFO: [BALL ANALYZER] Background capture started[0m
+[37m[21:18:45 F0 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[21:18:46 F0 FIELD] INFO: Pitch detected from green mask at (0.39, 0.41) (fallback — will recalibrate from people)[0m
+[37m[21:18:46 F0 TEST] INFO: [CLEANUP] Archived 40 frames to debug_frames_archive/2026-04-26_211846 (was 40 in debug_frames)[0m
+[37m[21:18:46 F0 TEST] INFO: [CLEANUP] Removed old archive: debug_frames_archive/2026-04-24_pre-launch[0m
+[37m[21:18:46 F0 TEST] INFO: [CACHE] Cached state found — DISCARDING all scorecard/team data (Rule 1: always cold-start). Toss data is preserved if present.[0m
+[37m[21:18:46 F0 TEST] INFO: ============================================================[0m
+[37m[21:18:46 F0 TEST] INFO: [CONFIG] Vision:    Scout 17B (single call tag+read)[0m
+[37m[21:18:46 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[21:18:46 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[21:18:46 F0 TEST] INFO: PIPELINE STARTED — 18000s — NO TEAM ASSUMPTION[0m
+[37m[21:18:46 F0 TEST] INFO: ============================================================[0m
+[37m[21:18:47 F1 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[21:18:47 F1 VISION] INFO: [SCOUT] SCOREBOARD 791ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 305 chars[0m
+[37m[21:18:47 F1 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: KKR  |  |  |  
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: [0m
+[37m[21:18:47 F1 TEST] INFO: 
+=======================================================[0m
+[37m[21:18:47 F1 TEST] INFO: [F1] SCOREBOARD — #1[0m
+[37m[21:18:47 F1 TEST] INFO:   [V 795ms] STRIP: KKR  |  |  |  
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The bowler is in the delivery stride, and the batter is at the far crease.[0m
+[37m[21:18:48 F1 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:18:48 F1 TEST] INFO:   [TEAM] Detected from visible_team: Kolkata Knight Riders → Kolkata Knight Riders batting[0m
+[37m[21:18:48 F1 BOARD] INFO: Scorecards built: Kolkata Knight Riders (25 bat) vs Lucknow Super Giants (25 bowl)[0m
+[37m[21:18:48 F1 TEST] INFO: === TEAMS SET: Kolkata Knight Riders batting (inn 1) vs Lucknow Super Giants bowling ===[0m
+[37m[21:18:48 F1 TEST] INFO:   [E 1005ms] visible_team=Kolkata Knight Riders score=None-None (None) target=None rr=None[0m
+[37m[21:18:49 F1 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:18:49 F1 TEST] INFO:   [S] Hint: Current batters: Rahane and Seifert. Bowler: Shami. Read their stats from the scoreboard.[0m
+[37m[21:18:49 F1 TEST] INFO:   No players from our match recognized — skipping score[0m
+[37m[21:18:49 F1 TEST] INFO:   [S 755ms] Changes: none[0m
+[37m[21:18:49 F1 TEST] INFO:   Total: 2555ms (V:795 E:1005 S:755)[0m
+[37m[21:18:49 F1 TEST] INFO:   STATE: Kolkata Knight Riders None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[FIELD WARN] Powerplay but 6 outside circle (max 2). Possible misclassification.
+[37m[21:18:49 F1 TEST] INFO: DETAIL|F1|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR  |  |  |    INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:   The bowler is in the delivery stride, |action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=7|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=795|lat_extract=1005|lat_scorer=755|lat_field=45|lat_comm=0|lat_code=0|lat_total=2563|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:18:49 F1 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:18:49 F1 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:18:50 F2 VISION] INFO: [SCOUT] SCOREBOARD 707ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=True 257 chars[0m
+[37m[21:18:50 F2 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:18:50 F2 TEST] INFO: 
+=======================================================[0m
+[37m[21:18:50 F2 TEST] INFO: [F2] SCOREBOARD — #2[0m
+[37m[21:18:50 F2 TEST] INFO:   [V 710ms] STRIP: KKR 50-0 (5.5) | Rahane 35(21) | Seifert 13(7) | Shami 0-6 (1.5)[0m
+[37m[21:18:52 F2 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:18:52 F2 TEST] INFO:   [E 1049ms] visible_team=Kolkata Knight Riders score=50-0 (5.5) target=None rr=None[0m
+[37m[21:18:52 F2 TEST] INFO:     BAT: Rahane 35(21) [0m
+[37m[21:18:52 F2 TEST] INFO:     BAT: Seifert 13(7) [0m
+[37m[21:18:52 F2 TEST] INFO:     BOWL: Shami 0-6 (1.5)[0m
+[37m[21:18:52 F2 BOARD] INFO: [BOWLER SEED] Mohammed Shami figures seeded from scout text to 0-6 (1.5) — mid-spell entry (impact sub / mid-match join)[0m
+[37m[21:18:52 F2 BOARD] INFO: Batter activated: Ajinkya Rahane[0m
+[37m[21:18:52 F2 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6822 (run_test): non_striker None->Ajinkya Rahane[0m
+[37m[21:18:52 F2 BOARD] INFO: Batter activated: Tim Seifert[0m
+[37m[21:18:52 F2 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6822 (run_test): non_striker Ajinkya Rahane->Tim Seifert[0m
+[37m[21:18:52 F2 TEST] INFO:   [DIRECT] Batter updates: ['Rahane: ext=35(21) → tracker=0(0) [was None(None)]', 'Seifert: ext=13(7) → tracker=0(0) [was None(None)]'][0m
+[37m[21:18:52 F2 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:18:52 F2 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:18:52 F2 TEST] INFO:   [S] Hint: Current batters: RAHANE and SEIFERT. Bowler: SHAMI. Read their stats from the scoreboard.[0m
+[37m[21:18:52 F2 TRACK] INFO: overs: initial proposed 5.5 (2/3 — waiting)[0m
+[37m[21:18:52 F2 TRACK] INFO: wickets: initial proposed 0 (2/3 — waiting)[0m
+[37m[21:18:52 F2 TEST] INFO:   [FLOW] Extractor batters not in scorer: {'SEIFERT', 'RAHANE'}[0m
+[37m[21:18:52 F2 TRACK] INFO: bat:Ajinkya Rahane:runs: initial proposed 35 (2/3 — waiting)[0m
+[37m[21:18:52 F2 TRACK] INFO: bat:Ajinkya Rahane:balls: initial proposed 21 (2/3 — waiting)[0m
+[37m[21:18:52 F2 TRACK] INFO: bat:Tim Seifert:runs: initial proposed 13 (2/3 — waiting)[0m
+[37m[21:18:52 F2 TRACK] INFO: bat:Tim Seifert:balls: initial proposed 7 (2/3 — waiting)[0m
+[37m[21:18:52 F2 TEST] INFO:   [S 866ms] Changes: ['bat:Ajinkya Rahane=35(21)', 'bat:Tim Seifert=13(7)', 'bowl:Mohammed Shami'][0m
+[37m[21:18:52 F2 TEST] INFO:   Total: 2625ms (V:710 E:1049 S:866)[0m
+[37m[21:18:52 F2 TEST] INFO:   STATE: Kolkata Knight Riders None-None (None) inn=1 RR=— | Bat: Ajinkya Rahane(0) Tim Seifert(0) | Bowl: Mohammed Shami 0-6[0m
+[37m[21:18:52 F2 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[33m[21:18:52 F2 TEST] WARN:   [WS-PROJECTION-GAP] striker=None (payload) sb._inn.striker=None sm.striker=None active_batting=['Ajinkya Rahane', 'Tim Seifert'][0m
+[37m[21:18:52 F2 TEST] INFO:   [ACTION] A delivery is being bowled.[0m
+[37m[21:18:52 F2 FIELD] INFO: [F2] OC-fine_leg moved to OC-deep_midwicket[0m
+[37m[21:18:52 F2 FIELD] INFO: [F2] OC-third_man_square moved to OC-third_man_fine[0m
+[37m[21:18:52 F2 FIELD] INFO: [F2] OC-third_man_fine moved to OC-deep_third_man[0m
+[37m[21:18:52 F2 TEST] INFO: DETAIL|F2|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 50-0 (5.5) | Rahane 35(21) | Seifert 13(7) | Shami 0-6 (1.5)|action=A delivery is being bowled.|ext_score=50-0(5.5)|ext_bat=Rahane 35(21) | Seifert 13(7)|ext_bowl=Shami 0-6 (1.5)|scorer_changes=['bat:Ajinkya Rahane=35(21)', 'bat:Tim Seifert=13(7)', 'bowl:Mohammed Shami']|yolo=7|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=Ajinkya Rahane 0(0)|AFTER_bat2=Tim Seifert 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=710|lat_extract=1049|lat_scorer=866|lat_field=104|lat_comm=0|lat_code=0|lat_total=2637|comm_bowler=Mohammed Shami|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:18:54 F3 TEST] INFO: [WS] client connected (4 total)[0m
+[33m[21:18:54 F3 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#1): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | RAHANE [RUNS]([BALLS]) | SEIFERT [RUNS]([BALLS]) | SHAMI [W]-[R] ([OVERS])\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe players are prepari'[0m
+[37m[21:18:54 F3 TEST] INFO: [F3] Vision timeout — skipping[0m
+[33m[21:18:55 F4 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#2): 'STRIP: LSG  | Rahane  [RUNS]([BALLS]) | Seifert [RUNS]([BALLS]) | Shami [W]-[R] ([OVERS])\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe bowler is in delivery stride, with the batter '[0m
+[37m[21:18:55 F4 TEST] INFO: [F4] Vision timeout — skipping[0m
+[37m[21:18:55 F5 VISION] INFO: [SCOUT] SCOREBOARD 625ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 302 chars[0m
+[37m[21:18:55 F5 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: LSG  | Rinku  |  
+INFO_PANEL: 
+SPEED: 
+EXTRA[0m
+[37m[21:18:55 F5 TEST] INFO: 
+=======================================================[0m
+[37m[21:18:55 F5 TEST] INFO: [F5] SCOREBOARD — #3[0m
+[37m[21:18:55 F5 TEST] INFO:   [V 629ms] STRIP: LSG  | Rinku  |  
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+The bowler is in delivery stride, and the batter is at the far crease.[0m
+[37m[21:18:56 F5 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:18:56 F5 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:18:56 F5 TEST] INFO:   [GUARD] Visible team 'Lucknow Super Giants' is bowling team — comparison strip, ALL data stripped (1/30)[0m
+[37m[21:18:56 F5 TEST] INFO:   [E 987ms] visible_team=Lucknow Super Giants score=None-None (None) target=None rr=None[0m
+[37m[21:18:57 F5 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:18:57 F5 TEST] INFO:   [S] Hint: Current batters: Ajinkya Rahane and Tim Seifert. Bowler: Mohammed Shami[0m
+[37m[21:18:57 F5 TEST] INFO:   [S 681ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[21:18:57 F5 TEST] INFO:   Total: 2296ms (V:629 E:987 S:681)[0m
+[37m[21:18:57 F5 TEST] INFO:   STATE: Kolkata Knight Riders None-None (None) inn=1 RR=— | Bat: Ajinkya Rahane(0) Tim Seifert(0) | Bowl: Mohammed Shami 0-6[0m
+[37m[21:18:57 F5 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:18:57 F5 FIELD] INFO: [F5] OC-deep_third_man moved to OC-deep_backward_point[0m
+[37m[21:18:57 F5 FIELD] INFO: [F5] deep fine leg — protecting against top edges[0m
+[37m[21:18:57 F5 TEST] INFO: DETAIL|F5|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG  | Rinku  |   INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:  The bowler is in delivery stride, and|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=6|BEFORE_score=None-None(None)|BEFORE_bat1=Ajinkya Rahane 0(0)|BEFORE_bat2=Tim Seifert 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=Ajinkya Rahane 0(0)|AFTER_bat2=Tim Seifert 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=629|lat_extract=987|lat_scorer=681|lat_field=49|lat_comm=0|lat_code=0|lat_total=2301|comm_bowler=Mohammed Shami|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:18:58 F6 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:18:58 F6 VISION] INFO: [SCOUT] SCOREBOARD 582ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 231 chars[0m
+[37m[21:18:58 F6 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: KKR 0-0 (0.0) | *Rinku 0(0) |  0(0) | 
+
+ACTI[0m
+[37m[21:18:58 F6 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:18:58 F6 TEST] INFO: 
+=======================================================[0m
+[37m[21:18:58 F6 TEST] INFO: [F6] SCOREBOARD — #4[0m
+[37m[21:18:58 F6 TEST] INFO:   [V 586ms] STRIP: KKR 0-0 (0.0) | *Rinku 0(0) |  0(0) |[0m
+[37m[21:18:59 F6 EXTRACT] INFO: Extracted in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:18:59 F6 TEST] INFO:   [E 730ms] visible_team=Kolkata Knight Riders score=0-0 (0.0) target=None rr=None[0m
+[37m[21:18:59 F6 TEST] INFO:     BAT: Rinku 0(0) [0m
+[33m[21:18:59 F6 BOARD] WARN: Deactivated Ajinkya Rahane (0(0) at 0 wkt — likely wrong initial activation)[0m
+[37m[21:18:59 F6 BOARD] INFO: Batter activated: Rinku Singh[0m
+[37m[21:18:59 F6 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6822 (run_test): non_striker Tim Seifert->Rinku Singh[0m
+[37m[21:18:59 F6 TEST] INFO:   [DIRECT] Batter updates: ['Rinku: ext=0(0) → tracker=0(0) [was None(None)]'][0m
+[37m[21:18:59 F6 TRACK] INFO: score: initial proposal flipped 50 → 0 — resetting consensus to 1/3[0m
+[37m[21:18:59 F6 TRACK] INFO: overs: initial proposal flipped 5.5 → 0.0 — resetting consensus to 1/3[0m
+[37m[21:18:59 F6 TRACK] INFO: wickets: initial → 0 (cold-start consensus 3/3)[0m
+[37m[21:18:59 F6 BOARD] INFO: wickets: None -> 0 [F6][0m
+[37m[21:18:59 F6 TEST] INFO:   [DIRECT] wickets→0[0m
+[37m[21:19:00 F6 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:00 F6 TEST] INFO:   [S] Hint: Current batters: Rinku Singh and None. Bowler: Mohammed Shami. Read their stats from the scoreboard.[0m
+[37m[21:19:00 F6 TRACK] INFO: overs: initial proposed 0.0 (2/3 — waiting)[0m
+[37m[21:19:00 F6 TEST] INFO:   [FLOW] Extractor batters not in scorer: {'RINKU'}[0m
+[37m[21:19:00 F6 TRACK] INFO: bat:Rinku Singh:runs: initial proposed 0 (2/3 — waiting)[0m
+[37m[21:19:00 F6 TRACK] INFO: bat:Rinku Singh:balls: initial proposed 0 (2/3 — waiting)[0m
+[37m[21:19:00 F6 TEST] INFO:   [S 714ms] Changes: ['wickets→0', 'bat:Rinku Singh=0(0)'][0m
+[37m[21:19:00 F6 TEST] INFO:   Total: 2030ms (V:586 E:730 S:714)[0m
+[37m[21:19:00 F6 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (None) inn=1 RR=— | Bat: Tim Seifert(0) Rinku Singh(0) | Bowl: Mohammed Shami 0-6[0m
+[37m[21:19:00 F6 CRICKET] INFO: Batter swap detected: ['Ajinkya Rahane', 'Tim Seifert'] → ['Tim Seifert', 'Rinku Singh'][0m
+[37m[21:19:00 F6 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Rinku Singh' surfaced from sb._inn (SM-null, in active_batting)[0m
+[33m[21:19:00 F6 TEST] WARN:   [WS-PROJECTION-GAP] striker=None (payload) sb._inn.striker=None sm.striker=None active_batting=['Tim Seifert', 'Rinku Singh'][0m
+[37m[21:19:00 F6 TEST] INFO:   [ACTION] A delivery is being bowled.[0m
+[37m[21:19:00 F6 TEST] INFO: DETAIL|F6|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) | *Rinku 0(0) |  0(0) ||action=A delivery is being bowled.|ext_score=0-0(0.0)|ext_bat=Rinku 0(0)|ext_bowl=|scorer_changes=['wickets→0', 'bat:Rinku Singh=0(0)']|yolo=9|BEFORE_score=None-None(None)|BEFORE_bat1=Ajinkya Rahane 0(0)|BEFORE_bat2=Tim Seifert 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=[]|AFTER_score=None-0(None)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=Rinku Singh|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=586|lat_extract=730|lat_scorer=714|lat_field=44|lat_comm=0|lat_code=0|lat_total=2038|comm_bowler=Mohammed Shami|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:01 F7 VISION] INFO: [SCOUT] SCOREBOARD 714ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 256 chars[0m
+[37m[21:19:01 F7 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: LSG 0-0 (0.0) | Rinku Singh* 0(0) |  | Moham[0m
+[37m[21:19:01 F7 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:19:01 F7 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:01 F7 TEST] INFO: [F7] SCOREBOARD — #5[0m
+[37m[21:19:01 F7 TEST] INFO:   [V 717ms] STRIP: LSG 0-0 (0.0) | Rinku Singh* 0(0) |  | Mohammed Shami 0-0 (0.0)[0m
+[37m[21:19:02 F7 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:19:02 F7 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:02 F7 BOARD] INFO: [NAME] Merged names: 'Rinku Singh' → 'Rinku Singh' + 'Akash Maharaj Singh'[0m
+[37m[21:19:02 F7 TEST] INFO:   [SPLIT] Merged names: 'Rinku Singh' → 'Rinku Singh' + 'Akash Maharaj Singh'[0m
+[37m[21:19:02 F7 TEST] INFO:   [E 1016ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:19:02 F7 TEST] INFO:     BAT: RINKU 0(0) [0m
+[37m[21:19:02 F7 TEST] INFO:     BAT: SINGH None(None) [0m
+[37m[21:19:02 F7 TEST] INFO:     BOWL: Mohammed Shami 0-0 (0.0)[0m
+[37m[21:19:02 F7 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Mohammed Shami' read — overs 0.0 < recorded 1.5; spell can't regress (1/5 consistent; will override if persistent).[0m
+[37m[21:19:02 F7 TRACK] INFO: bat:Rinku Singh:runs: initial → 0 (cold-start consensus 3/3)[0m
+[37m[21:19:02 F7 TRACK] INFO: bat:Rinku Singh:balls: initial → 0 (cold-start consensus 3/3)[0m
+[33m[21:19:02 F7 BOARD] WARN: Batter 'SINGH' is in bowling squad (opposition) — rejecting[0m
+[37m[21:19:02 F7 TEST] INFO:   [DIRECT] Batter updates: ['RINKU: ext=0(0) → tracker=0(0) [was 0(0)]'][0m
+[37m[21:19:02 F7 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:02 F7 TEST] INFO:   [S] Hint: Current batters: Rinku Singh and Tim Seifert. Bowler: Mohammed Shami[0m
+[37m[21:19:02 F7 TEST] INFO:   No players from our match recognized — skipping score[0m
+[37m[21:19:02 F7 TEST] INFO:   [S 697ms] Changes: none[0m
+[37m[21:19:02 F7 TEST] INFO:   Total: 2430ms (V:717 E:1016 S:697)[0m
+[37m[21:19:02 F7 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (None) inn=1 RR=— | Bat: Tim Seifert(0) Rinku Singh(0) | Bowl: Mohammed Shami 0-6[0m
+[37m[21:19:02 F7 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Rinku Singh' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:02 F7 TEST] INFO:   [ACTION] A delivery is being bowled.[0m
+[37m[21:19:02 F7 FIELD] INFO: [F7] OC-third_man_fine moved to OC-third_man_square[0m
+[37m[21:19:02 F7 FIELD] INFO: [F7] OC-fine_leg moved to OC-deep_backward_point[0m
+[37m[21:19:02 F7 TEST] INFO: DETAIL|F7|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG 0-0 (0.0) | Rinku Singh* 0(0) |  | Mohammed Shami 0-0 (0.0)|action=A delivery is being bowled.|ext_score=None-None(None)|ext_bat=RINKU 0(0) | SINGH None(None)|ext_bowl=Mohammed Shami 0-0 (0.0)|scorer_changes=[]|yolo=6|BEFORE_score=None-0(None)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=[]|AFTER_score=None-0(None)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=Rinku Singh|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=717|lat_extract=1016|lat_scorer=697|lat_field=48|lat_comm=0|lat_code=0|lat_total=2435|comm_bowler=Mohammed Shami|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:04 F8 VISION] INFO: [SCOUT] SCOREBOARD 603ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 250 chars[0m
+[37m[21:19:04 F8 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | S[0m
+[37m[21:19:04 F8 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:19:04 F8 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:04 F8 TEST] INFO: [F8] SCOREBOARD — #6[0m
+[37m[21:19:04 F8 TEST] INFO:   [V 606ms] STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)[0m
+[37m[21:19:05 F8 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:05 F8 TEST] INFO:   [E 1179ms] visible_team=Kolkata Knight Riders score=0-0 (0.0) target=None rr=None[0m
+[37m[21:19:05 F8 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:05 F8 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:05 F8 TEST] INFO:     BOWL: Shami 0-0 (0.0)[0m
+[37m[21:19:05 F8 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Mohammed Shami' read — overs 0.0 < recorded 1.5; spell can't regress (2/5 consistent; will override if persistent).[0m
+[37m[21:19:05 F8 TRACK] INFO: bat:Tim Seifert:runs: initial proposal flipped 13 → 0 — resetting consensus to 1/3[0m
+[37m[21:19:05 F8 TRACK] INFO: bat:Tim Seifert:balls: initial proposal flipped 7 → 0 — resetting consensus to 1/3[0m
+[37m[21:19:05 F8 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6822 (run_test): non_striker Rinku Singh->Tim Seifert[0m
+[37m[21:19:05 F8 TEST] INFO:   [DIRECT] Batter updates: ['Rinku: ext=0(0) → tracker=0(0) [was 0(0)]', 'Seifert: ext=0(0) → tracker=0(0) [was 0(0)]'][0m
+[37m[21:19:05 F8 TRACK] INFO: score: initial proposed 0 (2/3 — waiting)[0m
+[37m[21:19:05 F8 TRACK] INFO: overs: initial → 0.0 (cold-start consensus 3/3)[0m
+[37m[21:19:05 F8 BOARD] INFO: overs: None -> 0.0 [F8][0m
+[37m[21:19:05 F8 TEST] INFO:   [DIRECT] overs→0.0[0m
+[37m[21:19:05 F8 TEST] INFO:   [DIRECT] wickets→0[0m
+[37m[21:19:06 F8 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:06 F8 TEST] INFO:   [S] Hint: Current batters: Rinku and Seifert. Bowler: Shami. Read their stats from the scoreboard.[0m
+[37m[21:19:06 F8 TEST] INFO:   [FLOW] Extractor batters not in scorer: {'SEIFERT', 'RINKU'}[0m
+[37m[21:19:06 F8 TRACK] INFO: bat:Tim Seifert:runs: initial proposed 0 (2/3 — waiting)[0m
+[37m[21:19:06 F8 TRACK] INFO: bat:Tim Seifert:balls: initial proposed 0 (2/3 — waiting)[0m
+[37m[21:19:06 F8 TEST] INFO:   [S 868ms] Changes: ['overs→0.0', 'wickets→0', 'bat:Tim Seifert=0(0)', 'bat:Rinku Singh=0(0)', 'bowl:Mohammed Shami'][0m
+[37m[21:19:06 F8 TEST] INFO:   Total: 2653ms (V:606 E:1179 S:868)[0m
+[37m[21:19:06 F8 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) inn=1 RR=— | Bat: Tim Seifert(0) Rinku Singh(0) | Bowl: Mohammed Shami 0-6[0m
+[37m[21:19:06 F8 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[33m[21:19:06 F8 TEST] WARN:   [WS-PROJECTION-GAP] striker=None (payload) sb._inn.striker=None sm.striker=None active_batting=['Tim Seifert', 'Rinku Singh'][0m
+[37m[21:19:06 F8 TEST] INFO:   [ACTION] A delivery is being bowled.[0m
+[37m[21:19:06 F8 TEST] INFO: DETAIL|F8|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)|action=A delivery is being bowled.|ext_score=0-0(0.0)|ext_bat=Rinku 0(0) | Seifert 0(0)|ext_bowl=Shami 0-0 (0.0)|scorer_changes=['overs→0.0', 'wickets→0', 'bat:Tim Seifert=0(0)', 'bat:Rinku Singh=0(0)', 'bowl:Mohammed Shami']|yolo=5|BEFORE_score=None-0(None)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=[]|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=606|lat_extract=1179|lat_scorer=868|lat_field=48|lat_comm=0|lat_code=0|lat_total=2662|comm_bowler=Mohammed Shami|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:06 F8 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:19:07 F9 VISION] INFO: [SCOUT] SCOREBOARD 637ms strip=True overlay=False drs=True cam=closeup phase=between_play digits=False 321 chars[0m
+[37m[21:19:07 F9 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": true, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | [0m
+[37m[21:19:07 F9 TEST] INFO:   [DRS] Detecting — frame 1[0m
+[37m[21:19:07 F9 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:07 F9 TEST] INFO: [F9] SCOREBOARD — #7[0m
+[37m[21:19:07 F9 TEST] INFO:   [V 640ms] STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | 
+
+INFO_PANEL: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The umpire is reviewing a decision related to a wide ball not given.[0m
+[37m[21:19:08 F9 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:08 F9 TEST] INFO:   [E 1036ms] visible_team=Kolkata Knight Riders score=0-0 (0.0) target=None rr=None[0m
+[37m[21:19:08 F9 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:08 F9 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:08 F9 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=1)[0m
+[37m[21:19:08 F9 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:08 F9 TEST] INFO:   Total: 1682ms (V:640 E:1036)[0m
+[37m[21:19:08 F9 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS DETECTING][0m
+[37m[21:19:08 F9 TEST] INFO: DETAIL|F9|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) |   INFO_PANEL:  EXTRA:  THIS OVER:  FULL SCORECARD:   The umpire is reviewing a decision related to a wide ball not given.|action=—|ext_score=0-0(0.0)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=[]|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=640|lat_extract=1036|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1682|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[33m[21:19:09 F10 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#3): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Rinku [RUNS]([BALLS]) | Seifert [RUNS]([BALLS]) | Shami [W]-[R] ([OVERS])\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe batter Rinku is walk'[0m
+[37m[21:19:09 F10 TEST] INFO:   [DRS] Detecting — grace 1/3[0m
+[37m[21:19:09 F10 TEST] INFO: [F10] Vision timeout — skipping[0m
+[37m[21:19:09 F11 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:10 F12 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:19:10 F13 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:11 F14 TEST] INFO: [F14] Pixel skip #4[0m
+[37m[21:19:11 F14 TEST] INFO: [F14] Force-processing after 4 pixel skips[0m
+[37m[21:19:11 F14 VISION] INFO: [SCOUT] SCOREBOARD 701ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 252 chars[0m
+[37m[21:19:11 F14 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | [0m
+[37m[21:19:11 F14 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:19:11 F14 TEST] INFO:   [DRS] Detecting — grace 2/3[0m
+[37m[21:19:11 F14 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:11 F14 TEST] INFO: [F14] SCOREBOARD — #8[0m
+[37m[21:19:11 F14 TEST] INFO:   [V 704ms] STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)[0m
+[37m[21:19:12 F14 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:12 F14 TEST] INFO:   [E 1230ms] visible_team=Kolkata Knight Riders score=0-0 (0.0) target=None rr=None[0m
+[37m[21:19:12 F14 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:12 F14 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:12 F14 TEST] INFO:     BOWL: Shami 0-0 (0.0)[0m
+[37m[21:19:12 F14 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Mohammed Shami' read — overs 0.0 < recorded 1.5; spell can't regress (1/5 consistent; will override if persistent).[0m
+[37m[21:19:12 F14 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=1)[0m
+[37m[21:19:12 F14 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:12 F14 TEST] INFO:   Total: 1939ms (V:704 E:1230)[0m
+[37m[21:19:12 F14 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS DETECTING][0m
+[37m[21:19:12 F14 TEST] INFO: DETAIL|F14|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)|action=A delivery is being bowled.|ext_score=0-0(0.0)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=[]|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=704|lat_extract=1230|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1939|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:13 F15 VISION] INFO: [SCOUT] SCOREBOARD 689ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=True 287 chars[0m
+[37m[21:19:13 F15 OVER] INFO: Broadcast fill (warm, empty local, clean tokens): ['4', 'W'][0m
+[37m[21:19:13 F15 TEST] INFO:   [DRS] Detecting — grace 3/3[0m
+[37m[21:19:13 F15 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:13 F15 TEST] INFO: [F15] SCOREBOARD — #9[0m
+[37m[21:19:13 F15 TEST] INFO:   [V 692ms] STRIP: KKR 50-0 (5.5) | Rinku 4(4) | Seifert 46(32) | 
+
+INFO_PANEL: 
+THIS OVER: 4 wide, 6, 6, W, W, 4 
+
+The bowler is delivering the ball.[0m
+[37m[21:19:14 F15 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:19:14 F15 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:14 F15 TEST] INFO:   [E 1180ms] visible_team=Kolkata Knight Riders score=50-0 (5.5) target=None rr=None[0m
+[37m[21:19:14 F15 TEST] INFO:     BAT: Rinku 4(4) [0m
+[37m[21:19:14 F15 TEST] INFO:     BAT: Seifert 46(32) [0m
+[37m[21:19:14 F15 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=1)[0m
+[37m[21:19:14 F15 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:14 F15 TEST] INFO:   Total: 1877ms (V:692 E:1180)[0m
+[37m[21:19:14 F15 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS DETECTING][0m
+[37m[21:19:14 F15 TEST] INFO: DETAIL|F15|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 50-0 (5.5) | Rinku 4(4) | Seifert 46(32) |   INFO_PANEL:  THIS OVER: 4 wide, 6, 6, W, W, 4   The bowler is delivering the ball.|action=—|ext_score=50-0(5.5)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=[]|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=692|lat_extract=1180|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1877|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[FIELD] Pitch detected from people cluster: (0.81, 0.65) spread=0.283
+[37m[21:19:15 F16 VISION] INFO: [SCOUT] SCOREBOARD 753ms strip=True overlay=False drs=True cam=bowlers_end phase=release digits=False 290 chars[0m
+[37m[21:19:15 F16 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": true, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | S[0m
+[37m[21:19:15 F16 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:19:15 F16 TEST] INFO:   [DRS] Detecting — frame 2[0m
+[37m[21:19:15 F16 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:15 F16 TEST] INFO: [F16] SCOREBOARD — #10[0m
+[37m[21:19:15 F16 TEST] INFO:   [V 756ms] STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)[0m
+[37m[21:19:16 F16 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:19:16 F16 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:16 F16 TEST] INFO:   [E 1218ms] visible_team=Kolkata Knight Riders score=0-0 (0.0) target=None rr=None[0m
+[37m[21:19:16 F16 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:16 F16 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:17 F16 TEST] INFO:     BOWL: Shami 0-0 (0.0)[0m
+[37m[21:19:17 F16 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Mohammed Shami' read — overs 0.0 < recorded 1.5; spell can't regress (2/5 consistent; will override if persistent).[0m
+[37m[21:19:17 F16 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=2)[0m
+[37m[21:19:17 F16 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:17 F16 TEST] INFO:   Total: 1988ms (V:756 E:1218)[0m
+[37m[21:19:17 F16 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS DETECTING][0m
+[37m[21:19:17 F16 TEST] INFO: DETAIL|F16|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)|action=A delivery is being bowled with a DRS review decision being shown.|ext_score=0-0(0.0)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=['4', 'W']|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=756|lat_extract=1218|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1988|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[33m[21:19:18 F17 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#4): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Rinku [RUNS]([BALLS]) | Seifert [RUNS]([BALLS]) | Shami [W]-[R] ([OVERS])\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe batter is playing a '[0m
+[37m[21:19:18 F17 TEST] INFO:   [DRS] Detecting — grace 1/3[0m
+[37m[21:19:18 F17 TEST] INFO: [F17] Vision timeout — skipping[0m
+[37m[21:19:18 F18 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:18 F18 TEST] INFO: [WS] client connected (4 total)[0m
+[37m[21:19:19 F20 VISION] INFO: [SCOUT] SCOREBOARD 687ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 323 chars[0m
+[37m[21:19:19 F20 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: LSG  | Rinku  | Seifert  | Shami 
+
+INFO_PANE[0m
+[37m[21:19:19 F20 TEST] INFO:   [DRS] Detecting — grace 2/3[0m
+[37m[21:19:19 F20 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:19 F20 TEST] INFO: [F20] SCOREBOARD — #11[0m
+[37m[21:19:19 F20 TEST] INFO:   [V 690ms] STRIP: LSG  | Rinku  | Seifert  | Shami 
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The bowler is in delivery stride, releasing the ball towards the batsman.[0m
+[37m[21:19:20 F20 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:19:21 F20 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:21 F20 TEST] INFO:   [GUARD] Visible team 'Lucknow Super Giants' is bowling team — comparison strip, ALL data stripped (1/30)[0m
+[37m[21:19:21 F20 TEST] INFO:   [E 1115ms] visible_team=Lucknow Super Giants score=None-None (None) target=None rr=None[0m
+[37m[21:19:21 F20 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=2)[0m
+[37m[21:19:21 F20 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:21 F20 TEST] INFO:   Total: 1810ms (V:690 E:1115)[0m
+[37m[21:19:21 F20 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS DETECTING][0m
+[37m[21:19:21 F20 TEST] INFO: DETAIL|F20|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG  | Rinku  | Seifert  | Shami   INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:   The bowler is in delivery stride, releasing the ball towards the batsman.|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=['4', 'W']|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=690|lat_extract=1115|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1810|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:21 F21 VISION] INFO: [SCOUT] SCOREBOARD 758ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 252 chars[0m
+[37m[21:19:21 F21 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: LSG 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | [0m
+[37m[21:19:21 F21 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:19:21 F21 TEST] INFO:   [DRS] Detecting — grace 3/3[0m
+[37m[21:19:21 F21 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:21 F21 TEST] INFO: [F21] SCOREBOARD — #12[0m
+[37m[21:19:21 F21 TEST] INFO:   [V 762ms] STRIP: LSG 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)[0m
+[37m[21:19:22 F21 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:19:23 F21 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:23 F21 TEST] INFO:   [E 1075ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:19:23 F21 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:23 F21 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:23 F21 TEST] INFO:     BOWL: Shami 0-0 (0.0)[0m
+[37m[21:19:23 F21 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Mohammed Shami' read — overs 0.0 < recorded 1.5; spell can't regress (3/5 consistent; will override if persistent).[0m
+[37m[21:19:23 F21 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=2)[0m
+[37m[21:19:23 F21 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:23 F21 TEST] INFO:   Total: 1841ms (V:762 E:1075)[0m
+[37m[21:19:23 F21 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS DETECTING][0m
+[37m[21:19:23 F21 TEST] INFO: DETAIL|F21|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)|action=A delivery is being bowled.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=['4', 'W']|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=762|lat_extract=1075|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1841|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:23 F22 VISION] INFO: [SCOUT] SCOREBOARD 695ms strip=True overlay=False drs=True cam=bowlers_end phase=release digits=False 294 chars[0m
+[37m[21:19:23 F22 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": true, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Sh[0m
+[37m[21:19:23 F22 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:19:23 F22 TEST] INFO:   [DRS] Detecting — frame 3[0m
+[37m[21:19:23 F22 TEST] INFO:   [DRS] Confirmed IN_PROGRESS — pre-state: {'score': None, 'wickets': 0, 'overs': '0.0'}[0m
+[37m[21:19:23 F22 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:23 F22 TEST] INFO: [F22] SCOREBOARD — #13[0m
+[37m[21:19:23 F22 TEST] INFO:   [V 698ms] STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)[0m
+[37m[21:19:25 F22 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:25 F22 TEST] INFO:   [E 1214ms] visible_team=Kolkata Knight Riders score=0-0 (0.0) target=None rr=None[0m
+[37m[21:19:25 F22 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:25 F22 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:25 F22 TEST] INFO:     BOWL: Shami 0-0 (0.0)[0m
+[37m[21:19:25 F22 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Mohammed Shami' read — overs 0.0 < recorded 1.5; spell can't regress (4/5 consistent; will override if persistent).[0m
+[37m[21:19:25 F22 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=3)[0m
+[37m[21:19:25 F22 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:25 F22 TEST] INFO:   Total: 1918ms (V:698 E:1214)[0m
+[37m[21:19:25 F22 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:19:25 F22 TEST] INFO: DETAIL|F22|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)|action=A delivery is being bowled, with the Knight Riders reviewing a decision.|ext_score=0-0(0.0)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=['4', 'W']|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=698|lat_extract=1214|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1918|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:25 F23 VISION] INFO: [SCOUT] SCOREBOARD 668ms strip=True overlay=False drs=False cam=bowlers_end phase=post_shot digits=False 292 chars[0m
+[37m[21:19:25 F23 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "post_shot", "ball_position": null}
+
+STRIP: LSG 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) [0m
+[37m[21:19:25 F23 TEST] INFO:   [DRS] IN_PROGRESS — grace 1/3[0m
+[37m[21:19:25 F23 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:25 F23 TEST] INFO: [F23] SCOREBOARD — #14[0m
+[37m[21:19:25 F23 TEST] INFO:   [V 671ms] STRIP: LSG 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | 
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The batter is playing a shot.[0m
+[37m[21:19:26 F23 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:19:26 F23 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:26 F23 TEST] INFO:   [E 991ms] visible_team=Kolkata Knight Riders score=None-None (None) target=None rr=None[0m
+[37m[21:19:26 F23 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:26 F23 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:26 F23 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=3)[0m
+[37m[21:19:26 F23 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:26 F23 TEST] INFO:   Total: 1667ms (V:671 E:991)[0m
+[37m[21:19:26 F23 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:19:26 F23 TEST] INFO: DETAIL|F23|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) |   INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:   The batter is playing a shot.|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=['4', 'W']|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-6 (1.5)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=671|lat_extract=991|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1667|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:26 F24 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:27 F25 TEST] INFO: [F25] Pixel skip #4[0m
+[37m[21:19:27 F25 TEST] INFO: [F25] Force-processing after 4 pixel skips[0m
+[37m[21:19:28 F25 VISION] INFO: [SCOUT] SCOREBOARD 696ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 252 chars[0m
+[37m[21:19:28 F25 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | [0m
+[37m[21:19:28 F25 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:19:28 F25 TEST] INFO:   [DRS] IN_PROGRESS — grace 2/3[0m
+[37m[21:19:28 F25 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:28 F25 TEST] INFO: [F25] SCOREBOARD — #15[0m
+[37m[21:19:28 F25 TEST] INFO:   [V 699ms] STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)[0m
+[37m[21:19:29 F25 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:29 F25 TEST] INFO:   [E 1132ms] visible_team=Kolkata Knight Riders score=0-0 (0.0) target=None rr=None[0m
+[37m[21:19:29 F25 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:29 F25 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:29 F25 TEST] INFO:     BOWL: Shami 0-0 (0.0)[0m
+[33m[21:19:29 F25 BOARD] WARN:   [BOWLER-RECOVER] Overriding stuck 'Mohammed Shami' figures 0-6(1.5) → 0-0(0.0) after 5 consistent regression reads. Recorded value was likely corrupt; clearing tracker lock and accepting live reads.[0m
+[37m[21:19:29 F25 TEST] INFO:   [BOWLER-LEAD] Shami runs 6→0 (+-6) but score unchanged at None[0m
+[37m[21:19:29 F25 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=3)[0m
+[37m[21:19:29 F25 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:29 F25 TEST] INFO:   Total: 1836ms (V:699 E:1132)[0m
+[37m[21:19:29 F25 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:19:29 F25 TEST] INFO: DETAIL|F25|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)|action=A delivery is being bowled.|ext_score=0-0(0.0)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-6 (1.5)|BEFORE_this_over=['4', 'W']|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=699|lat_extract=1132|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1836|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:29 F26 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:30 F27 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:19:30 F28 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:31 F29 VISION] INFO: [SCOUT] SCOREBOARD 664ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 252 chars[0m
+[37m[21:19:31 F29 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | [0m
+[37m[21:19:31 F29 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[21:19:31 F29 TEST] INFO:   [DRS] IN_PROGRESS — grace 3/3[0m
+[37m[21:19:31 F29 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:31 F29 TEST] INFO: [F29] SCOREBOARD — #16[0m
+[37m[21:19:31 F29 TEST] INFO:   [V 668ms] STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)[0m
+[37m[21:19:33 F29 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:33 F29 TEST] INFO:   [E 1207ms] visible_team=Kolkata Knight Riders score=0-0 (0.0) target=None rr=None[0m
+[37m[21:19:33 F29 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:33 F29 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:33 F29 TEST] INFO:     BOWL: Shami 0-0 (0.0)[0m
+[37m[21:19:33 F29 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=3)[0m
+[37m[21:19:33 F29 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:33 F29 TEST] INFO:   Total: 1879ms (V:668 E:1207)[0m
+[37m[21:19:33 F29 TEST] INFO:   STATE: Kolkata Knight Riders None-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:19:33 F29 TEST] INFO: DETAIL|F29|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)|action=A delivery is being bowled.|ext_score=0-0(0.0)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=None-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=668|lat_extract=1207|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1879|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:33 F30 TEST] INFO: [F30] Pixel skip #4[0m
+[37m[21:19:33 F30 TEST] INFO: [F30] Force-processing after 4 pixel skips[0m
+[33m[21:19:33 F30 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#5): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Rinku [RUNS]([BALLS]) | Seifert [RUNS]([BALLS]) | Shami [W]-[R] ([OVERS])\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \nThe bowler is in delivery '[0m
+[37m[21:19:33 F30 TEST] INFO:   [DRS] Exited IN_PROGRESS — waiting 3 frames before resolving[0m
+[37m[21:19:33 F30 TEST] INFO: [F30] Vision timeout — skipping[0m
+[37m[21:19:33 F31 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:34 F31 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:19:35 F33 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:35 F34 TEST] INFO: [F34] Pixel skip #4[0m
+[37m[21:19:35 F34 TEST] INFO: [F34] Force-processing after 4 pixel skips[0m
+[37m[21:19:36 F34 VISION] INFO: [SCOUT] SCOREBOARD 648ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 265 chars[0m
+[37m[21:19:36 F34 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | S[0m
+[37m[21:19:36 F34 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:36 F34 TEST] INFO: [F34] SCOREBOARD — #17[0m
+[37m[21:19:36 F34 TEST] INFO:   [V 652ms] STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)[0m
+[37m[21:19:37 F34 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:37 F34 TEST] INFO:   [E 1065ms] visible_team=Kolkata Knight Riders score=0-0 (0.0) target=None rr=None[0m
+[37m[21:19:37 F34 TEST] INFO:     BAT: Rinku 0(0) [0m
+[37m[21:19:37 F34 TEST] INFO:     BAT: Seifert 0(0) [0m
+[37m[21:19:37 F34 TEST] INFO:     BOWL: Shami 0-0 (0.0)[0m
+[37m[21:19:37 F34 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6822 (run_test): non_striker Tim Seifert->Rinku Singh[0m
+[37m[21:19:37 F34 TRACK] INFO: bat:Tim Seifert:runs: initial → 0 (cold-start consensus 3/3)[0m
+[37m[21:19:37 F34 TRACK] INFO: bat:Tim Seifert:balls: initial → 0 (cold-start consensus 3/3)[0m
+[37m[21:19:37 F34 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6822 (run_test): non_striker Rinku Singh->Tim Seifert[0m
+[37m[21:19:37 F34 TEST] INFO:   [DIRECT] Batter updates: ['Rinku: ext=0(0) → tracker=0(0) [was 0(0)]', 'Seifert: ext=0(0) → tracker=0(0) [was 0(0)]'][0m
+[37m[21:19:37 F34 TRACK] INFO: score: initial → 0 (cold-start consensus 3/3)[0m
+[37m[21:19:37 F34 BOARD] INFO: score: None -> 0 [F34][0m
+[37m[21:19:37 F34 TEST] INFO:   [DIRECT] score→0[0m
+[37m[21:19:37 F34 TEST] INFO:   [DIRECT] overs→0.0[0m
+[37m[21:19:37 F34 TEST] INFO:   [DIRECT] wickets→0[0m
+[37m[21:19:37 F34 TEST] INFO:   [INIT] First-frame initialization complete: 0-0(0.0)[0m
+[37m[21:19:38 F34 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:19:38 F34 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:38 F34 TEST] INFO:   [S] Hint: Current batters: Rinku Singh and Tim Seifert. Bowler: Mohammed Shami. Read their stats from the scoreboard.[0m
+[37m[21:19:38 F34 TEST] INFO:   [FLOW] Extractor batters not in scorer: {'SEIFERT', 'RINKU'}[0m
+[37m[21:19:38 F34 TEST] INFO:   [S 933ms] Changes: ['score→0', 'overs→0.0', 'wickets→0', 'bat:Rinku Singh=0(0)', 'bat:Tim Seifert=0(0)', 'bowl:Mohammed Shami'][0m
+[37m[21:19:38 F34 TEST] INFO:   Total: 2649ms (V:652 E:1065 S:933)[0m
+[37m[21:19:38 F34 TEST] INFO:   [THIS OVER] ['4', 'W'] = 4 runs[0m
+[37m[21:19:38 F34 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) inn=1 RR=— | Bat: Tim Seifert(0) Rinku Singh(0) | Bowl: Mohammed Shami 0-0[0m
+[37m[21:19:38 F34 SCORE_MGR] INFO: [SM] cold-start candidate seeded 0/0 (0.0) — streak 1/3[0m
+[37m[21:19:38 F34 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:38 F34 COMMENTARY] INFO: [PARTNERSHIP] new pair {'Rinku Singh', 'Tim Seifert'} anchored at score=0 balls=0  (team=0/0, guess_runs=0 guess_balls=0)[0m
+[37m[21:19:38 F34 TEST] INFO:   [ACTION] The bowler, Shami, is delivering the ball.[0m
+[37m[21:19:38 F34 FIELD] INFO: [F34] IC-cover brought in — attacking[0m
+[37m[21:19:38 F34 FIELD] INFO: [F34] OC-deep_gully moved to OC-long_on[0m
+[37m[21:19:38 F34 FIELD] INFO: [F34] slip removed — less catching pressure[0m
+[37m[21:19:38 F34 FIELD] INFO: [F34] OC-fine_leg moved to OC-deep_midwicket_sq[0m
+[37m[21:19:38 F34 FIELD] INFO: [F34] OC-fine_leg moved to OC-deep_square_leg[0m
+[37m[21:19:38 F34 TEST] INFO:   [FIELD-MONITOR] Field unchanged for 33 frames (template=pace_powerplay, frozen=True, phase=powerplay). If a wicket / over / bowler change has happened in this window, the field-state updater is the bug.[0m
+[37m[21:19:38 F34 TEST] INFO: DETAIL|F34|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) | Rinku 0(0) | Seifert 0(0) | Shami 0-0 (0.0)|action=The bowler, Shami, is delivering the ball.|ext_score=0-0(0.0)|ext_bat=Rinku 0(0) | Seifert 0(0)|ext_bowl=Shami 0-0 (0.0)|scorer_changes=['score→0', 'overs→0.0', 'wickets→0', 'bat:Rinku Singh=0(0)', 'bat:Tim Seifert=0(0)', 'bowl:Mohammed Shami']|yolo=5|BEFORE_score=None-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast),W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=652|lat_extract=1065|lat_scorer=933|lat_field=46|lat_comm=0|lat_code=0|lat_total=2661|comm_bowler=Mohammed Shami|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[33m[21:19:39 F35 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#6): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Rinku Singh [RUNS]([BALLS]) | Tim Seifert [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])'[0m
+[37m[21:19:39 F35 TEST] INFO:   [DRS] Resolved (after 3 frame delay): pre={'score': None, 'wickets': 0, 'overs': '0.0'} post={'score': 0, 'wickets': 0, 'overs': '0.0'} → DRS review complete. Decision overturned — no change to the score.[0m
+[37m[21:19:39 F35 TEST] INFO: [F35] Vision timeout — skipping[0m
+[37m[21:19:39 F36 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:40 F38 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:41 F38 TEST] INFO: [WS] client connected (3 total)[0m
+[33m[21:19:41 F39 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#7): 'STRIP: LSG  | Rinku Singh*  | Tim Seifert  | Mohammed Shami [W]-[] ([OVERS])'[0m
+[37m[21:19:41 F39 TEST] INFO: [F39] Vision timeout — skipping[0m
+[37m[21:19:41 F40 TEST] INFO: [F40] Pixel skip #4[0m
+[37m[21:19:41 F40 TEST] INFO: [F40] Force-processing after 4 pixel skips[0m
+[37m[21:19:42 F40 TEST] INFO: [WS] client connected (4 total)[0m
+[33m[21:19:42 F40 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#8): 'STRIP: LSG  | Rinku Singh  [RUNS]([BALLS]) | Tim Seifert [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])'[0m
+[37m[21:19:42 F40 TEST] INFO: [F40] Vision timeout — skipping[0m
+[37m[21:19:42 F41 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:43 F42 VISION] INFO: [SCOUT] SCOREBOARD 652ms strip=True overlay=False drs=False cam=bowlers_end phase=post_shot digits=False 259 chars[0m
+[37m[21:19:43 F42 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "post_shot", "ball_position": null}
+
+STRIP: LSG  | Rinku Singh*  | Tim Seifert  | Moha[0m
+[37m[21:19:43 F42 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:43 F42 TEST] INFO: [F42] SCOREBOARD — #18[0m
+[37m[21:19:43 F42 TEST] INFO:   [V 655ms] STRIP: LSG  | Rinku Singh*  | Tim Seifert  | Mohammed Shami[0m
+[37m[21:19:45 F42 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:45 F42 BOARD] INFO: [NAME] Merged names: 'Rinku Singh' → 'Rinku Singh' + 'Akash Maharaj Singh'[0m
+[37m[21:19:45 F42 TEST] INFO:   [SPLIT] Merged names: 'Rinku Singh' → 'Rinku Singh' + 'Akash Maharaj Singh'[0m
+[37m[21:19:45 F42 TEST] INFO:   [E 1131ms] visible_team=Kolkata Knight Riders score=None-None (None) target=None rr=None[0m
+[37m[21:19:45 F42 TEST] INFO:     BAT: RINKU None(None) [0m
+[37m[21:19:45 F42 TEST] INFO:     BAT: SINGH None(None) [0m
+[37m[21:19:45 F42 TEST] INFO:     BAT: Tim Seifert None(None) [0m
+[37m[21:19:45 F42 TEST] INFO:     BOWL: Mohammed Shami None-None (None)[0m
+[37m[21:19:45 F42 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6822 (run_test): non_striker Tim Seifert->Rinku Singh[0m
+[33m[21:19:45 F42 BOARD] WARN: Batter 'SINGH' is in bowling squad (opposition) — rejecting[0m
+[37m[21:19:45 F42 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6822 (run_test): non_striker Rinku Singh->Tim Seifert[0m
+[37m[21:19:45 F42 TEST] INFO:   [DIRECT] Batter updates: ['RINKU: ext=None(None) → tracker=0(0) [was 0(0)]', 'Tim Seifert: ext=None(None) → tracker=0(0) [was 0(0)]'][0m
+[37m[21:19:45 F42 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:19:45 F42 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:45 F42 TEST] INFO:   [S] Hint: Current batters: Tim Seifert, Rinku Singh. Bowler: Mohammed Shami[0m
+[37m[21:19:45 F42 TEST] INFO:   No players from our match recognized — skipping score[0m
+[37m[21:19:45 F42 TEST] INFO:   [S 738ms] Changes: none[0m
+[37m[21:19:45 F42 TEST] INFO:   Total: 2525ms (V:655 E:1131 S:738)[0m
+[37m[21:19:45 F42 TEST] INFO:   [THIS OVER] ['4', 'W'] = 4 runs[0m
+[37m[21:19:45 F42 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) inn=1 RR=— | Bat: Tim Seifert(0) Rinku Singh(0) | Bowl: Mohammed Shami 0-0[0m
+[37m[21:19:45 F42 SCORE_MGR] INFO: [SM] cold-start consensus building 0/0 (0.0) — streak 2/3[0m
+[37m[21:19:45 F42 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:45 F42 TEST] INFO:   [ACTION] A shot has been played by the batsman.[0m
+[37m[21:19:45 F42 TEST] INFO: DETAIL|F42|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG  | Rinku Singh*  | Tim Seifert  | Mohammed Shami|action=A shot has been played by the batsman.|ext_score=None-None(None)|ext_bat=RINKU None(None) | SINGH None(None) | Tim Seifert None(None)|ext_bowl=Mohammed Shami None-None (None)|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast),W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=655|lat_extract=1131|lat_scorer=738|lat_field=55|lat_comm=0|lat_code=0|lat_total=2536|comm_bowler=Mohammed Shami|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:46 F42 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:19:47 F43 VISION] INFO: [SCOUT] SCOREBOARD 690ms strip=True overlay=False drs=True cam=bowlers_end phase=release digits=False 303 chars[0m
+[37m[21:19:47 F43 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": true, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+EXTRA: 
+THIS OVE[0m
+[37m[21:19:47 F43 TEST] INFO:   [DRS] Detecting — frame 1[0m
+[37m[21:19:47 F43 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:47 F43 TEST] INFO: [F43] SCOREBOARD — #19[0m
+[37m[21:19:47 F43 TEST] INFO:   [V 694ms] STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD:[0m
+[37m[21:19:48 F43 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:48 F43 TEST] INFO:   [E 930ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:19:48 F43 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=1)[0m
+[37m[21:19:48 F43 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:48 F43 TEST] INFO:   Total: 1629ms (V:694 E:930)[0m
+[37m[21:19:48 F43 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) [DRS DETECTING][0m
+[37m[21:19:48 F43 TEST] INFO: DETAIL|F43|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG 0-0 (0.0) |  INFO_PANEL:  EXTRA:  THIS OVER:  FULL SCORECARD:|action=The umpire is reviewing a delivery with DRS to check if it is a wide ball.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=694|lat_extract=930|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1629|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:49 F44 VISION] INFO: [SCOUT] SCOREBOARD 960ms strip=True overlay=False drs=True cam=closeup phase=between_play digits=False 348 chars[0m
+[37m[21:19:49 F44 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": true, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR  | Tim Seifert * | Rinku Singh  | 
+
+INFO[0m
+[37m[21:19:49 F44 TEST] INFO:   [DRS] Detecting — frame 2[0m
+[37m[21:19:49 F44 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:49 F44 TEST] INFO: [F44] SCOREBOARD — #20[0m
+[37m[21:19:49 F44 TEST] INFO:   [V 965ms] STRIP: KKR  | Tim Seifert * | Rinku Singh  | 
+
+INFO_PANEL: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The Knight Riders are reviewing a decision, indicated by "Knight Riders Review" and "Wide Not Given".[0m
+[37m[21:19:50 F44 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:50 F44 BOARD] INFO: [NAME] Merged names: 'Rinku Singh' → 'Rinku Singh' + 'Akash Maharaj Singh'[0m
+[37m[21:19:50 F44 TEST] INFO:   [SPLIT] Merged names: 'Rinku Singh' → 'Rinku Singh' + 'Akash Maharaj Singh'[0m
+[37m[21:19:50 F44 TEST] INFO:   [E 1019ms] visible_team=Kolkata Knight Riders score=None-None (None) target=None rr=None[0m
+[37m[21:19:50 F44 TEST] INFO:     BAT: Tim Seifert None(None) [0m
+[37m[21:19:50 F44 TEST] INFO:     BAT: RINKU None(None) [0m
+[37m[21:19:50 F44 TEST] INFO:     BAT: SINGH None(None) [0m
+[37m[21:19:50 F44 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=2)[0m
+[37m[21:19:50 F44 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:50 F44 TEST] INFO:   Total: 1990ms (V:965 E:1019)[0m
+[37m[21:19:50 F44 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) [DRS DETECTING][0m
+[37m[21:19:50 F44 TEST] INFO: DETAIL|F44|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR  | Tim Seifert * | Rinku Singh  |   INFO_PANEL:  EXTRA:  THIS OVER:  FULL SCORECARD:   The Knight Riders are reviewing a decision, indicated by "Knight Riders Review" and "Wide Not Given".|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=965|lat_extract=1019|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1990|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:19:50 F45 TEST] INFO: [WS] client connected (3 total)[0m
+[33m[21:19:51 F45 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#9): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Tim Seifert [RUNS]([BALLS]) | Rinku Singh [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \nThe Kni'[0m
+[37m[21:19:51 F45 TEST] INFO:   [DRS] Detecting — grace 1/3[0m
+[37m[21:19:51 F45 TEST] INFO: [F45] Vision timeout — skipping[0m
+[33m[21:19:51 F46 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#10): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Tim Seifert [RUNS]([BALLS]) | Rinku Singh [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])\n\nThe batter is playing a shot.'[0m
+[37m[21:19:51 F46 TEST] INFO:   [DRS] Detecting — grace 2/3[0m
+[37m[21:19:51 F46 TEST] INFO: [F46] Vision timeout — skipping[0m
+[37m[21:19:51 F47 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:53 F49 TEST] INFO: [F49] Pixel skip #4[0m
+[37m[21:19:53 F49 TEST] INFO: [F49] Force-processing after 4 pixel skips[0m
+[37m[21:19:53 F49 VISION] INFO: [SCOUT] SCOREBOARD 654ms strip=True overlay=False drs=True cam=bowlers_end phase=release digits=False 299 chars[0m
+[37m[21:19:53 F49 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": true, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: LSG  | Seifert *  | Rinku  | 
+
+INFO_PANEL: 
+S[0m
+[37m[21:19:53 F49 TEST] INFO:   [DRS] Detecting — frame 3[0m
+[37m[21:19:53 F49 TEST] INFO:   [DRS] Confirmed IN_PROGRESS — pre-state: {'score': 0, 'wickets': 0, 'overs': '0.0'}[0m
+[37m[21:19:53 F49 TEST] INFO: 
+=======================================================[0m
+[37m[21:19:53 F49 TEST] INFO: [F49] SCOREBOARD — #21[0m
+[37m[21:19:53 F49 TEST] INFO:   [V 657ms] STRIP: LSG  | Seifert *  | Rinku  | 
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The Knight Riders are reviewing a potential wide ball.[0m
+[37m[21:19:54 F49 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:19:54 F49 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:19:54 F49 TEST] INFO:   [E 909ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:19:54 F49 TEST] INFO:     BAT: Seifert None(None) [0m
+[37m[21:19:54 F49 TEST] INFO:     BAT: Rinku None(None) [0m
+[37m[21:19:54 F49 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=3)[0m
+[37m[21:19:54 F49 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:54 F49 TEST] INFO:   Total: 1574ms (V:657 E:909)[0m
+[37m[21:19:54 F49 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:19:54 F49 TEST] INFO: DETAIL|F49|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG  | Seifert *  | Rinku  |   INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:   The Knight Riders are reviewing a potential wide ball.|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=657|lat_extract=909|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1574|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[33m[21:19:55 F50 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#11): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Tim Seifert [RUNS]([BALLS]) | Rinku Singh [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe K'[0m
+[37m[21:19:55 F50 TEST] INFO:   [DRS] IN_PROGRESS — grace 1/3[0m
+[37m[21:19:55 F50 TEST] INFO: [F50] Vision timeout — skipping[0m
+[37m[21:19:55 F51 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[33m[21:19:57 F52 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#12): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Tim Seifert [RUNS]([BALLS]) | Rinku Singh [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])'[0m
+[37m[21:19:57 F52 TEST] INFO:   [DRS] IN_PROGRESS — grace 2/3[0m
+[37m[21:19:57 F52 TEST] INFO: [F52] Vision timeout — skipping[0m
+[37m[21:19:57 F53 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:19:58 F55 TEST] INFO: [F55] Pixel skip #4[0m
+[37m[21:19:58 F55 TEST] INFO: [F55] Force-processing after 4 pixel skips[0m
+[37m[21:19:58 F55 TEST] INFO: [WS] client connected (3 total)[0m
+[33m[21:19:59 F55 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#13): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Tim Seifert [RUNS]([BALLS]) | Rinku Singh [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe u'[0m
+[37m[21:19:59 F55 TEST] INFO:   [DRS] IN_PROGRESS — grace 3/3[0m
+[37m[21:19:59 F55 TEST] INFO: [F55] Vision timeout — skipping[0m
+[37m[21:19:59 F56 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:00 F57 VISION] INFO: [SCOUT] SCOREBOARD 628ms strip=True overlay=False drs=True cam=closeup phase=between_play digits=False 268 chars[0m
+[37m[21:20:00 F57 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": true, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+EXTRA: 
+THIS O[0m
+[37m[21:20:00 F57 TEST] INFO:   [DRS] Commentary emitted: review in progress[0m
+[37m[21:20:00 F57 TEST] INFO: 
+=======================================================[0m
+[37m[21:20:00 F57 TEST] INFO: [F57] SCOREBOARD — #22[0m
+[37m[21:20:00 F57 TEST] INFO:   [V 632ms] STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD:[0m
+[37m[21:20:01 F57 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:01 F57 TEST] INFO:   [E 950ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:20:01 F57 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=4)[0m
+[37m[21:20:01 F57 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:01 F57 TEST] INFO:   Total: 1586ms (V:632 E:950)[0m
+[37m[21:20:01 F57 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:20:01 F57 TEST] INFO: DETAIL|F57|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG 0-0 (0.0) |  INFO_PANEL:  EXTRA:  THIS OVER:  FULL SCORECARD:|action=A DRS review decision is being shown.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=632|lat_extract=950|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1586|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[33m[21:20:02 F58 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#14): 'STRIP: LSG  | Seifert  [RUNS]([BALLS]) | Rinku Singh  [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])\n\nINFO_PANEL: \nSPEED: \nEXTRA: wide not given\nTHIS OVER: \nFULL SCORECARD: \n\nThe umpire is reviewi'[0m
+[37m[21:20:02 F58 TEST] INFO:   [DRS] IN_PROGRESS — grace 1/3[0m
+[37m[21:20:02 F58 TEST] INFO: [F58] Vision timeout — skipping[0m
+[37m[21:20:02 F59 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:02 F59 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:20:02 F60 TEST] INFO:   [DISMISSAL-HINT-CLEAR] 'bowled' aged out (31 frames since seen)[0m
+[33m[21:20:03 F60 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#15): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Tim Seifert [RUNS]([BALLS]) | Rinku Singh [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe K'[0m
+[37m[21:20:03 F60 TEST] INFO:   [DRS] IN_PROGRESS — grace 2/3[0m
+[37m[21:20:03 F60 TEST] INFO: [F60] Vision timeout — skipping[0m
+[37m[21:20:03 F61 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:04 F62 TEST] INFO: [F62] Pixel skip #4[0m
+[37m[21:20:04 F62 TEST] INFO: [F62] Force-processing after 4 pixel skips[0m
+[33m[21:20:04 F62 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#16): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Tim Seifert [RUNS]([BALLS]) | Rinku Singh [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \nThe ump'[0m
+[37m[21:20:04 F62 TEST] INFO:   [DRS] IN_PROGRESS — grace 3/3[0m
+[37m[21:20:04 F62 TEST] INFO: [F62] Vision timeout — skipping[0m
+[37m[21:20:05 F63 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:20:05 F63 VISION] INFO: [SCOUT] SCOREBOARD 717ms strip=True overlay=False drs=True cam=bowlers_end phase=release digits=False 298 chars[0m
+[37m[21:20:05 F63 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": true, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+[0m
+[37m[21:20:05 F63 TEST] INFO: 
+=======================================================[0m
+[37m[21:20:05 F63 TEST] INFO: [F63] SCOREBOARD — #23[0m
+[37m[21:20:05 F63 TEST] INFO:   [V 720ms] STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+The umpire is reviewing a delivery to determine if it is a wide ball.[0m
+[37m[21:20:06 F63 TEST] INFO: [WS] client connected (4 total)[0m
+[37m[21:20:06 F63 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:06 F63 TEST] INFO:   [E 977ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:20:06 F63 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=5)[0m
+[37m[21:20:06 F63 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:06 F63 TEST] INFO:   Total: 1702ms (V:720 E:977)[0m
+[37m[21:20:06 F63 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:20:06 F63 TEST] INFO: DETAIL|F63|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG 0-0 (0.0) |  INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:  The umpire is reviewing a delivery to determine if it is a wide ball.|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=720|lat_extract=977|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1702|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[33m[21:20:07 F64 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#17): 'STRIP: KKR  [SCORE]-[WICKETS] ([OVERS]) | Tim Seifert [RUNS]([BALLS]) | Rinku Singh [RUNS]([BALLS]) | Mohammed Shami [W]-[R] ([OVERS])\n\nINFO_PANEL: \nSPEED: \nEXTRA: \nTHIS OVER: \nFULL SCORECARD: \n\nThe u'[0m
+[37m[21:20:07 F64 TEST] INFO:   [DRS] IN_PROGRESS — grace 1/3[0m
+[37m[21:20:07 F64 TEST] INFO: [F64] Vision timeout — skipping[0m
+[37m[21:20:07 F65 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:08 F66 VISION] INFO: [SCOUT] GRAPHIC 597ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=False 268 chars[0m
+[37m[21:20:08 F66 VISION] INFO: [SCOUT] Preview: {"has_strip": false, "has_overlay_stats": true, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+INFO_PANEL: Knight Riders Review Wide Not Given 
+ACTION:[0m
+[37m[21:20:08 F66 TEST] INFO: [F66] GRAPHIC cam=graphic → dead-time skip (#1)[0m
+[37m[21:20:08 F66 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:09 F66 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:20:10 F66 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:20:12 F67 VISION] INFO: [SCOUT] SCOREBOARD 598ms strip=True overlay=False drs=True cam=closeup phase=between_play digits=True 300 chars[0m
+[37m[21:20:12 F67 TEST] INFO: [F67] cam=closeup → resuming active play after dead-time gap (#1 skipped)[0m
+[37m[21:20:12 F67 TEST] INFO: 
+=======================================================[0m
+[37m[21:20:12 F67 TEST] INFO: [F67] SCOREBOARD — #24[0m
+[37m[21:20:12 F67 TEST] INFO:   [V 600ms] STRIP: KKR 155-7 (19.5)
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The umpire is discussing a DRS review decision with the KKR player.[0m
+[37m[21:20:13 F67 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:13 F67 TEST] INFO:   [E 916ms] visible_team=Kolkata Knight Riders score=155-7 (19.5) target=None rr=None[0m
+[37m[21:20:13 F67 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=7)[0m
+[37m[21:20:13 F67 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:13 F67 TEST] INFO:   Total: 1520ms (V:600 E:916)[0m
+[37m[21:20:13 F67 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:20:13 F67 TEST] INFO: DETAIL|F67|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 155-7 (19.5)  INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:   The umpire is discussing a DRS review decision with the KKR player.|action=—|ext_score=155-7(19.5)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=600|lat_extract=916|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1520|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:20:14 F68 VISION] INFO: [SCOUT] SCOREBOARD 659ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 319 chars[0m
+[37m[21:20:14 F68 TEST] INFO:   [DRS] IN_PROGRESS — grace 1/3[0m
+[37m[21:20:14 F68 TEST] INFO: 
+=======================================================[0m
+[37m[21:20:14 F68 TEST] INFO: [F68] SCOREBOARD — #25[0m
+[37m[21:20:14 F68 TEST] INFO:   [V 662ms] STRIP: KKR 155-7 (20) | Narine 4(6) | Rinku 83(51) | 
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The batters are taking a break and discussing strategy.[0m
+[37m[21:20:14 F68 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:20:15 F68 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:15 F68 TEST] INFO:   [FIX] Extractor returned overs=20 (match format) — dropping[0m
+[37m[21:20:15 F68 TEST] INFO:   [E 1232ms] visible_team=Kolkata Knight Riders score=155-7 (None) target=None rr=None[0m
+[37m[21:20:15 F68 TEST] INFO:     BAT: Narine 4(6) [0m
+[37m[21:20:15 F68 TEST] INFO:     BAT: Rinku 83(51) *[0m
+[37m[21:20:15 F68 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=7)[0m
+[37m[21:20:15 F68 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:15 F68 TEST] INFO:   Total: 1898ms (V:662 E:1232)[0m
+[37m[21:20:15 F68 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:20:15 F68 TEST] INFO: DETAIL|F68|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 155-7 (20) | Narine 4(6) | Rinku 83(51) |   INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:   The batters are taking a break and discussing strategy.|action=—|ext_score=155-7(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=662|lat_extract=1232|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1898|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:20:16 F69 VISION] INFO: [SCOUT] SCOREBOARD 702ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 298 chars[0m
+[37m[21:20:16 F69 TEST] INFO:   [DRS] IN_PROGRESS — grace 2/3[0m
+[37m[21:20:16 F69 TEST] INFO: 
+=======================================================[0m
+[37m[21:20:16 F69 TEST] INFO: [F69] SCOREBOARD — #26[0m
+[37m[21:20:16 F69 TEST] INFO:   [V 705ms] STRIP: KKR 155-7 (20) | Narine 4(6) | Rinku 83(51) | Digvesh 0-46 (4)[0m
+[37m[21:20:17 F69 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:17 F69 TEST] INFO:   [FIX] Extractor returned overs=20 (match format) — dropping[0m
+[37m[21:20:17 F69 TEST] INFO:   [E 1130ms] visible_team=Kolkata Knight Riders score=155-7 (None) target=None rr=None[0m
+[37m[21:20:17 F69 TEST] INFO:     BAT: Narine 4(6) [0m
+[37m[21:20:17 F69 TEST] INFO:     BAT: Rinku 83(51) [0m
+[37m[21:20:17 F69 TEST] INFO:     BOWL: Digvesh 0-46 (4)[0m
+[37m[21:20:17 F69 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=7)[0m
+[37m[21:20:17 F69 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:17 F69 TEST] INFO:   Total: 1840ms (V:705 E:1130)[0m
+[37m[21:20:17 F69 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:20:17 F69 TEST] INFO: DETAIL|F69|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 155-7 (20) | Narine 4(6) | Rinku 83(51) | Digvesh 0-46 (4)|action=The players are walking off the field, likely during a break in play.|ext_score=155-7(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=705|lat_extract=1130|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1840|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:20:18 F70 VISION] INFO: [SCOUT] SCOREBOARD 634ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 335 chars[0m
+[37m[21:20:18 F70 TEST] INFO:   [DRS] IN_PROGRESS — grace 3/3[0m
+[37m[21:20:18 F70 TEST] INFO: 
+=======================================================[0m
+[37m[21:20:18 F70 TEST] INFO: [F70] SCOREBOARD — #27[0m
+[37m[21:20:18 F70 TEST] INFO:   [V 637ms] STRIP: KKR 155-7 (20) | Narine 83(51) | Rinku 4(6) | Digvesh 0-46 (4)[0m
+[37m[21:20:18 F70 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:20:19 F70 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:19 F70 TEST] INFO:   [FIX] Extractor returned overs=20 (match format) — dropping[0m
+[37m[21:20:19 F70 TEST] INFO:   [E 1059ms] visible_team=Kolkata Knight Riders score=155-7 (None) target=None rr=None[0m
+[37m[21:20:19 F70 TEST] INFO:     BAT: Narine 83(51) [0m
+[37m[21:20:19 F70 TEST] INFO:     BAT: Rinku 4(6) [0m
+[37m[21:20:19 F70 TEST] INFO:     BOWL: Digvesh 0-46 (4)[0m
+[37m[21:20:19 F70 TRACK] INFO: bowl:Digvesh Singh Rathi:runs: initial proposed 46 (2/3 — waiting)[0m
+[37m[21:20:19 F70 TRACK] INFO: bowl:Digvesh Singh Rathi:wickets: initial proposed 0 (2/3 — waiting)[0m
+[37m[21:20:19 F70 TRACK] INFO: bowl:Digvesh Singh Rathi:overs: initial proposed 4 (2/3 — waiting)[0m
+[37m[21:20:19 F70 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=IN_PROGRESS, streak=7)[0m
+[37m[21:20:19 F70 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:19 F70 TEST] INFO:   Total: 1701ms (V:637 E:1059)[0m
+[37m[21:20:19 F70 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) [DRS IN_PROGRESS][0m
+[37m[21:20:19 F70 TEST] INFO: DETAIL|F70|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 155-7 (20) | Narine 83(51) | Rinku 4(6) | Digvesh 0-46 (4)|action=The camera shows a close-up of a player, likely a member of the Kolkata Knight Riders (KKR), on the field.|ext_score=155-7(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Mohammed Shami 0-0 (0.0)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast) W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=IN_PROGRESS|corrections=none|lat_vision=637|lat_extract=1059|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1701|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:20:19 F71 VISION] INFO: [SCOUT] SCOREBOARD 644ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 340 chars[0m
+[37m[21:20:19 F71 TEST] INFO:   [DRS] Exited IN_PROGRESS — waiting 3 frames before resolving[0m
+[37m[21:20:19 F71 TEST] INFO: 
+=======================================================[0m
+[37m[21:20:19 F71 TEST] INFO: [F71] SCOREBOARD — #28[0m
+[37m[21:20:19 F71 TEST] INFO:   [V 647ms] STRIP: KKR 155-7 (20) | Narine 83(51) | Rinku 4(6) | Digvesh 0-46 (4)[0m
+[37m[21:20:20 F71 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:20 F71 TEST] INFO:   [FIX] Extractor returned overs=20 (match format) — dropping[0m
+[37m[21:20:20 F71 TEST] INFO:   [E 1087ms] visible_team=Kolkata Knight Riders score=155-7 (None) target=None rr=None[0m
+[37m[21:20:20 F71 TEST] INFO:     BAT: Narine 83(51) [0m
+[37m[21:20:20 F71 TEST] INFO:     BAT: Rinku 4(6) [0m
+[37m[21:20:20 F71 TEST] INFO:     BOWL: Digvesh 0-46 (4)[0m
+[37m[21:20:20 F71 TRACK] INFO: bowl:Digvesh Singh Rathi:runs: initial → 46 (cold-start consensus 3/3)[0m
+[37m[21:20:20 F71 TRACK] INFO: bowl:Digvesh Singh Rathi:wickets: initial → 0 (cold-start consensus 3/3)[0m
+[37m[21:20:20 F71 TRACK] INFO: bowl:Digvesh Singh Rathi:overs: initial → 4 (cold-start consensus 3/3)[0m
+[37m[21:20:20 F71 BOARD] INFO: Digvesh Singh Rathi: None/None (None) -> 0/46 (4) [F71][0m
+[37m[21:20:20 F71 BOARD] INFO: [BOWLER OVERRIDE] Mohammed Shami → Digvesh Singh Rathi (reads=3, must_change=False)[0m
+[37m[21:20:20 F71 TEST] INFO:   [POISONED] Extracted score 155 vs tracker 0 (delta=155) — blocking ALL updates this frame[0m
+[37m[21:20:20 F71 TEST] INFO:   [POISON-STREAK] new=155 streak=1/5[0m
+[37m[21:20:21 F71 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:21 F71 TEST] INFO:   [INNINGS] Scorer target 155 — frame 1/2, waiting[0m
+[37m[21:20:21 F71 TEST] INFO:   [S] Hint: Current batters: NARINE and RINKU. Bowler: DIGVESH[0m
+[37m[21:20:21 F71 TEST] INFO:   [S 903ms] Changes: ['FRAME_POISONED:155'][0m
+[37m[21:20:21 F71 TEST] INFO:   Total: 2637ms (V:647 E:1087 S:903)[0m
+[37m[21:20:21 F71 TEST] INFO:   [THIS OVER] ['4', 'W'] = 4 runs[0m
+[37m[21:20:21 F71 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) inn=1 RR=— | Bat: Tim Seifert(0) Rinku Singh(0) | Bowl: Digvesh Singh Rathi 0-46[0m
+[37m[21:20:21 F71 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[33m[21:20:21 F71 TEST] WARN:   [WS-PROJECTION-GAP] striker=None (payload) sb._inn.striker=None sm.striker=None active_batting=['Tim Seifert', 'Rinku Singh'][0m
+[33m[21:20:21 F71 TEST] WARN: [WS-COLD-START-GATE] OPEN (timeout) — 92s elapsed since first broadcast attempt without first committed non-zero state.  Releasing gate to avoid UI hang (Fix 17 Path D).[0m
+[37m[21:20:21 F71 TEST] INFO:   [ACTION] The camera shows a close-up of several Kolkata Knight Riders players sitting in [0m
+[37m[21:20:21 F71 FIELD] INFO: [F71] IC-cover moved to CC-silly_point[0m
+[37m[21:20:21 F71 FIELD] INFO: [F71] deep fine leg — protecting against top edges[0m
+[37m[21:20:21 F71 FIELD] INFO: [F71] IC-behind_keeper_off brought in — attacking[0m
+[37m[21:20:21 F71 FIELD] INFO: [F71] IC-gully brought in — attacking[0m
+[37m[21:20:21 F71 TEST] INFO:   [FIELD-MONITOR] Field unchanged for 70 frames (template=pace_powerplay, frozen=True, phase=powerplay). If a wicket / over / bowler change has happened in this window, the field-state updater is the bug.[0m
+[37m[21:20:21 F71 TEST] INFO: DETAIL|F71|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 155-7 (20) | Narine 83(51) | Rinku 4(6) | Digvesh 0-46 (4)|action=The camera shows a close-up of several Kolkata Knight Riders players sitting in the dugout, watching|ext_score=155-7(None)|ext_bat=Narine 83(51) | Rinku 4(6)|ext_bowl=Digvesh 0-46 (4)|scorer_changes=['FRAME_POISONED:155']|yolo=5|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Mohammed Shami 0-0 (0.0)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Digvesh Singh Rathi 0-46 (4)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast),W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=647|lat_extract=1087|lat_scorer=903|lat_field=48|lat_comm=0|lat_code=0|lat_total=2643|comm_bowler=Digvesh Singh Rathi|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:20:22 F71 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:20:24 F72 VISION] INFO: [SCOUT] SCOREBOARD 668ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 338 chars[0m
+[37m[21:20:24 F72 TEST] INFO: 
+=======================================================[0m
+[37m[21:20:24 F72 TEST] INFO: [F72] SCOREBOARD — #29[0m
+[37m[21:20:24 F72 TEST] INFO:   [V 670ms] STRIP: KKR 155-7 (20) | NARINE 6(4) | RINKU 83(51) | DIGVESH 0-46 (4)[0m
+[37m[21:20:25 F72 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:25 F72 TEST] INFO:   [FIX] Extractor returned overs=20 (match format) — dropping[0m
+[37m[21:20:25 F72 TEST] INFO:   [E 1196ms] visible_team=Kolkata Knight Riders score=155-7 (None) target=None rr=None[0m
+[37m[21:20:25 F72 TEST] INFO:     BAT: NARINE 6(4) [0m
+[37m[21:20:25 F72 TEST] INFO:     BAT: RINKU 83(51) [0m
+[37m[21:20:25 F72 TEST] INFO:     BOWL: DIGVESH 0-46 (4)[0m
+[37m[21:20:25 F72 TEST] INFO:   [POISONED] Extracted score 155 vs tracker 0 (delta=155) — blocking ALL updates this frame[0m
+[37m[21:20:25 F72 TEST] INFO:   [POISON-STREAK] new=155 streak=2/5[0m
+[37m[21:20:26 F72 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:20:26 F72 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:26 F72 TEST] INFO:   [S] Hint: Current batters: NARINE and RINKU. Bowler: DIGVESH[0m
+[37m[21:20:26 F72 TEST] INFO:   [S 858ms] Changes: ['FRAME_POISONED:155'][0m
+[37m[21:20:26 F72 TEST] INFO:   Total: 2724ms (V:670 E:1196 S:858)[0m
+[37m[21:20:26 F72 TEST] INFO:   [THIS OVER] ['4', 'W'] = 4 runs[0m
+[37m[21:20:26 F72 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) inn=1 RR=— | Bat: Tim Seifert(0) Rinku Singh(0) | Bowl: Digvesh Singh Rathi 0-46[0m
+[37m[21:20:26 F72 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:26 F72 TEST] INFO:   [ACTION] The Kolkata Knight Riders players are walking and shaking hands, likely celebrat[0m
+[37m[21:20:26 F72 TEST] INFO: DETAIL|F72|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 155-7 (20) | NARINE 6(4) | RINKU 83(51) | DIGVESH 0-46 (4)|action=The Kolkata Knight Riders players are walking and shaking hands, likely celebrating the end of their|ext_score=155-7(None)|ext_bat=NARINE 6(4) | RINKU 83(51)|ext_bowl=DIGVESH 0-46 (4)|scorer_changes=['FRAME_POISONED:155']|yolo=2|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Digvesh Singh Rathi 0-46 (4)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Digvesh Singh Rathi 0-46 (4)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast),W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=670|lat_extract=1196|lat_scorer=858|lat_field=44|lat_comm=0|lat_code=0|lat_total=2729|comm_bowler=Digvesh Singh Rathi|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:20:29 F73 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:20:29 F73 VISION] INFO: [SCOUT] SCOREBOARD 723ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 297 chars[0m
+[37m[21:20:29 F73 TEST] INFO:   [DRS] Resolved (after 3 frame delay): pre={'score': 0, 'wickets': 0, 'overs': '0.0'} post={'score': 0, 'wickets': 0, 'overs': '0.0'} → DRS review complete. Decision overturned — no change to the score.[0m
+[37m[21:20:29 F73 TEST] INFO: 
+=======================================================[0m
+[37m[21:20:29 F73 TEST] INFO: [F73] SCOREBOARD — #30[0m
+[37m[21:20:29 F73 TEST] INFO:   [V 726ms] STRIP: KKR 155-7 (20) | NARINE 6(8) | RINKU 83(51) | DIGVESH 0-46 (4)[0m
+[37m[21:20:30 F73 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:30 F73 TEST] INFO:   [FIX] Extractor returned overs=20 (match format) — dropping[0m
+[37m[21:20:30 F73 TEST] INFO:   [E 1170ms] visible_team=Kolkata Knight Riders score=155-7 (None) target=None rr=None[0m
+[37m[21:20:30 F73 TEST] INFO:     BAT: NARINE 6(8) [0m
+[37m[21:20:30 F73 TEST] INFO:     BAT: RINKU 83(51) [0m
+[37m[21:20:30 F73 TEST] INFO:     BOWL: DIGVESH 0-46 (4)[0m
+[37m[21:20:30 F73 TEST] INFO:   [POISONED] Extracted score 155 vs tracker 0 (delta=155) — blocking ALL updates this frame[0m
+[37m[21:20:30 F73 TEST] INFO:   [POISON-STREAK] new=155 streak=3/5[0m
+[37m[21:20:31 F73 TEST] INFO: [WS] client connected (4 total)[0m
+[37m[21:20:31 F73 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:20:31 F73 TEST] INFO:   [INNINGS] Scorer target 155 — frame 1/2, waiting[0m
+[37m[21:20:31 F73 TEST] INFO:   [S] Hint: Current batters: NARINE and RINKU. Bowler: DIGVESH[0m
+[37m[21:20:31 F73 TEST] INFO:   [S 844ms] Changes: ['FRAME_POISONED:155'][0m
+[37m[21:20:31 F73 TEST] INFO:   Total: 2740ms (V:726 E:1170 S:844)[0m
+[37m[21:20:31 F73 TEST] INFO:   [THIS OVER] ['4', 'W'] = 4 runs[0m
+[37m[21:20:31 F73 TEST] INFO:   STATE: Kolkata Knight Riders 0-0 (0.0) inn=1 RR=— | Bat: Tim Seifert(0) Rinku Singh(0) | Bowl: Digvesh Singh Rathi 0-46[0m
+[37m[21:20:31 F73 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:31 F73 TEST] INFO:   [ACTION] The players are celebrating and shaking hands, likely after a match.[0m
+[FIELD WARN] Powerplay but 3 outside circle (max 2). Possible misclassification.
+[37m[21:20:31 F73 FIELD] INFO: [F73] OC-deep_fine_leg moved to OC-deep_square_leg[0m
+[37m[21:20:31 F73 FIELD] INFO: [F73] IC-behind_keeper_off pushed back — defensive[0m
+[37m[21:20:31 F73 TEST] INFO: DETAIL|F73|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 155-7 (20) | NARINE 6(8) | RINKU 83(51) | DIGVESH 0-46 (4)|action=The players are celebrating and shaking hands, likely after a match.|ext_score=155-7(None)|ext_bat=NARINE 6(8) | RINKU 83(51)|ext_bowl=DIGVESH 0-46 (4)|scorer_changes=['FRAME_POISONED:155']|yolo=3|BEFORE_score=0-0(0.0)|BEFORE_bat1=Tim Seifert 0(0)|BEFORE_bat2=Rinku Singh 0(0)|BEFORE_bowl=Digvesh Singh Rathi 0-46 (4)|BEFORE_this_over=['4', 'W']|AFTER_score=0-0(0.0)|AFTER_bat1=Tim Seifert 0(0)|AFTER_bat2=Rinku Singh 0(0)|AFTER_bowl=Digvesh Singh Rathi 0-46 (4)|AFTER_this_over=['4', 'W']|AFTER_this_over_src=4(bcast),W(bcast)|AFTER_striker=—|AFTER_non_striker=Tim Seifert|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_3', 'mid_on', 'fine_leg', 'deep_square_leg', 'backward_point', 'slip_1', 'gully', 'point', 'short_fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=726|lat_extract=1170|lat_scorer=844|lat_field=47|lat_comm=0|lat_code=0|lat_total=2747|comm_bowler=Digvesh Singh Rathi|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:20:31 F73 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:20:31 F73 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:20:33 F74 TEST] INFO: [F74] No-strip skip #1 (lifetime=1)[0m
+[37m[21:20:33 F74 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:35 F76 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:35 F76 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:20:35 F77 TEST] INFO: [F77] Pixel skip #4[0m
+[37m[21:20:35 F77 TEST] INFO: [F77] Force-processing after 4 pixel skips[0m
+[37m[21:20:36 F78 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:36 F78 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:20:37 F80 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:38 F81 TEST] INFO: [F81] Pixel skip #4[0m
+[37m[21:20:38 F81 TEST] INFO: [F81] Force-processing after 4 pixel skips[0m
+[37m[21:20:39 F82 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[33m[21:20:40 F83 ENRICH] WARN: Pass-2 returned unparseable JSON — keeping pass-1 styles (raw_len=0 preview='')[0m
+[37m[21:20:40 F83 ENRICH] INFO: Saved styles to player_styles_242f360951fc.json[0m
+[33m[21:20:40 F83 ENRICH] WARN: Pass-2 background failed — cached Pass-1 as fallback[0m
+[37m[21:20:40 F84 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:40 F84 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:20:41 F85 TEST] INFO: [F85] Pixel skip #4[0m
+[37m[21:20:41 F85 TEST] INFO: [F85] Force-processing after 4 pixel skips[0m
+[37m[21:20:42 F86 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:42 F86 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:20:43 F88 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:43 F89 TEST] INFO: [F89] Pixel skip #4[0m
+[37m[21:20:43 F89 TEST] INFO: [F89] Force-processing after 4 pixel skips[0m
+[37m[21:20:44 F90 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:46 F92 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:46 F92 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:20:46 F93 TEST] INFO: [F93] Pixel skip #4[0m
+[37m[21:20:46 F93 TEST] INFO: [F93] Force-processing after 4 pixel skips[0m
+[37m[21:20:47 F94 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:47 F94 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:20:48 F96 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:49 F97 TEST] INFO: [F97] Pixel skip #4[0m
+[37m[21:20:49 F97 TEST] INFO: [F97] Force-processing after 4 pixel skips[0m
+[37m[21:20:50 F98 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:51 F99 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:20:51 F99 TEST] INFO: [WS] client connected (4 total)[0m
+[37m[21:20:52 F100 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:52 F100 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:20:52 F100 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:20:53 F102 TEST] INFO: [F102] Force-processing after 12 no-strip skips (safety valve)[0m
+[37m[21:20:54 F102 VISION] INFO: [SCOUT] ADVERTISEMENT 790ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 158 chars[0m
+[37m[21:20:54 F102 TEST] INFO: [F102] AD 793ms (#1)[0m
+[37m[21:20:54 F102 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:20:56 F102 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:21:00 F102 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:21:02 F103 TEST] INFO: [F103] No-strip skip #1 (lifetime=13)[0m
+[37m[21:21:02 F103 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:21:04 F105 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:21:04 F105 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:21:05 F107 TEST] INFO: [F107] Pixel skip #4[0m
+[37m[21:21:05 F107 TEST] INFO: [F107] Force-processing after 4 pixel skips[0m
+[37m[21:21:05 F107 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:21:05 F107 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:21:07 F109 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:21:09 F111 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:21:09 F111 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:21:10 F113 TEST] INFO: [F113] No-strip skip #8 (lifetime=20)[0m
+[37m[21:21:10 F113 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:21:10 F113 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:21:12 F115 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:21:14 F117 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:21:14 F117 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:21:14 F118 TEST] INFO: [WS] client connected (4 total)[0m
+[37m[21:21:15 F119 TEST] INFO: [F119] Force-processing after 12 no-strip skips (safety valve)[0m
+[37m[21:21:16 F119 VISION] INFO: [SCOUT] ADVERTISEMENT 736ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 163 chars[0m
+[37m[21:21:16 F119 TEST] INFO: [F119] AD 739ms (#2)[0m
+[37m[21:21:16 F119 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Tim Seifert' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:21:16 F119 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:21:16 F119 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:21:20 F119 TEST] INFO: [WS] client connected (3 total)[0m

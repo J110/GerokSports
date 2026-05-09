@@ -1,0 +1,1350 @@
+[W NNPACK.cpp:64] Could not initialize NNPACK! Reason: Unsupported hardware.
+[37m[17:27:27 F0 TEST] INFO: [WS] Server started on ws://0.0.0.0:8765[0m
+[37m[17:27:27 F0 TEST] INFO: [WS] Commentary server on ws://0.0.0.0:8766[0m
+[37m[17:27:27 F0 TEST] INFO: ============================================================[0m
+[37m[17:27:27 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[17:27:27 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/151987/csk-vs-mi-44th-match-indian-premier-league-2026[0m
+[37m[17:27:27 F0 SQUAD] INFO:   Chennai Super Kings: 11 XI + 13 bench[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Sanju Samson (WK) — wk_batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Ruturaj Gaikwad (C) — batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Urvil Patel (WK) — wk_batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Dewald Brevis — batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Shivam Dube — bat_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Jamie Overton — bowl_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Ramakrishna Ghosh — bat_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Prashant Veer — bowl_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Noor Ahmad — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Anshul Kamboj — bowl_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Mukesh Choudhary — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Kartik Sharma — wk_batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Akeal Hosein — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Sarfaraz Khan — batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Matthew Short — batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Gurjapneet Singh — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] MS Dhoni — wk_batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Matt Henry — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Spencer Johnson — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Zakary Foulkes — bowl_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Shreyas Gopal — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Rahul Chahar — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Akash Madhwal — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Aman Khan — bowl_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:   Mumbai Indians: 11 XI + 14 bench[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Will Jacks — bat_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Ryan Rickelton (WK) — wk_batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Suryakumar Yadav — batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Naman Dhir — batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Tilak Varma — batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Hardik Pandya (C) — bat_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Robin Minz (WK) — wk_batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Trent Boult — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Krish Bhagat — bat_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     Jasprit Bumrah — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     AM Ghazanfar — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Raj Bawa — bat_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Raghu Sharma — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Mayank Rawat — bat_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Shardul Thakur — bowl_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Ashwani Kumar — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Rohit Sharma — batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Deepak Chahar — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Quinton de Kock — wk_batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Corbin Bosch — bowl_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Keshav Maharaj — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Sherfane Rutherford — bat_allrounder[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Mayank Markande — bowler[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Danish Malewar — batter[0m
+[37m[17:27:27 F0 SQUAD] INFO:     [bench] Mohammed Salahuddin Izhar — bowler[0m
+[37m[17:27:27 F0 TEST] INFO: Teams: ['Chennai Super Kings', 'Mumbai Indians'][0m
+[37m[17:27:27 F0 ENRICH] INFO: Loaded cached styles from player_styles_767a56745c60.json (49 players)[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache] Chennai Super Kings — styles:[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Sanju Samson             RHB  | None[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Ruturaj Gaikwad          RHB  | None[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Urvil Patel              unknown | unknown[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Dewald Brevis            RHB  | None[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Shivam Dube              LHB  | Right-arm medium-fast[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Jamie Overton            RHB  | Right-arm fast[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Ramakrishna Ghosh        unknown | unknown[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Prashant Veer            LHB  | unknown[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Noor Ahmad               LHB  | Left-arm wrist spin (chinaman)[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Anshul Kamboj            unknown | unknown[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Mukesh Choudhary         LHB  | Left-arm medium-fast[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache] Mumbai Indians — styles:[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Will Jacks               RHB  | Right-arm off spin[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Ryan Rickelton           LHB  | None[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Suryakumar Yadav         RHB  | None[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Naman Dhir               RHB  | Right-arm off break[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Tilak Varma              LHB  | None[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Hardik Pandya            RHB  | Right-arm medium-fast[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Robin Minz               unknown | unknown[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Trent Boult              LHB  | Left-arm fast[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Krish Bhagat             RHB  | unknown[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   Jasprit Bumrah           RHB  | Right-arm fast[0m
+[37m[17:27:27 F0 ENRICH] INFO: [cache]   AM Ghazanfar             unknown | unknown[0m
+[37m[17:27:27 F0 TEST] INFO: Team variants: ['CH', 'CHE', 'CHENNAI', 'CHENNAI SUPER KINGS', 'CSK', 'IND', 'INDIANS', 'KIN', 'KINGS', 'MI', 'MU', 'MUM', 'MUMBAI', 'MUMBAI INDIANS', 'SUP', 'SUPER'][0m
+[37m[17:27:27 F0 TEST] INFO: [OPEN-SCOUT] enabled (USE_OPEN_SCOUT=1)[0m
+[37m[17:27:27 F0 TEST] INFO: Frame source: capture_card (skipping Firefox window discovery)[0m
+[37m[17:27:29 F0 TEST] INFO: [BALL ANALYZER] Background capture started (source=capture_card)[0m
+[37m[17:27:36 F0 FIELD] INFO: Pitch detected from green mask at (0.73, 0.52) (fallback — will recalibrate from people)[0m
+[37m[17:27:36 F0 TEST] INFO: [CACHE] Stale (>30 min old) — ignoring[0m
+[37m[17:27:36 F0 TEST] INFO: [CACHE] No cached state found — starting fresh[0m
+[37m[17:27:36 F0 TEST] INFO: ============================================================[0m
+[37m[17:27:36 F0 TEST] INFO: [CONFIG] Vision:    Scout 17B (single call tag+read)[0m
+[37m[17:27:36 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[17:27:36 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[17:27:36 F0 TEST] INFO: PIPELINE STARTED — 18000s — NO TEAM ASSUMPTION[0m
+[37m[17:27:36 F0 TEST] INFO: ============================================================[0m
+[37m[17:27:38 F1 VISION] INFO: [SCOUT] SCOREBOARD 1138ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 254 chars[0m
+[37m[17:27:38 F1 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+STRIP: KKR 5-0 (0.2) | extras=null | this_over=null[0m
+[37m[17:27:38 F1 TEST] INFO: 
+=======================================================[0m
+[37m[17:27:38 F1 TEST] INFO: [F1] SCOREBOARD — #1[0m
+[37m[17:27:38 F1 TEST] INFO:   [V 1150ms] STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null) | null null(null) | null null(null)[0m
+[37m[17:27:39 F1 EXTRACT] INFO: Extracted in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:39 F1 TEST] INFO:   [E 1375ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:27:40 F1 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:40 F1 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:27:40 F1 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:27:40 F1 TEST] INFO:   [S 688ms] Changes: none[0m
+[37m[17:27:40 F1 TEST] INFO:   Total: 3213ms (V:1150 E:1375 S:688)[0m
+[37m[17:27:40 F1 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:27:40 F1 TEST] INFO: DETAIL|F1|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null) | null null(null) | null null(null)|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1150|lat_extract=1375|lat_scorer=688|lat_field=94|lat_comm=0|lat_code=0|lat_total=3232|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:27:43 F2 VISION] INFO: [SCOUT] GRAPHIC 870ms strip=True overlay=True drs=False cam=closeup phase=between_play digits=True 589 chars[0m
+[37m[17:27:43 F2 TEST] INFO: 
+=======================================================[0m
+[37m[17:27:43 F2 TEST] INFO: [F2] GRAPHIC — #2[0m
+[37m[17:27:43 F2 TEST] INFO:   [V 874ms] STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null)(null) | null null(null)(null) | null null-null (null)
+
+INFO_PANEL: SRH BATTING TODAY v KKR | FIRST 9 OVERS: 105 RUNS, 2 WICKETS, RUN RATE: 11.7 | LAST 10 OVERS: 60 RUNS, 8 WICKETS,[0m
+[37m[17:27:43 F2 EXTRACT] INFO: Extracted in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:43 F2 TEST] INFO:   [GRAPHIC-FILTER] GRAPHIC frame — rejecting extractor score path upstream of poison delta (frame_type=GRAPHIC raw_score=None raw_wkts=None raw_overs=None; classification_conf=n/a)[0m
+[37m[17:27:43 F2 TEST] INFO:   [GUARD] GRAPHIC frame — player stats stripped, score mismatch → poisoned (score fields cleared)[0m
+[37m[17:27:43 F2 TEST] INFO:   [E 668ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:27:44 F2 SCORER] INFO: Scored in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:44 F2 TEST] INFO:   [S] Hint: Current batters: None and None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:27:44 F2 TEST] INFO:   [S 598ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:27:44 F2 TEST] INFO:   Total: 2140ms (V:874 E:668 S:598)[0m
+[37m[17:27:44 F2 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:27:44 F2 TEST] INFO: DETAIL|F2|GRAPHIC|tag=GRAPHIC|scout=STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null)(null) | null null(null)(null) | null null-null (nu|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=874|lat_extract=668|lat_scorer=598|lat_field=95|lat_comm=0|lat_code=0|lat_total=2142|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:27:47 F3 VISION] INFO: [SCOUT] GRAPHIC 900ms strip=True overlay=True drs=False cam=closeup phase=between_play digits=True 524 chars[0m
+[37m[17:27:47 F3 TEST] INFO: 
+=======================================================[0m
+[37m[17:27:47 F3 TEST] INFO: [F3] GRAPHIC — #3[0m
+[37m[17:27:47 F3 TEST] INFO:   [V 903ms] STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null) | null null(null) | null null(null)
+
+INFO_PANEL: SRH BATTING TODAY V KKR FIRST 9 OVERS 105 WICKETS 2 RUN RATE 11.7 LAST 10 OVERS 60 WICKETS 8 RUN RATE 6.0
+SPEED: null
+EXTRA: null
+T[0m
+[37m[17:27:48 F3 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:48 F3 TEST] INFO:   [GRAPHIC-FILTER] GRAPHIC frame — rejecting extractor score path upstream of poison delta (frame_type=GRAPHIC raw_score=None raw_wkts=None raw_overs=None; classification_conf=n/a)[0m
+[37m[17:27:48 F3 TEST] INFO:   [GUARD] GRAPHIC frame — player stats stripped, score mismatch → poisoned (score fields cleared)[0m
+[37m[17:27:48 F3 TEST] INFO:   [E 1088ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:27:49 F3 SCORER] INFO: Scored in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:49 F3 TEST] INFO:   [S] Hint: Current batters: None and None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:27:49 F3 TEST] INFO:   [S 593ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:27:49 F3 TEST] INFO:   Total: 2584ms (V:903 E:1088 S:593)[0m
+[37m[17:27:49 F3 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:27:49 F3 TEST] INFO: DETAIL|F3|GRAPHIC|tag=GRAPHIC|scout=STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null) | null null(null) | null null(null)  INFO_PANEL: S|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=3|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=903|lat_extract=1088|lat_scorer=593|lat_field=152|lat_comm=0|lat_code=0|lat_total=2586|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:27:52 F4 VISION] INFO: [SCOUT] SCOREBOARD 788ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 432 chars[0m
+[37m[17:27:52 F4 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 5-0 (0.2) | extras=null | this_over=nul[0m
+[37m[17:27:52 F4 TEST] INFO: 
+=======================================================[0m
+[37m[17:27:52 F4 TEST] INFO: [F4] SCOREBOARD — #4[0m
+[37m[17:27:52 F4 TEST] INFO:   [V 792ms] STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null) | null null(null) | null null(null)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The player is walking on the field, likely discussing strategies[0m
+[37m[17:27:53 F4 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:53 F4 TEST] INFO:   [GRAPHIC-FILTER] overlay window active (remaining=4) — poisoning strip read[0m
+[37m[17:27:53 F4 TEST] INFO:   [E 984ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:27:53 F4 SCORER] INFO: Scored in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:53 F4 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:27:53 F4 TEST] INFO:   [S 588ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:27:53 F4 TEST] INFO:   Total: 2365ms (V:792 E:984 S:588)[0m
+[37m[17:27:53 F4 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:27:53 F4 TEST] INFO: DETAIL|F4|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null) | null null(null) | null null(null)  INFO_PANEL: n|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=792|lat_extract=984|lat_scorer=588|lat_field=254|lat_comm=0|lat_code=0|lat_total=2367|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:27:56 F5 VISION] INFO: [SCOUT] GRAPHIC 858ms strip=True overlay=True drs=False cam=closeup phase=between_play digits=True 599 chars[0m
+[37m[17:27:56 F5 TEST] INFO: 
+=======================================================[0m
+[37m[17:27:56 F5 TEST] INFO: [F5] GRAPHIC — #5[0m
+[37m[17:27:56 F5 TEST] INFO:   [V 862ms] STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null) | null null(null) | null null-null (null)
+
+INFO_PANEL: SRH BATTING TODAY v KKR | FIRST 9 OVERS RUNS 105 WICKETS 2 RUN RATE 11.7 | LAST 10 OVERS RUNS 60 WICKETS 8 RUN RATE 6.0
+SPEED[0m
+[37m[17:27:57 F5 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:57 F5 TEST] INFO:   [GRAPHIC-FILTER] GRAPHIC frame — rejecting extractor score path upstream of poison delta (frame_type=GRAPHIC raw_score=None raw_wkts=None raw_overs=None; classification_conf=n/a)[0m
+[37m[17:27:57 F5 TEST] INFO:   [GUARD] GRAPHIC frame — player stats stripped, score mismatch → poisoned (score fields cleared)[0m
+[37m[17:27:57 F5 TEST] INFO:   [E 1041ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:27:58 F5 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:27:58 F5 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:27:58 F5 TEST] INFO:   [S 790ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:27:58 F5 TEST] INFO:   Total: 2694ms (V:862 E:1041 S:790)[0m
+[37m[17:27:58 F5 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:27:58 F5 TEST] INFO: DETAIL|F5|GRAPHIC|tag=GRAPHIC|scout=STRIP: KKR 5-0 (0.2) | extras=null | this_over=null | null null(null) | null null(null) | null null-null (null)  INFO_PA|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=862|lat_extract=1041|lat_scorer=790|lat_field=135|lat_comm=0|lat_code=0|lat_total=2696|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:01 F6 VISION] INFO: [SCOUT] SCOREBOARD 735ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 393 chars[0m
+[37m[17:28:01 F6 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: KKR 5-0 (0.2) | extras=null | this_over= | Rahan[0m
+[37m[17:28:01 F6 TEST] INFO: [F6] SCOREBOARD cam=graphic → dead-time skip (#1)[0m
+[37m[17:28:05 F7 VISION] INFO: [SCOUT] SCOREBOARD 750ms strip=True overlay=False drs=False cam=side_on phase=between_play digits=True 426 chars[0m
+[37m[17:28:05 F7 TEST] INFO: [F7] cam=side_on → resuming active play after dead-time gap (#1 skipped)[0m
+[37m[17:28:05 F7 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:05 F7 TEST] INFO: [F7] SCOREBOARD — #6[0m
+[37m[17:28:05 F7 TEST] INFO:   [V 754ms] STRIP: KKR 5-0 (0.2) | extras=null | this_over= | Rahane 5(2) | Allen 0(0) | Abhishek 0-5 (0.2)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The fielder wearing a blue jersey with the number 16 is running towards a [0m
+[37m[17:28:07 F7 EXTRACT] INFO: Extracted in 1.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:07 F7 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:07 F7 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:07 F7 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:07 F7 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:07 F7 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:07 F7 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:07 F7 TEST] INFO:   [GRAPHIC-FILTER] overlay window active (remaining=3) — poisoning strip read[0m
+[37m[17:28:07 F7 TEST] INFO:   [E 1509ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:28:07 F7 TEST] INFO:     BAT: Rahane 5(2) [0m
+[37m[17:28:07 F7 TEST] INFO:     BAT: Allen 0(0) [0m
+[37m[17:28:07 F7 TEST] INFO:     BAT: Abhishek None(None) [0m
+[37m[17:28:07 F7 TEST] INFO:     BOWL: Abhishek 0-5 (0.2)[0m
+[37m[17:28:07 F7 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:07 F7 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: ABHISHEK. Read their stats from the scoreboard.[0m
+[37m[17:28:07 F7 TEST] INFO:   [S 852ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:28:07 F7 TEST] INFO:   Total: 3115ms (V:754 E:1509 S:852)[0m
+[37m[17:28:07 F7 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:28:07 F7 TEST] INFO:   [BATTER-ALIGN] ext_batters len=3 — scanning all rows for striker/non match[0m
+[37m[17:28:07 F7 TEST] INFO: DETAIL|F7|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 5-0 (0.2) | extras=null | this_over= | Rahane 5(2) | Allen 0(0) | Abhishek 0-5 (0.2)  INFO_PANEL: null SPEED:|action=—|ext_score=None-None(None)|ext_bat=Rahane 5(2) | Allen 0(0) | Abhishek None(None)|ext_bowl=Abhishek 0-5 (0.2)|scorer_changes=['FRAME_POISONED:None']|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=754|lat_extract=1509|lat_scorer=852|lat_field=100|lat_comm=0|lat_code=0|lat_total=3118|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:10 F8 VISION] INFO: [SCOUT] SCOREBOARD 872ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 428 chars[0m
+[37m[17:28:10 F8 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:10 F8 TEST] INFO: [F8] SCOREBOARD — #7[0m
+[37m[17:28:10 F8 TEST] INFO:   [V 875ms] STRIP: KKR 6-0 (0.3) | extras=null | this_over=⊙⊙⊙ | RAHANE 5(2) | ALLEN 1(1) | null null-null (null)
+
+INFO_PANEL: null
+SPEED: 95.7 
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The player appears to be adjusting something while looking down, li[0m
+[37m[17:28:12 F8 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:12 F8 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:12 F8 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:12 F8 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:12 F8 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:12 F8 TEST] INFO:   [GRAPHIC-FILTER] overlay window active (remaining=2) — poisoning strip read[0m
+[37m[17:28:12 F8 TEST] INFO:   [E 1192ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:28:12 F8 TEST] INFO:     BAT: RAHANE 5(2) [0m
+[37m[17:28:12 F8 TEST] INFO:     BAT: ALLEN 1(1) [0m
+[37m[17:28:12 F8 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:12 F8 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: null. Read their stats from the scoreboard.[0m
+[37m[17:28:12 F8 TEST] INFO:   [S 694ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:28:12 F8 TEST] INFO:   Total: 2762ms (V:875 E:1192 S:694)[0m
+[37m[17:28:12 F8 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:28:12 F8 TEST] INFO: DETAIL|F8|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.3) | extras=null | this_over=⊙⊙⊙ | RAHANE 5(2) | ALLEN 1(1) | null null-null (null)  INFO_PANEL: null |action=—|ext_score=None-None(None)|ext_bat=RAHANE 5(2) | ALLEN 1(1)|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=875|lat_extract=1192|lat_scorer=694|lat_field=100|lat_comm=0|lat_code=0|lat_total=2764|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:15 F9 VISION] INFO: [SCOUT] SCOREBOARD 935ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 501 chars[0m
+[37m[17:28:15 F9 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 6-0 (0.3) | extras=null | this_over= > [0m
+[37m[17:28:15 F9 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:15 F9 TEST] INFO: [F9] SCOREBOARD — #8[0m
+[37m[17:28:15 F9 TEST] INFO:   [V 939ms] STRIP: KKR 6-0 (0.3) | extras=null | this_over= > RAHANE 5(2) | ALLEN 1(1) | Abhishek 0-6 (0.3)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The camera shows a close-up of a player, likely a captain or coach, wearin[0m
+[37m[17:28:17 F9 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:17 F9 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:17 F9 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:17 F9 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:17 F9 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:17 F9 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:17 F9 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:17 F9 TEST] INFO:   [GRAPHIC-FILTER] overlay window active (remaining=1) — poisoning strip read[0m
+[33m[17:28:17 F9 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F9 reason=sentinel sentinel=' > ' popped=batters[0m
+[37m[17:28:17 F9 TEST] INFO:   [E 1288ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:28:17 F9 TEST] INFO:     BOWL: Abhishek 0-6 (0.3)[0m
+[37m[17:28:18 F9 SCORER] INFO: Scored in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:18 F9 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: ABHISEEK. Read their stats from the scoreboard.[0m
+[37m[17:28:18 F9 TEST] INFO:   [S 1164ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:28:18 F9 TEST] INFO:   Total: 3392ms (V:939 E:1288 S:1164)[0m
+[37m[17:28:18 F9 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[FIELD WARN] Powerplay but 3 outside circle (max 2). Possible misclassification.
+[37m[17:28:18 F9 TEST] INFO: DETAIL|F9|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.3) | extras=null | this_over= > RAHANE 5(2) | ALLEN 1(1) | Abhishek 0-6 (0.3)  INFO_PANEL: null SPEED:|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=Abhishek 0-6 (0.3)|scorer_changes=['FRAME_POISONED:None']|yolo=3|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=939|lat_extract=1288|lat_scorer=1164|lat_field=160|lat_comm=0|lat_code=0|lat_total=3394|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:21 F10 VISION] INFO: [SCOUT] SCOREBOARD 1021ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 407 chars[0m
+[37m[17:28:21 F10 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 6-0 (0.3) | extras=null | this_over=⊙⊙⊙[0m
+[37m[17:28:21 F10 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:21 F10 TEST] INFO: [F10] SCOREBOARD — #9[0m
+[37m[17:28:21 F10 TEST] INFO:   [V 1025ms] STRIP: KKR 6-0 (0.3) | extras=null | this_over=⊙⊙⊙ | RAHANE 5(2) | ALLEN 1(1) | ABHISHEK 0-6 (0.3)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The fielder, likely the captain, is directing or communicating with tea[0m
+[37m[17:28:22 F10 EXTRACT] INFO: Extracted in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:22 F10 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:22 F10 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:22 F10 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:22 F10 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:22 F10 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:22 F10 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:22 F10 TEST] INFO:   [E 1375ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:28:22 F10 TEST] INFO:     BAT: RAHANE 5(2) [0m
+[37m[17:28:22 F10 TEST] INFO:     BAT: ALLEN 1(1) [0m
+[37m[17:28:22 F10 TEST] INFO:     BAT: ABHISHEK 0(None) [0m
+[37m[17:28:22 F10 TEST] INFO:     BOWL: ABHISHEK 0-6 (0.3)[0m
+[37m[17:28:23 F10 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:23 F10 TEST] INFO:   [S] Hint: Current batters: RAHANE, ALLEN. Bowler: ABHISHEK[0m
+[37m[17:28:23 F10 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:28:23 F10 TEST] INFO:   [S 902ms] Changes: none[0m
+[37m[17:28:23 F10 TEST] INFO:   Total: 3301ms (V:1025 E:1375 S:902)[0m
+[37m[17:28:23 F10 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:28:23 F10 TEST] INFO:   [BATTER-ALIGN] ext_batters len=3 — scanning all rows for striker/non match[0m
+[37m[17:28:23 F10 TEST] INFO: DETAIL|F10|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.3) | extras=null | this_over=⊙⊙⊙ | RAHANE 5(2) | ALLEN 1(1) | ABHISHEK 0-6 (0.3)  INFO_PANEL: null SPE|action=—|ext_score=None-None(None)|ext_bat=RAHANE 5(2) | ALLEN 1(1) | ABHISHEK 0(None)|ext_bowl=ABHISHEK 0-6 (0.3)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1025|lat_extract=1375|lat_scorer=902|lat_field=76|lat_comm=0|lat_code=0|lat_total=3306|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:26 F11 VISION] INFO: [SCOUT] SCOREBOARD 891ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 386 chars[0m
+[37m[17:28:26 F11 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: KKR 6-0 (0.3) | extras=null | this_over= | R[0m
+[37m[17:28:26 F11 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:26 F11 TEST] INFO: [F11] SCOREBOARD — #10[0m
+[37m[17:28:26 F11 TEST] INFO:   [V 896ms] STRIP: KKR 6-0 (0.3) | extras=null | this_over= | RAHANE 5(2) | ALLEN 1(1) | ABHISHEK 0-6 (0.3)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The bowler, Abhishek, is bowling the first over of the match.[0m
+[37m[17:28:28 F11 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:28 F11 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:28 F11 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:28 F11 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:28 F11 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:28 F11 TEST] INFO:   [E 1150ms] visible_team=None score=6-0 (0.3) target=None rr=None[0m
+[37m[17:28:28 F11 TEST] INFO:     BAT: RAHANE 5(2) [0m
+[37m[17:28:28 F11 TEST] INFO:     BAT: ALLEN 1(1) [0m
+[37m[17:28:28 F11 TEST] INFO:     BOWL: ABHISHEK 0-6 (0.3)[0m
+[37m[17:28:28 F11 TEST] INFO:   [SCORE-CAP-SUPPRESS-NARROW] DIRECT cap suppressed — cur=None recovery_until=0 frame=11[0m
+[37m[17:28:28 F11 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:28 F11 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: ABHISHEK. Read their stats from the scoreboard.[0m
+[37m[17:28:28 F11 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:28:28 F11 TEST] INFO:   [S 912ms] Changes: none[0m
+[37m[17:28:28 F11 TEST] INFO:   Total: 2958ms (V:896 E:1150 S:912)[0m
+[37m[17:28:28 F11 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[FIELD WARN] Powerplay but 3 outside circle (max 2). Possible misclassification.
+[37m[17:28:28 F11 TEST] INFO: DETAIL|F11|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.3) | extras=null | this_over= | RAHANE 5(2) | ALLEN 1(1) | ABHISHEK 0-6 (0.3)  INFO_PANEL: null SPEED:|action=—|ext_score=6-0(0.3)|ext_bat=RAHANE 5(2) | ALLEN 1(1)|ext_bowl=ABHISHEK 0-6 (0.3)|scorer_changes=[]|yolo=5|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=896|lat_extract=1150|lat_scorer=912|lat_field=130|lat_comm=0|lat_code=0|lat_total=2961|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[FIELD] Pitch detected from people cluster: (0.68, 0.57) spread=0.278
+[37m[17:28:30 F12 VISION] INFO: [SCOUT] SCOREBOARD 1021ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 411 chars[0m
+[37m[17:28:30 F12 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+STRIP: KKR 6-0 (0.3) | extras=null | this_over=[0m
+[37m[17:28:30 F12 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:30 F12 TEST] INFO: [F12] SCOREBOARD — #11[0m
+[37m[17:28:30 F12 TEST] INFO:   [V 1025ms] STRIP: KKR 6-0 (0.3) | extras=null | this_over=○○○ | RAHANE 5(2) | ALLEN 1(1) | ABHISHEK 0-6 (0.3)
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null[0m
+[37m[17:28:31 F12 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:31 F12 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:31 F12 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:31 F12 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:31 F12 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:31 F12 TEST] INFO:   [E 1076ms] visible_team=None score=6-0 (0.3) target=None rr=None[0m
+[37m[17:28:31 F12 TEST] INFO:     BAT: RAHANE 5(2) [0m
+[37m[17:28:31 F12 TEST] INFO:     BAT: ALLEN 1(1) [0m
+[37m[17:28:31 F12 TEST] INFO:     BOWL: ABHISHEK 0-6 (0.3)[0m
+[37m[17:28:31 F12 TEST] INFO:   [SCORE-CAP-SUPPRESS-NARROW] DIRECT cap suppressed — cur=None recovery_until=0 frame=12[0m
+[37m[17:28:31 F12 TRACK] INFO: score: initial proposed 6 (2/3 — waiting)[0m
+[37m[17:28:31 F12 TRACK] INFO: overs: initial proposed 0.3 (2/3 — waiting)[0m
+[37m[17:28:31 F12 TRACK] INFO: wickets: initial proposed 0 (2/3 — waiting)[0m
+[37m[17:28:32 F12 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:32 F12 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: ABHISHEK. Read their stats from the scoreboard.[0m
+[37m[17:28:32 F12 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:28:32 F12 TEST] INFO:   [S 771ms] Changes: none[0m
+[37m[17:28:32 F12 TEST] INFO:   Total: 2872ms (V:1025 E:1076 S:771)[0m
+[37m[17:28:32 F12 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:28:32 F12 TEST] INFO:   [ACTION] The players are in position as the bowler prepares for the next delivery.[0m
+[37m[17:28:32 F12 FIELD] INFO: [F12] slip added — expecting edge[0m
+[37m[17:28:32 F12 FIELD] INFO: [F12] IC-leg_slip_region moved to IC-slip_region[0m
+[37m[17:28:32 F12 FIELD] INFO: [F12] OC-deep_fine_leg moved to OC-deep_square_leg[0m
+[37m[17:28:32 F12 FIELD] INFO: [F12] IC-midwicket moved to IC-mid_on[0m
+[37m[17:28:32 F12 TEST] INFO: DETAIL|F12|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.3) | extras=null | this_over=○○○ | RAHANE 5(2) | ALLEN 1(1) | ABHISHEK 0-6 (0.3) INFO_PANEL: null SPEE|action=The players are in position as the bowler prepares for the next delivery.|ext_score=6-0(0.3)|ext_bat=RAHANE 5(2) | ALLEN 1(1)|ext_bowl=ABHISHEK 0-6 (0.3)|scorer_changes=[]|yolo=9|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1025|lat_extract=1076|lat_scorer=771|lat_field=96|lat_comm=0|lat_code=0|lat_total=2874|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:35 F13 VISION] INFO: [SCOUT] SCOREBOARD 844ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 448 chars[0m
+[37m[17:28:35 F13 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 6-0 (0.4) | extras=null | this_over=⊙⊙⊙[0m
+[37m[17:28:35 F13 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:35 F13 TEST] INFO: [F13] SCOREBOARD — #12[0m
+[37m[17:28:35 F13 TEST] INFO:   [V 848ms] STRIP: KKR 6-0 (0.4) | extras=null | this_over=⊙⊙⊙⊙ | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0.4)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The player in the blue jersey appears to be reacting or celebrating, p[0m
+[37m[17:28:36 F13 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:36 F13 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:36 F13 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:36 F13 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:36 F13 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:36 F13 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:36 F13 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:36 F13 TEST] INFO:   [E 1225ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:28:36 F13 TEST] INFO:     BAT: RAHANE 5(3) [0m
+[37m[17:28:36 F13 TEST] INFO:     BAT: ALLEN 1(1) [0m
+[37m[17:28:36 F13 TEST] INFO:     BAT: ABHISHEK 0(None) [0m
+[37m[17:28:36 F13 TEST] INFO:     BOWL: ABHISHEK 0-6 (0.4)[0m
+[37m[17:28:37 F13 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:37 F13 TEST] INFO:   [S] Hint: Current batters: RAHANE, ALLEN. Bowler: ABHISHEK. Read their stats from the scoreboard.[0m
+[37m[17:28:37 F13 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:28:37 F13 TEST] INFO:   [S 936ms] Changes: none[0m
+[37m[17:28:37 F13 TEST] INFO:   Total: 3010ms (V:848 E:1225 S:936)[0m
+[37m[17:28:37 F13 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:28:37 F13 TEST] INFO:   [BATTER-ALIGN] ext_batters len=3 — scanning all rows for striker/non match[0m
+[37m[17:28:37 F13 FIELD] INFO: [F13] IC-leg_slip_region moved to IC-slip_region[0m
+[37m[17:28:37 F13 FIELD] INFO: [F13] OC-deep_mid_on_area moved to OC-deep_backward_square[0m
+[37m[17:28:37 F13 FIELD] INFO: [F13] slip removed — less catching pressure[0m
+[37m[17:28:37 F13 FIELD] INFO: [F13] deep fine leg — protecting against top edges[0m
+[37m[17:28:37 F13 TEST] INFO: DETAIL|F13|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.4) | extras=null | this_over=⊙⊙⊙⊙ | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0.4)  INFO_PANEL: null SP|action=—|ext_score=None-None(None)|ext_bat=RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0(None)|ext_bowl=ABHISHEK 0-6 (0.4)|scorer_changes=[]|yolo=4|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=848|lat_extract=1225|lat_scorer=936|lat_field=109|lat_comm=0|lat_code=0|lat_total=3014|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:40 F14 VISION] INFO: [SCOUT] SCOREBOARD 1050ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 476 chars[0m
+[37m[17:28:40 F14 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+STRIP: KKR 6-0 (0.4) | extras=null | this_over=null[0m
+[37m[17:28:40 F14 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:40 F14 TEST] INFO: [F14] SCOREBOARD — #13[0m
+[37m[17:28:40 F14 TEST] INFO:   [V 1054ms] STRIP: KKR 6-0 (0.4) | extras=null | this_over=null | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0)
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+The camera shows a close-up of a player, likely Rahane or Allen, in the dr[0m
+[37m[17:28:41 F14 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:41 F14 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:41 F14 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:41 F14 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:41 F14 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:41 F14 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:41 F14 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:41 F14 TEST] INFO:   [E 1136ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:28:41 F14 TEST] INFO:     BAT: RAHANE 5(3) [0m
+[37m[17:28:41 F14 TEST] INFO:     BAT: ALLEN 1(1) [0m
+[37m[17:28:41 F14 TEST] INFO:     BAT: ABHISHEK None(None) [0m
+[37m[17:28:41 F14 TEST] INFO:     BOWL: ABHISHEK 0-6 (None)[0m
+[37m[17:28:42 F14 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:42 F14 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: ABHISHEK. Read their stats from the scoreboard.[0m
+[37m[17:28:42 F14 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:28:42 F14 TEST] INFO:   [S 823ms] Changes: none[0m
+[37m[17:28:42 F14 TEST] INFO:   Total: 3013ms (V:1054 E:1136 S:823)[0m
+[37m[17:28:42 F14 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:28:42 F14 TEST] INFO:   [BATTER-ALIGN] ext_batters len=3 — scanning all rows for striker/non match[0m
+[37m[17:28:42 F14 TEST] INFO: DETAIL|F14|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.4) | extras=null | this_over=null | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0) INFO_PANEL: null SPEED|action=—|ext_score=None-None(None)|ext_bat=RAHANE 5(3) | ALLEN 1(1) | ABHISHEK None(None)|ext_bowl=ABHISHEK 0-6 (None)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1054|lat_extract=1136|lat_scorer=823|lat_field=78|lat_comm=0|lat_code=0|lat_total=3017|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:45 F15 VISION] INFO: [SCOUT] SCOREBOARD 903ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 383 chars[0m
+[37m[17:28:45 F15 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 6-0 (0.4) | extras=null | this_over=⊙⊙⊙[0m
+[37m[17:28:45 F15 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:45 F15 TEST] INFO: [F15] SCOREBOARD — #14[0m
+[37m[17:28:45 F15 TEST] INFO:   [V 907ms] STRIP: KKR 6-0 (0.4) | extras=null | this_over=⊙⊙⊙⊙ | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0.4)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The batter Rahane is preparing for the next delivery.[0m
+[37m[17:28:46 F15 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:46 F15 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:46 F15 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:46 F15 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:46 F15 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:46 F15 TEST] INFO:   [E 1103ms] visible_team=None score=6-0 (0.4) target=None rr=None[0m
+[37m[17:28:46 F15 TEST] INFO:     BAT: RAHANE 5(3) [0m
+[37m[17:28:46 F15 TEST] INFO:     BAT: ALLEN 1(1) [0m
+[37m[17:28:46 F15 TEST] INFO:     BOWL: ABHISHEK 0-6 (0.4)[0m
+[37m[17:28:46 F15 TEST] INFO:   [SCORE-CAP-SUPPRESS-NARROW] DIRECT cap suppressed — cur=None recovery_until=0 frame=15[0m
+[37m[17:28:46 F15 TRACK] INFO: score: initial → 6 (cold-start consensus 3/3)[0m
+[37m[17:28:46 F15 BOARD] INFO: score: None -> 6 [F15][0m
+[37m[17:28:46 F15 TEST] INFO:   [DIRECT] score→6[0m
+[37m[17:28:46 F15 TRACK] INFO: overs: initial proposal flipped 0.3 → 0.4 — resetting consensus to 1/3[0m
+[37m[17:28:46 F15 TRACK] INFO: wickets: initial → 0 (cold-start consensus 3/3)[0m
+[37m[17:28:46 F15 BOARD] INFO: wickets: None -> 0 [F15][0m
+[37m[17:28:46 F15 TEST] INFO:   [DIRECT] wickets→0[0m
+[37m[17:28:46 F15 TEST] INFO:   [INIT] First-frame initialization complete: 6-0(None)[0m
+[37m[17:28:47 F15 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:47 F15 TEST] INFO:   [S] Hint: Current batters: RAHANE, ALLEN. Bowler: ABHISHEK[0m
+[37m[17:28:47 F15 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:28:47 F15 TEST] INFO:   [S 992ms] Changes: none[0m
+[37m[17:28:47 F15 TEST] INFO:   Total: 3002ms (V:907 E:1103 S:992)[0m
+[37m[17:28:47 F15 TEST] INFO:   STATE: ? 6-0 (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:28:47 F15 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:47 F15 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:47 F15 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:47 F15 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:47 F15 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:47 F15 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:47 F15 TEST] INFO: DETAIL|F15|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.4) | extras=null | this_over=⊙⊙⊙⊙ | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0.4)  INFO_PANEL: null SP|action=—|ext_score=6-0(0.4)|ext_bat=RAHANE 5(3) | ALLEN 1(1)|ext_bowl=ABHISHEK 0-6 (0.4)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=6-0(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=907|lat_extract=1103|lat_scorer=992|lat_field=94|lat_comm=0|lat_code=0|lat_total=3005|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:47 F15 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[17:28:50 F16 VISION] INFO: [SCOUT] SCOREBOARD 777ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 389 chars[0m
+[37m[17:28:50 F16 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: KKR 6-0 (0.4) | extras=null | this_over= | *[0m
+[37m[17:28:50 F16 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:50 F16 TEST] INFO: [F16] SCOREBOARD — #15[0m
+[37m[17:28:50 F16 TEST] INFO:   [V 781ms] STRIP: KKR 6-0 (0.4) | extras=null | this_over= | *Rahane 5(3) | Allen 1(1) | Abhishek 0-6 (0.4)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The bowler, Abhishek, is in the process of delivering the ball.[0m
+[37m[17:28:51 F16 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:51 F16 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:51 F16 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:51 F16 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:51 F16 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:51 F16 TEST] INFO:   [E 1078ms] visible_team=None score=None-None (0.4) target=None rr=None[0m
+[37m[17:28:51 F16 TEST] INFO:     BAT: Rahane 5(3) [0m
+[37m[17:28:51 F16 TEST] INFO:     BAT: Allen 1(1) [0m
+[37m[17:28:51 F16 TEST] INFO:     BOWL: Abhishek 0-6 (0.4)[0m
+[37m[17:28:51 F16 TRACK] INFO: overs: initial proposed 0.4 (2/3 — waiting)[0m
+[37m[17:28:52 F16 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:52 F16 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: ABHISHEK. Read their stats from the scoreboard.[0m
+[37m[17:28:52 F16 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:28:52 F16 TEST] INFO:   [S 788ms] Changes: none[0m
+[37m[17:28:52 F16 TEST] INFO:   Total: 2647ms (V:781 E:1078 S:788)[0m
+[37m[17:28:52 F16 TEST] INFO:   STATE: ? 6-0 (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:28:52 F16 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:52 F16 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:52 F16 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:52 F16 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:52 F16 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:52 F16 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:52 F16 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:52 F16 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:52 F16 FIELD] INFO: [F16] OC-deep_backward_square moved to OC-deep_square_leg[0m
+[37m[17:28:52 F16 FIELD] INFO: [F16] slip removed — less catching pressure[0m
+[37m[17:28:52 F16 FIELD] INFO: [F16] deep fine leg — protecting against top edges[0m
+[37m[17:28:52 F16 FIELD] INFO: [F16] IC-midwicket brought in — attacking[0m
+[37m[17:28:52 F16 TEST] INFO: DETAIL|F16|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.4) | extras=null | this_over= | *Rahane 5(3) | Allen 1(1) | Abhishek 0-6 (0.4)  INFO_PANEL: null SPEED|action=—|ext_score=None-None(0.4)|ext_bat=Rahane 5(3) | Allen 1(1)|ext_bowl=Abhishek 0-6 (0.4)|scorer_changes=[]|yolo=5|BEFORE_score=6-0(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=6-0(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=781|lat_extract=1078|lat_scorer=788|lat_field=181|lat_comm=0|lat_code=0|lat_total=2650|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:54 F17 VISION] INFO: [SCOUT] SCOREBOARD 911ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 392 chars[0m
+[37m[17:28:54 F17 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+STRIP: KKR 6-0 (0.4) | extras=null | this_over=⊙. | [0m
+[37m[17:28:54 F17 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:54 F17 TEST] INFO: [F17] SCOREBOARD — #16[0m
+[37m[17:28:54 F17 TEST] INFO:   [V 915ms] STRIP: KKR 6-0 (0.4) | extras=null | this_over=⊙. | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0.4)
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+The bowler, Abhishek, is in his run-up, about to bowl the next ball.[0m
+[37m[17:28:55 F17 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:55 F17 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:55 F17 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:55 F17 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:55 F17 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:55 F17 TEST] INFO:   [E 1118ms] visible_team=None score=6-0 (0.4) target=None rr=None[0m
+[37m[17:28:55 F17 TEST] INFO:     BAT: RAHANE 5(3) [0m
+[37m[17:28:55 F17 TEST] INFO:     BAT: ALLEN 1(1) [0m
+[37m[17:28:55 F17 TEST] INFO:     BOWL: ABHISHEK 0-6 (0.4)[0m
+[37m[17:28:55 F17 TEST] INFO:   [DIRECT] score→6[0m
+[37m[17:28:55 F17 TRACK] INFO: overs: initial → 0.4 (cold-start consensus 3/3)[0m
+[37m[17:28:55 F17 BOARD] INFO: overs: None -> 0.4 [F17][0m
+[37m[17:28:55 F17 TEST] INFO:   [DIRECT] overs→0.4[0m
+[37m[17:28:55 F17 TEST] INFO:   [DIRECT] wickets→0[0m
+[37m[17:28:55 F17 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:55 F17 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: ABHISHEK. Read their stats from the scoreboard.[0m
+[37m[17:28:55 F17 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:28:55 F17 TEST] INFO:   [S 805ms] Changes: none[0m
+[37m[17:28:55 F17 TEST] INFO:   Total: 2839ms (V:915 E:1118 S:805)[0m
+[37m[17:28:55 F17 OVER] INFO: Joined at 0.4, pre-filled 4 balls as '?'[0m
+[37m[17:28:55 F17 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:28:55 F17 BOARD] INFO: run_rate: None -> 9.0 [F17][0m
+[37m[17:28:55 F17 TEST] INFO:   STATE: ? 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:28:55 F17 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:55 F17 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:55 F17 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:55 F17 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:55 F17 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:55 F17 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:55 F17 SCORE_MGR] INFO: [SM] cold-start candidate seeded 6/0 (0.4) — streak 1/3[0m
+[FIELD WARN] Powerplay but 6 outside circle (max 2). Possible misclassification.
+[37m[17:28:55 F17 FIELD] INFO: [F17] IC-square_leg brought in — attacking[0m
+[37m[17:28:55 F17 FIELD] INFO: [F17] IC-midwicket brought in — attacking[0m
+[37m[17:28:55 F17 FIELD] INFO: [F17] IC-short_leg_area pushed back — defensive[0m
+[37m[17:28:55 F17 FIELD] INFO: [F17] IC-midwicket pushed back — defensive[0m
+[37m[17:28:55 F17 FIELD] INFO: [F17] IC-midwicket pushed back — defensive[0m
+[37m[17:28:55 F17 TEST] INFO: DETAIL|F17|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.4) | extras=null | this_over=⊙. | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0.4) INFO_PANEL: null SPEED|action=—|ext_score=6-0(0.4)|ext_bat=RAHANE 5(3) | ALLEN 1(1)|ext_bowl=ABHISHEK 0-6 (0.4)|scorer_changes=[]|yolo=9|BEFORE_score=6-0(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=915|lat_extract=1118|lat_scorer=805|lat_field=101|lat_comm=0|lat_code=0|lat_total=2843|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:28:57 F18 VISION] INFO: [SCOUT] SCOREBOARD 759ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 454 chars[0m
+[37m[17:28:57 F18 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+STRIP: KKR 6-0 (0.4) | extras=null | this_over=[0m
+[37m[17:28:57 F18 TEST] INFO: 
+=======================================================[0m
+[37m[17:28:57 F18 TEST] INFO: [F18] SCOREBOARD — #17[0m
+[37m[17:28:57 F18 TEST] INFO:   [V 764ms] STRIP: KKR 6-0 (0.4) | extras=null | this_over=⚾️⚾️ | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0.4)
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null[0m
+[37m[17:28:58 F18 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:58 F18 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:58 F18 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:58 F18 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:58 F18 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:58 F18 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:58 F18 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:58 F18 TEST] INFO:   [E 1153ms] visible_team=None score=6-0 (0.4) target=None rr=None[0m
+[37m[17:28:58 F18 TEST] INFO:     BAT: RAHANE 5(3) [0m
+[37m[17:28:58 F18 TEST] INFO:     BAT: ALLEN 1(1) [0m
+[37m[17:28:58 F18 TEST] INFO:     BAT: ABHISHEK 0(None) [0m
+[37m[17:28:58 F18 TEST] INFO:     BOWL: ABHISHEK 0-6 (0.4)[0m
+[37m[17:28:58 F18 TEST] INFO:   [DIRECT] score→6[0m
+[37m[17:28:58 F18 TEST] INFO:   [DIRECT] overs→0.4[0m
+[37m[17:28:58 F18 TEST] INFO:   [DIRECT] wickets→0[0m
+[37m[17:28:59 F18 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:28:59 F18 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: ABHISHEK. Read their stats from the scoreboard.[0m
+[37m[17:28:59 F18 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:28:59 F18 TEST] INFO:   [S 840ms] Changes: none[0m
+[37m[17:28:59 F18 TEST] INFO:   Total: 2757ms (V:764 E:1153 S:840)[0m
+[37m[17:28:59 F18 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:28:59 F18 TEST] INFO:   STATE: ? 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:28:59 F18 TEST] INFO:   [BATTER-ALIGN] ext_batters len=3 — scanning all rows for striker/non match[0m
+[37m[17:28:59 F18 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:28:59 F18 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:28:59 F18 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:28:59 F18 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:28:59 F18 BOARD] INFO: [NAME] Exact miss for 'ABHISHEK', trying fuzzy (0 keys)...[0m
+[33m[17:28:59 F18 BOARD] WARN: No match for 'ABHISHEK'. Closest: [][0m
+[37m[17:28:59 F18 SCORE_MGR] INFO: [SM] cold-start consensus building 6/0 (0.4) — streak 2/3[0m
+[37m[17:28:59 F18 TEST] INFO:   [ACTION] The players are in between deliveries, with the Kolkata Knight Riders batting an[0m
+[37m[17:28:59 F18 FIELD] INFO: [F18] IC-square_leg moved to IC-midwicket[0m
+[37m[17:28:59 F18 FIELD] INFO: [F18] OC-deep_midwicket_sq moved to OC-deep_midwicket[0m
+[37m[17:28:59 F18 FIELD] INFO: [F18] OC-deep_square_leg moved to OC-deep_midwicket_sq[0m
+[37m[17:28:59 F18 FIELD] INFO: [F18] IC-midwicket moved to IC-wide_mid_on[0m
+[37m[17:28:59 F18 FIELD] INFO: [F18] IC-gully moved to IC-backward_point[0m
+[37m[17:28:59 F18 FIELD] INFO: [F18] OC-deep_square_leg moved to OC-deep_backward_square[0m
+[37m[17:28:59 F18 TEST] INFO: DETAIL|F18|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 6-0 (0.4) | extras=null | this_over=⚾️⚾️ | RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0-6 (0.4) INFO_PANEL: null SPE|action=The players are in between deliveries, with the Kolkata Knight Riders batting and the Sunrisers Hyde|ext_score=6-0(0.4)|ext_bat=RAHANE 5(3) | ALLEN 1(1) | ABHISHEK 0(None)|ext_bowl=ABHISHEK 0-6 (0.4)|scorer_changes=[]|yolo=12|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=764|lat_extract=1153|lat_scorer=840|lat_field=99|lat_comm=0|lat_code=0|lat_total=2760|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:29:01 F19 TEST] INFO: [F19] No-strip skip #1 (lifetime=1)[0m
+[37m[17:29:08 F25 VISION] INFO: [SCOUT] ADVERTISEMENT 880ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 164 chars[0m
+[37m[17:29:08 F25 TEST] INFO: [F25] AD 884ms (#1)[0m
+[37m[17:29:17 F26 VISION] INFO: [SCOUT] GRAPHIC 857ms strip=True overlay=True drs=False cam=graphic phase=graphic digits=True 533 chars[0m
+[37m[17:29:17 F26 TEST] INFO: [F26] GRAPHIC cam=graphic → dead-time skip (#2)[0m
+[37m[17:29:21 F27 VISION] INFO: [SCOUT] GRAPHIC 833ms strip=True overlay=True drs=False cam=bowlers_end phase=between_play digits=True 401 chars[0m
+[37m[17:29:21 F27 TEST] INFO: [F27] cam=bowlers_end → resuming active play after dead-time gap (#2 skipped)[0m
+[37m[17:29:21 F27 TEST] INFO: 
+=======================================================[0m
+[37m[17:29:21 F27 TEST] INFO: [F27] GRAPHIC — #18[0m
+[37m[17:29:21 F27 TEST] INFO:   [V 837ms] STRIP: KKR 8-0 (1) | extras=null | this_over=null | RAHANE* 1(2) | ALLEN 7(5) | ABHISHEK 0-8 (1)
+INFO_PANEL: ABHISHEK SHARMA T20 CAREER MATCHES 191 WICKETS 55 AVERAGE 28.31 ECONOMY 7.66[0m
+[37m[17:29:21 F27 EXTRACT] INFO: Extracted in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:29:21 F27 TEST] INFO:   [GRAPHIC-FILTER] GRAPHIC frame — rejecting extractor score path upstream of poison delta (frame_type=GRAPHIC raw_score=None raw_wkts=None raw_overs=None; classification_conf=n/a)[0m
+[37m[17:29:21 F27 TEST] INFO:   [GUARD] GRAPHIC frame — player stats stripped, score mismatch → poisoned (score fields cleared)[0m
+[37m[17:29:21 F27 TEST] INFO:   [INFO PANEL] Detected (keyword='CAREER') — no bowler in extracted, tracker will bound values[0m
+[37m[17:29:21 F27 TEST] INFO:   [E 720ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:29:22 F27 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:29:22 F27 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:29:22 F27 TEST] INFO:   [S 665ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:29:22 F27 TEST] INFO:   Total: 2223ms (V:837 E:720 S:665)[0m
+[37m[17:29:22 F27 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:29:22 F27 TEST] INFO:   STATE: ? 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=6 sb_accepted=true[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=wickets value=0 sb_accepted=true[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=batting_team value='KKR' sb_accepted=true[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=run_rate value=9.0 sb_accepted=true[0m
+[37m[17:29:22 F27 SCORE_MGR] INFO: [SM] COLD_START → WARM (consensus 3/3)  6/0 (0.4)[0m
+[37m[17:29:22 F27 TEST] INFO:   [ACTION] The game is currently paused with players on the field.[0m
+[37m[17:29:22 F27 FIELD] INFO: [F27] OC-deep_midwicket moved to OC-deep_midwicket_sq[0m
+[37m[17:29:22 F27 FIELD] INFO: [F27] IC-midwicket moved to IC-mid_on[0m
+[37m[17:29:22 F27 FIELD] INFO: [F27] OC-deep_midwicket_sq moved to OC-deep_midwicket[0m
+[37m[17:29:22 F27 FIELD] INFO: [F27] IC-midwicket brought in — attacking[0m
+[37m[17:29:22 F27 FIELD] INFO: [F27] IC-cover_point moved to IC-point[0m
+[37m[17:29:22 F27 FIELD] INFO: [F27] OC-deep_backward_square moved to OC-deep_midwicket_sq[0m
+[37m[17:29:22 F27 TEST] INFO: DETAIL|F27|GRAPHIC|tag=GRAPHIC|scout=STRIP: KKR 8-0 (1) | extras=null | this_over=null | RAHANE* 1(2) | ALLEN 7(5) | ABHISHEK 0-8 (1) INFO_PANEL: ABHISHEK SH|action=The game is currently paused with players on the field.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=12|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=837|lat_extract=720|lat_scorer=665|lat_field=97|lat_comm=0|lat_code=0|lat_total=2225|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:29:24 F28 TEST] INFO: [F28] No-strip skip #1 (lifetime=7)[0m
+[37m[17:29:29 F32 VISION] INFO: [SCOUT] ADVERTISEMENT 866ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 154 chars[0m
+[37m[17:29:29 F32 TEST] INFO: [F32] AD 870ms (#2)[0m
+[37m[17:29:30 F32 ENRICH] INFO: Pass-2 (verify) complete in 121849ms (39/49 known)[0m
+[37m[17:29:30 F32 ENRICH] INFO: Pass-2 corrected 10 players vs pass-1[0m
+[37m[17:29:30 F32 ENRICH] INFO: Saved styles to player_styles_767a56745c60.json[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg] Chennai Super Kings — styles:[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Sanju Samson             RHB  | None[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Ruturaj Gaikwad          RHB  | None[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Urvil Patel              unknown | unknown[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Dewald Brevis            RHB  | None[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Shivam Dube              LHB  | Right-arm medium-fast[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Jamie Overton            RHB  | Right-arm fast[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Ramakrishna Ghosh        unknown | unknown[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Prashant Veer            LHB  | unknown[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Noor Ahmad               RHB  | Left-arm wrist spin[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Anshul Kamboj            unknown | unknown[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Mukesh Choudhary         LHB  | Left-arm medium-fast[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg] Mumbai Indians — styles:[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Will Jacks               RHB  | Right-arm off spin[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Ryan Rickelton           LHB  | None[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Suryakumar Yadav         RHB  | None[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Naman Dhir               RHB  | Right-arm off break[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Tilak Varma              LHB  | None[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Hardik Pandya            RHB  | Right-arm medium-fast[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Robin Minz               unknown | unknown[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Trent Boult              LHB  | Left-arm fast[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Krish Bhagat             RHB  | unknown[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   Jasprit Bumrah           RHB  | Right-arm fast[0m
+[37m[17:29:30 F32 ENRICH] INFO: [pass2-bg]   AM Ghazanfar             unknown | unknown[0m
+[37m[17:29:30 F32 BOARD] INFO: [STYLES-PATCH] Updated 0 card slots from background Pass-2 enrichment (49 players)[0m
+[37m[17:29:37 F33 TEST] INFO: [F33] No-strip skip #1 (lifetime=11)[0m
+[37m[17:29:39 F34 VISION] INFO: [SCOUT] ADVERTISEMENT 693ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 155 chars[0m
+[37m[17:29:39 F34 TEST] INFO: [F34] AD 697ms (#3)[0m
+[37m[17:29:47 F35 TEST] INFO: [F35] No-strip skip #1 (lifetime=12)[0m
+[37m[17:29:50 F39 TEST] INFO: [F39] Pixel skip #4[0m
+[37m[17:29:50 F39 TEST] INFO: [F39] Force-processing after 4 pixel skips[0m
+[37m[17:29:52 F43 TEST] INFO: [F43] Pixel skip #4[0m
+[37m[17:29:52 F43 TEST] INFO: [F43] Force-processing after 4 pixel skips[0m
+[37m[17:29:56 F47 TEST] INFO: [F47] Pixel skip #4[0m
+[37m[17:29:56 F47 TEST] INFO: [F47] Force-processing after 4 pixel skips[0m
+[37m[17:29:58 F51 TEST] INFO: [F51] Pixel skip #4[0m
+[37m[17:29:58 F51 TEST] INFO: [F51] Force-processing after 4 pixel skips[0m
+[37m[17:30:02 F53 VISION] INFO: [SCOUT] SCOREBOARD 1205ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 434 chars[0m
+[37m[17:30:02 F53 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+STRIP: null null-null (null) | extras=null | this_over=n[0m
+[37m[17:30:02 F53 TEST] INFO: [F53] SCOREBOARD cam=graphic → dead-time skip (#3)[0m
+[37m[17:30:05 F54 VISION] INFO: [SCOUT] ADVERTISEMENT 678ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 160 chars[0m
+[37m[17:30:05 F54 TEST] INFO: [F54] AD 683ms (#4)[0m
+[37m[17:30:15 F55 VISION] INFO: [SCOUT] SCOREBOARD 1263ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 425 chars[0m
+[37m[17:30:15 F55 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+STRIP: KKR 8-0 (1) | extras=null | this_over=null |[0m
+[37m[17:30:15 F55 TEST] INFO: [F55] cam=closeup → resuming active play after dead-time gap (#3 skipped)[0m
+[37m[17:30:15 F55 TEST] INFO: 
+=======================================================[0m
+[37m[17:30:15 F55 TEST] INFO: [F55] SCOREBOARD — #19[0m
+[37m[17:30:15 F55 TEST] INFO:   [V 1267ms] STRIP: KKR 8-0 (1) | extras=null | this_over=null | Rahane 6(4) | Allen 2(2) | Cummins 0-0 (0)
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+The player, likely a team member or bowler, appears to be reacting or prepari[0m
+[37m[17:30:16 F55 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:16 F55 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:16 F55 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:16 F55 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:16 F55 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:16 F55 TEST] INFO:   [E 1168ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:30:16 F55 TEST] INFO:     BAT: Rahane 6(4) [0m
+[37m[17:30:16 F55 TEST] INFO:     BAT: Allen 2(2) [0m
+[37m[17:30:16 F55 TEST] INFO:     BOWL: Cummins None-None (None)[0m
+[37m[17:30:17 F55 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:17 F55 TEST] INFO:   [S] Hint: Current batters: Rahane, Allen. Bowler: Cummins. Read their stats from the scoreboard.[0m
+[37m[17:30:17 F55 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:30:17 F55 TEST] INFO:   [S 877ms] Changes: none[0m
+[37m[17:30:17 F55 TEST] INFO:   Total: 3312ms (V:1267 E:1168 S:877)[0m
+[37m[17:30:17 F55 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:30:17 F55 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:30:17 F55 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:17 F55 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:17 F55 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:17 F55 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:17 F55 BOARD] INFO: [NAME] Exact miss for 'CUMMINS', trying fuzzy (0 keys)...[0m
+[33m[17:30:17 F55 BOARD] WARN: No match for 'CUMMINS'. Closest: [][0m
+[37m[17:30:17 F55 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None[0m
+[37m[17:30:17 F55 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None[0m
+[37m[17:30:17 F55 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None[0m
+[37m[17:30:17 F55 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None[0m
+[37m[17:30:17 F55 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:17 F55 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:17 F55 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:17 F55 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:17 F55 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:17 F55 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:17 F55 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:17 F55 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:17 F55 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#1) → fallback=None active=[][0m
+[33m[17:30:17 F55 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#1) → fallback=None active=[][0m
+[37m[17:30:17 F55 FIELD] INFO: [F55] IC-mid_on moved to IC-cover_point[0m
+[37m[17:30:17 F55 FIELD] INFO: [F55] IC-point moved to IC-mid_off[0m
+[37m[17:30:17 F55 FIELD] INFO: [F55] OC-deep_midwicket_sq moved to OC-deep_backward_square[0m
+[37m[17:30:17 F55 FIELD] INFO: [F55] IC-backward_point pushed back — defensive[0m
+[37m[17:30:17 F55 TEST] INFO:   [FIELD-MONITOR] Field unchanged for 54 frames (template=pace_powerplay, frozen=True, phase=powerplay). If a wicket / over / bowler change has happened in this window, the field-state updater is the bug.[0m
+[37m[17:30:17 F55 TEST] INFO: DETAIL|F55|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 8-0 (1) | extras=null | this_over=null | Rahane 6(4) | Allen 2(2) | Cummins 0-0 (0) INFO_PANEL: null SPEED: n|action=—|ext_score=None-None(None)|ext_bat=Rahane 6(4) | Allen 2(2)|ext_bowl=Cummins None-None (None)|scorer_changes=[]|yolo=4|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1267|lat_extract=1168|lat_scorer=877|lat_field=128|lat_comm=0|lat_code=0|lat_total=3316|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:30:20 F56 VISION] INFO: [SCOUT] SCOREBOARD 1207ms strip=True overlay=False drs=False cam=other phase=between_play digits=False 413 chars[0m
+[37m[17:30:20 F56 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 8-0 (1) | extras=null | this_over=null | [0m
+[37m[17:30:20 F56 TEST] INFO: [F56] SCOREBOARD cam=other → dead-time skip (#4)[0m
+[37m[17:30:20 F56 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:20 F56 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:20 F56 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:20 F56 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:20 F56 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#2) → fallback=None active=[][0m
+[33m[17:30:20 F56 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#2) → fallback=None active=[][0m
+[37m[17:30:23 F57 VISION] INFO: [SCOUT] SCOREBOARD 774ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 412 chars[0m
+[37m[17:30:23 F57 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 8-0 (1) | extras=null | this_over=null [0m
+[37m[17:30:23 F57 TEST] INFO: [F57] cam=closeup → resuming active play after dead-time gap (#4 skipped)[0m
+[37m[17:30:23 F57 TEST] INFO: 
+=======================================================[0m
+[37m[17:30:23 F57 TEST] INFO: [F57] SCOREBOARD — #20[0m
+[37m[17:30:23 F57 TEST] INFO:   [V 778ms] STRIP: KKR 8-0 (1) | extras=null | this_over=null | Rahane 6(4) | Allen 2(2) | Cummins 0-0 (0)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The player, likely Cummins, appears to be preparing or reacting during a br[0m
+[37m[17:30:25 F57 EXTRACT] INFO: Extracted in 1.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:25 F57 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:25 F57 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:25 F57 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:25 F57 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:25 F57 TEST] INFO:   [E 1636ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:30:25 F57 TEST] INFO:     BAT: Rahane 6(4) [0m
+[37m[17:30:25 F57 TEST] INFO:     BAT: Allen 2(2) [0m
+[37m[17:30:25 F57 TEST] INFO:     BOWL: Cummins None-None (None)[0m
+[37m[17:30:26 F57 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:26 F57 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[17:30:26 F57 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:26 F57 TEST] INFO:   [S 994ms] Changes: none[0m
+[37m[17:30:26 F57 TEST] INFO:   Total: 3408ms (V:778 E:1636 S:994)[0m
+[37m[17:30:26 F57 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:26 F57 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'CUMMINS', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'CUMMINS'. Closest: [][0m
+[37m[17:30:26 F57 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None[0m
+[37m[17:30:26 F57 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None[0m
+[37m[17:30:26 F57 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None[0m
+[37m[17:30:26 F57 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None[0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:26 F57 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:26 F57 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:26 F57 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#3) → fallback=None active=[][0m
+[33m[17:30:26 F57 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#3) → fallback=None active=[][0m
+[33m[17:30:26 F57 TEST] WARN: [WS-COLD-START-GATE] OPEN (timeout) — 94s elapsed since first broadcast attempt without first committed non-zero state.  Releasing gate to avoid UI hang (Fix 17 Path D).[0m
+[37m[17:30:26 F57 TEST] INFO: DETAIL|F57|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 8-0 (1) | extras=null | this_over=null | Rahane 6(4) | Allen 2(2) | Cummins 0-0 (0)  INFO_PANEL: null SPEED: |action=—|ext_score=None-None(None)|ext_bat=Rahane 6(4) | Allen 2(2)|ext_bowl=Cummins None-None (None)|scorer_changes=[]|yolo=0|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=778|lat_extract=1636|lat_scorer=994|lat_field=173|lat_comm=0|lat_code=0|lat_total=3413|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:30:29 F58 VISION] INFO: [SCOUT] SCOREBOARD 778ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 386 chars[0m
+[37m[17:30:29 F58 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 8-0 (1) | extras=null | this_over=n[0m
+[37m[17:30:29 F58 TEST] INFO: 
+=======================================================[0m
+[37m[17:30:29 F58 TEST] INFO: [F58] SCOREBOARD — #21[0m
+[37m[17:30:29 F58 TEST] INFO:   [V 782ms] STRIP: KKR 8-0 (1) | extras=null | this_over=null | RAHANE 6(4) | ALLEN 2(2) | CUMMINS 0-0 (0)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The action is between play with the players on the field.[0m
+[37m[17:30:30 F58 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:30 F58 TEST] INFO:   [E 1311ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:30:32 F58 SCORER] INFO: Scored in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:32 F58 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[17:30:32 F58 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:30:32 F58 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:32 F58 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:32 F58 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:32 F58 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:32 F58 TEST] INFO:   [S 1429ms] Changes: none[0m
+[37m[17:30:32 F58 TEST] INFO:   Total: 3522ms (V:782 E:1311 S:1429)[0m
+[37m[17:30:32 F58 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:30:32 F58 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:32 F58 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:32 F58 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:30:32 F58 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:32 F58 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:32 F58 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:32 F58 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:32 F58 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#4) → fallback=None active=[][0m
+[33m[17:30:32 F58 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#4) → fallback=None active=[][0m
+[FIELD WARN] Powerplay but 4 outside circle (max 2). Possible misclassification.
+[37m[17:30:32 F58 FIELD] INFO: [F58] IC-backward_square brought in — attacking[0m
+[37m[17:30:32 F58 FIELD] INFO: [F58] IC-cover_point moved to IC-midwicket[0m
+[37m[17:30:32 F58 FIELD] INFO: [F58] IC-mid_off pushed back — defensive[0m
+[37m[17:30:32 F58 TEST] INFO: DETAIL|F58|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 8-0 (1) | extras=null | this_over=null | RAHANE 6(4) | ALLEN 2(2) | CUMMINS 0-0 (0)  INFO_PANEL: null SPEED: |action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=6|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=782|lat_extract=1311|lat_scorer=1429|lat_field=121|lat_comm=0|lat_code=0|lat_total=3526|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:30:34 F59 VISION] INFO: [SCOUT] SCOREBOARD 763ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 441 chars[0m
+[37m[17:30:34 F59 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 8-0 (1) | extras=null | this_over=n[0m
+[37m[17:30:34 F59 TEST] INFO: 
+=======================================================[0m
+[37m[17:30:34 F59 TEST] INFO: [F59] SCOREBOARD — #22[0m
+[37m[17:30:34 F59 TEST] INFO:   [V 767ms] STRIP: KKR 8-0 (1) | extras=null | this_over=null | RAHANE 6(4) | ALLEN 2(2) | CUMMINS 0-0 (0)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The action is currently between plays, with players on the field and no imm[0m
+[37m[17:30:36 F59 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:36 F59 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:36 F59 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:36 F59 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:36 F59 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:36 F59 TEST] INFO:   [E 1202ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:30:36 F59 TEST] INFO:     BAT: RAHANE 6(4) [0m
+[37m[17:30:36 F59 TEST] INFO:     BAT: ALLEN 2(2) [0m
+[37m[17:30:36 F59 TEST] INFO:     BOWL: CUMMINS 0-0 (0)[0m
+[37m[17:30:37 F59 SCORER] INFO: Scored in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:37 F59 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[17:30:37 F59 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:37 F59 TEST] INFO:   [S 1125ms] Changes: none[0m
+[37m[17:30:37 F59 TEST] INFO:   Total: 3093ms (V:767 E:1202 S:1125)[0m
+[37m[17:30:37 F59 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:37 F59 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'CUMMINS', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'CUMMINS'. Closest: [][0m
+[37m[17:30:37 F59 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None[0m
+[37m[17:30:37 F59 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None[0m
+[37m[17:30:37 F59 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None[0m
+[37m[17:30:37 F59 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None[0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:37 F59 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:37 F59 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:37 F59 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#5) → fallback=None active=[][0m
+[33m[17:30:37 F59 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#5) → fallback=None active=[][0m
+[37m[17:30:37 F59 FIELD] INFO: [F59] OC-deep_fine_leg moved to OC-deep_midwicket_sq[0m
+[37m[17:30:37 F59 FIELD] INFO: [F59] IC-backward_square pushed back — defensive[0m
+[37m[17:30:37 F59 FIELD] INFO: [F59] OC-wide_long_on moved to OC-deep_midwicket[0m
+[37m[17:30:37 F59 FIELD] INFO: [F59] OC-long_on moved to OC-deep_midwicket[0m
+[37m[17:30:37 F59 FIELD] INFO: [F59] OC-wide_long_on moved to OC-deep_midwicket[0m
+[37m[17:30:37 F59 FIELD] INFO: [F59] IC-midwicket moved to IC-cover[0m
+[37m[17:30:37 F59 TEST] INFO: DETAIL|F59|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 8-0 (1) | extras=null | this_over=null | RAHANE 6(4) | ALLEN 2(2) | CUMMINS 0-0 (0)  INFO_PANEL: null SPEED: |action=—|ext_score=None-None(None)|ext_bat=RAHANE 6(4) | ALLEN 2(2)|ext_bowl=CUMMINS 0-0 (0)|scorer_changes=[]|yolo=9|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=767|lat_extract=1202|lat_scorer=1125|lat_field=106|lat_comm=0|lat_code=0|lat_total=3098|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:30:40 F60 VISION] INFO: [SCOUT] SCOREBOARD 824ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 418 chars[0m
+[37m[17:30:40 F60 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 9-0 (1.1) | extras=null | this_over=3.3[0m
+[37m[17:30:40 F60 TEST] INFO: 
+=======================================================[0m
+[37m[17:30:40 F60 TEST] INFO: [F60] SCOREBOARD — #23[0m
+[37m[17:30:40 F60 TEST] INFO:   [V 829ms] STRIP: KKR 9-0 (1.1) | extras=null | this_over=3.3 | RAHANE 6(4) | ALLEN 3(3) | CUMMINS 0-1 (0.1)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The players are currently walking or standing on the field, likely durin[0m
+[37m[17:30:41 F60 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:41 F60 TEST] INFO:   [E 1110ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:30:42 F60 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:42 F60 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:30:42 F60 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:30:42 F60 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:42 F60 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:42 F60 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:42 F60 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:42 F60 TEST] INFO:   [S 703ms] Changes: none[0m
+[37m[17:30:42 F60 TEST] INFO:   Total: 2641ms (V:829 E:1110 S:703)[0m
+[37m[17:30:42 F60 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:30:42 F60 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:42 F60 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:42 F60 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:30:42 F60 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:42 F60 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:42 F60 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:42 F60 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:42 F60 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#6) → fallback=None active=[][0m
+[33m[17:30:42 F60 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#6) → fallback=None active=[][0m
+[37m[17:30:42 F60 FIELD] INFO: [F60] IC-backward_square brought in — attacking[0m
+[37m[17:30:42 F60 FIELD] INFO: [F60] slip added — expecting edge[0m
+[37m[17:30:42 F60 FIELD] INFO: [F60] deep fine leg — protecting against top edges[0m
+[37m[17:30:42 F60 FIELD] INFO: [F60] slip added — expecting edge[0m
+[37m[17:30:42 F60 FIELD] INFO: [F60] balanced | total:4 (yolo:4 vis:0) | slips:2 in:3 out:1 | keeper:back | fresh:0 balls ago | conf:0.4 | 96ms[0m
+[37m[17:30:42 F60 TEST] INFO: DETAIL|F60|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 9-0 (1.1) | extras=null | this_over=3.3 | RAHANE 6(4) | ALLEN 3(3) | CUMMINS 0-1 (0.1)  INFO_PANEL: null SPEE|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=4|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=829|lat_extract=1110|lat_scorer=703|lat_field=96|lat_comm=0|lat_code=0|lat_total=2646|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:30:45 F61 VISION] INFO: [SCOUT] SCOREBOARD 1024ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 409 chars[0m
+[37m[17:30:45 F61 TEST] INFO: 
+=======================================================[0m
+[37m[17:30:45 F61 TEST] INFO: [F61] SCOREBOARD — #24[0m
+[37m[17:30:45 F61 TEST] INFO:   [V 1028ms] STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | Rahane 6(4) | Allen 3(3) | null null-null (null)
+
+INFO_PANEL: null
+SPEED: 134.7
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The player Rahane is standing still, looking ahead, during a break[0m
+[37m[17:30:46 F61 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:46 F61 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:46 F61 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:46 F61 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:46 F61 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:46 F61 TEST] INFO:   [E 1059ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:30:46 F61 TEST] INFO:     BAT: Rahane 6(4) [0m
+[37m[17:30:46 F61 TEST] INFO:     BAT: Allen 3(3) [0m
+[37m[17:30:47 F61 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:47 F61 TEST] INFO:   [S] Hint: Current batters: Rahane and Allen. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:30:47 F61 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:30:47 F61 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:47 F61 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:47 F61 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:47 F61 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:47 F61 TEST] INFO:   [S 763ms] Changes: none[0m
+[37m[17:30:47 F61 TEST] INFO:   Total: 2850ms (V:1028 E:1059 S:763)[0m
+[37m[17:30:47 F61 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:30:47 F61 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:47 F61 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:47 F61 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:30:47 F61 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:47 F61 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:47 F61 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:47 F61 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:47 F61 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:47 F61 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:47 F61 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:47 F61 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:47 F61 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None[0m
+[37m[17:30:47 F61 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None[0m
+[37m[17:30:47 F61 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None[0m
+[37m[17:30:47 F61 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None[0m
+[37m[17:30:47 F61 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:47 F61 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:47 F61 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:47 F61 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:47 F61 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#7) → fallback=None active=[][0m
+[33m[17:30:47 F61 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#7) → fallback=None active=[][0m
+[FIELD WARN] Powerplay but 3 outside circle (max 2). Possible misclassification.
+[37m[17:30:47 F61 FIELD] INFO: [F61] slip removed — less catching pressure[0m
+[37m[17:30:47 F61 FIELD] INFO: [F61] IC-backward_square pushed back — defensive[0m
+[37m[17:30:47 F61 FIELD] INFO: [F61] slip removed — less catching pressure[0m
+[37m[17:30:47 F61 TEST] INFO: DETAIL|F61|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | Rahane 6(4) | Allen 3(3) | null null-null (null)  INFO_PANEL: null|action=—|ext_score=None-None(None)|ext_bat=Rahane 6(4) | Allen 3(3)|ext_bowl=|scorer_changes=[]|yolo=4|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1028|lat_extract=1059|lat_scorer=763|lat_field=130|lat_comm=0|lat_code=0|lat_total=2853|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:30:50 F62 VISION] INFO: [SCOUT] SCOREBOARD 877ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 500 chars[0m
+[37m[17:30:50 F62 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+STRIP: KKR 9-0 (1.1) | extras=null | this_over=null[0m
+[37m[17:30:50 F62 TEST] INFO: 
+=======================================================[0m
+[37m[17:30:50 F62 TEST] INFO: [F62] SCOREBOARD — #25[0m
+[37m[17:30:50 F62 TEST] INFO:   [V 881ms] STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | Rahane 6(4) | Allen 3(3) | Cummins 0-1 (0.1) 
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+The camera shows a close-up of Allen, a Kolkata Knight Riders player, we[0m
+[37m[17:30:51 F62 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:51 F62 TEST] INFO:   [E 1128ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:30:51 F62 TEST] INFO:     BAT: Rahane 6(4) [0m
+[37m[17:30:51 F62 TEST] INFO:     BAT: Allen 3(3) [0m
+[37m[17:30:51 F62 TEST] INFO:     BOWL: Cummins 0-1 (0.1)[0m
+[37m[17:30:51 F62 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:30:51 F62 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[17:30:51 F62 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:51 F62 TEST] INFO:   [S 812ms] Changes: none[0m
+[37m[17:30:51 F62 TEST] INFO:   Total: 2821ms (V:881 E:1128 S:812)[0m
+[37m[17:30:51 F62 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:51 F62 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'CUMMINS', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'CUMMINS'. Closest: [][0m
+[37m[17:30:51 F62 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None[0m
+[37m[17:30:51 F62 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None[0m
+[37m[17:30:51 F62 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None[0m
+[37m[17:30:51 F62 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None[0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:51 F62 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:51 F62 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:51 F62 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#8) → fallback=None active=[][0m
+[33m[17:30:51 F62 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#8) → fallback=None active=[][0m
+[37m[17:30:52 F62 FIELD] INFO: [F62] OC-deep_midwicket moved to OC-deep_square_leg[0m
+[37m[17:30:52 F62 FIELD] INFO: [F62] OC-deep_fine_leg moved to OC-deep_third_man[0m
+[37m[17:30:52 F62 TEST] INFO: DETAIL|F62|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | Rahane 6(4) | Allen 3(3) | Cummins 0-1 (0.1)  INFO_PANEL: null SPE|action=—|ext_score=None-None(None)|ext_bat=Rahane 6(4) | Allen 3(3)|ext_bowl=Cummins 0-1 (0.1)|scorer_changes=[]|yolo=3|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=881|lat_extract=1128|lat_scorer=812|lat_field=94|lat_comm=0|lat_code=0|lat_total=2827|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:30:55 F63 VISION] INFO: [SCOUT] GRAPHIC 905ms strip=True overlay=True drs=False cam=graphic phase=graphic digits=False 400 chars[0m
+[37m[17:30:55 F63 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | nul[0m
+[37m[17:30:55 F63 TEST] INFO: [F63] GRAPHIC cam=graphic → dead-time skip (#5)[0m
+[37m[17:30:55 F63 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:55 F63 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:55 F63 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:55 F63 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:55 F63 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#9) → fallback=None active=[][0m
+[33m[17:30:55 F63 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#9) → fallback=None active=[][0m
+[37m[17:30:58 F64 VISION] INFO: [SCOUT] GRAPHIC 771ms strip=True overlay=True drs=False cam=graphic phase=graphic digits=False 396 chars[0m
+[37m[17:30:58 F64 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | nu[0m
+[37m[17:30:58 F64 TEST] INFO: [F64] GRAPHIC cam=graphic → dead-time skip (#6)[0m
+[37m[17:30:58 F64 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:30:58 F64 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:30:58 F64 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:30:58 F64 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:30:58 F64 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#10) → fallback=None active=[][0m
+[33m[17:30:58 F64 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#10) → fallback=None active=[][0m
+[37m[17:31:03 F65 VISION] INFO: [SCOUT] GRAPHIC 971ms strip=True overlay=True drs=False cam=graphic phase=graphic digits=False 346 chars[0m
+[37m[17:31:03 F65 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": true, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null} 
+STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | nu[0m
+[37m[17:31:03 F65 TEST] INFO: [F65] GRAPHIC cam=graphic → dead-time skip (#7)[0m
+[37m[17:31:03 F65 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:03 F65 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:03 F65 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:03 F65 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:31:03 F65 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#11) → fallback=None active=[][0m
+[33m[17:31:03 F65 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#11) → fallback=None active=[][0m
+[37m[17:31:07 F66 VISION] INFO: [SCOUT] SCOREBOARD 780ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 374 chars[0m
+[37m[17:31:07 F66 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 9-0 (1.1) | extras=null | this_over[0m
+[37m[17:31:07 F66 TEST] INFO: [F66] cam=bowlers_end → resuming active play after dead-time gap (#7 skipped)[0m
+[37m[17:31:07 F66 TEST] INFO: 
+=======================================================[0m
+[37m[17:31:07 F66 TEST] INFO: [F66] SCOREBOARD — #26[0m
+[37m[17:31:07 F66 TEST] INFO:   [V 784ms] STRIP: KKR 9-0 (1.1) | extras=null | this_over=⊙⊙⊙⊙ | RAHANE* 6(4) | ALLEN 3(3) | CUMMINS 0-1 (0.1)[0m
+[37m[17:31:08 F66 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:31:08 F66 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:08 F66 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:08 F66 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:08 F66 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:31:08 F66 TEST] INFO:   [GRAPHIC-FILTER] GRAPHIC→SCOREBOARD transition — poisoning strip read (lever-2 partial fade guard)[0m
+[37m[17:31:08 F66 TEST] INFO:   [E 1343ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:31:08 F66 TEST] INFO:     BAT: RAHANE 6(4) [0m
+[37m[17:31:08 F66 TEST] INFO:     BAT: ALLEN 3(3) [0m
+[37m[17:31:08 F66 TEST] INFO:     BOWL: CUMMINS 0-1 (0.1)[0m
+[37m[17:31:09 F66 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:31:09 F66 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[17:31:09 F66 TEST] INFO:   [S 836ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:31:09 F66 TEST] INFO:   Total: 2964ms (V:784 E:1343 S:836)[0m
+[37m[17:31:09 F66 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:31:09 F66 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:09 F66 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:09 F66 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:31:09 F66 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:09 F66 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:09 F66 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:09 F66 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:31:09 F66 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:09 F66 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:09 F66 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:09 F66 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:31:09 F66 BOARD] INFO: [NAME] Exact miss for 'CUMMINS', trying fuzzy (0 keys)...[0m
+[33m[17:31:09 F66 BOARD] WARN: No match for 'CUMMINS'. Closest: [][0m
+[37m[17:31:09 F66 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None[0m
+[37m[17:31:09 F66 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None[0m
+[37m[17:31:09 F66 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None[0m
+[37m[17:31:09 F66 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None[0m
+[37m[17:31:09 F66 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:09 F66 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:09 F66 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:09 F66 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:31:09 F66 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#12) → fallback=None active=[][0m
+[33m[17:31:09 F66 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#12) → fallback=None active=[][0m
+[37m[17:31:09 F66 TEST] INFO:   [ACTION] The players are preparing for the next delivery, with the bowler and batters sta[0m
+[37m[17:31:09 F66 FIELD] INFO: [F66] OC-deep_backward_square moved to OC-deep_square_leg[0m
+[37m[17:31:09 F66 FIELD] INFO: [F66] IC-point brought in — attacking[0m
+[37m[17:31:09 F66 TEST] INFO: DETAIL|F66|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 9-0 (1.1) | extras=null | this_over=⊙⊙⊙⊙ | RAHANE* 6(4) | ALLEN 3(3) | CUMMINS 0-1 (0.1)|action=The players are preparing for the next delivery, with the bowler and batters standing at their respe|ext_score=None-None(None)|ext_bat=RAHANE 6(4) | ALLEN 3(3)|ext_bowl=CUMMINS 0-1 (0.1)|scorer_changes=['FRAME_POISONED:None']|yolo=11|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=784|lat_extract=1343|lat_scorer=836|lat_field=95|lat_comm=0|lat_code=0|lat_total=2967|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:31:12 F67 VISION] INFO: [SCOUT] SCOREBOARD 821ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 314 chars[0m
+[37m[17:31:12 F67 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 9-0 (1.1) | extras=null | this_over=nul[0m
+[37m[17:31:12 F67 TEST] INFO: 
+=======================================================[0m
+[37m[17:31:12 F67 TEST] INFO: [F67] SCOREBOARD — #27[0m
+[37m[17:31:12 F67 TEST] INFO:   [V 826ms] STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | RAHANE 6(4) | ALLEN 3(3) | CUMMINS 0-1 (0.1)[0m
+[37m[17:31:14 F67 EXTRACT] INFO: Extracted in 1.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:31:14 F67 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:14 F67 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:14 F67 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:14 F67 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:31:14 F67 TEST] INFO:   [GRAPHIC-FILTER] overlay window active (remaining=4) — poisoning strip read[0m
+[37m[17:31:14 F67 TEST] INFO:   [E 1917ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:31:14 F67 TEST] INFO:     BAT: RAHANE 6(4) [0m
+[37m[17:31:14 F67 TEST] INFO:     BAT: ALLEN 3(3) [0m
+[37m[17:31:14 F67 TEST] INFO:     BOWL: CUMMINS 0-1 (0.1)[0m
+[37m[17:31:15 F67 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:31:15 F67 TEST] INFO:   [S] Hint: Current batters: RAHANE and ALLEN. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[17:31:15 F67 TEST] INFO:   [S 823ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:31:15 F67 TEST] INFO:   Total: 3565ms (V:826 E:1917 S:823)[0m
+[37m[17:31:15 F67 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:31:15 F67 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:15 F67 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:15 F67 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:31:15 F67 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:15 F67 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:15 F67 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:15 F67 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:31:15 F67 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:15 F67 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:15 F67 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:15 F67 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[37m[17:31:15 F67 BOARD] INFO: [NAME] Exact miss for 'CUMMINS', trying fuzzy (0 keys)...[0m
+[33m[17:31:15 F67 BOARD] WARN: No match for 'CUMMINS'. Closest: [][0m
+[37m[17:31:15 F67 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None[0m
+[37m[17:31:15 F67 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None[0m
+[37m[17:31:15 F67 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None[0m
+[37m[17:31:15 F67 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None[0m
+[37m[17:31:15 F67 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:15 F67 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:15 F67 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:15 F67 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:31:15 F67 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#13) → fallback=None active=[][0m
+[33m[17:31:15 F67 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#13) → fallback=None active=[][0m
+[37m[17:31:15 F67 TEST] INFO:   [ACTION] The player in a maroon jersey is gesturing on the field.[0m
+[37m[17:31:15 F67 FIELD] INFO: [F67] IC-mid_on brought in — attacking[0m
+[37m[17:31:15 F67 FIELD] INFO: [F67] IC-point moved to IC-cover_point[0m
+[37m[17:31:15 F67 FIELD] INFO: [F67] IC-extra_cover pushed back — defensive[0m
+[37m[17:31:15 F67 FIELD] INFO: [F67] OC-deep_square_leg moved to OC-deep_backward_square[0m
+[37m[17:31:15 F67 FIELD] INFO: [F67] OC-deep_square_leg moved to OC-deep_third_man[0m
+[37m[17:31:15 F67 TEST] INFO: DETAIL|F67|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | RAHANE 6(4) | ALLEN 3(3) | CUMMINS 0-1 (0.1)|action=The player in a maroon jersey is gesturing on the field.|ext_score=None-None(None)|ext_bat=RAHANE 6(4) | ALLEN 3(3)|ext_bowl=CUMMINS 0-1 (0.1)|scorer_changes=['FRAME_POISONED:None']|yolo=5|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=826|lat_extract=1917|lat_scorer=823|lat_field=93|lat_comm=0|lat_code=0|lat_total=3568|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:31:18 F68 VISION] INFO: [SCOUT] SCOREBOARD 976ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 407 chars[0m
+[37m[17:31:18 F68 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 9-0 (1.1) | extras=null | this_over[0m
+[37m[17:31:18 F68 TEST] INFO: 
+=======================================================[0m
+[37m[17:31:18 F68 TEST] INFO: [F68] SCOREBOARD — #28[0m
+[37m[17:31:18 F68 TEST] INFO:   [V 980ms] STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | null null(null) | null null(null) | null null(null)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The players are on the field, and it appears to be a break in pl[0m
+[37m[17:31:19 F68 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:31:19 F68 TEST] INFO:   [GRAPHIC-FILTER] overlay window active (remaining=3) — poisoning strip read[0m
+[37m[17:31:19 F68 TEST] INFO:   [E 1106ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:31:20 F68 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:31:20 F68 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:31:20 F68 TEST] INFO:   [S 852ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:31:20 F68 TEST] INFO:   Total: 2938ms (V:980 E:1106 S:852)[0m
+[37m[17:31:20 F68 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m
+[37m[17:31:20 F68 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:20 F68 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:20 F68 TEST] INFO:   STATE: KKR 6-0 (0.4) inn=1 RR=9.0 | Bat: None | Bowl: None[0m
+[37m[17:31:20 F68 BOARD] INFO: [NAME] Exact miss for 'RAHANE', trying fuzzy (0 keys)...[0m
+[33m[17:31:20 F68 BOARD] WARN: No match for 'RAHANE'. Closest: [][0m
+[37m[17:31:20 F68 BOARD] INFO: [NAME] Exact miss for 'ALLEN', trying fuzzy (0 keys)...[0m
+[33m[17:31:20 F68 BOARD] WARN: No match for 'ALLEN'. Closest: [][0m
+[33m[17:31:20 F68 TEST] WARN:   [WS-SCRUB] striker='Rahane' rejected reason=not_in_card (#14) → fallback=None active=[][0m
+[33m[17:31:20 F68 TEST] WARN:   [WS-SCRUB] non='Allen' rejected reason=not_in_card (#14) → fallback=None active=[][0m
+[37m[17:31:20 F68 FIELD] INFO: [F68] IC-point brought in — attacking[0m
+[37m[17:31:20 F68 FIELD] INFO: [F68] slip added — expecting edge[0m
+[37m[17:31:20 F68 FIELD] INFO: [F68] IC-mid_on moved to IC-square_leg[0m
+[37m[17:31:20 F68 FIELD] INFO: [F68] OC-deep_third_man moved to OC-deep_midwicket_sq[0m
+[37m[17:31:20 F68 FIELD] INFO: [F68] OC-deep_backward_square moved to OC-deep_midwicket_sq[0m
+[37m[17:31:20 F68 TEST] INFO: DETAIL|F68|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | null null(null) | null null(null) | null null(null)  INFO_PANEL: n|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=7|BEFORE_score=6-0(0.4)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '?', '?', '?']|AFTER_score=6-0(0.4)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(bcast)|AFTER_striker=Rahane|AFTER_non=Allen|AFTER_run_rate=9.00|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=980|lat_extract=1106|lat_scorer=852|lat_field=223|lat_comm=0|lat_code=0|lat_total=2940|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:31:23 F69 VISION] INFO: [SCOUT] SCOREBOARD 895ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 449 chars[0m
+[37m[17:31:23 F69 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: KKR 9-0 (1.1) | extras=null | this_over[0m
+[37m[17:31:23 F69 TEST] INFO: 
+=======================================================[0m
+[37m[17:31:23 F69 TEST] INFO: [F69] SCOREBOARD — #29[0m
+[37m[17:31:23 F69 TEST] INFO:   [V 899ms] STRIP: KKR 9-0 (1.1) | extras=null | this_over=null | null null(null) | null null(null) | null null-null (null)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The players are on the field, and it appears to be a break[0m
+[37m[17:31:24 F69 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:31:24 F69 TEST] INFO:   [GRAPHIC-FILTER] overlay window active (remaining=2) — poisoning strip read[0m
+[37m[17:31:24 F69 TEST] INFO:   [E 896ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:31:25 F69 SCORER] INFO: Scored in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:31:25 F69 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[17:31:25 F69 TEST] INFO:   [S 1277ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:31:25 F69 TEST] INFO:   Total: 3073ms (V:899 E:896 S:1277)[0m
+[37m[17:31:25 F69 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?'] = 0 runs[0m

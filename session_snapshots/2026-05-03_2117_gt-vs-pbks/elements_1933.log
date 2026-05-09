@@ -1,0 +1,101 @@
+=== ELEMENT CHECKER — rr-vs-dc-43rd-match-indian-premier-league-2026 ===
+WS:   ws://localhost:8765
+CB:   https://www.cricbuzz.com/live-cricket-scores/151976/rr-vs-dc-43rd-match-indian-premier-league-2026
+JSONL: logs/element-checker-2026-05-01-193337.jsonl
+
+[19:33:41  iter#1]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:33:48  iter#2]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:33:52  iter#3]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:33:57  iter#4]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:34:05  iter#5]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:34:11  iter#6]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:34:15  iter#7]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:34:19  iter#8]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:34:24  iter#9]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:34:29  iter#10]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:34:34  iter#11]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Vaibhav Sooryavanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Yashasvi Jaiswal | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=6 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Vaibhav Sooryavanshi', 'runs'… | why=Vaibhav Sooryavanshi not in active; Yashasvi Jaiswal not in active
+[19:34:39  iter#12]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Dhruv Jurel | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Vaibhav Sooryavanshi | why=non mismatch
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Dhruv Jurel', 'runs': 0, 'bal… | why=Dhruv Jurel not in active; Vaibhav Sooryavanshi not in active
+[19:34:46  iter#13]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Dhruv Jurel | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Vaibhav Sooryavanshi | why=non mismatch
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Dhruv Jurel', 'runs': 0, 'bal… | why=Dhruv Jurel not in active; Vaibhav Sooryavanshi not in active
+[19:34:53  iter#14]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Dhruv Jurel | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Vaibhav Sooryavanshi | why=non mismatch
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Dhruv Jurel', 'runs': 0, 'bal… | why=Dhruv Jurel not in active; Vaibhav Sooryavanshi not in active
+[19:34:57  iter#15]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Dhruv Jurel | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Vaibhav Sooryavanshi | why=non mismatch
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Dhruv Jurel', 'runs': 0, 'bal… | why=Dhruv Jurel not in active; Vaibhav Sooryavanshi not in active
+[19:35:03  iter#16]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Dhruv Jurel | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Vaibhav Sooryavanshi | why=non mismatch
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Dhruv Jurel', 'runs': 0, 'bal… | why=Dhruv Jurel not in active; Vaibhav Sooryavanshi not in active
+[19:35:11  iter#17]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.batting_team                     ui=Delhi Capitals | gt=Rajasthan Royals | why=innings1 batting_team mismatches toss winner who chose to bat
+  ✗ scorestrip.striker                          ui=Pathum Nissanka | gt=Dhruv Jurel | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Prithvi Shaw | gt=Vaibhav Sooryavanshi | why=non mismatch
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Pathum Nissanka', 'status': '… | gt=[{'name': 'Dhruv Jurel', 'runs': 0, 'bal… | why=Dhruv Jurel not in active; Vaibhav Sooryavanshi not in active

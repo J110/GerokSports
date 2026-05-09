@@ -1,0 +1,2815 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151935/dc-vs-rcb-39th-match-indian-premier-league-2026
+
+[19:26:29  iter#1]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:26:53  iter#2]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:27:17  iter#3]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:27:41  iter#4]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:28:05  iter#5]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:28:31  iter#6]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:28:53  iter#7]
+  UI:  None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:29:14  iter#8]
+  UI:  None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:29:37  iter#9]
+  UI:  None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:29:59  iter#10]
+  UI:  None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:30:21  iter#11]
+  UI:  None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:30:42  iter#12]
+  UI:  None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:31:06  iter#13]
+  UI:  None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:31:27  iter#14]
+  UI: Delhi Capitals None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 0-0 (0.1)  crr=0.0  ps=0(1)  recent=0
+  CB BAT: Sahil Parakh* 0(1), KL Rahul 0(0)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahul', 'parakh'} (ui=set(), cb={'rahul', 'parakh'})
+
+[19:31:48  iter#15]
+  UI: Delhi Capitals 0-0 (0.1)  str=Sahil Parakh nstr=KL Rahul  bowl=Bhuvneshwar Kumar 0-0 (0.1)
+  this_over=['?']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 0-1 (0.2)  crr=0.0  ps=0(2)  recent=0 W
+  CB BAT: KL Rahul* 0(0)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=0 cb=1 | OVERS: ui=0.1 cb=0.2 | STRIKER: ui=Sahil Parakh cb=KL Rahul
+
+[19:32:11  iter#16]
+  UI: Delhi Capitals 0-1 (0.2)  str=Sahil Parakh nstr=KL Rahul  bowl=Bhuvneshwar Kumar 1-0 (0.2)
+  this_over=['?', 'W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 0-1 (0.2)  crr=0.0  ps=0(2)  recent=0 W
+  CB BAT: KL Rahul* 0(0)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Sahil Parakh cb=KL Rahul | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[19:32:35  iter#17]
+  UI: Delhi Capitals 0-1 (0.2)  str=Sahil Parakh nstr=KL Rahul  bowl=Bhuvneshwar Kumar 1-0 (0.2)
+  this_over=['?', 'W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 0-1 (0.2)  crr=0.0  ps=0(0)  recent=0 W
+  CB BAT: Nitish Rana* 0(0), KL Rahul 0(0)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Sahil Parakh cb=Nitish Rana | BATTERS_MISSING_IN_UI: {'rana'} (ui={'rahul', 'parakh'}, cb={'rahul', 'rana'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[19:32:55  iter#18]
+  UI: Delhi Capitals 0-1 (0.2)  str=Sahil Parakh nstr=KL Rahul  bowl=Bhuvneshwar Kumar 1-0 (0.2)
+  this_over=['?', 'W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 0-1 (0.2)  crr=0.0  ps=0(0)  recent=0 W
+  CB BAT: Nitish Rana* 0(0), KL Rahul 0(0)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Sahil Parakh cb=Nitish Rana | BATTERS_MISSING_IN_UI: {'rana'} (ui={'rahul', 'parakh'}, cb={'rahul', 'rana'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[19:33:16  iter#19]
+  UI: Delhi Capitals 0-1 (0.2)  str=Sahil Parakh nstr=KL Rahul  bowl=Bhuvneshwar Kumar 1-0 (0.2)
+  this_over=['?', 'W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 0-1 (0.2)  crr=0.0  ps=0(0)  recent=0 W
+  CB BAT: Nitish Rana* 0(0), KL Rahul 0(0)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Sahil Parakh cb=Nitish Rana | BATTERS_MISSING_IN_UI: {'rana'} (ui={'rahul', 'parakh'}, cb={'rahul', 'rana'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[19:33:40  iter#20]
+  WS ERR: ''
+  CB: DC 1-1 (0.3)  crr=2.0  ps=1(1)  recent=0 W 1
+  CB BAT: KL Rahul* 0(0), Nitish Rana 1(1)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahul', 'rana'} (ui=set(), cb={'rahul', 'rana'})
+
+[19:34:00  iter#21]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 1-1 (0.3)  crr=2.0  ps=1(1)  recent=0 W 1
+  CB BAT: KL Rahul* 0(0), Nitish Rana 1(1)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahul', 'rana'} (ui=set(), cb={'rahul', 'rana'})
+
+[19:34:21  iter#22]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 1-1 (0.3)  crr=2.0  ps=1(1)  recent=0 W 1
+  CB BAT: KL Rahul* 0(0), Nitish Rana 1(1)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahul', 'rana'} (ui=set(), cb={'rahul', 'rana'})
+
+[19:34:43  iter#23]
+  UI: Delhi Capitals 7-1 (0.3)  str=None nstr=None  bowl=Bhuvneshwar Kumar 0-0 (0.0)
+  this_over=['?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 1-1 (0.3)  crr=2.0  ps=1(1)  recent=0 W 1
+  CB BAT: KL Rahul* 0(0), Nitish Rana 1(1)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=1 | BATTERS_MISSING_IN_UI: {'rahul', 'rana'} (ui=set(), cb={'rahul', 'rana'}) | BAT_rana: ui=0(0) cb=1(1) | FOW_COUNT: ui=0 vs wickets=1
+
+[19:35:07  iter#24]
+  WS ERR: ''
+  CB: DC 1-1 (0.4)  crr=1.5  ps=1(2)  recent=0 W 1 0
+  CB BAT: KL Rahul* 0(1), Nitish Rana 1(1)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahul', 'rana'} (ui=set(), cb={'rahul', 'rana'})
+
+[19:35:29  iter#25]
+  UI: Delhi Capitals 7-1 (0.3)  str=Nitish Rana nstr=KL Rahul  bowl=Bhuvneshwar Kumar 1-1 (0.3)
+  this_over=['?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 1-1 (0.4)  crr=1.5  ps=1(2)  recent=0 W 1 0
+  CB BAT: KL Rahul* 0(1), Nitish Rana 1(1)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=1 | OVERS: ui=0.3 cb=0.4 | STRIKER: ui=Nitish Rana cb=KL Rahul | BAT_rahul: ui=0(0) cb=0(1) | BAT_rana: ui=0(1) cb=1(1) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[19:35:49  iter#26]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 2-1 (0.5)  crr=2.4  ps=2(3)  recent=0 W 1 0 1
+  CB BAT: Nitish Rana* 1(1), KL Rahul 1(2)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahul', 'rana'} (ui=set(), cb={'rahul', 'rana'})
+
+[19:36:09  iter#27]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 2-1 (1)  crr=2.0  ps=2(4)  recent=0 W 1 0 1 0
+  CB BAT: KL Rahul* 1(2), Nitish Rana 1(2)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahul', 'rana'} (ui=set(), cb={'rahul', 'rana'})
+
+[19:36:33  iter#28]
+  WS ERR: ''
+  CB: DC 2-1 (1)  crr=2.0  ps=2(4)  recent=0 W 1 0 1 0
+  CB BAT: KL Rahul* 1(2), Nitish Rana 1(2)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahul', 'rana'} (ui=set(), cb={'rahul', 'rana'})
+
+[19:36:57  iter#29]
+  UI: Delhi Capitals None-None (None)  str=None nstr=KL Rahul  bowl=Bhuvneshwar Kumar 1-2 (1)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 2-1 (1)  crr=2.0  ps=2(4)  recent=0 W 1 0 1 0
+  CB BAT: KL Rahul* 1(2), Nitish Rana 1(2)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana'} (ui={'rahul'}, cb={'rahul', 'rana'}) | BAT_rana: ui=1(0) cb=1(2)
+
+[19:37:17  iter#30]
+  UI: Delhi Capitals None-1 (None)  str=None nstr=KL Rahul  bowl=Bhuvneshwar Kumar 1-2 (1)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 2-1 (1)  crr=2.0  ps=2(4)  recent=0 W 1 0 1 0
+  CB BAT: KL Rahul* 1(2), Nitish Rana 1(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sahil Parakh   b Bhuvneshwar Kumar 0(2)  - 0/1 in 0.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana'} (ui={'rahul'}, cb={'rahul', 'rana'}) | BAT_rana: ui=1(0) cb=1(2) | FOW_COUNT: ui=0 vs wickets=1
+
+[19:37:38  iter#31]
+  UI: Delhi Capitals 7-2 (1.0)  str=None nstr=KL Rahul  bowl=Josh Hazlewood 0-7 (1)
+  this_over=['W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 2-2 (1.1)  crr=1.71  ps=2(5)  recent=W
+  CB BAT: Nitish Rana* 1(2), Bhuvneshwar Kumar 1(0)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: KL Rahul  c Jitesh Sharma b Josh Hazlewood 1(3)  - 2/2 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=2 | OVERS: ui=1.0 cb=1.1 | BATTERS_MISSING_IN_UI: {'kumar', 'rana'} (ui={'rahul'}, cb={'kumar', 'rana'}) | BAT_rana: ui=1(0) cb=1(2) | FOW_COUNT: ui=1 vs wickets=2 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:38:00  iter#32]
+  UI: Delhi Capitals 7-2 (1.1)  str=None nstr=KL Rahul  bowl=Josh Hazlewood 0-7 (1.0)
+  this_over=['W']  fow=2 (unk=2)  last_fow={'wicket': 2, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 2-2 (1.1)  crr=1.71  ps=2(5)  recent=W
+  CB BAT: Nitish Rana* 1(2), Bhuvneshwar Kumar 1(0)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: KL Rahul  c Jitesh Sharma b Josh Hazlewood 1(3)  - 2/2 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=2 | BATTERS_MISSING_IN_UI: {'kumar', 'rana'} (ui={'rahul'}, cb={'kumar', 'rana'}) | BAT_rana: ui=1(0) cb=1(2) | FOW_UNKNOWN: 2 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:38:20  iter#33]
+  UI: Delhi Capitals 7-2 (1.1)  str=Sahil Parakh nstr=KL Rahul  bowl=Josh Hazlewood 1-7 (1.1)
+  this_over=['W']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Nitish Rana', 'score': 7, 'overs': '1.1', 'bowler': 'Josh Hazlewood', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 2-2 (1.1)  crr=1.71  ps=2(5)  recent=W
+  CB BAT: Nitish Rana* 1(2), Bhuvneshwar Kumar 1(0)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: KL Rahul  c Jitesh Sharma b Josh Hazlewood 1(3)  - 2/2 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=2 | STRIKER: ui=Sahil Parakh cb=Nitish Rana | BATTERS_MISSING_IN_UI: {'kumar', 'rana'} (ui={'rahul', 'parakh'}, cb={'kumar', 'rana'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:38:45  iter#34]
+  WS ERR: ''
+  CB: DC 2-2 (1.1)  crr=1.71  ps=2(5)  recent=W
+  CB BAT: Nitish Rana* 1(2), Bhuvneshwar Kumar 1(0)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: KL Rahul  c Jitesh Sharma b Josh Hazlewood 1(3)  - 2/2 in 1.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kumar', 'rana'} (ui=set(), cb={'kumar', 'rana'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:39:09  iter#35]
+  WS ERR: ''
+  CB: DC 2-2 (1.1)  crr=1.71  ps=2(5)  recent=W
+  CB BAT: Nitish Rana* 1(2), Bhuvneshwar Kumar 1(0)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: KL Rahul  c Jitesh Sharma b Josh Hazlewood 1(3)  - 2/2 in 1.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kumar', 'rana'} (ui=set(), cb={'kumar', 'rana'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:39:33  iter#36]
+  UI: Delhi Capitals 7-2 (1.1)  str=Sahil Parakh nstr=KL Rahul  bowl=Josh Hazlewood 1-2 (1.1)
+  this_over=['W', 'Wd+4']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Nitish Rana', 'score': 7, 'overs': '1.1', 'bowler': 'Josh Hazlewood', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=5 [w5/nb0/b0/lb0]
+  extras_log: [{'over': '1.1', 'type': 'wide', 'runs': 5, 'this_over_after': []}]
+  CB: DC 2-3 (1.2)  crr=1.5  ps=0(1)  recent=W W
+  CB BAT: Nitish Rana* 1(2), Bhuvneshwar Kumar 1(0)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=2 | WICKETS: ui=2 cb=3 | OVERS: ui=1.1 cb=1.2 | STRIKER: ui=Sahil Parakh cb=Nitish Rana | BATTERS_MISSING_IN_UI: {'kumar', 'rana'} (ui={'rahul', 'parakh'}, cb={'kumar', 'rana'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:39:53  iter#37]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 2-3 (1.2)  crr=1.5  ps=0(1)  recent=W W
+  CB BAT: Nitish Rana* 1(2), Bhuvneshwar Kumar 1(0)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kumar', 'rana'} (ui=set(), cb={'kumar', 'rana'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:40:13  iter#38]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 2-3 (1.2)  crr=1.5  ps=0(1)  recent=W W
+  CB BAT: Nitish Rana* 1(2), Bhuvneshwar Kumar 1(0)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kumar', 'rana'} (ui=set(), cb={'kumar', 'rana'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:40:34  iter#39]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 2-3 (1.2)  crr=1.5  ps=0(0)  recent=... 0 W 1 0 1 0
+  CB BAT: Tristan Stubbs* 0(0), Nitish Rana 1(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'stubbs'} (ui=set(), cb={'rana', 'stubbs'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:40:58  iter#40]
+  WS ERR: ''
+  CB: DC 2-3 (1.2)  crr=1.5  ps=0(0)  recent=... 0 W 1 0 1 0
+  CB BAT: Tristan Stubbs* 0(0), Nitish Rana 1(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'stubbs'} (ui=set(), cb={'rana', 'stubbs'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:41:21  iter#41]
+  UI: Delhi Capitals 3-2 (1.2)  str=None nstr=Tristan Stubbs  bowl=Josh Hazlewood 2-0 (0.2)
+  this_over=['?', '?']  fow=2 (unk=2)  last_fow={'wicket': 2, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 2-3 (1.2)  crr=1.5  ps=0(0)  recent=... 0 W 1 0 1 0
+  CB BAT: Tristan Stubbs* 0(0), Nitish Rana 1(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=3 cb=2 | WICKETS: ui=2 cb=3 | BATTERS_MISSING_IN_UI: {'rana'} (ui={'stubbs'}, cb={'rana', 'stubbs'}) | FOW_UNKNOWN: 2 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:41:42  iter#42]
+  UI: Delhi Capitals 3-2 (1.2)  str=Nitish Rana nstr=Tristan Stubbs  bowl=Josh Hazlewood 2-0 (0.2)
+  this_over=['?', '?']  fow=2 (unk=2)  last_fow={'wicket': 2, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 6-3 (1.3)  crr=4.0  ps=4(1)  recent=W W 4
+  CB BAT: Tristan Stubbs* 4(1), Nitish Rana 1(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=3 cb=6 | WICKETS: ui=2 cb=3 | OVERS: ui=1.2 cb=1.3 | STRIKER: ui=Nitish Rana cb=Tristan Stubbs | BAT_stubbs: ui=0(0) cb=4(1) | FOW_UNKNOWN: 2 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:42:06  iter#43]
+  WS ERR: ''
+  CB: DC 6-3 (1.3)  crr=4.0  ps=4(1)  recent=W W 4
+  CB BAT: Tristan Stubbs* 4(1), Nitish Rana 1(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'stubbs'} (ui=set(), cb={'rana', 'stubbs'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:42:27  iter#44]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 6-3 (1.3)  crr=4.0  ps=4(1)  recent=W W 4
+  CB BAT: Tristan Stubbs* 4(1), Nitish Rana 1(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'stubbs'} (ui=set(), cb={'rana', 'stubbs'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:42:51  iter#45]
+  UI: Delhi Capitals None-None (None)  str=None nstr=Tristan Stubbs  bowl=Josh Hazlewood 4-1 (0.4)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-3 (1.4)  crr=4.2  ps=5(2)  recent=W W 4 1
+  CB BAT: Nitish Rana* 1(2), Tristan Stubbs 5(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana'} (ui={'stubbs'}, cb={'rana', 'stubbs'}) | BAT_rana: ui=0(0) cb=1(2) | BAT_stubbs: ui=0(0) cb=5(2) | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:43:13  iter#46]
+  UI: Delhi Capitals None-3 (1.4)  str=None nstr=Tristan Stubbs  bowl=Josh Hazlewood 4-5 (0.4)
+  this_over=['?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-3 (1.5)  crr=3.82  ps=5(3)  recent=W W 4 1 0
+  CB BAT: Nitish Rana* 1(3), Tristan Stubbs 5(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=1.4 cb=1.5 | BATTERS_MISSING_IN_UI: {'rana'} (ui={'stubbs'}, cb={'rana', 'stubbs'}) | BAT_rana: ui=1(2) cb=1(3) | FOW_COUNT: ui=0 vs wickets=3 | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:43:35  iter#47]
+  UI: Delhi Capitals 7-3 (1.4)  str=None nstr=Tristan Stubbs  bowl=Josh Hazlewood 3-5 (0.4)
+  this_over=['?', '?', '?', 'Wd+6', '?']  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '1.4', 'type': 'wide', 'runs': 7, 'this_over_after': []}]
+  CB: DC 7-3 (1.5)  crr=3.82  ps=5(3)  recent=W W 4 1 0
+  CB BAT: Nitish Rana* 1(3), Tristan Stubbs 5(2)
+  CB BOWL: Bhuvneshwar Kumar 1-2 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=1.4 cb=1.5 | BATTERS_MISSING_IN_UI: {'rana'} (ui={'stubbs'}, cb={'rana', 'stubbs'}) | BAT_rana: ui=1(2) cb=1(3) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:44:05  iter#48]
+  WS ERR: ''
+  CB: DC 7-3 (2)  crr=3.5  ps=5(4)  recent=W W 4 1 0 0
+  CB BAT: Tristan Stubbs* 5(2), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'stubbs'} (ui=set(), cb={'rana', 'stubbs'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:44:29  iter#49]
+  WS ERR: ''
+  CB: DC 7-3 (2)  crr=3.5  ps=5(4)  recent=W W 4 1 0 0
+  CB BAT: Tristan Stubbs* 5(2), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'stubbs'} (ui=set(), cb={'rana', 'stubbs'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:44:51  iter#50]
+  UI: Delhi Capitals None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-3 (2)  crr=3.5  ps=5(4)  recent=W W 4 1 0 0
+  CB BAT: Tristan Stubbs* 5(2), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'stubbs'} (ui=set(), cb={'rana', 'stubbs'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:45:11  iter#51]
+  UI: Delhi Capitals 7-3 (2.0)  str=None nstr=Tristan Stubbs  bowl=Bhuvneshwar Kumar 1-2 (1)
+  this_over=['Wd+6']  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=1 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 7, 'this_over_after': []}]
+  CB: DC 7-3 (2)  crr=3.5  ps=5(4)  recent=W W 4 1 0 0
+  CB BAT: Tristan Stubbs* 5(2), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Sameer Rizvi  c Jitesh Sharma b Josh Hazlewood 0(1)  - 2/3 in 1.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=2.0 cb=2 | BATTERS_MISSING_IN_UI: {'rana'} (ui={'stubbs'}, cb={'rana', 'stubbs'}) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:45:42  iter#52]
+  WS ERR: ''
+  CB: DC 7-4 (2.1)  crr=3.23  ps=5(5)  recent=W
+  CB BAT: Nitish Rana* 1(4), Josh Hazlewood 1(0)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'hazlewood', 'rana'} (ui=set(), cb={'hazlewood', 'rana'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:46:02  iter#53]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 7-4 (2.1)  crr=3.23  ps=5(5)  recent=W
+  CB BAT: Nitish Rana* 1(4), Josh Hazlewood 1(0)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'hazlewood', 'rana'} (ui=set(), cb={'hazlewood', 'rana'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:46:26  iter#54]
+  WS ERR: ''
+  CB: DC 7-4 (2.1)  crr=3.23  ps=0(0)  recent=... W 1 0 1 0
+  CB BAT: Axar Patel* 0(0), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'patel'} (ui=set(), cb={'rana', 'patel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:46:51  iter#55]
+  WS ERR: ''
+  CB: DC 7-4 (2.1)  crr=3.23  ps=0(0)  recent=... W 1 0 1 0
+  CB BAT: Axar Patel* 0(0), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'patel'} (ui=set(), cb={'rana', 'patel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:47:16  iter#56]
+  WS ERR: ''
+  CB: DC 7-4 (2.2)  crr=3.0  ps=0(1)  recent=W 0
+  CB BAT: Axar Patel* 0(1), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'patel'} (ui=set(), cb={'rana', 'patel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:47:37  iter#57]
+  UI: Delhi Capitals 7-4 (2.2)  str=Nitish Rana nstr=Axar Patel  bowl=Bhuvneshwar Kumar 2-2 (1.1)
+  this_over=['Wd+6', '.', '?']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '2.1', 'type': 'wide', 'runs': 7, 'this_over_after': []}]
+  CB: DC 7-4 (2.2)  crr=3.0  ps=0(1)  recent=W 0
+  CB BAT: Axar Patel* 0(1), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Nitish Rana cb=Axar Patel | BAT_patel: ui=4(1) cb=0(1) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:47:58  iter#58]
+  UI: Delhi Capitals 7-4 (2.2)  str=Nitish Rana nstr=Axar Patel  bowl=Bhuvneshwar Kumar 2-2 (1.1)
+  this_over=['Wd+6', '.', '?']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '2.1', 'type': 'wide', 'runs': 7, 'this_over_after': []}]
+  CB: DC 7-4 (2.2)  crr=3.0  ps=0(1)  recent=W 0
+  CB BAT: Axar Patel* 0(1), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Nitish Rana cb=Axar Patel | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:48:20  iter#59]
+  UI: Delhi Capitals 7-4 (2.2)  str=Nitish Rana nstr=Axar Patel  bowl=Bhuvneshwar Kumar 2-2 (1.2)
+  this_over=['Wd+6', '.', '?']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '2.1', 'type': 'wide', 'runs': 7, 'this_over_after': []}]
+  CB: DC 7-4 (2.2)  crr=3.0  ps=0(1)  recent=... 1 0 1 0
+  CB BAT: Axar Patel* 0(1), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Nitish Rana cb=Axar Patel | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:48:41  iter#60]
+  UI: Delhi Capitals 7-4 (2.2)  str=Nitish Rana nstr=Axar Patel  bowl=Bhuvneshwar Kumar 2-2 (1.2)
+  this_over=['Wd+6', '.', '?']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '2.1', 'type': 'wide', 'runs': 7, 'this_over_after': []}]
+  CB: DC 7-4 (2.2)  crr=3.0  ps=0(1)  recent=... 1 0 1 0
+  CB BAT: Axar Patel* 0(1), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Nitish Rana cb=Axar Patel | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:49:03  iter#61]
+  UI: Delhi Capitals 7-4 (2.2)  str=Nitish Rana nstr=Axar Patel  bowl=Bhuvneshwar Kumar 2-2 (1.3)
+  this_over=['Wd+6', '.', '?']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '2.1', 'type': 'wide', 'runs': 7, 'this_over_after': []}]
+  CB: DC 7-4 (2.3)  crr=2.8  ps=0(2)  recent=W 0 0
+  CB BAT: Axar Patel* 0(2), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Tristan Stubbs  c Devdutt Padikkal b Bhuvneshwar Kumar 5(3)  - 7/4 in 2.1 ov.
+  ⚠ DIVERGENCE: OVERS: ui=2.2 cb=2.3 | STRIKER: ui=Nitish Rana cb=Axar Patel | BAT_patel: ui=0(1) cb=0(2) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:49:23  iter#62]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 7-5 (2.4)  crr=2.62  ps=0(3)  recent=W 0 0 W
+  CB BAT: Nitish Rana* 1(4), Josh Hazlewood 1(0)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'hazlewood', 'rana'} (ui=set(), cb={'hazlewood', 'rana'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:49:44  iter#63]
+  UI: Delhi Capitals None-None (None)  str=None nstr=Axar Patel  bowl=Bhuvneshwar Kumar 2-3 (1.4)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-5 (2.4)  crr=2.62  ps=0(3)  recent=W 0 0 W
+  CB BAT: Nitish Rana* 1(4), Josh Hazlewood 1(0)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'hazlewood', 'rana'} (ui={'patel'}, cb={'hazlewood', 'rana'}) | BAT_rana: ui=0(0) cb=1(4) | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:50:07  iter#64]
+  UI: Delhi Capitals 7-0 (2.4)  str=None nstr=None  bowl=Bhuvneshwar Kumar 1-0 (0.0)
+  this_over=['?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Axar Patel', 'score': 0, 'overs': '0.0', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-5 (2.4)  crr=2.62  ps=0(3)  recent=W 0 0 W
+  CB BAT: Nitish Rana* 1(4), Josh Hazlewood 1(0)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=0 cb=5 | BATTERS_MISSING_IN_UI: {'hazlewood', 'rana'} (ui=set(), cb={'hazlewood', 'rana'}) | BAT_rana: ui=0(0) cb=1(4) | FOW_COUNT: ui=1 vs wickets=0 | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:50:30  iter#65]
+  UI: Delhi Capitals 7-0 (2.4)  str=None nstr=None  bowl=Bhuvneshwar Kumar 1-0 (0.0)
+  this_over=['?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Axar Patel', 'score': 0, 'overs': '0.0', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-5 (2.4)  crr=2.62  ps=0(3)  recent=W 0 0 W
+  CB BAT: Nitish Rana* 1(4), Josh Hazlewood 1(0)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=0 cb=5 | BATTERS_MISSING_IN_UI: {'hazlewood', 'rana'} (ui=set(), cb={'hazlewood', 'rana'}) | BAT_rana: ui=0(0) cb=1(4) | FOW_COUNT: ui=1 vs wickets=0 | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:50:52  iter#66]
+  UI: Delhi Capitals 7-0 (2.4)  str=None nstr=Prithvi Shaw  bowl=Bhuvneshwar Kumar 1-0 (0.0)
+  this_over=['?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Axar Patel', 'score': 0, 'overs': '0.0', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-5 (2.4)  crr=2.62  ps=0(0)  recent=... 1 0
+  CB BAT: Abishek Porel* 0(0), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=0 cb=5 | BATTERS_MISSING_IN_UI: {'rana', 'porel'} (ui={'shaw'}, cb={'rana', 'porel'}) | BAT_rana: ui=0(0) cb=1(4) | FOW_COUNT: ui=1 vs wickets=0 | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:51:16  iter#67]
+  WS ERR: ''
+  CB: DC 7-5 (2.4)  crr=2.62  ps=0(0)  recent=... 1 0
+  CB BAT: Abishek Porel* 0(0), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'porel'} (ui=set(), cb={'rana', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:51:38  iter#68]
+  UI: Delhi Capitals 7-5 (2.4)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 2-3 (1.4)
+  this_over=['?', '?', '?', 'W']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-5 (2.4)  crr=2.62  ps=0(0)  recent=... 1 0
+  CB BAT: Abishek Porel* 0(0), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Nitish Rana cb=Abishek Porel | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:51:59  iter#69]
+  UI: Delhi Capitals 7-5 (2.4)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 2-3 (1.4)
+  this_over=['?', '?', '?', 'W']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-5 (2.5)  crr=2.47  ps=0(1)  recent=W 0 0 W 0
+  CB BAT: Abishek Porel* 0(1), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: OVERS: ui=2.4 cb=2.5 | STRIKER: ui=Nitish Rana cb=Abishek Porel | BAT_porel: ui=0(0) cb=0(1) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:52:23  iter#70]
+  UI: Delhi Capitals 7-5 (2.5)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 2-3 (1.5)
+  this_over=['?', '?', '?', 'W', '?']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 7-5 (2.5)  crr=2.47  ps=0(1)  recent=W 0 0 W 0
+  CB BAT: Abishek Porel* 0(1), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Nitish Rana cb=Abishek Porel | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:52:45  iter#71]
+  UI: Delhi Capitals 7-5 (2.5)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 2-3 (1.5)
+  this_over=['?', '?', '?', 'W', '?']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 8-5 (2.5)  crr=2.82  ps=1(1)  recent=W 0 0 W 0 W
+  CB BAT: Abishek Porel* 0(1), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=8 | STRIKER: ui=Nitish Rana cb=Abishek Porel | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:53:06  iter#72]
+  UI: Delhi Capitals 8-5 (2.5)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-3 (1.5)
+  this_over=['?', '?', '?', 'W', '?', 'Wd']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 8-5 (2.5)  crr=2.82  ps=1(1)  recent=W 0 0 W 0 W
+  CB BAT: Abishek Porel* 0(1), Nitish Rana 1(4)
+  CB BOWL: Josh Hazlewood 2-5 (1)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Nitish Rana cb=Abishek Porel | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[19:53:30  iter#73]
+  WS ERR: ''
+  CB: DC 8-5 (3)  crr=2.67  ps=1(2)  recent=W 0 0 W 0 W
+  CB BAT: Nitish Rana* 1(4), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'porel'} (ui=set(), cb={'rana', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:53:54  iter#74]
+  WS ERR: ''
+  CB: DC 8-5 (3)  crr=2.67  ps=1(2)  recent=W 0 0 W 0 W
+  CB BAT: Nitish Rana* 1(4), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'porel'} (ui=set(), cb={'rana', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:54:15  iter#75]
+  UI: Delhi Capitals 8-5 (2.5)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-4 (1.5)
+  this_over=['?', '?', '?', 'W', '?', 'Wd']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 8-5 (3.1)  crr=2.53  ps=1(3)  recent=0
+  CB BAT: Nitish Rana* 1(5), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: OVERS: ui=2.5 cb=3.1 | BAT_rana: ui=3(5) cb=1(5) | BAT_porel: ui=4(6) cb=0(2) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=3 | BOWL_O: ui=1.5 cb=2
+
+[19:54:36  iter#76]
+  UI: Delhi Capitals 8-5 (3.1)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-4 (1.5)
+  this_over=['W', 'Wd', '.', '.']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 8-5 (3.1)  crr=2.53  ps=1(3)  recent=0
+  CB BAT: Nitish Rana* 1(5), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BAT_rana: ui=3(5) cb=1(5) | BAT_porel: ui=4(6) cb=0(2) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=3 | BOWL_O: ui=1.5 cb=2
+
+[19:55:00  iter#77]
+  WS ERR: ''
+  CB: DC 8-5 (3.2)  crr=2.4  ps=1(4)  recent=0 0
+  CB BAT: Nitish Rana* 1(6), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'porel'} (ui=set(), cb={'rana', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:55:21  iter#78]
+  UI: Delhi Capitals 8-5 (3.2)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-4 (1.5)
+  this_over=['W', 'Wd', '.', '.', '.']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 8-5 (3.2)  crr=2.4  ps=1(4)  recent=0 0
+  CB BAT: Nitish Rana* 1(6), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BAT_rana: ui=3(6) cb=1(6) | BAT_porel: ui=4(6) cb=0(2) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=3 | BOWL_O: ui=1.5 cb=2
+
+[19:55:43  iter#79]
+  UI: Delhi Capitals 8-5 (3.2)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-4 (1.5)
+  this_over=['W', 'Wd', '.', '.', '.']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 8-5 (3.3)  crr=2.29  ps=1(5)  recent=0 0 0
+  CB BAT: Nitish Rana* 1(7), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: OVERS: ui=3.2 cb=3.3 | BAT_rana: ui=3(6) cb=1(7) | BAT_porel: ui=4(6) cb=0(2) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=3 | BOWL_O: ui=1.5 cb=2
+
+[19:56:06  iter#80]
+  UI: Delhi Capitals 8-5 (3.3)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-4 (1.5)
+  this_over=['W', 'Wd', '.', '.', '.', '.']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 8-5 (3.3)  crr=2.29  ps=1(5)  recent=0 0 0
+  CB BAT: Nitish Rana* 1(7), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BAT_rana: ui=3(7) cb=1(7) | BAT_porel: ui=4(6) cb=0(2) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=3 | BOWL_O: ui=1.5 cb=2
+
+[19:56:26  iter#81]
+  UI: Delhi Capitals 8-5 (3.3)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-4 (1.5)
+  this_over=['W', 'Wd', '.', '.', '.', '.']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 8-5 (3.4)  crr=2.18  ps=1(6)  recent=0 0 0 0
+  CB BAT: Nitish Rana* 1(8), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: OVERS: ui=3.3 cb=3.4 | BAT_rana: ui=3(7) cb=1(8) | BAT_porel: ui=4(6) cb=0(2) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=3 | BOWL_O: ui=1.5 cb=2
+
+[19:56:50  iter#82]
+  WS ERR: ''
+  CB: DC 8-5 (3.4)  crr=2.18  ps=1(6)  recent=0 0 0 0
+  CB BAT: Nitish Rana* 1(8), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rana', 'porel'} (ui=set(), cb={'rana', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:57:11  iter#83]
+  UI: Delhi Capitals 8-5 (3.4)  str=Nitish Rana nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-4 (1.5)
+  this_over=['W', 'Wd', '.', '.', '.', '.', '.']  fow=5 (unk=3)  last_fow={'wicket': 5, 'batter': 'Prithvi Shaw', 'score': 7, 'overs': '2.4', 'bowler': 'Bhuvneshwar Kumar', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 8-5 (3.4)  crr=2.18  ps=1(6)  recent=0 0 0 0
+  CB BAT: Nitish Rana* 1(8), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Axar Patel  c Jitesh Sharma b Bhuvneshwar Kumar 0(3)  - 7/5 in 2.4 ov.
+  ⚠ DIVERGENCE: BAT_rana: ui=3(8) cb=1(8) | BAT_porel: ui=4(6) cb=0(2) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=3 | BOWL_O: ui=1.5 cb=2
+
+[19:57:35  iter#84]
+  WS ERR: ''
+  CB: DC 8-6 (3.5)  crr=2.09  ps=1(7)  recent=0 0 0 0 W
+  CB BAT: Abishek Porel* 0(2), Bhuvneshwar Kumar 2(0)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kumar', 'porel'} (ui=set(), cb={'kumar', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:57:56  iter#85]
+  UI: Delhi Capitals None-None (None)  str=None nstr=Nitish Rana  bowl=Josh Hazlewood 0-0 (0.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 8-6 (3.5)  crr=2.09  ps=0(0)  recent=...
+  CB BAT: David Miller* 0(0), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui={'rana'}, cb={'miller', 'porel'}) | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:58:20  iter#86]
+  UI: Delhi Capitals None-None (None)  str=None nstr=Nitish Rana  bowl=Josh Hazlewood 0-0 (0.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 8-6 (3.5)  crr=2.09  ps=0(0)  recent=...
+  CB BAT: David Miller* 0(0), Abishek Porel 0(2)
+  CB BOWL: Bhuvneshwar Kumar 3-3 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui={'rana'}, cb={'miller', 'porel'}) | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[19:58:42  iter#87]
+  UI: Delhi Capitals None-6 (3.5)  str=None nstr=Abishek Porel  bowl=Josh Hazlewood 0-5 (0.0)
+  this_over=['?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 9-6 (4)  crr=2.25  ps=1(1)  recent=0 0 0 0 W 1
+  CB BAT: David Miller* 1(1), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=3.5 cb=4 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_miller: ui=0(0) cb=1(1) | BAT_porel: ui=0(0) cb=0(2) | FOW_COUNT: ui=0 vs wickets=6 | BOWL_W: ui=0 cb=3 | BOWL_R: ui=5 cb=6 | BOWL_O: ui=0.0 cb=2
+
+[19:59:04  iter#88]
+  UI: Delhi Capitals 8-6 (3.5)  str=David Miller nstr=Abishek Porel  bowl=Josh Hazlewood 3-5 (1.5)
+  this_over=['?', '?', '?', '?', '?']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 9-6 (4)  crr=2.25  ps=1(1)  recent=0 0 0 0 W 1
+  CB BAT: David Miller* 1(1), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=8 cb=9 | OVERS: ui=3.5 cb=4 | BAT_miller: ui=0(0) cb=1(1) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=5 cb=6 | BOWL_O: ui=1.5 cb=2
+
+[19:59:24  iter#89]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 9-6 (4)  crr=2.25  ps=1(1)  recent=0 0 0 0 W 1
+  CB BAT: David Miller* 1(1), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[19:59:48  iter#90]
+  WS ERR: ''
+  CB: DC 9-6 (4)  crr=2.25  ps=1(1)  recent=0 0 0 0 W 1
+  CB BAT: David Miller* 1(1), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:00:12  iter#91]
+  WS ERR: ''
+  CB: DC 9-6 (4.1)  crr=2.16  ps=1(2)  recent=0
+  CB BAT: David Miller* 1(2), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:00:36  iter#92]
+  UI: Delhi Capitals 9-6 (4.1)  str=None nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 0-0 (0.1)
+  this_over=['?']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 9-6 (4.2)  crr=2.08  ps=1(3)  recent=0 0
+  CB BAT: David Miller* 1(3), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.1 cb=4.2 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_miller: ui=1(2) cb=1(3) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[20:00:57  iter#93]
+  UI: Delhi Capitals 9-6 (4.1)  str=None nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 0-0 (0.1)
+  this_over=['?']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 9-6 (4.2)  crr=2.08  ps=1(3)  recent=0 0
+  CB BAT: David Miller* 1(3), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.1 cb=4.2 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_miller: ui=1(2) cb=1(3) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[20:01:29  iter#94]
+  WS ERR: ''
+  CB: DC 9-6 (4.3)  crr=2.0  ps=1(4)  recent=0 0 0
+  CB BAT: David Miller* 1(4), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:01:50  iter#95]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 9-6 (4.3)  crr=2.0  ps=1(4)  recent=0 0 0
+  CB BAT: David Miller* 1(4), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:02:14  iter#96]
+  WS ERR: ''
+  CB: DC 9-6 (4.4)  crr=1.93  ps=1(5)  recent=0 0 0 0
+  CB BAT: David Miller* 1(5), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:02:36  iter#97]
+  UI: Delhi Capitals 9-6 (4.4)  str=None nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-3 (2.4)
+  this_over=['?', '?', '?', '?']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 11-6 (4.5)  crr=2.28  ps=3(6)  recent=0 0 0 0 2
+  CB BAT: David Miller* 3(6), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=9 cb=11 | OVERS: ui=4.4 cb=4.5 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_miller: ui=1(5) cb=3(6) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[20:02:57  iter#98]
+  UI: Delhi Capitals 11-6 (4.5)  str=None nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-5 (2.5)
+  this_over=['?', '?', '?', '?', '2']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 11-6 (4.5)  crr=2.28  ps=3(6)  recent=0 0 0 0 2
+  CB BAT: David Miller* 3(6), Abishek Porel 0(2)
+  CB BOWL: Josh Hazlewood 3-6 (2)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Bhuvneshwar Kumar cb=Josh Hazlewood
+
+[20:03:19  iter#99]
+  UI: Delhi Capitals 11-6 (4.5)  str=David Miller nstr=Abishek Porel  bowl=Bhuvneshwar Kumar 3-5 (2.5)
+  this_over=['?', '?', '?', '?', '2']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 11-6 (5)  crr=2.2  ps=3(7)  recent=0 0 0 0 2 0
+  CB BAT: Abishek Porel* 0(2), David Miller 3(7)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.5 cb=5 | STRIKER: ui=David Miller cb=Abishek Porel | BAT_miller: ui=3(6) cb=3(7) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.5 cb=3
+
+[20:03:39  iter#100]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 11-6 (5)  crr=2.2  ps=3(7)  recent=0 0 0 0 2 0
+  CB BAT: Abishek Porel* 0(2), David Miller 3(7)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[20:04:03  iter#101]
+  WS ERR: ''
+  CB: DC 11-6 (5)  crr=2.2  ps=3(7)  recent=0 0 0 0 2 0
+  CB BAT: Abishek Porel* 0(2), David Miller 3(7)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[20:04:26  iter#102]
+  UI: Delhi Capitals None-None (None)  str=None nstr=Abishek Porel  bowl=Josh Hazlewood 3-6 (2)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 12-6 (5.1)  crr=2.32  ps=4(8)  recent=1
+  CB BAT: David Miller* 3(7), Abishek Porel 1(3)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_miller: ui=0(0) cb=3(7) | BAT_porel: ui=0(0) cb=1(3) | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[20:04:49  iter#103]
+  UI: Delhi Capitals None-None (None)  str=None nstr=Abishek Porel  bowl=Josh Hazlewood 3-6 (2.1)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 12-6 (5.1)  crr=2.32  ps=4(8)  recent=1
+  CB BAT: David Miller* 3(7), Abishek Porel 1(3)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_miller: ui=0(0) cb=3(7) | BAT_porel: ui=0(0) cb=1(3) | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[20:05:10  iter#104]
+  UI: Delhi Capitals 13-6 (5.2)  str=None nstr=Abishek Porel  bowl=Josh Hazlewood 3-8 (2.2)
+  this_over=['?', '1']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 13-6 (5.2)  crr=2.44  ps=5(9)  recent=1 1
+  CB BAT: Abishek Porel* 1(3), David Miller 4(8)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[20:05:35  iter#105]
+  WS ERR: ''
+  CB: DC 13-6 (5.3)  crr=2.36  ps=5(10)  recent=1 1 0
+  CB BAT: Abishek Porel* 1(4), David Miller 4(8)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[20:05:57  iter#106]
+  UI: Delhi Capitals 13-6 (5.2)  str=David Miller nstr=Abishek Porel  bowl=Josh Hazlewood 3-8 (2.2)
+  this_over=['?', '1']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 13-6 (5.3)  crr=2.36  ps=5(10)  recent=1 1 0
+  CB BAT: Abishek Porel* 1(4), David Miller 4(8)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=5.2 cb=5.3 | STRIKER: ui=David Miller cb=Abishek Porel | BAT_porel: ui=1(3) cb=1(4) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Bhuvneshwar Kumar
+
+[20:06:27  iter#107]
+  WS ERR: ''
+  CB: DC 13-6 (5.4)  crr=2.29  ps=5(11)  recent=1 1 0 0
+  CB BAT: Abishek Porel* 1(5), David Miller 4(8)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[20:06:47  iter#108]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 13-6 (5.4)  crr=2.29  ps=5(11)  recent=1 1 0 0
+  CB BAT: Abishek Porel* 1(5), David Miller 4(8)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[20:07:09  iter#109]
+  UI: Delhi Capitals None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 13-6 (5.5)  crr=2.23  ps=5(12)  recent=1 1 0 0 0
+  CB BAT: Abishek Porel* 1(6), David Miller 4(8)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[20:07:31  iter#110]
+  UI: Delhi Capitals None-None (None)  str=None nstr=KL Rahul  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 13-6 (5.5)  crr=2.23  ps=5(12)  recent=1 1 0 0 0
+  CB BAT: Abishek Porel* 1(6), David Miller 4(8)
+  CB BOWL: Bhuvneshwar Kumar 3-5 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui={'rahul'}, cb={'miller', 'porel'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[20:07:52  iter#111]
+  UI: Delhi Capitals 13-6 (5.5)  str=David Miller nstr=Abishek Porel  bowl=None None-None (None)
+  this_over=['?', '?', '?', '?', '?']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 13-6 (6)  crr=2.17  ps=5(13)  recent=1 1 0 0 0 0
+  CB BAT: David Miller* 4(8), Abishek Porel 1(7)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=5.5 cb=6 | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:08:12  iter#112]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 13-6 (6)  crr=2.17  ps=5(13)  recent=1 1 0 0 0 0
+  CB BAT: David Miller* 4(8), Abishek Porel 1(7)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:08:37  iter#113]
+  WS ERR: ''
+  CB: DC 13-6 (6)  crr=2.17  ps=5(13)  recent=...
+  CB BAT: David Miller* 4(8), Abishek Porel 1(7)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:08:58  iter#114]
+  UI: Delhi Capitals 13-None (None)  str=None nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-0 (0.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 13-6 (6)  crr=2.17  ps=5(13)  recent=...
+  CB BAT: David Miller* 4(8), Abishek Porel 1(7)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_miller: ui=0(0) cb=4(8) | BAT_porel: ui=0(0) cb=1(7) | BOWLER: ui=Rasikh Salam Dar cb=Josh Hazlewood
+
+[20:09:21  iter#115]
+  UI: Delhi Capitals 13-6 (6.0)  str=David Miller nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-0 (0.0)
+  this_over=[]  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 14-6 (6.1)  crr=2.27  ps=6(14)  recent=1
+  CB BAT: Abishek Porel* 1(7), David Miller 5(9)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=13 cb=14 | OVERS: ui=6.0 cb=6.1 | STRIKER: ui=David Miller cb=Abishek Porel | BAT_miller: ui=4(8) cb=5(9) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Josh Hazlewood
+
+[20:09:46  iter#116]
+  WS ERR: ''
+  CB: DC 14-6 (6.1)  crr=2.27  ps=6(14)  recent=1
+  CB BAT: Abishek Porel* 1(7), David Miller 5(9)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:10:11  iter#117]
+  WS ERR: 'timed out during opening handshake'
+  CB: DC 14-6 (6.1)  crr=2.27  ps=6(14)  recent=1
+  CB BAT: Abishek Porel* 1(7), David Miller 5(9)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:10:35  iter#118]
+  WS ERR: ''
+  CB: DC 19-6 (6.3)  crr=2.92  ps=11(16)  recent=1 4 1
+  CB BAT: David Miller* 5(9), Abishek Porel 6(9)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:10:58  iter#119]
+  UI: Delhi Capitals None-6 (None)  str=None nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-5 (0.3)
+  this_over=[]  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 19-6 (6.3)  crr=2.92  ps=11(16)  recent=1 4 1
+  CB BAT: David Miller* 5(9), Abishek Porel 6(9)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_porel: ui=0(0) cb=6(9) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Josh Hazlewood
+
+[20:11:24  iter#120]
+  WS ERR: ''
+  CB: DC 23-6 (6.4)  crr=3.45  ps=15(17)  recent=1 4 1 4
+  CB BAT: David Miller* 9(10), Abishek Porel 6(9)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:11:44  iter#121]
+  UI: Delhi Capitals 23-6 (6.4)  str=None nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-6 (0.4)
+  this_over=['?', '?', '?', '?']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 23-6 (6.4)  crr=3.45  ps=15(17)  recent=1 4 1 4
+  CB BAT: David Miller* 9(10), Abishek Porel 6(9)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Josh Hazlewood
+
+[20:12:08  iter#122]
+  WS ERR: ''
+  CB: DC 24-6 (6.5)  crr=3.51  ps=16(18)  recent=1 4 1 4 1
+  CB BAT: Abishek Porel* 6(9), David Miller 10(11)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:12:29  iter#123]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 25-6 (7)  crr=3.57  ps=17(19)  recent=1 4 1 4 1 1
+  CB BAT: Abishek Porel* 7(10), David Miller 10(11)
+  CB BOWL: Josh Hazlewood 3-8 (3)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Josh Hazlewood
+
+[20:12:49  iter#124]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 25-6 (7)  crr=3.57  ps=17(19)  recent=1 4 1 4 1 1
+  CB BAT: Abishek Porel* 7(10), David Miller 10(11)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:13:09  iter#125]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 25-6 (7)  crr=3.57  ps=17(19)  recent=1 4 1 4 1 1
+  CB BAT: Abishek Porel* 7(10), David Miller 10(11)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:13:31  iter#126]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 25-6 (7)  crr=3.57  ps=17(19)  recent=1 4 1 4 1 1
+  CB BAT: Abishek Porel* 7(10), David Miller 10(11)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:13:52  iter#127]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 29-6 (7.1)  crr=4.05  ps=21(20)  recent=4
+  CB BAT: Abishek Porel* 11(11), David Miller 10(11)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:14:12  iter#128]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 30-6 (7.2)  crr=4.09  ps=22(21)  recent=4 1
+  CB BAT: David Miller* 10(11), Abishek Porel 12(12)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:14:32  iter#129]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 30-6 (7.2)  crr=4.09  ps=22(21)  recent=4 1
+  CB BAT: David Miller* 10(11), Abishek Porel 12(12)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:14:53  iter#130]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 31-6 (7.3)  crr=4.13  ps=23(22)  recent=4 1 1
+  CB BAT: Abishek Porel* 12(12), David Miller 11(12)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:15:14  iter#131]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 31-6 (7.3)  crr=4.13  ps=23(22)  recent=4 1 1
+  CB BAT: Abishek Porel* 12(12), David Miller 11(12)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:15:34  iter#132]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 33-6 (7.4)  crr=4.3  ps=25(23)  recent=4 1 1 2
+  CB BAT: Abishek Porel* 14(13), David Miller 11(12)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:15:54  iter#133]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 33-6 (7.4)  crr=4.3  ps=25(23)  recent=4 1 1 2
+  CB BAT: Abishek Porel* 14(13), David Miller 11(12)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:16:15  iter#134]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 34-6 (7.5)  crr=4.34  ps=26(24)  recent=4 1 1 2 1
+  CB BAT: David Miller* 11(12), Abishek Porel 15(14)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:16:36  iter#135]
+  UI: Delhi Capitals None-None (None)  str=None nstr=None  bowl=Romario Shepherd 0-9 (0.5)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 34-6 (7.5)  crr=4.34  ps=26(24)  recent=4 1 1 2 1
+  CB BAT: David Miller* 11(12), Abishek Porel 15(14)
+  CB BOWL: Rasikh Salam Dar 0-12 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BAT_miller: ui=0(0) cb=11(12) | BAT_porel: ui=0(0) cb=15(14) | BOWLER: ui=Romario Shepherd cb=Rasikh Salam Dar
+
+[20:17:00  iter#136]
+  UI: Delhi Capitals 34-6 (8.0)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 0-9 (0.5)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 34-6 (8)  crr=4.25  ps=26(25)  recent=4 1 1 2 1 0
+  CB BAT: Abishek Porel* 15(14), David Miller 11(13)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=8.0 cb=8 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=0.5 cb=1
+
+[20:17:23  iter#137]
+  UI: Delhi Capitals 34-6 (8.0)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 0-9 (0.5)
+  this_over=[]  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 34-6 (8)  crr=4.25  ps=26(25)  recent=4 1 1 2 1 0
+  CB BAT: Abishek Porel* 15(14), David Miller 11(13)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=8.0 cb=8 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=0.5 cb=1
+
+[20:17:47  iter#138]
+  WS ERR: ''
+  CB: DC 34-6 (8)  crr=4.25  ps=26(25)  recent=...
+  CB BAT: Abishek Porel* 15(14), David Miller 11(13)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Romario Shepherd
+
+[20:18:09  iter#139]
+  UI: Delhi Capitals 36-6 (8.0)  str=None nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-12 (1)
+  this_over=['Wd+1']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 35-6 (8.1)  crr=4.29  ps=27(26)  recent=1
+  CB BAT: David Miller* 11(13), Abishek Porel 16(15)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=36 cb=35 | OVERS: ui=8.0 cb=8.1 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_porel: ui=15(14) cb=16(15) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:18:34  iter#140]
+  WS ERR: ''
+  CB: DC 39-6 (8.2)  crr=4.68  ps=31(27)  recent=1 4
+  CB BAT: David Miller* 15(14), Abishek Porel 16(15)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Romario Shepherd
+
+[20:18:54  iter#141]
+  UI: Delhi Capitals 35-6 (8.1)  str=None nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-13 (1.1)
+  this_over=['Wd+1', '.']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 39-6 (8.2)  crr=4.68  ps=31(27)  recent=1 4
+  CB BAT: David Miller* 15(14), Abishek Porel 16(15)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=35 cb=39 | OVERS: ui=8.1 cb=8.2 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | BAT_miller: ui=11(13) cb=15(14) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:19:19  iter#142]
+  WS ERR: ''
+  CB: DC 39-6 (8.2)  crr=4.68  ps=31(27)  recent=1 4
+  CB BAT: David Miller* 15(14), Abishek Porel 16(15)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Romario Shepherd
+
+[20:19:43  iter#143]
+  WS ERR: ''
+  CB: DC 39-6 (8.3)  crr=4.59  ps=31(28)  recent=1 4 0
+  CB BAT: David Miller* 15(15), Abishek Porel 16(15)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Romario Shepherd
+
+[20:20:12  iter#144]
+  UI: Delhi Capitals 39-6 (8.3)  str=David Miller nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-17 (1.3)
+  this_over=['Wd+1', '.', '4', '.']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 39-6 (8.4)  crr=4.5  ps=31(29)  recent=1 4 0 0
+  CB BAT: David Miller* 15(16), Abishek Porel 16(15)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=8.3 cb=8.4 | BAT_miller: ui=16(15) cb=15(16) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:20:36  iter#145]
+  UI: Delhi Capitals 39-6 (8.4)  str=David Miller nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-17 (1.4)
+  this_over=['Wd+1', '.', '4', '.', '.']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-6 (8.5)  crr=4.87  ps=35(30)  recent=1 4 0 0 4
+  CB BAT: David Miller* 19(17), Abishek Porel 16(15)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=39 cb=43 | OVERS: ui=8.4 cb=8.5 | BAT_miller: ui=16(16) cb=19(17) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:20:57  iter#146]
+  UI: Delhi Capitals 43-6 (8.5)  str=David Miller nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-17 (1.4)
+  this_over=['Wd+1', '.', '4', '.', '.', '4']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-6 (8.5)  crr=4.87  ps=35(30)  recent=1 4 0 0 4
+  CB BAT: David Miller* 19(17), Abishek Porel 16(15)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:21:18  iter#147]
+  UI: Delhi Capitals 43-6 (8.5)  str=David Miller nstr=Abishek Porel  bowl=Rasikh Salam Dar 0-21 (1.5)
+  this_over=['Wd+1', '.', '4', '.', '.', '4']  fow=6 (unk=6)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-6 (8.5)  crr=4.87  ps=35(30)  recent=... 1
+  CB BAT: David Miller* 19(17), Abishek Porel 16(15)
+  CB BOWL: Romario Shepherd 0-9 (1)
+  LAST WKT: Nitish Rana  c Devdutt Padikkal b Josh Hazlewood 1(9)  - 8/6 in 3.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:21:43  iter#148]
+  WS ERR: ''
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=1 4 0 0 4 W
+  CB BAT: Abishek Porel* 16(15), Romario Shepherd 1(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'shepherd'} (ui=set(), cb={'porel', 'shepherd'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:22:04  iter#149]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 1-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=1 4 0 0 4 W
+  CB BAT: Abishek Porel* 16(15), Romario Shepherd 1(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'shepherd'} (ui={'porel'}, cb={'porel', 'shepherd'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade
+
+[20:22:26  iter#150]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 1-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=1 4 0 0 4 W
+  CB BAT: Abishek Porel* 16(15), Romario Shepherd 1(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'shepherd'} (ui={'porel'}, cb={'porel', 'shepherd'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade
+
+[20:22:50  iter#151]
+  WS ERR: ''
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=1 4 0 0 4 W
+  CB BAT: Abishek Porel* 16(15), Romario Shepherd 1(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'shepherd'} (ui=set(), cb={'porel', 'shepherd'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:23:14  iter#152]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 1-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=...
+  CB BAT: Abishek Porel* 16(15), Romario Shepherd 1(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'shepherd'} (ui={'porel'}, cb={'porel', 'shepherd'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade
+
+[20:23:39  iter#153]
+  WS ERR: ''
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=...
+  CB BAT: Abishek Porel* 16(15), Romario Shepherd 1(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'shepherd'} (ui=set(), cb={'porel', 'shepherd'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:24:03  iter#154]
+  WS ERR: ''
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=...
+  CB BAT: Abishek Porel* 16(15), David Miller 19(18)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:24:24  iter#155]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 1-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=...
+  CB BAT: Abishek Porel* 16(15), David Miller 19(18)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade
+
+[20:24:48  iter#156]
+  WS ERR: ''
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=...
+  CB BAT: Abishek Porel* 16(15), David Miller 19(18)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'porel'} (ui=set(), cb={'miller', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:25:11  iter#157]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 1-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=35(31)  recent=...
+  CB BAT: Abishek Porel* 16(15), David Miller 19(18)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'miller'} (ui={'porel'}, cb={'miller', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade
+
+[20:25:32  iter#158]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=Kyle Jamieson  bowl=Rasikh Salam Dar 1-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade
+
+[20:25:53  iter#159]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 1-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade
+
+[20:26:14  iter#160]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 1-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade
+
+[20:26:38  iter#161]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:27:02  iter#162]
+  WS ERR: ''
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:27:24  iter#163]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:27:48  iter#164]
+  WS ERR: ''
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:28:08  iter#165]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:28:31  iter#166]
+  UI: Delhi Capitals 43-7 (9.0)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['?', '4', '.', '.', '4', 'W']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:28:56  iter#167]
+  WS ERR: ''
+  CB: DC 43-7 (9)  crr=4.78  ps=0(0)  recent=...
+  CB BAT: Abishek Porel* 16(15), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:29:26  iter#168]
+  WS ERR: ''
+  CB: DC 43-7 (9.1)  crr=4.69  ps=0(1)  recent=0
+  CB BAT: Abishek Porel* 16(16), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:29:49  iter#169]
+  UI: Delhi Capitals 43-7 (9.1)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9.1)  crr=4.69  ps=0(1)  recent=0
+  CB BAT: Abishek Porel* 16(16), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=0(16) cb=0(0) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:30:12  iter#170]
+  UI: Delhi Capitals 43-7 (9.1)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9.2)  crr=4.61  ps=0(2)  recent=0 0
+  CB BAT: Abishek Porel* 16(17), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.1 cb=9.2 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_porel: ui=16(16) cb=16(17) | BAT_jamieson: ui=0(16) cb=0(0) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:30:35  iter#171]
+  UI: Delhi Capitals 43-7 (9.1)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9.2)  crr=4.61  ps=0(2)  recent=0 0
+  CB BAT: Abishek Porel* 16(17), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.1 cb=9.2 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_porel: ui=16(16) cb=16(17) | BAT_jamieson: ui=0(16) cb=0(0) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:30:56  iter#172]
+  UI: Delhi Capitals 43-7 (9.2)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9.2)  crr=4.61  ps=0(2)  recent=0 0
+  CB BAT: Abishek Porel* 16(17), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=0(16) cb=0(0) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:31:17  iter#173]
+  UI: Delhi Capitals 43-7 (9.2)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9.2)  crr=4.61  ps=0(2)  recent=0 0
+  CB BAT: Abishek Porel* 16(17), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=0(16) cb=0(0) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:31:38  iter#174]
+  UI: Delhi Capitals 43-7 (9.2)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 43-7 (9.2)  crr=4.61  ps=0(2)  recent=0 0
+  CB BAT: Abishek Porel* 16(17), Kyle Jamieson 0(0)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=0(16) cb=0(0) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:31:59  iter#175]
+  UI: Delhi Capitals 43-7 (9.2)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 44-7 (9.3)  crr=4.63  ps=1(3)  recent=0 0 1
+  CB BAT: Kyle Jamieson* 0(0), Abishek Porel 17(18)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=43 cb=44 | OVERS: ui=9.2 cb=9.3 | STRIKER: ui=Abishek Porel cb=Kyle Jamieson | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=0(16) cb=0(0) | BAT_porel: ui=16(17) cb=17(18) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:32:24  iter#176]
+  WS ERR: ''
+  CB: DC 45-7 (9.4)  crr=4.66  ps=2(4)  recent=0 0 1 1
+  CB BAT: Abishek Porel* 17(18), Kyle Jamieson 1(1)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:32:48  iter#177]
+  UI: Delhi Capitals 45-7 (9.4)  str=Abishek Porel nstr=None  bowl=Suyash Sharma None-None (None)
+  this_over=['.', '.', '1', '1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 45-7 (9.4)  crr=4.66  ps=2(4)  recent=0 0 1 1
+  CB BAT: Abishek Porel* 17(18), Kyle Jamieson 1(1)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=0(16) cb=1(1) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Suyash Sharma cb=Rasikh Salam Dar
+
+[20:33:12  iter#178]
+  WS ERR: ''
+  CB: DC 45-7 (9.5)  crr=4.58  ps=2(5)  recent=0 0 1 1 0
+  CB BAT: Abishek Porel* 17(19), Kyle Jamieson 1(1)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:33:33  iter#179]
+  UI: Delhi Capitals 45-7 (9.5)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', '.', '1', '1', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 45-7 (9.5)  crr=4.58  ps=2(5)  recent=0 0 1 1 0
+  CB BAT: Abishek Porel* 17(19), Kyle Jamieson 1(1)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=0(16) cb=1(1) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:33:55  iter#180]
+  UI: Delhi Capitals 45-7 (9.5)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', '.', '1', '1', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 45-7 (9.5)  crr=4.58  ps=2(5)  recent=0 0 1 1 0
+  CB BAT: Abishek Porel* 17(19), Kyle Jamieson 1(1)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=1(17) cb=1(1) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:34:16  iter#181]
+  UI: Delhi Capitals 45-7 (9.5)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', '.', '1', '1', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 45-7 (9.5)  crr=4.58  ps=2(5)  recent=0 0 1 1 0
+  CB BAT: Abishek Porel* 17(19), Kyle Jamieson 1(1)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=1(17) cb=1(1) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1
+
+[20:34:41  iter#182]
+  WS ERR: ''
+  CB: DC 45-7 (9.5)  crr=4.58  ps=2(5)  recent=0 0 1 1 0
+  CB BAT: Abishek Porel* 17(19), Kyle Jamieson 1(1)
+  CB BOWL: Rasikh Salam Dar 1-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[20:35:03  iter#183]
+  UI: Delhi Capitals 46-7 (10.0)  str=Abishek Porel nstr=Kyle Jamieson  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', '.', '1', '1', '.', '1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 46-7 (10)  crr=4.6  ps=3(6)  recent=0 0 1 1 0 1
+  CB BAT: Abishek Porel* 18(20), Kyle Jamieson 1(1)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=10.0 cb=10 | BAT_jamieson: ui=1(17) cb=1(1) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Suyash Sharma
+
+[20:35:23  iter#184]
+  UI: Delhi Capitals 46-7 (10.0)  str=Abishek Porel nstr=Kyle Jamieson  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', '.', '1', '1', '.', '1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 46-7 (10)  crr=4.6  ps=3(6)  recent=...
+  CB BAT: Abishek Porel* 18(20), Kyle Jamieson 1(1)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=10.0 cb=10 | BAT_jamieson: ui=1(17) cb=1(1) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Suyash Sharma
+
+[20:35:47  iter#185]
+  UI: Delhi Capitals 46-7 (10.0)  str=Abishek Porel nstr=Kyle Jamieson  bowl=Romario Shepherd 0-9 (1)
+  this_over=['.', '.', '1', '1', '.', '1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 46-7 (10)  crr=4.6  ps=3(6)  recent=...
+  CB BAT: Abishek Porel* 18(20), Kyle Jamieson 1(1)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=10.0 cb=10 | BAT_jamieson: ui=1(17) cb=1(1) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Suyash Sharma
+
+[20:36:11  iter#186]
+  WS ERR: ''
+  CB: DC 47-7 (10.1)  crr=4.62  ps=4(7)  recent=1
+  CB BAT: Kyle Jamieson* 1(1), Abishek Porel 19(21)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:36:33  iter#187]
+  UI: Delhi Capitals 47-7 (10.1)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 0-10 (1.1)
+  this_over=['1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 47-7 (10.1)  crr=4.62  ps=4(7)  recent=1
+  CB BAT: Kyle Jamieson* 1(1), Abishek Porel 19(21)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=1(17) cb=1(1) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Suyash Sharma
+
+[20:36:54  iter#188]
+  UI: Delhi Capitals 47-7 (10.1)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 0-10 (1.1)
+  this_over=['1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 53-7 (10.2)  crr=5.13  ps=10(8)  recent=1 6
+  CB BAT: Kyle Jamieson* 7(2), Abishek Porel 19(21)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=47 cb=53 | OVERS: ui=10.1 cb=10.2 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=1(17) cb=7(2) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Suyash Sharma
+
+[20:37:15  iter#189]
+  UI: Delhi Capitals 53-7 (10.2)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 1-16 (1.2)
+  this_over=['1', '6']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 53-7 (10.3)  crr=5.05  ps=10(9)  recent=1 6 0
+  CB BAT: Kyle Jamieson* 7(3), Abishek Porel 19(21)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=10.2 cb=10.3 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=1(17) cb=7(3) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Suyash Sharma
+
+[20:37:37  iter#190]
+  UI: Delhi Capitals 53-7 (10.3)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 1-16 (1.3)
+  this_over=['1', '6', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: DC 57-7 (10.4)  crr=5.34  ps=14(10)  recent=1 6 0 4
+  CB BAT: Kyle Jamieson* 11(4), Abishek Porel 19(21)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=53 cb=57 | OVERS: ui=10.3 cb=10.4 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=7(19) cb=11(4) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Suyash Sharma
+
+[20:38:01  iter#191]
+  UI: Delhi Capitals 57-7 (10.3)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 1-20 (1.4)
+  this_over=['1', '6', '.', 'Nb+3']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: DC 57-7 (10.4)  crr=5.34  ps=14(10)  recent=1 6 0 4
+  CB BAT: Kyle Jamieson* 11(4), Abishek Porel 19(21)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=10.3 cb=10.4 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=7(19) cb=11(4) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Suyash Sharma
+
+[20:38:22  iter#192]
+  UI: Delhi Capitals 57-7 (10.3)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 1-20 (1.4)
+  this_over=['1', '6', '.', 'Nb+3']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: DC 57-7 (10.4)  crr=5.34  ps=14(10)  recent=1 6 0 4
+  CB BAT: Kyle Jamieson* 11(4), Abishek Porel 19(21)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=10.3 cb=10.4 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=7(19) cb=11(4) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Suyash Sharma
+
+[20:38:47  iter#193]
+  UI: Delhi Capitals 57-7 (10.5)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 1-20 (1.5)
+  this_over=['1', '6', '.', 'Nb+3', '.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: DC 57-7 (10.5)  crr=5.26  ps=14(11)  recent=1 6 0 4 0
+  CB BAT: Kyle Jamieson* 11(5), Abishek Porel 19(21)
+  CB BOWL: Suyash Sharma 0-3 (1)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=11(5) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Suyash Sharma
+
+[20:39:08  iter#194]
+  UI: Delhi Capitals 57-7 (10.5)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 1-20 (1.5)
+  this_over=['1', '6', '.', 'Nb+3', '.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: DC 58-7 (11)  crr=5.27  ps=15(12)  recent=1 6 0 4 0 1
+  CB BAT: Kyle Jamieson* 12(6), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=57 cb=58 | OVERS: ui=10.5 cb=11 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=12(6) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=20 cb=21 | BOWL_O: ui=1.5 cb=2
+
+[20:39:29  iter#195]
+  UI: Delhi Capitals 57-7 (10.5)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 1-20 (1.5)
+  this_over=['1', '6', '.', 'Nb+3', '.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: DC 58-7 (11)  crr=5.27  ps=15(12)  recent=1 6 0 4 0 1
+  CB BAT: Kyle Jamieson* 12(6), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=57 cb=58 | OVERS: ui=10.5 cb=11 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=12(6) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=20 cb=21 | BOWL_O: ui=1.5 cb=2
+
+[20:39:49  iter#196]
+  UI: Delhi Capitals 57-7 (10.5)  str=None nstr=Abishek Porel  bowl=Romario Shepherd 1-20 (1.5)
+  this_over=['1', '6', '.', 'Nb+3', '.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: DC 58-7 (11)  crr=5.27  ps=15(12)  recent=1 6 0 4 0 1
+  CB BAT: Kyle Jamieson* 12(6), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=57 cb=58 | OVERS: ui=10.5 cb=11 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=12(6) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=20 cb=21 | BOWL_O: ui=1.5 cb=2
+
+[20:40:14  iter#197]
+  WS ERR: ''
+  CB: DC 58-7 (11)  crr=5.27  ps=15(12)  recent=1 6 0 4 0 1
+  CB BAT: Kyle Jamieson* 12(6), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Romario Shepherd
+
+[20:40:35  iter#198]
+  UI: Delhi Capitals 58-7 (11.1)  str=Kyle Jamieson nstr=Abishek Porel  bowl=Suyash Sharma 0-3 (1.1)
+  this_over=['.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: DC 58-7 (11.1)  crr=5.19  ps=15(13)  recent=0
+  CB BAT: Kyle Jamieson* 12(7), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BAT_jamieson: ui=11(19) cb=12(7) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Suyash Sharma cb=Romario Shepherd
+
+[20:40:58  iter#199]
+  UI: Delhi Capitals 58-7 (11.1)  str=Kyle Jamieson nstr=Abishek Porel  bowl=Suyash Sharma 0-3 (1.1)
+  this_over=['.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: DC 59-7 (11.1)  crr=5.28  ps=16(13)  recent=0 W
+  CB BAT: Kyle Jamieson* 12(7), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=58 cb=59 | BAT_jamieson: ui=11(19) cb=12(7) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Suyash Sharma cb=Romario Shepherd
+
+[20:41:22  iter#200]
+  UI: Delhi Capitals 59-7 (11.2)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', 'Wd', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 59-7 (11.2)  crr=5.21  ps=16(14)  recent=0 W
+  CB BAT: Kyle Jamieson* 12(8), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Kyle Jamieson | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=12(8) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:41:43  iter#201]
+  UI: Delhi Capitals 59-7 (11.2)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', 'Wd', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 59-7 (11.3)  crr=5.13  ps=16(15)  recent=0 W
+  CB BAT: Kyle Jamieson* 12(9), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=11.2 cb=11.3 | STRIKER: ui=Abishek Porel cb=Kyle Jamieson | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=12(9) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:42:04  iter#202]
+  UI: Delhi Capitals 59-7 (11.3)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', 'Wd', '.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 59-7 (11.4)  crr=5.06  ps=16(16)  recent=0 W
+  CB BAT: Kyle Jamieson* 12(10), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=11.3 cb=11.4 | STRIKER: ui=Abishek Porel cb=Kyle Jamieson | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=12(10) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:42:28  iter#203]
+  WS ERR: ''
+  CB: DC 59-7 (11.5)  crr=4.99  ps=16(17)  recent=0 W
+  CB BAT: Kyle Jamieson* 12(11), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Romario Shepherd
+
+[20:42:49  iter#204]
+  UI: Delhi Capitals 59-7 (11.5)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', 'Wd', '.', '.', '.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 59-7 (11.5)  crr=4.99  ps=16(17)  recent=0 W
+  CB BAT: Kyle Jamieson* 12(11), Abishek Porel 19(21)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Kyle Jamieson | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=12(11) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:43:11  iter#205]
+  UI: Delhi Capitals 59-7 (11.5)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', 'Wd', '.', '.', '.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 59-7 (12)  crr=4.92  ps=16(18)  recent=0 W
+  CB BAT: Abishek Porel* 19(21), Kyle Jamieson 12(12)
+  CB BOWL: Romario Shepherd 0-21 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=11.5 cb=12 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=12(12) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Romario Shepherd
+
+[20:43:35  iter#206]
+  WS ERR: ''
+  CB: DC 59-7 (12)  crr=4.92  ps=16(18)  recent=0 W
+  CB BAT: Abishek Porel* 19(21), Kyle Jamieson 12(12)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:43:57  iter#207]
+  UI: Delhi Capitals 59-7 (11.5)  str=Abishek Porel nstr=None  bowl=Rasikh Salam Dar 2-21 (2)
+  this_over=['.', 'Wd', '.', '.', '.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 59-7 (12)  crr=4.92  ps=16(18)  recent=0 W
+  CB BAT: Abishek Porel* 19(21), Kyle Jamieson 12(12)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=11.5 cb=12 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_jamieson: ui=11(19) cb=12(12) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Suyash Sharma
+
+[20:44:22  iter#208]
+  WS ERR: ''
+  CB: DC 59-7 (12)  crr=4.92  ps=16(18)  recent=...
+  CB BAT: Abishek Porel* 19(21), Kyle Jamieson 12(12)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:44:42  iter#209]
+  UI: Delhi Capitals 59-7 (12.0)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 0-0 (0.0)
+  this_over=['.', '1', '.', '.', '.', '.']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 61-7 (12.1)  crr=5.01  ps=18(19)  recent=2
+  CB BAT: Abishek Porel* 21(22), Kyle Jamieson 12(12)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=59 cb=61 | OVERS: ui=12.0 cb=12.1 | BATTERS_MISSING_IN_UI: {'jamieson'} (ui={'porel'}, cb={'jamieson', 'porel'}) | BAT_porel: ui=19(21) cb=21(22) | BAT_jamieson: ui=11(19) cb=12(12) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:45:07  iter#210]
+  WS ERR: ''
+  CB: DC 62-7 (12.2)  crr=5.03  ps=19(20)  recent=2 1
+  CB BAT: Kyle Jamieson* 12(12), Abishek Porel 22(23)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:45:31  iter#211]
+  WS ERR: ''
+  CB: DC 62-7 (12.2)  crr=5.03  ps=19(20)  recent=2 1
+  CB BAT: Kyle Jamieson* 12(12), Abishek Porel 22(23)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jamieson', 'porel'} (ui=set(), cb={'jamieson', 'porel'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:45:52  iter#212]
+  UI: Delhi Capitals 62-7 (12.2)  str=Abishek Porel nstr=Kyle Jamieson  bowl=Krunal Pandya 1-3 (0.2)
+  this_over=['2', '1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 62-7 (12.2)  crr=5.03  ps=19(20)  recent=2 1
+  CB BAT: Kyle Jamieson* 12(12), Abishek Porel 22(23)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Kyle Jamieson | BAT_jamieson: ui=11(19) cb=12(12) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:46:15  iter#213]
+  UI: Delhi Capitals 62-7 (12.2)  str=Abishek Porel nstr=Kyle Jamieson  bowl=Krunal Pandya 1-3 (0.2)
+  this_over=['2', '1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 62-7 (12.2)  crr=5.03  ps=19(20)  recent=... 4 0 1
+  CB BAT: Kyle Jamieson* 12(12), Abishek Porel 22(23)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Kyle Jamieson | BAT_jamieson: ui=11(19) cb=12(12) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:46:36  iter#214]
+  UI: Delhi Capitals 62-7 (12.2)  str=Abishek Porel nstr=Kyle Jamieson  bowl=Krunal Pandya 1-3 (0.2)
+  this_over=['2', '1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 62-7 (12.2)  crr=5.03  ps=19(20)  recent=... 4 0 1
+  CB BAT: Kyle Jamieson* 12(12), Abishek Porel 22(23)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: David Miller  c Jitesh Sharma b Rasikh Salam Dar 19(18)  - 43/7 in 8.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Kyle Jamieson | BAT_jamieson: ui=11(19) cb=12(12) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:46:59  iter#215]
+  UI: Delhi Capitals 62-7 (12.2)  str=Abishek Porel nstr=Kyle Jamieson  bowl=Krunal Pandya 1-3 (0.2)
+  this_over=['2', '1']  fow=7 (unk=6)  last_fow={'wicket': 7, 'batter': 'David Miller', 'score': 43, 'overs': '9.0', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w3/nb1/b0/lb0]
+  extras_log: [{'over': '8.0', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '10.3', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '11.1', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 62-8 (12.3)  crr=4.96  ps=19(21)  recent=2 1 W
+  CB BAT: Abishek Porel* 22(23), Suyash Sharma 2(0)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=7 cb=8 | OVERS: ui=12.2 cb=12.3 | BATTERS_MISSING_IN_UI: {'sharma'} (ui={'jamieson', 'porel'}, cb={'sharma', 'porel'}) | FOW_UNKNOWN: 6 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:47:23  iter#216]
+  WS ERR: ''
+  CB: DC 62-8 (12.3)  crr=4.96  ps=19(21)  recent=2 1 W
+  CB BAT: Abishek Porel* 22(23), Suyash Sharma 2(0)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'porel'} (ui=set(), cb={'sharma', 'porel'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:47:44  iter#217]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: DC 62-8 (12.3)  crr=4.96  ps=0(0)  recent=... 0 1
+  CB BAT: Kuldeep Yadav* 0(0), Abishek Porel 22(23)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:48:08  iter#218]
+  WS ERR: ''
+  CB: DC 62-8 (12.3)  crr=4.96  ps=0(0)  recent=... 0 1
+  CB BAT: Kuldeep Yadav* 0(0), Abishek Porel 22(23)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:48:30  iter#219]
+  UI: Delhi Capitals None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 63-8 (12.4)  crr=4.97  ps=1(1)  recent=2 1 W 1
+  CB BAT: Abishek Porel* 22(23), Kuldeep Yadav 1(1)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BAT_yadav: ui=0(0) cb=1(1) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:48:52  iter#220]
+  UI: Delhi Capitals 0-0 (0.0)  str=Prithvi Shaw nstr=Kuldeep Yadav  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 63-8 (12.5)  crr=4.91  ps=1(2)  recent=2 1 W 1 0
+  CB BAT: Abishek Porel* 22(24), Kuldeep Yadav 1(1)
+  CB BOWL: Suyash Sharma 0-4 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=63 | WICKETS: ui=0 cb=8 | OVERS: ui=0.0 cb=12.5 | STRIKER: ui=Prithvi Shaw cb=Abishek Porel | BATTERS_MISSING_IN_UI: {'porel'} (ui={'shaw', 'yadav'}, cb={'porel', 'yadav'}) | BAT_yadav: ui=0(0) cb=1(1) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:49:14  iter#221]
+  UI: Delhi Capitals 0-0 (0.0)  str=Prithvi Shaw nstr=Kuldeep Yadav  bowl=Krunal Pandya 1-4 (0.5)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 64-8 (13)  crr=4.92  ps=2(3)  recent=2 1 W 1 0 1
+  CB BAT: Abishek Porel* 23(25), Kuldeep Yadav 1(1)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=64 | WICKETS: ui=0 cb=8 | OVERS: ui=0.0 cb=13 | STRIKER: ui=Prithvi Shaw cb=Abishek Porel | BATTERS_MISSING_IN_UI: {'porel'} (ui={'shaw', 'yadav'}, cb={'porel', 'yadav'}) | BAT_yadav: ui=0(0) cb=1(1) | BOWL_R: ui=4 cb=5 | BOWL_O: ui=0.5 cb=1
+
+[20:49:36  iter#222]
+  UI: Delhi Capitals 0-0 (0.0)  str=Prithvi Shaw nstr=Kuldeep Yadav  bowl=Krunal Pandya 1-4 (0.5)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 64-8 (13)  crr=4.92  ps=2(3)  recent=2 1 W 1 0 1
+  CB BAT: Abishek Porel* 23(25), Kuldeep Yadav 1(1)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=64 | WICKETS: ui=0 cb=8 | OVERS: ui=0.0 cb=13 | STRIKER: ui=Prithvi Shaw cb=Abishek Porel | BATTERS_MISSING_IN_UI: {'porel'} (ui={'shaw', 'yadav'}, cb={'porel', 'yadav'}) | BAT_yadav: ui=0(0) cb=1(1) | BOWL_R: ui=4 cb=5 | BOWL_O: ui=0.5 cb=1
+
+[20:50:01  iter#223]
+  WS ERR: ''
+  CB: DC 65-8 (13.1)  crr=4.94  ps=3(4)  recent=1
+  CB BAT: Kuldeep Yadav* 1(1), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Krunal Pandya
+
+[20:50:22  iter#224]
+  UI: Delhi Capitals 0-0 (0.0)  str=Prithvi Shaw nstr=Kuldeep Yadav  bowl=Krunal Pandya 1-4 (0.5)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 65-8 (13.1)  crr=4.94  ps=3(4)  recent=1
+  CB BAT: Kuldeep Yadav* 1(1), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=65 | WICKETS: ui=0 cb=8 | OVERS: ui=0.0 cb=13.1 | STRIKER: ui=Prithvi Shaw cb=Kuldeep Yadav | BATTERS_MISSING_IN_UI: {'porel'} (ui={'shaw', 'yadav'}, cb={'porel', 'yadav'}) | BAT_yadav: ui=0(0) cb=1(1) | BOWL_R: ui=4 cb=5 | BOWL_O: ui=0.5 cb=1
+
+[20:50:45  iter#225]
+  UI: Delhi Capitals None-None (None)  str=Prithvi Shaw nstr=Kuldeep Yadav  bowl=Krunal Pandya 1-4 (0.5)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 65-8 (13.2)  crr=4.88  ps=3(5)  recent=1 0
+  CB BAT: Kuldeep Yadav* 1(2), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Prithvi Shaw cb=Kuldeep Yadav | BATTERS_MISSING_IN_UI: {'porel'} (ui={'shaw', 'yadav'}, cb={'porel', 'yadav'}) | BAT_yadav: ui=0(0) cb=1(2) | BOWL_R: ui=4 cb=5 | BOWL_O: ui=0.5 cb=1
+
+[20:51:06  iter#226]
+  UI: Delhi Capitals 65-8 (13.1)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-4 (0.5)
+  this_over=['?']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 65-8 (13.2)  crr=4.88  ps=3(5)  recent=1 0
+  CB BAT: Kuldeep Yadav* 1(2), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=13.1 cb=13.2 | BAT_yadav: ui=1(1) cb=1(2) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=5 | BOWL_O: ui=0.5 cb=1
+
+[20:51:29  iter#227]
+  UI: Delhi Capitals 66-8 (13.2)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-4 (1.0)
+  this_over=['?', '.']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: DC 66-8 (13.2)  crr=4.95  ps=4(5)  recent=1 0 W
+  CB BAT: Kuldeep Yadav* 1(2), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=5 | BOWL_O: ui=1.0 cb=1
+
+[20:51:52  iter#228]
+  UI: Delhi Capitals 66-8 (13.2)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-4 (1.0)
+  this_over=['?', '.', 'Wd']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 66-8 (13.2)  crr=4.95  ps=4(5)  recent=1 0 W
+  CB BAT: Kuldeep Yadav* 1(2), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=5 | BOWL_O: ui=1.0 cb=1
+
+[20:52:14  iter#229]
+  UI: Delhi Capitals 66-8 (13.3)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-4 (1)
+  this_over=['?', '.', 'Wd', '.']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 66-8 (13.4)  crr=4.83  ps=4(7)  recent=1 0 W
+  CB BAT: Kuldeep Yadav* 1(4), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=13.3 cb=13.4 | BAT_yadav: ui=1(3) cb=1(4) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=5
+
+[20:52:39  iter#230]
+  WS ERR: ''
+  CB: DC 66-8 (13.5)  crr=4.77  ps=4(8)  recent=1 0 W
+  CB BAT: Kuldeep Yadav* 1(5), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Krunal Pandya
+
+[20:53:01  iter#231]
+  UI: Delhi Capitals 66-8 (13.5)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-4 (1.1)
+  this_over=['?', '.', 'Wd', '.', '.', '.']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 67-8 (13.5)  crr=4.84  ps=5(8)  recent=1 0 W
+  CB BAT: Kuldeep Yadav* 1(5), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=67 | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=5 | BOWL_O: ui=1.1 cb=1
+
+[20:53:22  iter#232]
+  UI: Delhi Capitals 67-8 (13.5)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-4 (1.1)
+  this_over=['?', '.', 'Wd', '.', '.', '.', 'Wd']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 67-8 (13.5)  crr=4.84  ps=5(8)  recent=1 0 W
+  CB BAT: Kuldeep Yadav* 1(5), Abishek Porel 24(26)
+  CB BOWL: Krunal Pandya 1-5 (1)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=4 cb=5 | BOWL_O: ui=1.1 cb=1
+
+[20:53:43  iter#233]
+  UI: Delhi Capitals 67-8 (14.0)  str=Abishek Porel nstr=Kuldeep Yadav  bowl=Krunal Pandya 1-4 (2.0)
+  this_over=['?', '.', 'Wd', '.', '.', '.', 'Wd', '.']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 67-8 (14)  crr=4.79  ps=5(9)  recent=... 1 0 W
+  CB BAT: Abishek Porel* 24(26), Kuldeep Yadav 1(6)
+  CB BOWL: Suyash Sharma 0-7 (3)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=14.0 cb=14 | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:54:06  iter#234]
+  UI: Delhi Capitals 67-8 (14.0)  str=Abishek Porel nstr=Kuldeep Yadav  bowl=Krunal Pandya 1-4 (2.0)
+  this_over=['?', '.', 'Wd', '.', '.', '.', 'Wd', '.']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 67-8 (14)  crr=4.79  ps=5(9)  recent=... 1 0 W
+  CB BAT: Abishek Porel* 24(26), Kuldeep Yadav 1(6)
+  CB BOWL: Suyash Sharma 0-7 (3)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=14.0 cb=14 | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:54:30  iter#235]
+  WS ERR: ''
+  CB: DC 67-8 (14.1)  crr=4.73  ps=5(10)  recent=0
+  CB BAT: Abishek Porel* 24(27), Kuldeep Yadav 1(6)
+  CB BOWL: Suyash Sharma 0-7 (3)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:54:54  iter#236]
+  WS ERR: ''
+  CB: DC 68-8 (14.2)  crr=4.74  ps=6(11)  recent=0 1
+  CB BAT: Kuldeep Yadav* 1(6), Abishek Porel 25(28)
+  CB BOWL: Suyash Sharma 0-7 (3)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[20:55:15  iter#237]
+  UI: Delhi Capitals 68-8 (14.2)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-6 (1.2)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 69-8 (14.3)  crr=4.76  ps=7(12)  recent=0 1 1
+  CB BAT: Abishek Porel* 25(28), Kuldeep Yadav 2(7)
+  CB BOWL: Suyash Sharma 0-7 (3)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=68 cb=69 | OVERS: ui=14.2 cb=14.3 | STRIKER: ui=Kuldeep Yadav cb=Abishek Porel | BAT_yadav: ui=1(6) cb=2(7) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:55:36  iter#238]
+  UI: Delhi Capitals 68-8 (14.2)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-6 (1.2)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 69-8 (14.3)  crr=4.76  ps=7(12)  recent=0 1 1
+  CB BAT: Abishek Porel* 25(28), Kuldeep Yadav 2(7)
+  CB BOWL: Suyash Sharma 0-7 (3)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=68 cb=69 | OVERS: ui=14.2 cb=14.3 | STRIKER: ui=Kuldeep Yadav cb=Abishek Porel | BAT_yadav: ui=1(6) cb=2(7) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:55:58  iter#239]
+  UI: Delhi Capitals 69-8 (14.3)  str=Abishek Porel nstr=Kuldeep Yadav  bowl=Krunal Pandya 1-7 (1.3)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 69-8 (14.4)  crr=4.7  ps=7(13)  recent=0 1 1 0
+  CB BAT: Abishek Porel* 25(29), Kuldeep Yadav 2(7)
+  CB BOWL: Suyash Sharma 0-7 (3)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=14.3 cb=14.4 | BAT_porel: ui=25(28) cb=25(29) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[20:56:26  iter#240]
+  UI: Delhi Capitals 70-8 (14.5)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-8 (1.5)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-8 (15)  crr=4.73  ps=9(15)  recent=0 1 1 0 1 1
+  CB BAT: Kuldeep Yadav* 3(8), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=70 cb=71 | OVERS: ui=14.5 cb=15 | BAT_yadav: ui=2(7) cb=3(8) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=8 cb=9 | BOWL_O: ui=1.5 cb=2
+
+[20:56:47  iter#241]
+  UI: Delhi Capitals 71-8 (15.0)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-8 (1.5)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-8 (15)  crr=4.73  ps=9(15)  recent=0 1 1 0 1 1
+  CB BAT: Kuldeep Yadav* 3(8), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=15.0 cb=15 | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=8 cb=9 | BOWL_O: ui=1.5 cb=2
+
+[20:57:11  iter#242]
+  WS ERR: ''
+  CB: DC 71-8 (15)  crr=4.73  ps=9(15)  recent=0 1 1 0 1 1
+  CB BAT: Kuldeep Yadav* 3(8), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Krunal Pandya
+
+[20:57:36  iter#243]
+  WS ERR: ''
+  CB: DC 71-8 (15.1)  crr=4.68  ps=9(16)  recent=0
+  CB BAT: Kuldeep Yadav* 3(9), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Krunal Pandya
+
+[20:57:58  iter#244]
+  UI: Delhi Capitals 71-8 (15.1)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-8 (15.1)  crr=4.68  ps=9(16)  recent=0
+  CB BAT: Kuldeep Yadav* 3(9), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade
+
+[20:58:22  iter#245]
+  WS ERR: ''
+  CB: DC 71-8 (15.1)  crr=4.68  ps=9(16)  recent=0
+  CB BAT: Kuldeep Yadav* 3(9), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Krunal Pandya
+
+[20:58:46  iter#246]
+  WS ERR: ''
+  CB: DC 71-8 (15.2)  crr=4.63  ps=9(17)  recent=... 0 0 W
+  CB BAT: Kuldeep Yadav* 3(10), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Krunal Pandya
+
+[20:59:10  iter#247]
+  UI: Delhi Capitals 71-8 (15.2)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-8 (15.3)  crr=4.58  ps=9(18)  recent=0 0 0
+  CB BAT: Kuldeep Yadav* 3(11), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=15.2 cb=15.3 | BAT_yadav: ui=3(10) cb=3(11) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade
+
+[20:59:30  iter#248]
+  UI: Delhi Capitals 71-8 (15.2)  str=Kuldeep Yadav nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=8 (unk=8)  last_fow={'wicket': 8, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-8 (15.3)  crr=4.58  ps=9(18)  recent=0 0 0
+  CB BAT: Kuldeep Yadav* 3(11), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=15.2 cb=15.3 | BAT_yadav: ui=3(10) cb=3(11) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade
+
+[20:59:52  iter#249]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-8 (15.3)  crr=4.58  ps=9(18)  recent=0 0 0
+  CB BAT: Kuldeep Yadav* 3(11), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=9 cb=8 | BATTERS_MISSING_IN_UI: {'yadav'} (ui={'porel'}, cb={'porel', 'yadav'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:00:16  iter#250]
+  WS ERR: ''
+  CB: DC 71-8 (15.3)  crr=4.58  ps=9(18)  recent=0 0 0
+  CB BAT: Kuldeep Yadav* 3(11), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'porel', 'yadav'} (ui=set(), cb={'porel', 'yadav'}) | BOWLER: ui=None cb=Krunal Pandya
+
+[21:00:37  iter#251]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-8 (15.3)  crr=4.58  ps=9(18)  recent=0 0 0
+  CB BAT: Kuldeep Yadav* 3(11), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kyle Jamieson  lbw b Krunal Pandya 12(13)  - 62/8 in 12.3 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=9 cb=8 | BATTERS_MISSING_IN_UI: {'yadav'} (ui={'porel'}, cb={'porel', 'yadav'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:00:58  iter#252]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (15.3)  crr=4.58  ps=9(18)  recent=0 0 W
+  CB BAT: Abishek Porel* 26(30), Krunal Pandya 2(0)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pandya'} (ui={'porel'}, cb={'pandya', 'porel'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:01:22  iter#253]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (15.3)  crr=4.58  ps=0(0)  recent=... 0 W
+  CB BAT: Dushmantha Chameera* 0(0), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'chameera'} (ui={'porel'}, cb={'chameera', 'porel'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:01:45  iter#254]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (15.3)  crr=4.58  ps=0(0)  recent=... 0 W
+  CB BAT: Dushmantha Chameera* 0(0), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'chameera'} (ui={'porel'}, cb={'chameera', 'porel'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:02:06  iter#255]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (15.3)  crr=4.58  ps=0(0)  recent=... 0 W
+  CB BAT: Dushmantha Chameera* 0(0), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'chameera'} (ui={'porel'}, cb={'chameera', 'porel'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:02:28  iter#256]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (15.3)  crr=4.58  ps=0(0)  recent=... 0 W
+  CB BAT: Dushmantha Chameera* 0(0), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'chameera'} (ui={'porel'}, cb={'chameera', 'porel'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:02:52  iter#257]
+  WS ERR: ''
+  CB: DC 71-9 (15.3)  crr=4.58  ps=0(0)  recent=... 0 W
+  CB BAT: Dushmantha Chameera* 0(0), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'chameera', 'porel'} (ui=set(), cb={'chameera', 'porel'}) | BOWLER: ui=None cb=Krunal Pandya
+
+[21:03:13  iter#258]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (15.3)  crr=4.58  ps=0(0)  recent=... 0 W
+  CB BAT: Dushmantha Chameera* 0(0), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'chameera'} (ui={'porel'}, cb={'chameera', 'porel'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:03:36  iter#259]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (15.4)  crr=4.53  ps=0(1)  recent=0 0 W 0
+  CB BAT: Dushmantha Chameera* 0(1), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=15.3 cb=15.4 | BATTERS_MISSING_IN_UI: {'chameera'} (ui={'porel'}, cb={'chameera', 'porel'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:03:57  iter#260]
+  UI: Delhi Capitals 71-9 (15.3)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=9)  last_fow={'wicket': 9, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (15.5)  crr=4.48  ps=0(2)  recent=0 0 W 0 0
+  CB BAT: Dushmantha Chameera* 0(2), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=15.3 cb=15.5 | BATTERS_MISSING_IN_UI: {'chameera'} (ui={'porel'}, cb={'chameera', 'porel'}) | FOW_UNKNOWN: 9 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.1 cb=2
+
+[21:04:19  iter#261]
+  UI: Delhi Capitals 71-9 (15.4)  str=None nstr=Abishek Porel  bowl=Krunal Pandya 1-9 (2.2)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (15.5)  crr=4.48  ps=0(2)  recent=0 0 W 0 0
+  CB BAT: Dushmantha Chameera* 0(2), Abishek Porel 26(30)
+  CB BOWL: Krunal Pandya 1-9 (2)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=15.4 cb=15.5 | BATTERS_MISSING_IN_UI: {'chameera'} (ui={'porel'}, cb={'chameera', 'porel'}) | BAT_chameera: ui=0(0) cb=0(2) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.2 cb=2
+
+[21:04:43  iter#262]
+  WS ERR: ''
+  CB: DC 71-9 (16)  crr=4.44  ps=0(3)  recent=0 0 W 0 0 0
+  CB BAT: Abishek Porel* 26(30), Dushmantha Chameera 0(3)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'chameera', 'porel'} (ui=set(), cb={'chameera', 'porel'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[21:05:09  iter#263]
+  UI: Delhi Capitals 71-9 (16.0)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Krunal Pandya 1-9 (2.4)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 71-9 (16)  crr=4.44  ps=0(3)  recent=0 0 W 0 0 0
+  CB BAT: Abishek Porel* 26(30), Dushmantha Chameera 0(3)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: OVERS: ui=16.0 cb=16 | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Krunal Pandya cb=Suyash Sharma
+
+[21:05:34  iter#264]
+  WS ERR: ''
+  CB: DC 71-9 (16)  crr=4.44  ps=0(3)  recent=...
+  CB BAT: Abishek Porel* 26(30), Dushmantha Chameera 0(3)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'chameera', 'porel'} (ui=set(), cb={'chameera', 'porel'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[21:05:59  iter#265]
+  WS ERR: ''
+  CB: DC 71-9 (16.1)  crr=4.39  ps=0(4)  recent=0
+  CB BAT: Abishek Porel* 26(31), Dushmantha Chameera 0(3)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'chameera', 'porel'} (ui=set(), cb={'chameera', 'porel'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[21:06:21  iter#266]
+  UI: Delhi Capitals 71-9 (16.1)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-8 (3.1)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 75-9 (16.2)  crr=4.59  ps=4(5)  recent=0 4
+  CB BAT: Abishek Porel* 30(32), Dushmantha Chameera 0(3)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=71 cb=75 | OVERS: ui=16.1 cb=16.2 | BAT_porel: ui=26(31) cb=30(32) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:06:42  iter#267]
+  UI: Delhi Capitals 75-9 (16.2)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-12 (3.2)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: DC 75-9 (16.2)  crr=4.59  ps=4(5)  recent=0 4
+  CB BAT: Abishek Porel* 30(32), Dushmantha Chameera 0(3)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Kuldeep Yadav   b Suyash Sharma 3(11)  - 71/9 in 15.3 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:07:06  iter#268]
+  WS ERR: ''
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=0 4 W
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'chameera'} (ui=set(), cb={'sharma', 'chameera'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[21:07:29  iter#269]
+  UI: Delhi Capitals 75-9 (16.3)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-12 (3.3)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=0 4 W
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Dushmantha Chameera | BATTERS_MISSING_IN_UI: {'sharma'} (ui={'chameera', 'porel'}, cb={'sharma', 'chameera'}) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:07:52  iter#270]
+  UI: Delhi Capitals 75-9 (16.3)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-12 (3.3)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=0 4 W
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Dushmantha Chameera | BATTERS_MISSING_IN_UI: {'sharma'} (ui={'chameera', 'porel'}, cb={'sharma', 'chameera'}) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:08:17  iter#271]
+  WS ERR: ''
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'chameera'} (ui=set(), cb={'sharma', 'chameera'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[21:08:38  iter#272]
+  UI: Delhi Capitals 75-9 (16.3)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-12 (3.3)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Dushmantha Chameera | BATTERS_MISSING_IN_UI: {'sharma'} (ui={'chameera', 'porel'}, cb={'sharma', 'chameera'}) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:09:03  iter#273]
+  WS ERR: ''
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'chameera'} (ui=set(), cb={'sharma', 'chameera'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[21:09:31  iter#274]
+  WS ERR: ''
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'chameera'} (ui=set(), cb={'sharma', 'chameera'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[21:09:55  iter#275]
+  WS ERR: ''
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'chameera'} (ui=set(), cb={'sharma', 'chameera'}) | BOWLER: ui=None cb=Suyash Sharma
+
+[21:10:15  iter#276]
+  UI: Delhi Capitals 75-9 (16.3)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-12 (3.3)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Dushmantha Chameera | BATTERS_MISSING_IN_UI: {'sharma'} (ui={'chameera', 'porel'}, cb={'sharma', 'chameera'}) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:10:38  iter#277]
+  UI: Delhi Capitals 75-9 (16.3)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-12 (3.3)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Dushmantha Chameera | BATTERS_MISSING_IN_UI: {'sharma'} (ui={'chameera', 'porel'}, cb={'sharma', 'chameera'}) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:10:59  iter#278]
+  UI: Delhi Capitals 75-9 (16.3)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-12 (3.3)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Dushmantha Chameera | BATTERS_MISSING_IN_UI: {'sharma'} (ui={'chameera', 'porel'}, cb={'sharma', 'chameera'}) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:11:22  iter#279]
+  UI: Delhi Capitals 75-9 (16.3)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-12 (3.3)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Dushmantha Chameera | BATTERS_MISSING_IN_UI: {'sharma'} (ui={'chameera', 'porel'}, cb={'sharma', 'chameera'}) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:11:42  iter#280]
+  UI: Delhi Capitals 75-9 (16.3)  str=Abishek Porel nstr=Dushmantha Chameera  bowl=Josh Hazlewood 3-12 (3.3)
+  this_over=['.', 'Wd', '.', '.', '.', 'Wd', '.', '.', '1', '1', '.', '1']  fow=9 (unk=8)  last_fow={'wicket': 9, 'batter': 'Kuldeep Yadav', 'score': 71, 'overs': '15.4', 'bowler': 'Krunal Pandya', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '13.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '13.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Abishek Porel cb=Dushmantha Chameera | BATTERS_MISSING_IN_UI: {'sharma'} (ui={'chameera', 'porel'}, cb={'sharma', 'chameera'}) | FOW_UNKNOWN: 8 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Suyash Sharma
+
+[21:12:07  iter#281]
+  WS ERR: ''
+  CB: None None-None (None)  crr=4.55  ps=4(6)  recent=... 0 1 1
+  CB BAT: Dushmantha Chameera* 0(3), Suyash Sharma 4(1)
+  CB BOWL: Suyash Sharma 1-7 (4)
+  LAST WKT: Abishek Porel   b Josh Hazlewood 30(33)  - 75/10 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'chameera'} (ui=set(), cb={'sharma', 'chameera'}) | BOWLER: ui=None cb=Suyash Sharma

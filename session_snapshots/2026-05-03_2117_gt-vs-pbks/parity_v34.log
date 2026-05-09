@@ -1,0 +1,305 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151818/srh-vs-csk-27th-match-indian-premier-league-2026
+
+[22:42:47  iter#1]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=Matthew Short  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.49  ps=4(4)  recent=1 1
+  CB BAT: Matthew Short* 23(20), Shivam Dube 2(2)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dube'} (ui={'short'}, cb={'short', 'dube'}) | BAT_short: ui=0(0) cb=23(20) | BOWLER: ui=None cb=Shivang Kumar
+
+[22:43:09  iter#2]
+  UI: Chennai Super Kings 117-5 (12.2)  str=Matthew Short nstr=Shivam Dube  bowl=None None-None (None)
+  this_over=['?', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.49  ps=4(4)  recent=1 1
+  CB BAT: Matthew Short* 23(20), Shivam Dube 2(2)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=117 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=12.2 cb=20 | BAT_dube: ui=1(1) cb=2(2) | BOWLER: ui=None cb=Shivang Kumar
+
+[22:43:29  iter#3]
+  UI: Chennai Super Kings 117-5 (12.2)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-16 (2.2)
+  this_over=['?', '?']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.36  ps=4(5)  recent=1 1 0
+  CB BAT: Matthew Short* 23(21), Shivam Dube 2(2)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=117 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=12.2 cb=20 | BAT_short: ui=23(20) cb=23(21) | BOWLER: ui=Nitish Kumar Reddy cb=Shivang Kumar
+
+[22:43:50  iter#4]
+  UI: Chennai Super Kings 117-5 (12.3)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-16 (2.3)
+  this_over=['?', '?', '.']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.36  ps=4(5)  recent=1 1 0
+  CB BAT: Matthew Short* 23(21), Shivam Dube 2(2)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=117 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=12.3 cb=20 | BOWLER: ui=Nitish Kumar Reddy cb=Shivang Kumar
+
+[22:44:11  iter#5]
+  UI: Chennai Super Kings 117-5 (12.3)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-16 (2.3)
+  this_over=['?', '?', '.']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.32  ps=5(6)  recent=1 1 0 1
+  CB BAT: Shivam Dube* 2(2), Matthew Short 24(22)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=117 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=12.3 cb=20 | STRIKER: ui=Matthew Short cb=Shivam Dube | BAT_short: ui=23(21) cb=24(22) | BOWLER: ui=Nitish Kumar Reddy cb=Shivang Kumar
+
+[22:44:31  iter#6]
+  UI: Chennai Super Kings 118-5 (12.4)  str=Shivam Dube nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-17 (2.5)
+  this_over=['?', '?', '.', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.32  ps=5(6)  recent=1 1 0 1
+  CB BAT: Shivam Dube* 2(2), Matthew Short 24(22)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=118 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=12.4 cb=20 | BAT_dube: ui=None(None) cb=2(2) | BAT_short: ui=None(None) cb=24(22) | BOWLER: ui=Nitish Kumar Reddy cb=Shivang Kumar
+
+[22:44:52  iter#7]
+  UI: Chennai Super Kings 118-5 (12.4)  str=Shivam Dube nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-24 (2.5)
+  this_over=['?', '?', '.', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.32  ps=5(6)  recent=... 0 0
+  CB BAT: Shivam Dube* 2(2), Matthew Short 24(22)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=118 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=12.4 cb=20 | BAT_short: ui=26(22) cb=24(22) | BOWLER: ui=Nitish Kumar Reddy cb=Shivang Kumar
+
+[22:45:13  iter#8]
+  UI: Chennai Super Kings 118-5 (12.4)  str=Shivam Dube nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-24 (2.4)
+  this_over=['?', '?', '.', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.27  ps=6(7)  recent=1 1 0 1 1
+  CB BAT: Matthew Short* 24(22), Shivam Dube 3(3)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=118 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=12.4 cb=20 | STRIKER: ui=Shivam Dube cb=Matthew Short | BAT_dube: ui=2(2) cb=3(3) | BOWLER: ui=Nitish Kumar Reddy cb=Shivang Kumar
+
+[22:45:34  iter#9]
+  UI: Chennai Super Kings 119-5 (12.5)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-18 (2.5)
+  this_over=['?', '?', '.', '1', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.27  ps=6(7)  recent=1 1 0 1 1
+  CB BAT: Matthew Short* 24(22), Shivam Dube 3(3)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=119 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=12.5 cb=20 | BOWLER: ui=Nitish Kumar Reddy cb=Shivang Kumar
+
+[22:45:58  iter#10]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=9.27  ps=6(7)  recent=1 1 0 1 1
+  CB BAT: Matthew Short* 24(22), Shivam Dube 3(3)
+  CB BOWL: Shivang Kumar 1-18 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'short', 'dube'} (ui=set(), cb={'short', 'dube'}) | BOWLER: ui=None cb=Shivang Kumar
+
+[22:46:18  iter#11]
+  UI: Chennai Super Kings 120-5 (13.0)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-19 (3)
+  this_over=['?', '?', '.', '1', '1', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.23  ps=7(8)  recent=1 1 0 1 1 1
+  CB BAT: Matthew Short* 25(23), Shivam Dube 3(3)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=120 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.0 cb=20
+
+[22:46:39  iter#12]
+  UI: Chennai Super Kings 120-5 (13.0)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-19 (3)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.23  ps=7(8)  recent=1 1 0 1 1 1
+  CB BAT: Matthew Short* 25(23), Shivam Dube 3(3)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=120 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.0 cb=20
+
+[22:47:01  iter#13]
+  UI: Chennai Super Kings 120-5 (13.0)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-19 (3)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.23  ps=7(8)  recent=1 1 0 1 1 1
+  CB BAT: Matthew Short* 25(23), Shivam Dube 3(3)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=120 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.0 cb=20
+
+[22:47:23  iter#14]
+  UI: Chennai Super Kings 120-5 (13.0)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-19 (3)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.23  ps=7(8)  recent=1 1 0 1 1 1
+  CB BAT: Matthew Short* 25(23), Shivam Dube 3(3)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=120 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.0 cb=20
+
+[22:47:43  iter#15]
+  UI: Chennai Super Kings 120-5 (13.0)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-19 (3)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.23  ps=7(8)  recent=...
+  CB BAT: Matthew Short* 25(23), Shivam Dube 3(3)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=120 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.0 cb=20
+
+[22:48:05  iter#16]
+  UI: Chennai Super Kings 120-5 (13.0)  str=Matthew Short nstr=Shivam Dube  bowl=Nitish Kumar Reddy 2-19 (3)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.23  ps=7(8)  recent=...
+  CB BAT: Matthew Short* 25(23), Shivam Dube 3(3)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=120 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.0 cb=20 | BAT_dube: ui=23(3) cb=3(3)
+
+[22:48:26  iter#17]
+  UI: Chennai Super Kings 120-5 (13.0)  str=Matthew Short nstr=Shivam Dube  bowl=Praful Hinge 0-39 (2)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.27  ps=9(9)  recent=2
+  CB BAT: Matthew Short* 27(24), Shivam Dube 3(3)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=120 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.0 cb=20 | BAT_short: ui=25(23) cb=27(24) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:48:48  iter#18]
+  UI: CSK 123-5 (13.1)  str=Shivam Dube nstr=Matthew Short  bowl=None None-None (None)
+  this_over=['2', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.46  ps=10(8)  recent=
+  CB BAT: Matthew Short* 27(24), Shivam Dube 3(3)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=123 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.1 cb=20 | STRIKER: ui=Shivam Dube cb=Matthew Short | FOW_COUNT: ui=0 vs wickets=5 | BOWLER: ui=None cb=Nitish Kumar Reddy
+
+[22:49:10  iter#19]
+  UI: Chennai Super Kings 123-5 (13.0)  str=Matthew Short nstr=Shivam Dube  bowl=Praful Hinge 0-42 (2)
+  this_over=['2', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.46  ps=10(8)  recent=
+  CB BAT: Matthew Short* 27(24), Shivam Dube 3(3)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=123 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.0 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:49:31  iter#20]
+  UI: Chennai Super Kings 124-5 (13.1)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-42 (2)
+  this_over=['2', '1', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.42  ps=11(9)  recent=
+  CB BAT: Shivam Dube* 3(3), Matthew Short 28(25)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=124 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.1 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:49:55  iter#21]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=9.42  ps=11(9)  recent=
+  CB BAT: Shivam Dube* 3(3), Matthew Short 28(25)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'short', 'dube'} (ui=set(), cb={'short', 'dube'}) | BOWLER: ui=None cb=Nitish Kumar Reddy
+
+[22:50:18  iter#22]
+  UI: Chennai Super Kings 124-5 (13.1)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-43 (2.1)
+  this_over=['2', '1', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.3  ps=11(10)  recent=
+  CB BAT: Shivam Dube* 3(4), Matthew Short 28(25)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=124 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.1 cb=20 | BAT_dube: ui=3(3) cb=3(4) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:50:40  iter#23]
+  UI: Chennai Super Kings 124-5 (13.2)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-43 (2.2)
+  this_over=['2', '1', '1', '.']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.3  ps=11(10)  recent=
+  CB BAT: Shivam Dube* 3(4), Matthew Short 28(25)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=124 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.2 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:51:01  iter#24]
+  UI: Chennai Super Kings 124-5 (13.2)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-43 (2.2)
+  this_over=['2', '1', '1', '.']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.19  ps=11(11)  recent=
+  CB BAT: Shivam Dube* 3(5), Matthew Short 28(25)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=124 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.2 cb=20 | BAT_dube: ui=3(4) cb=3(5) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:51:22  iter#25]
+  UI: Chennai Super Kings 124-5 (13.3)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-43 (2.3)
+  this_over=['2', '1', '1', '.', '.']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.19  ps=11(11)  recent=
+  CB BAT: Shivam Dube* 3(5), Matthew Short 28(25)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=124 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.3 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:51:44  iter#26]
+  UI: Chennai Super Kings 124-5 (13.3)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-43 (2.3)
+  this_over=['2', '1', '1', '.', '.']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.51  ps=17(12)  recent=
+  CB BAT: Shivam Dube* 9(6), Matthew Short 28(25)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=124 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.3 cb=20 | BAT_dube: ui=3(5) cb=9(6) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:52:07  iter#27]
+  UI: Chennai Super Kings 130-5 (13.4)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-49 (2.4)
+  this_over=['2', '1', '1', '.', '.', '6']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.47  ps=18(13)  recent=
+  CB BAT: Matthew Short* 28(25), Shivam Dube 10(7)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=130 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.4 cb=20 | STRIKER: ui=Shivam Dube cb=Matthew Short | BAT_dube: ui=9(6) cb=10(7) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:52:28  iter#28]
+  UI: Chennai Super Kings 131-5 (13.5)  str=Matthew Short nstr=Shivam Dube  bowl=Praful Hinge 0-50 (2.5)
+  this_over=['2', '1', '1', '.', '.', '6', '1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.47  ps=18(13)  recent=
+  CB BAT: Matthew Short* 28(25), Shivam Dube 10(7)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=131 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.5 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy

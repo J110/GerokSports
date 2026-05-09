@@ -1,0 +1,328 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/95079/wi-vs-rsa-2nd-t20i-south-africa-tour-of-west-indies-2024
+
+[12:29:47  iter#1]
+  UI: South Africa 1-0 (0.2)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Akeal Hosein 1-1 (0.2)
+  this_over=['?', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:30:12  iter#2]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:30:36  iter#3]
+  UI: South Africa 2-0 (0.4)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Akeal Hosein 1-2 (0.4)
+  this_over=['?', '.', '1', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:31:00  iter#4]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:31:23  iter#5]
+  UI: South Africa 3-0 (0.5)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Akeal Hosein 1-3 (0.5)
+  this_over=['?', '.', '1', '.', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:31:46  iter#6]
+  UI: South Africa 4-0 (1.0)  str=Reeza Hendricks nstr=Quinton de Kock  bowl=Akeal Hosein 1-4 (1)
+  this_over=['100', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:32:09  iter#7]
+  UI: South Africa 4-0 (1.0)  str=Reeza Hendricks nstr=Quinton de Kock  bowl=Akeal Hosein 1-4 (1)
+  this_over=['100', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:32:32  iter#8]
+  UI: South Africa 4-0 (1.0)  str=Reeza Hendricks nstr=Quinton de Kock  bowl=Akeal Hosein 1-4 (1)
+  this_over=['100', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:32:54  iter#9]
+  UI: South Africa 4-0 (1.0)  str=Reeza Hendricks nstr=Quinton de Kock  bowl=Akeal Hosein 1-4 (1)
+  this_over=['100', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:33:17  iter#10]
+  UI: South Africa 11-0 (4.0)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Akeal Hosein 1-11 (1)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=7 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:33:38  iter#11]
+  UI: South Africa 11-0 (4.0)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Akeal Hosein 1-11 (1)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=3 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:34:02  iter#12]
+  UI: South Africa 11-0 (4.0)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Shamar Joseph 0-4 (1.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=3 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:34:26  iter#13]
+  UI: South Africa 12-0 (4.0)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Shamar Joseph 0-5 (2)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=4 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:34:49  iter#14]
+  UI: South Africa 12-0 (4.0)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Shamar Joseph 0-5 (1.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:35:11  iter#15]
+  UI: South Africa 12-0 (4.0)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Shamar Joseph 1-5 (1)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:35:34  iter#16]
+  UI: South Africa 12-1 (4.0)  str=Quinton de Kock nstr=Reeza Hendricks  bowl=Shamar Joseph 1-5 (1)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w1/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_COUNT: ui=0 vs wickets=1
+
+[12:35:56  iter#17]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Shamar Joseph 1-5 (1)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:36:18  iter#18]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Shamar Joseph 1-5 (1.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:36:39  iter#19]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Shamar Joseph 1-5 (1.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:37:03  iter#20]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Shamar Joseph 1-5 (1.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:37:27  iter#21]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Shamar Joseph 1-5 (1.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:37:51  iter#22]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:38:15  iter#23]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Shamar Joseph 1-5 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:38:35  iter#24]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Shamar Joseph 1-5 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=1 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:38:56  iter#25]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 1-11 (1)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=1 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:39:17  iter#26]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 1-11 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=0 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:39:41  iter#27]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 0-5 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=0 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:40:05  iter#28]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 0-6 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=0 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:40:29  iter#29]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 0-6 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=0 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:40:51  iter#30]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 0-6 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=0 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:41:14  iter#31]
+  UI: South Africa 13-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 0-11 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=2 innings=0 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:41:37  iter#32]
+  UI: South Africa 17-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 0-11 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:41:59  iter#33]
+  UI: South Africa 17-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 0-11 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:42:20  iter#34]
+  UI: South Africa 17-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 0-11 (2.0)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:42:42  iter#35]
+  UI: South Africa 17-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 1-11 (2)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:43:05  iter#36]
+  UI: South Africa 17-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Akeal Hosein 1-11 (2)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:43:27  iter#37]
+  UI: South Africa 17-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Shamar Joseph 1-10 (3)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:43:48  iter#38]
+  UI: South Africa 17-1 (4.0)  str=Quinton de Kock nstr=Ryan Rickelton  bowl=Shamar Joseph 1-10 (3)
+  this_over=['?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Reeza Hendricks', 'score': 13, 'overs': '4.0', 'bowler': 'Shamar Joseph', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w2/nb1/b0/lb0]
+  extras_log: [{'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '4.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[12:44:09  iter#39]
+  WS ERR: 'no close frame received or sent'
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match

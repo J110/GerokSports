@@ -1,0 +1,12 @@
+{"ts": 1778247172.923552, "frame_idx": 1, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247181.95724, "frame_idx": 2, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247191.879253, "frame_idx": 3, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247201.280062, "frame_idx": 4, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247210.159699, "frame_idx": 5, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247219.027881, "frame_idx": 6, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247227.91991, "frame_idx": 7, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247237.119182, "frame_idx": 8, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247246.2167392, "frame_idx": 9, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247254.913075, "frame_idx": 10, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247298.2529202, "frame_idx": 58, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}
+{"ts": 1778247340.3891509, "frame_idx": 106, "frame_class": null, "raw_text": "", "latency_ms": null, "error": null, "rate_gate_reason": "skipped:paused_view(cam=ad,phase=advertisement)"}

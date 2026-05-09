@@ -1,0 +1,1608 @@
+[10:14:58 F0 TRACK] INFO: score: initial proposed 42 (2/3 — waiting)
+[10:14:58 F0 TRACK] INFO: score: initial → 42 (cold-start consensus 3/3)
+[10:14:58 F0 TRACK] INFO: score: initial proposed 0 (2/3 — waiting)
+[10:14:58 F0 TRACK] INFO: score: initial proposal flipped 0 → 112 — resetting consensus to 1/3
+[10:14:58 F0 TRACK] INFO: score: initial proposal flipped 112 → 0 — resetting consensus to 1/3
+[10:14:58 F0 TRACK] INFO: score: initial proposed 0 (2/3 — waiting)
+[10:14:58 F0 TRACK] INFO: score: initial → 0 (cold-start consensus 3/3)
+[10:14:58 F0 SCORE_MGR] INFO: [SM] cold-start candidate seeded 42/1 (5.3) — streak 1/3
+[10:14:58 F0 SCORE_MGR] INFO: [SM] cold-start consensus building 42/1 (5.3) — streak 2/3
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score sb_attached=false
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO: [SM] COLD_START → WARM (consensus 3/3)  42/1 (5.3)
+[10:14:58 F0 SCORE_MGR] INFO: [SM] cold-start candidate seeded 0/0 (0.0) — streak 1/3
+[10:14:58 F0 SCORE_MGR] INFO: [SM] cold-start consensus building 0/0 (0.0) — streak 2/3
+[10:14:58 F0 SCORE_MGR] INFO: [SM] cold-start candidate flipped 0/0 (0.0) → 112/0 (0.0) — streak reset to 1/3
+[10:14:58 F0 OVER] INFO: Broadcast ['1', '.', '4', '1', '.', '1', '.', 'Wd', '1', '.', '4', '.'] (12 tokens) exceeds MAX_THIS_OVER_LEN=9 — rejected as multi-over recap strip
+[10:14:58 F0 OVER] INFO: Broadcast fill (cold-start, empty local): ['1', '.', '4']
+[10:14:58 F0 OVER] INFO: on_ball_event refused: this_over already has 12 tokens (>= MAX_OBSERVED_THIS_OVER_LEN). Likely missed over rollover — event dropped: {'type': 'DOT', 'certain': True}
+[10:14:58 F0 OVER] INFO: Over-jump rejected: 9 → 11 is implausible for one frame (likely Scout misread). Waiting for a sane overs reading.
+[10:14:58 F0 OVER] INFO: Over 9 complete: ['.', '1', '1', '.', '4', '1'] = 7 runs, 0 wkts (by Khan)
+[10:14:58 F0 OVER] INFO: Over 5 re-archive REFUSED: slot already holds ['.', '1', '4', '.', '.', '1'] (by Bumrah). Ignoring new payload {'balls': ['.', '.', '.', '.', '.', '.'], 'bowler': 'Khan', 'runs': 0, 'wickets': 0}.
+[10:14:58 F0 OVER] INFO: [OVER-DEFER] Rollover 5 → 6 deferred (1/2): this_over has 5/6 legal balls — waiting for the closing-ball event to arrive before archiving.
+[10:14:58 F0 OVER] INFO: [OVER-DEFER] Rollover 5 → 6 deferred (2/2): this_over has 5/6 legal balls — waiting for the closing-ball event to arrive before archiving.
+[10:14:58 F0 OVER] INFO: [OVER-DEFER] Rollover 5 → 6 forced after 2 deferrals: still only 5/6 legal — archiving short; the closing ball was never detected.
+[10:14:58 F0 OVER] INFO: Over 5 reconcile: score delta=+6 but this_over tracks 5 runs (+1 missing). Tokens preserved as observed; no synth at over boundary (extras can never sit on the over-closing ball).
+[10:14:58 F0 OVER] INFO: Over 5 complete: ['.', '1', '4', '.', '.'] = 5 runs, 0 wkts (by Bumrah)
+[10:14:58 F0 OVER] INFO: Late ball appended to held over 5: ['.', '1', '4', '.', '.'] → ['.', '1', '4', '.', '.', '1'] (event over=6.0)
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=100 sb_value=None divergence=true
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=0 sb_value=None divergence=true
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=101 sb_value=100 divergence=true
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=0 sb_value=0 divergence=false
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:14:58 F0 SCORE_MGR] INFO: [SM] RUNS  101/0 (6.0)  striker=A
+[10:14:58 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=run_rate sm_would_accept=16.83 sb_value=None divergence=true
+[10:14:58 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:14:58 F0 BOARD] INFO: [FOW] Length 2 > wickets counter 1 — keeping all FOW entries (immutable). Wickets counter likely regressed.
+[10:14:58 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:14:58 F0 BOARD] WARN: [FOW] Rewrite REFUSED for W1: witnessed entry Kohli is immutable; new dismissal Rohit at 30/5.2 not applied. If this is a real wk-conflict, investigate the upstream wicket-counter / striker state that produced the duplicate W1.
+[10:14:58 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:14:58 F0 BOARD] INFO: [FOW] Placeholder W1: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:14:58 F0 BOARD] INFO: [FOW] Upgraded placeholder W1: Kohli at 30/1 (5.2) (was _unwitnessed)
+[10:15:01 F0 TEST] INFO:   [OVERS FIX] digit-swap: extractor=3.0 vs confirmed=0.2 + this_over_tokens=3 → 0.3
+[10:15:01 F0 TEST] INFO:   [OVERS FIX] extractor=6.0 this_over_tokens=6 → 5.6
+[10:15:01 F0 TEST] INFO:   [OVERS FIX] SKIP regression: computed=8.5 < confirmed=9.0 (tokens=5 likely stale/poisoned) — keeping ext_overs=9.0
+[10:15:01 F0 TEST] INFO:   [OVERS FIX] extractor=6.0 this_over_tokens=6 → 5.6
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 COMMENTARY] INFO: [DETECT] Bowler runs lag detected: score +1, bowler runs flat but striker A runs +1 — treating as legal run off the bat, NOT leg-bye
+[10:15:01 F0 COMMENTARY] INFO: [BALL ✓] 1_RUNS | 5.1 +1 runs (Δballs=1)
+[10:15:01 F0 COMMENTARY] INFO: [DETECT] Likely leg bye/bye: score +1, bowler runs unchanged AND striker A runs unchanged (prev=10, now=10)
+[10:15:01 F0 COMMENTARY] INFO: [BALL ✓] 1_RUNS | 5.1 +1 runs (Δballs=1)
+[10:15:01 F0 COMMENTARY] INFO: [BALL ✓] DOT | 12.5 +0 runs (Δballs=1)
+[10:15:01 F0 COMMENTARY] INFO: [BALL ✓] DOT | 12.6 +0 runs (Δballs=1)
+[10:15:01 F0 COMMENTARY] INFO: [BED] Detector reset for new innings
+[10:15:01 F0 COMMENTARY] INFO: [PARTNERSHIP] Tracker reset for new innings
+[10:15:01 F0 OVER] INFO: [OVER] Manager reset for new innings
+[10:15:01 F0 SCORE_MGR] INFO: [SM] cold-start candidate seeded 28/0 (4.4) — streak 1/3
+[10:15:01 F0 SCORE_MGR] INFO: [SM] cold-start consensus building 28/0 (4.4) — streak 2/3
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=28 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=0 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=run_rate sm_would_accept=6.0 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO: [SM] COLD_START → WARM (consensus 3/3)  28/0 (4.4)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Refusing to un-dismiss 'Pathum' — witnessed FOW entry exists (strip read suppressed)
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Refusing to un-dismiss 'Pathum' — witnessed FOW entry exists (strip read suppressed)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (3 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Three' rejected — 2 batters already active: ['Opener1', 'Opener2']
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Demoting resurrected batter 'Pathum' (witnessed FOW entry) — restoring out status
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Demoting resurrected batter 'Pathum' (witnessed FOW entry) — restoring out status
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [INVARIANT] 3 active batters: ['A', 'B', 'E']
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Falling back to position-based deactivation; no FOW match in active set ['A', 'B', 'E'] (anomaly)
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Deactivated E (pos 5)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Re-asserting witnessed dismissal of 'Pathum' (wicket-tick gate bypassed — FOW canonical, _cur_wk=1 == _last_dismiss_wk=1). New batter 'Rana' will replace.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [DISMISS] Blocked — wickets counter has not advanced since last auto-dismiss (cur=1, last_dismiss_at=1). New batter 'C' is almost certainly an extractor hallucination (replay/comparison overlay) rather than a real arrival at the crease.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [DISMISS] Blocked — wickets counter has not advanced since last auto-dismiss (cur=2, last_dismiss_at=2). New batter 'C' is almost certainly an extractor hallucination (replay/comparison overlay) rather than a real arrival at the crease.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Re-asserting witnessed dismissal of 'Pathum' (wicket-tick gate bypassed — FOW canonical, _cur_wk=1 == _last_dismiss_wk=1). New batter 'Rana' will replace.
+[10:15:01 F0 BOARD] INFO: Batter activated: Rana
+[10:15:01 F0 BOARD] WARN: [NEW-BATTER-BALLS-GATE] Rana: proposed 30(19) exceeds fresh-admission ceiling 3 balls (since_admit=0); dropping row
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [STYLES-PATCH] Updated 3 card slots from background Pass-2 enrichment (3 players)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [STYLES-PATCH] Updated 2 card slots from background Pass-2 enrichment (2 players)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [STYLES-PATCH] Updated 0 card slots from background Pass-2 enrichment (1 players)
+[10:15:01 F0 BOARD] INFO: [STYLES-PATCH] Updated 0 card slots from background Pass-2 enrichment (1 players)
+[10:15:01 F0 ENRICH] INFO: [pass1] A — styles:
+[10:15:01 F0 ENRICH] INFO: [pass1]   p1                       RHB  | unknown
+[10:15:01 F0 ENRICH] INFO: [pass1] B — styles:
+[10:15:01 F0 ENRICH] INFO: [pass1]   p2                       RHB  | unknown
+[10:15:01 F0 ENRICH] INFO: [pass2-bg] A — styles:
+[10:15:01 F0 ENRICH] INFO: [pass2-bg]   p1                       LHB  | Right-arm fast
+[10:15:01 F0 ENRICH] INFO: [pass2-bg] B — styles:
+[10:15:01 F0 ENRICH] INFO: [pass2-bg]   p2                       LHB  | Right-arm fast
+[10:15:01 F0 ENRICH] ERROR: Pass-2 background task crashed: simulated Pass-2 timeout
+[10:15:01 F0 ENRICH] WARN: Pass-2 background failed — cached Pass-1 as fallback
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 3 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_rqpceudm/debug_frames_archive/2026-04-25_184000 (was 3 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_rqpceudm/debug_frames)
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_aokw3w0_/debug_frames_archive/2026-04-25_184000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_aokw3w0_/debug_frames)
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames_archive/2026-04-20_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames)
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames_archive/2026-04-21_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames)
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames_archive/2026-04-22_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames)
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames_archive/2026-04-23_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames)
+[10:15:01 F0 TEST] INFO: [CLEANUP] Removed old archive: /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames_archive/2026-04-20_120000
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames_archive/2026-04-24_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames)
+[10:15:01 F0 TEST] INFO: [CLEANUP] Removed old archive: /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames_archive/2026-04-21_120000
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames_archive/2026-04-25_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames)
+[10:15:01 F0 TEST] INFO: [CLEANUP] Removed old archive: /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_ufvc4om9/debug_frames_archive/2026-04-22_120000
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_876csvu9/debug_frames_archive/2026-04-23_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_876csvu9/debug_frames)
+[10:15:01 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_876csvu9/debug_frames_archive/2026-04-24_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_876csvu9/debug_frames)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Sakib Hussain:runs: initial proposed 13 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Sakib Hussain:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Sakib Hussain:overs: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Sakib Hussain:runs: initial → 13 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Sakib Hussain:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Sakib Hussain:overs: initial → 1 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Sakib Hussain: None/None (None) -> 1/13 (1) [F102]
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial proposed 0.1 (2/3 — waiting)
+[10:15:01 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Shivang Kumar' after 2 reads — candidate overs 0.1 matches team over 5.1 while current_bowler 'Sakib Hussain' is inconsistent
+[10:15:01 F0 BOARD] INFO: [BOWLER OVERRIDE] Sakib Hussain → Shivang Kumar (reads=2, must_change=False)
+[10:15:01 F0 BOARD] INFO: [BOWLER SEED] Shivang Kumar figures seeded from scout text to 0-1 (0.1) — mid-spell entry (impact sub / mid-match join)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 20 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 20 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 0/20 (2) [F402]
+[10:15:01 F0 TRACK] INFO: bowl:Sakib Hussain:runs: initial proposed 4 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Sakib Hussain:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Sakib Hussain:overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:01 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Sakib Hussain' after 2 reads — candidate overs 0.2 matches team over 10.2 while current_bowler 'Pat Cummins' is inconsistent
+[10:15:01 F0 BOARD] INFO: [BOWLER OVERRIDE] Pat Cummins → Sakib Hussain (reads=2, must_change=False)
+[10:15:01 F0 BOARD] INFO: [BOWLER SEED] Sakib Hussain figures seeded from scout text to 0-4 (0.2) — mid-spell entry (impact sub / mid-match join)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 10 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial proposed 1.0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial → 10 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial → 1.0 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Shivang Kumar: None/None (None) -> 0/10 (1.0) [F102]
+[10:15:01 F0 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Shivang Kumar' read — proposed 0-10(1.0) exactly matches recorded 0-10(1.0); no handoff grace (must_change=False). Likely stale end-of-spell graphic; current_bowler stays 'Pat Cummins'
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial proposed 0.1 (2/3 — waiting)
+[10:15:01 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Shivang Kumar' after 2 reads — candidate overs 0.1 matches team over 5.1 while current_bowler 'Sakib Hussain' is inconsistent
+[10:15:01 F0 BOARD] INFO: [BOWLER OVERRIDE] Sakib Hussain → Shivang Kumar (reads=2, must_change=False)
+[10:15:01 F0 BOARD] INFO: [BOWLER SEED] Shivang Kumar figures seeded from scout text to 0-1 (0.1) — mid-spell entry (impact sub / mid-match join)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial proposed 0.1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial → 1 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial → 0.1 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Shivang Kumar: None/None (None) -> 0/1 (0.1) [F102]
+[10:15:01 F0 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Shivang Kumar' read — proposed 0-1(0.1) exactly matches recorded 0-1(0.1); no handoff grace (must_change=False). Likely stale end-of-spell graphic; current_bowler stays 'Pat Cummins'
+[10:15:01 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:01 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Suyash Sharma' after 2 reads — candidate overs 0.2 matches team over 10.2 while current_bowler 'Bhuvneshwar Kumar' is inconsistent
+[10:15:01 F0 BOARD] INFO: [BOWLER OVERRIDE] Bhuvneshwar Kumar → Suyash Sharma (reads=2, must_change=False)
+[10:15:01 F0 BOARD] INFO: [BOWLER SEED] Suyash Sharma figures seeded from scout text to 0-8 (0.2) — mid-spell entry (impact sub / mid-match join)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 4 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 0.1 (2/3 — waiting)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 2.0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial → 8 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial → 2.0 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Suyash Sharma: None/None (None) -> 0/8 (2.0) [F1402]
+[10:15:01 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT] refusing flip to 'Suyash Sharma' — overs='2.0' ball_mod6=0 vs team strip ball_mod6=2 (team_overs='10.2'); streak=1/3
+[10:15:01 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:01 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Suyash Sharma' after 2 reads — candidate overs 0.2 matches team over 10.2 while current_bowler 'Bhuvneshwar Kumar' is inconsistent
+[10:15:01 F0 BOARD] INFO: [BOWLER OVERRIDE] Bhuvneshwar Kumar → Suyash Sharma (reads=2, must_change=False)
+[10:15:01 F0 BOARD] INFO: [BOWLER SEED] Suyash Sharma figures seeded from scout text to 0-8 (0.2) — mid-spell entry (impact sub / mid-match join)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 2.0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial → 8 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial → 2.0 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Suyash Sharma: None/None (None) -> 0/8 (2.0) [F1602]
+[10:15:01 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT] refusing flip to 'Suyash Sharma' — overs='2.0' ball_mod6=0 vs team strip ball_mod6=2 (team_overs='10.2'); streak=1/3
+[10:15:01 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT] refusing flip to 'Suyash Sharma' — overs='2.0' ball_mod6=0 vs team strip ball_mod6=2 (team_overs='10.2'); streak=2/3
+[10:15:01 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT] refusing flip to 'Suyash Sharma' — overs='2.0' ball_mod6=0 vs team strip ball_mod6=2 (team_overs='10.2'); streak=3/3
+[10:15:01 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT-OVERRIDE] accepting 'Suyash Sharma' after 3 mismatched frames — forcing flip (strip/broadcast may disagree on figure shape)
+[10:15:01 F0 BOARD] INFO: [BOWLER OVERRIDE] Bhuvneshwar Kumar → Suyash Sharma (reads=5, must_change=False)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TEST] INFO:   [STRIKER-SM-CUTOVER] mirrored striker='B' reason=unit-test — SM+_inn lockstep
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TEST] INFO:   No batting team set — skipping all updates
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Refusing to un-dismiss 'A' — witnessed FOW entry exists (strip read suppressed)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TRACK] INFO: wickets: 0 → 1 (post-event immediate, grace=1)
+[10:15:01 F0 BOARD] INFO: wickets: 0 -> 1 [F1501]
+[10:15:01 F0 BOARD] INFO: [DISMISS] Cold-start seed — gate set to wickets=1 (zero_streak=0, historical wickets will not trigger auto-dismissal).
+[10:15:01 F0 BOARD] INFO: DISMISSED: B 1(1) — auto-inferred (striker on wicket) | FOW 1/20 (3.1)
+[10:15:01 F0 TEST] INFO:   [WICKET-AUTO] Dismissed striker B on wicket increment (0→1); FOW recorded with full context
+[10:15:01 F0 TEST] WARN:   [BATTERS-INVARIANT] rule=C violation=striker_non_collision active=A witnessed_out=- striker=A non=A upstream_step3_fired=false upstream_step3_tags=- upstream_step4_returned_false=false action=noop_phase1 target=A frame=F1501
+[10:15:01 F0 OVER] WARN: [TOKEN-VALIDATE] Rejecting broadcast tokens ['139', '148', '143', '147', '145', '140'] — illegal token(s) ['139', '148', '143', '147', '145', '140'] outside cricket-scorecard alphabet (likely speed-track misread or adjacent-strip OCR pollution)
+[10:15:01 F0 OVER] WARN: [TOKEN-VALIDATE] Rejecting broadcast tokens ['2161'] — illegal token(s) ['2161'] outside cricket-scorecard alphabet (likely speed-track misread or adjacent-strip OCR pollution)
+[10:15:01 F0 OVER] WARN: [TOKEN-VALIDATE] Rejecting broadcast tokens ['11', '.', '41'] — illegal token(s) ['11', '41'] outside cricket-scorecard alphabet (likely speed-track misread or adjacent-strip OCR pollution)
+[10:15:01 F0 OVER] INFO: Broadcast fill (cold-start, empty local): ['1', '.', '4', 'Wd', 'W', '6']
+[10:15:01 F0 OVER] WARN: [TOKEN-VALIDATE] Rejecting broadcast tokens ['1', '.', '4', 'Wd', '139', '6'] — illegal token(s) ['139'] outside cricket-scorecard alphabet (likely speed-track misread or adjacent-strip OCR pollution)
+[10:15:01 F0 OVER] INFO: [FOW-REORDER] W repositioned from legal-ball 4 → 5 (FOW upgrade): this_over=['.', '.', '.', 'Wd', '6', 'W']
+[10:15:01 F0 OVER] INFO: [FOW-REORDER] W repositioned from legal-ball 4 → 3 (FOW upgrade): this_over=['Wd', '6', 'Nb+1', '.', 'W', '1']
+[10:15:01 F0 OVER] INFO: [FOW-REORDER] W repositioned from legal-ball 3 → 2 (FOW upgrade): this_over=['Wd', '6', 'W', 'Nb+1', '1']
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [FOW] Upgraded placeholder W1: A at 7/1 (0.5) (was tentative)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [FOW] Rewrite REFUSED for W1: witnessed entry A is immutable; new dismissal B at 7/0.5 not applied. If this is a real wk-conflict, investigate the upstream wicket-counter / striker state that produced the duplicate W1.
+[10:15:01 F0 TRACK] INFO: overs: initial proposed 6.0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: overs: initial → 6.0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 (backwards)
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 (backwards)
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 count=1/3
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 (backwards)
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 count=2/3
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 (backwards)
+[10:15:01 F0 TRACK] INFO: [CONSENSUS-BLOCKED] overs: 6.0→0.5 — match overs cannot regress within an innings (likely dead-time / placeholder-graphic misread)
+[10:15:01 F0 TRACK] INFO: overs: initial proposed 6.0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: overs: initial → 6.0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: overs: 6.0 → 6.1 (confirmed F5)
+[10:15:01 F0 TRACK] INFO: overs: initial proposed 19.6 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: overs: initial → 19.6 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: overs: initial proposed 0.0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: overs: initial → 0.0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: overs: initial proposed 100 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: overs: initial → 100 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: score: initial proposed 200 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: score: initial → 200 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 (any decrease is suspicious in normal play)
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 (any decrease is suspicious in normal play)
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 count=1/3
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 (any decrease is suspicious in normal play)
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 count=2/3
+[10:15:01 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 (any decrease is suspicious in normal play)
+[10:15:01 F0 TRACK] INFO: [CONSENSUS] score: 200 → 50 (extractor agreed 4 frames)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (3 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Parag — already striker; would self-collide
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (3 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing striker=Sooryavanshi — already non; would self-collide
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (3 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (3 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Sooryavanshi — already striker; would self-collide
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:01 F0 TEST] WARN:   [INFO-PANEL-GATE] bowler stripped — name='YUZVENDRA CHAHAL' panel_keyword='IPL CAREER'
+[10:15:01 F0 TEST] WARN:   [INFO-PANEL-GATE] bowler stripped — name='YUZVENDRA CHAHAL' panel_keyword='IPL CAREER'
+[10:15:01 F0 TEST] INFO:   [INFO PANEL] Detected (keyword='HEAD TO HEAD') — no bowler in extracted, tracker will bound values
+[10:15:01 F0 TEST] WARN:   [INFO-PANEL-GATE] bowler stripped — name='YUZVENDRA CHAHAL' panel_keyword='PROJECTED SCORE'
+[10:15:01 F0 TEST] WARN:   [STANDINGS-ROW-GATE] score fields stripped — keyword='STANDINGS'
+[10:15:01 F0 BOARD] INFO: Scorecards built: KKR (3 bat) vs DC (2 bowl)
+[10:15:01 F0 TEST] WARN:   [BATTER-NORMALIZE] dropping surname ghost 'SINGH' paired with 'Rinku Singh'
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Batter activated: New Batter
+[10:15:01 F0 BOARD] WARN: [NEW-BATTER-BALLS-GATE] New Batter: proposed 0(16) exceeds fresh-admission ceiling 3 balls (since_admit=0); dropping row
+[10:15:01 F0 BOARD] INFO: Scorecards built: DC (3 bat) vs RCB (2 bowl)
+[10:15:01 F0 TEST] WARN:   [BOWLER-BATTER-GATE] bowler stripped — name='KL Rahul' resolved_batter='KL Rahul' complete_figures=False
+[10:15:01 F0 SCORE_MGR] INFO: [SM] cold-start zero candidate rejected as contextual graphic: scout='DRS REVIEW graphic, no live batter/bowler strip'
+[10:15:01 F0 SCORE_MGR] INFO: [SM] cold-start zero candidate rejected as contextual graphic: scout='DRS REVIEW graphic, no live batter/bowler strip'
+[10:15:01 F0 SCORE_MGR] INFO: [SM] cold-start zero candidate rejected as contextual graphic: scout='DRS REVIEW graphic, no live batter/bowler strip'
+[10:15:01 F0 SCORE_MGR] INFO: [SM] cold-start candidate seeded 75/3 (10.2) — streak 1/3
+[10:15:01 F0 SCORE_MGR] INFO: [SM] cold-start consensus building 75/3 (10.2) — streak 2/3
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score sb_attached=false
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO: [SM] COLD_START → WARM (consensus 3/3)  75/3 (10.2)
+[10:15:01 F0 OVER] INFO: [OVER-RESYNC] Cursor aligned to over 16 from team_overs='16.3' (test); cleared current tokens
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (10 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W1: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W2: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W3: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W4: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W5: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W6: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W7: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W8: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W9: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: [FOW] Placeholder W10: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:01 F0 BOARD] INFO: wickets: 9 -> 10 [F200]
+[10:15:01 F0 BOARD] WARN: [ALL-OUT-AUTHORITY] Promoted wickets 9→10 from innings break evidence; contextual wicket regressions locked until innings transition
+[10:15:01 F0 BOARD] WARN: Wickets regression rejected under all-out lock: 10→2 (source=innings break evidence)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] WARN: Score regression rejected: 36→35 (normal-play score physics; reset authority required)
+[10:15:01 F0 BOARD] INFO: Scorecards built: DC (3 bat) vs RCB (1 bowl)
+[10:15:01 F0 TEST] WARN:   [WS-SLOT-INVARIANT] duplicate slots 'Abishek Porel'; rebuilt non='KL Rahul' from active card
+[10:15:01 F0 BOARD] INFO: Scorecards built: DC (2 bat) vs RCB (1 bowl)
+[10:15:01 F0 TEST] WARN:   [WS-SLOT-INVARIANT] duplicate slots 'Abishek Porel'; cleared non (no alternate active batter)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [POST-WICKET-ROTATION] striker 'Sarfaraz' dismissed → rotated non 'Survivor' into striker slot; non cleared pending new-batter admission.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [POST-WICKET-ROTATION] non 'Dube' dismissed → slot cleared pending new-batter admission.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [POST-WICKET-ROTATION] striker 'RunOut' dismissed → rotated non 'Survivor' into striker slot; non cleared pending new-batter admission.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [POST-WICKET-ROTATION] anomaly: 'Collided' occupied BOTH striker and non slots — both cleared defensively (likely prior collision state that Fix 5 did not catch).
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [FOW] Upgraded placeholder W1: Overton at 145/1 (18.6) (was _unwitnessed, was tentative)
+[10:15:01 F0 BOARD] INFO: [POST-WICKET-ROTATION] non 'Overton' dismissed → slot cleared pending new-batter admission.
+[10:15:01 F0 BOARD] INFO: Scorecards built: KKR (5 bat) vs LSG (2 bowl)
+[10:15:01 F0 BOARD] INFO: [FOW] Upgraded placeholder W4: Powell at 31/4 (6.1) (was _unwitnessed, was tentative)
+[10:15:01 F0 BOARD] INFO: [POST-WICKET-CARD-PROPAGATE] 'Powell' dismissed but not in crease slots — batting_card.status flipped 'batting'→'out' (real-time-delayed-witness path, Fix 13 Case 5).
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [POST-WICKET-ROTATION] non 'Sarfaraz' dismissed → slot cleared pending new-batter admission.
+[10:15:01 F0 BOARD] INFO: [WICKET] Auto-dismissed Sarfaraz — not in extractor output, NewBatter replacing
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [POST-WICKET-ROTATION] striker 'Dube' dismissed → rotated non 'Other' into striker slot; non cleared pending new-batter admission.
+[10:15:01 F0 BOARD] INFO: DISMISSED: Dube None(None) — bowled | FOW 0/80 (11.5)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: LSG (5 bat) vs KKR (2 bowl)
+[10:15:01 F0 BOARD] INFO: [POST-WICKET-ROTATION] striker 'Marsh' dismissed → rotated non 'Markram' into striker slot; non cleared pending new-batter admission.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=3: proposed bat_sum=47 > score=30 (excess=17) — rejecting batter proposals (Brevis=20, Other=5). Cricket physics violation; phantom commit prevented.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=3: proposed bat_sum=47 > score=30 (excess=17) — rejecting batter proposals (NewBat1=20, NewBat2=5). Cricket physics violation; phantom commit prevented.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (11 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=7: proposed bat_sum=176 > score=154 (excess=22) — rejecting batter proposals (Hosein=21, Gaikwad=70). Cricket physics violation; phantom commit prevented.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (3 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (8 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TEST] WARN:   [BALLS-CEILING-GATE] overs=6.1 (legal_balls=37, ceiling=39): Powell=balls=56 — rejecting batter proposals.  Cricket physics violation (per-batter balls cannot exceed innings total); phantom stat-overlay commit prevented (Powell 14(56) class).
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Bat2' balls regression 3→0 rejected (>2 balls backward) — dropping runs=5 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TEST] WARN:   [SCORE-INF-GATE] score 20→27 (advance=+7) > explained (bat_delta=0 + extras_max=6 = 6) — rejecting score commit.  Score-side phantom (Layer 1.5, F52/F53 class).
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=2: proposed bat_sum=24 > score=20 (excess=4) — rejecting batter proposals (Bat1=12). Cricket physics violation; phantom commit prevented.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TEST] WARN:   [SCORE-INF-GATE] proposed=20 < min_score_from_batters_and_extras (bat_sum=22, extras=0, min=22) — rejecting score commit.  Score-side misread (Layer 1.5 floor, Fix 11 sibling).
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TRACK] INFO: score: initial proposed 34 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:runs: initial proposed 10 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:balls: initial proposed 3 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:runs: initial proposed 2 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:balls: initial proposed 2 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: score: initial → 34 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: score: 30 -> 34 [F1001]
+[10:15:01 F0 TRACK] INFO: bat:Bat1:runs: initial → 10 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:balls: initial → 3 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Bat1: 6(2) -> 10(3) [F1001]
+[10:15:01 F0 TRACK] INFO: bat:Bat2:runs: initial → 2 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:balls: initial → 2 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (11 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=8: proposed bat_sum=150 > score=0 (excess=150) — rejecting batter proposals (A1=15, A2=15). Cricket physics violation; phantom commit prevented.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TRACK] INFO: score: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:runs: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:balls: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:runs: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:balls: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: score: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: score: None -> 0 [F103]
+[10:15:01 F0 TRACK] INFO: bat:Bat1:runs: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:balls: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:runs: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:balls: initial → 0 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TRACK] INFO: score: initial proposed 22 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:runs: initial proposed 10 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:balls: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:runs: initial proposed 7 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:balls: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: score: initial → 22 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:runs: initial → 10 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bat:Bat1:balls: initial → 1 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:runs: initial → 7 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bat:Bat2:balls: initial → 1 (cold-start consensus 3/3)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=180 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=6 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='TeamA' sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: archiving innings 1 (180/6 (19.6) team=TeamA) and resetting all per-innings cached scalars.  target=181 new_batting_team=TeamB.
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=181 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='TeamB' sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=100 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=set_innings_2: archiving innings 1 (100/None (None) team=None) and resetting all per-innings cached scalars.  target=101 new_batting_team=B.
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=101 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='B' sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=50 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=run_rate sm_would_accept=7.5 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=test_fix16_surface
+[10:15:01 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was None/None (None) mode=COLD_START → COLD_START (reason=full_reset:test_fix16_surface)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=55 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=2 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=test_cold_hatch
+[10:15:01 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was 55/2 (8.1) mode=WARM → COLD_START (reason=full_reset:test_cold_hatch)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=1
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=187 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='PBKS' sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=120 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=4 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=phase2_contract
+[10:15:01 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was 120/4 (None) mode=COLD_START → COLD_START (reason=full_reset:phase2_contract)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 15 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 15 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 1/15 (2) [F12]
+[10:15:01 F0 BOARD] WARN:   [BOWLER-STATS-GRAPHIC-GATE] rejecting 'Pat Cummins' - reason=career_keyword (overs='2.4' runs=18 wickets=1)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 15 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 15 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 1/15 (2) [F12]
+[10:15:01 F0 BOARD] WARN:   [BOWLER-STATS-GRAPHIC-GATE] rejecting 'Pat Cummins' - reason=implausible_figures (overs='2000' runs=5000 wickets=200)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 15 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 15 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 1/15 (2) [F12]
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: 15 → 18 (confirmed F301)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: 2 → 2.4 (confirmed F301)
+[10:15:01 F0 BOARD] INFO: Pat Cummins: 1/15 (2) -> 1/18 (2.4) [F301]
+[10:15:01 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 15 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 15 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 1/15 (2) [F12]
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:runs: 15 → 18 (confirmed F401)
+[10:15:01 F0 TRACK] INFO: bowl:Pat Cummins:overs: 2 → 2.4 (confirmed F401)
+[10:15:01 F0 BOARD] INFO: Pat Cummins: 1/15 (2) -> 1/18 (2.4) [F401]
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=poison_recal_consensus fixture
+[10:15:01 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was None/None (None) mode=COLD_START → COLD_START (reason=full_reset:poison_recal_consensus fixture)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TEST] INFO:   [SCORER-INVARIANT-FILTER] skipping batter_updates row for witnessed-out 'A' at F1
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TEST] WARN:   [SCORER-DISMISSED-RESURRECT] skipping scorer proposal for non-witnessed-out 'A' at F2
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TRACK] INFO: bat:B:runs: 5 → 7 (fast-confirm, natural increment F3)
+[10:15:01 F0 TRACK] INFO: bat:B:balls: 3 → 4 (fast-confirm, natural increment F3)
+[10:15:01 F0 BOARD] INFO: B: 5(3) -> 7(4) [F3]
+[10:15:01 F0 SCORER] ERROR: JSON parse failed: not json {
+[10:15:01 F0 SCORER] ERROR: JSON parse failed: no braces at all
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TRACK] INFO: bat:B:runs: 5 → 7 (fast-confirm, natural increment F42)
+[10:15:01 F0 TRACK] INFO: bat:B:balls: 3 → 4 (fast-confirm, natural increment F42)
+[10:15:01 F0 BOARD] INFO: B: 5(3) -> 7(4) [F42]
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (3 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TRACK] INFO: bat:C:runs: 1 → 2 (fast-confirm, natural increment F77)
+[10:15:01 F0 TRACK] INFO: bat:C:balls: 1 → 2 (fast-confirm, natural increment F77)
+[10:15:01 F0 BOARD] INFO: C: 1(1) -> 2(2) [F77]
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TEST] WARN:   [STATE-RECOVERY-OVERRIDE] sig=b6f059c3e6de guards=poison_score,slot_scrub_rejected frames=2 candidate_json={"active_batters":["Nitish Rana","KL Rahul"],"bat_sum":107,"batters":[{"balls":28,"name":"Nitish Rana","runs":43,"status":"yet_to_bat","status_update":true},{"balls":38,"name":"KL Rahul","runs":64,"status":"batting","status_update":false}],"overs":6.3,"score":120,"wickets":2} current_json={"score":40} coherence_json={"active_batters_max_two":true,"bat_sum_within_score":true,"batters_known_not_out":true,"overs_t20":true,"score_non_negative":true,"wickets_t20":true} thresholds_json={"n3":null,"n5":null,"n8":null} proposed_reset=score,slot:non,status:Nitish Rana reason=stale_reference_state telemetry_only=true
+[10:15:01 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=state_recovery_consensus_override
+[10:15:01 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was None/None (None) mode=COLD_START → COLD_START (reason=full_reset:state_recovery_consensus_override)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TEST] WARN:   [STATE-RECOVERY-OVERRIDE] sig=phase2test guards=poison_score,slot_scrub_rejected frames=5 candidate_json={"score":200} current_json={} coherence_json={} thresholds_json={} proposed_reset=score reason=fixture telemetry_only=true
+[10:15:01 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=state_recovery_consensus_override
+[10:15:01 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was None/None (None) mode=COLD_START → COLD_START (reason=full_reset:state_recovery_consensus_override)
+[10:15:01 F0 TEST] INFO: [WS-COLD-START-GATE] OPEN — batting_team committed (team='KKR' score=0).  All subsequent WS broadcasts pass through (Fix 17 Path D).
+[10:15:01 F0 TEST] INFO: [WS-COLD-START-GATE] OPEN — batting_team committed (team='Kolkata Knight Riders' score=130).  All subsequent WS broadcasts pass through (Fix 17 Path D).
+[10:15:01 F0 TEST] WARN: [WS-COLD-START-GATE] OPEN (timeout) — 100s elapsed since first broadcast attempt without first committed non-zero state.  Releasing gate to avoid UI hang (Fix 17 Path D).
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [BAT-SUM-RECONCILER] divergence detected: bat_sum=37 > score+5=35 (excess=7).  Layer 2 detection-only — Layer 3 cap-reset engages at +10.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [BAT-SUM-RECONCILER] divergence detected: bat_sum=47 > score+5=35 (excess=17).  Layer 2 detection-only — Layer 3 cap-reset engages at +10.
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Batter total 47 > score 30+10. Capping batters.
+[10:15:01 F0 BOARD] WARN: [CAP-RESET-LAST-ADVANCE] iter=1 reset 'B' (runs was 25, last advance at frame 200 24→25).  bat_sum was 47 > score+10; Path C hybrid (Fix 18 Layer 3).
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: [BAT-SUM-RECONCILER] divergence detected: bat_sum=100 > score+5=35 (excess=70).  Layer 2 detection-only — Layer 3 cap-reset engages at +10.
+[10:15:01 F0 BOARD] WARN: [INVARIANT] Batter total 100 > score 30+10. Capping batters.
+[10:15:01 F0 BOARD] WARN: [CAP-RESET-LAST-ADVANCE] iter=1 reset 'B' (runs was 50, last advance at frame 200 49→50).  bat_sum was 100 > score+10; Path C hybrid (Fix 18 Layer 3).
+[10:15:01 F0 BOARD] WARN: [CAP-RESET-LAST-ADVANCE] iter=2 reset 'A' (runs was 50, last advance at frame 100 49→50).  bat_sum was 50 > score+10; Path C hybrid (Fix 18 Layer 3).
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: [INNINGS] Set to 2. Target: None. All trackers reset.
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 TRACK] INFO: bat:A:runs: 5 → 9 (fast-confirm, natural increment F100)
+[10:15:01 F0 TRACK] INFO: bat:A:balls: 4 → 5 (fast-confirm, natural increment F100)
+[10:15:01 F0 BOARD] INFO: A: 5(4) -> 9(5) [F100]
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 14 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 15 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 16 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=5/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN:   [RUNS-REJECT-RELEASE] Dube: 5 consecutive rejections of runs=22 (cur=31) — accepting as new truth (current value is stale phantom). force_set bat:Dube:runs, balls.
+[10:15:01 F0 BOARD] INFO: Dube: 31(28) -> 22(13) [F104]
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 14 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 15 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→20 (-11) rejected — dropping balls 16 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=20 streak=1/5 (cur=31 held)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 14 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 15 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:01 F0 TRACK] INFO: bat:Dube:runs: 31 → 32 (fast-confirm, natural increment F110)
+[10:15:01 F0 TRACK] INFO: bat:Dube:balls: 28 → 29 (fast-confirm, natural increment F110)
+[10:15:01 F0 BOARD] INFO: Dube: 31(28) -> 32(29) [F110]
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=1/5 (cur=22 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=2/5 (cur=22 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=3/5 (cur=22 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=4/5 (cur=22 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=5/5 (cur=22 held)
+[10:15:01 F0 BOARD] WARN:   [RUNS-REJECT-RELEASE] Player: 5 consecutive rejections of runs=0 (cur=22) — accepting as new truth (current value is stale phantom). force_set bat:Player:runs, balls.
+[10:15:01 F0 BOARD] INFO: Player: 22(18) -> 0(0) [F104]
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=5/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN:   [RUNS-REJECT-RELEASE] Dube: 5 consecutive rejections of runs=22 (cur=31) — accepting as new truth (current value is stale phantom). force_set bat:Dube:runs, balls.
+[10:15:01 F0 BOARD] INFO: Dube: 31(28) -> 22(13) [F1771]
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=5/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN:   [RUNS-REJECT-RELEASE] Dube: 5 consecutive rejections of runs=22 (cur=31) — accepting as new truth (current value is stale phantom). force_set bat:Dube:runs, balls.
+[10:15:01 F0 BOARD] INFO: Dube: 31(28) -> 22(13) [F104]
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Other' runs regression 25→10 (-15) rejected — dropping balls 12 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Other=10 streak=1/5 (cur=25 held)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 14 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:01 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 15 too (whole-row invalidation)
+[10:15:01 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:01 F0 BOARD] INFO: [INNINGS] Set to 2. Target: 160. All trackers reset.
+[10:15:01 F0 BOARD] INFO: Scorecards built: DC (3 bat) vs RCB (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: DC (3 bat) vs RCB (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: KKR (3 bat) vs DC (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=5
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=12
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: [INNINGS] Set to 2. Target: 150. All trackers reset.
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TRACK] INFO: score: initial proposed 87 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: score: initial → 87 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: score: None -> 87 [F3]
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TRACK] INFO: score: initial proposed 10 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: score: initial → 10 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: score: None -> 10 [F3]
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=22 sb_accepted=false
+[10:15:01 F0 TRACK] INFO: score: 10 → 22 (confirmed F5)
+[10:15:01 F0 BOARD] INFO: score: 10 -> 22 [F5]
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=22 sb_accepted=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=22 sb_accepted=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score sb_attached=false
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TRACK] INFO: score: initial proposed 5 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: score: initial → 5 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: score: None -> 5 [F3]
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=999 sb_value=5 divergence=true
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TRACK] INFO: score: initial proposed 40 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: score: initial → 40 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: score: None -> 40 [F3]
+[10:15:01 F0 BOARD] WARN: Score regression rejected: 40→30 (normal-play score physics; reset authority required)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=30 sb_accepted=false
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=batting_team value='NEW' sb_accepted=true
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='GHOST' sb_value='BAT' divergence=true
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 COMMENTARY] INFO: [PARTNERSHIP] new pair {'B', 'A'} anchored at score=0 balls=0  (team=50/30, guess_runs=50 guess_balls=30)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (1 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 SCORE_MGR] INFO: [STRIKER] method=balls_delta striker=Alice Ace (was=Bob Baker)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 SCORE_MGR] INFO: [STRIKER] method=balls_delta striker=Axar Patel (was=Virat Kohli)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 SCORE_MGR] INFO: [STRIKER] method=balls_delta striker=Axar Patel (was=Virat Kohli)
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:01 F0 TEST] INFO:   [GUARD] Tilak Varma diff 6→109 — comparison strip for batting team
+[10:15:01 F0 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F2134 row_delta=103 popped=batters preserved=score,match_overs,bowler row_pair=Tilak Varma strip_runs=109 card_runs=6
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:01 F0 TEST] INFO:   [GUARD] Tilak Varma diff 6→109 — comparison strip for batting team
+[10:15:01 F0 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F2134 row_delta=103 popped=batters preserved=score,match_overs,bowler row_pair=Tilak Varma strip_runs=109 card_runs=6
+[10:15:01 F0 TEST] INFO:   [GUARD] Tilak Varma diff 6→109 — comparison strip for batting team
+[10:15:01 F0 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F2135 row_delta=103 popped=batters preserved=score,match_overs,bowler row_pair=Tilak Varma strip_runs=109 card_runs=6
+[10:15:01 F0 TEST] INFO: [F99003] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G2_overlay_stats
+[10:15:01 F0 TEST] INFO: [F99004] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G7_balls_window
+[10:15:01 F0 TEST] INFO: [F99102] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G6_score_window
+[10:15:01 F0 TEST] INFO: [F99202] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G7_illegal_frac
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (3 bat) vs SRH (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (3 bat) vs SRH (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (3 bat) vs SRH (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=10 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=1 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='BAT' sb_value='BAT' divergence=false
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=10 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=1 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='BAT' sb_value='BAT' divergence=false
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=10 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=1 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='BAT' sb_value='BAT' divergence=false
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=10 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=1 sb_value=None divergence=true
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='BAT' sb_value='BAT' divergence=false
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:01 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (8 bat) vs BOWL (1 bowl)
+[10:15:01 F0 TRACK] INFO: overs: initial proposed 20.0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: overs: initial → 20.0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: overs: initial proposed 20.0 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: overs: initial → 20.0 (cold-start consensus 3/3)
+[10:15:01 F0 TRACK] INFO: overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:01 F0 TRACK] INFO: overs: initial → 0.2 (cold-start consensus 3/3)
+[10:15:01 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:01 F0 COMMENTARY] INFO: [PARTNERSHIP] new pair {'B', 'A'} anchored at score=14 balls=8  (team=87/58, guess_runs=73 guess_balls=50)
+[10:15:01 F0 OVER] INFO: [FLOOR] Padded 4 '?' placeholders to this_over (team_overs=9.4 expects 4 legal, observed only 0) — new=['?', '?', '?', '?']
+[10:15:51 F0 TRACK] INFO: score: initial proposed 42 (2/3 — waiting)
+[10:15:51 F0 TRACK] INFO: score: initial → 42 (cold-start consensus 3/3)
+[10:15:51 F0 TRACK] INFO: score: initial proposed 0 (2/3 — waiting)
+[10:15:51 F0 TRACK] INFO: score: initial proposal flipped 0 → 112 — resetting consensus to 1/3
+[10:15:51 F0 TRACK] INFO: score: initial proposal flipped 112 → 0 — resetting consensus to 1/3
+[10:15:51 F0 TRACK] INFO: score: initial proposed 0 (2/3 — waiting)
+[10:15:51 F0 TRACK] INFO: score: initial → 0 (cold-start consensus 3/3)
+[10:15:51 F0 SCORE_MGR] INFO: [SM] cold-start candidate seeded 42/1 (5.3) — streak 1/3
+[10:15:51 F0 SCORE_MGR] INFO: [SM] cold-start consensus building 42/1 (5.3) — streak 2/3
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score sb_attached=false
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO: [SM] COLD_START → WARM (consensus 3/3)  42/1 (5.3)
+[10:15:51 F0 SCORE_MGR] INFO: [SM] cold-start candidate seeded 0/0 (0.0) — streak 1/3
+[10:15:51 F0 SCORE_MGR] INFO: [SM] cold-start consensus building 0/0 (0.0) — streak 2/3
+[10:15:51 F0 SCORE_MGR] INFO: [SM] cold-start candidate flipped 0/0 (0.0) → 112/0 (0.0) — streak reset to 1/3
+[10:15:51 F0 OVER] INFO: Broadcast ['1', '.', '4', '1', '.', '1', '.', 'Wd', '1', '.', '4', '.'] (12 tokens) exceeds MAX_THIS_OVER_LEN=9 — rejected as multi-over recap strip
+[10:15:51 F0 OVER] INFO: Broadcast fill (cold-start, empty local): ['1', '.', '4']
+[10:15:51 F0 OVER] INFO: on_ball_event refused: this_over already has 12 tokens (>= MAX_OBSERVED_THIS_OVER_LEN). Likely missed over rollover — event dropped: {'type': 'DOT', 'certain': True}
+[10:15:51 F0 OVER] INFO: Over-jump rejected: 9 → 11 is implausible for one frame (likely Scout misread). Waiting for a sane overs reading.
+[10:15:51 F0 OVER] INFO: Over 9 complete: ['.', '1', '1', '.', '4', '1'] = 7 runs, 0 wkts (by Khan)
+[10:15:51 F0 OVER] INFO: Over 5 re-archive REFUSED: slot already holds ['.', '1', '4', '.', '.', '1'] (by Bumrah). Ignoring new payload {'balls': ['.', '.', '.', '.', '.', '.'], 'bowler': 'Khan', 'runs': 0, 'wickets': 0}.
+[10:15:51 F0 OVER] INFO: [OVER-DEFER] Rollover 5 → 6 deferred (1/2): this_over has 5/6 legal balls — waiting for the closing-ball event to arrive before archiving.
+[10:15:51 F0 OVER] INFO: [OVER-DEFER] Rollover 5 → 6 deferred (2/2): this_over has 5/6 legal balls — waiting for the closing-ball event to arrive before archiving.
+[10:15:51 F0 OVER] INFO: [OVER-DEFER] Rollover 5 → 6 forced after 2 deferrals: still only 5/6 legal — archiving short; the closing ball was never detected.
+[10:15:51 F0 OVER] INFO: Over 5 reconcile: score delta=+6 but this_over tracks 5 runs (+1 missing). Tokens preserved as observed; no synth at over boundary (extras can never sit on the over-closing ball).
+[10:15:51 F0 OVER] INFO: Over 5 complete: ['.', '1', '4', '.', '.'] = 5 runs, 0 wkts (by Bumrah)
+[10:15:51 F0 OVER] INFO: Late ball appended to held over 5: ['.', '1', '4', '.', '.'] → ['.', '1', '4', '.', '.', '1'] (event over=6.0)
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=100 sb_value=None divergence=true
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=0 sb_value=None divergence=true
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=101 sb_value=100 divergence=true
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=0 sb_value=0 divergence=false
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:51 F0 SCORE_MGR] INFO: [SM] RUNS  101/0 (6.0)  striker=A
+[10:15:51 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=run_rate sm_would_accept=16.83 sb_value=None divergence=true
+[10:15:51 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:51 F0 BOARD] INFO: [FOW] Length 2 > wickets counter 1 — keeping all FOW entries (immutable). Wickets counter likely regressed.
+[10:15:51 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:51 F0 BOARD] WARN: [FOW] Rewrite REFUSED for W1: witnessed entry Kohli is immutable; new dismissal Rohit at 30/5.2 not applied. If this is a real wk-conflict, investigate the upstream wicket-counter / striker state that produced the duplicate W1.
+[10:15:51 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:51 F0 BOARD] INFO: [FOW] Placeholder W1: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:51 F0 BOARD] INFO: [FOW] Upgraded placeholder W1: Kohli at 30/1 (5.2) (was _unwitnessed)
+[10:15:54 F0 TEST] INFO:   [OVERS FIX] digit-swap: extractor=3.0 vs confirmed=0.2 + this_over_tokens=3 → 0.3
+[10:15:54 F0 TEST] INFO:   [OVERS FIX] extractor=6.0 this_over_tokens=6 → 5.6
+[10:15:54 F0 TEST] INFO:   [OVERS FIX] SKIP regression: computed=8.5 < confirmed=9.0 (tokens=5 likely stale/poisoned) — keeping ext_overs=9.0
+[10:15:54 F0 TEST] INFO:   [OVERS FIX] extractor=6.0 this_over_tokens=6 → 5.6
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 COMMENTARY] INFO: [DETECT] Bowler runs lag detected: score +1, bowler runs flat but striker A runs +1 — treating as legal run off the bat, NOT leg-bye
+[10:15:54 F0 COMMENTARY] INFO: [BALL ✓] 1_RUNS | 5.1 +1 runs (Δballs=1)
+[10:15:54 F0 COMMENTARY] INFO: [DETECT] Likely leg bye/bye: score +1, bowler runs unchanged AND striker A runs unchanged (prev=10, now=10)
+[10:15:54 F0 COMMENTARY] INFO: [BALL ✓] 1_RUNS | 5.1 +1 runs (Δballs=1)
+[10:15:54 F0 COMMENTARY] INFO: [BALL ✓] DOT | 12.5 +0 runs (Δballs=1)
+[10:15:54 F0 COMMENTARY] INFO: [BALL ✓] DOT | 12.6 +0 runs (Δballs=1)
+[10:15:54 F0 COMMENTARY] INFO: [BED] Detector reset for new innings
+[10:15:54 F0 COMMENTARY] INFO: [PARTNERSHIP] Tracker reset for new innings
+[10:15:54 F0 OVER] INFO: [OVER] Manager reset for new innings
+[10:15:54 F0 SCORE_MGR] INFO: [SM] cold-start candidate seeded 28/0 (4.4) — streak 1/3
+[10:15:54 F0 SCORE_MGR] INFO: [SM] cold-start consensus building 28/0 (4.4) — streak 2/3
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=28 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=0 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=run_rate sm_would_accept=6.0 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO: [SM] COLD_START → WARM (consensus 3/3)  28/0 (4.4)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Refusing to un-dismiss 'Pathum' — witnessed FOW entry exists (strip read suppressed)
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Refusing to un-dismiss 'Pathum' — witnessed FOW entry exists (strip read suppressed)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (3 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Three' rejected — 2 batters already active: ['Opener1', 'Opener2']
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Demoting resurrected batter 'Pathum' (witnessed FOW entry) — restoring out status
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Demoting resurrected batter 'Pathum' (witnessed FOW entry) — restoring out status
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [INVARIANT] 3 active batters: ['A', 'B', 'E']
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Falling back to position-based deactivation; no FOW match in active set ['A', 'B', 'E'] (anomaly)
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Deactivated E (pos 5)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Re-asserting witnessed dismissal of 'Pathum' (wicket-tick gate bypassed — FOW canonical, _cur_wk=1 == _last_dismiss_wk=1). New batter 'Rana' will replace.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [DISMISS] Blocked — wickets counter has not advanced since last auto-dismiss (cur=1, last_dismiss_at=1). New batter 'C' is almost certainly an extractor hallucination (replay/comparison overlay) rather than a real arrival at the crease.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [DISMISS] Blocked — wickets counter has not advanced since last auto-dismiss (cur=2, last_dismiss_at=2). New batter 'C' is almost certainly an extractor hallucination (replay/comparison overlay) rather than a real arrival at the crease.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Re-asserting witnessed dismissal of 'Pathum' (wicket-tick gate bypassed — FOW canonical, _cur_wk=1 == _last_dismiss_wk=1). New batter 'Rana' will replace.
+[10:15:54 F0 BOARD] INFO: Batter activated: Rana
+[10:15:54 F0 BOARD] WARN: [NEW-BATTER-BALLS-GATE] Rana: proposed 30(19) exceeds fresh-admission ceiling 3 balls (since_admit=0); dropping row
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [STYLES-PATCH] Updated 3 card slots from background Pass-2 enrichment (3 players)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [STYLES-PATCH] Updated 2 card slots from background Pass-2 enrichment (2 players)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [STYLES-PATCH] Updated 0 card slots from background Pass-2 enrichment (1 players)
+[10:15:54 F0 BOARD] INFO: [STYLES-PATCH] Updated 0 card slots from background Pass-2 enrichment (1 players)
+[10:15:54 F0 ENRICH] INFO: [pass1] A — styles:
+[10:15:54 F0 ENRICH] INFO: [pass1]   p1                       RHB  | unknown
+[10:15:54 F0 ENRICH] INFO: [pass1] B — styles:
+[10:15:54 F0 ENRICH] INFO: [pass1]   p2                       RHB  | unknown
+[10:15:54 F0 ENRICH] INFO: [pass2-bg] A — styles:
+[10:15:54 F0 ENRICH] INFO: [pass2-bg]   p1                       LHB  | Right-arm fast
+[10:15:54 F0 ENRICH] INFO: [pass2-bg] B — styles:
+[10:15:54 F0 ENRICH] INFO: [pass2-bg]   p2                       LHB  | Right-arm fast
+[10:15:54 F0 ENRICH] ERROR: Pass-2 background task crashed: simulated Pass-2 timeout
+[10:15:54 F0 ENRICH] WARN: Pass-2 background failed — cached Pass-1 as fallback
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 3 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_7ctxe9jc/debug_frames_archive/2026-04-25_184000 (was 3 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_7ctxe9jc/debug_frames)
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_oj534fh8/debug_frames_archive/2026-04-25_184000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_oj534fh8/debug_frames)
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames_archive/2026-04-20_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames)
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames_archive/2026-04-21_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames)
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames_archive/2026-04-22_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames)
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames_archive/2026-04-23_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames)
+[10:15:54 F0 TEST] INFO: [CLEANUP] Removed old archive: /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames_archive/2026-04-20_120000
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames_archive/2026-04-24_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames)
+[10:15:54 F0 TEST] INFO: [CLEANUP] Removed old archive: /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames_archive/2026-04-21_120000
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames_archive/2026-04-25_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames)
+[10:15:54 F0 TEST] INFO: [CLEANUP] Removed old archive: /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_6n84zv8f/debug_frames_archive/2026-04-22_120000
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_unz4e313/debug_frames_archive/2026-04-23_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_unz4e313/debug_frames)
+[10:15:54 F0 TEST] INFO: [CLEANUP] Archived 1 frames to /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_unz4e313/debug_frames_archive/2026-04-24_120000 (was 1 in /var/folders/x9/910008w13pn0nvnprfp_qcpm0000gn/T/sportscomm_archival_test_unz4e313/debug_frames)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Sakib Hussain:runs: initial proposed 13 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Sakib Hussain:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Sakib Hussain:overs: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Sakib Hussain:runs: initial → 13 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Sakib Hussain:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Sakib Hussain:overs: initial → 1 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Sakib Hussain: None/None (None) -> 1/13 (1) [F102]
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial proposed 0.1 (2/3 — waiting)
+[10:15:54 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Shivang Kumar' after 2 reads — candidate overs 0.1 matches team over 5.1 while current_bowler 'Sakib Hussain' is inconsistent
+[10:15:54 F0 BOARD] INFO: [BOWLER OVERRIDE] Sakib Hussain → Shivang Kumar (reads=2, must_change=False)
+[10:15:54 F0 BOARD] INFO: [BOWLER SEED] Shivang Kumar figures seeded from scout text to 0-1 (0.1) — mid-spell entry (impact sub / mid-match join)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 20 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 20 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 0/20 (2) [F402]
+[10:15:54 F0 TRACK] INFO: bowl:Sakib Hussain:runs: initial proposed 4 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Sakib Hussain:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Sakib Hussain:overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:54 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Sakib Hussain' after 2 reads — candidate overs 0.2 matches team over 10.2 while current_bowler 'Pat Cummins' is inconsistent
+[10:15:54 F0 BOARD] INFO: [BOWLER OVERRIDE] Pat Cummins → Sakib Hussain (reads=2, must_change=False)
+[10:15:54 F0 BOARD] INFO: [BOWLER SEED] Sakib Hussain figures seeded from scout text to 0-4 (0.2) — mid-spell entry (impact sub / mid-match join)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 10 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial proposed 1.0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial → 10 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial → 1.0 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Shivang Kumar: None/None (None) -> 0/10 (1.0) [F102]
+[10:15:54 F0 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Shivang Kumar' read — proposed 0-10(1.0) exactly matches recorded 0-10(1.0); no handoff grace (must_change=False). Likely stale end-of-spell graphic; current_bowler stays 'Pat Cummins'
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial proposed 0.1 (2/3 — waiting)
+[10:15:54 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Shivang Kumar' after 2 reads — candidate overs 0.1 matches team over 5.1 while current_bowler 'Sakib Hussain' is inconsistent
+[10:15:54 F0 BOARD] INFO: [BOWLER OVERRIDE] Sakib Hussain → Shivang Kumar (reads=2, must_change=False)
+[10:15:54 F0 BOARD] INFO: [BOWLER SEED] Shivang Kumar figures seeded from scout text to 0-1 (0.1) — mid-spell entry (impact sub / mid-match join)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial proposed 0.1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:runs: initial → 1 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Shivang Kumar:overs: initial → 0.1 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Shivang Kumar: None/None (None) -> 0/1 (0.1) [F102]
+[10:15:54 F0 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Shivang Kumar' read — proposed 0-1(0.1) exactly matches recorded 0-1(0.1); no handoff grace (must_change=False). Likely stale end-of-spell graphic; current_bowler stays 'Pat Cummins'
+[10:15:54 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:54 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Suyash Sharma' after 2 reads — candidate overs 0.2 matches team over 10.2 while current_bowler 'Bhuvneshwar Kumar' is inconsistent
+[10:15:54 F0 BOARD] INFO: [BOWLER OVERRIDE] Bhuvneshwar Kumar → Suyash Sharma (reads=2, must_change=False)
+[10:15:54 F0 BOARD] INFO: [BOWLER SEED] Suyash Sharma figures seeded from scout text to 0-8 (0.2) — mid-spell entry (impact sub / mid-match join)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 4 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 0.1 (2/3 — waiting)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 2.0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial → 8 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial → 2.0 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Suyash Sharma: None/None (None) -> 0/8 (2.0) [F1402]
+[10:15:54 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT] refusing flip to 'Suyash Sharma' — overs='2.0' ball_mod6=0 vs team strip ball_mod6=2 (team_overs='10.2'); streak=1/3
+[10:15:54 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:54 F0 BOARD] WARN:   [BOWLER-TEAM-OVER-CONSENSUS] accepting 'Suyash Sharma' after 2 reads — candidate overs 0.2 matches team over 10.2 while current_bowler 'Bhuvneshwar Kumar' is inconsistent
+[10:15:54 F0 BOARD] INFO: [BOWLER OVERRIDE] Bhuvneshwar Kumar → Suyash Sharma (reads=2, must_change=False)
+[10:15:54 F0 BOARD] INFO: [BOWLER SEED] Suyash Sharma figures seeded from scout text to 0-8 (0.2) — mid-spell entry (impact sub / mid-match join)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 2.0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial → 8 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial → 2.0 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Suyash Sharma: None/None (None) -> 0/8 (2.0) [F1602]
+[10:15:54 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT] refusing flip to 'Suyash Sharma' — overs='2.0' ball_mod6=0 vs team strip ball_mod6=2 (team_overs='10.2'); streak=1/3
+[10:15:54 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT] refusing flip to 'Suyash Sharma' — overs='2.0' ball_mod6=0 vs team strip ball_mod6=2 (team_overs='10.2'); streak=2/3
+[10:15:54 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT] refusing flip to 'Suyash Sharma' — overs='2.0' ball_mod6=0 vs team strip ball_mod6=2 (team_overs='10.2'); streak=3/3
+[10:15:54 F0 BOARD] WARN:   [BOWLER-CONSENSUS-INCONSISTENT-OVERRIDE] accepting 'Suyash Sharma' after 3 mismatched frames — forcing flip (strip/broadcast may disagree on figure shape)
+[10:15:54 F0 BOARD] INFO: [BOWLER OVERRIDE] Bhuvneshwar Kumar → Suyash Sharma (reads=5, must_change=False)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TEST] INFO:   [STRIKER-SM-CUTOVER] mirrored striker='B' reason=unit-test — SM+_inn lockstep
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TEST] INFO:   No batting team set — skipping all updates
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Refusing to un-dismiss 'A' — witnessed FOW entry exists (strip read suppressed)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TRACK] INFO: wickets: 0 → 1 (post-event immediate, grace=1)
+[10:15:54 F0 BOARD] INFO: wickets: 0 -> 1 [F1501]
+[10:15:54 F0 BOARD] INFO: [DISMISS] Cold-start seed — gate set to wickets=1 (zero_streak=0, historical wickets will not trigger auto-dismissal).
+[10:15:54 F0 BOARD] INFO: DISMISSED: B 1(1) — auto-inferred (striker on wicket) | FOW 1/20 (3.1)
+[10:15:54 F0 TEST] INFO:   [WICKET-AUTO] Dismissed striker B on wicket increment (0→1); FOW recorded with full context
+[10:15:54 F0 TEST] WARN:   [BATTERS-INVARIANT] rule=C violation=striker_non_collision active=A witnessed_out=- striker=A non=A upstream_step3_fired=false upstream_step3_tags=- upstream_step4_returned_false=false action=noop_phase1 target=A frame=F1501
+[10:15:54 F0 OVER] WARN: [TOKEN-VALIDATE] Rejecting broadcast tokens ['139', '148', '143', '147', '145', '140'] — illegal token(s) ['139', '148', '143', '147', '145', '140'] outside cricket-scorecard alphabet (likely speed-track misread or adjacent-strip OCR pollution)
+[10:15:54 F0 OVER] WARN: [TOKEN-VALIDATE] Rejecting broadcast tokens ['2161'] — illegal token(s) ['2161'] outside cricket-scorecard alphabet (likely speed-track misread or adjacent-strip OCR pollution)
+[10:15:54 F0 OVER] WARN: [TOKEN-VALIDATE] Rejecting broadcast tokens ['11', '.', '41'] — illegal token(s) ['11', '41'] outside cricket-scorecard alphabet (likely speed-track misread or adjacent-strip OCR pollution)
+[10:15:54 F0 OVER] INFO: Broadcast fill (cold-start, empty local): ['1', '.', '4', 'Wd', 'W', '6']
+[10:15:54 F0 OVER] WARN: [TOKEN-VALIDATE] Rejecting broadcast tokens ['1', '.', '4', 'Wd', '139', '6'] — illegal token(s) ['139'] outside cricket-scorecard alphabet (likely speed-track misread or adjacent-strip OCR pollution)
+[10:15:54 F0 OVER] INFO: [FOW-REORDER] W repositioned from legal-ball 4 → 5 (FOW upgrade): this_over=['.', '.', '.', 'Wd', '6', 'W']
+[10:15:54 F0 OVER] INFO: [FOW-REORDER] W repositioned from legal-ball 4 → 3 (FOW upgrade): this_over=['Wd', '6', 'Nb+1', '.', 'W', '1']
+[10:15:54 F0 OVER] INFO: [FOW-REORDER] W repositioned from legal-ball 3 → 2 (FOW upgrade): this_over=['Wd', '6', 'W', 'Nb+1', '1']
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [FOW] Upgraded placeholder W1: A at 7/1 (0.5) (was tentative)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [FOW] Rewrite REFUSED for W1: witnessed entry A is immutable; new dismissal B at 7/0.5 not applied. If this is a real wk-conflict, investigate the upstream wicket-counter / striker state that produced the duplicate W1.
+[10:15:54 F0 TRACK] INFO: overs: initial proposed 6.0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: overs: initial → 6.0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 (backwards)
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 (backwards)
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 count=1/3
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 (backwards)
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 count=2/3
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] overs: 6.0→0.5 (backwards)
+[10:15:54 F0 TRACK] INFO: [CONSENSUS-BLOCKED] overs: 6.0→0.5 — match overs cannot regress within an innings (likely dead-time / placeholder-graphic misread)
+[10:15:54 F0 TRACK] INFO: overs: initial proposed 6.0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: overs: initial → 6.0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: overs: 6.0 → 6.1 (confirmed F5)
+[10:15:54 F0 TRACK] INFO: overs: initial proposed 19.6 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: overs: initial → 19.6 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: overs: initial proposed 0.0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: overs: initial → 0.0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: overs: initial proposed 100 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: overs: initial → 100 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: score: initial proposed 200 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: score: initial → 200 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 (any decrease is suspicious in normal play)
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 (any decrease is suspicious in normal play)
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 count=1/3
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 (any decrease is suspicious in normal play)
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 count=2/3
+[10:15:54 F0 TRACK] INFO: [SUSPICIOUS] score: 200→50 (any decrease is suspicious in normal play)
+[10:15:54 F0 TRACK] INFO: [CONSENSUS] score: 200 → 50 (extractor agreed 4 frames)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (3 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Parag — already striker; would self-collide
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (3 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing striker=Sooryavanshi — already non; would self-collide
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (3 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (3 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Sooryavanshi — already striker; would self-collide
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (4 bat) vs Sunrisers Hyderabad (2 bowl)
+[10:15:54 F0 TEST] WARN:   [INFO-PANEL-GATE] bowler stripped — name='YUZVENDRA CHAHAL' panel_keyword='IPL CAREER'
+[10:15:54 F0 TEST] WARN:   [INFO-PANEL-GATE] bowler stripped — name='YUZVENDRA CHAHAL' panel_keyword='IPL CAREER'
+[10:15:54 F0 TEST] INFO:   [INFO PANEL] Detected (keyword='HEAD TO HEAD') — no bowler in extracted, tracker will bound values
+[10:15:54 F0 TEST] WARN:   [INFO-PANEL-GATE] bowler stripped — name='YUZVENDRA CHAHAL' panel_keyword='PROJECTED SCORE'
+[10:15:54 F0 TEST] WARN:   [STANDINGS-ROW-GATE] score fields stripped — keyword='STANDINGS'
+[10:15:54 F0 BOARD] INFO: Scorecards built: KKR (3 bat) vs DC (2 bowl)
+[10:15:54 F0 TEST] WARN:   [BATTER-NORMALIZE] dropping surname ghost 'SINGH' paired with 'Rinku Singh'
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Batter activated: New Batter
+[10:15:54 F0 BOARD] WARN: [NEW-BATTER-BALLS-GATE] New Batter: proposed 0(16) exceeds fresh-admission ceiling 3 balls (since_admit=0); dropping row
+[10:15:54 F0 BOARD] INFO: Scorecards built: DC (3 bat) vs RCB (2 bowl)
+[10:15:54 F0 TEST] WARN:   [BOWLER-BATTER-GATE] bowler stripped — name='KL Rahul' resolved_batter='KL Rahul' complete_figures=False
+[10:15:54 F0 SCORE_MGR] INFO: [SM] cold-start zero candidate rejected as contextual graphic: scout='DRS REVIEW graphic, no live batter/bowler strip'
+[10:15:54 F0 SCORE_MGR] INFO: [SM] cold-start zero candidate rejected as contextual graphic: scout='DRS REVIEW graphic, no live batter/bowler strip'
+[10:15:54 F0 SCORE_MGR] INFO: [SM] cold-start zero candidate rejected as contextual graphic: scout='DRS REVIEW graphic, no live batter/bowler strip'
+[10:15:54 F0 SCORE_MGR] INFO: [SM] cold-start candidate seeded 75/3 (10.2) — streak 1/3
+[10:15:54 F0 SCORE_MGR] INFO: [SM] cold-start consensus building 75/3 (10.2) — streak 2/3
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score sb_attached=false
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO: [SM] COLD_START → WARM (consensus 3/3)  75/3 (10.2)
+[10:15:54 F0 OVER] INFO: [OVER-RESYNC] Cursor aligned to over 16 from team_overs='16.3' (test); cleared current tokens
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (10 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W1: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W2: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W3: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W4: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W5: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W6: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W7: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W8: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W9: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: [FOW] Placeholder W10: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)
+[10:15:54 F0 BOARD] INFO: wickets: 9 -> 10 [F200]
+[10:15:54 F0 BOARD] WARN: [ALL-OUT-AUTHORITY] Promoted wickets 9→10 from innings break evidence; contextual wicket regressions locked until innings transition
+[10:15:54 F0 BOARD] WARN: Wickets regression rejected under all-out lock: 10→2 (source=innings break evidence)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] WARN: Score regression rejected: 36→35 (normal-play score physics; reset authority required)
+[10:15:54 F0 BOARD] INFO: Scorecards built: DC (3 bat) vs RCB (1 bowl)
+[10:15:54 F0 TEST] WARN:   [WS-SLOT-INVARIANT] duplicate slots 'Abishek Porel'; rebuilt non='KL Rahul' from active card
+[10:15:54 F0 BOARD] INFO: Scorecards built: DC (2 bat) vs RCB (1 bowl)
+[10:15:54 F0 TEST] WARN:   [WS-SLOT-INVARIANT] duplicate slots 'Abishek Porel'; cleared non (no alternate active batter)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [POST-WICKET-ROTATION] striker 'Sarfaraz' dismissed → rotated non 'Survivor' into striker slot; non cleared pending new-batter admission.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [POST-WICKET-ROTATION] non 'Dube' dismissed → slot cleared pending new-batter admission.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [POST-WICKET-ROTATION] striker 'RunOut' dismissed → rotated non 'Survivor' into striker slot; non cleared pending new-batter admission.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [POST-WICKET-ROTATION] anomaly: 'Collided' occupied BOTH striker and non slots — both cleared defensively (likely prior collision state that Fix 5 did not catch).
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [FOW] Upgraded placeholder W1: Overton at 145/1 (18.6) (was _unwitnessed, was tentative)
+[10:15:54 F0 BOARD] INFO: [POST-WICKET-ROTATION] non 'Overton' dismissed → slot cleared pending new-batter admission.
+[10:15:54 F0 BOARD] INFO: Scorecards built: KKR (5 bat) vs LSG (2 bowl)
+[10:15:54 F0 BOARD] INFO: [FOW] Upgraded placeholder W4: Powell at 31/4 (6.1) (was _unwitnessed, was tentative)
+[10:15:54 F0 BOARD] INFO: [POST-WICKET-CARD-PROPAGATE] 'Powell' dismissed but not in crease slots — batting_card.status flipped 'batting'→'out' (real-time-delayed-witness path, Fix 13 Case 5).
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [POST-WICKET-ROTATION] non 'Sarfaraz' dismissed → slot cleared pending new-batter admission.
+[10:15:54 F0 BOARD] INFO: [WICKET] Auto-dismissed Sarfaraz — not in extractor output, NewBatter replacing
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [POST-WICKET-ROTATION] striker 'Dube' dismissed → rotated non 'Other' into striker slot; non cleared pending new-batter admission.
+[10:15:54 F0 BOARD] INFO: DISMISSED: Dube None(None) — bowled | FOW 0/80 (11.5)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: LSG (5 bat) vs KKR (2 bowl)
+[10:15:54 F0 BOARD] INFO: [POST-WICKET-ROTATION] striker 'Marsh' dismissed → rotated non 'Markram' into striker slot; non cleared pending new-batter admission.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=3: proposed bat_sum=47 > score=30 (excess=17) — rejecting batter proposals (Brevis=20, Other=5). Cricket physics violation; phantom commit prevented.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=3: proposed bat_sum=47 > score=30 (excess=17) — rejecting batter proposals (NewBat1=20, NewBat2=5). Cricket physics violation; phantom commit prevented.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (11 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=7: proposed bat_sum=176 > score=154 (excess=22) — rejecting batter proposals (Hosein=21, Gaikwad=70). Cricket physics violation; phantom commit prevented.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (3 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (8 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TEST] WARN:   [BALLS-CEILING-GATE] overs=6.1 (legal_balls=37, ceiling=39): Powell=balls=56 — rejecting batter proposals.  Cricket physics violation (per-batter balls cannot exceed innings total); phantom stat-overlay commit prevented (Powell 14(56) class).
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Bat2' balls regression 3→0 rejected (>2 balls backward) — dropping runs=5 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TEST] WARN:   [SCORE-INF-GATE] score 20→27 (advance=+7) > explained (bat_delta=0 + extras_max=6 = 6) — rejecting score commit.  Score-side phantom (Layer 1.5, F52/F53 class).
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=2: proposed bat_sum=24 > score=20 (excess=4) — rejecting batter proposals (Bat1=12). Cricket physics violation; phantom commit prevented.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (6 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TEST] WARN:   [SCORE-INF-GATE] proposed=20 < min_score_from_batters_and_extras (bat_sum=22, extras=0, min=22) — rejecting score commit.  Score-side misread (Layer 1.5 floor, Fix 11 sibling).
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (7 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TRACK] INFO: score: initial proposed 34 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:runs: initial proposed 10 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:balls: initial proposed 3 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:runs: initial proposed 2 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:balls: initial proposed 2 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: score: initial → 34 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: score: 30 -> 34 [F1001]
+[10:15:54 F0 TRACK] INFO: bat:Bat1:runs: initial → 10 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:balls: initial → 3 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Bat1: 6(2) -> 10(3) [F1001]
+[10:15:54 F0 TRACK] INFO: bat:Bat2:runs: initial → 2 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:balls: initial → 2 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (11 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TEST] WARN:   [EXTRAS-INF-GATE] wkts=8: proposed bat_sum=150 > score=0 (excess=150) — rejecting batter proposals (A1=15, A2=15). Cricket physics violation; phantom commit prevented.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TRACK] INFO: score: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:runs: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:balls: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:runs: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:balls: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: score: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: score: None -> 0 [F103]
+[10:15:54 F0 TRACK] INFO: bat:Bat1:runs: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:balls: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:runs: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:balls: initial → 0 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TRACK] INFO: score: initial proposed 22 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:runs: initial proposed 10 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:balls: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:runs: initial proposed 7 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:balls: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: score: initial → 22 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:runs: initial → 10 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bat:Bat1:balls: initial → 1 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:runs: initial → 7 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bat:Bat2:balls: initial → 1 (cold-start consensus 3/3)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=180 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=6 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='TeamA' sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: archiving innings 1 (180/6 (19.6) team=TeamA) and resetting all per-innings cached scalars.  target=181 new_batting_team=TeamB.
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=181 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='TeamB' sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=100 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=set_innings_2: archiving innings 1 (100/None (None) team=None) and resetting all per-innings cached scalars.  target=101 new_batting_team=B.
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=101 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='B' sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=50 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=run_rate sm_would_accept=7.5 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=test_fix16_surface
+[10:15:54 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was None/None (None) mode=COLD_START → COLD_START (reason=full_reset:test_fix16_surface)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=55 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=2 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=test_cold_hatch
+[10:15:54 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was 55/2 (8.1) mode=WARM → COLD_START (reason=full_reset:test_cold_hatch)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=1
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=187 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='PBKS' sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=120 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=4 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=phase2_contract
+[10:15:54 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was 120/4 (None) mode=COLD_START → COLD_START (reason=full_reset:phase2_contract)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 15 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 15 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 1/15 (2) [F12]
+[10:15:54 F0 BOARD] WARN:   [BOWLER-STATS-GRAPHIC-GATE] rejecting 'Pat Cummins' - reason=career_keyword (overs='2.4' runs=18 wickets=1)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 15 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 15 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 1/15 (2) [F12]
+[10:15:54 F0 BOARD] WARN:   [BOWLER-STATS-GRAPHIC-GATE] rejecting 'Pat Cummins' - reason=implausible_figures (overs='2000' runs=5000 wickets=200)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 15 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 15 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 1/15 (2) [F12]
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: 15 → 18 (confirmed F301)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: 2 → 2.4 (confirmed F301)
+[10:15:54 F0 BOARD] INFO: Pat Cummins: 1/15 (2) -> 1/18 (2.4) [F301]
+[10:15:54 F0 BOARD] INFO: Scorecards built: Rajasthan Royals (2 bat) vs Sunrisers Hyderabad (4 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial proposed 15 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial proposed 1 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial proposed 2 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: initial → 15 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:wickets: initial → 1 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: initial → 2 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Pat Cummins: None/None (None) -> 1/15 (2) [F12]
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:runs: 15 → 18 (confirmed F401)
+[10:15:54 F0 TRACK] INFO: bowl:Pat Cummins:overs: 2 → 2.4 (confirmed F401)
+[10:15:54 F0 BOARD] INFO: Pat Cummins: 1/15 (2) -> 1/18 (2.4) [F401]
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=poison_recal_consensus fixture
+[10:15:54 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was None/None (None) mode=COLD_START → COLD_START (reason=full_reset:poison_recal_consensus fixture)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TEST] INFO:   [SCORER-INVARIANT-FILTER] skipping batter_updates row for witnessed-out 'A' at F1
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TEST] WARN:   [SCORER-DISMISSED-RESURRECT] skipping scorer proposal for non-witnessed-out 'A' at F2
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TRACK] INFO: bat:B:runs: 5 → 7 (fast-confirm, natural increment F3)
+[10:15:54 F0 TRACK] INFO: bat:B:balls: 3 → 4 (fast-confirm, natural increment F3)
+[10:15:54 F0 BOARD] INFO: B: 5(3) -> 7(4) [F3]
+[10:15:54 F0 SCORER] ERROR: JSON parse failed: not json {
+[10:15:54 F0 SCORER] ERROR: JSON parse failed: no braces at all
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TRACK] INFO: bat:B:runs: 5 → 7 (fast-confirm, natural increment F42)
+[10:15:54 F0 TRACK] INFO: bat:B:balls: 3 → 4 (fast-confirm, natural increment F42)
+[10:15:54 F0 BOARD] INFO: B: 5(3) -> 7(4) [F42]
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (3 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TRACK] INFO: bat:C:runs: 1 → 2 (fast-confirm, natural increment F77)
+[10:15:54 F0 TRACK] INFO: bat:C:balls: 1 → 2 (fast-confirm, natural increment F77)
+[10:15:54 F0 BOARD] INFO: C: 1(1) -> 2(2) [F77]
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TEST] WARN:   [STATE-RECOVERY-OVERRIDE] sig=b6f059c3e6de guards=poison_score,slot_scrub_rejected frames=2 candidate_json={"active_batters":["Nitish Rana","KL Rahul"],"bat_sum":107,"batters":[{"balls":28,"name":"Nitish Rana","runs":43,"status":"yet_to_bat","status_update":true},{"balls":38,"name":"KL Rahul","runs":64,"status":"batting","status_update":false}],"overs":6.3,"score":120,"wickets":2} current_json={"score":40} coherence_json={"active_batters_max_two":true,"bat_sum_within_score":true,"batters_known_not_out":true,"overs_t20":true,"score_non_negative":true,"wickets_t20":true} thresholds_json={"n3":null,"n5":null,"n8":null} proposed_reset=score,slot:non,status:Nitish Rana reason=stale_reference_state telemetry_only=true
+[10:15:54 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=state_recovery_consensus_override
+[10:15:54 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was None/None (None) mode=COLD_START → COLD_START (reason=full_reset:state_recovery_consensus_override)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TEST] WARN:   [STATE-RECOVERY-OVERRIDE] sig=phase2test guards=poison_score,slot_scrub_rejected frames=5 candidate_json={"score":200} current_json={} coherence_json={} thresholds_json={} proposed_reset=score reason=fixture telemetry_only=true
+[10:15:54 F0 SCORE_MGR] WARN: [SM-FULL-RESET] reason=state_recovery_consensus_override
+[10:15:54 F0 SCORE_MGR] INFO: [SM] FORCE_COLD_START_RECALIBRATION: was None/None (None) mode=COLD_START → COLD_START (reason=full_reset:state_recovery_consensus_override)
+[10:15:54 F0 TEST] INFO: [WS-COLD-START-GATE] OPEN — batting_team committed (team='KKR' score=0).  All subsequent WS broadcasts pass through (Fix 17 Path D).
+[10:15:54 F0 TEST] INFO: [WS-COLD-START-GATE] OPEN — batting_team committed (team='Kolkata Knight Riders' score=130).  All subsequent WS broadcasts pass through (Fix 17 Path D).
+[10:15:54 F0 TEST] WARN: [WS-COLD-START-GATE] OPEN (timeout) — 100s elapsed since first broadcast attempt without first committed non-zero state.  Releasing gate to avoid UI hang (Fix 17 Path D).
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [BAT-SUM-RECONCILER] divergence detected: bat_sum=37 > score+5=35 (excess=7).  Layer 2 detection-only — Layer 3 cap-reset engages at +10.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [BAT-SUM-RECONCILER] divergence detected: bat_sum=47 > score+5=35 (excess=17).  Layer 2 detection-only — Layer 3 cap-reset engages at +10.
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Batter total 47 > score 30+10. Capping batters.
+[10:15:54 F0 BOARD] WARN: [CAP-RESET-LAST-ADVANCE] iter=1 reset 'B' (runs was 25, last advance at frame 200 24→25).  bat_sum was 47 > score+10; Path C hybrid (Fix 18 Layer 3).
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: [BAT-SUM-RECONCILER] divergence detected: bat_sum=100 > score+5=35 (excess=70).  Layer 2 detection-only — Layer 3 cap-reset engages at +10.
+[10:15:54 F0 BOARD] WARN: [INVARIANT] Batter total 100 > score 30+10. Capping batters.
+[10:15:54 F0 BOARD] WARN: [CAP-RESET-LAST-ADVANCE] iter=1 reset 'B' (runs was 50, last advance at frame 200 49→50).  bat_sum was 100 > score+10; Path C hybrid (Fix 18 Layer 3).
+[10:15:54 F0 BOARD] WARN: [CAP-RESET-LAST-ADVANCE] iter=2 reset 'A' (runs was 50, last advance at frame 100 49→50).  bat_sum was 50 > score+10; Path C hybrid (Fix 18 Layer 3).
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: [INNINGS] Set to 2. Target: None. All trackers reset.
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 TRACK] INFO: bat:A:runs: 5 → 9 (fast-confirm, natural increment F100)
+[10:15:54 F0 TRACK] INFO: bat:A:balls: 4 → 5 (fast-confirm, natural increment F100)
+[10:15:54 F0 BOARD] INFO: A: 5(4) -> 9(5) [F100]
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 14 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 15 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 16 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=5/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN:   [RUNS-REJECT-RELEASE] Dube: 5 consecutive rejections of runs=22 (cur=31) — accepting as new truth (current value is stale phantom). force_set bat:Dube:runs, balls.
+[10:15:54 F0 BOARD] INFO: Dube: 31(28) -> 22(13) [F104]
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 14 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 15 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→20 (-11) rejected — dropping balls 16 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=20 streak=1/5 (cur=31 held)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 14 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 15 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:54 F0 TRACK] INFO: bat:Dube:runs: 31 → 32 (fast-confirm, natural increment F110)
+[10:15:54 F0 TRACK] INFO: bat:Dube:balls: 28 → 29 (fast-confirm, natural increment F110)
+[10:15:54 F0 BOARD] INFO: Dube: 31(28) -> 32(29) [F110]
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=1/5 (cur=22 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=2/5 (cur=22 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=3/5 (cur=22 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=4/5 (cur=22 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Player' runs regression 22→0 rejected — dropping balls 0 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Player=0 streak=5/5 (cur=22 held)
+[10:15:54 F0 BOARD] WARN:   [RUNS-REJECT-RELEASE] Player: 5 consecutive rejections of runs=0 (cur=22) — accepting as new truth (current value is stale phantom). force_set bat:Player:runs, balls.
+[10:15:54 F0 BOARD] INFO: Player: 22(18) -> 0(0) [F104]
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=5/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN:   [RUNS-REJECT-RELEASE] Dube: 5 consecutive rejections of runs=22 (cur=31) — accepting as new truth (current value is stale phantom). force_set bat:Dube:runs, balls.
+[10:15:54 F0 BOARD] INFO: Dube: 31(28) -> 22(13) [F1771]
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=5/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN:   [RUNS-REJECT-RELEASE] Dube: 5 consecutive rejections of runs=22 (cur=31) — accepting as new truth (current value is stale phantom). force_set bat:Dube:runs, balls.
+[10:15:54 F0 BOARD] INFO: Dube: 31(28) -> 22(13) [F104]
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=4/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Other' runs regression 25→10 (-15) rejected — dropping balls 12 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Other=10 streak=1/5 (cur=25 held)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (5 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 13 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=1/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 14 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=2/5 (cur=31 held)
+[10:15:54 F0 BOARD] WARN: Batter 'Dube' runs regression 31→22 (-9) rejected — dropping balls 15 too (whole-row invalidation)
+[10:15:54 F0 BOARD] INFO:   [RUNS-REJECT-STREAK] Dube=22 streak=3/5 (cur=31 held)
+[10:15:54 F0 BOARD] INFO: [INNINGS] Set to 2. Target: 160. All trackers reset.
+[10:15:54 F0 BOARD] INFO: Scorecards built: DC (3 bat) vs RCB (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: DC (3 bat) vs RCB (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: KKR (3 bat) vs DC (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: Delhi Capitals (2 bat) vs Royal Challengers Bengaluru (2 bowl)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:runs: initial proposed 8 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:wickets: initial proposed 0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: bowl:Suyash Sharma:overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=5
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=12
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: [INNINGS] Set to 2. Target: 150. All trackers reset.
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TRACK] INFO: score: initial proposed 87 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: score: initial → 87 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: score: None -> 87 [F3]
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TRACK] INFO: score: initial proposed 10 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: score: initial → 10 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: score: None -> 10 [F3]
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=22 sb_accepted=false
+[10:15:54 F0 TRACK] INFO: score: 10 → 22 (confirmed F5)
+[10:15:54 F0 BOARD] INFO: score: 10 -> 22 [F5]
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=22 sb_accepted=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=22 sb_accepted=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score sb_attached=false
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TRACK] INFO: score: initial proposed 5 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: score: initial → 5 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: score: None -> 5 [F3]
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=999 sb_value=5 divergence=true
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TRACK] INFO: score: initial proposed 40 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: score: initial → 40 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: score: None -> 40 [F3]
+[10:15:54 F0 BOARD] WARN: Score regression rejected: 40→30 (normal-play score physics; reset authority required)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=30 sb_accepted=false
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=batting_team value='NEW' sb_accepted=true
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='GHOST' sb_value='BAT' divergence=true
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 COMMENTARY] INFO: [PARTNERSHIP] new pair {'A', 'B'} anchored at score=0 balls=0  (team=50/30, guess_runs=50 guess_balls=30)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (1 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 SCORE_MGR] INFO: [STRIKER] method=balls_delta striker=Alice Ace (was=Bob Baker)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 SCORE_MGR] INFO: [STRIKER] method=balls_delta striker=Axar Patel (was=Virat Kohli)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 SCORE_MGR] INFO: [STRIKER] method=balls_delta striker=Axar Patel (was=Virat Kohli)
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:54 F0 TEST] INFO:   [GUARD] Tilak Varma diff 6→109 — comparison strip for batting team
+[10:15:54 F0 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F2134 row_delta=103 popped=batters preserved=score,match_overs,bowler row_pair=Tilak Varma strip_runs=109 card_runs=6
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:54 F0 TEST] INFO:   [GUARD] Tilak Varma diff 6→109 — comparison strip for batting team
+[10:15:54 F0 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F2134 row_delta=103 popped=batters preserved=score,match_overs,bowler row_pair=Tilak Varma strip_runs=109 card_runs=6
+[10:15:54 F0 TEST] INFO:   [GUARD] Tilak Varma diff 6→109 — comparison strip for batting team
+[10:15:54 F0 TEST] WARN:   [STRIP-ROWS-MISALIGNED] frame=F2135 row_delta=103 popped=batters preserved=score,match_overs,bowler row_pair=Tilak Varma strip_runs=109 card_runs=6
+[10:15:54 F0 TEST] INFO: [F99003] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G2_overlay_stats
+[10:15:54 F0 TEST] INFO: [F99004] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G7_balls_window
+[10:15:54 F0 TEST] INFO: [F99102] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G6_score_window
+[10:15:54 F0 TEST] INFO: [F99202] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G7_illegal_frac
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (3 bat) vs SRH (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (3 bat) vs SRH (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (3 bat) vs SRH (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: MI (2 bat) vs SRH (1 bowl)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (2 bat) vs BOWL (1 bowl)
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=10 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=1 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='BAT' sb_value='BAT' divergence=false
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=10 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=1 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='BAT' sb_value='BAT' divergence=false
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=10 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=1 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='BAT' sb_value='BAT' divergence=false
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=score sm_would_accept=10 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=wickets sm_would_accept=1 sb_value=None divergence=true
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='BAT' sb_value='BAT' divergence=false
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=None
+[10:15:54 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=None
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (8 bat) vs BOWL (1 bowl)
+[10:15:54 F0 TRACK] INFO: overs: initial proposed 20.0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: overs: initial → 20.0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: overs: initial proposed 20.0 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: overs: initial → 20.0 (cold-start consensus 3/3)
+[10:15:54 F0 TRACK] INFO: overs: initial proposed 0.2 (2/3 — waiting)
+[10:15:54 F0 TRACK] INFO: overs: initial → 0.2 (cold-start consensus 3/3)
+[10:15:54 F0 BOARD] INFO: Scorecards built: BAT (4 bat) vs BOWL (2 bowl)
+[10:15:54 F0 COMMENTARY] INFO: [PARTNERSHIP] new pair {'A', 'B'} anchored at score=14 balls=8  (team=87/58, guess_runs=73 guess_balls=50)
+[10:15:54 F0 OVER] INFO: [FLOOR] Padded 4 '?' placeholders to this_over (team_overs=9.4 expects 4 legal, observed only 0) — new=['?', '?', '?', '?']

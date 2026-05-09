@@ -1,0 +1,576 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151818/srh-vs-csk-27th-match-indian-premier-league-2026
+
+[23:20:29  iter#1]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=Anshul Kamboj  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: CSK 165-7 (18.1)  crr=9.08  ps=11(8)  recent=0
+  CB BAT: Jamie Overton* 12(10), Anshul Kamboj 2(2)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'overton'} (ui={'kamboj'}, cb={'overton', 'kamboj'}) | BAT_overton: ui=0(0) cb=12(10) | BAT_kamboj: ui=0(0) cb=2(2) | BOWLER: ui=None cb=Eshan Malinga
+
+[23:20:53  iter#2]
+  UI: Chennai Super Kings 165-7 (18.1)  str=Anshul Kamboj nstr=None  bowl=Nitish Kumar Reddy 2-19 (3.1)
+  this_over=['?']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: CSK 166-7 (18.2)  crr=9.05  ps=12(9)  recent=0 1
+  CB BAT: Anshul Kamboj* 2(2), Jamie Overton 13(11)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=165 cb=166 | OVERS: ui=18.1 cb=18.2 | BATTERS_MISSING_IN_UI: {'overton'} (ui={'kamboj'}, cb={'overton', 'kamboj'}) | BAT_overton: ui=12(10) cb=13(11) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nitish Kumar Reddy cb=Eshan Malinga
+
+[23:21:17  iter#3]
+  WS ERR: ''
+  CB: CSK 166-7 (18.2)  crr=9.05  ps=12(9)  recent=0 1
+  CB BAT: Anshul Kamboj* 2(2), Jamie Overton 13(11)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'overton', 'kamboj'} (ui=set(), cb={'overton', 'kamboj'}) | BOWLER: ui=None cb=Eshan Malinga
+
+[23:21:39  iter#4]
+  UI: Chennai Super Kings 166-7 (18.2)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Nitish Kumar Reddy 2-20 (3.2)
+  this_over=['?', '1']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=full line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: CSK 167-7 (18.3)  crr=9.03  ps=13(10)  recent=0 1 1
+  CB BAT: Jamie Overton* 13(11), Anshul Kamboj 3(3)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=166 cb=167 | OVERS: ui=18.2 cb=18.3 | BAT_kamboj: ui=2(2) cb=3(3) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nitish Kumar Reddy cb=Eshan Malinga
+
+[23:22:02  iter#5]
+  UI: Chennai Super Kings 167-7 (18.3)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Nitish Kumar Reddy 2-21 (3.3)
+  this_over=['?', '1', '1']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=full_toss line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: CSK 167-7 (18.3)  crr=9.03  ps=13(10)  recent=0 1 1
+  CB BAT: Jamie Overton* 13(11), Anshul Kamboj 3(3)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nitish Kumar Reddy cb=Eshan Malinga
+
+[23:22:24  iter#6]
+  UI: Chennai Super Kings 167-7 (18.3)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Nitish Kumar Reddy 2-21 (3.3)
+  this_over=['?', '1', '1']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=full_toss line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: CSK 168-7 (18.4)  crr=9.0  ps=14(11)  recent=0 1 1 1
+  CB BAT: Anshul Kamboj* 3(3), Jamie Overton 14(12)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=167 cb=168 | OVERS: ui=18.3 cb=18.4 | STRIKER: ui=Jamie Overton cb=Anshul Kamboj | BAT_overton: ui=13(11) cb=14(12) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nitish Kumar Reddy cb=Eshan Malinga
+
+[23:22:44  iter#7]
+  UI: Chennai Super Kings 168-7 (18.4)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Nitish Kumar Reddy 2-22 (3.4)
+  this_over=['?', '1', '1', '1']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: CSK 168-7 (18.4)  crr=9.0  ps=14(11)  recent=0 1 1 1
+  CB BAT: Anshul Kamboj* 3(3), Jamie Overton 14(12)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nitish Kumar Reddy cb=Eshan Malinga
+
+[23:23:06  iter#8]
+  UI: Chennai Super Kings 168-7 (18.4)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Nitish Kumar Reddy 2-22 (3.4)
+  this_over=['?', '1', '1', '1']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: CSK 174-7 (18.5)  crr=9.24  ps=20(12)  recent=0 1 1 1 6
+  CB BAT: Anshul Kamboj* 9(4), Jamie Overton 14(12)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=168 cb=174 | OVERS: ui=18.4 cb=18.5 | BAT_kamboj: ui=3(3) cb=9(4) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nitish Kumar Reddy cb=Eshan Malinga
+
+[23:23:29  iter#9]
+  UI: Chennai Super Kings 174-7 (18.5)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Nitish Kumar Reddy 2-28 (4.0)
+  this_over=['?', '1', '1', '1', '6']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: CSK 174-7 (18.5)  crr=9.24  ps=20(12)  recent=0 1 1 1 6
+  CB BAT: Anshul Kamboj* 9(4), Jamie Overton 14(12)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nitish Kumar Reddy cb=Eshan Malinga
+
+[23:23:50  iter#10]
+  UI: Chennai Super Kings 174-7 (18.5)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Nitish Kumar Reddy 2-28 (3.5)
+  this_over=['?', '1', '1', '1', '6']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: CSK 174-7 (18.5)  crr=9.24  ps=20(12)  recent=0 1 1 1 6
+  CB BAT: Anshul Kamboj* 9(4), Jamie Overton 14(12)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nitish Kumar Reddy cb=Eshan Malinga
+
+[23:24:12  iter#11]
+  UI: Chennai Super Kings 175-7 (18.5)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Nitish Kumar Reddy 2-29 (3.5)
+  this_over=['?', '1', '1', '1', '6', 'Wd']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: CSK 175-7 (18.5)  crr=9.29  ps=21(12)  recent=...
+  CB BAT: Anshul Kamboj* 9(4), Jamie Overton 14(12)
+  CB BOWL: Eshan Malinga 3-29 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nitish Kumar Reddy cb=Eshan Malinga
+
+[23:24:32  iter#12]
+  UI: Chennai Super Kings 175-7 (18.5)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Nitish Kumar Reddy 2-29 (3.5)
+  this_over=['?', '1', '1', '1', '6', 'Wd']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: CSK 177-7 (19)  crr=9.32  ps=23(13)  recent=0 1 1 1 6 W
+  CB BAT: Jamie Overton* 14(12), Anshul Kamboj 11(5)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=175 cb=177 | OVERS: ui=18.5 cb=19 | STRIKER: ui=Anshul Kamboj cb=Jamie Overton | BAT_kamboj: ui=9(4) cb=11(5) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=29 cb=31 | BOWL_O: ui=3.5 cb=4
+
+[23:24:53  iter#13]
+  UI: Chennai Super Kings 177-7 (19.0)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Nitish Kumar Reddy 2-31 (4)
+  this_over=[]  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: CSK 177-7 (19)  crr=9.32  ps=23(13)  recent=0 1 1 1 6 W
+  CB BAT: Jamie Overton* 14(12), Anshul Kamboj 11(5)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=19.0 cb=19 | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:25:14  iter#14]
+  UI: Chennai Super Kings 177-7 (19.0)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Nitish Kumar Reddy 2-31 (4)
+  this_over=[]  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: CSK 177-7 (19)  crr=9.32  ps=23(13)  recent=...
+  CB BAT: Jamie Overton* 14(12), Anshul Kamboj 11(5)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=19.0 cb=19 | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:25:34  iter#15]
+  UI: Chennai Super Kings 177-7 (19.0)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Nitish Kumar Reddy 2-31 (4)
+  this_over=[]  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: CSK 177-7 (19)  crr=9.32  ps=23(13)  recent=...
+  CB BAT: Jamie Overton* 14(12), Anshul Kamboj 11(5)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=19.0 cb=19 | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:25:55  iter#16]
+  UI: Chennai Super Kings 179-7 (19.1)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Nitish Kumar Reddy 2-31 (4)
+  this_over=['2']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: CSK 179-7 (19.1)  crr=9.34  ps=25(14)  recent=2
+  CB BAT: Jamie Overton* 16(13), Anshul Kamboj 11(5)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:26:18  iter#17]
+  UI: Chennai Super Kings 179-7 (19.1)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Nitish Kumar Reddy 2-31 (4)
+  this_over=['2']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: CSK 179-7 (19.1)  crr=9.34  ps=25(14)  recent=... 0 4 2 1
+  CB BAT: Jamie Overton* 16(13), Anshul Kamboj 11(5)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:26:41  iter#18]
+  UI: Chennai Super Kings 179-7 (19.1)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Nitish Kumar Reddy 2-31 (4)
+  this_over=['2']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: CSK 180-7 (19.2)  crr=9.31  ps=26(15)  recent=2
+  CB BAT: Anshul Kamboj* 11(5), Jamie Overton 16(14)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=179 cb=180 | OVERS: ui=19.1 cb=19.2 | STRIKER: ui=Jamie Overton cb=Anshul Kamboj | BAT_overton: ui=16(13) cb=16(14) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:27:03  iter#19]
+  UI: Chennai Super Kings 180-7 (19.2)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Praful Hinge 0-56 (3.2)
+  this_over=['2', '1']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: CSK 181-7 (19.2)  crr=9.36  ps=27(15)  recent=2
+  CB BAT: Anshul Kamboj* 11(6), Jamie Overton 16(14)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=180 cb=181 | BAT_kamboj: ui=11(5) cb=11(6) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:27:24  iter#20]
+  UI: Chennai Super Kings 181-7 (19.2)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Praful Hinge 0-57 (3.2)
+  this_over=['2', '1', 'Wd']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 181-7 (19.2)  crr=9.36  ps=27(15)  recent=2
+  CB BAT: Anshul Kamboj* 11(6), Jamie Overton 16(14)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:27:48  iter#21]
+  UI: Chennai Super Kings 181-7 (19.2)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Praful Hinge 0-57 (3.2)
+  this_over=['2', '1', 'Wd']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 181-7 (19.2)  crr=9.36  ps=27(15)  recent=2
+  CB BAT: Anshul Kamboj* 11(6), Jamie Overton 16(14)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:28:08  iter#22]
+  UI: Chennai Super Kings 181-7 (19.2)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Praful Hinge 0-57 (3.2)
+  this_over=['2', '1', 'Wd']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 181-7 (19.2)  crr=9.36  ps=27(15)  recent=2
+  CB BAT: Anshul Kamboj* 11(6), Jamie Overton 16(14)
+  CB BOWL: Nitish Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Reddy
+
+[23:28:29  iter#23]
+  UI: Chennai Super Kings 181-7 (19.2)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Praful Hinge 0-57 (3.2)
+  this_over=['2', '1', 'Wd']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 181-7 (19.2)  crr=9.36  ps=27(15)  recent=2
+  CB BAT: Anshul Kamboj* 11(6), Jamie Overton 16(14)
+  CB BOWL: Nitish Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Reddy
+
+[23:28:51  iter#24]
+  UI: Chennai Super Kings 181-7 (19.2)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Praful Hinge 1-57 (3.2)
+  this_over=['2', '1', 'Wd']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 182-7 (19.3)  crr=9.33  ps=28(16)  recent=2
+  CB BAT: Jamie Overton* 16(14), Anshul Kamboj 12(7)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=181 cb=182 | OVERS: ui=19.2 cb=19.3 | STRIKER: ui=Anshul Kamboj cb=Jamie Overton | BAT_kamboj: ui=11(6) cb=12(7) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:29:11  iter#25]
+  UI: Chennai Super Kings 182-7 (19.3)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Praful Hinge 0-58 (3.3)
+  this_over=['2', '1', 'Wd', '1']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 182-7 (19.3)  crr=9.33  ps=28(16)  recent=2
+  CB BAT: Jamie Overton* 16(14), Anshul Kamboj 12(7)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:29:33  iter#26]
+  UI: Chennai Super Kings 182-7 (19.3)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Praful Hinge 0-58 (3.3)
+  this_over=['2', '1', 'Wd', '1']  fow=7 (unk=7)  last_fow={'wicket': 7, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 182-8 (19.4)  crr=9.25  ps=28(17)  recent=2
+  CB BAT: Anshul Kamboj* 12(7), Nitish Kumar Reddy 4(0)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Jamie Overton  c Liam Livingstone b Praful Hinge 16(15)  - 182/8 in 19.4 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=7 cb=8 | OVERS: ui=19.3 cb=19.4 | STRIKER: ui=Jamie Overton cb=Anshul Kamboj | BATTERS_MISSING_IN_UI: {'reddy'} (ui={'overton', 'kamboj'}, cb={'reddy', 'kamboj'}) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:29:53  iter#27]
+  UI: Chennai Super Kings 182-8 (19.4)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Praful Hinge 0-58 (3.4)
+  this_over=['2', '1', 'Wd', '1', 'W']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 182-8 (19.4)  crr=9.25  ps=28(17)  recent=2
+  CB BAT: Anshul Kamboj* 12(7), Nitish Kumar Reddy 4(0)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Jamie Overton  c Liam Livingstone b Praful Hinge 16(15)  - 182/8 in 19.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Jamie Overton cb=Anshul Kamboj | BATTERS_MISSING_IN_UI: {'reddy'} (ui={'overton', 'kamboj'}, cb={'reddy', 'kamboj'}) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:30:17  iter#28]
+  UI: Chennai Super Kings 182-8 (19.4)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Praful Hinge 0-58 (3.4)
+  this_over=['2', '1', 'Wd', '1', 'W']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 182-8 (19.4)  crr=9.25  ps=28(17)  recent=2
+  CB BAT: Anshul Kamboj* 12(7), Nitish Kumar Reddy 4(0)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Jamie Overton  c Liam Livingstone b Praful Hinge 16(15)  - 182/8 in 19.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Jamie Overton cb=Anshul Kamboj | BATTERS_MISSING_IN_UI: {'reddy'} (ui={'overton', 'kamboj'}, cb={'reddy', 'kamboj'}) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:30:38  iter#29]
+  UI: Chennai Super Kings 182-8 (19.4)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Praful Hinge 0-58 (3.4)
+  this_over=['2', '1', 'Wd', '1', 'W']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: CSK 182-8 (19.4)  crr=9.25  ps=0(0)  recent=...
+  CB BAT: Noor Ahmad* 0(0), Anshul Kamboj 12(7)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Jamie Overton  c Liam Livingstone b Praful Hinge 16(15)  - 182/8 in 19.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Jamie Overton cb=Noor Ahmad | BATTERS_MISSING_IN_UI: {'ahmad'} (ui={'overton', 'kamboj'}, cb={'ahmad', 'kamboj'}) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:31:00  iter#30]
+  UI: Chennai Super Kings 182-8 (19.4)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-60 (3.4)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=short line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=4 [w4/nb0/b0/lb0]
+  CB: CSK 183-8 (19.5)  crr=9.23  ps=1(1)  recent=2
+  CB BAT: Anshul Kamboj* 12(7), Noor Ahmad 1(1)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Jamie Overton  c Liam Livingstone b Praful Hinge 16(15)  - 182/8 in 19.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=182 cb=183 | OVERS: ui=19.4 cb=19.5 | BAT_ahmad: ui=0(0) cb=1(1) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:31:22  iter#31]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-61 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=short line=leg_stump shot=along_ground [vlm]
+  extras: this_over=0 innings=4 [w4/nb0/b0/lb0]
+  CB: CSK 183-8 (19.5)  crr=9.23  ps=1(1)  recent=2
+  CB BAT: Anshul Kamboj* 12(7), Noor Ahmad 1(1)
+  CB BOWL: Nitish Kumar Reddy 2-31 (4)
+  LAST WKT: Jamie Overton  c Liam Livingstone b Praful Hinge 16(15)  - 182/8 in 19.4 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[23:31:43  iter#32]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: CSK 184-8 (20)  crr=9.2  ps=2(2)  recent=2
+  CB BAT: Anshul Kamboj* 13(8), Noor Ahmad 1(1)
+  CB BOWL: Praful Hinge 1-60 (4)
+  LAST WKT: Jamie Overton  c Liam Livingstone b Praful Hinge 16(15)  - 182/8 in 19.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=183 cb=184 | OVERS: ui=19.5 cb=20 | BAT_kamboj: ui=12(7) cb=13(8) | FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=0 cb=1 | BOWL_R: ui=64 cb=60 | BOWL_O: ui=3.5 cb=4
+
+[23:32:05  iter#33]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:32:29  iter#34]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:32:51  iter#35]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:33:12  iter#36]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:33:33  iter#37]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:33:54  iter#38]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:34:17  iter#39]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:34:37  iter#40]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:34:58  iter#41]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:35:19  iter#42]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:35:41  iter#43]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:36:03  iter#44]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:36:24  iter#45]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:36:44  iter#46]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:37:05  iter#47]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:37:28  iter#48]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:37:48  iter#49]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:38:09  iter#50]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:38:30  iter#51]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:38:51  iter#52]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:39:12  iter#53]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:39:32  iter#54]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:39:53  iter#55]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:40:14  iter#56]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:40:35  iter#57]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:40:56  iter#58]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:41:17  iter#59]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade
+
+[23:41:38  iter#60]
+  UI: Chennai Super Kings 183-8 (19.5)  str=Anshul Kamboj nstr=Noor Ahmad  bowl=Praful Hinge 0-64 (3.5)
+  this_over=['2', '1', 'Wd', '1', 'W', 'Wd+1', '1', 'Nb+2']  fow=8 (unk=7)  last_fow={'wicket': 8, 'batter': 'Jamie Overton', 'score': 182, 'overs': '19.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=5 [w4/nb1/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 7 placeholder(s) awaiting broadcast upgrade

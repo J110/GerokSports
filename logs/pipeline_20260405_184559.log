@@ -1,0 +1,584 @@
+[37m[18:46:02 F0 TEST] INFO: ============================================================[0m
+[37m[18:46:02 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[18:46:02 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/149710/srh-vs-lsg-10th-match-indian-premier-league-2026[0m
+[37m[18:46:02 F0 SQUAD] INFO:   Sunrisers Hyderabad: 11 XI + 13 bench[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Travis Head — batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Abhishek Sharma — bat_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Ishan Kishan (C,WK) — wk_batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Heinrich Klaasen (WK) — wk_batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Liam Livingstone — bat_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Aniket Verma — batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Nitish Kumar Reddy — bat_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Harsh Dubey — bowl_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Shivang Kumar — bowl_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Harshal Patel — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Jaydev Unadkat — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Eshan Malinga — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Salil Arora — wk_batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] David Payne — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Shivam Mavi — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Zeeshan Ansari — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Smaran Ravichandran — batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Sakib Hussain — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Kamindu Mendis — bat_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Brydon Carse — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Krains Fuletra — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Onkar Tarmale — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Amit Kumar — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Praful Hinge — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:   Lucknow Super Giants: 11 XI + 13 bench[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Mitchell Marsh — bat_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Rishabh Pant (C,WK) — wk_batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Aiden Markram — batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Nicholas Pooran (WK) — wk_batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Abdul Samad — bat_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Mukul Choudhary (WK) — wk_batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Manimaran Siddharth — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Avesh Khan — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Mohammed Shami — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Digvesh Singh Rathi — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     Prince Yadav — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Ayush Badoni — bat_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Matthew Breetzke — wk_batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Shahbaz Ahmed — bowl_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Anrich Nortje — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Himmat Singh — batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Akshat Raghuwanshi — batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Josh Inglis — wk_batter[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Arshin Kulkarni — bat_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Naman Tiwari — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Arjun Tendulkar — bowl_allrounder[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Mayank Prabhu Yadav — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Akash Maharaj Singh — bowler[0m
+[37m[18:46:02 F0 SQUAD] INFO:     [bench] Mohsin Khan — bowler[0m
+[37m[18:46:02 F0 TEST] INFO: Teams: ['Sunrisers Hyderabad', 'Lucknow Super Giants'][0m
+[37m[18:46:02 F0 TEST] INFO: Team variants: ['GIA', 'GIANTS', 'HYD', 'HYDERABAD', 'LKN', 'LSG', 'LU', 'LUC', 'LUCKNOW', 'LUCKNOW SUPER GIANTS', 'SH', 'SRH', 'SU', 'SUN', 'SUNRISERS', 'SUNRISERS HYDERABAD', 'SUP', 'SUPER'][0m
+[37m[18:46:03 F0 TEST] INFO: Found Firefox window: id=6310 1739.0x1230.0 "SRH vs LSG Live video streaming | TATA IPL 2026"[0m
+[W NNPACK.cpp:64] Could not initialize NNPACK! Reason: Unsupported hardware.
+[37m[18:46:04 F0 FIELD] INFO: Pitch detected from green mask at (0.48, 0.42) (fallback — will recalibrate from people)[0m
+[37m[18:46:04 F0 TEST] INFO: ============================================================[0m
+[37m[18:46:04 F0 TEST] INFO: [CONFIG] Vision:    Together AI (Qwen3-VL-8B)[0m
+[37m[18:46:04 F0 TEST] INFO: [CONFIG] Action:    Groq Scout 17B (parallel)[0m
+[37m[18:46:04 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[18:46:04 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[18:46:04 F0 TEST] INFO: PIPELINE STARTED — 300s — NO TEAM ASSUMPTION[0m
+[37m[18:46:04 F0 TEST] INFO: ============================================================[0m
+[37m[18:46:05 F1 ACTION] INFO: [0.9s] BOWLING: 
+- The delivery is not shown, but the batter seems to have just played ...[0m
+[31m[18:46:09 F1 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:46:11 F2 ACTION] INFO: NO_ACTION (0.6s)[0m
+[37m[18:46:15 F2 VISION] INFO: [SCOREBOARD] 4.7s (702 chars)[0m
+[37m[18:46:15 F2 TEST] INFO: 
+=======================================================[0m
+[37m[18:46:15 F2 TEST] INFO: [F2] SCOREBOARD — #1[0m
+[37m[18:46:15 F2 TEST] INFO:   [V 4698ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+LIVE SCOREBOARD STRIP:
+Top line: LSG 114-4 (15) | v SRH | HYDERABAD
+Bottom line: > SAMAD 6(6) | PANT 34(32) | bowler: 6-0-32-0 (figures shown as W-R(overs))
+
+INFO_PANEL: not visible
+
+[0m
+[37m[18:46:16 F2 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:46:16 F2 TEST] INFO: [TEAM] Detected from players: ['SAMAD', 'PANT'] → Lucknow Super Giants batting (2 matches)[0m
+[37m[18:46:16 F2 BOARD] INFO: Scorecards built: Lucknow Super Giants (24 bat) vs Sunrisers Hyderabad (24 bowl)[0m
+[37m[18:46:16 F2 TEST] INFO: === TEAMS SET: Lucknow Super Giants batting (inn 1) vs Sunrisers Hyderabad bowling ===[0m
+[37m[18:46:16 F2 TEST] INFO:   [E 933ms] visible_team=Lucknow Super Giants score=114-4 (15) target=None rr=None[0m
+[37m[18:46:16 F2 TEST] INFO:     BAT: SAMAD 6(6) [0m
+[37m[18:46:16 F2 TEST] INFO:     BAT: PANT 34(32) [0m
+[37m[18:46:17 F2 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:46:17 F2 TEST] INFO:   [S] Hint: Current batters: SAMAD and PANT. Bowler: unknown. Read their stats from the scoreboard.[0m
+[37m[18:46:17 F2 BOARD] INFO: Batter activated: Abdul Samad[0m
+[37m[18:46:17 F2 BOARD] INFO: Abdul Samad: 0(0) -> 6(6) [F2][0m
+[37m[18:46:17 F2 BOARD] INFO: Batter activated: Rishabh Pant[0m
+[37m[18:46:17 F2 BOARD] INFO: Rishabh Pant: 0(0) -> 34(32) [F2][0m
+[37m[18:46:17 F2 TEST] INFO:   [S 921ms] Changes: ['bat:Abdul Samad=6(6)', 'bat:Rishabh Pant=34(32)'][0m
+[37m[18:46:17 F2 TEST] INFO:   Total: 6551ms (V:4698 E:933 S:921)[0m
+[37m[18:46:17 F2 TEST] INFO:   STATE: Lucknow Super Giants None-None (None) inn=1 | Bat: Rishabh Pant(34) Abdul Samad(6) | Bowl: None[0m
+[37m[18:46:19 F3 ACTION] INFO: NO_ACTION (0.4s)[0m
+[31m[18:46:23 F3 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:46:25 F4 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:46:25 F4 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:46:25 F4 TEST] INFO: [F4] AD 805ms (#1)[0m
+[37m[18:46:27 F5 ACTION] INFO: NO_ACTION (0.3s)[0m
+[31m[18:46:31 F5 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:46:33 F6 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:46:33 F6 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:46:33 F6 TEST] INFO: [F6] AD 817ms (#2)[0m
+[37m[18:46:35 F7 ACTION] INFO: [0.5s] The batter plays a defensive shot. 
+BATTING: 
+- What shot did the batter play? d...[0m
+[37m[18:46:35 F7 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:46:35 F7 TEST] INFO: [F7] AD 804ms (#3)[0m
+[37m[18:46:37 F8 ACTION] INFO: [0.6s] The batsman is playing a defensive shot. The ball seems to have been bowled shor...[0m
+[37m[18:46:37 F8 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:46:37 F8 TEST] INFO: [F8] AD 659ms (#4)[0m
+[37m[18:46:39 F9 ACTION] INFO: NO_ACTION (0.4s)[0m
+[31m[18:46:43 F9 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:46:45 F10 ACTION] INFO: NO_ACTION (0.4s)[0m
+[37m[18:46:45 F10 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:46:45 F10 TEST] INFO: [F10] AD 817ms (#5)[0m
+[37m[18:46:47 F11 ACTION] INFO: [0.4s] The batter played a defensive shot. 
+The ball was on a good length, outside off ...[0m
+[37m[18:46:47 F11 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:46:47 F11 TEST] INFO: [F11] AD 743ms (#6)[0m
+[37m[18:46:49 F12 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:46:49 F12 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:46:49 F12 TEST] INFO: [F12] AD 656ms (#7)[0m
+[37m[18:46:50 F13 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:46:51 F13 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:46:51 F13 TEST] INFO: [F13] AD 749ms (#8)[0m
+[FIELD WARN] Powerplay but 3 outside circle (max 2). Possible misclassification.
+[37m[18:46:52 F14 ACTION] INFO: NO_ACTION (0.4s)[0m
+[37m[18:46:53 F14 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:46:53 F14 TEST] INFO: [F14] AD 672ms (#9)[0m
+[37m[18:46:55 F15 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:46:55 F15 ACTION] INFO: NO_ACTION (0.8s)[0m
+[37m[18:46:55 F15 TEST] INFO: [F15] AD 775ms (#10)[0m
+[FIELD] Pitch detected from people cluster: (0.10, 0.87) spread=0.292
+[37m[18:46:56 F16 ACTION] INFO: NO_ACTION (0.5s)[0m
+[37m[18:46:57 F16 VISION] INFO: [ADVERTISEMENT] 1.6s (13 chars)[0m
+[37m[18:46:57 F16 TEST] INFO: [F16] AD 1597ms (#11)[0m
+[37m[18:46:59 F17 ACTION] INFO: NO_ACTION (0.5s)[0m
+[37m[18:46:59 F17 VISION] INFO: [ADVERTISEMENT] 0.9s (13 chars)[0m
+[37m[18:46:59 F17 TEST] INFO: [F17] AD 862ms (#12)[0m
+[37m[18:47:01 F18 ACTION] INFO: NO_ACTION (0.4s)[0m
+[37m[18:47:01 F18 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:47:01 F18 TEST] INFO: [F18] AD 833ms (#13)[0m
+[37m[18:47:03 F19 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:47:04 F19 VISION] INFO: [ADVERTISEMENT] 1.0s (13 chars)[0m
+[37m[18:47:04 F19 TEST] INFO: [F19] AD 1044ms (#14)[0m
+[37m[18:47:05 F20 ACTION] INFO: NO_ACTION (0.4s)[0m
+[37m[18:47:06 F20 VISION] INFO: [ADVERTISEMENT] 1.1s (13 chars)[0m
+[37m[18:47:06 F20 TEST] INFO: [F20] AD 1112ms (#15)[0m
+[37m[18:47:07 F21 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:47:08 F21 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:47:08 F21 TEST] INFO: [F21] AD 693ms (#16)[0m
+[37m[18:47:09 F22 ACTION] INFO: NO_ACTION (0.3s)[0m
+[31m[18:47:14 F22 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:47:16 F23 ACTION] INFO: NO_ACTION (0.5s)[0m
+[37m[18:47:16 F23 VISION] INFO: [ADVERTISEMENT] 1.2s (13 chars)[0m
+[37m[18:47:16 F23 TEST] INFO: [F23] AD 1208ms (#17)[0m
+[37m[18:47:18 F24 ACTION] INFO: NO_ACTION (0.5s)[0m
+[37m[18:47:19 F24 VISION] INFO: [ADVERTISEMENT] 1.0s (13 chars)[0m
+[37m[18:47:19 F24 TEST] INFO: [F24] AD 1015ms (#18)[0m
+[37m[18:47:20 F25 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:47:21 F25 VISION] INFO: [ADVERTISEMENT] 1.1s (13 chars)[0m
+[37m[18:47:21 F25 TEST] INFO: [F25] AD 1066ms (#19)[0m
+[FIELD WARN] Powerplay but 3 outside circle (max 2). Possible misclassification.
+[37m[18:47:32 F35 TEST] INFO: [F35] Pixel skip #10[0m
+[37m[18:47:36 F38 ACTION] INFO: NO_ACTION (0.4s)[0m
+[37m[18:47:37 F38 VISION] INFO: [ADVERTISEMENT] 1.3s (13 chars)[0m
+[37m[18:47:37 F38 TEST] INFO: [F38] AD 1297ms (#20)[0m
+[37m[18:47:39 F39 ACTION] INFO: NO_ACTION (0.5s)[0m
+[31m[18:47:43 F39 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:47:45 F40 ACTION] INFO: [0.7s] BOWLING: 
+- The ball has just been hit, so I assume it was a good length deliver...[0m
+[37m[18:47:46 F40 VISION] INFO: [ADVERTISEMENT] 1.3s (13 chars)[0m
+[37m[18:47:46 F40 TEST] INFO: [F40] AD 1315ms (#21)[0m
+[37m[18:47:47 F41 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:47:48 F41 VISION] INFO: [CLOSEUP] 1.2s (157 chars)[0m
+[37m[18:47:48 F41 TEST] INFO: [F41] CLOSEUP 1188ms — — A player in an orange jersey with arms raised in celebration, mouth open in a shout. No scoreboard (#1)[0m
+[37m[18:47:50 F42 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:47:50 F42 ACTION] INFO: [0.9s] The batter played a defensive shot, pushing the ball back to the bowler. The bal...[0m
+[37m[18:47:50 F42 TEST] INFO: [F42] AD 873ms (#22)[0m
+[37m[18:47:52 F43 ACTION] INFO: [0.6s] The batsman is playing a defensive shot. 
+BATTING: 
+- The shot played was a defe...[0m
+[37m[18:47:52 F43 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:47:52 F43 TEST] INFO: [F43] AD 756ms (#23)[0m
+[37m[18:47:54 F44 ACTION] INFO: [0.4s] The batter played a defensive shot. 
+The batter pushed the ball back to the bowl...[0m
+[37m[18:47:54 F44 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:47:54 F44 TEST] INFO: [F44] AD 781ms (#24)[0m
+[37m[18:47:56 F45 ACTION] INFO: [0.6s] BOWLING: 
+- The ball is not visible; it appears the batter is playing a shot aft...[0m
+[37m[18:47:56 F45 VISION] INFO: [ADVERTISEMENT] 0.9s (13 chars)[0m
+[37m[18:47:56 F45 TEST] INFO: [F45] AD 853ms (#25)[0m
+[37m[18:47:58 F46 ACTION] INFO: NO_ACTION (0.4s)[0m
+[37m[18:47:58 F46 VISION] INFO: [ADVERTISEMENT] 1.0s (13 chars)[0m
+[37m[18:47:58 F46 TEST] INFO: [F46] AD 987ms (#26)[0m
+[37m[18:48:00 F47 ACTION] INFO: [0.4s] The batter is preparing to face the bowler, holding a bat vertically in front of...[0m
+[37m[18:48:00 F47 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:48:00 F47 TEST] INFO: [F47] AD 726ms (#27)[0m
+[37m[18:48:02 F48 ACTION] INFO: NO_ACTION (0.6s)[0m
+[31m[18:48:07 F48 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:48:09 F49 ACTION] INFO: [0.9s] BOWLING: 
+- The ball pitched short
+- The line appears to be outside off stump
+- ...[0m
+[37m[18:48:09 F49 VISION] INFO: [ADVERTISEMENT] 1.3s (13 chars)[0m
+[37m[18:48:09 F49 TEST] INFO: [F49] AD 1327ms (#28)[0m
+[37m[18:48:11 F50 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:48:11 F50 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:48:11 F50 TEST] INFO: [F50] AD 774ms (#29)[0m
+[37m[18:48:12 F51 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:48:13 F51 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:48:13 F51 TEST] INFO: [F51] AD 762ms (#30)[0m
+[37m[18:48:16 F53 ACTION] INFO: [0.4s] The batter played a defense shot. The ball was on a good length, outside off stu...[0m
+[37m[18:48:16 F53 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:48:16 F53 TEST] INFO: [F53] AD 769ms (#31)[0m
+[37m[18:48:18 F54 ACTION] INFO: [0.5s] The batter played a defensive shot. The ball was on a good length, pitching outs...[0m
+[37m[18:48:18 F54 VISION] INFO: [ADVERTISEMENT] 1.0s (13 chars)[0m
+[37m[18:48:18 F54 TEST] INFO: [F54] AD 1001ms (#32)[0m
+[37m[18:48:20 F55 ACTION] INFO: NO_ACTION (0.4s)[0m
+[37m[18:48:20 F55 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:48:20 F55 TEST] INFO: [F55] AD 745ms (#33)[0m
+[37m[18:48:22 F56 ACTION] INFO: [0.4s] The batter is playing a defensive shot. The ball has been driven back to the bow...[0m
+[37m[18:48:22 F56 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:48:22 F56 TEST] INFO: [F56] AD 754ms (#34)[0m
+[37m[18:48:24 F57 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:48:24 F57 VISION] INFO: [CLOSEUP] 1.2s (264 chars)[0m
+[37m[18:48:24 F57 TEST] INFO: [F57] CLOSEUP 1234ms — — A player in a blue jersey with "Shree Cement" and "Jio" logos is celebrating with a raised fist an (#2)[0m
+[37m[18:48:26 F58 ACTION] INFO: NO_ACTION (0.6s)[0m
+[37m[18:48:26 F58 VISION] INFO: [ADVERTISEMENT] 0.9s (13 chars)[0m
+[37m[18:48:26 F58 TEST] INFO: [F58] AD 852ms (#35)[0m
+[37m[18:48:28 F59 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:48:32 F59 VISION] INFO: [GRAPHIC] 4.2s (1305 chars)[0m
+[37m[18:48:32 F59 TEST] INFO: 
+=======================================================[0m
+[37m[18:48:32 F59 TEST] INFO: [F59] GRAPHIC — #2[0m
+[37m[18:48:32 F59 TEST] INFO:   [V 4154ms] CRITICAL — TWO SOURCES OF DATA ON SCREEN:
+
+1. LIVE SCOREBOARD STRIP (bottom bar, always present during play):
+   Small text. Shows: team score-wickets (overs), two batters with MATCH runs(balls), current bowler with MATCH figures W-R(overs).
+   Top l[0m
+[37m[18:48:33 F59 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:48:33 F59 TEST] INFO:   [GUARD] Info panel visible + score jump 0→114 — stripping[0m
+[37m[18:48:33 F59 TEST] INFO:   [E 1091ms] visible_team=SUPER GIANTS score=None-None (15) target=None rr=None[0m
+[37m[18:48:33 F59 TEST] INFO:     BAT: MARKRAM 45(27) [0m
+[37m[18:48:33 F59 TEST] INFO:     BAT: PANT 34(32) *[0m
+[37m[18:48:33 F59 TEST] INFO:     BOWL: HARSH 1-12 (3)[0m
+[37m[18:48:34 F59 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:48:34 F59 TEST] INFO:   [S] Hint: Current batters: MARKRAM and PANT. Bowler: HARSH[0m
+[33m[18:48:34 F59 BOARD] WARN: Batter 'Aiden Markram' rejected — 2 active with stats: ['Rishabh Pant', 'Abdul Samad'][0m
+[37m[18:48:34 F59 BOARD] INFO: Harsh Dubey: None/None (None) -> 0/12 (3.0) [F59][0m
+[37m[18:48:34 F59 TEST] INFO:   [S 866ms] Changes: ['bat:Rishabh Pant=34(32)', 'bowl:Harsh Dubey'][0m
+[37m[18:48:34 F59 TEST] INFO:   Total: 6111ms (V:4154 E:1091 S:866)[0m
+[37m[18:48:34 F59 TEST] INFO:   STATE: Lucknow Super Giants None-None (None) inn=1 | Bat: Rishabh Pant(34) Abdul Samad(6) | Bowl: Harsh Dubey 0-12[0m
+[37m[18:48:41 F65 ACTION] INFO: NO_ACTION (0.4s)[0m
+[31m[18:48:46 F65 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:48:47 F66 ACTION] INFO: NO_ACTION (0.4s)[0m
+[31m[18:48:52 F66 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:48:53 F67 ACTION] INFO: NO_ACTION (0.4s)[0m
+[37m[18:48:54 F67 VISION] INFO: [ADVERTISEMENT] 0.9s (13 chars)[0m
+[37m[18:48:54 F67 TEST] INFO: [F67] AD 895ms (#36)[0m
+[37m[18:48:55 F68 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:48:56 F68 VISION] INFO: [ADVERTISEMENT] 1.2s (13 chars)[0m
+[37m[18:48:56 F68 TEST] INFO: [F68] AD 1228ms (#37)[0m
+[37m[18:48:58 F69 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:48:59 F69 VISION] INFO: [ADVERTISEMENT] 1.9s (13 chars)[0m
+[37m[18:49:00 F69 TEST] INFO: [F69] AD 1868ms (#38)[0m
+[37m[18:49:01 F70 ACTION] INFO: NO_ACTION (0.8s)[0m
+[37m[18:49:02 F70 VISION] INFO: [CLOSEUP] 1.4s (139 chars)[0m
+[37m[18:49:02 F70 TEST] INFO: [F70] CLOSEUP 1445ms — — Two batters in SRH jerseys visible, one holding bat over shoulder, other holding bat upright. Fiel (#3)[0m
+[37m[18:49:04 F71 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:49:04 F71 VISION] INFO: [ADVERTISEMENT] 0.8s (13 chars)[0m
+[37m[18:49:04 F71 TEST] INFO: [F71] AD 780ms (#39)[0m
+[37m[18:49:05 F72 ACTION] INFO: NO_ACTION (0.3s)[0m
+[37m[18:49:06 F72 VISION] INFO: [ADVERTISEMENT] 1.0s (13 chars)[0m
+[37m[18:49:06 F72 TEST] INFO: [F72] AD 994ms (#40)[0m
+[37m[18:49:08 F73 ACTION] INFO: [0.6s] The bowler just delivered the ball. A fielder is chasing the ball which has been...[0m
+[37m[18:49:09 F73 VISION] INFO: [SCOREBOARD] 1.8s (546 chars)[0m
+[37m[18:49:09 F73 TEST] INFO: 
+=======================================================[0m
+[37m[18:49:09 F73 TEST] INFO: [F73] SCOREBOARD — #3[0m
+[37m[18:49:09 F73 TEST] INFO:   [V 1810ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+LIVE SCOREBOARD STRIP:
+Top line: SRH 135-3 (14.3)
+Bottom line: AIDEN MARKRAM 45(27), RAVI BISHNOI 0(1), BOWLER: HARSH 0-0-1-0
+
+INFO_PANEL: FOURS 6, SIXES 2
+
+In the rest of the frame: [0m
+[37m[18:49:10 F73 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:49:10 F73 TEST] INFO:   [E 1348ms] visible_team=Sunrisers Hyderabad score=135-3 (14.3) target=None rr=None[0m
+[37m[18:49:10 F73 TEST] INFO:     BAT: AIDEN MARKRAM 45(27) *[0m
+[37m[18:49:10 F73 TEST] INFO:     BOWL: HARSH 0-0 (0)[0m
+[37m[18:49:11 F73 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:49:11 F73 TEST] INFO:   [S] Hint: Current batters: MARKRAM, RAVI BISHNOI. Bowler: HARSH. Read their stats from the scoreboard.[0m
+[37m[18:49:11 F73 BOARD] INFO: score: None -> 135 [F73][0m
+[37m[18:49:11 F73 BOARD] INFO: overs: None -> 14.3 [F73][0m
+[37m[18:49:11 F73 BOARD] INFO: [CV:wickets] First value 3 — awaiting confirmation[0m
+[33m[18:49:11 F73 BOARD] WARN: Batter 'Aiden Markram' rejected — 2 batters already active: ['Rishabh Pant', 'Abdul Samad'][0m
+[37m[18:49:11 F73 TEST] INFO:   [WARN] Score changed but no batter update — stats may be delayed[0m
+[37m[18:49:11 F73 TEST] INFO:   [S 874ms] Changes: ['score→135', 'overs→14.3', 'bowl:HARSH'][0m
+[37m[18:49:11 F73 TEST] INFO:   Total: 4032ms (V:1810 E:1348 S:874)[0m
+[37m[18:49:11 F73 BOARD] INFO: Over 13 complete: no ball data (by Harsh Dubey)[0m
+[37m[18:49:11 F73 TEST] INFO:   STATE: Lucknow Super Giants 135-None (14.3) inn=1 | Bat: Rishabh Pant(34) Abdul Samad(6) | Bowl: Harsh Dubey 0-12[0m
+[37m[18:49:11 F73 COMMENTARY] INFO: [BALL] EXTRA | 14.3 | bat=None bowl=Harsh Dubey +135 runs[0m
+[37m[18:49:11 F73 TEST] INFO:   [BALL EVENT] EXTRA | 14.3 | +135 runs | The bowler just delivered the ball. A fielder is chasing the[0m
+[FIELD WARN] Middle overs but 9 outside circle (max 5). Possible misclassification.
+[37m[18:49:11 F73 FIELD] INFO: [F73] OC-deep_cover_point moved to OC-deep_extra_cover[0m
+[37m[18:49:11 F73 FIELD] INFO: [F73] OC-deep_cover_point moved to OC-deep_point[0m
+[37m[18:49:11 F73 FIELD] INFO: [F73] OC-deep_extra_cover moved to OC-wide_long_off[0m
+[37m[18:49:11 F73 FIELD] INFO: [F73] OC-deep_extra_cover moved to OC-wide_long_off[0m
+[37m[18:49:11 F73 FIELD] INFO: [F73] IC-cover pushed back — defensive[0m
+[37m[18:49:11 F73 FIELD] INFO: [F73] IC-cover pushed back — defensive[0m
+[37m[18:49:11 F73 FIELD] INFO: [F73] IC-cover pushed back — defensive[0m
+[37m[18:49:13 F74 ACTION] INFO: [0.5s] The batter is walking away from the camera, likely having played a shot. The sce...[0m
+[31m[18:49:17 F74 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:49:19 F75 ACTION] INFO: [0.7s] BOWLING: 
+- The ball pitched on a good length.
+- The line appears to be outside ...[0m
+[37m[18:49:22 F75 VISION] INFO: [SCOREBOARD] 3.5s (833 chars)[0m
+[37m[18:49:22 F75 TEST] INFO: 
+=======================================================[0m
+[37m[18:49:22 F75 TEST] INFO: [F75] SCOREBOARD — #4[0m
+[37m[18:49:22 F75 TEST] INFO:   [V 3505ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+LIVE SCOREBOARD STRIP:
+Top line: SRH 45-2 (27) — team abbreviation, score-wickets, overs in parentheses
+Bottom line: AIDEN MARKRAM 45(27), FOURS 6, SIXES 2 — batter name with runs(bal[0m
+[37m[18:49:23 F75 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:49:23 F75 TEST] INFO:   [E 1282ms] visible_team=Sunrisers Hyderabad score=45-2 (27) target=None rr=None[0m
+[37m[18:49:23 F75 TEST] INFO:     BAT: AIDEN MARKRAM 45(27) *[0m
+[37m[18:49:23 F75 TEST] INFO:     BOWL: HARSH None-None (None)[0m
+[37m[18:49:24 F75 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:49:24 F75 TEST] INFO:   [S] Hint: Current batters: AIDEN MARKRAM and RAVI BISHNOI. Bowler: HARSH[0m
+[33m[18:49:24 F75 BOARD] WARN: Batter 'Aiden Markram' rejected — 2 batters already active: ['Rishabh Pant', 'Abdul Samad'][0m
+[37m[18:49:24 F75 TEST] INFO:   [S 737ms] Changes: none[0m
+[37m[18:49:24 F75 TEST] INFO:   Total: 5524ms (V:3505 E:1282 S:737)[0m
+[37m[18:49:24 F75 TEST] INFO:   STATE: Lucknow Super Giants 135-None (14.3) inn=1 | Bat: Rishabh Pant(34) Abdul Samad(6) | Bowl: Harsh Dubey 0-12[0m
+[37m[18:49:24 F75 TEST] INFO:   [ACTION] BOWLING: 
+- The ball pitched on a good length.
+- The line appears to be outside [0m
+[37m[18:49:24 F75 FIELD] INFO: [F75] OC-deep_cover moved to OC-deep_extra_cover[0m
+[37m[18:49:24 F75 FIELD] INFO: [F75] OC-deep_cover_point moved to OC-deep_cover[0m
+[37m[18:49:24 F75 FIELD] INFO: [F75] OC-deep_cover moved to OC-deep_point[0m
+[37m[18:49:24 F75 FIELD] INFO: [F75] OC-deep_extra_cover moved to OC-deep_point[0m
+[37m[18:49:24 F75 FIELD] INFO: [F75] OC-wide_long_off moved to OC-deep_backward_point[0m
+[37m[18:49:26 F76 ACTION] INFO: [0.8s] BOWLING: 
+- The ball was a full delivery.
+- The line appears to be outside off s...[0m
+[37m[18:49:27 F76 VISION] INFO: [CLOSEUP] 1.5s (330 chars)[0m
+[37m[18:49:27 F76 TEST] INFO: [F76] CLOSEUP 1474ms — — A close-up shot from behind a batter’s legs, showing their pads, bat, and shoes. The batter is sta (#4)[0m
+[37m[18:49:30 F78 ACTION] INFO: NO_ACTION (0.6s)[0m
+[31m[18:49:34 F78 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:49:36 F79 ACTION] INFO: NO_ACTION (0.7s)[0m
+[37m[18:49:37 F79 VISION] INFO: [ADVERTISEMENT] 1.9s (13 chars)[0m
+[37m[18:49:37 F79 TEST] INFO: [F79] AD 1930ms (#41)[0m
+[37m[18:49:38 F80 TEST] INFO: [F80] Pixel skip #20[0m
+[37m[18:49:40 F81 ACTION] INFO: [0.4s] The batter played a defensive shot. The ball was driven straight back down the g...[0m
+[31m[18:49:45 F81 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:49:47 F82 ACTION] INFO: [0.8s] The batter played a defensive shot. The ball was driven back to the bowler, alon...[0m
+[31m[18:49:51 F82 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:49:53 F83 ACTION] INFO: [0.6s] The batter is playing a defensive shot, pushing the ball back to the bowler. The...[0m
+[31m[18:49:57 F83 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:49:59 F84 ACTION] INFO: [0.8s] The batter is holding a bat and appears to be preparing to play a shot. The scen...[0m
+[31m[18:50:03 F84 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:50:05 F85 ACTION] INFO: [0.7s] BOWLING: 
+The bowler is at the top of their mark and appears to be running in.
+
+...[0m
+[31m[18:50:09 F85 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:50:11 F86 ACTION] INFO: NO_ACTION (0.5s)[0m
+[37m[18:50:13 F86 VISION] INFO: [SCOREBOARD] 2.2s (722 chars)[0m
+[37m[18:50:13 F86 TEST] INFO: 
+=======================================================[0m
+[37m[18:50:13 F86 TEST] INFO: [F86] SCOREBOARD — #5[0m
+[37m[18:50:13 F86 TEST] INFO:   [V 2244ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+LIVE SCOREBOARD STRIP:
+Top line: LSG 118-4 (15.1) v SRH
+Bottom line: SAMAD 6(6) > PANT 38(33) | UNADKAT 0-28 (2.1) | TO WIN 39 OFF 29
+
+INFO_PANEL: not visible
+
+SPEED: not visible
+
+EXT[0m
+[37m[18:50:14 F86 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:50:14 F86 TEST] INFO:   [E 952ms] visible_team=Lucknow Super Giants score=118-4 (15.1) target=None rr=None[0m
+[37m[18:50:14 F86 TEST] INFO:     BAT: SAMAD 6(6) [0m
+[37m[18:50:14 F86 TEST] INFO:     BAT: PANT 38(33) *[0m
+[37m[18:50:14 F86 TEST] INFO:     BOWL: UNADKAT 0-28 (2.1)[0m
+[37m[18:50:15 F86 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:50:15 F86 TEST] INFO:   [S] Hint: Current batters: PANT and SAMAD. Bowler: UNADKAT. Read their stats from the scoreboard.[0m
+[37m[18:50:15 F86 BOARD] INFO: [CV:overs] Jump 87→91 (+4.0) HOLDING[0m
+[37m[18:50:15 F86 BOARD] INFO: [CV:wickets] Initial changed 4→4 — re-waiting[0m
+[37m[18:50:15 F86 BOARD] INFO: Rishabh Pant: 34(32) -> 38(33) [F86][0m
+[37m[18:50:15 F86 BOARD] INFO: Jaydev Unadkat: None/None (None) -> 0/28 (2.1) [F86][0m
+[37m[18:50:15 F86 TEST] INFO:   [S 1034ms] Changes: ['bat:Rishabh Pant=38(33)', 'bat:Abdul Samad=6(6)', 'bowl:Jaydev Unadkat'][0m
+[37m[18:50:15 F86 TEST] INFO:   Total: 4230ms (V:2244 E:952 S:1034)[0m
+[37m[18:50:15 F86 TEST] INFO:   STATE: Lucknow Super Giants 135-None (14.3) inn=1 | Bat: Rishabh Pant(38) Abdul Samad(6) | Bowl: Jaydev Unadkat 0-28[0m
+[37m[18:50:16 F87 ACTION] INFO: [0.5s] The batter played a pull shot, making contact with the middle of the bat, and th...[0m
+[37m[18:50:18 F87 VISION] INFO: [CLOSEUP] 1.8s (258 chars)[0m
+[37m[18:50:18 F87 TEST] INFO: [F87] CLOSEUP 1806ms — — A batter with a beard and styled hair is shown in a close-up, looking down with a slight smile. Th (#5)[0m
+[37m[18:50:19 F88 ACTION] INFO: [0.5s] BATTING: 
+- The batter played a pull shot.
+- The ball went to midwicket.
+- The b...[0m
+[37m[18:50:19 F88 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[18:50:19 F88 TEST] INFO: [F88] AD 713ms (#42)[0m
+[37m[18:50:22 F89 ACTION] INFO: [0.9s] BOWLING: 
+- The ball pitched at a good length
+- The line is outside off stump
+- ...[0m
+[31m[18:50:26 F89 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:50:27 F90 ACTION] INFO: [0.6s] The ball seems to have been bowled, and it appears to have been a good-length de...[0m
+[37m[18:50:29 F90 VISION] INFO: [ADVERTISEMENT] 1.7s (13 chars)[0m
+[37m[18:50:29 F90 TEST] INFO: [F90] AD 1701ms (#43)[0m
+[FIELD WARN] Middle overs but 6 outside circle (max 5). Possible misclassification.
+[37m[18:50:30 F91 ACTION] INFO: NO_ACTION (0.4s)[0m
+[37m[18:50:32 F91 VISION] INFO: [CLOSEUP] 1.9s (197 chars)[0m
+[37m[18:50:32 F91 TEST] INFO: [F91] CLOSEUP 1914ms — — A player in a blue jersey with "Shree Cement" and "Kühl" logos is shown in a close-up, looking dir (#6)[0m
+[37m[18:50:34 F92 ACTION] INFO: NO_ACTION (0.9s)[0m
+[31m[18:50:38 F92 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:50:44 F97 ACTION] INFO: [0.7s] The scene shows a live delivery. The bowler is at the top of their mark, and a b...[0m
+[37m[18:50:48 F97 VISION] INFO: [SCOREBOARD] 4.4s (617 chars)[0m
+[37m[18:50:48 F97 TEST] INFO: 
+=======================================================[0m
+[37m[18:50:48 F97 TEST] INFO: [F97] SCOREBOARD — #6[0m
+[37m[18:50:48 F97 TEST] INFO:   [V 4438ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+LIVE SCOREBOARD STRIP:
+Top line: LSG 118-4 (15.1)
+Bottom line: SAMAD 6(6) > PANT 38(33) | UNADKAT 0-28 (2.1)
+
+INFO_PANEL: TO WIN 39 OFF 29
+
+In the rest of the frame: A bowler (UNADKAT[0m
+[37m[18:50:50 F97 EXTRACT] INFO: Extracted in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:50:50 F97 TEST] INFO:   [E 1370ms] visible_team=Lucknow Super Giants score=118-4 (15.1) target=None rr=None[0m
+[37m[18:50:50 F97 TEST] INFO:     BAT: SAMAD 6(6) [0m
+[37m[18:50:50 F97 TEST] INFO:     BAT: PANT 38(33) *[0m
+[37m[18:50:50 F97 TEST] INFO:     BOWL: UNADKAT 0-28 (2.1)[0m
+[37m[18:50:50 F97 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:50:50 F97 TEST] INFO:   [S] Hint: Current batters: PANT and SAMAD. Bowler: UNADKAT. Read their stats from the scoreboard.[0m
+[37m[18:50:50 F97 BOARD] INFO: [CV:overs] Jump 87→91 CONFIRMED after 2 sightings[0m
+[37m[18:50:50 F97 BOARD] INFO: overs: 14.3 -> 15.1 [F97][0m
+[37m[18:50:50 F97 BOARD] INFO: [CV:wickets] Initial 4 CONFIRMED[0m
+[37m[18:50:50 F97 BOARD] INFO: wickets: None -> 4 [F97][0m
+[37m[18:50:50 F97 BOARD] INFO: [INFER] Mitchell Marsh (opener pos 1) dismissed — openers always bat, 4 wickets fallen[0m
+[37m[18:50:50 F97 BOARD] INFO: [INFER] Aiden Markram (pos 3) NOT dismissed — could be incoming batter (only 0 seen between)[0m
+[37m[18:50:50 F97 BOARD] INFO: [INFER] Nicholas Pooran (pos 4) NOT dismissed — could be incoming batter (only 0 seen between)[0m
+[37m[18:50:50 F97 TEST] INFO:   [S 960ms] Changes: ['overs→15.1', 'wickets→4', 'bat:Rishabh Pant=38(33)', 'bat:Abdul Samad=6(6)', 'bowl:Jaydev Unadkat'][0m
+[37m[18:50:50 F97 TEST] INFO:   Total: 6768ms (V:4438 E:1370 S:960)[0m
+[37m[18:50:50 F97 BOARD] INFO: Over 14 complete: no ball data (by Jaydev Unadkat)[0m
+[37m[18:50:50 F97 TEST] INFO:   STATE: Lucknow Super Giants 135-4 (15.1) inn=1 | Bat: Rishabh Pant(38) Abdul Samad(6) | Bowl: Jaydev Unadkat 0-28[0m
+[37m[18:50:50 F97 COMMENTARY] INFO: [BALL] WICKET | 15.1 | bat=None bowl=Jaydev Unadkat +0 runs[0m
+[37m[18:50:50 F97 TEST] INFO:   [BALL EVENT] WICKET | 15.1 | +0 runs | The scene shows a live delivery. The bowler is at the top of[0m
+[37m[18:50:50 F97 FIELD] INFO: [F97] OC-deep_cover_point moved to OC-deep_point[0m
+[37m[18:50:50 F97 FIELD] INFO: [F97] IC-mid_on pushed back — defensive[0m
+[37m[18:50:50 F97 FIELD] INFO: [F97] OC-deep_cover_point moved to OC-deep_cover[0m
+[37m[18:50:50 F97 FIELD] INFO: [F97] OC-wide_long_off moved to OC-deep_cover[0m
+[37m[18:50:50 F97 FIELD] INFO: [F97] OC-deep_cover_point moved to OC-deep_extra_cover[0m
+[37m[18:50:53 F99 ACTION] INFO: [0.6s] The batter is playing a defensive shot. The ball is along the ground to midwicke...[0m
+[37m[18:50:56 F99 VISION] INFO: [SCOREBOARD] 3.0s (606 chars)[0m
+[37m[18:50:56 F99 TEST] INFO: 
+=======================================================[0m
+[37m[18:50:56 F99 TEST] INFO: [F99] SCOREBOARD — #7[0m
+[37m[18:50:56 F99 TEST] INFO:   [V 3037ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+LIVE SCOREBOARD STRIP:
+Top line: LSG 118-4 (15.1) v SRH
+Bottom line: SAMAD 6(6) > PANT 38(33) | BOWLER: UNADKAT 6-0-38-0 | TO WIN 39 OFF 29
+
+INFO_PANEL: SPEED 111.0 kph
+
+SPEED: 111.0
+[0m
+[37m[18:50:58 F99 EXTRACT] INFO: Extracted in 2.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:50:58 F99 TEST] INFO:   [E 2514ms] visible_team=Lucknow Super Giants score=118-4 (15.1) target=None rr=9.37[0m
+[37m[18:50:58 F99 TEST] INFO:     BAT: SAMAD 6(6) *[0m
+[37m[18:50:58 F99 TEST] INFO:     BAT: PANT 38(33) [0m
+[37m[18:50:58 F99 TEST] INFO:     BOWL: UNADKAT 0-38 (6)[0m
+[37m[18:50:59 F99 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:50:59 F99 TEST] INFO:   [S] Hint: Current batters: SAMAD and PANT. Bowler: UNADKAT. Read their stats from the scoreboard.[0m
+[37m[18:50:59 F99 BOARD] INFO: [CV:score] Sustained decrease: 135 → 118 (3 frames, 87%). Correcting.[0m
+[37m[18:50:59 F99 BOARD] INFO: score: 135 -> 118 [F99][0m
+[37m[18:50:59 F99 BOARD] INFO: [GUARD] Bowler Jaydev Unadkat overs 6 > 4.0 (T20 max) — career stat, rejecting all figures[0m
+[37m[18:50:59 F99 TEST] INFO:   [S 913ms] Changes: ['score→118', 'overs→15.1', 'wickets→4', 'bat:Abdul Samad=6(6)', 'bat:Rishabh Pant=38(33)', 'bowl:Jaydev Unadkat'][0m
+[37m[18:50:59 F99 TEST] INFO:   Total: 6465ms (V:3037 E:2514 S:913)[0m
+[37m[18:50:59 F99 TEST] INFO:   STATE: Lucknow Super Giants 118-4 (15.1) inn=1 | Bat: Rishabh Pant(38) Abdul Samad(6) | Bowl: Jaydev Unadkat 0-28[0m
+[37m[18:50:59 F99 COMMENTARY] INFO: [BALL] -17_RUNS | 15.1 | bat=None bowl=Jaydev Unadkat +-17 runs[0m
+[37m[18:50:59 F99 TEST] INFO:   [BALL EVENT] -17_RUNS | 15.1 | +-17 runs | The batter is playing a defensive shot. The ball is along th[0m
+[37m[18:50:59 F99 FIELD] INFO: [F99] OC-deep_point moved to OC-deep_cover[0m
+[37m[18:50:59 F99 FIELD] INFO: [F99] OC-deep_cover moved to OC-deep_extra_cover[0m
+[37m[18:50:59 F99 FIELD] INFO: [F99] IC-extra_cover brought in — attacking[0m
+[37m[18:51:01 F100 ACTION] INFO: NO_ACTION (0.7s)[0m
+[31m[18:51:05 F100 VISION] ERROR: Vision timeout (5.0s) — skipping frame[0m
+[37m[18:51:07 F100 TEST] INFO: 
+============================================================[0m
+[37m[18:51:07 F100 TEST] INFO: TEST COMPLETE — 304s[0m
+[37m[18:51:07 F100 TEST] INFO:   Frames: 100 | Pipeline: 7 | PixDiff: 25 | Ads: 43 | Context: 6[0m
+[37m[18:51:07 F100 TEST] INFO:   Final: {'score': 118, 'wickets': 4, 'overs': '15.1', 'batting_team': 'Lucknow Super Giants', 'bowling_team': 'Sunrisers Hyderabad', 'striker': None, 'non_striker': None, 'current_bowler': 'Jaydev Unadkat', 'run_rate': None, 'target': None, 'active_batters': {'Rishabh Pant': {'runs': 38, 'balls': 33}, 'Abdul Samad': {'runs': 6, 'balls': 6}}, 'innings': 1}[0m
+[37m[18:51:07 F100 TEST] INFO: ============================================================[0m
+[37m[18:51:07 F100 TEST] INFO: 
+BATTING CARD:[0m
+[37m[18:51:07 F100 TEST] INFO:  # Player                 Status          R    B  4s  6s      SR
+-----------------------------------------------------------------
+ 1 Mitchell Marsh         out             -    -   -   -       -
+ 2 Rishabh Pant           batting        38   33   -   -       -
+ 3 Aiden Markram          yet_to_bat      -    -   -   -       -
+ 4 Nicholas Pooran        yet_to_bat      -    -   -   -       -
+ 5 Abdul Samad            batting         6    6   -   -       -
+ 6 Mukul Choudhary        yet_to_bat      -    -   -   -       -
+ 7 Manimaran Siddharth    yet_to_bat      -    -   -   -       -
+ 8 Avesh Khan             yet_to_bat      -    -   -   -       -
+ 9 Mohammed Shami         yet_to_bat      -    -   -   -       -
+10 Digvesh Singh Rathi    yet_to_bat      -    -   -   -       -
+11 Prince Yadav           yet_to_bat      -    -   -   -       -
+12 Ayush Badoni           yet_to_bat      -    -   -   -       -
+13 Matthew Breetzke       yet_to_bat      -    -   -   -       -
+14 Shahbaz Ahmed          yet_to_bat      -    -   -   -       -
+15 Anrich Nortje          yet_to_bat      -    -   -   -       -
+16 Himmat Singh           yet_to_bat      -    -   -   -       -
+17 Akshat Raghuwanshi     yet_to_bat      -    -   -   -       -
+18 Josh Inglis            yet_to_bat      -    -   -   -       -
+19 Arshin Kulkarni        yet_to_bat      -    -   -   -       -
+20 Naman Tiwari           yet_to_bat      -    -   -   -       -
+21 Arjun Tendulkar        yet_to_bat      -    -   -   -       -
+22 Mayank Prabhu Yadav    yet_to_bat      -    -   -   -       -
+23 Akash Maharaj Singh    yet_to_bat      -    -   -   -       -
+24 Mohsin Khan            yet_to_bat      -    -   -   -       -[0m
+[37m[18:51:07 F100 TEST] INFO: 
+BOWLING CARD:[0m
+[37m[18:51:07 F100 TEST] INFO: Player                     O  M    R  W   Econ
+---------------------------------------------
+Travis Head                -  -    -  -      -
+Abhishek Sharma            -  -    -  -      -
+Ishan Kishan               -  -    -  -      -
+Heinrich Klaasen           -  -    -  -      -
+Liam Livingstone           -  -    -  -      -
+Aniket Verma               -  -    -  -      -
+Nitish Kumar Reddy         -  -    -  -      -
+Harsh Dubey              3.0  -   12  0      -
+Shivang Kumar              -  -    -  -      -
+Harshal Patel              -  -    -  -      -
+Jaydev Unadkat           2.1  -   28  0      -
+Eshan Malinga              -  -    -  -      -
+Salil Arora                -  -    -  -      -
+David Payne                -  -    -  -      -
+Shivam Mavi                -  -    -  -      -
+Zeeshan Ansari             -  -    -  -      -
+Smaran Ravichandran        -  -    -  -      -
+Sakib Hussain              -  -    -  -      -
+Kamindu Mendis             -  -    -  -      -
+Brydon Carse               -  -    -  -      -
+Krains Fuletra             -  -    -  -      -
+Onkar Tarmale              -  -    -  -      -
+Amit Kumar                 -  -    -  -      -
+Praful Hinge               -  -    -  -      -[0m
+[37m[18:51:07 F100 TEST] INFO: 
+EXTRAS: wides=0 no_balls=0 byes=0 leg_byes=0 total=0[0m
+[37m[18:51:07 F100 TEST] INFO: OVERS TRACKED: 2 complete[0m
+[37m[18:51:07 F100 TEST] INFO:   Over 13: by Harsh Dubey — 0-12 (3.0)[0m
+[37m[18:51:07 F100 TEST] INFO:   Over 14: by Jaydev Unadkat — 0-28 (2.1)[0m
+[37m[18:51:07 F100 TEST] INFO: BOWLING SPEEDS:[0m
+[37m[18:51:07 F100 TEST] INFO:   Jaydev Unadkat: avg=111.0kph max=111.0 min=111.0 (1 readings)[0m
+[37m[18:51:07 F100 TEST] INFO: 
+BALL EVENTS: 3 detected[0m
+[37m[18:51:07 F100 TEST] INFO:   14.3 EXTRA: +135 (bat=None bowl=Harsh Dubey) — The bowler just delivered the ball. A fielder is chasing the[0m
+[37m[18:51:07 F100 TEST] INFO:   15.1 WICKET: +0 (bat=None bowl=Jaydev Unadkat) — The scene shows a live delivery. The bowler is at the top of[0m
+[37m[18:51:07 F100 TEST] INFO:   15.1 -17_RUNS: +-17 (bat=None bowl=Jaydev Unadkat) — The batter is playing a defensive shot. The ball is along th[0m
+[37m[18:51:07 F100 TEST] INFO: PARTNERSHIPS: 0 completed[0m
+[37m[18:51:07 F100 TEST] INFO:   Current: ['Rishabh Pant', 'Abdul Samad'] — -17 runs off 4 balls (unbroken)[0m
+[37m[18:51:07 F100 TEST] INFO: MATCH SITUATION: {"run_rate": 7.81, "balls_bowled": 91, "balls_remaining": 29, "wickets_in_hand": 6}[0m
+[37m[18:51:07 F100 TEST] INFO: 
+FIELD STATE: balanced | slips:0 close:0 in:1 out:3 | 4 fielders | conf:0.4 | keeper:- | validated:True | freshness:live[0m
+[37m[18:51:07 F100 TEST] INFO:   Field changes detected: 41[0m
+[37m[18:51:07 F100 TEST] INFO:   Last merge source: yolo+vision (yolo:4 vision:1)[0m

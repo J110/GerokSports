@@ -1,0 +1,294 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151818/srh-vs-csk-27th-match-indian-premier-league-2026
+
+[20:23:57  iter#1]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: SRH 119-4 (11.1)  crr=10.66  ps=7(6)  recent=1
+  CB BAT: Nitish Kumar Reddy* 1(1), Heinrich Klaasen 25(19)
+  CB BOWL: Jamie Overton 2-14 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'klaasen', 'reddy'} (ui=set(), cb={'klaasen', 'reddy'}) | BOWLER: ui=None cb=Jamie Overton
+
+[20:24:19  iter#2]
+  UI: Sunrisers Hyderabad 119-4 (11.1)  str=Nitish Kumar Reddy nstr=Heinrich Klaasen  bowl=None None-None (None)
+  this_over=['?']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 120-4 (11.2)  crr=10.59  ps=8(7)  recent=1 1
+  CB BAT: Heinrich Klaasen* 25(19), Nitish Kumar Reddy 2(2)
+  CB BOWL: Jamie Overton 2-14 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=119 cb=120 | OVERS: ui=11.1 cb=11.2 | STRIKER: ui=Nitish Kumar Reddy cb=Heinrich Klaasen | BAT_klaasen: ui=None(None) cb=25(19) | BAT_reddy: ui=None(None) cb=2(2) | BOWLER: ui=None cb=Jamie Overton
+
+[20:24:40  iter#3]
+  UI: Sunrisers Hyderabad 120-4 (11.2)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Gurjapneet Singh 0-9 (1.2)
+  this_over=['?', '1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 120-4 (11.2)  crr=10.59  ps=8(7)  recent=1 1
+  CB BAT: Heinrich Klaasen* 25(19), Nitish Kumar Reddy 2(2)
+  CB BOWL: Jamie Overton 2-14 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:25:01  iter#4]
+  UI: Sunrisers Hyderabad 120-4 (11.2)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Gurjapneet Singh 0-9 (1.2)
+  this_over=['?', '1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 120-4 (11.3)  crr=10.43  ps=8(8)  recent=1 1 0
+  CB BAT: Heinrich Klaasen* 25(20), Nitish Kumar Reddy 2(2)
+  CB BOWL: Jamie Overton 2-14 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: OVERS: ui=11.2 cb=11.3 | BAT_klaasen: ui=25(19) cb=25(20) | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:25:22  iter#5]
+  UI: Sunrisers Hyderabad 120-4 (11.2)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Gurjapneet Singh 0-9 (1.2)
+  this_over=['?', '1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 120-4 (11.3)  crr=10.43  ps=8(8)  recent=1 1 0
+  CB BAT: Heinrich Klaasen* 25(20), Nitish Kumar Reddy 2(2)
+  CB BOWL: Jamie Overton 2-14 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: OVERS: ui=11.2 cb=11.3 | BAT_klaasen: ui=25(19) cb=25(20) | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:25:43  iter#6]
+  UI: Sunrisers Hyderabad 120-4 (11.3)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Gurjapneet Singh 1-9 (1.4)
+  this_over=['?', '1', '.']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 124-4 (11.4)  crr=10.63  ps=12(9)  recent=1 1 0 4
+  CB BAT: Heinrich Klaasen* 29(21), Nitish Kumar Reddy 2(2)
+  CB BOWL: Jamie Overton 2-14 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=120 cb=124 | OVERS: ui=11.3 cb=11.4 | BAT_klaasen: ui=25(20) cb=29(21) | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:26:03  iter#7]
+  UI: Sunrisers Hyderabad 120-4 (11.3)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Gurjapneet Singh 1-9 (1.4)
+  this_over=['?', '1', '.']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 125-4 (11.5)  crr=10.56  ps=13(10)  recent=1 1 0 4 1
+  CB BAT: Nitish Kumar Reddy* 2(2), Heinrich Klaasen 30(22)
+  CB BOWL: Jamie Overton 2-14 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=120 cb=125 | OVERS: ui=11.3 cb=11.5 | STRIKER: ui=Heinrich Klaasen cb=Nitish Kumar Reddy | BAT_klaasen: ui=25(20) cb=30(22) | BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:26:25  iter#8]
+  UI: Sunrisers Hyderabad 125-4 (11.5)  str=Nitish Kumar Reddy nstr=Heinrich Klaasen  bowl=Gurjapneet Singh 1-14 (1.5)
+  this_over=['?', '1', '.', '4', '1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 125-4 (11.5)  crr=10.56  ps=13(10)  recent=1 1 0 4 1
+  CB BAT: Nitish Kumar Reddy* 2(2), Heinrich Klaasen 30(22)
+  CB BOWL: Jamie Overton 2-14 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Gurjapneet Singh cb=Jamie Overton
+
+[20:26:46  iter#9]
+  UI: Sunrisers Hyderabad 125-4 (11.5)  str=Nitish Kumar Reddy nstr=Heinrich Klaasen  bowl=Gurjapneet Singh 0-14 (1.5)
+  this_over=['?', '1', '.', '4', '1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 131-4 (12)  crr=10.92  ps=19(11)  recent=1 1 0 4 1 6
+  CB BAT: Heinrich Klaasen* 30(22), Nitish Kumar Reddy 8(3)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=125 cb=131 | OVERS: ui=11.5 cb=12 | STRIKER: ui=Nitish Kumar Reddy cb=Heinrich Klaasen | BAT_reddy: ui=2(2) cb=8(3) | BOWL_R: ui=14 cb=20 | BOWL_O: ui=1.5 cb=2
+
+[20:27:10  iter#10]
+  UI: Sunrisers Hyderabad 131-4 (12.0)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Gurjapneet Singh 0-20 (2.0)
+  this_over=['?', '1', '.', '4', '1', '6']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 131-4 (12)  crr=10.92  ps=19(11)  recent=1 1 0 4 1 6
+  CB BAT: Heinrich Klaasen* 30(22), Nitish Kumar Reddy 8(3)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: OVERS: ui=12.0 cb=12 | BOWL_O: ui=2.0 cb=2
+
+[20:27:30  iter#11]
+  UI: Sunrisers Hyderabad 131-4 (12.0)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Gurjapneet Singh 0-20 (2.0)
+  this_over=[]  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 131-4 (12)  crr=10.92  ps=19(11)  recent=1 1 0 4 1 6
+  CB BAT: Heinrich Klaasen* 30(22), Nitish Kumar Reddy 8(3)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: OVERS: ui=12.0 cb=12 | BOWL_O: ui=2.0 cb=2
+
+[20:27:51  iter#12]
+  UI: Sunrisers Hyderabad 131-4 (12.0)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Gurjapneet Singh 0-20 (2.0)
+  this_over=[]  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 132-4 (12.1)  crr=10.85  ps=20(12)  recent=1
+  CB BAT: Nitish Kumar Reddy* 8(3), Heinrich Klaasen 31(23)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=131 cb=132 | OVERS: ui=12.0 cb=12.1 | STRIKER: ui=Heinrich Klaasen cb=Nitish Kumar Reddy | BAT_klaasen: ui=30(22) cb=31(23) | BOWL_O: ui=2.0 cb=2
+
+[20:28:13  iter#13]
+  UI: Sunrisers Hyderabad 131-4 (12.0)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Gurjapneet Singh 0-20 (2.0)
+  this_over=[]  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 132-4 (12.1)  crr=10.85  ps=20(12)  recent=1
+  CB BAT: Nitish Kumar Reddy* 8(3), Heinrich Klaasen 31(23)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=131 cb=132 | OVERS: ui=12.0 cb=12.1 | STRIKER: ui=Heinrich Klaasen cb=Nitish Kumar Reddy | BAT_klaasen: ui=30(22) cb=31(23) | BOWL_O: ui=2.0 cb=2
+
+[20:28:33  iter#14]
+  UI: Sunrisers Hyderabad 132-4 (12.1)  str=Nitish Kumar Reddy nstr=Heinrich Klaasen  bowl=Gurjapneet Singh 0-21 (2.1)
+  this_over=['1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 134-4 (12.2)  crr=10.86  ps=22(13)  recent=1 2
+  CB BAT: Nitish Kumar Reddy* 10(4), Heinrich Klaasen 31(23)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=132 cb=134 | OVERS: ui=12.1 cb=12.2 | BAT_reddy: ui=8(3) cb=10(4) | BOWL_R: ui=21 cb=20 | BOWL_O: ui=2.1 cb=2
+
+[20:28:55  iter#15]
+  UI: Sunrisers Hyderabad 134-4 (12.2)  str=Nitish Kumar Reddy nstr=Heinrich Klaasen  bowl=Gurjapneet Singh 0-23 (2.2)
+  this_over=['1', '2']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 134-4 (12.2)  crr=10.86  ps=22(13)  recent=1 2
+  CB BAT: Nitish Kumar Reddy* 10(4), Heinrich Klaasen 31(23)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BOWL_R: ui=23 cb=20 | BOWL_O: ui=2.2 cb=2
+
+[20:29:18  iter#16]
+  UI: Sunrisers Hyderabad 134-4 (12.3)  str=Nitish Kumar Reddy nstr=Heinrich Klaasen  bowl=Noor Ahmad 0-19 (2.4)
+  this_over=['1', '2', '.']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 134-4 (12.3)  crr=10.72  ps=22(14)  recent=1 2 0
+  CB BAT: Nitish Kumar Reddy* 10(5), Heinrich Klaasen 31(23)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Noor Ahmad cb=Gurjapneet Singh
+
+[20:29:41  iter#17]
+  UI: Sunrisers Hyderabad 135-4 (12.4)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Noor Ahmad 0-21 (2.5)
+  this_over=['1', '2', '.', '1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 135-4 (12.4)  crr=10.66  ps=23(15)  recent=1 2 0 1
+  CB BAT: Heinrich Klaasen* 31(23), Nitish Kumar Reddy 11(6)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Noor Ahmad cb=Gurjapneet Singh
+
+[20:30:02  iter#18]
+  UI: Sunrisers Hyderabad 135-4 (12.4)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Noor Ahmad 0-21 (2.5)
+  this_over=['1', '2', '.', '1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 139-4 (12.5)  crr=10.83  ps=27(16)  recent=1 2 0 1 4
+  CB BAT: Heinrich Klaasen* 35(24), Nitish Kumar Reddy 11(6)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=135 cb=139 | OVERS: ui=12.4 cb=12.5 | BAT_klaasen: ui=31(23) cb=35(24) | BOWLER: ui=Noor Ahmad cb=Gurjapneet Singh
+
+[20:30:29  iter#19]
+  UI: Sunrisers Hyderabad 135-4 (12.4)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Noor Ahmad 0-21 (2.5)
+  this_over=['1', '2', '.', '1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 139-4 (13)  crr=10.69  ps=27(17)  recent=1 2 0 1 4 0
+  CB BAT: Nitish Kumar Reddy* 11(6), Heinrich Klaasen 35(25)
+  CB BOWL: Gurjapneet Singh 0-20 (2)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=135 cb=139 | OVERS: ui=12.4 cb=13 | STRIKER: ui=Heinrich Klaasen cb=Nitish Kumar Reddy | BAT_klaasen: ui=31(23) cb=35(25) | BOWLER: ui=Noor Ahmad cb=Gurjapneet Singh
+
+[20:30:50  iter#20]
+  UI: Sunrisers Hyderabad 139-4 (13.0)  str=Nitish Kumar Reddy nstr=Heinrich Klaasen  bowl=Noor Ahmad 0-28 (4.0)
+  this_over=['1', '2', '.', '1', '4', '.']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 139-4 (13)  crr=10.69  ps=27(17)  recent=1 2 0 1 4 0
+  CB BAT: Nitish Kumar Reddy* 11(6), Heinrich Klaasen 35(25)
+  CB BOWL: Noor Ahmad 0-24 (3)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: OVERS: ui=13.0 cb=13 | BOWL_R: ui=28 cb=24 | BOWL_O: ui=4.0 cb=3
+
+[20:31:14  iter#21]
+  WS ERR: ''
+  CB: SRH 139-4 (13)  crr=10.69  ps=27(17)  recent=1 2 0 1 4 0
+  CB BAT: Nitish Kumar Reddy* 11(6), Heinrich Klaasen 35(25)
+  CB BOWL: Noor Ahmad 0-24 (3)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'klaasen', 'reddy'} (ui=set(), cb={'klaasen', 'reddy'}) | BOWLER: ui=None cb=Noor Ahmad
+
+[20:31:35  iter#22]
+  UI: Sunrisers Hyderabad 139-4 (13.0)  str=Nitish Kumar Reddy nstr=Heinrich Klaasen  bowl=Noor Ahmad 0-28 (4.0)
+  this_over=[]  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 139-4 (13)  crr=10.69  ps=27(17)  recent=1 2 0 1 4 0
+  CB BAT: Nitish Kumar Reddy* 11(6), Heinrich Klaasen 35(25)
+  CB BOWL: Noor Ahmad 0-24 (3)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: OVERS: ui=13.0 cb=13 | BOWL_R: ui=28 cb=24 | BOWL_O: ui=4.0 cb=3
+
+[20:31:55  iter#23]
+  UI: Sunrisers Hyderabad 140-4 (13.1)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Noor Ahmad 0-29 (3.2)
+  this_over=['1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 144-4 (13.2)  crr=10.8  ps=32(19)  recent=1 4
+  CB BAT: Heinrich Klaasen* 39(26), Nitish Kumar Reddy 12(7)
+  CB BOWL: Noor Ahmad 0-24 (3)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=140 cb=144 | OVERS: ui=13.1 cb=13.2 | BAT_klaasen: ui=35(25) cb=39(26) | BOWL_R: ui=29 cb=24 | BOWL_O: ui=3.2 cb=3
+
+[20:32:18  iter#24]
+  UI: Sunrisers Hyderabad 140-4 (13.1)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Noor Ahmad 0-29 (3.2)
+  this_over=['1']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 144-4 (13.2)  crr=10.8  ps=32(19)  recent=1 4
+  CB BAT: Heinrich Klaasen* 39(26), Nitish Kumar Reddy 12(7)
+  CB BOWL: Noor Ahmad 0-24 (3)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=140 cb=144 | OVERS: ui=13.1 cb=13.2 | BAT_klaasen: ui=35(25) cb=39(26) | BOWL_R: ui=29 cb=24 | BOWL_O: ui=3.2 cb=3
+
+[20:32:38  iter#25]
+  UI: Sunrisers Hyderabad 144-4 (13.2)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Noor Ahmad 0-33 (3.3)
+  this_over=['1', '4']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 144-4 (13.2)  crr=10.8  ps=32(19)  recent=1 4
+  CB BAT: Heinrich Klaasen* 39(26), Nitish Kumar Reddy 12(7)
+  CB BOWL: Noor Ahmad 0-24 (3)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BOWL_R: ui=33 cb=24 | BOWL_O: ui=3.3 cb=3
+
+[20:33:03  iter#26]
+  UI: Sunrisers Hyderabad 146-4 (13.3)  str=Heinrich Klaasen nstr=Nitish Kumar Reddy  bowl=Noor Ahmad 0-35 (3.4)
+  this_over=['1', '4', '2']  fow=4 (unk=0)  last_fow={'wicket': 4, 'batter': 'Salil Arora', 'score': '?', 'overs': '?'}
+  delivery: len=full_toss line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 146-4 (13.3)  crr=10.81  ps=34(20)  recent=1 4 2
+  CB BAT: Heinrich Klaasen* 41(27), Nitish Kumar Reddy 12(7)
+  CB BOWL: Noor Ahmad 0-24 (3)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BOWL_R: ui=35 cb=24 | BOWL_O: ui=3.4 cb=3
+
+[20:33:26  iter#27]
+  UI: SRH 147-4 (13.4)  str=Nitish Kumar Reddy nstr=Heinrich Klaasen  bowl=None None-None (None)
+  this_over=['1', '2', '.', '1', '4', '1', '4', '2', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 147-4 (13.4)  crr=10.76  ps=35(21)  recent=1 4 2 1
+  CB BAT: Nitish Kumar Reddy* 12(7), Heinrich Klaasen 42(28)
+  CB BOWL: Noor Ahmad 0-24 (3)
+  LAST WKT: Aniket Verma  c Noor Ahmad b Jamie Overton 2(4)  - 112/4 in 10.1 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=0 vs wickets=4 | BOWLER: ui=None cb=Noor Ahmad

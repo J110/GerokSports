@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py", line 20, in <module>
+    from eyes.vision import Vision
+  File "/Users/anmolmohan/Projects/SportsComm/files/eyes/vision.py", line 16, in <module>
+    from groq import AsyncGroq
+ModuleNotFoundError: No module named 'groq'

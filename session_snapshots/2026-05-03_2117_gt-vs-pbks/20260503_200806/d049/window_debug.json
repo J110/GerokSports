@@ -1,0 +1,19 @@
+{
+  "delivery_num": 49,
+  "window_id": 49,
+  "event_ts": 1777821547.111989,
+  "over_number": 15.5,
+  "innings": 1,
+  "event_type": "1_RUNS",
+  "runs": 1,
+  "window_source": "skipped",
+  "window_reason": "phantom_event",
+  "clip_start_ts": 1777821547.111989,
+  "clip_end_ts": 1777821547.111989,
+  "frame_count": 0,
+  "legacy_window": null,
+  "open_scout_window": null,
+  "open_scout_verdict": null,
+  "use_open_scout_spans": false,
+  "tags": []
+}

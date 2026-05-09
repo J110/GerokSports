@@ -1,0 +1,44 @@
+{
+  "output": {
+    "filePath": "repomix-output.xml",
+    "style": "xml",
+    "showLineNumbers": true,
+    "topFilesLength": 20
+  },
+  "include": [
+    "files/test_pipeline.py",
+    "files/eyes/*.py",
+    "files/score_manager.py",
+    "files/wire.py",
+    "files/test_recent_fixes.py",
+    "files/analyze_match_telemetry.py"
+  ],
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true,
+    "customPatterns": [
+      "logs/",
+      "debug_frames/",
+      "debug_frames_archive/",
+      "audit_v1/",
+      "bakeoff_out/",
+      "scout_burst_results/",
+      "ball_*_frames/",
+      "*.mp4",
+      "*.pt",
+      "*.zip",
+      "*.log",
+      "*.jpg",
+      "*.png",
+      "*.pdf",
+      "__pycache__/",
+      ".venv/",
+      "*.pyc",
+      ".DS_Store",
+      ".graphify/"
+    ]
+  },
+  "security": {
+    "enableSecurityCheck": true
+  }
+}

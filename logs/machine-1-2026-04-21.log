@@ -1,0 +1,5 @@
+[20:23:21 F0 TRACK] INFO: bowl:Axar:overs: 0.0 → 0.1 (fast-confirm, natural bowler increment F5)
+[20:23:21 F0 TRACK] INFO: bowl:Axar:overs: 0.1 → 0.2 (fast-confirm, natural bowler increment F6)
+[20:23:21 F0 TRACK] INFO: bowl:Axar:wickets: 0 → 1 (fast-confirm, natural bowler increment F7)
+[20:23:21 F0 TRACK] INFO: [SUSPICIOUS] bowl:Axar:wickets: wickets=5.0 > runs=0 — likely swapped
+[20:23:21 F0 TRACK] INFO: bowl:Axar:runs: 0 → 3 (confirmed F10)

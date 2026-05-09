@@ -1,0 +1,731 @@
+WARNING ⚠️ torchvision==0.26 is incompatible with torch==2.10.
+Run 'pip install torchvision==0.25' to fix torchvision or 'pip install -U torch torchvision' to update both.
+For a full compatibility table see https://github.com/pytorch/vision#installation
+[37m[17:58:58 F0 TEST] INFO: [WS] Server started on ws://0.0.0.0:8765[0m
+[37m[17:58:58 F0 TEST] INFO: [WS] Commentary server on ws://0.0.0.0:8766[0m
+[37m[17:58:58 F0 TEST] INFO: ============================================================[0m
+[37m[17:58:58 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[17:58:58 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/151998/srh-vs-kkr-45th-match-indian-premier-league-2026[0m
+[37m[17:58:58 F0 SQUAD] INFO:   Sunrisers Hyderabad: 11 XI + 14 bench[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Abhishek Sharma — bat_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Travis Head — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Ishan Kishan (WK) — wk_batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Heinrich Klaasen (WK) — wk_batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Salil Arora (WK) — wk_batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Aniket Verma — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Smaran Ravichandran — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Pat Cummins (C) — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Shivang Kumar — bowl_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Harshal Patel — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Eshan Malinga — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Praful Hinge — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Harsh Dubey — bowl_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Liam Livingstone — bat_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Sakib Hussain — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Zeeshan Ansari — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Nitish Kumar Reddy — bat_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Kamindu Mendis — bat_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Gerald Coetzee — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Dilshan Madushanka — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Jaydev Unadkat — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Krains Fuletra — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Onkar Tarmale — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] RS Ambrish — bowl_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Amit Kumar — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:   Kolkata Knight Riders: 11 XI + 14 bench[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Ajinkya Rahane (C) — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Angkrish Raghuvanshi (WK) — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Cameron Green — bat_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Rovman Powell — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Manish Pandey — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Rinku Singh — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Anukul Roy — bat_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Sunil Narine — bowl_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Vaibhav Arora — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Kartik Tyagi — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     Varun Chakaravarthy — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Finn Allen — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Ramandeep Singh — bat_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Tejasvi Dahiya — wk_batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Navdeep Saini — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Tim Seifert — wk_batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Rahul Tripathi — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Sarthak Ranjan — batter[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Rachin Ravindra — bat_allrounder[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Blessing Muzarabani — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Matheesha Pathirana — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Prashant Solanki — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Saurabh Dubey — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Umran Malik — bowler[0m
+[37m[17:58:58 F0 SQUAD] INFO:     [bench] Daksh Kamra — bowl_allrounder[0m
+[37m[17:58:58 F0 TEST] INFO: Teams: ['Sunrisers Hyderabad', 'Kolkata Knight Riders'][0m
+[37m[17:58:58 F0 ENRICH] INFO: Loaded cached styles from player_styles_a8f7bf951a6f.json (50 players)[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache] Sunrisers Hyderabad — styles:[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Abhishek Sharma          LHB  | Right-arm off-spin[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Travis Head              LHB  | Right-arm off-spin[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Ishan Kishan             LHB  | None[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Heinrich Klaasen         RHB  | None[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Salil Arora              unknown | unknown[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Aniket Verma             unknown | unknown[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Smaran Ravichandran      unknown | unknown[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Pat Cummins              RHB  | Right-arm fast[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Shivang Kumar            unknown | unknown[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Harshal Patel            RHB  | Right-arm medium[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Eshan Malinga            unknown | unknown[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache] Kolkata Knight Riders — styles:[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Ajinkya Rahane           RHB  | Right-arm off-spin[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Angkrish Raghuvanshi     LHB  | unknown[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Cameron Green            RHB  | Right-arm medium-fast[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Rovman Powell            RHB  | Right-arm medium[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Manish Pandey            RHB  | Right-arm off-spin[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Rinku Singh              LHB  | None[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Anukul Roy               LHB  | Slow left-arm orthodox[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Sunil Narine             LHB  | Right-arm off-spin[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Vaibhav Arora            RHB  | Right-arm medium[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Kartik Tyagi             RHB  | Right-arm fast[0m
+[37m[17:58:58 F0 ENRICH] INFO: [cache]   Varun Chakaravarthy      LHB  | Right-arm legbreak[0m
+[37m[17:58:58 F0 TEST] INFO: Team variants: ['HYD', 'HYDERABAD', 'KKR', 'KNI', 'KNIGHT', 'KO', 'KOL', 'KOLKATA', 'KOLKATA KNIGHT RIDERS', 'RID', 'RIDERS', 'SH', 'SRH', 'SU', 'SUN', 'SUNRISERS', 'SUNRISERS HYDERABAD'][0m
+[37m[17:58:58 F0 TEST] INFO: [OPEN-SCOUT] enabled (USE_OPEN_SCOUT=1)[0m
+[37m[17:58:59 F0 TEST] INFO: Frame source: capture_card (skipping Firefox window discovery)[0m
+[37m[17:59:00 F0 TEST] INFO: [BALL ANALYZER] Background capture started (source=capture_card)[0m
+[37m[17:59:00 F0 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[17:59:01 F0 FIELD] INFO: Pitch detected from green mask at (0.47, 0.49) (fallback — will recalibrate from people)[0m
+[37m[17:59:01 F0 TEST] INFO: [CLEANUP] Archived 300 frames to debug_frames_archive/2026-05-03_175901 (was 300 in debug_frames)[0m
+[37m[17:59:01 F0 TEST] INFO: [CLEANUP] Removed old archive: debug_frames_archive/2026-05-02_085533[0m
+[37m[17:59:01 F0 TEST] INFO: [CACHE] Cached state found — DISCARDING all scorecard/team data (Rule 1: always cold-start). Toss data is preserved if present.[0m
+[37m[17:59:01 F0 TEST] INFO: ============================================================[0m
+[37m[17:59:01 F0 TEST] INFO: [CONFIG] Vision:    Scout 17B (single call tag+read)[0m
+[37m[17:59:01 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[17:59:01 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[17:59:01 F0 TEST] INFO: PIPELINE STARTED — 18000s — NO TEAM ASSUMPTION[0m
+[37m[17:59:01 F0 TEST] INFO: ============================================================[0m
+[37m[17:59:02 F1 TEST] INFO: [WS] client disconnected (0 remain)[0m
+[37m[17:59:02 F1 VISION] INFO: [SCOUT] SCOREBOARD 1310ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 459 chars[0m
+[37m[17:59:02 F1 TEST] INFO:   [TEAM] From broadcast abbr: KKR → Kolkata Knight Riders[0m
+[37m[17:59:02 F1 BOARD] INFO: Scorecards built: Kolkata Knight Riders (25 bat) vs Sunrisers Hyderabad (25 bowl)[0m
+[37m[17:59:02 F1 TEST] INFO: === TEAMS SET: Kolkata Knight Riders batting (inn 1) vs Sunrisers Hyderabad bowling ===[0m
+[37m[17:59:02 F1 TEST] INFO: [F1] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G6_score_window[0m
+[37m[17:59:02 F1 TEST] INFO: [F1] SCOREBOARD cam=graphic → dead-time skip (#1)[0m
+[37m[17:59:06 F2 VISION] INFO: [SCOUT] SCOREBOARD 798ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 403 chars[0m
+[37m[17:59:06 F2 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: null 9-0 (1.0) | extras=null | this_over=◉◉[0m
+[37m[17:59:06 F2 BOARD] INFO: [NAME] Exact miss for 'ROHIT', trying fuzzy (512 keys)...[0m
+[33m[17:59:06 F2 BOARD] WARN: No match for 'ROHIT'. Closest: [('RACHIN', '0.55'), ('TRIPATI', '0.50'), ('RAGHOOVANSHI', '0.47')][0m
+[37m[17:59:06 F2 TEST] INFO: [F2] cam=closeup → resuming active play after dead-time gap (#1 skipped)[0m
+[37m[17:59:06 F2 TEST] INFO: 
+=======================================================[0m
+[37m[17:59:06 F2 TEST] INFO: [F2] SCOREBOARD — #1[0m
+[37m[17:59:06 F2 TEST] INFO:   [V 800ms] STRIP: null 9-0 (1.0) | extras=null | this_over=◉◉. | *Rohit 2(3) | Irfan 7(7) | Arshdeep 0-9 (1)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The broadcaster seems to be talking about something during a break in pl[0m
+[37m[17:59:07 F2 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:59:07 F2 BOARD] INFO: [NAME] Exact miss for 'ROHIT', trying fuzzy (512 keys)...[0m
+[33m[17:59:07 F2 BOARD] WARN: No match for 'ROHIT'. Closest: [('RACHIN', '0.55'), ('TRIPATI', '0.50'), ('RAGHOOVANSHI', '0.47')][0m
+[37m[17:59:07 F2 BOARD] INFO: [NAME] Exact miss for 'IRFAN', trying fuzzy (512 keys)...[0m
+[33m[17:59:07 F2 BOARD] WARN: No match for 'IRFAN'. Closest: [('RANJ', '0.67'), ('PATIRANA', '0.62'), ('UMRAN', '0.60')][0m
+[37m[17:59:07 F2 BOARD] INFO: [NAME] Exact miss for 'ARSHDEEP', trying fuzzy (512 keys)...[0m
+[33m[17:59:07 F2 BOARD] WARN: No match for 'ARSHDEEP'. Closest: [('NAVDEEP', '0.67'), ('HARSH DUBEY', '0.63'), ('HARSH', '0.62')][0m
+[37m[17:59:07 F2 BOARD] INFO: [NAME] Exact miss for 'ROHIT', trying fuzzy (512 keys)...[0m
+[33m[17:59:07 F2 BOARD] WARN: No match for 'ROHIT'. Closest: [('RACHIN', '0.55'), ('TRIPATI', '0.50'), ('RAGHOOVANSHI', '0.47')][0m
+[37m[17:59:07 F2 BOARD] INFO: [NAME] Exact miss for 'IRFAN', trying fuzzy (512 keys)...[0m
+[33m[17:59:07 F2 BOARD] WARN: No match for 'IRFAN'. Closest: [('RANJ', '0.67'), ('PATIRANA', '0.62'), ('UMRAN', '0.60')][0m
+[37m[17:59:07 F2 BOARD] INFO: [NAME] Exact miss for 'ROHIT', trying fuzzy (512 keys)...[0m
+[33m[17:59:07 F2 BOARD] WARN: No match for 'ROHIT'. Closest: [('RACHIN', '0.55'), ('TRIPATI', '0.50'), ('RAGHOOVANSHI', '0.47')][0m
+[37m[17:59:07 F2 BOARD] INFO: [NAME] Exact miss for 'IRFAN', trying fuzzy (512 keys)...[0m
+[33m[17:59:07 F2 BOARD] WARN: No match for 'IRFAN'. Closest: [('RANJ', '0.67'), ('PATIRANA', '0.62'), ('UMRAN', '0.60')][0m
+[37m[17:59:07 F2 BOARD] INFO: [NAME] Exact miss for 'ROHIT', trying fuzzy (512 keys)...[0m
+[33m[17:59:07 F2 BOARD] WARN: No match for 'ROHIT'. Closest: [('RACHIN', '0.55'), ('TRIPATI', '0.50'), ('RAGHOOVANSHI', '0.47')][0m
+[37m[17:59:07 F2 BOARD] INFO: [NAME] Exact miss for 'IRFAN', trying fuzzy (512 keys)...[0m
+[33m[17:59:07 F2 BOARD] WARN: No match for 'IRFAN'. Closest: [('RANJ', '0.67'), ('PATIRANA', '0.62'), ('UMRAN', '0.60')][0m
+[37m[17:59:07 F2 TEST] INFO:   [GUARD] Batter names ['ROHIT', 'IRFAN'] don't match batting squad — comparison strip, stripping score/batters/bowler[0m
+[37m[17:59:07 F2 TEST] INFO:   [E 1140ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[17:59:08 F2 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:59:08 F2 TEST] INFO:   [S] Hint: Current batters: Rahane and Raghuvanshi. Bowler: Pat Cummins. Read their stats from the scoreboard.[0m
+[37m[17:59:08 F2 TEST] INFO:   [S 806ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[17:59:08 F2 TEST] INFO:   Total: 2747ms (V:800 E:1140 S:806)[0m
+[37m[17:59:08 F2 TEST] INFO:   STATE: Kolkata Knight Riders None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[17:59:08 F2 TEST] INFO: DETAIL|F2|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: null 9-0 (1.0) | extras=null | this_over=◉◉. | *Rohit 2(3) | Irfan 7(7) | Arshdeep 0-9 (1)  INFO_PANEL: null SPEE|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=800|lat_extract=1140|lat_scorer=806|lat_field=34|lat_comm=0|lat_code=36|lat_total=2817|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:59:11 F3 VISION] INFO: [SCOUT] SCOREBOARD 763ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 385 chars[0m
+[37m[17:59:11 F3 TEST] INFO: 
+=======================================================[0m
+[37m[17:59:11 F3 TEST] INFO: [F3] SCOREBOARD — #2[0m
+[37m[17:59:11 F3 TEST] INFO:   [V 765ms] STRIP: null 47-3 (null) | extras=null | this_over=null. | *Rahane 20(18) | Raghuvanshi 5(7) | Cummins 1-15 (3.2)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The broadcaster is presenting information.[0m
+[37m[17:59:12 F3 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:59:12 F3 TEST] INFO:   [E 1071ms] visible_team=None score=47-3 (3.2) target=None rr=None[0m
+[37m[17:59:12 F3 TEST] INFO:     BAT: Ajinkya Rahane 20(18) [0m
+[37m[17:59:12 F3 TEST] INFO:     BAT: Angkrish Raghuvanshi 5(7) [0m
+[37m[17:59:12 F3 TEST] INFO:     BOWL: Cummins 1-15 (3.2)[0m
+[37m[17:59:12 F3 BOARD] INFO: [BOWLER SEED] Pat Cummins figures seeded from scout text to 1-15 (3.2) — mid-spell entry (impact sub / mid-match join)[0m
+[37m[17:59:12 F3 BOARD] INFO: Batter activated: Ajinkya Rahane[0m
+[37m[17:59:12 F3 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:9053 (run_test): non None->Ajinkya Rahane[0m
+[37m[17:59:12 F3 BOARD] INFO: [BATTER-CONSENSUS-RESET] Angkrish Raghuvanshi — clearing bat tracker streak[0m
+[37m[17:59:12 F3 BOARD] INFO: Batter activated: Angkrish Raghuvanshi[0m
+[37m[17:59:12 F3 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:9053 (run_test): non Ajinkya Rahane->Angkrish Raghuvanshi[0m
+[37m[17:59:12 F3 TEST] INFO:   [DIRECT] Batter updates: ['Ajinkya Rahane: ext=20(18) → tracker=0(0) [was None(None)]', 'Angkrish Raghuvanshi: ext=5(7) → tracker=0(0) [was None(None)]'][0m
+[37m[17:59:12 F3 TEST] INFO:   [SCORE-CAP-SUPPRESS-NARROW] DIRECT cap suppressed — cur=None recovery_until=0 frame=3[0m
+[37m[17:59:13 F3 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[17:59:13 F3 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[17:59:13 F3 TEST] INFO:   [GUARD] Score correction in Scorer output: 0→47 (delta=47) — blocking ALL updates for this frame[0m
+[37m[17:59:13 F3 TEST] INFO:   [SCORER-SCHEMA-WOULD-COERCE] field=score_update.from reason=coerce_null raw='None-None' filter_caught_in_step3=false frame=F3[0m
+[37m[17:59:13 F3 TEST] INFO:   [SCORER-SCHEMA-WOULD-COERCE] field=score_update.accepted reason=accepted_forced_false filter_caught_in_step3=false frame=F3[0m
+[37m[17:59:13 F3 TEST] INFO:   [SCORER-SCHEMA-WOULD-COERCE] field=overs_update.from reason=coerce_null raw='None' filter_caught_in_step3=false frame=F3[0m
+[37m[17:59:13 F3 TEST] INFO:   [SCORER-SCHEMA-WOULD-COERCE] field=overs_update.accepted reason=accepted_forced_false filter_caught_in_step3=false frame=F3[0m
+[37m[17:59:13 F3 TEST] INFO:   [CONSENSUS] Score 47 frame 1/2, waiting[0m
+[37m[17:59:13 F3 TEST] INFO:   [S 889ms] Changes: ['CORRECTION_BLOCKED:47'][0m
+[37m[17:59:13 F3 TEST] INFO:   Total: 2725ms (V:765 E:1071 S:889)[0m
+[37m[17:59:13 F3 TEST] INFO:   STATE: Kolkata Knight Riders None-None (None) inn=1 RR=— | Bat: Ajinkya Rahane(0) Angkrish Raghuvanshi(0) | Bowl: Pat Cummins 1-15[0m
+[37m[17:59:13 F3 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[17:59:13 F3 TEST] INFO:   [SM-FEEDER-DIVERGENCE] field=bowler_name sm_value=None sb_value='Pat Cummins' sb_consensus_state=active frames_since_sm_update=2[0m
+[33m[17:59:13 F3 TEST] WARN:   [WS-PROJECTION-GAP] striker=None (payload) sb._inn.striker=None sm.striker=None active_batting=['Ajinkya Rahane', 'Angkrish Raghuvanshi'][0m
+[37m[17:59:13 F3 TEST] INFO: DETAIL|F3|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: null 47-3 (null) | extras=null | this_over=null. | *Rahane 20(18) | Raghuvanshi 5(7) | Cummins 1-15 (3.2)  INFO_P|action=—|ext_score=47-3(3.2)|ext_bat=Ajinkya Rahane 20(18) | Angkrish Raghuvanshi 5(7)|ext_bowl=Cummins 1-15 (3.2)|scorer_changes=['CORRECTION_BLOCKED:47']|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=Ajinkya Rahane 0(0)|AFTER_bat2=Angkrish Raghuvanshi 0(0)|AFTER_bowl=Pat Cummins 1-15 (3.2)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=765|lat_extract=1071|lat_scorer=889|lat_field=36|lat_comm=0|lat_code=0|lat_total=2740|comm_bowler=Pat Cummins|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[17:59:16 F4 VISION] INFO: [SCOUT] ADVERTISEMENT 614ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 159 chars[0m
+[37m[17:59:16 F4 TEST] INFO: [F4] AD 617ms (#1)[0m
+[37m[17:59:16 F4 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[17:59:24 F5 VISION] INFO: [SCOUT] ADVERTISEMENT 755ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 158 chars[0m
+[37m[17:59:24 F5 TEST] INFO: [F5] AD 757ms (#2)[0m
+[37m[17:59:24 F5 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[17:59:33 F6 VISION] INFO: [SCOUT] ADVERTISEMENT 676ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 159 chars[0m
+[37m[17:59:33 F6 TEST] INFO: [F6] AD 678ms (#3)[0m
+[37m[17:59:33 F6 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[17:59:42 F7 VISION] INFO: [SCOUT] ADVERTISEMENT 650ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 159 chars[0m
+[37m[17:59:42 F7 TEST] INFO: [F7] AD 652ms (#4)[0m
+[37m[17:59:42 F7 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[17:59:50 F8 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[17:59:51 F8 VISION] INFO: [SCOUT] ADVERTISEMENT 691ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 154 chars[0m
+[37m[17:59:51 F8 TEST] INFO: [F8] AD 694ms (#5)[0m
+[37m[17:59:51 F8 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[17:59:51 F8 TEST] INFO: [WS-COLD-START-GATE] OPEN — batting_team committed (team='Kolkata Knight Riders' score=0).  All subsequent WS broadcasts pass through (Fix 17 Path D).[0m
+[37m[17:59:59 F9 VISION] INFO: [SCOUT] ADVERTISEMENT 672ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 154 chars[0m
+[37m[17:59:59 F9 TEST] INFO: [F9] AD 674ms (#6)[0m
+[37m[17:59:59 F9 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:08 F10 VISION] INFO: [SCOUT] ADVERTISEMENT 839ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 154 chars[0m
+[37m[18:00:08 F10 TEST] INFO: [F10] AD 841ms (#7)[0m
+[37m[18:00:08 F10 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:16 F11 TEST] INFO: [F11] No-strip skip #1 (lifetime=1)[0m
+[37m[18:00:16 F11 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:18 F13 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:19 F15 TEST] INFO: [F15] Pixel skip #4[0m
+[37m[18:00:19 F15 TEST] INFO: [F15] Force-processing after 4 pixel skips[0m
+[37m[18:00:19 F15 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:21 F17 VISION] INFO: [SCOUT] ADVERTISEMENT 750ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 159 chars[0m
+[37m[18:00:21 F17 TEST] INFO: [F17] AD 752ms (#8)[0m
+[37m[18:00:21 F17 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:31 F18 VISION] INFO: [SCOUT] ADVERTISEMENT 1721ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 159 chars[0m
+[37m[18:00:31 F18 TEST] INFO: [F18] AD 1723ms (#9)[0m
+[37m[18:00:31 F18 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:40 F19 VISION] INFO: [SCOUT] ADVERTISEMENT 879ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 396 chars[0m
+[37m[18:00:40 F19 TEST] INFO: [F19] AD 882ms (#10)[0m
+[37m[18:00:40 F19 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:49 F20 VISION] INFO: [SCOUT] SCOREBOARD 976ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 334 chars[0m
+[37m[18:00:49 F20 TEST] INFO:   [BROADCAST] Chase: 87 from 78 balls[0m
+[37m[18:00:49 F20 TEST] INFO: 
+=======================================================[0m
+[37m[18:00:49 F20 TEST] INFO: [F20] SCOREBOARD — #3[0m
+[37m[18:00:49 F20 TEST] INFO:   [V 978ms] STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | TO WIN 87 OFF 78 | SHIVANG 0-8 (1)[0m
+[37m[18:00:50 F20 EXTRACT] INFO: Extracted in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:00:50 F20 TEST] INFO:   [E 1422ms] visible_team=Kolkata Knight Riders score=79-1 (7) target=None rr=None[0m
+[37m[18:00:50 F20 TEST] INFO:     BAT: Ajinkya Rahane 27(18) [0m
+[37m[18:00:50 F20 TEST] INFO:     BAT: Angkrish Raghuvanshi 17(11) [0m
+[37m[18:00:50 F20 TEST] INFO:     BOWL: SHIVANG 0-8 (1)[0m
+[37m[18:00:50 F20 BOARD] INFO: [BATTER-CONSENSUS-RESET] Ajinkya Rahane — clearing bat tracker streak[0m
+[37m[18:00:50 F20 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:9053 (run_test): non Angkrish Raghuvanshi->Ajinkya Rahane[0m
+[37m[18:00:50 F20 BOARD] INFO: [BATTER-CONSENSUS-RESET] Angkrish Raghuvanshi — clearing bat tracker streak[0m
+[37m[18:00:50 F20 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:9053 (run_test): non Ajinkya Rahane->Angkrish Raghuvanshi[0m
+[37m[18:00:50 F20 TEST] INFO:   [DIRECT] Batter updates: ['Ajinkya Rahane: ext=27(18) → tracker=0(0) [was 0(0)]', 'Angkrish Raghuvanshi: ext=17(11) → tracker=0(0) [was 0(0)]'][0m
+[37m[18:00:50 F20 TEST] INFO:   [SCORE-CAP-SUPPRESS-NARROW] DIRECT cap suppressed — cur=None recovery_until=0 frame=20[0m
+[37m[18:00:50 F20 TRACK] INFO: score: initial proposal flipped 47 → 79 — resetting consensus to 1/3[0m
+[37m[18:00:50 F20 TRACK] INFO: overs: initial proposal flipped 3.2 → 7.0 — resetting consensus to 1/3[0m
+[37m[18:00:50 F20 TRACK] INFO: wickets: initial proposal flipped 3 → 1 — resetting consensus to 1/3[0m
+[37m[18:00:51 F20 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:00:51 F20 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: SHIVANG.[0m
+[37m[18:00:51 F20 TRACK] INFO: overs: initial proposed 7.0 (2/3 — waiting)[0m
+[37m[18:00:51 F20 TRACK] INFO: wickets: initial proposed 1 (2/3 — waiting)[0m
+[37m[18:00:51 F20 TRACK] INFO: bat:Ajinkya Rahane:runs: None → 27 (confirmed F20)[0m
+[37m[18:00:51 F20 TRACK] INFO: bat:Ajinkya Rahane:balls: None → 18 (confirmed F20)[0m
+[37m[18:00:51 F20 BOARD] INFO: Ajinkya Rahane: 0(0) -> 27(18) [F20][0m
+[37m[18:00:51 F20 TRACK] INFO: bat:Angkrish Raghuvanshi:runs: None → 17 (confirmed F20)[0m
+[37m[18:00:51 F20 TRACK] INFO: bat:Angkrish Raghuvanshi:balls: None → 11 (confirmed F20)[0m
+[37m[18:00:51 F20 BOARD] INFO: Angkrish Raghuvanshi: 0(0) -> 17(11) [F20][0m
+[37m[18:00:51 F20 TEST] INFO:   [SCORER-SCHEMA-WOULD-COERCE] field=score_update.from reason=coerce_null raw='None-None' filter_caught_in_step3=false frame=F20[0m
+[37m[18:00:51 F20 TEST] INFO:   [SCORER-SCHEMA-WOULD-COERCE] field=score_update.to reason=coerce_null raw='Kolkata Knight Riders 79-1 (7)' filter_caught_in_step3=false frame=F20[0m
+[37m[18:00:51 F20 TEST] INFO:   [SCORER-SCHEMA-WOULD-COERCE] field=score_update.accepted reason=accepted_forced_false filter_caught_in_step3=false frame=F20[0m
+[37m[18:00:51 F20 TEST] INFO:   [S 948ms] Changes: ['bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)', 'bowl:Pat Cummins'][0m
+[37m[18:00:51 F20 TEST] INFO:   Total: 3348ms (V:978 E:1422 S:948)[0m
+[37m[18:00:51 F20 TEST] INFO:   [CODE] HIGH-CONF deferred: runs_needed=87 balls=78 but score_now=0 (waiting for cold-start)[0m
+[37m[18:00:51 F20 TEST] INFO:   [CODE] Target 87 — frame 1/2, waiting[0m
+[37m[18:00:51 F20 TEST] INFO:   STATE: Kolkata Knight Riders None-None (None) inn=1 RR=— | Bat: Ajinkya Rahane(27) Angkrish Raghuvanshi(17) | Bowl: Pat Cummins 1-15[0m
+[37m[18:00:51 F20 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:51 F20 TEST] INFO:   [ACTION] A player in a blue jersey is walking on the field.[0m
+[FIELD WARN] Powerplay but 3 outside circle (max 2). Possible misclassification.
+[37m[18:00:51 F20 TEST] INFO: DETAIL|F20|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | TO WIN 87 OFF 78 | SHIVANG 0-8|action=A player in a blue jersey is walking on the field.|ext_score=79-1(7)|ext_bat=Ajinkya Rahane 27(18) | Angkrish Raghuvanshi 17(11)|ext_bowl=SHIVANG 0-8 (1)|scorer_changes=['bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)', 'bowl:Pat Cummins']|yolo=4|BEFORE_score=None-None(None)|BEFORE_bat1=Ajinkya Rahane 0(0)|BEFORE_bat2=Angkrish Raghuvanshi 0(0)|BEFORE_bowl=Pat Cummins 1-15 (3.2)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=Ajinkya Rahane 27(18)|AFTER_bat2=Angkrish Raghuvanshi 17(11)|AFTER_bowl=Pat Cummins 1-15 (3.2)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=978|lat_extract=1422|lat_scorer=948|lat_field=89|lat_comm=0|lat_code=0|lat_total=3358|comm_bowler=Pat Cummins|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[33m[18:00:53 F20 ENRICH] WARN: Pass-2 returned unparseable JSON — keeping pass-1 styles (raw_len=0 preview='')[0m
+[37m[18:00:53 F20 ENRICH] INFO: Saved styles to player_styles_a8f7bf951a6f.json[0m
+[33m[18:00:53 F20 ENRICH] WARN: Pass-2 background failed — cached Pass-1 as fallback[0m
+[37m[18:00:54 F21 VISION] INFO: [SCOUT] SCOREBOARD 955ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 393 chars[0m
+[37m[18:00:54 F21 TEST] INFO:   [BROADCAST] Chase: 87 from 78 balls[0m
+[37m[18:00:54 F21 TEST] INFO: 
+=======================================================[0m
+[37m[18:00:54 F21 TEST] INFO: [F21] SCOREBOARD — #4[0m
+[37m[18:00:54 F21 TEST] INFO:   [V 957ms] STRIP: KKR 79-1 (7) | >RAHANE 27(18) | RAGHUVANSHI 17(11) | TO WIN 87 OFF 78 | SHIVANG 0-8 1 
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The player appears to be discussing or reacting during a break in play.[0m
+[37m[18:00:55 F21 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:00:55 F21 TEST] INFO:   [E 1045ms] visible_team=Kolkata Knight Riders score=79-1 (7) target=None rr=None[0m
+[37m[18:00:55 F21 TEST] INFO:     BAT: Ajinkya Rahane 27(18) [0m
+[37m[18:00:55 F21 TEST] INFO:     BAT: Angkrish Raghuvanshi 17(11) [0m
+[37m[18:00:55 F21 TEST] INFO:     BOWL: SHIVANG 0-8 (None)[0m
+[37m[18:00:55 F21 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 8 (2/3 — waiting)[0m
+[37m[18:00:55 F21 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)[0m
+[37m[18:00:55 F21 BOARD] INFO: [BATTER-CONSENSUS-RESET] Ajinkya Rahane — clearing bat tracker streak[0m
+[37m[18:00:55 F21 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:9053 (run_test): non Angkrish Raghuvanshi->Ajinkya Rahane[0m
+[37m[18:00:56 F21 BOARD] INFO: [BATTER-CONSENSUS-RESET] Angkrish Raghuvanshi — clearing bat tracker streak[0m
+[37m[18:00:56 F21 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:9053 (run_test): non Ajinkya Rahane->Angkrish Raghuvanshi[0m
+[37m[18:00:56 F21 TEST] INFO:   [DIRECT] Batter updates: ['Ajinkya Rahane: ext=27(18) → tracker=27(18) [was 27(18)]', 'Angkrish Raghuvanshi: ext=17(11) → tracker=17(11) [was 17(11)]'][0m
+[37m[18:00:56 F21 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:2678 (_set_inn_slot_with_sm_mirror): striker None->Ajinkya Rahane[0m
+[37m[18:00:56 F21 TEST] INFO:   [STRIKER-SM-CUTOVER] mirrored striker='Ajinkya Rahane' reason=broadcast-indicator — SM+_inn lockstep[0m
+[37m[18:00:56 F21 TEST] INFO:   [STRIKER] Broadcast indicator: Ajinkya Rahane (was None)[0m
+[37m[18:00:56 F21 TEST] INFO:   [SCORE-CAP-SUPPRESS-NARROW] DIRECT cap suppressed — cur=None recovery_until=0 frame=21[0m
+[37m[18:00:56 F21 TRACK] INFO: score: initial proposed 79 (2/3 — waiting)[0m
+[37m[18:00:56 F21 TRACK] INFO: overs: initial → 7.0 (cold-start consensus 3/3)[0m
+[37m[18:00:56 F21 BOARD] INFO: overs: None -> 7.0 [F21][0m
+[37m[18:00:56 F21 TEST] INFO:   [DIRECT] overs→7[0m
+[37m[18:00:56 F21 TRACK] INFO: wickets: initial → 1 (cold-start consensus 3/3)[0m
+[37m[18:00:56 F21 BOARD] INFO: wickets: None -> 1 [F21][0m
+[37m[18:00:56 F21 BOARD] INFO: [DISMISS] Cold-start seed — gate set to wickets=1 (zero_streak=0, historical wickets will not trigger auto-dismissal).[0m
+[37m[18:00:56 F21 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[18:00:57 F21 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:00:57 F21 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[18:00:57 F21 TEST] INFO:   [GUARD] Score correction in Scorer output: 0→79 (delta=79) — blocking ALL updates for this frame[0m
+[37m[18:00:57 F21 TEST] INFO:   [CONSENSUS] Score 79 frame 1/2, waiting[0m
+[37m[18:00:57 F21 TEST] INFO:   [S 996ms] Changes: ['CORRECTION_BLOCKED:79'][0m
+[37m[18:00:57 F21 TEST] INFO:   Total: 2999ms (V:957 E:1045 S:996)[0m
+[37m[18:00:57 F21 TEST] INFO:   [CODE] HIGH-CONF deferred: runs_needed=87 balls=78 but score_now=0 (waiting for cold-start)[0m
+[37m[18:00:57 F21 TEST] INFO:   [CODE] Target 87 detected — pending batter confirmation for innings 2[0m
+[37m[18:00:57 F21 TEST] INFO:   [CODE] Innings 2 confirmed: Kolkata Knight Riders is chasing (inn 1 batters still visible)[0m
+[37m[18:00:57 F21 TEST] INFO: [INNINGS-TRANSITION-TELEMETRY] source=set_innings_2 caller=test_pipeline.py:10283 pre_inn=1 pre_state=None/1 (7.0) pre_team=Kolkata Knight Riders target=87[0m
+[37m[18:00:57 F21 TEST] INFO: [INNINGS] set_innings_2 with cold-start state 0/1 (7.0) — preserving (innings 1 physically incomplete; this is a cold-start mid-innings-2 correction).[0m
+[37m[18:00:57 F21 BOARD] INFO: [INNINGS] Set to 2. Target: 87. All trackers reset.[0m
+[37m[18:00:57 F21 TEST] INFO:   [CODE] Target set to 87[0m
+[37m[18:00:57 F21 TEST] INFO:   STATE: Kolkata Knight Riders None-1 (7.0) inn=2 RR=— | Bat: Ajinkya Rahane*(27) Angkrish Raghuvanshi(17) | Bowl: Pat Cummins 1-15[0m
+[37m[18:00:57 F21 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:00:57 F21 TEST] INFO:   [WS-PROJECTION-GAP] cleared — payload now striker='Ajinkya Rahane' non='Angkrish Raghuvanshi' current_bowler='Pat Cummins'[0m
+[37m[18:00:57 F21 CARD_HELPERS] INFO:   [CONSISTENCY] Pat Cummins overs 3.2 → 4.0 (team @ 7.0, bowler must finish over)[0m
+[37m[18:00:57 F21 CARD_HELPERS] INFO:   [CONSISTENCY] Pat Cummins overs 3.2 → 4.0 (team @ 7.0, bowler must finish over)[0m
+[37m[18:00:57 F21 FIELD] INFO: [F21] OC-third_man_fine moved to OC-third_man_square[0m
+[37m[18:00:57 F21 FIELD] INFO: [F21] IC-cover moved to IC-point[0m
+[37m[18:00:57 F21 FIELD] INFO: [F21] IC-backward_square brought in — attacking[0m
+[37m[18:00:57 F21 FIELD] INFO: [F21] IC-gully brought in — attacking[0m
+[37m[18:00:57 F21 BOARD] INFO: [FOW] Placeholder W1: _unwitnessed (no fabrication — awaiting real wicket event or CB scrape enrichment)[0m
+[37m[18:00:57 F21 TEST] INFO: DETAIL|F21|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 79-1 (7) | >RAHANE 27(18) | RAGHUVANSHI 17(11) | TO WIN 87 OFF 78 | SHIVANG 0-8 1  INFO_PANEL: null SPEED: nu|action=—|ext_score=79-1(7)|ext_bat=Ajinkya Rahane 27(18) | Angkrish Raghuvanshi 17(11)|ext_bowl=SHIVANG 0-8 (None)|scorer_changes=['CORRECTION_BLOCKED:79']|yolo=5|BEFORE_score=None-None(None)|BEFORE_bat1=Ajinkya Rahane 27(18)|BEFORE_bat2=Angkrish Raghuvanshi 17(11)|BEFORE_bowl=Pat Cummins 1-15 (3.2)|BEFORE_this_over=[]|AFTER_score=None-1(7.0)|AFTER_bat1=Ajinkya Rahane 27(18)|AFTER_bat2=Angkrish Raghuvanshi 17(11)|AFTER_bowl=Pat Cummins 1-15 (3.2)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Ajinkya Rahane|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=—|AFTER_target=87|AFTER_innings=2|AFTER_partnership=—|AFTER_fow_count=1|AFTER_field=pace_powerplay frozen=True fielders=['leg_slip', 'gully', 'deep_backward_sq', 'forward_short_leg', 'deep_fine_leg', 'slip_1', 'point', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Ajinkya Rahane|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=957|lat_extract=1045|lat_scorer=996|lat_field=33|lat_comm=0|lat_code=0|lat_total=3013|comm_bowler=Pat Cummins|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[18:01:00 F22 VISION] INFO: [SCOUT] SCOREBOARD 938ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 344 chars[0m
+[37m[18:01:00 F22 TEST] INFO: 
+=======================================================[0m
+[37m[18:01:00 F22 TEST] INFO: [F22] SCOREBOARD — #5[0m
+[37m[18:01:00 F22 TEST] INFO:   [V 940ms] STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | SHIVANG 0-8 (1)[0m
+[37m[18:01:01 F22 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:01 F22 TEST] INFO:   [E 1192ms] visible_team=Kolkata Knight Riders score=79-1 (7) target=None rr=None[0m
+[37m[18:01:01 F22 TEST] INFO:     BAT: Ajinkya Rahane 27(18) [0m
+[37m[18:01:01 F22 TEST] INFO:     BAT: Angkrish Raghuvanshi 17(11) [0m
+[37m[18:01:01 F22 TEST] INFO:     BOWL: SHIVANG 0-8 (1)[0m
+[33m[18:01:01 F22 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Ajinkya Rahane — already striker; would self-collide[0m
+[37m[18:01:01 F22 BOARD] INFO: [BATTER-CONSENSUS-RESET] Angkrish Raghuvanshi — clearing bat tracker streak[0m
+[37m[18:01:01 F22 TEST] INFO:   [DIRECT] Batter updates: ['Ajinkya Rahane: ext=27(18) → tracker=27(18) [was 27(18)]', 'Angkrish Raghuvanshi: ext=17(11) → tracker=17(11) [was 17(11)]'][0m
+[37m[18:01:01 F22 TEST] INFO:   [SCORE-CAP-SUPPRESS-NARROW] DIRECT cap suppressed — cur=None recovery_until=0 frame=22[0m
+[37m[18:01:02 F22 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:02 F22 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: SHIVANG[0m
+[37m[18:01:02 F22 TEST] INFO:   [GUARD] Score correction in Scorer output: 0→79 (delta=79) — blocking ALL updates for this frame[0m
+[37m[18:01:02 F22 TEST] INFO:   [CONSENSUS] Score 79 persisted 2 frames — accepting as new truth[0m
+[37m[18:01:02 F22 TRACK] INFO: score: initial proposed 79 (2/3 — waiting)[0m
+[37m[18:01:02 F22 TEST] INFO:   [S 1044ms] Changes: ['score→79(consensus)'][0m
+[37m[18:01:02 F22 TEST] INFO:   Total: 3176ms (V:940 E:1192 S:1044)[0m
+[37m[18:01:02 F22 TEST] INFO:   STATE: Kolkata Knight Riders None-1 (7.0) inn=2 RR=— | Bat: Ajinkya Rahane*(27) Angkrish Raghuvanshi(17) | Bowl: Pat Cummins 1-15[0m
+[37m[18:01:02 F22 SCORE_MGR] INFO: [SM] cold-start candidate seeded 79/1 (7.0) — streak 1/3[0m
+[37m[18:01:02 F22 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:01:02 F22 CARD_HELPERS] INFO:   [CONSISTENCY] Pat Cummins overs 3.2 → 4.0 (team @ 7.0, bowler must finish over)[0m
+[37m[18:01:02 F22 CARD_HELPERS] INFO:   [CONSISTENCY] Pat Cummins overs 3.2 → 4.0 (team @ 7.0, bowler must finish over)[0m
+[37m[18:01:02 F22 TEST] INFO:   [ACTION] A player, likely a member of the Kolkata Knight Riders, is shown in a close-up.[0m
+[37m[18:01:02 F22 TEST] INFO: DETAIL|F22|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | SHIVANG 0-8 (1)|action=A player, likely a member of the Kolkata Knight Riders, is shown in a close-up.|ext_score=79-1(7)|ext_bat=Ajinkya Rahane 27(18) | Angkrish Raghuvanshi 17(11)|ext_bowl=SHIVANG 0-8 (1)|scorer_changes=['score→79(consensus)']|yolo=0|BEFORE_score=None-1(7.0)|BEFORE_bat1=Ajinkya Rahane 27(18)|BEFORE_bat2=Angkrish Raghuvanshi 17(11)|BEFORE_bowl=Pat Cummins 1-15 (3.2)|BEFORE_this_over=[]|AFTER_score=None-1(7.0)|AFTER_bat1=Ajinkya Rahane 27(18)|AFTER_bat2=Angkrish Raghuvanshi 17(11)|AFTER_bowl=Pat Cummins 1-15 (3.2)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Ajinkya Rahane|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=—|AFTER_target=87|AFTER_innings=2|AFTER_partnership=—|AFTER_fow_count=1|AFTER_field=pace_powerplay frozen=True fielders=['leg_slip', 'gully', 'deep_backward_sq', 'forward_short_leg', 'deep_fine_leg', 'slip_1', 'point', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Ajinkya Rahane|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=940|lat_extract=1192|lat_scorer=1044|lat_field=34|lat_comm=0|lat_code=0|lat_total=3184|comm_bowler=Pat Cummins|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[18:01:05 F23 VISION] INFO: [SCOUT] SCOREBOARD 780ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 368 chars[0m
+[37m[18:01:05 F23 TEST] INFO:   [BROADCAST] Chase: 87 from 78 balls[0m
+[37m[18:01:05 F23 TEST] INFO: 
+=======================================================[0m
+[37m[18:01:05 F23 TEST] INFO: [F23] SCOREBOARD — #6[0m
+[37m[18:01:05 F23 TEST] INFO:   [V 782ms] STRIP: KKR 79-1 (7) | > RAHANE 27(18) | RAGHUVANSHI 17(11) | TO WIN 87 OFF 78 | SHIVANG 0-8 1[0m
+[37m[18:01:06 F23 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[33m[18:01:06 F23 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F23 reason=sentinel sentinel=' > ' popped=batters[0m
+[37m[18:01:06 F23 TEST] INFO:   [E 1060ms] visible_team=Kolkata Knight Riders score=79-1 (7) target=None rr=None[0m
+[37m[18:01:06 F23 TEST] INFO:     BOWL: SHIVANG 1-8 (None)[0m
+[37m[18:01:07 F23 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:07 F23 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: SHIVANG[0m
+[37m[18:01:07 F23 TEST] INFO:   [S 909ms] Changes: ['FRAME_POISONED:79'][0m
+[37m[18:01:07 F23 TEST] INFO:   Total: 2751ms (V:782 E:1060 S:909)[0m
+[37m[18:01:07 F23 TEST] INFO:   STATE: Kolkata Knight Riders None-1 (7.0) inn=2 RR=— | Bat: Ajinkya Rahane*(27) Angkrish Raghuvanshi(17) | Bowl: Pat Cummins 1-15[0m
+[37m[18:01:07 F23 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:01:07 F23 CARD_HELPERS] INFO:   [CONSISTENCY] Pat Cummins overs 3.2 → 4.0 (team @ 7.0, bowler must finish over)[0m
+[37m[18:01:07 F23 CARD_HELPERS] INFO:   [CONSISTENCY] Pat Cummins overs 3.2 → 4.0 (team @ 7.0, bowler must finish over)[0m
+[37m[18:01:07 F23 TEST] INFO:   [ACTION] A player in a blue jersey is captured in a close-up shot, seemingly reacting or [0m
+[37m[18:01:07 F23 TEST] INFO: DETAIL|F23|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 79-1 (7) | > RAHANE 27(18) | RAGHUVANSHI 17(11) | TO WIN 87 OFF 78 | SHIVANG 0-8 1|action=A player in a blue jersey is captured in a close-up shot, seemingly reacting or celebrating during a|ext_score=79-1(7)|ext_bat=|ext_bowl=SHIVANG 1-8 (None)|scorer_changes=['FRAME_POISONED:79']|yolo=0|BEFORE_score=None-1(7.0)|BEFORE_bat1=Ajinkya Rahane 27(18)|BEFORE_bat2=Angkrish Raghuvanshi 17(11)|BEFORE_bowl=Pat Cummins 1-15 (3.2)|BEFORE_this_over=[]|AFTER_score=None-1(7.0)|AFTER_bat1=Ajinkya Rahane 27(18)|AFTER_bat2=Angkrish Raghuvanshi 17(11)|AFTER_bowl=Pat Cummins 1-15 (3.2)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Ajinkya Rahane|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=—|AFTER_target=87|AFTER_innings=2|AFTER_partnership=—|AFTER_fow_count=1|AFTER_field=pace_powerplay frozen=True fielders=['leg_slip', 'gully', 'deep_backward_sq', 'forward_short_leg', 'deep_fine_leg', 'slip_1', 'point', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Ajinkya Rahane|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=782|lat_extract=1060|lat_scorer=909|lat_field=33|lat_comm=0|lat_code=0|lat_total=2755|comm_bowler=Pat Cummins|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[18:01:09 F24 VISION] INFO: [SCOUT] SCOREBOARD 803ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 385 chars[0m
+[37m[18:01:09 F24 TEST] INFO: 
+=======================================================[0m
+[37m[18:01:09 F24 TEST] INFO: [F24] SCOREBOARD — #7[0m
+[37m[18:01:09 F24 TEST] INFO:   [V 805ms] STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | SHIVANG 0-8 (1)
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+The players are walking back during a break in play.[0m
+[37m[18:01:11 F24 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:11 F24 TEST] INFO:   [E 1292ms] visible_team=Kolkata Knight Riders score=79-1 (7) target=None rr=None[0m
+[37m[18:01:11 F24 TEST] INFO:     BAT: Ajinkya Rahane 27(18) [0m
+[37m[18:01:11 F24 TEST] INFO:     BAT: Angkrish Raghuvanshi 17(11) [0m
+[37m[18:01:11 F24 TEST] INFO:     BOWL: SHIVANG 0-8 (1)[0m
+[37m[18:01:11 F24 TRACK] INFO: bowl:Shivang Kumar:runs: initial proposed 8 (2/3 — waiting)[0m
+[37m[18:01:11 F24 TRACK] INFO: bowl:Shivang Kumar:wickets: initial proposed 0 (2/3 — waiting)[0m
+[37m[18:01:11 F24 TRACK] INFO: bowl:Shivang Kumar:overs: initial proposed 1 (2/3 — waiting)[0m
+[37m[18:01:11 F24 BOARD] INFO: [BOWLER-OVERRIDE] Pat Cummins → Shivang Kumar (reads=3, must_change=False)[0m
+[37m[18:01:11 F24 BOARD] INFO: [BOWLER SEED] Shivang Kumar figures seeded from scout text to 0-8 (1) — mid-spell entry (impact sub / mid-match join)[0m
+[37m[18:01:11 F24 BOARD] INFO: [BATTER-CONSENSUS-RESET] Ajinkya Rahane — clearing bat tracker streak[0m
+[33m[18:01:11 F24 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Ajinkya Rahane — already striker; would self-collide[0m
+[37m[18:01:11 F24 BOARD] INFO: [BATTER-CONSENSUS-RESET] Angkrish Raghuvanshi — clearing bat tracker streak[0m
+[37m[18:01:11 F24 TEST] INFO:   [DIRECT] Batter updates: ['Ajinkya Rahane: ext=27(18) → tracker=27(18) [was 27(18)]', 'Angkrish Raghuvanshi: ext=17(11) → tracker=17(11) [was 17(11)]'][0m
+[37m[18:01:11 F24 TEST] INFO:   [SCORE-CAP-SUPPRESS-NARROW] DIRECT cap suppressed — cur=None recovery_until=0 frame=24[0m
+[37m[18:01:11 F24 TRACK] INFO: score: initial → 79 (cold-start consensus 3/3)[0m
+[37m[18:01:11 F24 BOARD] INFO: score: None -> 79 [F24][0m
+[37m[18:01:11 F24 TEST] INFO:   [DIRECT] score→79[0m
+[37m[18:01:11 F24 TRACK] INFO: overs: initial proposed 7.0 (2/3 — waiting)[0m
+[37m[18:01:11 F24 TRACK] INFO: wickets: initial proposed 1 (2/3 — waiting)[0m
+[37m[18:01:11 F24 TEST] INFO:   [INIT] First-frame initialization complete: 79-1(7.0)[0m
+[37m[18:01:12 F24 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:12 F24 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: SHIVANG. Read their stats from the scoreboard.[0m
+[37m[18:01:12 F24 TRACK] INFO: overs: initial → 7.0 (cold-start consensus 3/3)[0m
+[37m[18:01:12 F24 TRACK] INFO: wickets: initial → 1 (cold-start consensus 3/3)[0m
+[37m[18:01:12 F24 TEST] INFO:   [GUARD] Scorer proposed dismissal but wickets unchanged (1) — blocking[0m
+[37m[18:01:12 F24 TRACK] INFO: bat:Ajinkya Rahane:runs: None → 27 (confirmed F24)[0m
+[37m[18:01:12 F24 TRACK] INFO: bat:Ajinkya Rahane:balls: None → 18 (confirmed F24)[0m
+[37m[18:01:12 F24 TRACK] INFO: bat:Angkrish Raghuvanshi:runs: None → 17 (confirmed F24)[0m
+[37m[18:01:12 F24 TRACK] INFO: bat:Angkrish Raghuvanshi:balls: None → 11 (confirmed F24)[0m
+[37m[18:01:12 F24 TEST] INFO:   [S 1025ms] Changes: ['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)', 'bowl:Shivang Kumar'][0m
+[37m[18:01:12 F24 TEST] INFO:   Total: 3122ms (V:805 E:1292 S:1025)[0m
+[37m[18:01:12 F24 BOARD] INFO: run_rate: None -> 11.29 [F24][0m
+[37m[18:01:12 F24 TEST] INFO:   STATE: Kolkata Knight Riders 79-1 (7.0) inn=2 RR=11.29 | Bat: Ajinkya Rahane*(27) Angkrish Raghuvanshi(17) | Bowl: Shivang Kumar 0-8[0m
+[37m[18:01:12 F24 SCORE_MGR] INFO: [SM] cold-start consensus building 79/1 (7.0) — streak 2/3[0m
+[37m[18:01:12 F24 TEST] INFO:   [WS-PROJECTION-FALLBACK] non='Angkrish Raghuvanshi' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[18:01:12 F24 TEST] INFO:   [SM-FEEDER-DIVERGENCE] field=bowler_name sm_value=None sb_value='Shivang Kumar' sb_consensus_state=active frames_since_sm_update=5[0m
+[37m[18:01:12 F24 COMMENTARY] INFO: [PARTNERSHIP] new pair {'Ajinkya Rahane', 'Angkrish Raghuvanshi'} anchored at score=35 balls=13  (team=79/42, guess_runs=44 guess_balls=29)[0m
+[37m[18:01:12 F24 TEST] INFO: DETAIL|F24|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | SHIVANG 0-8 (1) INFO_PANEL: nu|action=—|ext_score=79-1(7)|ext_bat=Ajinkya Rahane 27(18) | Angkrish Raghuvanshi 17(11)|ext_bowl=SHIVANG 0-8 (1)|scorer_changes=['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)', 'bowl:Shivang Kumar']|yolo=0|BEFORE_score=None-1(7.0)|BEFORE_bat1=Ajinkya Rahane 27(18)|BEFORE_bat2=Angkrish Raghuvanshi 17(11)|BEFORE_bowl=Pat Cummins 1-15 (3.2)|BEFORE_this_over=[]|AFTER_score=79-1(7.0)|AFTER_bat1=Ajinkya Rahane 27(18)|AFTER_bat2=Angkrish Raghuvanshi 17(11)|AFTER_bowl=Shivang Kumar 0-8 (1)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Ajinkya Rahane|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=11.29|AFTER_target=87|AFTER_innings=2|AFTER_partnership=44(29)|AFTER_fow_count=1|AFTER_field=pace_powerplay frozen=True fielders=['leg_slip', 'gully', 'deep_backward_sq', 'forward_short_leg', 'deep_fine_leg', 'slip_1', 'point', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Ajinkya Rahane|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=805|lat_extract=1292|lat_scorer=1025|lat_field=40|lat_comm=0|lat_code=0|lat_total=3127|comm_bowler=Shivang Kumar|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[18:01:15 F25 VISION] INFO: [SCOUT] SCOREBOARD 829ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 353 chars[0m
+[37m[18:01:15 F25 TEST] INFO: 
+=======================================================[0m
+[37m[18:01:15 F25 TEST] INFO: [F25] SCOREBOARD — #8[0m
+[37m[18:01:15 F25 TEST] INFO:   [V 831ms] STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | SHIVANG 0-8 (1)
+
+The player is on the field, and the scoreboard is visible, but no immediate action is happening.[0m
+[37m[18:01:16 F25 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:16 F25 TEST] INFO:   [E 1285ms] visible_team=Kolkata Knight Riders score=79-1 (7) target=None rr=None[0m
+[37m[18:01:16 F25 TEST] INFO:     BAT: Ajinkya Rahane 27(18) [0m
+[37m[18:01:16 F25 TEST] INFO:     BAT: Angkrish Raghuvanshi 17(11) [0m
+[37m[18:01:16 F25 TEST] INFO:     BOWL: SHIVANG 0-8 (1)[0m
+[37m[18:01:16 F25 BOARD] INFO: [BATTER-CONSENSUS-RESET] Ajinkya Rahane — clearing bat tracker streak[0m
+[33m[18:01:16 F25 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Ajinkya Rahane — already striker; would self-collide[0m
+[37m[18:01:16 F25 BOARD] INFO: [BATTER-CONSENSUS-RESET] Angkrish Raghuvanshi — clearing bat tracker streak[0m
+[37m[18:01:16 F25 TEST] INFO:   [DIRECT] Batter updates: ['Ajinkya Rahane: ext=27(18) → tracker=27(18) [was 27(18)]', 'Angkrish Raghuvanshi: ext=17(11) → tracker=17(11) [was 17(11)]'][0m
+[37m[18:01:16 F25 TEST] INFO:   [DIRECT] score→79[0m
+[37m[18:01:16 F25 TEST] INFO:   [DIRECT] overs→7[0m
+[37m[18:01:16 F25 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[18:01:17 F25 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:17 F25 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: SHIVANG[0m
+[37m[18:01:17 F25 TRACK] INFO: bat:Ajinkya Rahane:runs: None → 27 (confirmed F25)[0m
+[37m[18:01:17 F25 TRACK] INFO: bat:Ajinkya Rahane:balls: None → 18 (confirmed F25)[0m
+[37m[18:01:17 F25 TRACK] INFO: bat:Angkrish Raghuvanshi:runs: None → 17 (confirmed F25)[0m
+[37m[18:01:17 F25 TRACK] INFO: bat:Angkrish Raghuvanshi:balls: None → 11 (confirmed F25)[0m
+[37m[18:01:17 F25 TEST] INFO:   [S 906ms] Changes: ['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)', 'bowl:Shivang Kumar'][0m
+[37m[18:01:17 F25 TEST] INFO:   Total: 3022ms (V:831 E:1285 S:906)[0m
+[37m[18:01:17 F25 TEST] INFO:   STATE: Kolkata Knight Riders 79-1 (7.0) inn=2 RR=11.29 | Bat: Ajinkya Rahane*(27) Angkrish Raghuvanshi(17) | Bowl: Shivang Kumar 0-8[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=score value=79 sb_accepted=true[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=wickets value=1 sb_accepted=true[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=27[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=18[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=17[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=11[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now sb_value=0[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now sb_value=8[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now sb_value='1'[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=batting_team value='KKR' sb_accepted=true[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=run_rate value=11.29 sb_accepted=true[0m
+[37m[18:01:17 F25 SCORE_MGR] INFO: [SM] COLD_START → WARM (consensus 3/3)  79/1 (7.0)[0m
+[37m[18:01:17 F25 OVER] INFO: [OVER-RESYNC] Cursor aligned to over 7 from team_overs=7.0 (score_manager_mid_innings_recovery); cleared current tokens[0m
+[37m[18:01:17 F25 TEST] INFO: DETAIL|F25|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | SHIVANG 0-8 (1)  The player is|action=—|ext_score=79-1(7)|ext_bat=Ajinkya Rahane 27(18) | Angkrish Raghuvanshi 17(11)|ext_bowl=SHIVANG 0-8 (1)|scorer_changes=['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)', 'bowl:Shivang Kumar']|yolo=0|BEFORE_score=79-1(7.0)|BEFORE_bat1=Ajinkya Rahane 27(18)|BEFORE_bat2=Angkrish Raghuvanshi 17(11)|BEFORE_bowl=Shivang Kumar 0-8 (1)|BEFORE_this_over=[]|AFTER_score=79-1(7.0)|AFTER_bat1=Ajinkya Rahane 27(18)|AFTER_bat2=Angkrish Raghuvanshi 17(11)|AFTER_bowl=Shivang Kumar 0-8 (1)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Ajinkya Rahane|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=11.29|AFTER_target=87|AFTER_innings=2|AFTER_partnership=44(29)|AFTER_fow_count=1|AFTER_field=pace_powerplay frozen=True fielders=['leg_slip', 'gully', 'deep_backward_sq', 'forward_short_leg', 'deep_fine_leg', 'slip_1', 'point', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Ajinkya Rahane|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=831|lat_extract=1285|lat_scorer=906|lat_field=34|lat_comm=0|lat_code=0|lat_total=3026|comm_bowler=Shivang Kumar|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[18:01:20 F26 VISION] INFO: [SCOUT] SCOREBOARD 896ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 425 chars[0m
+[37m[18:01:20 F26 TEST] INFO: 
+=======================================================[0m
+[37m[18:01:20 F26 TEST] INFO: [F26] SCOREBOARD — #9[0m
+[37m[18:01:20 F26 TEST] INFO:   [V 898ms] STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | HARSHAL 0-0 (0)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The player is focused on the field, possibly strategizing or tak[0m
+[37m[18:01:21 F26 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:21 F26 TEST] INFO:   [E 1091ms] visible_team=Kolkata Knight Riders score=79-1 (7) target=None rr=None[0m
+[37m[18:01:21 F26 TEST] INFO:     BAT: Ajinkya Rahane 27(18) [0m
+[37m[18:01:21 F26 TEST] INFO:     BAT: Angkrish Raghuvanshi 17(11) [0m
+[37m[18:01:21 F26 TEST] INFO:     BOWL: HARSHAL 0-0 (0)[0m
+[37m[18:01:21 F26 BOARD] INFO: [BATTER-CONSENSUS-RESET] Ajinkya Rahane — clearing bat tracker streak[0m
+[33m[18:01:21 F26 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Ajinkya Rahane — already striker; would self-collide[0m
+[37m[18:01:21 F26 BOARD] INFO: [BATTER-CONSENSUS-RESET] Angkrish Raghuvanshi — clearing bat tracker streak[0m
+[37m[18:01:21 F26 TEST] INFO:   [DIRECT] Batter updates: ['Ajinkya Rahane: ext=27(18) → tracker=27(18) [was 27(18)]', 'Angkrish Raghuvanshi: ext=17(11) → tracker=17(11) [was 17(11)]'][0m
+[37m[18:01:21 F26 TEST] INFO:   [DIRECT] score→79[0m
+[37m[18:01:21 F26 TEST] INFO:   [DIRECT] overs→7[0m
+[37m[18:01:21 F26 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[18:01:22 F26 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:22 F26 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[18:01:22 F26 TRACK] INFO: bat:Ajinkya Rahane:runs: None → 27 (confirmed F26)[0m
+[37m[18:01:22 F26 TRACK] INFO: bat:Ajinkya Rahane:balls: None → 18 (confirmed F26)[0m
+[37m[18:01:22 F26 TRACK] INFO: bat:Angkrish Raghuvanshi:runs: None → 17 (confirmed F26)[0m
+[37m[18:01:22 F26 TRACK] INFO: bat:Angkrish Raghuvanshi:balls: None → 11 (confirmed F26)[0m
+[37m[18:01:22 F26 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Pat Cummins' read — proposed 1-15(3.2) exactly matches recorded 1-15(3.2); no handoff grace (must_change=False). Likely stale end-of-spell graphic; current_bowler stays 'Shivang Kumar'[0m
+[37m[18:01:22 F26 TEST] INFO:   [S 941ms] Changes: ['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)'][0m
+[37m[18:01:22 F26 TEST] INFO:   Total: 2930ms (V:898 E:1091 S:941)[0m
+[37m[18:01:22 F26 TEST] INFO:   STATE: KKR 79-1 (7.0) inn=2 RR=11.29 | Bat: Ajinkya Rahane*(27) Angkrish Raghuvanshi(17) | Bowl: Shivang Kumar 0-8[0m
+[37m[18:01:22 F26 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=27[0m
+[37m[18:01:22 F26 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=18[0m
+[37m[18:01:22 F26 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=17[0m
+[37m[18:01:22 F26 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=11[0m
+[37m[18:01:22 F26 TEST] INFO: DETAIL|F26|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | HARSHAL 0-0 (0)  INFO_PANEL: n|action=—|ext_score=79-1(7)|ext_bat=Ajinkya Rahane 27(18) | Angkrish Raghuvanshi 17(11)|ext_bowl=HARSHAL 0-0 (0)|scorer_changes=['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)']|yolo=0|BEFORE_score=79-1(7.0)|BEFORE_bat1=Ajinkya Rahane 27(18)|BEFORE_bat2=Angkrish Raghuvanshi 17(11)|BEFORE_bowl=Shivang Kumar 0-8 (1)|BEFORE_this_over=[]|AFTER_score=79-1(7.0)|AFTER_bat1=Ajinkya Rahane 27(18)|AFTER_bat2=Angkrish Raghuvanshi 17(11)|AFTER_bowl=Shivang Kumar 0-8 (1)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Ajinkya Rahane|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=11.29|AFTER_target=87|AFTER_innings=2|AFTER_partnership=44(29)|AFTER_fow_count=1|AFTER_field=pace_powerplay frozen=True fielders=['leg_slip', 'gully', 'deep_backward_sq', 'forward_short_leg', 'deep_fine_leg', 'slip_1', 'point', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Ajinkya Rahane|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=898|lat_extract=1091|lat_scorer=941|lat_field=33|lat_comm=0|lat_code=0|lat_total=2935|comm_bowler=Shivang Kumar|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[18:01:25 F27 VISION] INFO: [SCOUT] SCOREBOARD 923ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 311 chars[0m
+[37m[18:01:25 F27 TEST] INFO: 
+=======================================================[0m
+[37m[18:01:25 F27 TEST] INFO: [F27] SCOREBOARD — #10[0m
+[37m[18:01:25 F27 TEST] INFO:   [V 925ms] STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | HARSHAL 0-0 (0)[0m
+[37m[18:01:26 F27 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:26 F27 TEST] INFO:   [E 1217ms] visible_team=Kolkata Knight Riders score=79-1 (7) target=None rr=None[0m
+[37m[18:01:26 F27 TEST] INFO:     BAT: Ajinkya Rahane 27(18) [0m
+[37m[18:01:26 F27 TEST] INFO:     BAT: Angkrish Raghuvanshi 17(11) [0m
+[37m[18:01:26 F27 TEST] INFO:     BOWL: HARSHAL 0-0 (None)[0m
+[37m[18:01:26 F27 TRACK] INFO: bowl:Harshal Patel:runs: initial proposed 0 (2/3 — waiting)[0m
+[37m[18:01:26 F27 TRACK] INFO: bowl:Harshal Patel:wickets: initial proposed 0 (2/3 — waiting)[0m
+[37m[18:01:26 F27 BOARD] INFO: [BATTER-CONSENSUS-RESET] Ajinkya Rahane — clearing bat tracker streak[0m
+[33m[18:01:26 F27 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Ajinkya Rahane — already striker; would self-collide[0m
+[37m[18:01:26 F27 BOARD] INFO: [BATTER-CONSENSUS-RESET] Angkrish Raghuvanshi — clearing bat tracker streak[0m
+[37m[18:01:26 F27 TEST] INFO:   [DIRECT] Batter updates: ['Ajinkya Rahane: ext=27(18) → tracker=27(18) [was 27(18)]', 'Angkrish Raghuvanshi: ext=17(11) → tracker=17(11) [was 17(11)]'][0m
+[37m[18:01:26 F27 TEST] INFO:   [DIRECT] score→79[0m
+[37m[18:01:26 F27 TEST] INFO:   [DIRECT] overs→7[0m
+[37m[18:01:26 F27 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[18:01:27 F27 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:01:27 F27 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: CUMMINS. Read their stats from the scoreboard.[0m
+[37m[18:01:27 F27 TRACK] INFO: bat:Ajinkya Rahane:runs: None → 27 (confirmed F27)[0m
+[37m[18:01:27 F27 TRACK] INFO: bat:Ajinkya Rahane:balls: None → 18 (confirmed F27)[0m
+[37m[18:01:27 F27 TRACK] INFO: bat:Angkrish Raghuvanshi:runs: None → 17 (confirmed F27)[0m
+[37m[18:01:27 F27 TRACK] INFO: bat:Angkrish Raghuvanshi:balls: None → 11 (confirmed F27)[0m
+[37m[18:01:27 F27 BOARD] INFO:   [BOWLER-STALE] Rejecting 'Pat Cummins' read — proposed 1-15(3.2) exactly matches recorded 1-15(3.2); no handoff grace (must_change=False). Likely stale end-of-spell graphic; current_bowler stays 'Shivang Kumar'[0m
+[37m[18:01:27 F27 TEST] INFO:   [S 911ms] Changes: ['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)'][0m
+[37m[18:01:27 F27 TEST] INFO:   Total: 3053ms (V:925 E:1217 S:911)[0m
+[37m[18:01:27 F27 TEST] INFO:   STATE: KKR 79-1 (7.0) inn=2 RR=11.29 | Bat: Ajinkya Rahane*(27) Angkrish Raghuvanshi(17) | Bowl: Shivang Kumar 0-8[0m
+[37m[18:01:27 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=27[0m
+[37m[18:01:27 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=18[0m
+[37m[18:01:27 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=17[0m
+[37m[18:01:27 F27 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=11[0m
+[37m[18:01:27 F27 TEST] INFO:   [ACTION] A player is preparing or adjusting their gear.[0m
+[37m[18:01:27 F27 TEST] INFO: DETAIL|F27|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | HARSHAL 0-0 (0)|action=A player is preparing or adjusting their gear.|ext_score=79-1(7)|ext_bat=Ajinkya Rahane 27(18) | Angkrish Raghuvanshi 17(11)|ext_bowl=HARSHAL 0-0 (None)|scorer_changes=['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)']|yolo=0|BEFORE_score=79-1(7.0)|BEFORE_bat1=Ajinkya Rahane 27(18)|BEFORE_bat2=Angkrish Raghuvanshi 17(11)|BEFORE_bowl=Shivang Kumar 0-8 (1)|BEFORE_this_over=[]|AFTER_score=79-1(7.0)|AFTER_bat1=Ajinkya Rahane 27(18)|AFTER_bat2=Angkrish Raghuvanshi 17(11)|AFTER_bowl=Shivang Kumar 0-8 (1)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Ajinkya Rahane|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=11.29|AFTER_target=87|AFTER_innings=2|AFTER_partnership=44(29)|AFTER_fow_count=1|AFTER_field=pace_powerplay frozen=True fielders=['leg_slip', 'gully', 'deep_backward_sq', 'forward_short_leg', 'deep_fine_leg', 'slip_1', 'point', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Ajinkya Rahane|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=925|lat_extract=1217|lat_scorer=911|lat_field=32|lat_comm=0|lat_code=0|lat_total=3057|comm_bowler=Shivang Kumar|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[18:01:30 F28 VISION] INFO: [SCOUT] SCOREBOARD 749ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 446 chars[0m
+[37m[18:01:30 F28 TEST] INFO:   [BROADCAST] Chase: 87 from 78 balls[0m
+[37m[18:01:30 F28 TEST] INFO: [F28] [CAM-GRAPHIC-FAST-PATH-READ] score=79 overs=7.0 changes=['score', 'overs'][0m
+[37m[18:01:30 F28 TEST] INFO: [F28] SCOREBOARD cam=graphic → dead-time skip (#2)[0m
+[37m[18:01:34 F29 VISION] INFO: [SCOUT] SCOREBOARD 812ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 379 chars[0m
+[37m[18:01:34 F29 TEST] INFO: [F29] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup[0m
+[37m[18:01:34 F29 TEST] INFO: [F29] SCOREBOARD cam=graphic → dead-time skip (#3)[0m
+[37m[18:01:37 F30 TEST] INFO: [SHADOW-STATS] {'thread_alive': True, 'frames_received': 13, 'scout_results_received': 13, 'stage1_windows_opened': 0, 'stage1_windows_closed': 0, 'stage2_spans_emitted': 0, 'stage3_qwen_dispatched': 0, 'stage3_qwen_failed': 0, 'exceptions_total': 0, 'queue_depth_frame': 0, 'queue_depth_scout': 0, 'queue_depth_span': 0, 'last_record_ts': 1777811340.300301}[0m
+[37m[18:01:38 F30 VISION] INFO: [SCOUT] SCOREBOARD 880ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 459 chars[0m
+[37m[18:01:38 F30 TEST] INFO: [F30] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup[0m
+[37m[18:01:38 F30 TEST] INFO: [F30] SCOREBOARD cam=graphic → dead-time skip (#4)[0m
+[37m[18:01:41 F31 VISION] INFO: [SCOUT] SCOREBOARD 732ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 355 chars[0m
+[37m[18:01:41 F31 TEST] INFO: [F31] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup[0m
+[37m[18:01:41 F31 TEST] INFO: [F31] SCOREBOARD cam=graphic → dead-time skip (#5)[0m
+[37m[18:01:45 F32 VISION] INFO: [SCOUT] SCOREBOARD 751ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 391 chars[0m
+[37m[18:01:45 F32 TEST] INFO:   [BROADCAST] Chase: 87 from 78 balls[0m
+[37m[18:01:45 F32 TEST] INFO: [F32] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup[0m
+[37m[18:01:45 F32 TEST] INFO: [F32] SCOREBOARD cam=graphic → dead-time skip (#6)[0m
+[37m[18:01:49 F33 VISION] INFO: [SCOUT] SCOREBOARD 699ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 404 chars[0m
+[37m[18:01:49 F33 TEST] INFO: [F33] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup[0m
+[37m[18:01:49 F33 TEST] INFO: [F33] SCOREBOARD cam=graphic → dead-time skip (#7)[0m
+[37m[18:01:53 F34 VISION] INFO: [SCOUT] SCOREBOARD 750ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 399 chars[0m
+[37m[18:01:53 F34 TEST] INFO: [F34] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup[0m
+[37m[18:01:53 F34 TEST] INFO: [F34] SCOREBOARD cam=graphic → dead-time skip (#8)[0m
+[37m[18:01:57 F35 VISION] INFO: [SCOUT] SCOREBOARD 912ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 421 chars[0m
+[37m[18:01:57 F35 TEST] INFO:   [BROADCAST] Venue: a cricket[0m
+[37m[18:01:57 F35 TEST] INFO: [F35] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup[0m
+[37m[18:01:57 F35 TEST] INFO: [F35] SCOREBOARD cam=graphic → dead-time skip (#9)[0m
+[37m[18:02:01 F36 VISION] INFO: [SCOUT] SCOREBOARD 952ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=True 439 chars[0m
+[37m[18:02:01 F36 TEST] INFO: [F36] [CAM-GRAPHIC-FAST-PATH-REJECT] reason=G8_cooldown_dup[0m
+[37m[18:02:01 F36 TEST] INFO: [F36] SCOREBOARD cam=graphic → dead-time skip (#10)[0m
+[37m[18:02:05 F37 VISION] INFO: [SCOUT] SCOREBOARD 813ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 393 chars[0m
+[37m[18:02:05 F37 TEST] INFO: [F37] cam=closeup → resuming active play after dead-time gap (#10 skipped)[0m
+[37m[18:02:05 F37 TEST] INFO: 
+=======================================================[0m
+[37m[18:02:05 F37 TEST] INFO: [F37] SCOREBOARD — #11[0m
+[37m[18:02:05 F37 TEST] INFO:   [V 815ms] STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | HARSHAL 0-0 (null)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The fielder in a blue jersey is standing on the field.[0m
+[37m[18:02:06 F37 EXTRACT] INFO: Extracted in 1.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:02:06 F37 TEST] INFO:   [E 1511ms] visible_team=Kolkata Knight Riders score=79-1 (7) target=None rr=None[0m
+[37m[18:02:06 F37 TEST] INFO:     BAT: Ajinkya Rahane 27(18) [0m
+[37m[18:02:06 F37 TEST] INFO:     BAT: Angkrish Raghuvanshi 17(11) [0m
+[37m[18:02:06 F37 TEST] INFO:     BOWL: HARSHAL 0-0 (None)[0m
+[37m[18:02:06 F37 TRACK] INFO: bowl:Harshal Patel:runs: initial → 0 (cold-start consensus 3/3)[0m
+[37m[18:02:06 F37 TRACK] INFO: bowl:Harshal Patel:wickets: initial → 0 (cold-start consensus 3/3)[0m
+[37m[18:02:06 F37 BOARD] INFO: Harshal Patel: None/None (None) -> 0/0 (None) [F37][0m
+[37m[18:02:06 F37 BOARD] INFO: [BOWLER-OVERRIDE] Shivang Kumar → Harshal Patel (reads=3, must_change=False)[0m
+[37m[18:02:06 F37 BOARD] INFO: [BATTER-CONSENSUS-RESET] Ajinkya Rahane — clearing bat tracker streak[0m
+[33m[18:02:06 F37 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=Ajinkya Rahane — already striker; would self-collide[0m
+[37m[18:02:06 F37 BOARD] INFO: [BATTER-CONSENSUS-RESET] Angkrish Raghuvanshi — clearing bat tracker streak[0m
+[37m[18:02:06 F37 TEST] INFO:   [DIRECT] Batter updates: ['Ajinkya Rahane: ext=27(18) → tracker=27(18) [was 27(18)]', 'Angkrish Raghuvanshi: ext=17(11) → tracker=17(11) [was 17(11)]'][0m
+[37m[18:02:06 F37 TEST] INFO:   [DIRECT] score→79[0m
+[37m[18:02:06 F37 TEST] INFO:   [DIRECT] overs→7[0m
+[37m[18:02:06 F37 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[18:02:07 F37 SCORER] INFO: Scored in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[18:02:07 F37 TEST] INFO:   [S] Hint: Current batters: RAHANE and RAGHUVANSHI. Bowler: HARSHAL[0m
+[37m[18:02:07 F37 TRACK] INFO: bat:Ajinkya Rahane:runs: None → 27 (confirmed F37)[0m
+[37m[18:02:07 F37 TRACK] INFO: bat:Ajinkya Rahane:balls: None → 18 (confirmed F37)[0m
+[37m[18:02:07 F37 TRACK] INFO: bat:Angkrish Raghuvanshi:runs: None → 17 (confirmed F37)[0m
+[37m[18:02:07 F37 TRACK] INFO: bat:Angkrish Raghuvanshi:balls: None → 11 (confirmed F37)[0m
+[37m[18:02:07 F37 TEST] INFO:   [S 1120ms] Changes: ['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)', 'bowl:Harshal Patel'][0m
+[37m[18:02:07 F37 TEST] INFO:   Total: 3447ms (V:815 E:1511 S:1120)[0m
+[37m[18:02:07 F37 TEST] INFO:   STATE: KKR 79-1 (7.0) inn=2 RR=11.29 | Bat: Ajinkya Rahane*(27) Angkrish Raghuvanshi(17) | Bowl: Harshal Patel 0-0[0m
+[37m[18:02:07 F37 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now sb_value=27[0m
+[37m[18:02:07 F37 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now sb_value=18[0m
+[37m[18:02:07 F37 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now sb_value=17[0m
+[37m[18:02:07 F37 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now sb_value=11[0m
+[37m[18:02:07 F37 TEST] INFO:   [SM-FEEDER-DIVERGENCE] field=bowler_name sm_value='Shivang Kumar' sb_value='Harshal Patel' sb_consensus_state=active frames_since_sm_update=8[0m
+[37m[18:02:07 F37 TEST] INFO: DETAIL|F37|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | HARSHAL 0-0 (null)  INFO_PANEL|action=—|ext_score=79-1(7)|ext_bat=Ajinkya Rahane 27(18) | Angkrish Raghuvanshi 17(11)|ext_bowl=HARSHAL 0-0 (None)|scorer_changes=['score→79', 'overs→7.0', 'wickets→1', 'bat:Ajinkya Rahane=27(18)', 'bat:Angkrish Raghuvanshi=17(11)', 'bowl:Harshal Patel']|yolo=0|BEFORE_score=79-1(7.0)|BEFORE_bat1=Ajinkya Rahane 27(18)|BEFORE_bat2=Angkrish Raghuvanshi 17(11)|BEFORE_bowl=Shivang Kumar 0-8 (1)|BEFORE_this_over=[]|AFTER_score=79-1(7.0)|AFTER_bat1=Ajinkya Rahane 27(18)|AFTER_bat2=Angkrish Raghuvanshi 17(11)|AFTER_bowl=Harshal Patel 0-0 (None)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Ajinkya Rahane|AFTER_non=Angkrish Raghuvanshi|AFTER_run_rate=11.29|AFTER_target=87|AFTER_innings=2|AFTER_partnership=44(29)|AFTER_fow_count=1|AFTER_field=pace_powerplay frozen=True fielders=['leg_slip', 'gully', 'deep_backward_sq', 'forward_short_leg', 'deep_fine_leg', 'slip_1', 'point', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Ajinkya Rahane|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=a cricket|batting_team=Kolkata Knight Riders|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=815|lat_extract=1511|lat_scorer=1120|lat_field=34|lat_comm=0|lat_code=0|lat_total=3452|comm_bowler=Harshal Patel|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[18:02:10 F38 VISION] INFO: [SCOUT] SCOREBOARD 1034ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 446 chars[0m
+[37m[18:02:10 F38 TEST] INFO: 
+=======================================================[0m
+[37m[18:02:10 F38 TEST] INFO: [F38] SCOREBOARD — #12[0m
+[37m[18:02:10 F38 TEST] INFO:   [V 1036ms] STRIP: KKR 79-1 (7) | extras=null | this_over=null | RAHANE 27(18) | RAGHUVANSHI 17(11) | HARSHAL 0-0 (0)
+
+INFO_PANEL: null
+SPEED: null
+EXTRA: null
+THIS OVER: null
+FULL SCORECARD: null
+
+The player is standing on the field, seemingly between play, lik[0m
+[37m[18:02:13 F38 TEST] INFO: [WS] client disconnected (0 remain)[0m
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py", line 11772, in main
+    await run_test()
+  File "/Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py", line 7452, in run_test
+    extracted = await extractor.extract(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/eyes/agent.py", line 336, in extract
+    return await self._call_model(PRIMARY_MODEL, prompt, t0)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/eyes/agent.py", line 354, in _call_model
+    resp = await self._client.chat.completions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/groq/resources/chat/completions.py", line 941, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/groq/_base_client.py", line 1852, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/groq/_base_client.py", line 1587, in request
+    response = await self._client.send(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/anyio/streams/tls.py", line 244, in receive
+    data = await self._call_sslobject_method(self._ssl_object.read, max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/anyio/streams/tls.py", line 187, in _call_sslobject_method
+    data = await self.transport_stream.receive()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1269, in receive
+    await self._protocol.read_event.wait()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/locks.py", line 212, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py", line 11781, in <module>
+    asyncio.run(main())
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt

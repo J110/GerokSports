@@ -1,0 +1,366 @@
+# POISON-RECAL trip threshold — frequency & impact analysis
+
+**Phase:** Forensic analysis (~production tee corpus). **No code changes.** **No threshold edits.**
+
+**Purpose:** Quantify **`[POISON-RECAL]`** incidence across three sealed pipeline tees, characterize triggers vs documented logic, summarize downstream integrity impact, and evidence whether **`_POISON_RECAL_THRESHOLD = 5`** combined with **`abs(score_delta) > 7`** is appropriately calibrated.
+
+**Root narrative anchor:** [`state_integrity_f3293_f3346.md`](state_integrity_f3293_f3346.md) — hinge **`[POISON-RECAL]`** at **`F3296`** (`logs/pipeline-2026-04-30-gt-rcb-live.log` **33734–33736**) precipitates tracker **`None`**, cold-start, then **`MULTI_BALL`** **`Δballs=7`** at **`F3346`** (**§1–§2** of that memo).
+
+---
+
+## §1 Executive summary
+
+### Frequency (three tees)
+
+| Match tee | **`[POISON-RECAL]`** fires |
+|-----------|---------------------------:|
+| `logs/pipeline-2026-04-28-pbks-rr-live.log` | **7** |
+| `logs/pipeline-2026-04-29-194416-mi-srh-live.log` | **4** |
+| `logs/pipeline-2026-04-30-gt-rcb-live.log` | **24** |
+| **Combined** | **35** |
+
+**Cross-match:** GT vs RCB (**Apr 30**) exhibits **~3.4×** the PBKS–RR count and **6×** MI–SRH on these captures alone — **not** explained solely by tee truncation without normalizing by session duration (**§9**).
+
+### Trigger correctness vs shorthand
+
+The operational trigger is **not** accurately summarized as “delta = 8 only”:
+
+1. **Poison classification:** **`abs(extracted_score − tracker_score) > 7`** (`files/test_pipeline.py` **7894–7897**).
+2. **Streak:** **`_POISON_RECAL_THRESHOLD = 5`** consecutive qualifying poison reads with **monotonic non-decreasing** extracted scores (`files/test_pipeline.py` **7930–7947**, **`5291`**).
+3. **Negative deltas:** Large negative gaps (strip **below** tracker, e.g. **99 vs 154**) still poison because **`abs(delta) > 7`** — RECAL messages still reference “**tracker baseline … stale**.”
+
+### Downstream impact (high signal)
+
+Across **35** fires:
+
+| Severity heuristic | Count | Notes |
+|-------------------|------:|-------|
+| **Clean / fast recovery** | **majority** | Within scanned windows, many fires pair with eventual DETAIL rows showing populated **`AFTER_score`** without nearby **`Δballs≥7`** **`MULTI_BALL`. |
+| **Problematic (`MULTI_BALL` **`Δballs≥7`)** | **≥2** on GT-RCB | **`F3296`→`F3346`** (**`Δballs=7`**) — documented in [`state_integrity_f3293_f3346.md`](state_integrity_f3293_f3346.md); **`F5054`→`F5240`** (**`Δballs=25`**, commentary line **56057**) — **~186** frames later, chase-phase collapse into multi-ball. |
+| **Oscillation / churn** | **many late GT-RCB** | Repeated fires alternate direction (**tracker 155 vs strip 126**, etc.) suggesting **broadcast graphic / tracker fights** rather than single-direction stale tracker (**§4** inventory). |
+
+### Threshold stance (evidence-led)
+
+**Verdict:** **`MIXED — leaning globally TOO AGGRESSIVE for mid/late chase stability`, while STILL NECESSARY for template / innings-edge rescue.**
+
+| Evidence bucket | Points toward |
+|-----------------|---------------|
+| Rare but severe **`MULTI_BALL`** collapses tied to RECAL recovery | **Aggressive / costly** |
+| Many fires recover without huge **`Δballs`** | **Benign typical case** (**stop-condition S6**) |
+| Older tees show **tracker 222 vs strip 0** pattern | **Lenient threshold would stall** on wrong innings / `"0-0"` templates |
+| GT-RCB **24** fires vs **7+4** baselines | **Session-dependent volatility** — threshold interacts with **match phase**, not constant hazard |
+
+**Confidence:** **Medium** — **three** logs only; no authoritative ball-by-ball ground truth wired per frame.
+
+**Recommended next lane:** **Direction B** — **`MULTI_BALL` decomposition / telemetry + chase-phase case replay** — **before** arbitrary numeric threshold tweak (**§8**). If product owners prioritize avoiding **`Δballs≥7` collapses**, spawn **Direction A2** as **scoped** experiment (context gates), not blind **`N←7`**.
+
+---
+
+## §2 POISON-RECAL emission mechanics
+
+### §2.1 Code sites
+
+| Signal | Location |
+|--------|----------|
+| **`[POISON-RECAL]`** WARN | `files/test_pipeline.py` **7950–7957** |
+| **`[POISON-STREAK]`** INFO | `files/test_pipeline.py` **7942–7947** |
+| **`[POISONED] Extracted score …`** | `files/test_pipeline.py` **7901–7906** |
+| **`scoreboard._inn[score|wickets|overs] = None`** | `files/test_pipeline.py` **7958–7960** |
+| **`score_mgr.full_reset(reason=poison_recal_consensus …)`** | `files/test_pipeline.py` **7962–7966** |
+| **`full_reset` semantics** | `files/score_manager.py` **780–798** (`[SM-FULL-RESET]` → **`force_cold_start_recalibration`** + **`_clear_per_innings_sm_surface`** per docstring **788–790**) |
+
+**`rg POISON-RECAL`** across `files/eyes/*.py`: **no** secondary emitter — poisoning orchestration is **`test_pipeline`** + **`score_mgr`**.
+
+### §2.2 Trip condition (precise)
+
+```
+5278:5291:files/test_pipeline.py
+    # reaching ScoreManager when delta > 7.  ...
+    _poison_streak_new_score: int | None = None
+    _poison_streak_count: int = 0
+    _POISON_RECAL_THRESHOLD = 5
+```
+
+```
+7894:7957:files/test_pipeline.py
+                        _delta_check = (
+                            _ext_score_int - _cur_score_int_check)
+                        if abs(_delta_check) > 7:
+                            _frame_poisoned = True
+                            ...
+                            if (_poison_streak_new_score is None
+                                    or _ext_score_int
+                                    >= _poison_streak_new_score):
+                                _poison_streak_count += 1
+                                _poison_streak_new_score = max(...)
+                            else:
+                                _poison_streak_new_score = _ext_score_int
+                                _poison_streak_count = 1
+                            log.info(
+                                f"  [POISON-STREAK] high="
+                                ...
+                            if (_poison_streak_count
+                                    >= _POISON_RECAL_THRESHOLD):
+                                log.warn(
+                                    f"  [POISON-RECAL] {_poison_streak_count} "
+                                    f"consecutive POISON'd reads "
+                                    f"(high={_poison_streak_new_score}, "
+                                    f"latest={_ext_score_int}) — tracker "
+                                    f"baseline {_cur_score_int_check} is "
+                                    f"stale. Clearing tracker innings + "
+                                    f"forcing ScoreManager cold-start.")
+                                scoreboard._inn["score"] = None
+                                scoreboard._inn["wickets"] = None
+                                scoreboard._inn["overs"] = None
+                                try:
+                                    score_mgr.full_reset(
+```
+
+**Design rationale:** Inline comments **5278–5288**, **7907–7929** — stale tracker escape when SM rejection path never sees frames because pipeline poison guard drops them first.
+
+### §2.3 Reset scope
+
+| Layer | Cleared / forced |
+|-------|------------------|
+| **`scoreboard._inn`** | **`score`, `wickets`, `overs` → `None`** (**7958–7960**) |
+| **`ScoreManager`** | **`full_reset`** → cold-start + **Fix-16 per-innings scalar wipe** (**780–798** `score_manager.py`) keeping **`innings`, `target`, `batting_team`, `venue`, `match_info`, `innings_history`** (**788–790**) |
+| **Streak counters** | **`_poison_streak_*` cleared** (**7971–7972**) |
+
+### §2.4 Log format drift (**stop-condition S5**)
+
+Apr **28–29** tees sometimes emit **`5 consecutive POISON'd reads of score=0 — tracker baseline 243`** (numeric shorthand). Apr **30** GT-RCB emits **`(high=57, latest=57)`** brackets. **Same emission site** (**7951**) — template string evolved between captures; interpret fires equivalently.
+
+---
+
+## §3 Per-match POISON-RECAL inventory
+
+### §3.1 PBKS–RR (**7** fires)
+
+| Tee line | Clock | Frame | Tracker (“baseline”) | Strip-side score parsed | Δ (live−tracker) | \|Δ\| |
+|---------:|-------|------:|-----------------------:|------------------------:|-----------------:|------:|
+| 27266 | 21:10:24 | F2354 | 222 | 0 | −222 | 222 |
+| 29425 | 21:23:13 | F2807 | 222 | 0 | −222 | 222 |
+| 32154 | 21:34:26 | F3074 | 0 | 37 | 37 | 37 |
+| 34634 | 21:45:24 | F3358 | 0 | 66 | 66 | 66 |
+| 35938 | 21:50:51 | F3474 | 0 | 80 | 80 | 80 |
+| 36420 | 21:54:02 | F3547 | 0 | 84 | 84 | 84 |
+| 37244 | 21:57:54 | F3604 | 0 | 92 | 92 | 92 |
+
+**Pattern:** First pair — **massive negative Δ** (**strip/template reads `0`** vs tracker **222**). Subsequent cluster — **`tracker 0`** climbing toward plausible live totals (**37→92**) — consistent **cold-start / innings-edge / overlay** choreography.
+
+### §3.2 MI–SRH (**4** fires)
+
+| Tee line | Clock | Frame | Tracker | Strip-side | Δ | \|Δ\| |
+|---------:|-------|------:|--------:|-----------:|--:|------:|
+| 27340 | 21:39:07 | F2483 | 243 | 0 | −243 | 243 |
+| 29941 | 21:51:41 | F2855 | 0 | 8 | 8 | 8 |
+| 30935 | 21:55:27 | F2954 | 0 | 12 | 12 | 12 |
+| 37630 | 22:20:20 | F3573 | 74 | 85 | 11 | 11 |
+
+**Pattern:** Mirrors PBKS–RR (**243→0** spike then low-score ladder).
+
+### §3.3 GT vs RCB (**24** fires) — condensed
+
+Full numeric parse from WARN lines (Apr **30** format):
+
+| Tee line | Clock | Frame | Tracker | Strip-side (`latest`) | Δ |
+|---------:|-------|------:|--------:|----------------------:|--:|
+| 28677 | 21:43:18 | F2827 | 12 | 20 | +8 |
+| 33734 | 22:00:59 | F3296 | 49 | 57 | +8 |
+| 54501 | 23:14:42 | F5054 | 154 | 99 | −55 |
+| 57700 | 23:29:56 | F5455 | 147 | 159 | +12 |
+| 59844 | 23:43:53 | F5967 | 0 | 35 | +35 |
+| 60364 | 23:45:52 | F6011 | 0 | 79 | +79 |
+| 61757 | 23:51:15 | F6147 | 16 | 42 | +26 |
+| 63192 | 23:56:05 | F6279 | 111 | 145 | +34 |
+| 64965 | 00:03:41 | F6481 | 101 | 126 | +25 |
+| 65616 | 00:06:00 | F6542 | 155 | 26 | −129 |
+| 67436 | 00:13:33 | F6746 | 145 | 34 | −111 |
+| 68423 | 00:17:13 | F6846 | 82 | 92 | +10 |
+| 68804 | 00:18:48 | F6887 | 101 | 126 | +25 |
+| 68999 | 00:19:26 | F6895 | 126 | 155 | +29 |
+| 69431 | 00:21:07 | F6947 | 155 | 20 | −135 |
+| 70768 | 00:26:14 | F7072 | 111 | 141 | +30 |
+| 71652 | 00:29:41 | F7171 | 145 | 35 | −110 |
+| 73008 | 00:34:40 | F7284 | 126 | 155 | +29 |
+| 73405 | 00:36:21 | F7335 | 155 | 26 | −129 |
+| 75075 | 00:43:54 | F7550 | 6 | 27 | +21 |
+| 75562 | 00:45:36 | F7586 | 35 | 59 | +24 |
+| 76285 | 00:47:43 | F7639 | 82 | 96 | +14 |
+| 76693 | 00:49:02 | F7671 | 101 | 126 | +25 |
+| 76941 | 00:49:53 | F7688 | 126 | 155 | +29 |
+
+**Observations:**
+
+1. **`|Δ|=8`** appears exactly **twice** (**F2827**, **`F3296`**) — **minimum-margin poison band** adjacent to **`unsupported-score-spike`** territory (**7976+**, deltas **2–7**).
+2. **`Δ` magnitude spans −243 … +92** across three tees — **`>7` gate is wide**.
+3. Late GT-RCB cluster (**23:xx–00:xx**) alternates **sign** — inconsistent notion of “strip always ahead of tracker.”
+
+### §3.4 Cross-match comparison snapshot
+
+| Metric | PBKS–RR | MI–SRH | GT-RCB |
+|--------|--------:|-------:|-------:|
+| Fires | 7 | 4 | **24** |
+| **`streak=5/5`** hits (telemetry) | **11** | **5** | **31** |
+| **`MULTI_BALL` with `Δballs≥7`** linked post-fire | **0** detected in heuristic scan | **0** | **≥2** (**`F3296`**, **`F5054`**) |
+
+**Telemetry mismatch note:** **`streak=5/5`** counts **do not equal** **`[POISON-RECAL]`** counts (GT **31 vs 24**). Possible explanations include logging cadence, intervening streak resets (**7940–7941**), or duplicate streak logs — **not reconciled** in this forensic pass (**§9**).
+
+---
+
+## §4 Trigger condition analysis (Phase B)
+
+### §4.1 Pattern taxonomy
+
+| Pattern | Operational signature | Examples |
+|---------|----------------------|----------|
+| **Stable poisoning** | Strip-side numeric plateaus (`high == latest` across WARN); tracker flat | **`F3296`** (**high=57** plateau — [`state_integrity_f3293_f3346.md`](state_integrity_f3293_f3346.md)); late GT **`126↔155`** oscillation pockets |
+| **Template / innings spike** | **`tracker ≫ strip`** with **`strip≈0`** | PBKS **222→0**, MI **243→0** |
+| **Ascending rescue ladder** | **`tracker=0`** climbing **`37→92`** | PBKS **F3074–F3604** sequence |
+| **Bidirectional chase churn** | Alternating **`Δ` sign**, large \|Δ\| | GT **23:xx–00:xx** cluster |
+
+### §4.2 Scout / broadcast proxy
+
+Without vision replay, **`[SCOUT] … cam= … phase=`** lines preceding fires serve as coarse proxies (**graphic**, **closeup**, **`digits=False`** spikes — cf. **`F3313`** **`GT 0-0`** narrative in [`state_integrity_f3293_f3346.md`](state_integrity_f3293_f3346.md)).
+
+### §4.3 Trip justification (heuristic **B4**)
+
+| Classification | Operational definition used here | Approx. share |
+|----------------|----------------------------------|---------------|
+| **Justified** | Template **`0`** vs non-zero tracker OR **`tracker 0`** ladder suggesting stalled cold-start | **PBKS/MI-heavy** |
+| **Ambiguous / chase oscillation** | Large \|Δ\| both directions late innings — unclear which side truth without scorecard | **GT late cluster** |
+| **Likely harmful** | RECAL shortly precedes **`MULTI_BALL`** with **`Δballs≥7`** | **2** GT sequences (**§5**) |
+
+---
+
+## §5 Downstream impact analysis (Phase C)
+
+### §5.1 Worst-case characterizations
+
+**Case W1 — [`state_integrity_f3293_f3346.md`](state_integrity_f3293_f3346.md)**
+
+| Milestone | Tee evidence |
+|-----------|--------------|
+| RECAL | **33734–33736** (`F3296`) |
+| Tracker **`AFTER_score=None`** DETAIL streak | **`33751`–`33893`** region |
+| **`MULTI_BALL`** | Commentary **`Δballs=7`** **33996**; DETAIL **`34017** |
+| Resume normal **`ball_event`** | **`34111`** **`1_RUNS`** |
+
+**Classification:** **Problematic** — **`Δballs=7`** + **`wkts 0→2`** telemetry shock (**33992**) documented upstream memo.
+
+**Case W2 — `F5054` → `F5240`**
+
+| Milestone | Tee evidence |
+|-----------|--------------|
+| RECAL | **54501** (`F5054`) — tracker **154**, strip-side **99** |
+| Delay | **`F5240 − F5054 = 186`** frames |
+| **`MULTI_BALL`** | **`Δballs=25`** **56057** |
+
+**Classification:** **Problematic → catastrophic collapse** by **`MULTI_BALL`** absorption metric alone — independent sporting verification still absent (**§9**).
+
+### §5.2 Aggregate impact metrics (approximate)
+
+| Metric | Value |
+|--------|------:|
+| Total fires | **35** |
+| Fires with nearby **`Δballs≥7`** **`MULTI_BALL`** | **≥2** (**GT-RCB only** on scanned windows) |
+| Fires with **`Δballs≥20`** | **1** confirmed (**25**) |
+
+Heuristic bulk classification across automated scan (narrow downstream window — **§9** caveat): **most fires resemble stop-condition **S6** — recovery without extreme **`MULTI_BALL`**.
+
+---
+
+## §6 Threshold appropriateness (Phase D)
+
+### §6.1 Decomposition (**D1**)
+
+| Knob | Value | Role |
+|------|------:|------|
+| **`abs(delta) > 7`** | Runs-only poison gate (`test_pipeline.py` **7896**) | **Not wickets/composite** — overs movement handled elsewhere (**unsupported spike** branch **7976+**) |
+| **`_POISON_RECAL_THRESHOLD`** | **5** frames (`5291`) | Documented watchdog commentary **5278–5288** |
+| **Monotonic streak rule** | Non-decreasing extracted scores (**7930–7941**) | Prevents plateau oscillations from resetting prematurely |
+
+### §6.2 Sensitivity (**D2**) — qualitative
+
+| Hypothetical shift | Expected directional effect | Quantification status |
+|--------------------|----------------------------|-----------------------|
+| **`N = 7`** frames | Fewer RECAL triggers; prolonged stale-tracker risk during innings-template failures | **Not counted** — requires replaying poison streak lengths |
+| **`N = 3`** | More RECAL; higher churn / **`MULTI_BALL`** hazard surface | Same |
+
+**Empirical anchor:** GT-RCB logs **`31`** **`streak=5/5`** vs **`24`** RECAL — suggests tightening threshold isn't the sole throttle (**telemetry coupling unexplained**).
+
+### §6.3 Trip-vs-no-trip cost matrix (**D3**)
+
+| Outcome | Interpretation | Evidence sketch |
+|---------|----------------|-----------------|
+| **TP trip** | Tracker genuinely stale vs sustained strip truth | PBKS/MI **`222/243 vs 0`** |
+| **FP trip** | Strip noisy but numerically stable — tracker nuked anyway | **`F3296`** ambiguity (**[`state_integrity_f3293_f3346.md`](state_integrity_f3293_f3346.md)**) |
+| **TN no-trip** | Tracker healthy — occasional **`FRAME_POISONED`** without RECAL | [`match_postmortem_data_gt_rcb_20260430.md`](match_postmortem_data_gt_rcb_20260430.md) (**444** poison mentions ≫ **24** RECAL) |
+| **FN no-trip** | Stuck tracker never clears | Would manifest as frozen **`AFTER_score`** — **not** enumerated here |
+
+### §6.4 Recommendation synthesis (**D4**)
+
+| Statement | Confidence |
+|-----------|------------|
+| Global threshold is **NOT plainly appropriate** for **all innings phases** — GT chase demonstrates **high-frequency RECAL + rare catastrophic `MULTI_BALL`** coupling | **Medium** |
+| Global loosening (**↑N** or **↑delta**) risks **PBKS/MI-style template stalls** | **Medium** |
+| **`eyes/scoreboard.py`** does **not** centralize **`FRAME_POISONED`** emission — poisoning begins **`test_pipeline`** / extractor divergence (**investigation correction vs brief §Primary context**) | **High** |
+
+---
+
+## §7 Implications
+
+| Area | Implication |
+|------|-------------|
+| **State integrity backlog** | Prioritize **`MULTI_BALL` causal decomposition** after RECAL (**Direction B**) ahead of Scout **`V6c/V6e`** churn (**still deferred** per GT postmortem posture). |
+| **Lever / roster telemetry** | RECAL + cold-start interacts with **`[WS-SCRUB]`** / slot hygiene observed near **`F3293`** — separate lane from numeric threshold tuning. |
+| **Monitoring** | Add rollup dashboards (**outside this doc**) counting **`[POISON-RECAL]` / `[SM-FULL-RESET]` / `Δballs`** jointly — frequency alone insufficient (**S6** lesson). |
+
+---
+
+## §8 Next-step recommendations
+
+| Condition | Recommended lane |
+|-----------|------------------|
+| Org prioritizes eliminating **`Δballs≥7` collapses** | **Direction A2** — targeted gate review (**innings phase**, **`digits=False` spikes**, **`tracker None`** precondition) — **requires coding & replay harness** |
+| Org accepts RECAL rarity/cost trade | **Direction B** — **`MULTI_BALL` instrumentation + scorer/SM parity (**[`state_integrity_f3293_f3346.md`](state_integrity_f3293_f3346.md)** shadow miss **`34005`) |
+| Evidence remains ambiguous | Extend corpus (**≥10 tees**) before numeric threshold edits |
+
+---
+
+## §9 Limitations
+
+1. **Three** tees — insufficient for statistical significance on rare tails (**≥2** severe **`MULTI_BALL`** cases).
+2. **No frame-ground-truth alignment** — broadcast reconstruction heuristic-only (**§4.2**).
+3. Downstream scans **truncate** — delayed **`MULTI_BALL`** (**186** frames post RECAL) invisible to shallow parsers (**§5.1 Case W2** methodology).
+4. **Poison vs RECAL cardinality mismatch** (**[`match_postmortem_data_gt_rcb_20260430.md`](match_postmortem_data_gt_rcb_20260430.md)** **444 FRAME_POISONED** mentions vs **24** RECAL) — healthy separation but **not modeled** quantitatively here.
+5. **`eyes/scoreboard.py`** cited in charter brief — **FRAME_POISONED orchestration lives in `test_pipeline.py`** for this mechanism (**§6.4**).
+
+---
+
+## §10 Cross-references
+
+| Doc / artifact | Role |
+|----------------|------|
+| [`state_integrity_f3293_f3346.md`](state_integrity_f3293_f3346.md) | Canonical **`F3296`** RECAL → **`MULTI_BALL Δballs=7`** trace |
+| [`match_postmortem_data_gt_rcb_20260430.md`](match_postmortem_data_gt_rcb_20260430.md) | Aggregate FRAME_POISONED churn (**§6**, JSON companion) |
+| `files/test_pipeline.py` **5278–5292**, **7874–7975**, **`5291`** | Threshold constants + poison / streak / RECAL |
+| `files/score_manager.py` **780–798**, **1623–1651** | **`full_reset`**, **`force_cold_start_recalibration`** |
+| `logs/pipeline-2026-04-30-gt-rcb-live.log` **33734**, **56057** | RECAL anchors + **`Δballs=25`** commentary |
+
+---
+
+### Stop-condition ledger
+
+| ID | Outcome |
+|----|---------|
+| **S1** | Mechanism located **`test_pipeline.py:7950`** — matches expectation. |
+| **S2** | **35** combined fires → analysis meaningful. |
+| **S3** | GT **24 < 50** — detailed inventory retained (**§3**). |
+| **S4** | Actual logic **`abs(delta)>7` + streak 5 + monotonic rule** — revised vs shorthand (**§2**). |
+| **S5** | Message template drift PBKS/MI vs GT logged (**§2.4**). |
+| **S6** | Majority fires lack extreme downstream **`MULTI_BALL`** in heuristic passes — informs **mixed** verdict (**§1**, **§5.2**). |
+
+---
+
+*Investigation-only memo — thresholds untouched.*

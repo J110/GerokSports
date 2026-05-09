@@ -1,0 +1,110 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151807/rcb-vs-dc-26th-match-indian-premier-league-2026
+
+[18:39:07  iter#1]
+  UI: Delhi Capitals 96-4 (11.4)  str=Axar Patel nstr=Tristan Stubbs  bowl=Josh Hazlewood 0-29 (2.4)
+  this_over=['.', '.', '1', '.']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=wide_outside_off shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.45  ps=13(10)  recent=1 0 1 0 4
+  CB BAT: Axar Patel* 12(7), Tristan Stubbs 19(20)
+  CB BOWL: Krunal Pandya 1-19 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=96 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=11.4 cb=20 | BAT_patel: ui=8(10) cb=12(7) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Krunal Pandya
+
+[18:39:29  iter#2]
+  UI: Delhi Capitals 100-4 (11.5)  str=Axar Patel nstr=Tristan Stubbs  bowl=Josh Hazlewood 0-33 (2.5)
+  this_over=['.', '.', '1', '.', '4']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=unknown [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.45  ps=13(10)  recent=1 0 1 0 4
+  CB BAT: Axar Patel* 12(7), Tristan Stubbs 19(20)
+  CB BOWL: Krunal Pandya 1-19 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=100 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=11.5 cb=20 | BAT_patel: ui=None(None) cb=12(7) | BAT_stubbs: ui=None(None) cb=19(20) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Josh Hazlewood cb=Krunal Pandya
+
+[18:39:52  iter#3]
+  UI: Delhi Capitals 100-4 (11.5)  str=Axar Patel nstr=Tristan Stubbs  bowl=Josh Hazlewood 0-33 (2.5)
+  this_over=['.', '.', '1', '.', '4']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=unknown [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.42  ps=14(11)  recent=1 0 1 0 4 1
+  CB BAT: Axar Patel* 13(8), Tristan Stubbs 19(20)
+  CB BOWL: Josh Hazlewood 0-34 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=100 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=11.5 cb=20 | BAT_patel: ui=12(10) cb=13(8) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=33 cb=34 | BOWL_O: ui=2.5 cb=3
+
+[18:40:12  iter#4]
+  UI: Delhi Capitals 101-4 (12.0)  str=Axar Patel nstr=Tristan Stubbs  bowl=Josh Hazlewood 0-34 (3)
+  this_over=[]  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.42  ps=14(11)  recent=1 0 1 0 4 1
+  CB BAT: Axar Patel* 13(8), Tristan Stubbs 19(20)
+  CB BOWL: Josh Hazlewood 0-34 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=101 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=12.0 cb=20 | BAT_patel: ui=13(10) cb=13(8) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade
+
+[18:40:33  iter#5]
+  UI: Delhi Capitals 101-4 (12.0)  str=Axar Patel nstr=Tristan Stubbs  bowl=Josh Hazlewood 0-34 (3)
+  this_over=[]  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.42  ps=14(11)  recent=...
+  CB BAT: Axar Patel* 13(8), Tristan Stubbs 19(20)
+  CB BOWL: Josh Hazlewood 0-34 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=101 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=12.0 cb=20 | BAT_patel: ui=13(10) cb=13(8) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade
+
+[18:40:55  iter#6]
+  UI: Delhi Capitals 101-4 (12.0)  str=Axar Patel nstr=Tristan Stubbs  bowl=Rasikh Salam Dar 0-14 (2)
+  this_over=[]  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.42  ps=14(11)  recent=...
+  CB BAT: Axar Patel* 13(8), Tristan Stubbs 19(20)
+  CB BOWL: Josh Hazlewood 0-34 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=101 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=12.0 cb=20 | BAT_patel: ui=13(10) cb=13(8) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Josh Hazlewood
+
+[18:41:17  iter#7]
+  UI: Delhi Capitals 101-4 (12.0)  str=Axar Patel nstr=Tristan Stubbs  bowl=Rasikh Salam Dar 0-14 (2)
+  this_over=[]  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.42  ps=14(11)  recent=...
+  CB BAT: Axar Patel* 13(8), Tristan Stubbs 19(20)
+  CB BOWL: Josh Hazlewood 0-34 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=101 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=12.0 cb=20 | BAT_patel: ui=13(10) cb=13(8) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Josh Hazlewood
+
+[18:41:38  iter#8]
+  UI: Delhi Capitals 105-4 (12.1)  str=Axar Patel nstr=Tristan Stubbs  bowl=Rasikh Salam Dar 0-18 (2.1)
+  this_over=['4']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.42  ps=14(11)  recent=1 0 1 0 4 1
+  CB BAT: Axar Patel* 13(8), Tristan Stubbs 19(20)
+  CB BOWL: Josh Hazlewood 0-34 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=105 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=12.1 cb=20 | BAT_patel: ui=17(9) cb=13(8) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Josh Hazlewood
+
+[18:42:00  iter#9]
+  UI: Delhi Capitals 106-4 (12.1)  str=Axar Patel nstr=Tristan Stubbs  bowl=Rasikh Salam Dar 0-19 (2.1)
+  this_over=['1']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.83  ps=19(11)  recent=
+  CB BAT: Axar Patel* 17(9), Tristan Stubbs 19(20)
+  CB BOWL: Josh Hazlewood 0-34 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=106 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=12.1 cb=20 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Josh Hazlewood
+
+[18:42:26  iter#10]
+  WS ERR: ''
+  CB: RCB 175-8 (20)  crr=8.88  ps=21(12)  recent=
+  CB BAT: Axar Patel* 19(10), Tristan Stubbs 19(20)
+  CB BOWL: Josh Hazlewood 0-34 (3)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'patel', 'stubbs'} (ui=set(), cb={'patel', 'stubbs'}) | BOWLER: ui=None cb=Josh Hazlewood

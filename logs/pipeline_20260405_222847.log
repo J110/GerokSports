@@ -1,0 +1,1659 @@
+[37m[22:28:50 F0 TEST] INFO: ============================================================[0m
+[37m[22:28:50 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[22:28:50 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/149721/rcb-vs-csk-11th-match-indian-premier-league-2026[0m
+[37m[22:28:50 F0 SQUAD] INFO:   Royal Challengers Bengaluru: 11 XI + 12 bench[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Philip Salt (WK) — wk_batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Virat Kohli — batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Devdutt Padikkal — batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Rajat Patidar (C) — batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Jitesh Sharma (WK) — wk_batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Tim David — batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Romario Shepherd — bowl_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Krunal Pandya — bat_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Bhuvneshwar Kumar — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Abhinandan Singh — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Jacob Duffy — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Suyash Sharma — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Jacob Bethell — bat_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Rasikh Salam Dar — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Kanishk Chouhan — bowl_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Venkatesh Iyer — bat_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Josh Hazlewood — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Mangesh Yadav — bowl_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Vihaan Malhotra — bat_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Vicky Ostwal — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Jordan Cox — wk_batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Swapnil Singh — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Satvik Deswal — bowl_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:   Chennai Super Kings: 11 XI + 14 bench[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Sanju Samson (WK) — wk_batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Ruturaj Gaikwad (C) — batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Ayush Mhatre — batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Sarfaraz Khan — batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Shivam Dube — bat_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Prashant Veer — bowl_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Jamie Overton — bowl_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Noor Ahmad — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Anshul Kamboj — bowl_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Matt Henry — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     Khaleel Ahmed — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Matthew Short — batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Akeal Hosein — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Kartik Sharma — wk_batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Ramakrishna Ghosh — bat_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Gurjapneet Singh — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Rahul Chahar — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] MS Dhoni — wk_batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Shreyas Gopal — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Spencer Johnson — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Mukesh Choudhary — bowler[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Urvil Patel — wk_batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Aman Khan — bowl_allrounder[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Dewald Brevis — batter[0m
+[37m[22:28:50 F0 SQUAD] INFO:     [bench] Zakary Foulkes — bowl_allrounder[0m
+[37m[22:28:50 F0 TEST] INFO: Teams: ['Royal Challengers Bengaluru', 'Chennai Super Kings'][0m
+[37m[22:28:50 F0 TEST] INFO: Team variants: ['BAN', 'BANGALORE', 'BEN', 'BENGALURU', 'CH', 'CHA', 'CHALLENGERS', 'CHE', 'CHENNAI', 'CHENNAI SUPER KINGS', 'CSK', 'KIN', 'KINGS', 'RCB', 'RO', 'ROY', 'ROYAL', 'ROYAL CHALLENGERS BENGALURU', 'SUP', 'SUPER'][0m
+[37m[22:28:50 F0 TEST] INFO: Found Firefox window: id=6310 1739.0x1230.0 "RCB vs CSK Live video streaming | TATA IPL 2026"[0m
+[FIELD] Pitch detected from people cluster: (0.61, 0.66) spread=0.273
+[37m[22:28:52 F0 FIELD] INFO: Pitch detected from people at (0.61, 0.66)[0m
+[37m[22:28:52 F0 TEST] INFO: ============================================================[0m
+[37m[22:28:52 F0 TEST] INFO: [CONFIG] Vision:    Groq Scout 17B (strip + action merged)[0m
+[37m[22:28:52 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[22:28:52 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[22:28:52 F0 TEST] INFO: PIPELINE STARTED — 300s — NO TEAM ASSUMPTION[0m
+[37m[22:28:52 F0 TEST] INFO: ============================================================[0m
+[37m[22:28:53 F1 VISION] INFO: [SCOREBOARD] 1.1s (777 chars) +action[0m
+[37m[22:28:53 F1 TEST] INFO: 
+=======================================================[0m
+[37m[22:28:53 F1 TEST] INFO: [F1] SCOREBOARD — #1[0m
+[37m[22:28:53 F1 TEST] INFO:   [V 1094ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK 109-6 (10)
+* Batter 1: Prashant 13(8) > J Overton 1(1)
+* To win: 142 off 60
+* Bowler: Abhinandan 1-27(3)
+
+There is no info panel visible.
+
+No bowling[0m
+[37m[22:28:54 F1 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:28:54 F1 TEST] INFO: [TEAM] Detected from players: ['PRASHANT', 'J OVERTON'] → Chennai Super Kings batting (2 matches)[0m
+[37m[22:28:54 F1 BOARD] INFO: Scorecards built: Chennai Super Kings (25 bat) vs Royal Challengers Bengaluru (23 bowl)[0m
+[37m[22:28:54 F1 TEST] INFO: === TEAMS SET: Chennai Super Kings batting (inn 1) vs Royal Challengers Bengaluru bowling ===[0m
+[37m[22:28:54 F1 TEST] INFO:   [E 1152ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:28:54 F1 TEST] INFO:     BAT: Prashant 13(8) *[0m
+[37m[22:28:54 F1 TEST] INFO:     BAT: J Overton 1(1) [0m
+[37m[22:28:54 F1 TEST] INFO:     BOWL: Abhinandan 1-27 (3)[0m
+[37m[22:28:54 F1 BOARD] INFO: Abhinandan Singh: None/None (None) -> 1/27 (3.0) [F1][0m
+[37m[22:28:55 F1 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:28:55 F1 TEST] INFO:   [S] Hint: Current batters: VEER and OVERTON. Bowler: ABHINANDAN[0m
+[37m[22:28:55 F1 BOARD] INFO: score: None -> 109 [F1][0m
+[37m[22:28:55 F1 BOARD] INFO: overs: None -> 10.0 [F1][0m
+[37m[22:28:55 F1 BOARD] INFO: [CV:wickets] First value 6 — awaiting confirmation[0m
+[37m[22:28:55 F1 BOARD] INFO: Batter activated: Prashant Veer[0m
+[37m[22:28:55 F1 BOARD] INFO: Prashant Veer: 0(0) -> 13(8) [F1][0m
+[37m[22:28:55 F1 BOARD] INFO: [JOIN] Prashant Veer: initial stats accepted 13(8)[0m
+[37m[22:28:55 F1 BOARD] INFO: Batter activated: Jamie Overton[0m
+[37m[22:28:55 F1 BOARD] INFO: Jamie Overton: 0(0) -> 1(1) [F1][0m
+[37m[22:28:55 F1 BOARD] INFO: [JOIN] Jamie Overton: initial stats accepted 1(1)[0m
+[37m[22:28:55 F1 TEST] INFO:   [S 947ms] Changes: ['score→109', 'overs→10', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Abhinandan Singh'][0m
+[37m[22:28:55 F1 TEST] INFO:   Total: 3193ms (V:1094 E:1152 S:947)[0m
+[37m[22:28:55 F1 TEST] INFO:   STATE: Chennai Super Kings 109-None (10.0) inn=1 | Bat: Prashant Veer(13) Jamie Overton(1) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:28:55 F1 TEST] INFO:   [ACTION] The cricket action visible in the frame shows players sitting in the dugout, see[0m
+[37m[22:28:57 F2 VISION] INFO: [SCOREBOARD] 0.7s (839 chars) +action[0m
+[37m[22:28:57 F2 TEST] INFO: 
+=======================================================[0m
+[37m[22:28:57 F2 TEST] INFO: [F2] SCOREBOARD — #2[0m
+[37m[22:28:57 F2 TEST] INFO:   [V 715ms] — 
+
+The live scoreboard strip at the bottom of the screen displays:
+
+- CSK 109-6 (10)
+- BENGALURU
+- PRASHANT 13(8) > J OVERTON 1(1)
+- TO WIN 142 OFF 60
+- ABHINANDAN 1-27 3 
+
+There is no info panel visible.
+
+There is no bowling speed or extra informat[0m
+[37m[22:28:58 F2 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:28:58 F2 TEST] INFO:   [E 1040ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:28:58 F2 TEST] INFO:     BAT: PRASHANT 13(8) [0m
+[37m[22:28:58 F2 TEST] INFO:     BAT: ABHINANDAN 1(27) [0m
+[37m[22:28:58 F2 TEST] INFO:     BOWL: J OVERTON None-1 (1)[0m
+[33m[22:28:58 F2 BOARD] WARN: Bowler 'J OVERTON' not in bowling card (resolved: Jamie Overton)[0m
+[37m[22:28:59 F2 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:28:59 F2 TEST] INFO:   [S] Hint: Current batters: PRASHANT, JAMIE. Bowler: ABHINANDAN. Read their stats from the scoreboard.[0m
+[37m[22:28:59 F2 BOARD] INFO: [CV:wickets] Initial 6 CONFIRMED[0m
+[37m[22:28:59 F2 BOARD] INFO: wickets: None -> 6 [F2][0m
+[37m[22:28:59 F2 BOARD] INFO: [JOIN] Prashant Veer: initial stats accepted 13(8)[0m
+[37m[22:28:59 F2 TEST] INFO:   [GUARD] Batter 'Jamie Overton' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:28:59 F2 TEST] INFO:   [S 951ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bowl:Abhinandan Singh'][0m
+[37m[22:28:59 F2 TEST] INFO:   Total: 2706ms (V:715 E:1040 S:951)[0m
+[37m[22:28:59 F2 TEST] INFO:   [CODE] TO WIN 142 → target=251[0m
+[37m[22:28:59 F2 TEST] INFO:   [CODE] Target 251 detected — pending batter confirmation for innings 2[0m
+[37m[22:28:59 F2 TEST] INFO:   [CODE] Pending innings 2 — can't determine chasing team (bat=1 bowl=1)[0m
+[37m[22:28:59 F2 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=1 | Bat: Prashant Veer(13) Jamie Overton(1) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:28:59 F2 COMMENTARY] INFO: [BALL] WICKET | 10.0 | bat=None bowl=Abhinandan Singh +0 runs[0m
+[37m[22:28:59 F2 TEST] INFO:   [BALL EVENT] WICKET | 10.0 | +0 runs | The cricket action visible in the frame shows players sittin[0m
+[37m[22:29:01 F3 VISION] INFO: [SCOREBOARD] 0.8s (568 chars) +action[0m
+[37m[22:29:01 F3 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:01 F3 TEST] INFO: [F3] SCOREBOARD — #3[0m
+[37m[22:29:01 F3 TEST] INFO:   [V 754ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK 109-6 (10)
+- PRASHANT 13(8) > J OVERTON 1(1)
+- TO WIN 142 OFF 60
+- ABHINANDAN 1-27 3 
+
+There is no visible info panel.
+
+ACTION: 
+The cricket action v[0m
+[37m[22:29:02 F3 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:02 F3 BOARD] INFO: [NAME] Single initial 'J' → 'Jamie Overton' (via 'J OVERTON')[0m
+[37m[22:29:02 F3 TEST] INFO:   [E 1156ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:02 F3 TEST] INFO:     BAT: PRASHANT 13(8) [0m
+[37m[22:29:02 F3 TEST] INFO:     BAT: J OVERTON 1(1) [0m
+[37m[22:29:02 F3 TEST] INFO:     BOWL: ABHINANDAN 3-27 (None)[0m
+[37m[22:29:02 F3 BOARD] INFO: Abhinandan Singh: 1/27 (3.0) -> 3/27 (3.0) [F3][0m
+[37m[22:29:03 F3 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:03 F3 TEST] INFO:   [S] Hint: Current batters: VEER and OVERTON. Bowler: ABHINANDAN[0m
+[37m[22:29:03 F3 BOARD] INFO: [JOIN] Prashant Veer: initial stats accepted 13(8)[0m
+[37m[22:29:03 F3 BOARD] INFO: [JOIN] Jamie Overton: initial stats accepted 1(1)[0m
+[37m[22:29:03 F3 TEST] INFO:   [S 833ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Abhinandan Singh'][0m
+[37m[22:29:03 F3 TEST] INFO:   Total: 2743ms (V:754 E:1156 S:833)[0m
+[37m[22:29:03 F3 TEST] INFO:   [CODE] Innings 2 confirmed: Chennai Super Kings is chasing (inn 1 batters still visible)[0m
+[37m[22:29:03 F3 BOARD] INFO: [INNINGS] Set to 2. Target: 251. All trackers reset.[0m
+[37m[22:29:03 F3 TEST] INFO:   [CODE] Target set to 251[0m
+[37m[22:29:03 F3 TEST] INFO:   STATE: Chennai Super Kings None-None (None) inn=2 | Bat: Prashant Veer(13) Jamie Overton(1) | Bowl: None[0m
+[37m[22:29:03 F3 COMMENTARY] INFO: [BALL] -109_RUNS | 0 | bat=None bowl=None +-109 runs[0m
+[37m[22:29:03 F3 TEST] INFO:   [BALL EVENT] -109_RUNS | 0 | +-109 runs | The cricket action visible in the frame shows the players si[0m
+[37m[22:29:03 F3 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 251 from 120 @ 12.55 rpo[0m
+[37m[22:29:03 F3 FIELD] INFO: [F3] IC-mid_on brought in — attacking[0m
+[37m[22:29:03 F3 FIELD] INFO: [F3] IC-extra_cover brought in — attacking[0m
+[37m[22:29:03 F3 FIELD] INFO: [F3] OC-wide_long_off moved to OC-deep_cover_point[0m
+[37m[22:29:05 F4 VISION] INFO: [SCOREBOARD] 0.6s (528 chars) +action[0m
+[37m[22:29:05 F4 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:05 F4 TEST] INFO: [F4] SCOREBOARD — #4[0m
+[37m[22:29:05 F4 TEST] INFO:   [V 620ms] — 
+
+1. LIVE SCOREBOARD STRIP:
+  Top line: CSK 109-6 (10)
+  Bottom line: Prashant 13(8) > J Overton 1(1), Abhinandan 1-27(3)
+  TO WIN: 142 OFF 60
+
+2. No INFO_PANEL visible.
+
+No BOWLING SPEED or EXTRA visible.
+
+THIS OVER: Not visible.
+
+No FULL SCORECAR[0m
+[37m[22:29:06 F4 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:06 F4 TEST] INFO:   [E 1018ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:06 F4 TEST] INFO:     BAT: Prashant 13(8) [0m
+[37m[22:29:06 F4 TEST] INFO:     BOWL: Abhinandan 1-27 (3)[0m
+[37m[22:29:06 F4 BOARD] INFO: Abhinandan Singh: 3/27 (3.0) -> 1/27 (3.0) [F4][0m
+[37m[22:29:07 F4 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:07 F4 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Abhinandan. Read their stats from the scoreboard.[0m
+[37m[22:29:07 F4 BOARD] INFO: score: None -> 109 [F4][0m
+[37m[22:29:07 F4 BOARD] INFO: overs: None -> 10.0 [F4][0m
+[37m[22:29:07 F4 BOARD] INFO: [CV:wickets] First value 6 — awaiting confirmation[0m
+[37m[22:29:07 F4 BOARD] INFO: [JOIN] Prashant Veer: initial stats accepted 13(8)[0m
+[37m[22:29:07 F4 TEST] INFO:   [GUARD] Batter 'Jamie Overton' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:29:07 F4 TEST] INFO:   [S 838ms] Changes: ['score→109', 'overs→10.0', 'bat:Prashant Veer=13(8)', 'bowl:Abhinandan Singh'][0m
+[37m[22:29:07 F4 TEST] INFO:   Total: 2476ms (V:620 E:1018 S:838)[0m
+[37m[22:29:07 F4 BOARD] INFO: Over 9 complete: no ball data (by Abhinandan Singh)[0m
+[37m[22:29:07 F4 TEST] INFO:   STATE: Chennai Super Kings 109-None (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:29:07 F4 COMMENTARY] INFO: [BALL] EXTRA | 10.0 | bat=None bowl=Abhinandan Singh +109 runs[0m
+[37m[22:29:07 F4 TEST] INFO:   [BALL EVENT] EXTRA | 10.0 | +109 runs | The cricket action is not visible in this frame as the playe[0m
+[37m[22:29:07 F4 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 142 from 60 @ 14.2 rpo[0m
+[37m[22:29:07 F4 FIELD] INFO: [F4] OC-deep_cover_point moved to OC-deep_cover[0m
+[37m[22:29:07 F4 FIELD] INFO: [F4] IC-cover_point moved to IC-cover[0m
+[37m[22:29:07 F4 FIELD] INFO: [F4] OC-deep_cover_point moved to OC-deep_midwicket[0m
+[37m[22:29:09 F5 VISION] INFO: [SCOREBOARD] 0.8s (703 chars) +action[0m
+[37m[22:29:09 F5 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:09 F5 TEST] INFO: [F5] SCOREBOARD — #5[0m
+[37m[22:29:09 F5 TEST] INFO:   [V 801ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 109-6 (10)
+* Bottom line: 
+  * Batter 1: Prashant 13(8) > 
+  * Batter 2: J Overton 1(1)
+  * Bowler: Abhinandan 1-27(3)
+  * To Win: 142 off [0m
+[37m[22:29:10 F5 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:10 F5 TEST] INFO:   [E 1024ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:10 F5 TEST] INFO:     BAT: Prashant 13(8) [0m
+[37m[22:29:10 F5 TEST] INFO:     BAT: J Overton 1(1) [0m
+[37m[22:29:10 F5 TEST] INFO:     BOWL: Abhinandan 1-27 (3)[0m
+[37m[22:29:10 F5 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:10 F5 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Abhinandan Singh. Read their stats from the scoreboard.[0m
+[37m[22:29:10 F5 BOARD] INFO: [CV:wickets] Initial 6 CONFIRMED[0m
+[37m[22:29:10 F5 BOARD] INFO: wickets: None -> 6 [F5][0m
+[37m[22:29:10 F5 BOARD] INFO: [JOIN] Prashant Veer: initial stats accepted 13(8)[0m
+[37m[22:29:10 F5 BOARD] INFO: [JOIN] Jamie Overton: initial stats accepted 1(1)[0m
+[37m[22:29:10 F5 TEST] INFO:   [S 857ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Abhinandan Singh'][0m
+[37m[22:29:10 F5 TEST] INFO:   Total: 2682ms (V:801 E:1024 S:857)[0m
+[37m[22:29:10 F5 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:29:10 F5 COMMENTARY] INFO: [BALL] WICKET | 10.0 | bat=None bowl=Abhinandan Singh +0 runs[0m
+[37m[22:29:10 F5 TEST] INFO:   [BALL EVENT] WICKET | 10.0 | +0 runs | The frame shows a cameraman in a black shirt and cap, holdin[0m
+[37m[22:29:10 F5 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 142 from 60 @ 14.2 rpo[0m
+[37m[22:29:12 F6 VISION] INFO: [SCOREBOARD] 0.7s (643 chars) +action[0m
+[37m[22:29:12 F6 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:12 F6 TEST] INFO: [F6] SCOREBOARD — #6[0m
+[37m[22:29:12 F6 TEST] INFO:   [V 684ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 109-6 (10)
+* Bottom line: 
+  * Prashant 13(8) > J Overton 1(1)
+  * Bowler: Abhinandan 1-27(3)
+  * To Win: 142 off 60
+
+**INFO_PANEL:** Not v[0m
+[37m[22:29:13 F6 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:13 F6 TEST] INFO:   [E 1033ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:13 F6 TEST] INFO:     BAT: Prashant 13(8) [0m
+[37m[22:29:13 F6 TEST] INFO:     BAT: J Overton 1(1) [0m
+[37m[22:29:13 F6 TEST] INFO:     BOWL: Abhinandan 1-27 (3)[0m
+[37m[22:29:14 F6 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:14 F6 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Abhinandan[0m
+[37m[22:29:14 F6 BOARD] INFO: [JOIN] Prashant Veer: initial stats accepted 13(8)[0m
+[37m[22:29:14 F6 BOARD] INFO: [JOIN] Jamie Overton: initial stats accepted 1(1)[0m
+[37m[22:29:14 F6 TEST] INFO:   [S 826ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Abhinandan Singh'][0m
+[37m[22:29:14 F6 TEST] INFO:   Total: 2544ms (V:684 E:1033 S:826)[0m
+[37m[22:29:14 F6 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:29:14 F6 TEST] INFO:   [ACTION] **
+
+The batter, J Overton, is standing on the field with his hands on his head, [0m
+[37m[22:29:16 F7 VISION] INFO: [SCOREBOARD] 0.7s (582 chars) +action[0m
+[37m[22:29:16 F7 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:16 F7 TEST] INFO: [F7] SCOREBOARD — #7[0m
+[37m[22:29:16 F7 TEST] INFO:   [V 662ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK 109-6 (10)
+- BENGALURU v RCB
+- Batter 1: Prashant 13(8) 
+- Batter 2: J Overton 1(1)
+- Bowler: Abhinandan 1-27 (3)
+
+There is a rotating info panel or [0m
+[37m[22:29:17 F7 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:17 F7 TEST] INFO:   [E 1093ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=9.37[0m
+[37m[22:29:17 F7 TEST] INFO:     BAT: Prashant 13(8) [0m
+[37m[22:29:17 F7 TEST] INFO:     BAT: J Overton 1(1) [0m
+[37m[22:29:17 F7 TEST] INFO:     BOWL: Abhinandan 1-27 (3)[0m
+[37m[22:29:18 F7 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:18 F7 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Abhinandan[0m
+[37m[22:29:18 F7 BOARD] INFO: [JOIN] Prashant Veer: initial stats accepted 13(8)[0m
+[37m[22:29:18 F7 BOARD] INFO: [JOIN] Jamie Overton: initial stats accepted 1(1)[0m
+[37m[22:29:18 F7 TEST] INFO:   [S 839ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Abhinandan Singh'][0m
+[37m[22:29:18 F7 TEST] INFO:   Total: 2594ms (V:662 E:1093 S:839)[0m
+[37m[22:29:18 F7 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:29:18 F7 TEST] INFO:   [ACTION] The frame shows a player, likely Devdutt Padikkal, walking off the field, possib[0m
+[37m[22:29:18 F7 FIELD] INFO: [F7] OC-deep_mid_on_area moved to OC-deep_midwicket[0m
+[37m[22:29:18 F7 FIELD] INFO: [F7] IC-midwicket brought in — attacking[0m
+[37m[22:29:18 F7 FIELD] INFO: [F7] OC-deep_midwicket moved to OC-long_on[0m
+[37m[22:29:18 F7 FIELD] INFO: [F7] IC-cover pushed back — defensive[0m
+[37m[22:29:18 F7 FIELD] INFO: [F7] IC-mid_on pushed back — defensive[0m
+[37m[22:29:20 F8 VISION] INFO: [SCOREBOARD] 0.7s (634 chars) +action[0m
+[37m[22:29:20 F8 BOARD] INFO: [JOIN] Initial join phase complete after 5 scoreboard frames[0m
+[37m[22:29:20 F8 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:20 F8 TEST] INFO: [F8] SCOREBOARD — #8[0m
+[37m[22:29:20 F8 TEST] INFO:   [V 701ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+1. LIVE SCOREBOARD STRIP:
+  Top line: CSK 109-6 (10)
+  Bottom line: 
+    *Prashant 13(8) > J Overton 1(1)
+  Bowler: Abhinandan 1-27(3)
+
+2. No INFO/CAREER PANEL visible.
+
+No BOWLING SP[0m
+[37m[22:29:21 F8 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:21 F8 TEST] INFO:   [E 1054ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:21 F8 TEST] INFO:     BAT: Prashant 13(8) *[0m
+[37m[22:29:21 F8 TEST] INFO:     BAT: J Overton 1(1) [0m
+[37m[22:29:21 F8 TEST] INFO:     BOWL: Abhinandan 1-27 (3)[0m
+[37m[22:29:22 F8 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:22 F8 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Abhinandan[0m
+[37m[22:29:22 F8 BOARD] INFO: [INFER] Sanju Samson (opener pos 1) dismissed — openers always bat, 6 wickets fallen[0m
+[37m[22:29:22 F8 BOARD] INFO: [INFER] Ruturaj Gaikwad (opener pos 2) dismissed — openers always bat, 6 wickets fallen[0m
+[37m[22:29:22 F8 BOARD] INFO: [INFER] Ayush Mhatre (pos 3) dismissed — 1 seen between pos 3 and active pos 7[0m
+[37m[22:29:22 F8 BOARD] INFO: [INFER] Sarfaraz Khan (pos 4) dismissed — 1 seen between pos 4 and active pos 7[0m
+[37m[22:29:22 F8 BOARD] INFO: [INFER] Shivam Dube (pos 5) dismissed — 1 seen between pos 5 and active pos 7[0m
+[37m[22:29:22 F8 TEST] INFO:   [S 807ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Abhinandan Singh'][0m
+[37m[22:29:22 F8 TEST] INFO:   Total: 2562ms (V:701 E:1054 S:807)[0m
+[37m[22:29:22 F8 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:29:22 F8 TEST] INFO:   [ACTION] The frame shows a bowler, Suyash Sharma, in action, preparing to bowl. The batte[0m
+[37m[22:29:22 F8 FIELD] INFO: [F8] OC-deep_backward_square moved to OC-deep_square_leg[0m
+[37m[22:29:22 F8 FIELD] INFO: [F8] IC-midwicket pushed back — defensive[0m
+[37m[22:29:22 F8 FIELD] INFO: [F8] slip added — expecting edge[0m
+[37m[22:29:24 F9 VISION] INFO: [SCOREBOARD] 0.9s (754 chars) +action[0m
+[37m[22:29:24 F9 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:24 F9 TEST] INFO: [F9] SCOREBOARD — #9[0m
+[37m[22:29:24 F9 TEST] INFO:   [V 920ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK 109-6 (10) v RCB
+* BENGALURU
+* Batter 1: Suyash Sharma - 13 (8)
+* Batter 2: Prashant - 1 (1)
+* Bowler: Abhinandan - 1-27 (3)
+* TO WIN: 142 OFF 60
+
+Th[0m
+[37m[22:29:25 F9 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:25 F9 TEST] INFO:   [GUARD] Visible team 'Royal Challengers Bengaluru' is bowling team — comparison strip, stripping score/batters[0m
+[37m[22:29:25 F9 TEST] INFO:   [E 1071ms] visible_team=Royal Challengers Bengaluru score=None-None (None) target=None rr=9.37[0m
+[37m[22:29:25 F9 TEST] INFO:     BOWL: Abhinandan 1-27 (3)[0m
+[37m[22:29:25 F9 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:25 F9 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Abhinandan ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:29:25 F9 TEST] INFO:   [S 838ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Abhinandan Singh'][0m
+[37m[22:29:25 F9 TEST] INFO:   Total: 2829ms (V:920 E:1071 S:838)[0m
+[37m[22:29:25 F9 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:29:25 F9 TEST] INFO:   [ACTION] The frame shows a player, Suyash Sharma, in a brown jersey with purple accents, [0m
+[37m[22:29:28 F10 VISION] INFO: [SCOREBOARD] 1.1s (837 chars) +action[0m
+[37m[22:29:28 F10 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:28 F10 TEST] INFO: [F10] SCOREBOARD — #10[0m
+[37m[22:29:28 F10 TEST] INFO:   [V 1053ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK 109-6 (10)
+- v RCB
+- BENGALURU
+- PRASHANT 13(8) > J OVERTON 1(1)
+- TO WIN 142 OFF 60
+- SUYASH 0-0 
+
+There is no rotating info panel visible.
+
+There i[0m
+[37m[22:29:29 F10 EXTRACT] INFO: Extracted in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:29 F10 TEST] INFO:   [E 1370ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:29 F10 TEST] INFO:     BAT: PRASHANT 13(8) [0m
+[37m[22:29:29 F10 TEST] INFO:     BAT: J OVERTON 1(1) [0m
+[37m[22:29:29 F10 TEST] INFO:     BOWL: SUYASH 0-0 (0)[0m
+[37m[22:29:29 F10 BOARD] INFO: Suyash Sharma: None/None (None) -> 0/0 (0.0) [F10][0m
+[37m[22:29:30 F10 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:30 F10 TEST] INFO:   [S] Hint: Current batters: VEER and OVERTON. Bowler: SUYASH ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:29:30 F10 TEST] INFO:   [S 866ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Suyash Sharma'][0m
+[37m[22:29:30 F10 TEST] INFO:   Total: 3289ms (V:1053 E:1370 S:866)[0m
+[37m[22:29:30 F10 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Suyash Sharma 0-0[0m
+[37m[22:29:30 F10 TEST] INFO:   [ACTION] The cricket action happening in the frame shows two batters, Prashant and Overto[0m
+[37m[22:29:30 F10 FIELD] INFO: [F10] IC-short_leg_area brought in — attacking[0m
+[37m[22:29:30 F10 FIELD] INFO: [F10] slip removed — less catching pressure[0m
+[37m[22:29:30 F10 FIELD] INFO: [F10] IC-square_leg brought in — attacking[0m
+[37m[22:29:33 F12 VISION] INFO: [SCOREBOARD] 0.9s (759 chars) +action[0m
+[37m[22:29:33 F12 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:33 F12 TEST] INFO: [F12] SCOREBOARD — #11[0m
+[37m[22:29:33 F12 TEST] INFO:   [V 882ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK 109-6 (10)
+* BENGALURU > J OVERTON
+* PRASHANT 13(8) 
+* TO WIN 142 OFF 60 
+* SUYASH 0-0(0)
+
+There is no info panel visible.
+
+There is no bowling speed[0m
+[37m[22:29:34 F12 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:34 F12 TEST] INFO:   [E 1164ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:34 F12 TEST] INFO:     BAT: PRASHANT 13(8) [0m
+[37m[22:29:34 F12 TEST] INFO:     BAT: J OVERTON None(None) [0m
+[37m[22:29:34 F12 TEST] INFO:     BOWL: SUYASH 0-0 (0)[0m
+[37m[22:29:35 F12 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:35 F12 TEST] INFO:   [S] Hint: Current batters: VEER and OVERTON. Bowler: SUYASH ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:29:35 F12 TEST] INFO:   [S 918ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Suyash Sharma'][0m
+[37m[22:29:35 F12 TEST] INFO:   Total: 2964ms (V:882 E:1164 S:918)[0m
+[37m[22:29:35 F12 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Suyash Sharma 0-0[0m
+[37m[22:29:35 F12 TEST] INFO:   [ACTION] The two batters, Prashant and J Overton, wearing light blue jerseys and helmets,[0m
+[37m[22:29:37 F13 VISION] INFO: [SCOREBOARD] 0.7s (730 chars) +action[0m
+[37m[22:29:37 F13 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:37 F13 TEST] INFO: [F13] SCOREBOARD — #12[0m
+[37m[22:29:37 F13 TEST] INFO:   [V 712ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK 109-6 (10)
+- BENGALURU 
+- PRASHANT 13(8) > J OVERTON 1(1)
+- TO WIN 142 OFF 60
+- SUYASH 0-0 
+
+There is no visible info panel or career panel in this f[0m
+[37m[22:29:38 F13 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:38 F13 TEST] INFO:   [E 1133ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:38 F13 TEST] INFO:     BAT: PRASHANT 13(8) [0m
+[37m[22:29:38 F13 TEST] INFO:     BAT: SUYASH 0(0) [0m
+[37m[22:29:38 F13 TEST] INFO:     BOWL: J OVERTON None-1 (1)[0m
+[33m[22:29:38 F13 BOARD] WARN: Bowler 'J OVERTON' not in bowling card (resolved: Jamie Overton)[0m
+[37m[22:29:39 F13 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:39 F13 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:29:39 F13 TEST] INFO:   [GUARD] Batter 'Jamie Overton' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:29:39 F13 TEST] INFO:   [S 829ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bowl:Suyash Sharma'][0m
+[37m[22:29:39 F13 TEST] INFO:   Total: 2675ms (V:712 E:1133 S:829)[0m
+[37m[22:29:39 F13 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Suyash Sharma 0-0[0m
+[37m[22:29:39 F13 TEST] INFO:   [ACTION] The frame shows two cricket players sitting in the dugout, wearing blue and red [0m
+[37m[22:29:42 F15 VISION] INFO: [SCOREBOARD] 0.7s (789 chars) +action[0m
+[37m[22:29:42 F15 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:42 F15 TEST] INFO: [F15] SCOREBOARD — #13[0m
+[37m[22:29:42 F15 TEST] INFO:   [V 748ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+Top line: CSK, 109-6, 10
+Bottom line: Not fully visible, but shows batters' names and runs
+
+**INFO/CAREER PANEL:**
+INFO_PANEL: 200 MATCHES, 1854 RUNS, 152 S[0m
+[37m[22:29:43 F15 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:43 F15 TEST] INFO:   [E 1107ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:43 F15 TEST] INFO:     BAT: Jamie Overton None(None) [0m
+[37m[22:29:44 F15 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:44 F15 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:29:44 F15 TEST] INFO:   [GUARD] Batter 'Prashant Veer' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:29:44 F15 TEST] INFO:   [S 721ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Jamie Overton=1(1)'][0m
+[37m[22:29:44 F15 TEST] INFO:   Total: 2575ms (V:748 E:1107 S:721)[0m
+[37m[22:29:44 F15 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Suyash Sharma 0-0[0m
+[37m[22:29:44 F15 TEST] INFO:   [ACTION] The cricket action shows a batter (likely Jamie Overton) standing still, with hi[0m
+[37m[22:29:46 F16 VISION] INFO: [SCOREBOARD] 1.0s (915 chars) +action[0m
+[37m[22:29:46 F16 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:46 F16 TEST] INFO: [F16] SCOREBOARD — #14[0m
+[37m[22:29:46 F16 TEST] INFO:   [V 997ms] — 
+
+The live scoreboard strip at the bottom of the screen shows:
+
+* Top line: CSK 109-6 (10)
+* Bottom line: The batters' names and their runs (balls faced) are not fully visible, but one batter is shown. The current bowler's name and figures are not [0m
+[37m[22:29:47 F16 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:47 F16 TEST] INFO:   [E 1231ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:48 F16 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:48 F16 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:29:48 F16 TEST] INFO:   [S 794ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Suyash Sharma'][0m
+[37m[22:29:48 F16 TEST] INFO:   Total: 3022ms (V:997 E:1231 S:794)[0m
+[37m[22:29:48 F16 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Suyash Sharma 0-0[0m
+[37m[22:29:48 F16 TEST] INFO:   [ACTION] The cricket action visible in the frame shows the batters on the field, with one[0m
+[37m[22:29:50 F17 VISION] INFO: [SCOREBOARD] 0.6s (688 chars)[0m
+[37m[22:29:50 F17 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:50 F17 TEST] INFO: [F17] SCOREBOARD — #15[0m
+[37m[22:29:50 F17 TEST] INFO:   [V 630ms] — 
+
+The live scoreboard strip at the bottom of the screen displays:
+
+* CSK 109-6 (10)
+* Batter names: not clearly visible
+* Bowler name with figures: not clearly visible
+
+There is no rotating info panel visible.
+
+No bowling speed or extras are visibl[0m
+[37m[22:29:50 F17 EXTRACT] INFO: Extracted in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:50 F17 TEST] INFO:   [E 782ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:51 F17 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:51 F17 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:29:51 F17 TEST] INFO:   [S 745ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)'][0m
+[37m[22:29:51 F17 TEST] INFO:   Total: 2156ms (V:630 E:782 S:745)[0m
+[37m[22:29:51 F17 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Suyash Sharma 0-0[0m
+[37m[22:29:53 F18 VISION] INFO: [SCOREBOARD] 1.0s (657 chars) +action[0m
+[37m[22:29:53 F18 TEST] INFO: 
+=======================================================[0m
+[37m[22:29:53 F18 TEST] INFO: [F18] SCOREBOARD — #16[0m
+[37m[22:29:53 F18 TEST] INFO:   [V 1014ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 109-6 (10)
+* Bottom line: Prashant 13(8) > J Overton 1(1)
+* Bowler: Suyash 0-0 (0)
+
+**ACTION:**
+
+The cricket action shows a fielder in blue[0m
+[37m[22:29:55 F18 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:55 F18 TEST] INFO:   [E 1236ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:29:55 F18 TEST] INFO:     BAT: Prashant 13(8) *[0m
+[37m[22:29:55 F18 TEST] INFO:     BAT: J Overton 1(1) [0m
+[37m[22:29:55 F18 TEST] INFO:     BOWL: Suyash 0-0 (0)[0m
+[37m[22:29:55 F18 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:29:55 F18 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:29:55 F18 TEST] INFO:   [S 797ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)', 'bowl:Suyash Sharma'][0m
+[37m[22:29:55 F18 TEST] INFO:   Total: 3047ms (V:1014 E:1236 S:797)[0m
+[37m[22:29:55 F18 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Suyash Sharma 0-0[0m
+[37m[22:29:55 F18 TEST] INFO:   [ACTION] **
+
+The cricket action shows a fielder in blue uniform running towards the right[0m
+[37m[22:29:55 F18 FIELD] INFO: [F18] IC-short_leg_area pushed back — defensive[0m
+[37m[22:29:55 F18 FIELD] INFO: [F18] IC-extra_cover brought in — attacking[0m
+[37m[22:29:55 F18 FIELD] INFO: [F18] IC-backward_square pushed back — defensive[0m
+[37m[22:29:55 F18 FIELD] INFO: [F18] IC-backward_point pushed back — defensive[0m
+[37m[22:29:55 F18 FIELD] INFO: [F18] OC-long_on moved to OC-deep_midwicket_sq[0m
+[37m[22:30:00 F21 VISION] INFO: [SCOREBOARD] 0.9s (611 chars) +action[0m
+[37m[22:30:00 F21 TEST] INFO: 
+=======================================================[0m
+[37m[22:30:00 F21 TEST] INFO: [F21] SCOREBOARD — #17[0m
+[37m[22:30:00 F21 TEST] INFO:   [V 860ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK 109-6 in 10 overs
+* Batter 1: Prashant with 13 runs off 8 balls
+* Batter 2: J Overton with 1 run off 1 ball
+* Bowler: not visible 
+
+The info panel on[0m
+[37m[22:30:01 F21 EXTRACT] INFO: Extracted in 1.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:01 F21 TEST] INFO:   [E 1617ms] visible_team=Chennai Super Kings score=109-6 (10) target=None rr=None[0m
+[37m[22:30:01 F21 TEST] INFO:     BAT: Prashant 13(8) [0m
+[37m[22:30:01 F21 TEST] INFO:     BAT: J Overton 1(1) [0m
+[37m[22:30:02 F21 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:02 F21 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:30:02 F21 TEST] INFO:   [S 1010ms] Changes: ['score→109', 'overs→10.0', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=1(1)'][0m
+[37m[22:30:02 F21 TEST] INFO:   Total: 3487ms (V:860 E:1617 S:1010)[0m
+[37m[22:30:02 F21 TEST] INFO:   STATE: Chennai Super Kings 109-6 (10.0) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(1) | Bowl: Suyash Sharma 0-0[0m
+[37m[22:30:02 F21 TEST] INFO:   [ACTION] The cricket action happening in the frame shows a batter, likely J Overton, walk[0m
+[37m[22:30:02 F21 FIELD] INFO: [F21] OC-deep_midwicket_sq moved to OC-deep_square_leg[0m
+[37m[22:30:02 F21 FIELD] INFO: [F21] IC-midwicket brought in — attacking[0m
+[37m[22:30:02 F21 FIELD] INFO: [F21] OC-deep_midwicket_sq moved to OC-wide_long_on[0m
+[37m[22:30:05 F23 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:30:05 F23 TEST] INFO: [F23] AD 259ms (#1)[0m
+[37m[22:30:06 F24 VISION] INFO: [SCOREBOARD] 0.6s (708 chars) +action[0m
+[37m[22:30:06 F24 TEST] INFO: 
+=======================================================[0m
+[37m[22:30:06 F24 TEST] INFO: [F24] SCOREBOARD — #18[0m
+[37m[22:30:06 F24 TEST] INFO:   [V 590ms] The live scoreboard strip is not visible in the provided image. However, I can see the RCB logo and a player's legs wearing blue pants and white shoes.
+
+Since the scoreboard strip is not visible, I will proceed to describe the cricket action:
+
+ACTION[0m
+[37m[22:30:07 F24 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:07 F24 TEST] INFO:   [E 900ms] No data: closeup[0m
+[37m[22:30:09 F25 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:30:09 F25 TEST] INFO: [F25] AD 282ms (#2)[0m
+[37m[22:30:10 F26 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:30:10 F26 TEST] INFO: [F26] AD 256ms (#3)[0m
+[37m[22:30:11 F27 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:30:11 F27 TEST] INFO: [F27] AD 252ms (#4)[0m
+[37m[22:30:13 F28 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:30:13 F28 TEST] INFO: [F28] AD 373ms (#5)[0m
+[37m[22:30:14 F29 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:30:14 F29 TEST] INFO: [F29] AD 365ms (#6)[0m
+[37m[22:30:16 F30 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:30:16 F30 TEST] INFO: [F30] AD 266ms (#7)[0m
+[37m[22:30:18 F31 VISION] INFO: [CLOSEUP] 0.7s (473 chars) +action[0m
+[37m[22:30:18 F31 TEST] INFO: [F31] CLOSEUP 678ms — The frame shows a close-up of a player's back, wearing a blue and brown jersey with the name "DAVID" (#1)[0m
+[37m[22:30:19 F32 VISION] INFO: [CLOSEUP] 0.7s (298 chars)[0m
+[37m[22:30:19 F32 TEST] INFO: [F32] CLOSEUP 691ms — The frame shows a close-up of a cricket player wearing a brown and blue jersey with "BKT TYRES" and  (#2)[0m
+[37m[22:30:21 F33 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:30:21 F33 TEST] INFO: [F33] AD 377ms (#8)[0m
+[37m[22:30:23 F34 VISION] INFO: [SCOREBOARD] 1.1s (937 chars) +action[0m
+[37m[22:30:23 F34 TEST] INFO: 
+=======================================================[0m
+[37m[22:30:23 F34 TEST] INFO: [F34] SCOREBOARD — #19[0m
+[37m[22:30:23 F34 TEST] INFO:   [V 1092ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* CSK 110-6 (10.1)
+* Batters: Prashant (13* off 8) > J Overton (2* off 2)
+* Bowler: Not explicitly mentioned, but presumably Abhinandan (as indicated by "BOWLER [0m
+[37m[22:30:24 F34 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:24 F34 TEST] INFO:   [E 1158ms] visible_team=Chennai Super Kings score=110-6 (10.1) target=None rr=9.37[0m
+[37m[22:30:24 F34 TEST] INFO:     BAT: Prashant 13(8) [0m
+[37m[22:30:24 F34 TEST] INFO:     BAT: J Overton 2(2) [0m
+[37m[22:30:24 F34 TEST] INFO:     BOWL: Abhinandan None-None (None)[0m
+[37m[22:30:26 F34 SCORER] INFO: Scored in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:26 F34 TEST] INFO:   [S] Hint: Current batters: Prashant Veer and Jamie Overton. Bowler: Abhinandan Singh. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:30:26 F34 BOARD] INFO: score: 109 -> 110 [F34][0m
+[37m[22:30:26 F34 BOARD] INFO: overs: 10.0 -> 10.1 [F34][0m
+[33m[22:30:26 F34 BOARD] WARN: Dismiss: Shivam Dube status is 'out', not batting[0m
+[37m[22:30:26 F34 BOARD] INFO: Jamie Overton: 1(1) -> 2(2) [F34][0m
+[37m[22:30:26 F34 TEST] INFO:   [S 1138ms] Changes: ['score→110', 'overs→10.1', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=2(2)'][0m
+[37m[22:30:26 F34 TEST] INFO:   Total: 3388ms (V:1092 E:1158 S:1138)[0m
+[37m[22:30:26 F34 TEST] INFO:   STATE: Chennai Super Kings 110-6 (10.1) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(2) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:30:26 F34 COMMENTARY] INFO: [BALL] 1_RUNS | 10.1 | bat=Jamie Overton bowl=Abhinandan Singh +1 runs[0m
+[37m[22:30:26 F34 TEST] INFO:   [BALL EVENT] 1_RUNS | 10.1 | +1 runs | **
+
+The batter Prashant is in the process of playing a shot,[0m
+[37m[22:30:26 F34 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 141 from 59 @ 14.34 rpo[0m
+[37m[22:30:26 F34 FIELD] INFO: [F34] IC-extra_cover pushed back — defensive[0m
+[37m[22:30:26 F34 FIELD] INFO: [F34] IC-midwicket pushed back — defensive[0m
+[37m[22:30:27 F35 VISION] INFO: [SCOREBOARD] 0.6s (575 chars) +action[0m
+[37m[22:30:27 F35 TEST] INFO: 
+=======================================================[0m
+[37m[22:30:27 F35 TEST] INFO: [F35] SCOREBOARD — #20[0m
+[37m[22:30:27 F35 TEST] INFO:   [V 647ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+1. LIVE SCOREBOARD STRIP:
+  Top line: CSK 110-6 (10.1)
+  Bottom line: 
+    *Prashant 13(8) > 
+    J Overton 2(2) 
+  | 
+  TO WIN 141 OFF 59 
+  Bowler not visible on strip
+
+2. No INFO/C[0m
+[37m[22:30:28 F35 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:28 F35 TEST] INFO:   [E 1017ms] visible_team=Chennai Super Kings score=110-6 (10.1) target=None rr=9.37[0m
+[37m[22:30:28 F35 TEST] INFO:     BAT: Prashant 13(8) *[0m
+[37m[22:30:28 F35 TEST] INFO:     BAT: J Overton 2(2) [0m
+[37m[22:30:29 F35 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:29 F35 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Abhinandan Singh ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:30:29 F35 TEST] INFO:   [S 905ms] Changes: ['score→110', 'overs→10.1', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=2(2)', 'bowl:Abhinandan Singh'][0m
+[37m[22:30:29 F35 TEST] INFO:   Total: 2569ms (V:647 E:1017 S:905)[0m
+[37m[22:30:29 F35 TEST] INFO:   STATE: Chennai Super Kings 110-6 (10.1) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(2) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:30:29 F35 TEST] INFO:   [ACTION] The frame shows a fielder in blue uniform running on the field. The batter appea[0m
+[37m[22:30:29 F35 FIELD] INFO: [F35] IC-square_leg brought in — attacking[0m
+[37m[22:30:29 F35 FIELD] INFO: [F35] IC-wide_mid_on brought in — attacking[0m
+[37m[22:30:29 F35 FIELD] INFO: [F35] OC-third_man_square moved to OC-deep_midwicket[0m
+[37m[22:30:31 F36 VISION] INFO: [SCOREBOARD] 0.9s (890 chars) +action[0m
+[37m[22:30:31 F36 TEST] INFO: 
+=======================================================[0m
+[37m[22:30:31 F36 TEST] INFO: [F36] SCOREBOARD — #21[0m
+[37m[22:30:31 F36 TEST] INFO:   [V 931ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 110-6 (10.1)
+* Bottom line: 
+  * Prashant 13 (8) > 
+  * J Overton 2 (2)
+* Bowler: Not explicitly mentioned, but likely J Overton given the contex[0m
+[37m[22:30:32 F36 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:32 F36 TEST] INFO:   [E 1066ms] visible_team=Chennai Super Kings score=110-6 (10.1) target=None rr=9.37[0m
+[37m[22:30:32 F36 TEST] INFO:     BAT: Prashant 13(8) [0m
+[37m[22:30:32 F36 TEST] INFO:     BAT: J Overton 2(2) [0m
+[37m[22:30:33 F36 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:33 F36 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Abhinandan Singh ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:30:33 F36 TEST] INFO:   [S 897ms] Changes: ['score→110', 'overs→10.1', 'wickets→6', 'bat:Prashant Veer=13(8)', 'bat:Jamie Overton=2(2)', 'bowl:Abhinandan Singh'][0m
+[37m[22:30:33 F36 TEST] INFO:   Total: 2894ms (V:931 E:1066 S:897)[0m
+[37m[22:30:33 F36 TEST] INFO:   STATE: Chennai Super Kings 110-6 (10.1) inn=2 | Bat: Prashant Veer*(13) Jamie Overton(2) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:30:33 F36 TEST] INFO:   [ACTION] **
+
+The cricket action shows a live play with a batter (likely Prashant) standin[0m
+[FIELD WARN] Middle overs but 10 outside circle (max 5). Possible misclassification.
+[37m[22:30:33 F36 FIELD] INFO: [F36] IC-square_leg pushed back — defensive[0m
+[37m[22:30:33 F36 FIELD] INFO: [F36] IC-wide_mid_on pushed back — defensive[0m
+[37m[22:30:35 F37 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:30:35 F37 TEST] INFO: [F37] AD 308ms (#9)[0m
+[37m[22:30:36 F38 VISION] INFO: [ADVERTISEMENT] 0.2s (13 chars)[0m
+[37m[22:30:36 F38 TEST] INFO: [F38] AD 247ms (#10)[0m
+[37m[22:30:37 F39 VISION] INFO: [ADVERTISEMENT] 0.2s (13 chars)[0m
+[37m[22:30:37 F39 TEST] INFO: [F39] AD 247ms (#11)[0m
+[37m[22:30:39 F40 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:30:39 F40 TEST] INFO: [F40] AD 355ms (#12)[0m
+[37m[22:30:40 F41 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:30:40 F41 TEST] INFO: [F41] AD 445ms (#13)[0m
+[37m[22:30:42 F42 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:30:42 F42 TEST] INFO: [F42] AD 361ms (#14)[0m
+[37m[22:30:47 F46 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:30:47 F46 TEST] INFO: [F46] AD 286ms (#15)[0m
+[37m[22:30:48 F47 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:30:48 F47 TEST] INFO: [F47] AD 356ms (#16)[0m
+[37m[22:30:50 F48 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:30:50 F48 TEST] INFO: [F48] AD 311ms (#17)[0m
+[37m[22:30:52 F49 VISION] INFO: [SCOREBOARD] 1.0s (530 chars) +action[0m
+[37m[22:30:52 F49 TEST] INFO: 
+=======================================================[0m
+[37m[22:30:52 F49 TEST] INFO: [F49] SCOREBOARD — #22[0m
+[37m[22:30:52 F49 TEST] INFO:   [V 999ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 111-6 (10.2)
+* Bottom line: 
+  * Prashant 14(9) > J Overton 2(2)
+  * TO WIN 140 OFF 58
+* Bottom right: Suyash 1(1), 0-2 0.2
+
+**ACTION:**
+
+T[0m
+[37m[22:30:53 F49 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:53 F49 TEST] INFO:   [E 1251ms] visible_team=Chennai Super Kings score=111-6 (10.2) target=None rr=None[0m
+[37m[22:30:53 F49 TEST] INFO:     BAT: Prashant 14(9) *[0m
+[37m[22:30:53 F49 TEST] INFO:     BAT: J Overton 2(2) [0m
+[37m[22:30:54 F49 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:30:54 F49 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Abhinandan Singh. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:30:54 F49 BOARD] INFO: score: 110 -> 111 [F49][0m
+[37m[22:30:54 F49 BOARD] INFO: overs: 10.1 -> 10.2 [F49][0m
+[37m[22:30:54 F49 BOARD] INFO: Prashant Veer: 13(8) -> 14(9) [F49][0m
+[37m[22:30:54 F49 TEST] INFO:   [S 982ms] Changes: ['score→111', 'overs→10.2', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bat:Jamie Overton=2(2)'][0m
+[37m[22:30:54 F49 TEST] INFO:   Total: 3233ms (V:999 E:1251 S:982)[0m
+[37m[22:30:54 F49 TEST] INFO:   STATE: Chennai Super Kings 111-6 (10.2) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(2) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:30:54 F49 COMMENTARY] INFO: [BALL] 1_RUNS | 10.2 | bat=Prashant Veer bowl=Abhinandan Singh +1 runs[0m
+[37m[22:30:54 F49 TEST] INFO:   [BALL EVENT] 1_RUNS | 10.2 | +1 runs | **
+
+The cricket action shows two batters, Prashant and Overt[0m
+[37m[22:30:54 F49 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 140 from 58 @ 14.48 rpo[0m
+[37m[22:30:54 F49 FIELD] INFO: [F49] IC-cover moved to IC-cover_point[0m
+[37m[22:30:54 F49 FIELD] INFO: [F49] OC-deep_midwicket_sq moved to OC-deep_square_leg[0m
+[37m[22:30:54 F49 FIELD] INFO: [F49] IC-cover pushed back — defensive[0m
+[37m[22:30:54 F49 FIELD] INFO: [F49] IC-backward_square brought in — attacking[0m
+[37m[22:30:56 F51 TEST] INFO: [F51] Pixel skip #10[0m
+[37m[22:31:03 F56 VISION] INFO: [SCOREBOARD] 0.9s (839 chars) +action[0m
+[37m[22:31:03 F56 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:03 F56 TEST] INFO: [F56] SCOREBOARD — #23[0m
+[37m[22:31:03 F56 TEST] INFO:   [V 870ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK 111-6 in 10.2 overs
+- Batter 1: Prashant 14(9) 2 fours 2 sixes
+- Batter 2: Suyash 1(1) 
+- Bowler: J Overton 0-2 in 0.2 overs
+- To Win: 140 off 58 bal[0m
+[37m[22:31:04 F56 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:04 F56 TEST] INFO:   [E 1077ms] visible_team=Chennai Super Kings score=111-6 (10.2) target=None rr=9.37[0m
+[37m[22:31:04 F56 TEST] INFO:     BAT: Prashant 14(9) [0m
+[37m[22:31:04 F56 TEST] INFO:     BAT: Suyash 1(1) [0m
+[37m[22:31:04 F56 TEST] INFO:     BOWL: J Overton 0-2 (0.2)[0m
+[33m[22:31:04 F56 BOARD] WARN: Bowler 'J Overton' not in bowling card (resolved: Jamie Overton)[0m
+[37m[22:31:05 F56 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:05 F56 TEST] INFO:   [S] Hint: Current batters: Prashant Veer and Jamie Overton. Bowler: Abhinandan Singh ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:05 F56 TEST] INFO:   [GUARD] Batter 'Jamie Overton' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:31:05 F56 TEST] INFO:   [S 944ms] Changes: ['score→111', 'overs→10.2', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bowl:Abhinandan Singh'][0m
+[37m[22:31:05 F56 TEST] INFO:   Total: 2891ms (V:870 E:1077 S:944)[0m
+[37m[22:31:05 F56 TEST] INFO:   STATE: Chennai Super Kings 111-6 (10.2) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(2) | Bowl: Abhinandan Singh 1-27[0m
+[37m[22:31:05 F56 TEST] INFO:   [ACTION] The frame shows a player, likely J Overton, in a brown jersey with blue accents,[0m
+[37m[22:31:07 F58 VISION] INFO: [CLOSEUP] 0.4s (286 chars)[0m
+[37m[22:31:07 F58 TEST] INFO: [F58] CLOSEUP 417ms — The player in focus is wearing a light blue jersey with "ASHOK LEYLAND" and other logos, along with  (#3)[0m
+[37m[22:31:09 F59 VISION] INFO: [SCOREBOARD] 0.7s (635 chars) +action[0m
+[37m[22:31:09 F59 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:09 F59 TEST] INFO: [F59] SCOREBOARD — #24[0m
+[37m[22:31:09 F59 TEST] INFO:   [V 693ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK 115-6 (10.3)
+* Batters: Prashant 1(1), J Overton 
+* Bowler: Suyash 0-6 (0.3)
+
+There is no info panel visible.
+
+There is no bowling speed or extra inf[0m
+[37m[22:31:10 F59 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:10 F59 TEST] INFO:   [E 1157ms] visible_team=Chennai Super Kings score=115-6 (10.3) target=None rr=None[0m
+[37m[22:31:10 F59 TEST] INFO:     BAT: Prashant 1(1) *[0m
+[37m[22:31:10 F59 TEST] INFO:     BAT: J Overton None(None) [0m
+[37m[22:31:10 F59 TEST] INFO:     BOWL: Suyash 0-6 (0.3)[0m
+[37m[22:31:10 F59 BOARD] INFO: Suyash Sharma: 0/0 (0.0) -> 0/6 (0.3) [F59][0m
+[37m[22:31:11 F59 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:11 F59 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:11 F59 BOARD] INFO: score: 111 -> 115 [F59][0m
+[37m[22:31:11 F59 BOARD] INFO: overs: 10.2 -> 10.3 [F59][0m
+[37m[22:31:11 F59 TEST] INFO:   [S 1022ms] Changes: ['score→115', 'overs→10.3', 'wickets→6', 'bat:Prashant Veer=1(1)', 'bat:Jamie Overton=2(2)', 'bowl:Suyash Sharma'][0m
+[37m[22:31:11 F59 TEST] INFO:   Total: 2873ms (V:693 E:1157 S:1022)[0m
+[37m[22:31:11 F59 TEST] INFO:   STATE: Chennai Super Kings 115-6 (10.3) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(2) | Bowl: Suyash Sharma 0-6[0m
+[37m[22:31:11 F59 COMMENTARY] INFO: [BALL] FOUR | 10.3 | bat=None bowl=Suyash Sharma +4 runs[0m
+[37m[22:31:11 F59 TEST] INFO:   [BALL EVENT] FOUR | 10.3 | +4 runs | The cricketer in a Chennai Super Kings jersey is on the scre[0m
+[37m[22:31:11 F59 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 136 from 57 @ 14.32 rpo[0m
+[37m[22:31:13 F60 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:31:13 F60 TEST] INFO: [F60] AD 335ms (#18)[0m
+[37m[22:31:14 F61 VISION] INFO: [ADVERTISEMENT] 0.2s (13 chars)[0m
+[37m[22:31:14 F61 TEST] INFO: [F61] AD 245ms (#19)[0m
+[37m[22:31:16 F62 VISION] INFO: [SCOREBOARD] 0.7s (891 chars) +action[0m
+[37m[22:31:16 F62 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:16 F62 TEST] INFO: [F62] SCOREBOARD — #25[0m
+[37m[22:31:16 F62 TEST] INFO:   [V 736ms] — 
+
+The live scoreboard strip shows:
+- Top line: Not fully visible
+- Bottom line: Not fully visible
+
+However, I can see the following information:
+MI  (not fully visible) 
+*Veer  0(0) > Overton 0(1)*
+The current bowler is not clearly visible.
+
+There [0m
+[37m[22:31:17 F62 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:17 F62 TEST] INFO:   [E 1317ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[22:31:17 F62 TEST] INFO:     BAT: Veer 0(0) [0m
+[37m[22:31:17 F62 TEST] INFO:     BAT: Overton 0(1) [0m
+[37m[22:31:18 F62 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:18 F62 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:18 F62 TEST] INFO:   No players from our match recognized — skipping score[0m
+[37m[22:31:18 F62 TEST] INFO:   [S 722ms] Changes: none[0m
+[37m[22:31:18 F62 TEST] INFO:   Total: 2775ms (V:736 E:1317 S:722)[0m
+[37m[22:31:18 F62 TEST] INFO:   STATE: Chennai Super Kings 115-6 (10.3) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(2) | Bowl: Suyash Sharma 0-6[0m
+[37m[22:31:18 F62 TEST] INFO:   [ACTION] The frame shows a batter in a light blue jersey, wearing a helmet and holding a [0m
+[37m[22:31:21 F64 VISION] INFO: [SCOREBOARD] 0.6s (631 chars) +action[0m
+[37m[22:31:21 F64 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:21 F64 TEST] INFO: [F64] SCOREBOARD — #26[0m
+[37m[22:31:21 F64 TEST] INFO:   [V 612ms] — 
+
+The live scoreboard strip shows:
+
+Top line: RCB, 49-2 (8.3)
+Bottom line: F Kohli 21(18) * , M Patel 22(21) >, S Sharma 0-29(3.3)
+
+There is no info panel visible.
+
+There is no bowling speed visible.
+
+There are no extras reported.
+
+The current over[0m
+[37m[22:31:22 F64 EXTRACT] INFO: Extracted in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:22 F64 BOARD] INFO: [NAME] Exact miss for 'F KOHLI', trying fuzzy (440 keys)...[0m
+[37m[22:31:22 F64 BOARD] INFO: Fuzzy matched 'F Kohli' → 'Virat Kohli' (86%)[0m
+[37m[22:31:22 F64 BOARD] INFO: [NAME] Single initial 'F' → 'Virat Kohli' (via 'F KOHLI')[0m
+[37m[22:31:22 F64 BOARD] INFO: [NAME] Exact miss for 'M PATEL', trying fuzzy (442 keys)...[0m
+[37m[22:31:22 F64 BOARD] INFO: Fuzzy matched 'M Patel' → 'Urvil Patel' (86%)[0m
+[37m[22:31:22 F64 BOARD] INFO: [NAME] Single initial 'M' → 'Matt Henry' (via 'M HENRY')[0m
+[37m[22:31:22 F64 TEST] INFO:   [GUARD] Visible team 'Royal Challengers Bengaluru' is bowling team — comparison strip, stripping score/batters[0m
+[37m[22:31:22 F64 TEST] INFO:   [E 1353ms] visible_team=Royal Challengers Bengaluru score=None-None (None) target=None rr=None[0m
+[37m[22:31:22 F64 TEST] INFO:     BOWL: S Sharma 0-29 (3.3)[0m
+[37m[22:31:22 F64 BOARD] INFO: [CV:Suyash Sharma:bowl_overs] Jump 3→21 (+18.0) HOLDING[0m
+[37m[22:31:22 F64 BOARD] INFO: [CV:Suyash Sharma:bowl_runs] Jump 6→29 (+23.0) HOLDING[0m
+[37m[22:31:23 F64 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:23 F64 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: S Sharma. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:23 F64 TEST] INFO:   [S 956ms] Changes: ['score→115', 'overs→10.3', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bat:Jamie Overton=2(2)', 'bowl:Suyash Sharma'][0m
+[37m[22:31:23 F64 TEST] INFO:   Total: 2920ms (V:612 E:1353 S:956)[0m
+[37m[22:31:23 F64 TEST] INFO:   STATE: Chennai Super Kings 115-6 (10.3) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(2) | Bowl: Suyash Sharma 0-6[0m
+[37m[22:31:23 F64 TEST] INFO:   [ACTION] The frame shows two players on the field, one near the bottom right and one near[0m
+[37m[22:31:25 F65 VISION] INFO: [SCOREBOARD] 1.1s (961 chars) +action[0m
+[37m[22:31:25 F65 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:25 F65 TEST] INFO: [F65] SCOREBOARD — #27[0m
+[37m[22:31:25 F65 TEST] INFO:   [V 1061ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 115-6 (10.3)
+* Bottom line: 
+  * Prashant 14(9) > 
+  * J Overton 6(3)
+* Bowler: Not explicitly mentioned but presumably J Overton 
+
+INFO_PA[0m
+[37m[22:31:27 F65 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:27 F65 TEST] INFO:   [E 1042ms] visible_team=Chennai Super Kings score=115-6 (10.3) target=136 rr=9.37[0m
+[37m[22:31:27 F65 TEST] INFO:     BAT: Prashant 14(9) [0m
+[37m[22:31:27 F65 TEST] INFO:     BAT: J Overton 6(3) [0m
+[37m[22:31:27 F65 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:27 F65 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:27 F65 TEST] INFO:   [S 847ms] Changes: ['score→115', 'overs→10.3', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bat:Jamie Overton=2(2)', 'bowl:Suyash Sharma'][0m
+[37m[22:31:27 F65 TEST] INFO:   Total: 2950ms (V:1061 E:1042 S:847)[0m
+[37m[22:31:27 F65 TEST] INFO:   STATE: Chennai Super Kings 115-6 (10.3) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(2) | Bowl: Suyash Sharma 0-6[0m
+[37m[22:31:27 F65 TEST] INFO:   [ACTION] The frame shows a live cricket match with a player, likely J Overton, wearing a [0m
+[37m[22:31:32 F68 VISION] INFO: [SCOREBOARD] 0.8s (616 chars) +action[0m
+[37m[22:31:32 F68 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:32 F68 TEST] INFO: [F68] SCOREBOARD — #28[0m
+[37m[22:31:32 F68 TEST] INFO:   [V 845ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 115-6 (10.3)
+* Bottom line: 
+  * Prashant 14(9) > J Overton 6(3)
+  * Bowler: Suyash 0-6 (0.3)
+
+**INFO/CAREER PANEL:** Not visible
+
+**SPEED:[0m
+[37m[22:31:33 F68 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:33 F68 TEST] INFO:   [E 1278ms] visible_team=Chennai Super Kings score=115-6 (10.3) target=None rr=None[0m
+[37m[22:31:33 F68 TEST] INFO:     BAT: Prashant 14(9) [0m
+[37m[22:31:33 F68 TEST] INFO:     BAT: J Overton 6(3) [0m
+[37m[22:31:33 F68 TEST] INFO:     BOWL: Suyash 0-6 (0.3)[0m
+[37m[22:31:34 F68 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:34 F68 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:34 F68 TEST] INFO:   [S 916ms] Changes: ['score→115', 'overs→10.3', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bat:Jamie Overton=2(2)', 'bowl:Suyash Sharma'][0m
+[37m[22:31:34 F68 TEST] INFO:   Total: 3039ms (V:845 E:1278 S:916)[0m
+[37m[22:31:34 F68 TEST] INFO:   STATE: Chennai Super Kings 115-6 (10.3) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(2) | Bowl: Suyash Sharma 0-6[0m
+[37m[22:31:34 F68 TEST] INFO:   [ACTION] **
+
+The batter, J Overton, is playing a shot, swinging the bat with both hands. [0m
+[37m[22:31:36 F69 VISION] INFO: [SCOREBOARD] 0.8s (713 chars) +action[0m
+[37m[22:31:36 F69 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:36 F69 TEST] INFO: [F69] SCOREBOARD — #29[0m
+[37m[22:31:36 F69 TEST] INFO:   [V 826ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 115-6 (10.3)
+* Bottom line: 
+  * Prashant 14(9) > J Overton 6(3)
+  * Suyash 0-6 (0.3)
+
+**INFO/CAREER PANEL:** Not visible
+
+**SPEED:** Not v[0m
+[37m[22:31:37 F69 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:37 F69 TEST] INFO:   [E 1233ms] visible_team=Chennai Super Kings score=115-6 (10.3) target=None rr=None[0m
+[37m[22:31:37 F69 TEST] INFO:     BAT: Prashant 14(9) *[0m
+[37m[22:31:37 F69 TEST] INFO:     BAT: J Overton 6(3) [0m
+[37m[22:31:37 F69 TEST] INFO:     BOWL: Suyash 0-6 (0.3)[0m
+[37m[22:31:38 F69 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:38 F69 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:38 F69 TEST] INFO:   [S 855ms] Changes: ['score→115', 'overs→10.3', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bat:Jamie Overton=2(2)', 'bowl:Suyash Sharma'][0m
+[37m[22:31:38 F69 TEST] INFO:   Total: 2914ms (V:826 E:1233 S:855)[0m
+[37m[22:31:38 F69 TEST] INFO:   STATE: Chennai Super Kings 115-6 (10.3) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(2) | Bowl: Suyash Sharma 0-6[0m
+[37m[22:31:38 F69 TEST] INFO:   [ACTION] The bowler, Suyash, is walking back to their mark after bowling. The batter, Pra[0m
+[FIELD WARN] Middle overs but 10 outside circle (max 5). Possible misclassification.
+[37m[22:31:40 F70 VISION] INFO: [SCOREBOARD] 0.8s (754 chars) +action[0m
+[37m[22:31:40 F70 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:40 F70 TEST] INFO: [F70] SCOREBOARD — #30[0m
+[37m[22:31:40 F70 TEST] INFO:   [V 769ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 115-6 (10.3)
+* Bottom line: Prashant 14(9) > J Overton 6(3), 
+* Bowler: not shown
+
+**INFO/CAREER PANEL:** Not visible
+
+**SPEED:** 100.6 kph[0m
+[37m[22:31:41 F70 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:41 F70 TEST] INFO:   [E 1219ms] visible_team=Chennai Super Kings score=115-6 (10.3) target=None rr=None[0m
+[37m[22:31:41 F70 TEST] INFO:     BAT: Prashant 14(9) [0m
+[37m[22:31:41 F70 TEST] INFO:     BAT: J Overton 6(3) [0m
+[37m[22:31:42 F70 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:42 F70 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:42 F70 TEST] INFO:   [S 788ms] Changes: ['score→115', 'overs→10.3', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bat:Jamie Overton=2(2)', 'bowl:Suyash Sharma'][0m
+[37m[22:31:42 F70 TEST] INFO:   Total: 2777ms (V:769 E:1219 S:788)[0m
+[37m[22:31:42 F70 TEST] INFO:   STATE: Chennai Super Kings 115-6 (10.3) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(2) | Bowl: Suyash Sharma 0-6[0m
+[37m[22:31:42 F70 TEST] INFO:   [ACTION] The cricket action shows a batter in a blue jersey standing near the crease with[0m
+[37m[22:31:42 F70 FIELD] INFO: [F70] short leg removed[0m
+[37m[22:31:42 F70 FIELD] INFO: [F70] IC-backward_point moved to IC-wide_mid_on[0m
+[37m[22:31:42 F70 FIELD] INFO: [F70] OC-wide_long_on moved to OC-deep_mid_on_area[0m
+[37m[22:31:44 F71 VISION] INFO: [SCOREBOARD] 0.7s (630 chars) +action[0m
+[37m[22:31:44 F71 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:44 F71 TEST] INFO: [F71] SCOREBOARD — #31[0m
+[37m[22:31:44 F71 TEST] INFO:   [V 699ms] — 
+
+The scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK 116-6 (10.4 overs)
+- Batters: Prashant 14(9) > Overton 7(4)
+- Bowler: Not explicitly mentioned but presumably Prashant or Overton based on the batting inf[0m
+[37m[22:31:45 F71 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:45 F71 TEST] INFO:   [E 1055ms] visible_team=Chennai Super Kings score=116-6 (10.4) target=None rr=None[0m
+[37m[22:31:45 F71 TEST] INFO:     BAT: Prashant 14(9) [0m
+[37m[22:31:45 F71 TEST] INFO:     BAT: Overton 7(4) [0m
+[37m[22:31:45 F71 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:45 F71 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:45 F71 BOARD] INFO: score: 115 -> 116 [F71][0m
+[37m[22:31:45 F71 BOARD] INFO: overs: 10.3 -> 10.4 [F71][0m
+[37m[22:31:45 F71 BOARD] INFO: Jamie Overton: 2(2) -> 7(4) [F71][0m
+[37m[22:31:45 F71 TEST] INFO:   [S 771ms] Changes: ['score→116', 'overs→10.4', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bat:Jamie Overton=7(4)'][0m
+[37m[22:31:45 F71 TEST] INFO:   Total: 2525ms (V:699 E:1055 S:771)[0m
+[37m[22:31:45 F71 TEST] INFO:   STATE: Chennai Super Kings 116-6 (10.4) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(7) | Bowl: Suyash Sharma 0-6[0m
+[37m[22:31:45 F71 COMMENTARY] INFO: [BALL] 1_RUNS | 10.4 | bat=Jamie Overton bowl=Suyash Sharma +1 runs[0m
+[37m[22:31:45 F71 TEST] INFO:   [BALL EVENT] 1_RUNS | 10.4 | +1 runs | The frame shows a close-up of a player, likely Prashant or O[0m
+[37m[22:31:45 F71 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 135 from 56 @ 14.46 rpo[0m
+[37m[22:31:47 F72 VISION] INFO: [SCOREBOARD] 0.7s (521 chars) +action[0m
+[37m[22:31:47 F72 TEST] INFO: 
+=======================================================[0m
+[37m[22:31:47 F72 TEST] INFO: [F72] SCOREBOARD — #32[0m
+[37m[22:31:47 F72 TEST] INFO:   [V 725ms] — 
+
+1. LIVE SCOREBOARD STRIP:
+  - Top line: CSK 116-6 (10.4)
+  - Bottom line: 
+    - Batters: Prashant 14(9) > | J Overton 7(4)
+    - Bowler: Suyash 0-7 (0.4)
+  - To Win: 135 off 56
+
+2. INFO/CAREER PANEL: Not visible
+
+EXTRAS: No extras reported
+THIS [0m
+[37m[22:31:48 F72 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:48 F72 TEST] INFO:   [E 1232ms] visible_team=Chennai Super Kings score=116-6 (10.4) target=None rr=9.37[0m
+[37m[22:31:48 F72 TEST] INFO:     BAT: Prashant 14(9) [0m
+[37m[22:31:48 F72 TEST] INFO:     BAT: J Overton 7(4) [0m
+[37m[22:31:48 F72 TEST] INFO:     BOWL: Suyash 0-7 (0.4)[0m
+[37m[22:31:48 F72 BOARD] INFO: Suyash Sharma: 0/6 (0.3) -> 0/7 (0.4) [F72][0m
+[37m[22:31:49 F72 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:31:49 F72 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:31:49 F72 TEST] INFO:   [S 856ms] Changes: ['score→116', 'overs→10.4', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:31:49 F72 TEST] INFO:   Total: 2812ms (V:725 E:1232 S:856)[0m
+[37m[22:31:49 F72 TEST] INFO:   STATE: Chennai Super Kings 116-6 (10.4) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(7) | Bowl: Suyash Sharma 0-7[0m
+[37m[22:31:49 F72 TEST] INFO:   [ACTION] The batter, J Overton, appears to be preparing or reacting, possibly between del[0m
+[37m[22:31:52 F74 TEST] INFO: [F74] Pixel skip #20[0m
+[37m[22:32:03 F84 TEST] INFO: [F84] Pixel skip #30[0m
+[37m[22:32:10 F90 VISION] INFO: [SCOREBOARD] 0.9s (585 chars) +action[0m
+[37m[22:32:10 F90 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:10 F90 TEST] INFO: [F90] SCOREBOARD — #33[0m
+[37m[22:32:10 F90 TEST] INFO:   [V 903ms] — 
+
+The live scoreboard strip at the bottom shows:
+
+* CSK 116-6 (10.4 overs)
+* Batters: Prashant 14(9), J Overton 7(4)
+* To Win: 135 off 56
+
+There is no rotating info panel visible.
+
+The bowling speed is: SPEED: 88.2 kph
+
+No extras are reported.
+
+The[0m
+[37m[22:32:12 F90 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:12 F90 TEST] INFO:   [E 1271ms] visible_team=Chennai Super Kings score=116-6 (10.4) target=None rr=9.37[0m
+[37m[22:32:12 F90 TEST] INFO:     BAT: Prashant 14(9) [0m
+[37m[22:32:12 F90 TEST] INFO:     BAT: J Overton 7(4) [0m
+[37m[22:32:13 F90 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:13 F90 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:32:13 F90 TEST] INFO:   [S 964ms] Changes: ['score→116', 'overs→10.4', 'wickets→6', 'bat:Prashant Veer=14(9)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:32:13 F90 TEST] INFO:   Total: 3138ms (V:903 E:1271 S:964)[0m
+[37m[22:32:13 F90 TEST] INFO:   STATE: Chennai Super Kings 116-6 (10.4) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(7) | Bowl: Suyash Sharma 0-7[0m
+[37m[22:32:13 F90 TEST] INFO:   [ACTION] The cricket action shows a batter (Prashant) and another batter (J Overton) on t[0m
+[FIELD WARN] Middle overs but 6 outside circle (max 5). Possible misclassification.
+[37m[22:32:13 F90 FIELD] INFO: [F90] IC-point moved to IC-cover[0m
+[37m[22:32:13 F90 FIELD] INFO: [F90] IC-wide_mid_on moved to IC-midwicket[0m
+[37m[22:32:13 F90 FIELD] INFO: [F90] defensive | total:13 (yolo:9 vis:4) | slips:0 in:3 out:6 | keeper:back | fresh:0 balls ago | conf:1.0 | 37ms[0m
+[37m[22:32:14 F91 VISION] INFO: [SCOREBOARD] 0.8s (545 chars) +action[0m
+[37m[22:32:14 F91 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:14 F91 TEST] INFO: [F91] SCOREBOARD — #34[0m
+[37m[22:32:14 F91 TEST] INFO:   [V 816ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK 116-6 (10.5 overs)
+* Batters: Prashant 14(10) > J Overton 7(4)
+* Bowler: 
+* To win: 135 off 55
+* This over: 1 1 4 1 
+* Speed: 88.2 kph
+
+There is no i[0m
+[37m[22:32:16 F91 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:16 F91 TEST] INFO:   [E 1067ms] visible_team=Chennai Super Kings score=116-6 (10.5) target=None rr=9.37[0m
+[37m[22:32:16 F91 TEST] INFO:     BAT: Prashant 14(10) [0m
+[37m[22:32:16 F91 TEST] INFO:     BAT: J Overton 7(4) [0m
+[37m[22:32:16 F91 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:16 F91 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:32:16 F91 BOARD] INFO: overs: 10.4 -> 10.5 [F91][0m
+[37m[22:32:16 F91 BOARD] INFO: Prashant Veer: 14(9) -> 14(10) [F91][0m
+[37m[22:32:16 F91 TEST] INFO:   [S 784ms] Changes: ['score→116', 'overs→10.5', 'wickets→6', 'bat:Prashant Veer=14(10)', 'bat:Jamie Overton=7(4)'][0m
+[37m[22:32:16 F91 TEST] INFO:   Total: 2667ms (V:816 E:1067 S:784)[0m
+[37m[22:32:16 F91 TEST] INFO:   [THIS OVER] ['1', '1', '4', '1'] = 7 runs[0m
+[37m[22:32:16 F91 TEST] INFO:   STATE: Chennai Super Kings 116-6 (10.5) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(7) | Bowl: Suyash Sharma 0-7[0m
+[37m[22:32:16 F91 COMMENTARY] INFO: [BALL] DOT | 10.5 | bat=Prashant Veer bowl=Suyash Sharma +0 runs[0m
+[37m[22:32:16 F91 TEST] INFO:   [BALL EVENT] DOT | 10.5 | +0 runs | The cricket action visible in the frame shows a player, like[0m
+[37m[22:32:16 F91 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 135 from 55 @ 14.73 rpo[0m
+[37m[22:32:19 F93 VISION] INFO: [SCOREBOARD] 0.8s (665 chars) +action[0m
+[37m[22:32:19 F93 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:19 F93 TEST] INFO: [F93] SCOREBOARD — #35[0m
+[37m[22:32:19 F93 TEST] INFO:   [V 792ms] — 
+
+The scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK 116-6 (10.5)
+- BENGALURU
+- PRASHANT 14(10) | J OVERTON 7(4)
+- TO WIN 135 OFF 55
+- SUYASH 0-7 (0.5)
+
+There is no info panel visible.
+
+No bowling speed is v[0m
+[37m[22:32:20 F93 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:20 F93 TEST] INFO:   [E 1029ms] visible_team=Chennai Super Kings score=116-6 (10.5) target=None rr=None[0m
+[37m[22:32:20 F93 TEST] INFO:     BAT: PRASHANT 14(10) [0m
+[37m[22:32:20 F93 TEST] INFO:     BAT: SUYASH 0(7) [0m
+[37m[22:32:20 F93 TEST] INFO:     BOWL: J OVERTON None-None (None)[0m
+[33m[22:32:20 F93 BOARD] WARN: Bowler 'J OVERTON' not in bowling card (resolved: Jamie Overton)[0m
+[37m[22:32:21 F93 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:21 F93 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:32:21 F93 TEST] INFO:   [GUARD] Batter 'Jamie Overton' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:32:21 F93 BOARD] INFO: Suyash Sharma: 0/7 (0.4) -> 0/7 (0.5) [F93][0m
+[37m[22:32:21 F93 TEST] INFO:   [S 834ms] Changes: ['score→116', 'overs→10.5', 'wickets→6', 'bat:Prashant Veer=14(10)', 'bowl:Suyash Sharma'][0m
+[37m[22:32:21 F93 TEST] INFO:   Total: 2655ms (V:792 E:1029 S:834)[0m
+[37m[22:32:21 F93 TEST] INFO:   [THIS OVER] ['1', '1', '4', '1'] = 7 runs[0m
+[37m[22:32:21 F93 TEST] INFO:   STATE: Chennai Super Kings 116-6 (10.5) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(7) | Bowl: Suyash Sharma 0-7[0m
+[37m[22:32:21 F93 TEST] INFO:   [ACTION] The player in the frame appears to be acknowledging or signaling something, poss[0m
+[37m[22:32:26 F97 TEST] INFO: [F97] Pixel skip #40[0m
+[37m[22:32:28 F98 VISION] INFO: [SCOREBOARD] 1.0s (799 chars) +action[0m
+[37m[22:32:28 F98 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:28 F98 TEST] INFO: [F98] SCOREBOARD — #36[0m
+[37m[22:32:28 F98 TEST] INFO:   [V 969ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK 116-6 (10.5)
+* Batter 1: Prashant 14(10)
+* Batter 2: J Overton 7(4)
+* Bowler: Suyash 0-7 (0.5)
+* To Win: 135 off 55
+
+There is no info panel visible.
+[0m
+[37m[22:32:29 F98 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:29 F98 TEST] INFO:   [E 1231ms] visible_team=Chennai Super Kings score=116-6 (10.5) target=None rr=None[0m
+[37m[22:32:29 F98 TEST] INFO:     BAT: Prashant 14(10) [0m
+[37m[22:32:29 F98 TEST] INFO:     BAT: J Overton 7(4) [0m
+[37m[22:32:29 F98 TEST] INFO:     BOWL: Suyash 0-7 (0.5)[0m
+[37m[22:32:30 F98 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:30 F98 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:32:30 F98 TEST] INFO:   [S 985ms] Changes: ['score→116', 'overs→10.5', 'wickets→6', 'bat:Prashant Veer=14(10)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:32:30 F98 TEST] INFO:   Total: 3185ms (V:969 E:1231 S:985)[0m
+[37m[22:32:30 F98 TEST] INFO:   [THIS OVER] ['1', '1', '4', '1'] = 7 runs[0m
+[37m[22:32:30 F98 TEST] INFO:   STATE: Chennai Super Kings 116-6 (10.5) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(7) | Bowl: Suyash Sharma 0-7[0m
+[37m[22:32:30 F98 TEST] INFO:   [ACTION] The frame shows a player wearing a blue cap and a brown and blue jersey, likely [0m
+[37m[22:32:34 F101 VISION] INFO: [SCOREBOARD] 0.9s (674 chars) +action[0m
+[37m[22:32:34 F101 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:34 F101 TEST] INFO: [F101] SCOREBOARD — #37[0m
+[37m[22:32:34 F101 TEST] INFO:   [V 869ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 116-6 (10.5)
+* Bottom line: 
+  * Batters: Prashant 14(10) > J Overton 7(4)
+  * Bowler: Suyash 0-7 (0.5)
+
+**Info/Career Panel:** Not visible
+
+**Bo[0m
+[37m[22:32:35 F101 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:35 F101 TEST] INFO:   [E 1206ms] visible_team=Chennai Super Kings score=116-6 (10.5) target=None rr=None[0m
+[37m[22:32:35 F101 TEST] INFO:     BAT: Prashant 14(10) [0m
+[37m[22:32:35 F101 TEST] INFO:     BAT: J Overton 7(4) [0m
+[37m[22:32:35 F101 TEST] INFO:     BOWL: Suyash 0-7 (0.5)[0m
+[37m[22:32:36 F101 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:36 F101 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:32:36 F101 TEST] INFO:   [S 909ms] Changes: ['score→116', 'overs→10.5', 'wickets→6', 'bat:Prashant Veer=14(10)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:32:36 F101 TEST] INFO:   Total: 2983ms (V:869 E:1206 S:909)[0m
+[37m[22:32:36 F101 TEST] INFO:   [THIS OVER] ['1', '1', '4', '1'] = 7 runs[0m
+[37m[22:32:36 F101 TEST] INFO:   STATE: Chennai Super Kings 116-6 (10.5) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(7) | Bowl: Suyash Sharma 0-7[0m
+[37m[22:32:36 F101 TEST] INFO:   [ACTION] **
+
+The frame shows a close-up of a player, likely Prashant, adjusting his wrist[0m
+[37m[22:32:43 F106 VISION] INFO: [SCOREBOARD] 1.0s (901 chars) +action[0m
+[37m[22:32:43 F106 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:43 F106 TEST] INFO: [F106] SCOREBOARD — #38[0m
+[37m[22:32:43 F106 TEST] INFO:   [V 981ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 116-6 (10.5)
+* Bottom line: 
+  * PRASHANT 14(10) | J OVERTON 7(4)
+  * Bowler: SUYASH 0-7 (0.5)
+
+**INFO/CAREER PANEL:** Not visible
+
+**SPEED[0m
+[37m[22:32:44 F106 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:44 F106 TEST] INFO:   [E 1302ms] visible_team=Chennai Super Kings score=116-6 (10.5) target=None rr=None[0m
+[37m[22:32:44 F106 TEST] INFO:     BAT: PRASHANT 14(10) *[0m
+[37m[22:32:44 F106 TEST] INFO:     BAT: J OVERTON 7(4) [0m
+[37m[22:32:44 F106 TEST] INFO:     BOWL: SUYASH 0-7 (0.5)[0m
+[37m[22:32:45 F106 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:45 F106 TEST] INFO:   [S] Hint: Current batters: VEER and OVERTON. Bowler: SUYASH ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:32:45 F106 TEST] INFO:   [S 944ms] Changes: ['score→116', 'overs→10.5', 'wickets→6', 'bat:PRASHANT VEER=14(10)', 'bat:JAMIE OVERTON=7(4)', 'bowl:SUYASH SHARMA'][0m
+[37m[22:32:45 F106 TEST] INFO:   Total: 3226ms (V:981 E:1302 S:944)[0m
+[37m[22:32:45 F106 TEST] INFO:   [THIS OVER] ['1', '1', '4', '1'] = 7 runs[0m
+[37m[22:32:45 F106 TEST] INFO:   STATE: Chennai Super Kings 116-6 (10.5) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(7) | Bowl: Suyash Sharma 0-7[0m
+[37m[22:32:45 F106 TEST] INFO:   [ACTION] **
+
+The bowler, Suyash, has just delivered the ball, and the batter, Overton, is[0m
+[37m[22:32:45 F106 FIELD] INFO: [F106] IC-square_leg pushed back — defensive[0m
+[37m[22:32:45 F106 FIELD] INFO: [F106] OC-deep_backward_point moved to OC-deep_extra_cover[0m
+[37m[22:32:45 F106 FIELD] INFO: [F106] slip added — expecting edge[0m
+[37m[22:32:45 F106 FIELD] INFO: [F106] IC-cover moved to IC-mid_on[0m
+[37m[22:32:45 F106 FIELD] INFO: [F106] IC-mid_on brought in — attacking[0m
+[37m[22:32:48 F108 VISION] INFO: [SCOREBOARD] 0.7s (670 chars) +action[0m
+[37m[22:32:48 F108 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:48 F108 TEST] INFO: [F108] SCOREBOARD — #39[0m
+[37m[22:32:48 F108 TEST] INFO:   [V 702ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* CSK 116-6 (10.5)
+* BENGALURU v RCB
+* PRASHANT | 14(10) 
+* J OVERTON | 7(4)
+* TO WIN: 135 OFF 55
+* SPEED: 89.7 kph
+* 1 | 1 | 4 | 1 
+
+No INFO_PANEL visible[0m
+[37m[22:32:49 F108 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:49 F108 TEST] INFO:   [E 1159ms] visible_team=Chennai Super Kings score=116-6 (10.5) target=None rr=None[0m
+[37m[22:32:49 F108 TEST] INFO:     BAT: PRASHANT 14(10) [0m
+[37m[22:32:49 F108 TEST] INFO:     BAT: J OVERTON 7(4) [0m
+[37m[22:32:50 F108 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:50 F108 TEST] INFO:   [S] Hint: Current batters: VEER and OVERTON. Bowler: SUYASH SHARMA. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:32:50 F108 TEST] INFO:   [S 838ms] Changes: ['score→116', 'overs→10.5', 'wickets→6', 'bat:Prashant Veer=14(10)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:32:50 F108 TEST] INFO:   Total: 2699ms (V:702 E:1159 S:838)[0m
+[37m[22:32:50 F108 TEST] INFO:   [THIS OVER] ['1', '1', '4', '1'] = 7 runs[0m
+[37m[22:32:50 F108 TEST] INFO:   STATE: Chennai Super Kings 116-6 (10.5) inn=2 | Bat: Prashant Veer*(14) Jamie Overton(7) | Bowl: Suyash Sharma 0-7[0m
+[37m[22:32:50 F108 TEST] INFO:   [ACTION] **
+
+The batter in teal (likely Prashant) is walking off the field, while another[0m
+[37m[22:32:52 F109 VISION] INFO: [SCOREBOARD] 0.7s (560 chars) +action[0m
+[37m[22:32:52 F109 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:52 F109 TEST] INFO: [F109] SCOREBOARD — #40[0m
+[37m[22:32:52 F109 TEST] INFO:   [V 714ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 117-6 (11)
+* Bottom line: 
+  * Prashant 15(11) > J Overton 7(4)
+  * To Win: 134 off 54
+* No info panel visible.
+
+**Additional Data:**
+* SPEED: 89[0m
+[37m[22:32:53 F109 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:53 F109 TEST] INFO:   [E 1108ms] visible_team=Chennai Super Kings score=117-6 (11) target=None rr=None[0m
+[37m[22:32:53 F109 TEST] INFO:     BAT: Prashant 15(11) [0m
+[37m[22:32:53 F109 TEST] INFO:     BAT: J Overton 7(4) [0m
+[37m[22:32:54 F109 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:54 F109 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:32:54 F109 BOARD] INFO: score: 116 -> 117 [F109][0m
+[37m[22:32:54 F109 BOARD] INFO: overs: 10.5 -> 11.0 [F109][0m
+[37m[22:32:54 F109 BOARD] INFO: Prashant Veer: 14(10) -> 15(11) [F109][0m
+[37m[22:32:54 F109 TEST] INFO:   [S 755ms] Changes: ['score→117', 'overs→11', 'wickets→6', 'bat:Prashant Veer=15(11)', 'bat:Jamie Overton=7(4)'][0m
+[37m[22:32:54 F109 TEST] INFO:   Total: 2577ms (V:714 E:1108 S:755)[0m
+[37m[22:32:54 F109 TEST] INFO:   [THIS OVER] ['1', '1', '4', '1'] = 7 runs[0m
+[37m[22:32:54 F109 BOARD] INFO: Over 10 complete: ['1', '1', '4', '1'] = 7 runs, 0 wickets (by Suyash Sharma)[0m
+[37m[22:32:54 F109 TEST] INFO:   STATE: Chennai Super Kings 117-6 (11.0) inn=2 | Bat: Prashant Veer*(15) Jamie Overton(7) | Bowl: Suyash Sharma 0-7[0m
+[37m[22:32:54 F109 COMMENTARY] INFO: [BALL] 1_RUNS | 11.0 | bat=Prashant Veer bowl=Suyash Sharma +1 runs[0m
+[37m[22:32:54 F109 TEST] INFO:   [BALL EVENT] 1_RUNS | 11.0 | +1 runs | **
+The batter in the light blue uniform is walking off the f[0m
+[37m[22:32:54 F109 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 134 from 54 @ 14.89 rpo[0m
+[37m[22:32:56 F110 VISION] INFO: [SCOREBOARD] 0.7s (590 chars) +action[0m
+[37m[22:32:56 F110 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:56 F110 TEST] INFO: [F110] SCOREBOARD — #41[0m
+[37m[22:32:56 F110 TEST] INFO:   [V 732ms] The live scoreboard strip at the bottom of the screen displays:
+
+Top line: RCB  31/0 (3.2)
+Bottom line: Veer 18(11) Overton 13(9) Suyash Sharma 0-16(2)
+
+There is no info panel visible.
+
+There is no bowling speed visible.
+
+There are no extras reported[0m
+[37m[22:32:57 F110 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:57 F110 TEST] INFO:   [GUARD] Visible team 'Royal Challengers Bengaluru' is bowling team — comparison strip, stripping score/batters[0m
+[37m[22:32:57 F110 TEST] INFO:   [E 1274ms] visible_team=Royal Challengers Bengaluru score=None-None (None) target=None rr=None[0m
+[37m[22:32:57 F110 TEST] INFO:     BOWL: Suyash Sharma 0-16 (2)[0m
+[37m[22:32:57 F110 BOARD] INFO: [CV:Suyash Sharma:bowl_overs] Jump 5→12 (+7.0) HOLDING[0m
+[37m[22:32:57 F110 BOARD] INFO: Suyash Sharma: 0/7 (0.5) -> 0/16 (0.5) [F110][0m
+[37m[22:32:58 F110 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:32:58 F110 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:32:58 F110 BOARD] INFO: [CV:Suyash Sharma:bowl_overs] Jump 5→12 CONFIRMED after 2 sightings[0m
+[37m[22:32:58 F110 BOARD] INFO: Suyash Sharma: 0/16 (0.5) -> 0/16 (2.0) [F110][0m
+[37m[22:32:58 F110 TEST] INFO:   [S 842ms] Changes: ['score→117', 'overs→11.0', 'wickets→6', 'bat:Prashant Veer=15(11)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:32:58 F110 TEST] INFO:   Total: 2848ms (V:732 E:1274 S:842)[0m
+[37m[22:32:58 F110 TEST] INFO:   STATE: Chennai Super Kings 117-6 (11.0) inn=2 | Bat: Prashant Veer*(15) Jamie Overton(7) | Bowl: Suyash Sharma 0-16[0m
+[37m[22:32:58 F110 TEST] INFO:   [ACTION] The batter on the right (Overton) appears to be playing a shot, possibly a push [0m
+[37m[22:32:59 F111 VISION] INFO: [SCOREBOARD] 0.5s (459 chars) +action[0m
+[37m[22:32:59 F111 TEST] INFO: 
+=======================================================[0m
+[37m[22:32:59 F111 TEST] INFO: [F111] SCOREBOARD — #42[0m
+[37m[22:32:59 F111 TEST] INFO:   [V 465ms] — 
+
+The scoreboard strip is not visible in the provided image. However, I can see the following:
+
+There is no live scoreboard data available.
+
+Since there is no scoreboard data, I will move on to the cricket action part.
+
+ACTION: 
+No cricket action i[0m
+[37m[22:33:00 F111 EXTRACT] INFO: Extracted in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:00 F111 TEST] INFO:   [E 668ms] No data: prematch[0m
+[37m[22:33:01 F112 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:33:01 F112 TEST] INFO: [F112] AD 282ms (#20)[0m
+[37m[22:33:03 F113 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:33:03 F113 TEST] INFO: [F113] AD 369ms (#21)[0m
+[37m[22:33:04 F114 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:33:04 F114 TEST] INFO: [F114] AD 292ms (#22)[0m
+[37m[22:33:06 F115 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:33:06 F115 TEST] INFO: [F115] AD 362ms (#23)[0m
+[37m[22:33:07 F116 VISION] INFO: [ADVERTISEMENT] 0.2s (13 chars)[0m
+[37m[22:33:07 F116 TEST] INFO: [F116] AD 248ms (#24)[0m
+[37m[22:33:09 F117 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:33:09 F117 TEST] INFO: [F117] AD 294ms (#25)[0m
+[37m[22:33:10 F118 VISION] INFO: [ADVERTISEMENT] 0.2s (13 chars)[0m
+[37m[22:33:10 F118 TEST] INFO: [F118] AD 241ms (#26)[0m
+[37m[22:33:12 F119 VISION] INFO: [SCOREBOARD] 0.6s (526 chars) +action[0m
+[37m[22:33:12 F119 TEST] INFO: 
+=======================================================[0m
+[37m[22:33:12 F119 TEST] INFO: [F119] SCOREBOARD — #43[0m
+[37m[22:33:12 F119 TEST] INFO:   [V 614ms] — 
+
+The live scoreboard strip at the bottom of the screen shows:
+
+Top line: RCB -  0-0 (0.0)
+Bottom line: Veer - 0(0), Overton - 0(0), bowler: Suyash Sharma 0-0 (0.0)
+
+There is no info panel visible.
+
+No bowling speed is visible.
+
+No extras are repor[0m
+[37m[22:33:13 F119 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:13 F119 TEST] INFO:   [E 1153ms] visible_team=None score=0-0 (None) target=None rr=None[0m
+[37m[22:33:13 F119 TEST] INFO:     BAT: Veer 0(0) [0m
+[37m[22:33:13 F119 TEST] INFO:     BAT: Overton 0(0) [0m
+[37m[22:33:13 F119 TEST] INFO:     BOWL: Suyash Sharma 0-0 (0)[0m
+[37m[22:33:14 F119 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:14 F119 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:33:14 F119 TEST] INFO:   [S 859ms] Changes: ['bat:Prashant Veer=15(11)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:33:14 F119 TEST] INFO:   Total: 2627ms (V:614 E:1153 S:859)[0m
+[37m[22:33:14 F119 TEST] INFO:   STATE: Chennai Super Kings 117-6 (11.0) inn=2 | Bat: Prashant Veer*(15) Jamie Overton(7) | Bowl: Suyash Sharma 0-16[0m
+[37m[22:33:14 F119 TEST] INFO:   [ACTION] The frame does not show any cricket action, instead, it shows two women sitting [0m
+[37m[22:33:15 F120 VISION] INFO: [ADVERTISEMENT] 0.2s (13 chars)[0m
+[37m[22:33:15 F120 TEST] INFO: [F120] AD 244ms (#27)[0m
+[37m[22:33:17 F121 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:33:17 F121 TEST] INFO: [F121] AD 346ms (#28)[0m
+[37m[22:33:18 F122 VISION] INFO: [ADVERTISEMENT] 0.2s (13 chars)[0m
+[37m[22:33:18 F122 TEST] INFO: [F122] AD 237ms (#29)[0m
+[37m[22:33:19 F123 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:33:20 F123 TEST] INFO: [F123] AD 394ms (#30)[0m
+[37m[22:33:21 F124 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:33:21 F124 TEST] INFO: [F124] AD 278ms (#31)[0m
+[37m[22:33:23 F126 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:33:23 F126 TEST] INFO: [F126] AD 267ms (#32)[0m
+[37m[22:33:25 F127 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:33:25 F127 TEST] INFO: [F127] AD 277ms (#33)[0m
+[37m[22:33:27 F128 VISION] INFO: [SCOREBOARD] 1.0s (894 chars) +action[0m
+[37m[22:33:27 F128 TEST] INFO: 
+=======================================================[0m
+[37m[22:33:27 F128 TEST] INFO: [F128] SCOREBOARD — #44[0m
+[37m[22:33:27 F128 TEST] INFO:   [V 1005ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* RCB: 250-3 (20 OVR)
+* CSK: 117-6 (11 OVR)
+* Chennai Super Kings need 134 runs off 54 balls
+
+**Detailed Scoreboard:**
+
+* Not all information is available, but w[0m
+[37m[22:33:28 F128 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:28 F128 TEST] INFO:   [E 1188ms] visible_team=Chennai Super Kings score=117-6 (11) target=None rr=9.37[0m
+[37m[22:33:29 F128 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:29 F128 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:33:29 F128 TEST] INFO:   [S 965ms] Changes: ['score→117', 'overs→11.0', 'wickets→6', 'bat:Prashant Veer=15(11)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:33:29 F128 TEST] INFO:   Total: 3157ms (V:1005 E:1188 S:965)[0m
+[37m[22:33:29 F128 TEST] INFO:   STATE: Chennai Super Kings 117-6 (11.0) inn=2 | Bat: Prashant Veer*(15) Jamie Overton(7) | Bowl: Suyash Sharma 0-16[0m
+[37m[22:33:29 F128 TEST] INFO:   [ACTION] **
+
+The cricket action happening in the frame appears to be a live broadcast wit[0m
+[37m[22:33:31 F130 TEST] INFO: [F130] Pixel skip #50[0m
+[37m[22:33:35 F133 VISION] INFO: [SCOREBOARD] 0.7s (524 chars) +action[0m
+[37m[22:33:35 F133 TEST] INFO: 
+=======================================================[0m
+[37m[22:33:35 F133 TEST] INFO: [F133] SCOREBOARD — #45[0m
+[37m[22:33:35 F133 TEST] INFO:   [V 703ms] — 
+
+The live scoreboard strip at the bottom of the screen shows:
+
+Top line: CSK, 17-6, (3.2)
+Bottom line: *Veer 7(6), Overton 0(2), Suyash Sharma 1-10(1.2)
+
+There is no info panel visible.
+
+No bowling speed is visible.
+
+There are no extras reported.
+[0m
+[37m[22:33:37 F133 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:37 F133 TEST] INFO:   [E 1281ms] visible_team=Chennai Super Kings score=17-6 (3.2) target=None rr=None[0m
+[37m[22:33:37 F133 TEST] INFO:     BAT: Veer 7(6) [0m
+[37m[22:33:37 F133 TEST] INFO:     BAT: Overton 0(2) [0m
+[37m[22:33:37 F133 TEST] INFO:     BOWL: Suyash Sharma 1-10 (1.2)[0m
+[37m[22:33:37 F133 BOARD] INFO: Suyash Sharma: 0/16 (2.0) -> 1/16 (2.0) [F133][0m
+[37m[22:33:38 F133 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:38 F133 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:33:38 F133 TEST] INFO:   [S 886ms] Changes: ['wickets→6', 'bat:Prashant Veer=7(6)', 'bat:Jamie Overton=0(2)', 'bowl:Suyash Sharma'][0m
+[37m[22:33:38 F133 TEST] INFO:   Total: 2870ms (V:703 E:1281 S:886)[0m
+[37m[22:33:38 F133 TEST] INFO:   STATE: Chennai Super Kings 117-6 (11.0) inn=2 | Bat: Prashant Veer*(15) Jamie Overton(7) | Bowl: Suyash Sharma 1-16[0m
+[37m[22:33:38 F133 TEST] INFO:   [ACTION] The frame does not show any live cricket action; it appears to be a screenshot w[0m
+[37m[22:33:39 F134 VISION] INFO: [SCOREBOARD] 0.8s (473 chars) +action[0m
+[37m[22:33:40 F134 TEST] INFO: 
+=======================================================[0m
+[37m[22:33:40 F134 TEST] INFO: [F134] SCOREBOARD — #46[0m
+[37m[22:33:40 F134 TEST] INFO:   [V 788ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+1. LIVE SCOREBOARD STRIP:
+  Top line: CSK, 117-6, 11
+  Bottom line: Not fully visible, but shows Romario Shepherd's info
+
+INFO_PANEL: ROMARIO SHEPHERD IPL CAREER
+  MATCHES 20
+  WICKET[0m
+[37m[22:33:40 F134 EXTRACT] INFO: Extracted in 0.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:40 F134 TEST] INFO:   [E 545ms] visible_team=Chennai Super Kings score=117-6 (11) target=None rr=None[0m
+[37m[22:33:40 F134 TEST] INFO:     BAT: Romario Shepherd None(None) [0m
+[37m[22:33:41 F134 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:41 F134 TEST] INFO:   [S] Hint: Current batters: Prashant Veer and Jamie Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:33:41 F134 TEST] INFO:   [GUARD] Batter 'Prashant Veer' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:33:41 F134 TEST] INFO:   [GUARD] Batter 'Jamie Overton' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:33:41 F134 TEST] INFO:   [WARN] Score changed but no batter update — stats may be delayed[0m
+[37m[22:33:41 F134 TEST] INFO:   [S 871ms] Changes: ['score→117', 'overs→11.0', 'wickets→6', 'bowl:Suyash Sharma'][0m
+[37m[22:33:41 F134 TEST] INFO:   Total: 2205ms (V:788 E:545 S:871)[0m
+[37m[22:33:41 F134 TEST] INFO:   STATE: Chennai Super Kings 117-6 (11.0) inn=2 | Bat: Prashant Veer*(15) Jamie Overton(7) | Bowl: Suyash Sharma 1-16[0m
+[37m[22:33:41 F134 TEST] INFO:   [ACTION] The frame shows a close-up of Romario Shepherd, a player for RCB, wearing his je[0m
+[37m[22:33:43 F135 VISION] INFO: [SCOREBOARD] 0.5s (429 chars) +action[0m
+[37m[22:33:43 F135 TEST] INFO: 
+=======================================================[0m
+[37m[22:33:43 F135 TEST] INFO: [F135] SCOREBOARD — #47[0m
+[37m[22:33:43 F135 TEST] INFO:   [V 524ms] — 
+
+The live scoreboard strip at the bottom of the screen displays:
+- CSK 117-6 (11)
+- Batter 1: *not shown* 
+- Batter 2: *not shown* 
+- The info panel on the screen shows:
+INFO_PANEL: ROMARIO SHEPHERD IPL CAREER MATCHES 20 WICKETS 13 ECONOMY 11.9
+
+A[0m
+[37m[22:33:43 F135 EXTRACT] INFO: Extracted in 0.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:43 F135 TEST] INFO:   [E 436ms] visible_team=None score=117-6 (11) target=None rr=None[0m
+[37m[22:33:44 F135 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:44 F135 TEST] INFO:   [S] Hint: Current batters: VEER and OVERTON. Bowler: SUYASH SHARMA. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:33:44 F135 TEST] INFO:   [S 835ms] Changes: ['score→117', 'overs→11.0', 'wickets→6', 'bat:Prashant Veer=15(11)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:33:44 F135 TEST] INFO:   Total: 1794ms (V:524 E:436 S:835)[0m
+[37m[22:33:44 F135 TEST] INFO:   STATE: Chennai Super Kings 117-6 (11.0) inn=2 | Bat: Prashant Veer*(15) Jamie Overton(7) | Bowl: Suyash Sharma 1-16[0m
+[37m[22:33:44 F135 TEST] INFO:   [ACTION] The frame shows a close-up of a player, Romario Shepherd, wearing a brown jersey[0m
+[37m[22:33:46 F136 VISION] INFO: [SCOREBOARD] 0.8s (725 chars) +action[0m
+[37m[22:33:46 F136 TEST] INFO: 
+=======================================================[0m
+[37m[22:33:46 F136 TEST] INFO: [F136] SCOREBOARD — #48[0m
+[37m[22:33:46 F136 TEST] INFO:   [V 755ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 117-6 (11)
+* Bottom line: 
+  * Prashant 15(11) * 
+  * J Overton 7(4) 
+  * Bowler: Not explicitly mentioned but likely J Overton given the c[0m
+[37m[22:33:46 F136 EXTRACT] INFO: Extracted in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:46 F136 TEST] INFO:   [E 744ms] visible_team=Chennai Super Kings score=117-6 (11) target=None rr=None[0m
+[37m[22:33:46 F136 TEST] INFO:     BAT: Prashant 15(11) *[0m
+[37m[22:33:46 F136 TEST] INFO:     BAT: J Overton 7(4) [0m
+[37m[22:33:47 F136 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:47 F136 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:33:47 F136 TEST] INFO:   [S 839ms] Changes: ['score→117', 'overs→11.0', 'wickets→6', 'bat:Prashant Veer=15(11)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:33:47 F136 TEST] INFO:   Total: 2338ms (V:755 E:744 S:839)[0m
+[37m[22:33:47 F136 TEST] INFO:   STATE: Chennai Super Kings 117-6 (11.0) inn=2 | Bat: Prashant Veer*(15) Jamie Overton(7) | Bowl: Suyash Sharma 1-16[0m
+[37m[22:33:47 F136 TEST] INFO:   [ACTION] **
+
+The frame shows a player in a blue jersey and helmet, likely J Overton given[0m
+[37m[22:33:49 F137 VISION] INFO: [SCOREBOARD] 0.6s (653 chars) +action[0m
+[37m[22:33:49 F137 TEST] INFO: 
+=======================================================[0m
+[37m[22:33:49 F137 TEST] INFO: [F137] SCOREBOARD — #49[0m
+[37m[22:33:49 F137 TEST] INFO:   [V 630ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+- Top line: CSK 117-6 (11)
+- Bottom line: 
+  * Prashant 15(11) 
+  > J Overton 7(4)
+- Bowler not shown
+
+No INFO_PANEL visible.
+
+No SPEED visible.
+
+No EXTRA v[0m
+[37m[22:33:50 F137 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:50 F137 TEST] INFO:   [E 964ms] visible_team=Chennai Super Kings score=117-6 (11) target=None rr=None[0m
+[37m[22:33:50 F137 TEST] INFO:     BAT: Prashant 15(11) [0m
+[37m[22:33:50 F137 TEST] INFO:     BAT: J Overton 7(4) [0m
+[37m[22:33:51 F137 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:33:51 F137 TEST] INFO:   [S] Hint: Current batters: Veer and Overton. Bowler: Suyash Sharma ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Shivam Dube[0m
+[37m[22:33:51 F137 TEST] INFO:   [S 878ms] Changes: ['score→117', 'overs→11.0', 'wickets→6', 'bat:Prashant Veer=15(11)', 'bat:Jamie Overton=7(4)', 'bowl:Suyash Sharma'][0m
+[37m[22:33:51 F137 TEST] INFO:   Total: 2472ms (V:630 E:964 S:878)[0m
+[37m[22:33:51 F137 TEST] INFO:   STATE: Chennai Super Kings 117-6 (11.0) inn=2 | Bat: Prashant Veer*(15) Jamie Overton(7) | Bowl: Suyash Sharma 1-16[0m
+[37m[22:33:51 F137 TEST] INFO:   [ACTION] **
+The batter, J Overton, wearing a light blue jersey and helmet, appears to be [0m
+[37m[22:33:52 F137 TEST] INFO: 
+============================================================[0m
+[37m[22:33:52 F137 TEST] INFO: TEST COMPLETE — 302s[0m
+[37m[22:33:52 F137 TEST] INFO:   Frames: 137 | Pipeline: 49 | PixDiff: 52 | Ads: 33 | Context: 3[0m
+[37m[22:33:52 F137 TEST] INFO:   Final: {'score': 117, 'wickets': 6, 'overs': '11.0', 'batting_team': 'Chennai Super Kings', 'bowling_team': 'Royal Challengers Bengaluru', 'striker': 'Prashant Veer', 'non_striker': 'Jamie Overton', 'current_bowler': 'Suyash Sharma', 'run_rate': None, 'target': 251, 'active_batters': {'Prashant Veer': {'runs': 15, 'balls': 11}, 'Jamie Overton': {'runs': 7, 'balls': 4}}, 'innings': 2}[0m
+[37m[22:33:52 F137 TEST] INFO: ============================================================[0m
+[37m[22:33:52 F137 TEST] INFO: 
+BATTING CARD:[0m
+[37m[22:33:52 F137 TEST] INFO:  # Player                 Status          R    B  4s  6s      SR
+-----------------------------------------------------------------
+ 1 Sanju Samson           out             -    -   -   -       -
+ 2 Ruturaj Gaikwad        out             -    -   -   -       -
+ 3 Ayush Mhatre           out             -    -   -   -       -
+ 4 Sarfaraz Khan          out             -    -   -   -       -
+ 5 Shivam Dube            out             -    -   -   -       -
+ 6 Prashant Veer          batting        15   11   -   -       -
+ 7 Jamie Overton          batting         7    4   -   -       -
+ 8 Noor Ahmad             yet_to_bat      -    -   -   -       -
+ 9 Anshul Kamboj          yet_to_bat      -    -   -   -       -
+10 Matt Henry             yet_to_bat      -    -   -   -       -
+11 Khaleel Ahmed          yet_to_bat      -    -   -   -       -
+12 Matthew Short          yet_to_bat      -    -   -   -       -
+13 Akeal Hosein           yet_to_bat      -    -   -   -       -
+14 Kartik Sharma          yet_to_bat      -    -   -   -       -
+15 Ramakrishna Ghosh      yet_to_bat      -    -   -   -       -
+16 Gurjapneet Singh       yet_to_bat      -    -   -   -       -
+17 Rahul Chahar           yet_to_bat      -    -   -   -       -
+18 MS Dhoni               yet_to_bat      -    -   -   -       -
+19 Shreyas Gopal          yet_to_bat      -    -   -   -       -
+20 Spencer Johnson        yet_to_bat      -    -   -   -       -
+21 Mukesh Choudhary       yet_to_bat      -    -   -   -       -
+22 Urvil Patel            yet_to_bat      -    -   -   -       -
+23 Aman Khan              yet_to_bat      -    -   -   -       -
+24 Dewald Brevis          yet_to_bat      -    -   -   -       -
+25 Zakary Foulkes         yet_to_bat      -    -   -   -       -[0m
+[37m[22:33:52 F137 TEST] INFO: 
+BOWLING CARD:[0m
+[37m[22:33:52 F137 TEST] INFO: Player                     O  M    R  W   Econ
+---------------------------------------------
+Philip Salt                -  -    -  -      -
+Virat Kohli                -  -    -  -      -
+Devdutt Padikkal           -  -    -  -      -
+Rajat Patidar              -  -    -  -      -
+Jitesh Sharma              -  -    -  -      -
+Tim David                  -  -    -  -      -
+Romario Shepherd           -  -    -  -      -
+Krunal Pandya              -  -    -  -      -
+Bhuvneshwar Kumar          -  -    -  -      -
+Abhinandan Singh         3.0  -   27  1      -
+Jacob Duffy                -  -    -  -      -
+Suyash Sharma            2.0  -   16  1      -
+Jacob Bethell              -  -    -  -      -
+Rasikh Salam Dar           -  -    -  -      -
+Kanishk Chouhan            -  -    -  -      -
+Venkatesh Iyer             -  -    -  -      -
+Josh Hazlewood             -  -    -  -      -
+Mangesh Yadav              -  -    -  -      -
+Vihaan Malhotra            -  -    -  -      -
+Vicky Ostwal               -  -    -  -      -
+Jordan Cox                 -  -    -  -      -
+Swapnil Singh              -  -    -  -      -
+Satvik Deswal              -  -    -  -      -[0m
+[37m[22:33:52 F137 TEST] INFO: 
+EXTRAS: wides=0 no_balls=0 byes=0 leg_byes=0 total=0[0m
+[37m[22:33:52 F137 TEST] INFO: OVERS TRACKED: 2 complete[0m
+[37m[22:33:52 F137 TEST] INFO:   Over 9: by Abhinandan Singh — 1-27 (3.0)[0m
+[37m[22:33:52 F137 TEST] INFO:   Over 10: ['1', '1', '4', '1'] = 7 runs (by Suyash Sharma)[0m
+[37m[22:33:52 F137 TEST] INFO: BOWLING SPEEDS:[0m
+[37m[22:33:52 F137 TEST] INFO:   Abhinandan Singh: avg=134.0kph max=134.0 min=134.0 (1 readings)[0m
+[37m[22:33:52 F137 TEST] INFO: 
+BALL EVENTS: 10 detected[0m
+[37m[22:33:52 F137 TEST] INFO:   10.0 WICKET: +0 (bat=None bowl=Abhinandan Singh) — The cricket action visible in the frame shows players sittin[0m
+[37m[22:33:52 F137 TEST] INFO:   0 -109_RUNS: +-109 (bat=None bowl=None) — The cricket action visible in the frame shows the players si[0m
+[37m[22:33:52 F137 TEST] INFO:   10.0 EXTRA: +109 (bat=None bowl=Abhinandan Singh) — The cricket action is not visible in this frame as the playe[0m
+[37m[22:33:52 F137 TEST] INFO:   10.0 WICKET: +0 (bat=None bowl=Abhinandan Singh) — The frame shows a cameraman in a black shirt and cap, holdin[0m
+[37m[22:33:52 F137 TEST] INFO:   10.1 1_RUNS: +1 (bat=Jamie Overton bowl=Abhinandan Singh) — **
+
+The batter Prashant is in the process of playing a shot,[0m
+[37m[22:33:52 F137 TEST] INFO:   10.2 1_RUNS: +1 (bat=Prashant Veer bowl=Abhinandan Singh) — **
+
+The cricket action shows two batters, Prashant and Overt[0m
+[37m[22:33:52 F137 TEST] INFO:   10.3 FOUR: +4 (bat=None bowl=Suyash Sharma) — The cricketer in a Chennai Super Kings jersey is on the scre[0m
+[37m[22:33:52 F137 TEST] INFO:   10.4 1_RUNS: +1 (bat=Jamie Overton bowl=Suyash Sharma) — The frame shows a close-up of a player, likely Prashant or O[0m
+[37m[22:33:52 F137 TEST] INFO:   10.5 DOT: +0 (bat=Prashant Veer bowl=Suyash Sharma) — The cricket action visible in the frame shows a player, like[0m
+[37m[22:33:52 F137 TEST] INFO:   11.0 1_RUNS: +1 (bat=Prashant Veer bowl=Suyash Sharma) — **
+The batter in the light blue uniform is walking off the f[0m
+[37m[22:33:52 F137 TEST] INFO: PARTNERSHIPS: 0 completed[0m
+[37m[22:33:52 F137 TEST] INFO:   Current: ['Prashant Veer', 'Jamie Overton'] — 8 runs off 6 balls (unbroken)[0m
+[37m[22:33:52 F137 TEST] INFO: MATCH SITUATION: {"run_rate": 10.64, "balls_bowled": 66, "balls_remaining": 54, "wickets_in_hand": 4, "runs_needed": 134, "required_rate": 14.89, "phase": "VERY_DIFFICULT"}[0m
+[37m[22:33:52 F137 TEST] INFO: 
+FIELD STATE: balanced | slips:0 close:0 in:0 out:0 | 0 fielders | conf:0.0 | keeper:- | validated:True | freshness:live[0m
+[37m[22:33:52 F137 TEST] INFO:   Field changes detected: 46[0m
+[37m[22:33:52 F137 TEST] INFO:   Last merge source: vision_only (yolo:0 vision:1)[0m

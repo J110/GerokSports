@@ -1,0 +1,547 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151818/srh-vs-csk-27th-match-indian-premier-league-2026
+
+[21:35:48  iter#1]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=Ruturaj Gaikwad  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.82  ps=3(4)  recent=W 0 0 0 3
+  CB BAT: Ruturaj Gaikwad* 8(4), Ayush Mhatre 3(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'mhatre'} (ui={'gaikwad'}, cb={'mhatre', 'gaikwad'}) | BAT_gaikwad: ui=0(0) cb=8(4) | BOWLER: ui=None cb=Praful Hinge
+
+[21:36:09  iter#2]
+  UI: Chennai Super Kings 18-1 (1.5)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-8 (0.1)
+  this_over=['?', '?', '?', '?', '3']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.82  ps=3(4)  recent=W 0 0 0 3
+  CB BAT: Ruturaj Gaikwad* 8(4), Ayush Mhatre 3(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=18 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.5 cb=20 | STRIKER: ui=Ayush Mhatre cb=Ruturaj Gaikwad | BAT_mhatre: ui=0(0) cb=3(4) | BOWLER: ui=Nitish Kumar Reddy cb=Praful Hinge
+
+[21:36:31  iter#3]
+  UI: Chennai Super Kings 18-1 (1.5)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-8 (0.5)
+  this_over=['?', '?', '?', '?', '3']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=10.36  ps=4(4)  recent=W 0 0 0 3 W
+  CB BAT: Ruturaj Gaikwad* 8(4), Ayush Mhatre 3(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=18 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.5 cb=20 | STRIKER: ui=Ayush Mhatre cb=Ruturaj Gaikwad | BOWLER: ui=Nitish Kumar Reddy cb=Praful Hinge
+
+[21:36:51  iter#4]
+  UI: Chennai Super Kings 19-1 (1.5)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-4 (0.5)
+  this_over=['?', '?', '?', '3', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=10.36  ps=4(4)  recent=W 0 0 0 3 W
+  CB BAT: Ruturaj Gaikwad* 8(4), Ayush Mhatre 3(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=19 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.5 cb=20 | STRIKER: ui=Ayush Mhatre cb=Ruturaj Gaikwad | BOWLER: ui=Nitish Kumar Reddy cb=Praful Hinge
+
+[21:37:15  iter#5]
+  UI: Chennai Super Kings 16-1 (2.4)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-4 (0.5)
+  this_over=[]  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=10.36  ps=4(4)  recent=W 0 0 0 3 W
+  CB BAT: Ruturaj Gaikwad* 8(4), Ayush Mhatre 3(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=16 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.4 cb=20 | STRIKER: ui=Ayush Mhatre cb=Ruturaj Gaikwad | BAT_gaikwad: ui=14(11) cb=8(4) | BAT_mhatre: ui=2(4) cb=3(4) | BOWLER: ui=Nitish Kumar Reddy cb=Praful Hinge
+
+[21:37:36  iter#6]
+  UI: Chennai Super Kings 19-1 (1.5)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-7 (0.5)
+  this_over=['3']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=full_toss line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w1/nb1/b0/lb0]
+  CB: SRH 194-9 (20)  crr=11.5  ps=8(5)  recent=... 6 1 0 0 4 4
+  CB BAT: Ayush Mhatre* 3(4), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=19 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.5 cb=20 | BAT_gaikwad: ui=8(11) cb=12(5) | BOWL_R: ui=7 cb=8 | BOWL_O: ui=0.5 cb=1
+
+[21:38:00  iter#7]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=11.5  ps=8(5)  recent=... 6 1 0 0 4 4
+  CB BAT: Ayush Mhatre* 3(4), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'mhatre', 'gaikwad'} (ui=set(), cb={'mhatre', 'gaikwad'}) | BOWLER: ui=None cb=Nitish Kumar Reddy
+
+[21:38:21  iter#8]
+  UI: Chennai Super Kings 23-1 (2.0)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-11 (1)
+  this_over=[]  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w1/nb1/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.38  ps=14(6)  recent=6
+  CB BAT: Ayush Mhatre* 9(5), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=23 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.0 cb=20 | BAT_mhatre: ui=3(4) cb=9(5) | BAT_gaikwad: ui=12(11) cb=12(5) | BOWL_R: ui=11 cb=8
+
+[21:38:43  iter#9]
+  UI: Chennai Super Kings None-1 (None)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Nitish Kumar Reddy 1-11 (1)
+  this_over=[]  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.38  ps=14(6)  recent=6
+  CB BAT: Ayush Mhatre* 9(5), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=9 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | BAT_mhatre: ui=3(4) cb=9(5) | BAT_gaikwad: ui=12(11) cb=12(5) | BOWL_R: ui=11 cb=8
+
+[21:39:06  iter#10]
+  UI: Chennai Super Kings None-1 (None)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Nitish Kumar Reddy 1-11 (1)
+  this_over=[]  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=good_length line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.43  ps=14(7)  recent=6 0
+  CB BAT: Ayush Mhatre* 9(6), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=9 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | BAT_mhatre: ui=None(None) cb=9(6) | BAT_gaikwad: ui=None(None) cb=12(5) | BOWL_R: ui=11 cb=8
+
+[21:39:27  iter#11]
+  UI: Chennai Super Kings 29-1 (2.2)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-21 (1.2)
+  this_over=['.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.43  ps=14(7)  recent=6 0
+  CB BAT: Ayush Mhatre* 9(6), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=29 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.2 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:39:48  iter#12]
+  UI: Chennai Super Kings 29-1 (2.2)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 0-21 (1.2)
+  this_over=['.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.2  ps=18(8)  recent=6 0 4
+  CB BAT: Ayush Mhatre* 13(7), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=29 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.2 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | BAT_mhatre: ui=9(6) cb=13(7) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:40:10  iter#13]
+  UI: Chennai Super Kings 33-1 (2.3)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-25 (1.3)
+  this_over=['.', '4']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.2  ps=18(8)  recent=6 0 4
+  CB BAT: Ayush Mhatre* 13(7), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=33 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.3 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:40:32  iter#14]
+  UI: Chennai Super Kings 33-1 (2.3)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-25 (1.3)
+  this_over=['.', '4']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.6  ps=19(8)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 13(7), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=33 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.3 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:40:52  iter#15]
+  UI: Chennai Super Kings 34-1 (2.3)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-26 (1.3)
+  this_over=['.', '4', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.6  ps=19(8)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 13(7), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=34 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.3 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:41:12  iter#16]
+  UI: Chennai Super Kings 34-1 (2.3)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-26 (1.3)
+  this_over=['.', '4', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.0  ps=20(8)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 13(7), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=34 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.3 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:41:34  iter#17]
+  UI: Chennai Super Kings 35-1 (2.3)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-27 (1.3)
+  this_over=['.', '4', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.0  ps=20(8)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 13(7), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=35 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.3 cb=20 | BAT_mhatre: ui=12(5) cb=13(7) | BAT_gaikwad: ui=13(7) cb=12(5) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:41:56  iter#18]
+  UI: Chennai Super Kings 35-1 (2.3)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-27 (1.3)
+  this_over=['.', '4', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.0  ps=20(8)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 13(7), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=35 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.3 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:42:18  iter#19]
+  UI: CSK 39-1 (2.4)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=None None-None (None)
+  this_over=['?', '?', '?', 'Wd', 'Wd', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.62  ps=24(9)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 17(8), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=39 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.4 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=None cb=Nitish Kumar Reddy
+
+[21:42:38  iter#20]
+  UI: Chennai Super Kings 39-1 (2.4)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-31 (1.4)
+  this_over=['.', '4', '1', '4']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.62  ps=24(9)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 17(8), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=39 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.4 cb=20 | BAT_gaikwad: ui=12(8) cb=12(5) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:42:59  iter#21]
+  UI: Chennai Super Kings 39-1 (2.4)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-31 (1.4)
+  this_over=['.', '4', '1', '4']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.18  ps=28(10)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 21(9), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=39 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.4 cb=20 | BAT_mhatre: ui=17(8) cb=21(9) | BAT_gaikwad: ui=12(8) cb=12(5) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:43:20  iter#22]
+  UI: Chennai Super Kings 39-1 (2.4)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 0-31 (1.4)
+  this_over=['.', '4', '1', '4']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.18  ps=28(10)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 21(9), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=39 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.4 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | BAT_mhatre: ui=17(8) cb=21(9) | BAT_gaikwad: ui=17(12) cb=12(5) | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[21:43:42  iter#23]
+  UI: CSK 43-1 (2.5)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=None None-None (None)
+  this_over=['?', '?', '?', 'Wd', 'Wd', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.18  ps=28(10)  recent=6 0 4 W
+  CB BAT: Ayush Mhatre* 21(9), Ruturaj Gaikwad 12(5)
+  CB BOWL: Nitish Kumar Reddy 1-8 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=43 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.5 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=None cb=Nitish Kumar Reddy
+
+[21:44:03  iter#24]
+  UI: Chennai Super Kings 43-1 (2.5)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 0-35 (1.5)
+  this_over=['.', '4', '1', '4', '4']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.67  ps=32(11)  recent=... 6 0 4 W
+  CB BAT: Ruturaj Gaikwad* 12(5), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=43 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.5 cb=20 | BAT_gaikwad: ui=12(12) cb=12(5) | BAT_mhatre: ui=21(9) cb=25(10) | BOWL_R: ui=35 cb=39 | BOWL_O: ui=1.5 cb=2
+
+[21:44:23  iter#25]
+  UI: Chennai Super Kings 43-1 (2.5)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 0-35 (1.5)
+  this_over=['.', '4', '1', '4', '4']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.67  ps=32(11)  recent=... 6 0 4 W
+  CB BAT: Ruturaj Gaikwad* 12(5), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=43 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.5 cb=20 | BAT_gaikwad: ui=21(12) cb=12(5) | BAT_mhatre: ui=21(9) cb=25(10) | BOWL_R: ui=35 cb=39 | BOWL_O: ui=1.5 cb=2
+
+[21:44:46  iter#26]
+  UI: Chennai Super Kings 43-1 (2.5)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 0-35 (1.5)
+  this_over=['.', '4', '1', '4', '4']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.67  ps=32(11)  recent=... 6 0 4 W
+  CB BAT: Ruturaj Gaikwad* 12(5), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=43 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.5 cb=20 | BAT_gaikwad: ui=21(12) cb=12(5) | BAT_mhatre: ui=21(9) cb=25(10) | BOWL_R: ui=35 cb=39 | BOWL_O: ui=1.5 cb=2
+
+[21:45:08  iter#27]
+  UI: Chennai Super Kings 43-1 (2.5)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 0-35 (1.5)
+  this_over=['.', '4', '1', '4', '4']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.67  ps=32(11)  recent=... 0 0 0 3 W
+  CB BAT: Ruturaj Gaikwad* 12(5), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=43 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=2.5 cb=20 | BAT_gaikwad: ui=21(12) cb=12(5) | BAT_mhatre: ui=21(9) cb=25(10) | BOWL_R: ui=35 cb=39 | BOWL_O: ui=1.5 cb=2
+
+[21:45:29  iter#28]
+  UI: Chennai Super Kings 47-1 (3.0)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 0-39 (2.0)
+  this_over=[]  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=unknown [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=17.33  ps=37(11)  recent=W
+  CB BAT: Ruturaj Gaikwad* 12(5), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=47 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.0 cb=20 | BAT_gaikwad: ui=12(12) cb=12(5) | BOWL_O: ui=2.0 cb=2
+
+[21:45:51  iter#29]
+  UI: Chennai Super Kings 52-1 (3.0)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 0-39 (2.0)
+  this_over=[]  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=unknown [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=17.33  ps=37(11)  recent=W
+  CB BAT: Ruturaj Gaikwad* 12(5), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=52 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.0 cb=20 | BAT_gaikwad: ui=None(None) cb=12(5) | BAT_mhatre: ui=None(None) cb=25(10) | BOWL_O: ui=2.0 cb=2
+
+[21:46:15  iter#30]
+  UI: Chennai Super Kings 52-1 (3.1)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Sakib Hussain 0-5 (1)
+  this_over=['.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=16.42  ps=37(12)  recent=W
+  CB BAT: Ruturaj Gaikwad* 12(6), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=52 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.1 cb=20 | BAT_gaikwad: ui=12(10) cb=12(6) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:46:37  iter#31]
+  UI: Chennai Super Kings 0-1 (3.1)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 0-39 (2.0)
+  this_over=['.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=16.42  ps=37(12)  recent=W
+  CB BAT: Ruturaj Gaikwad* 12(6), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.1 cb=20 | BAT_gaikwad: ui=None(None) cb=12(6) | BAT_mhatre: ui=None(None) cb=25(10) | BOWL_O: ui=2.0 cb=2
+
+[21:47:01  iter#32]
+  UI: CSK 52-1 (3.2)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=None None-None (None)
+  this_over=['Wd', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.6  ps=37(13)  recent=W
+  CB BAT: Ruturaj Gaikwad* 12(7), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=52 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.2 cb=20 | STRIKER: ui=Ayush Mhatre cb=Ruturaj Gaikwad | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=None cb=Praful Hinge
+
+[21:47:22  iter#33]
+  UI: Chennai Super Kings 52-1 (3.2)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Sakib Hussain 0-5 (0.2)
+  this_over=['.', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=16.42  ps=37(12)  recent=W
+  CB BAT: Ruturaj Gaikwad* 12(6), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=52 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.2 cb=20 | BAT_gaikwad: ui=12(10) cb=12(6) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:47:44  iter#34]
+  UI: Chennai Super Kings 52-1 (3.2)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Sakib Hussain 0-5 (0.2)
+  this_over=['.', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=16.42  ps=37(12)  recent=... W
+  CB BAT: Ruturaj Gaikwad* 12(6), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=52 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.2 cb=20 | BAT_gaikwad: ui=12(10) cb=12(6) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:48:07  iter#35]
+  UI: Chennai Super Kings 52-1 (3.2)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Sakib Hussain 0-5 (0.2)
+  this_over=['.', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.6  ps=37(13)  recent=W
+  CB BAT: Ruturaj Gaikwad* 12(7), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=52 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.2 cb=20 | BAT_gaikwad: ui=12(10) cb=12(7) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:48:29  iter#36]
+  UI: Chennai Super Kings 52-1 (3.2)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Sakib Hussain 0-5 (0.2)
+  this_over=['.', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.6  ps=37(13)  recent=W
+  CB BAT: Ruturaj Gaikwad* 12(7), Ayush Mhatre 25(10)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=52 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.2 cb=20 | BAT_gaikwad: ui=12(10) cb=12(7) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:48:49  iter#37]
+  UI: Chennai Super Kings 52-1 (3.2)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Sakib Hussain 0-5 (0.2)
+  this_over=['.', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.14  ps=38(14)  recent=W
+  CB BAT: Ayush Mhatre* 25(10), Ruturaj Gaikwad 13(8)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=52 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.2 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | BAT_gaikwad: ui=12(10) cb=13(8) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:49:12  iter#38]
+  UI: Chennai Super Kings 52-1 (3.2)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Sakib Hussain 0-5 (0.2)
+  this_over=['.', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.14  ps=38(14)  recent=W
+  CB BAT: Ayush Mhatre* 25(10), Ruturaj Gaikwad 13(8)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=52 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.2 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | BAT_mhatre: ui=None(None) cb=25(10) | BAT_gaikwad: ui=None(None) cb=13(8) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:49:33  iter#39]
+  UI: CSK 53-1 (3.3)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=None None-None (None)
+  this_over=['Wd', '.', '.', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.14  ps=38(14)  recent=W
+  CB BAT: Ayush Mhatre* 25(10), Ruturaj Gaikwad 13(8)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=53 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.3 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=None cb=Praful Hinge
+
+[21:49:56  iter#40]
+  UI: Chennai Super Kings 54-1 (3.4)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Sakib Hussain 0-7 (0.4)
+  this_over=['.', '.', '1', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.73  ps=39(15)  recent=W
+  CB BAT: Ruturaj Gaikwad* 13(8), Ayush Mhatre 26(11)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=54 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.4 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:50:19  iter#41]
+  UI: Chennai Super Kings 54-1 (3.4)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Sakib Hussain 0-7 (0.4)
+  this_over=['.', '.', '1', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.73  ps=39(15)  recent=W
+  CB BAT: Ruturaj Gaikwad* 13(8), Ayush Mhatre 26(11)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=54 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.4 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:50:40  iter#42]
+  UI: Chennai Super Kings 55-1 (3.5)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Sakib Hussain 0-8 (0.5)
+  this_over=['.', '.', '1', '1', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.35  ps=40(16)  recent=W
+  CB BAT: Ayush Mhatre* 26(11), Ruturaj Gaikwad 14(9)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=55 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.5 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:51:03  iter#43]
+  UI: Chennai Super Kings 55-1 (3.5)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Sakib Hussain 0-8 (0.5)
+  this_over=['.', '.', '1', '1', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.35  ps=40(16)  recent=W
+  CB BAT: Ayush Mhatre* 26(11), Ruturaj Gaikwad 14(9)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=55 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.5 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:51:24  iter#44]
+  UI: Chennai Super Kings 55-1 (3.5)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Sakib Hussain 0-8 (0.5)
+  this_over=['.', '.', '1', '1', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.61  ps=41(16)  recent=... W
+  CB BAT: Ayush Mhatre* 26(11), Ruturaj Gaikwad 14(9)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=55 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.5 cb=20 | BAT_gaikwad: ui=26(9) cb=14(9) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:51:45  iter#45]
+  UI: Chennai Super Kings 56-1 (3.5)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Sakib Hussain 0-9 (0.5)
+  this_over=['.', '1', '1', '1', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.61  ps=41(16)  recent=... W
+  CB BAT: Ayush Mhatre* 26(11), Ruturaj Gaikwad 14(9)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=56 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.5 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:52:05  iter#46]
+  UI: Chennai Super Kings 56-1 (3.5)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Sakib Hussain 0-9 (0.5)
+  this_over=['.', '1', '1', '1', '1']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=14.61  ps=41(16)  recent=... W
+  CB BAT: Ayush Mhatre* 26(11), Ruturaj Gaikwad 14(9)
+  CB BOWL: Praful Hinge 0-39 (2)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=56 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=3.5 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[21:52:29  iter#47]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=15.0  ps=45(17)  recent=... W
+  CB BAT: Ruturaj Gaikwad* 14(9), Ayush Mhatre 30(12)
+  CB BOWL: Sakib Hussain 0-13 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'mhatre', 'gaikwad'} (ui=set(), cb={'mhatre', 'gaikwad'}) | BOWLER: ui=None cb=Sakib Hussain
+
+[21:52:51  iter#48]
+  UI: Chennai Super Kings 60-1 (4.0)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Sakib Hussain 0-13 (1.0)
+  this_over=[]  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.0  ps=45(17)  recent=... W
+  CB BAT: Ruturaj Gaikwad* 14(9), Ayush Mhatre 30(12)
+  CB BOWL: Sakib Hussain 0-13 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=60 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=4.0 cb=20 | STRIKER: ui=Ayush Mhatre cb=Ruturaj Gaikwad | BAT_gaikwad: ui=15(14) cb=14(9) | BAT_mhatre: ui=45(22) cb=30(12) | BOWL_O: ui=1.0 cb=1
+
+[21:53:12  iter#49]
+  UI: Chennai Super Kings 60-1 (4.0)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-11 (1)
+  this_over=[]  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.25  ps=46(17)  recent=W
+  CB BAT: Ruturaj Gaikwad* 14(9), Ayush Mhatre 30(12)
+  CB BOWL: Sakib Hussain 0-13 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=60 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=4.0 cb=20 | STRIKER: ui=Ayush Mhatre cb=Ruturaj Gaikwad | BAT_gaikwad: ui=14(14) cb=14(9) | BAT_mhatre: ui=30(22) cb=30(12) | BOWLER: ui=Nitish Kumar Reddy cb=Sakib Hussain
+
+[21:53:34  iter#50]
+  UI: Chennai Super Kings 61-1 (4.0)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-11 (1)
+  this_over=[]  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=2 [w2/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.25  ps=46(17)  recent=W
+  CB BAT: Ruturaj Gaikwad* 14(9), Ayush Mhatre 30(12)
+  CB BOWL: Sakib Hussain 0-13 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=61 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=4.0 cb=20 | STRIKER: ui=Ayush Mhatre cb=Ruturaj Gaikwad | BAT_gaikwad: ui=14(14) cb=14(9) | BAT_mhatre: ui=30(22) cb=30(12) | BOWLER: ui=Nitish Kumar Reddy cb=Sakib Hussain

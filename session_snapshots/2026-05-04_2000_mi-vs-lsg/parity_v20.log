@@ -1,0 +1,379 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151807/rcb-vs-dc-26th-match-indian-premier-league-2026
+
+[19:20:07  iter#1]
+  UI: Delhi Capitals None-None (None)  str=Tristan Stubbs nstr=David Miller  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.52  ps=25(17)  recent=4 1 1 2
+  CB BAT: Tristan Stubbs* 58(45), David Miller 5(5)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BAT_stubbs: ui=0(0) cb=58(45) | BAT_miller: ui=0(0) cb=5(5) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:20:30  iter#2]
+  UI: Delhi Capitals 159-None (None)  str=None nstr=David Miller  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.52  ps=25(17)  recent=4 1 1 2
+  CB BAT: Tristan Stubbs* 58(45), David Miller 5(5)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=159 cb=175 | BATTERS_MISSING_IN_UI: {'stubbs'} (ui={'miller'}, cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:20:55  iter#3]
+  WS ERR: ''
+  CB: RCB 175-8 (20)  crr=8.5  ps=26(18)  recent=4 1 1 2 1
+  CB BAT: David Miller* 5(5), Tristan Stubbs 59(46)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'stubbs', 'miller'} (ui=set(), cb={'stubbs', 'miller'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:21:15  iter#4]
+  UI: Delhi Capitals 160-4 (18.5)  str=Tristan Stubbs nstr=David Miller  bowl=Rasikh Salam Dar 0-39 (3.5)
+  this_over=['?', '?', '?', '?', '1']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.5  ps=26(18)  recent=... 0
+  CB BAT: David Miller* 5(5), Tristan Stubbs 59(46)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=160 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=18.5 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Rasikh Salam Dar cb=Bhuvneshwar Kumar
+
+[19:21:38  iter#5]
+  UI: Delhi Capitals 161-4 (19.0)  str=Tristan Stubbs nstr=David Miller  bowl=Rasikh Salam Dar 0-39 (4.0)
+  this_over=[]  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=full_toss line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.47  ps=27(19)  recent=...
+  CB BAT: David Miller* 6(6), Tristan Stubbs 59(46)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=161 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.0 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=39 cb=40 | BOWL_O: ui=4.0 cb=4
+
+[19:21:59  iter#6]
+  UI: Delhi Capitals 161-4 (19.0)  str=Tristan Stubbs nstr=David Miller  bowl=Rasikh Salam Dar 0-39 (4.0)
+  this_over=[]  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=full_toss line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.47  ps=27(19)  recent=...
+  CB BAT: David Miller* 6(6), Tristan Stubbs 59(46)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=161 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.0 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | BAT_miller: ui=None(None) cb=6(6) | BAT_stubbs: ui=None(None) cb=59(46) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=39 cb=40 | BOWL_O: ui=4.0 cb=4
+
+[19:22:21  iter#7]
+  UI: Delhi Capitals 161-4 (19.0)  str=Tristan Stubbs nstr=David Miller  bowl=Rasikh Salam Dar 0-39 (4.0)
+  this_over=[]  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=full_toss line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.47  ps=27(19)  recent=...
+  CB BAT: David Miller* 6(6), Tristan Stubbs 59(46)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=161 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.0 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | BAT_miller: ui=None(None) cb=6(6) | BAT_stubbs: ui=None(None) cb=59(46) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=39 cb=40 | BOWL_O: ui=4.0 cb=4
+
+[19:22:42  iter#8]
+  UI: DC 161-4 (19.0)  str=Tristan Stubbs nstr=David Miller  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.45  ps=28(20)  recent=
+  CB BAT: Tristan Stubbs* 59(46), David Miller 6(7)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=161 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.0 cb=20 | FOW_COUNT: ui=0 vs wickets=4 | BOWLER: ui=None cb=Rasikh Salam Dar
+
+[19:23:03  iter#9]
+  UI: Delhi Capitals 161-4 (19.0)  str=Tristan Stubbs nstr=David Miller  bowl=Rasikh Salam Dar 0-39 (4.0)
+  this_over=[]  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=full_toss line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.45  ps=28(20)  recent=
+  CB BAT: Tristan Stubbs* 59(46), David Miller 6(7)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=161 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.0 cb=20 | BAT_stubbs: ui=None(None) cb=59(46) | BAT_miller: ui=None(None) cb=6(7) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=39 cb=40 | BOWL_O: ui=4.0 cb=4
+
+[19:23:24  iter#10]
+  UI: Delhi Capitals 162-4 (19.1)  str=Tristan Stubbs nstr=David Miller  bowl=Rasikh Salam Dar 0-39 (3.5)
+  this_over=['1']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.43  ps=29(21)  recent=
+  CB BAT: David Miller* 6(7), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=162 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.1 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | BAT_stubbs: ui=59(46) cb=60(47) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=39 cb=40 | BOWL_O: ui=3.5 cb=4
+
+[19:23:45  iter#11]
+  UI: Delhi Capitals 163-4 (19.2)  str=David Miller nstr=Tristan Stubbs  bowl=Rasikh Salam Dar 0-39 (3.5)
+  this_over=['1', '1']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.43  ps=29(21)  recent=
+  CB BAT: David Miller* 6(7), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=163 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.2 cb=20 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=39 cb=40 | BOWL_O: ui=3.5 cb=4
+
+[19:24:07  iter#12]
+  UI: Delhi Capitals 163-4 (19.2)  str=David Miller nstr=Tristan Stubbs  bowl=Rasikh Salam Dar 0-39 (3.5)
+  this_over=['1', '1']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.43  ps=29(21)  recent=... 1 6 2 1
+  CB BAT: David Miller* 6(7), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=163 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.2 cb=20 | BAT_miller: ui=None(None) cb=6(7) | BAT_stubbs: ui=None(None) cb=60(47) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=39 cb=40 | BOWL_O: ui=3.5 cb=4
+
+[19:24:29  iter#13]
+  UI: Delhi Capitals 163-4 (19.2)  str=Tristan Stubbs nstr=David Miller  bowl=Romario Shepherd 0-1 (0.2)
+  this_over=['1', '1']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.67  ps=35(22)  recent=
+  CB BAT: David Miller* 12(8), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=163 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.2 cb=20 | STRIKER: ui=Tristan Stubbs cb=David Miller | BAT_miller: ui=6(7) cb=12(8) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Rasikh Salam Dar
+
+[19:24:52  iter#14]
+  UI: Delhi Capitals 169-4 (19.3)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-1 (0.2)
+  this_over=['1', '1', '6']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.67  ps=35(22)  recent=
+  CB BAT: David Miller* 12(8), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=169 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.3 cb=20 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Rasikh Salam Dar
+
+[19:25:13  iter#15]
+  UI: Delhi Capitals 169-4 (19.3)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.67  ps=35(22)  recent=... 6 2 1
+  CB BAT: David Miller* 12(8), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=169 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.3 cb=20 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Rasikh Salam Dar
+
+[19:25:35  iter#16]
+  UI: Delhi Capitals 169-4 (19.3)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.9  ps=41(23)  recent=
+  CB BAT: David Miller* 18(9), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=169 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=19.3 cb=20 | BAT_miller: ui=12(8) cb=18(9) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Rasikh Salam Dar
+
+[19:25:57  iter#17]
+  UI: Delhi Capitals 175-4 (19.4)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.9  ps=41(23)  recent=
+  CB BAT: David Miller* 18(9), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=4 cb=8 | OVERS: ui=19.4 cb=20 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Rasikh Salam Dar
+
+[19:26:19  iter#18]
+  UI: Delhi Capitals 175-4 (19.4)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.9  ps=41(23)  recent=
+  CB BAT: David Miller* 18(9), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=4 cb=8 | OVERS: ui=19.4 cb=20 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Rasikh Salam Dar
+
+[19:26:41  iter#19]
+  UI: Delhi Capitals 175-4 (19.4)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=9.03  ps=45(24)  recent=
+  CB BAT: David Miller* 22(10), Tristan Stubbs 60(47)
+  CB BOWL: Rasikh Salam Dar 0-40 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=4 cb=8 | OVERS: ui=19.4 cb=20 | BAT_miller: ui=18(9) cb=22(10) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Romario Shepherd cb=Rasikh Salam Dar
+
+[19:27:02  iter#20]
+  UI: DC 179-4 (19.5)  str=Tristan Stubbs nstr=David Miller  bowl=None None-None (None)
+  this_over=['1', '1', '6', '6', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_COUNT: ui=0 vs wickets=4
+
+[19:27:24  iter#21]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:27:45  iter#22]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:28:05  iter#23]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:28:29  iter#24]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:28:52  iter#25]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:29:13  iter#26]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:29:33  iter#27]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:29:53  iter#28]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:30:13  iter#29]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:30:35  iter#30]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:30:59  iter#31]
+  WS ERR: ''
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ✓ score/wickets/overs match
+
+[19:31:20  iter#32]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:31:42  iter#33]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:32:04  iter#34]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:32:25  iter#35]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:32:48  iter#36]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:33:09  iter#37]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:33:31  iter#38]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:33:53  iter#39]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:34:13  iter#40]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[19:34:35  iter#41]
+  UI: Delhi Capitals 179-4 (19.5)  str=David Miller nstr=Tristan Stubbs  bowl=Romario Shepherd 0-7 (0.3)
+  this_over=['1', '1', '6', '6', '4']  fow=4 (unk=3)  last_fow={'wicket': 4, 'batter': 'Tristan Stubbs', 'score': 160, 'overs': '18.5'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: None None-None (None)  crr=None  ps=None  recent=None
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade

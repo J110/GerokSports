@@ -1,0 +1,272 @@
+WARNING ⚠️ torchvision==0.26 is incompatible with torch==2.10.
+Run 'pip install torchvision==0.25' to fix torchvision or 'pip install -U torch torchvision' to update both.
+For a full compatibility table see https://github.com/pytorch/vision#installation
+[37m[08:53:13 F0 TEST] INFO: [WS] Server started on ws://0.0.0.0:8765[0m
+[37m[08:53:13 F0 TEST] INFO: [WS] Commentary server on ws://0.0.0.0:8766[0m
+[37m[08:53:13 F0 TEST] INFO: ============================================================[0m
+[37m[08:53:13 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[08:53:13 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/151976/rr-vs-dc-43rd-match-indian-premier-league-2026[0m
+[37m[08:53:13 F0 SQUAD] INFO:   Rajasthan Royals: 11 XI + 14 bench[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Yashasvi Jaiswal — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Vaibhav Sooryavanshi — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Dhruv Jurel (WK) — wk_batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Riyan Parag (C) — bat_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Donovan Ferreira (WK) — wk_batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Ravindra Jadeja — bowl_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Shubham Dubey — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Jofra Archer — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Ravi Bishnoi — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Nandre Burger — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Brijesh Sharma — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Adam Milne — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Dasun Shanaka — bat_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Ravi Singh — wk_batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Yash Raj Punja — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Tushar Deshpande — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Shimron Hetmyer — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Aman Rao Perala — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Vignesh Puthur — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Lhuan-dre Pretorius — wk_batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Kwena Maphaka — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Yudhvir Singh Charak — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Sushant Mishra — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Kuldeep Sen — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Sandeep Sharma — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:   Delhi Capitals: 11 XI + 14 bench[0m
+[37m[08:53:13 F0 SQUAD] INFO:     KL Rahul (WK) — wk_batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Pathum Nissanka — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Nitish Rana — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Sameer Rizvi — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Tristan Stubbs (WK) — wk_batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Axar Patel (C) — bowl_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Ashutosh Sharma — bat_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Kyle Jamieson — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Mitchell Starc — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     Kuldeep Yadav — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     T Natarajan — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] David Miller — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Vipraj Nigam — bowl_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Karun Nair — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Abishek Porel — wk_batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Auqib Nabi Dar — bowl_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Sahil Parakh — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Dushmantha Chameera — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Tripurana Vijay — bowl_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Lungi Ngidi — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Mukesh Kumar — bowler[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Ajay Jadav Mandal — bowl_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Prithvi Shaw — batter[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Rehan Ahmed — bowl_allrounder[0m
+[37m[08:53:13 F0 SQUAD] INFO:     [bench] Madhav Tiwari — bowl_allrounder[0m
+[37m[08:53:13 F0 TEST] INFO: Teams: ['Rajasthan Royals', 'Delhi Capitals'][0m
+[37m[08:53:13 F0 ENRICH] INFO: Loaded cached styles from player_styles_366d2efa99d5.json (50 players)[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache] Rajasthan Royals — styles:[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Yashasvi Jaiswal         LHB  | None[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Vaibhav Sooryavanshi     unknown | unknown[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Dhruv Jurel              RHB  | None[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Riyan Parag              RHB  | Right-arm legbreak[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Donovan Ferreira         RHB  | None[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Ravindra Jadeja          LHB  | Slow left-arm orthodox[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Shubham Dubey            unknown | unknown[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Jofra Archer             RHB  | Right-arm fast[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Ravi Bishnoi             RHB  | Right-arm legbreak[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Nandre Burger            RHB  | Right-arm fast[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Brijesh Sharma           unknown | unknown[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache] Delhi Capitals — styles:[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   KL Rahul                 RHB  | None[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Pathum Nissanka          RHB  | None[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Nitish Rana              LHB  | Right-arm off-spin[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Sameer Rizvi             unknown | unknown[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Tristan Stubbs           RHB  | None[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Axar Patel               LHB  | Slow left-arm orthodox[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Ashutosh Sharma          unknown | unknown[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Kyle Jamieson            RHB  | Right-arm fast[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Mitchell Starc           LHB  | Left-arm fast[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   Kuldeep Yadav            LHB  | Left-arm wrist-spin (chinaman)[0m
+[37m[08:53:13 F0 ENRICH] INFO: [cache]   T Natarajan              LHB  | Left-arm medium-fast[0m
+[37m[08:53:13 F0 TEST] INFO: Team variants: ['CAP', 'CAPITALS', 'DC', 'DE', 'DEL', 'DELHI', 'DELHI CAPITALS', 'RA', 'RAJ', 'RAJASTHAN', 'RAJASTHAN ROYALS', 'ROY', 'ROYALS', 'RR'][0m
+[33m[08:53:13 F0 TEST] WARN: Firefox not found — falling back to full screen capture[0m
+[37m[08:53:15 F0 FIELD] INFO: Pitch detected from green mask at (0.72, 0.32) (fallback — will recalibrate from people)[0m
+[37m[08:53:15 F0 TEST] INFO: [CLEANUP] Archived 64 frames to debug_frames_archive/2026-05-02_085315 (was 64 in debug_frames)[0m
+[37m[08:53:15 F0 TEST] INFO: [CLEANUP] Removed old archive: debug_frames_archive/2026-04-28_221848[0m
+[37m[08:53:15 F0 TEST] INFO: [CACHE] Stale (>30 min old) — ignoring[0m
+[37m[08:53:15 F0 TEST] INFO: [CACHE] No cached state found — starting fresh[0m
+[37m[08:53:15 F0 TEST] INFO: ============================================================[0m
+[37m[08:53:15 F0 TEST] INFO: [CONFIG] Vision:    Scout 17B (single call tag+read)[0m
+[37m[08:53:15 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[08:53:15 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[08:53:15 F0 TEST] INFO: PIPELINE STARTED — 18000s — NO TEAM ASSUMPTION[0m
+[37m[08:53:15 F0 TEST] INFO: ============================================================[0m
+[37m[08:53:16 F1 VISION] INFO: [SCOUT] SCOREBOARD 483ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:16 F1 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:17 F2 VISION] INFO: [SCOUT] SCOREBOARD 512ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:17 F2 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:19 F3 VISION] INFO: [SCOUT] SCOREBOARD 454ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:19 F3 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:21 F4 VISION] INFO: [SCOUT] SCOREBOARD 670ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=True 287 chars[0m
+[37m[08:53:21 F4 TEST] INFO: 
+=======================================================[0m
+[37m[08:53:21 F4 TEST] INFO: [F4] SCOREBOARD — #1[0m
+[37m[08:53:21 F4 TEST] INFO:   [V 672ms] STRIP: KKR 102-2 (10.5) | Green 39(29) | Raghuvanshi 4(5) | Siddharth 0-20 (2)[0m
+[37m[08:53:22 F4 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[08:53:22 F4 TEST] INFO:   [E 1046ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[08:53:22 F4 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[08:53:22 F4 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[08:53:22 F4 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[08:53:22 F4 TEST] INFO:   [S 746ms] Changes: none[0m
+[37m[08:53:22 F4 TEST] INFO:   Total: 2465ms (V:672 E:1046 S:746)[0m
+[37m[08:53:22 F4 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[08:53:22 F4 TEST] INFO:   [ACTION] The bowler is releasing the ball.[0m
+[37m[08:53:22 F4 TEST] INFO: DETAIL|F4|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 102-2 (10.5) | Green 39(29) | Raghuvanshi 4(5) | Siddharth 0-20 (2)|action=The bowler is releasing the ball.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=672|lat_extract=1046|lat_scorer=746|lat_field=34|lat_comm=0|lat_code=0|lat_total=2473|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[08:53:23 F5 VISION] INFO: [SCOUT] SCOREBOARD 435ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:23 F5 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:25 F6 VISION] INFO: [SCOUT] SCOREBOARD 503ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:25 F6 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:27 F7 VISION] INFO: [SCOUT] SCOREBOARD 520ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:27 F7 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:28 F8 VISION] INFO: [SCOUT] SCOREBOARD 433ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:28 F8 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:30 F9 VISION] INFO: [SCOUT] SCOREBOARD 488ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:30 F9 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:32 F10 VISION] INFO: [SCOUT] SCOREBOARD 644ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:32 F10 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:35 F14 TEST] INFO: [F14] Pixel skip #4[0m
+[37m[08:53:35 F14 TEST] INFO: [F14] Force-processing after 4 pixel skips[0m
+[37m[08:53:36 F14 VISION] INFO: [SCOUT] SCOREBOARD 1711ms strip=True overlay=False drs=False cam=None phase=None digits=True 1869 chars[0m
+[37m[08:53:36 F14 TEST] INFO:   [BROADCAST] Venue: we are reading a live IPL cricket[0m
+[37m[08:53:36 F14 TEST] INFO:   [DRS] Detecting — frame 1[0m
+[37m[08:53:36 F14 TEST] INFO: 
+=======================================================[0m
+[37m[08:53:36 F14 TEST] INFO: [F14] SCOREBOARD — #2[0m
+[37m[08:53:36 F14 TEST] INFO:   [V 1715ms] To accurately complete the task, let's analyze the information provided and follow the steps outlined.
+
+## Step 1: Classify
+Given that we are reading a live IPL cricket broadcast frame but without a visual of the frame, I will guide you through a gen[0m
+[37m[08:53:37 F14 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[08:53:37 F14 TEST] INFO:   [INFO PANEL] Detected (keyword='CAREER') — no bowler in extracted, tracker will bound values[0m
+[37m[08:53:37 F14 TEST] INFO:   [E 1010ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[08:53:37 F14 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=1)[0m
+[37m[08:53:37 F14 TEST] INFO:   Total: 2741ms (V:1715 E:1010)[0m
+[37m[08:53:37 F14 TEST] INFO:   STATE: ? None-None (None) [DRS DETECTING][0m
+[37m[08:53:37 F14 TEST] INFO: DETAIL|F14|SCOREBOARD|tag=SCOREBOARD|scout=To accurately complete the task, let's analyze the information provided and follow the steps outlined.  ## Step 1: Classify Given that we are reading a live IPL cricket broadcast frame but without a v|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=—|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=we are reading a live IPL cricket|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=1715|lat_extract=1010|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=2741|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[08:53:38 F15 VISION] INFO: [SCOUT] SCOREBOARD 441ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:53:38 F15 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:53:38 F15 TEST] INFO:   [DRS] Detecting — grace 1/3[0m
+[37m[08:53:41 F19 TEST] INFO: [F19] Pixel skip #4[0m
+[37m[08:53:41 F19 TEST] INFO: [F19] Force-processing after 4 pixel skips[0m
+[37m[08:53:42 F19 VISION] INFO: [SCOUT] SCOREBOARD 532ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 230 chars[0m
+[37m[08:53:42 F19 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+STRIP: KKR 0-0 (0.0) |  -  |  -  |  -  - (0.0)
+ACTIO[0m
+[37m[08:53:42 F19 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[08:53:42 F19 TEST] INFO:   [PRE-MATCH-GRAPHIC-GATE] team_abbr=KKR present on 0-0(0.0) strip with no committed score — treating as pre-match graphic, NOT assigning teams (Fix 17 Path A).[0m
+[37m[08:53:42 F19 TEST] INFO:   [DRS] Detecting — grace 2/3[0m
+[37m[08:53:42 F19 TEST] INFO: 
+=======================================================[0m
+[37m[08:53:42 F19 TEST] INFO: [F19] SCOREBOARD — #3[0m
+[37m[08:53:42 F19 TEST] INFO:   [V 534ms] STRIP: KKR 0-0 (0.0) |  -  |  -  |  -  - (0.0)[0m
+[37m[08:53:43 F19 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[08:53:43 F19 TEST] INFO:   [E 1044ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[08:53:43 F19 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=1)[0m
+[37m[08:53:43 F19 TEST] INFO:   Total: 1582ms (V:534 E:1044)[0m
+[37m[08:53:43 F19 TEST] INFO:   STATE: ? None-None (None) [DRS DETECTING][0m
+[37m[08:53:43 F19 TEST] INFO: DETAIL|F19|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: KKR 0-0 (0.0) |  -  |  -  |  -  - (0.0)|action=A delivery is being bowled.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=—|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=we are reading a live IPL cricket|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=534|lat_extract=1044|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=1582|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[08:53:45 F23 TEST] INFO: [F23] Pixel skip #4[0m
+[37m[08:53:45 F23 TEST] INFO: [F23] Force-processing after 4 pixel skips[0m
+[37m[08:53:45 F23 VISION] INFO: [SCOUT] ADVERTISEMENT 794ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 140 chars[0m
+[37m[08:53:45 F23 TEST] INFO:   [DRS] Detecting — grace 3/3[0m
+[37m[08:53:45 F23 TEST] INFO: [F23] AD 797ms (#1)[0m
+[37m[08:53:56 F27 TEST] INFO: [F27] Pixel skip #4[0m
+[37m[08:53:56 F27 TEST] INFO: [F27] Force-processing after 4 pixel skips[0m
+[37m[08:53:57 F27 VISION] INFO: [SCOUT] SCOREBOARD 1859ms strip=True overlay=False drs=False cam=None phase=None digits=True 1890 chars[0m
+[37m[08:53:57 F27 OVER] INFO: Broadcast fill (cold-start, empty local): ['1b', '2', '1'][0m
+[37m[08:53:57 F27 TEST] INFO:   [DRS] Detecting reset — grace window expired[0m
+[37m[08:53:57 F27 TEST] INFO: 
+=======================================================[0m
+[37m[08:53:57 F27 TEST] INFO: [F27] SCOREBOARD — #4[0m
+[37m[08:53:57 F27 TEST] INFO:   [V 1862ms] ## Step 1: Classify the Frame
+Given the lack of specific visual details about the frame you're viewing, I will guide you through a general approach to classification:
+
+1. **Camera View**: Determine if the camera is behind the bowler (`bowlers_end`), [0m
+[37m[08:53:58 F27 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[08:53:58 F27 TEST] INFO:   [INFO PANEL] Detected (keyword='CAREER') — no bowler in extracted, tracker will bound values[0m
+[37m[08:53:58 F27 TEST] INFO:   [E 855ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[08:53:59 F27 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[08:53:59 F27 TEST] INFO:   [S] Hint: Current batters: , Bowler: . Read their stats from the scoreboard.[0m
+[37m[08:53:59 F27 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[08:53:59 F27 TEST] INFO:   [S 692ms] Changes: none[0m
+[37m[08:53:59 F27 TEST] INFO:   Total: 3409ms (V:1862 E:855 S:692)[0m
+[37m[08:53:59 F27 TEST] INFO:   [THIS OVER] ['1b', '2', '1'] = 3 runs[0m
+[37m[08:53:59 F27 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[08:53:59 F27 OVER] INFO: this_over count mismatch: team@None expects 0 legal balls, observed 3 legal (tokens=['1b', '2', '1']) — keeping observations[0m
+[37m[08:53:59 F27 TEST] INFO: DETAIL|F27|SCOREBOARD|tag=SCOREBOARD|scout=## Step 1: Classify the Frame Given the lack of specific visual details about the frame you're viewing, I will guide you|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['1b', '2', '1']|AFTER_this_over_src=1b(bcast),2(bcast),1(bcast)|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=we are reading a live IPL cricket|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1862|lat_extract=855|lat_scorer=692|lat_field=31|lat_comm=0|lat_code=0|lat_total=3418|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[08:54:04 F31 TEST] INFO: [F31] Pixel skip #4[0m
+[37m[08:54:04 F31 TEST] INFO: [F31] Force-processing after 4 pixel skips[0m
+[33m[08:54:06 F31 VISION] WARN: [SCOUT-REJECT] Template placeholder detected (#1): '## Step 1: Analyze the Image\nThe image provided appears to be a screenshot of a computer screen displaying a chat interface with an AI model named Claude. The conversation revolves around fixing batte'[0m
+[37m[08:54:06 F31 TEST] INFO: [F31] Vision timeout — skipping[0m
+[37m[08:54:08 F35 TEST] INFO: [F35] Pixel skip #4[0m
+[37m[08:54:08 F35 TEST] INFO: [F35] Force-processing after 4 pixel skips[0m
+[37m[08:54:09 F35 VISION] INFO: [SCOUT] SCOREBOARD 622ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:54:09 F35 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:54:12 F39 TEST] INFO: [F39] Pixel skip #4[0m
+[37m[08:54:12 F39 TEST] INFO: [F39] Force-processing after 4 pixel skips[0m
+[37m[08:54:12 F39 VISION] INFO: [SCOUT] SCOREBOARD 448ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:54:12 F39 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:54:15 F43 TEST] INFO: [F43] Pixel skip #4[0m
+[37m[08:54:15 F43 TEST] INFO: [F43] Force-processing after 4 pixel skips[0m
+[37m[08:54:16 F43 VISION] INFO: [SCOUT] SCOREBOARD 443ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:54:16 F43 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:54:20 F47 VISION] INFO: [SCOUT] SCOREBOARD 1581ms strip=True overlay=False drs=False cam=None phase=None digits=True 1922 chars[0m
+[37m[08:54:20 F47 TEST] INFO:   [DRS] Detecting — frame 1[0m
+[37m[08:54:21 F47 TEST] INFO: 
+=======================================================[0m
+[37m[08:54:21 F47 TEST] INFO: [F47] SCOREBOARD — #5[0m
+[37m[08:54:21 F47 TEST] INFO:   [V 1584ms] To provide an accurate and comprehensive response, I will walk through the steps as outlined:
+
+## Step 1: Classify
+Given that I don't have the capability to visually inspect the frame you're describing, I will create a hypothetical scenario based on [0m
+[37m[08:54:21 F47 EXTRACT] INFO: Extracted in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[08:54:21 F47 TEST] INFO:   [INFO PANEL] Detected (keyword='CAREER') — no bowler in extracted, tracker will bound values[0m
+[37m[08:54:21 F47 TEST] INFO:   [E 788ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[08:54:21 F47 TEST] INFO:   [DRS FREEZE] Skipping all tracker updates (state=DETECTING, streak=1)[0m
+[37m[08:54:21 F47 TEST] INFO:   Total: 2382ms (V:1584 E:788)[0m
+[37m[08:54:21 F47 TEST] INFO:   STATE: ? None-None (None) [DRS DETECTING][0m
+[37m[08:54:21 F47 TEST] INFO: DETAIL|F47|SCOREBOARD|tag=SCOREBOARD|scout=To provide an accurate and comprehensive response, I will walk through the steps as outlined:  ## Step 1: Classify Given that I don't have the capability to visually inspect the frame you're describin|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['1b', '2', '1']|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=—|AFTER_this_over=['1b', '2', '1']|AFTER_this_over_src=1b(bcast) 2(bcast) 1(bcast)|AFTER_striker=—|AFTER_non=—|AFTER_run_rate=None|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|speed_kph=—|venue=we are reading a live IPL cricket|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=DETECTING|corrections=none|lat_vision=1584|lat_extract=788|lat_scorer=0|lat_field=0|lat_comm=0|lat_code=0|lat_total=2382|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[08:54:22 F48 VISION] INFO: [SCOUT] SCOREBOARD 646ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:54:22 F48 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:54:22 F48 TEST] INFO:   [DRS] Detecting — grace 1/3[0m
+[37m[08:54:24 F49 VISION] INFO: [SCOUT] SCOREBOARD 511ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:54:24 F49 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:54:24 F49 TEST] INFO:   [DRS] Detecting — grace 2/3[0m
+[37m[08:54:25 F50 TEST] INFO:   [DISMISSAL-HINT-CLEAR] 'bowled' aged out (31 frames since seen)[0m
+[37m[08:54:25 F50 TEST] INFO: [F50] Pixel skip #4[0m
+[37m[08:54:25 F50 TEST] INFO: [F50] Force-processing after 4 pixel skips[0m
+[37m[08:54:25 F50 VISION] INFO: [SCOUT] SCOREBOARD 456ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:54:25 F50 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:54:25 F50 TEST] INFO:   [DRS] Detecting — grace 3/3[0m
+[37m[08:54:28 F54 TEST] INFO: [F54] Pixel skip #4[0m
+[37m[08:54:28 F54 TEST] INFO: [F54] Force-processing after 4 pixel skips[0m
+[37m[08:54:29 F54 VISION] INFO: [SCOUT] SCOREBOARD 538ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 147 chars[0m
+[37m[08:54:29 F54 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}[0m
+[37m[08:54:29 F54 TEST] INFO:   [DRS] Detecting reset — grace window expired[0m
+[37m[08:54:32 F58 TEST] INFO: [F58] Pixel skip #4[0m
+[37m[08:54:32 F58 TEST] INFO: [F58] Force-processing after 4 pixel skips[0m
+[37m[08:54:32 F58 VISION] INFO: [SCOUT] SCOREBOARD 515ms strip=True overlay=False drs=False cam=bowlers_end phase=release digits=False 258 chars[0m
+[37m[08:54:32 F58 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "release", "ball_position": null}
+
+STRIP: CSK 0-0 (0.0) | Ruturaj 0(0) | Faf 0(0) | Ma[0m
+[37m[08:54:32 F58 TEST] INFO: 
+=======================================================[0m
+[37m[08:54:32 F58 TEST] INFO: [F58] SCOREBOARD — #6[0m
+[37m[08:54:32 F58 TEST] INFO:   [V 518ms] STRIP: CSK 0-0 (0.0) | Ruturaj 0(0) | Faf 0(0) | Maharaj 0-0 (0.0)[0m
+[37m[08:54:34 F58 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[08:54:34 F58 TEST] INFO:   [E 1160ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[08:54:35 F58 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[08:54:35 F58 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[08:54:35 F58 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[08:54:35 F58 TEST] INFO:   [S 897ms] Changes: none[0m
+[37m[08:54:35 F58 TEST] INFO:   Total: 2574ms (V:518 E:1160 S:897)[0m
+[37m[08:54:35 F58 TEST] INFO:   [THIS OVER] ['1b', '2', '1'] = 3 runs[0m
+[37m[08:54:35 F58 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[08:54:35 F58 TEST] INFO:   [ACTION] The bowler is releasing the ball.[0m
+[37m[08:54:35 F58 TEST] INFO:   [FIELD-MONITOR] Field unchanged for 54 frames (template=pace_powerplay, frozen=False, phase=powerplay). If a wicket / over / bowler change has happened in this window, the field-state updater is the bug.[0m

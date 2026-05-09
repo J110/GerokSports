@@ -1,0 +1,25 @@
+{
+  "delivery_num": 10,
+  "window_id": 10,
+  "event_ts": 1777819537.545454,
+  "over_number": 8.4,
+  "innings": 1,
+  "event_type": "WICKET",
+  "runs": 0,
+  "window_source": "fallback_pre_event_window",
+  "window_reason": "no_bowlers_end_span",
+  "clip_start_ts": 1777819527.545454,
+  "clip_end_ts": 1777819540.045454,
+  "frame_count": 572,
+  "legacy_window": {
+    "source": "fallback_pre_event_window",
+    "span_start": null,
+    "span_end": null,
+    "clip_start": 1777819527.545,
+    "clip_end": 1777819540.045
+  },
+  "open_scout_window": null,
+  "open_scout_verdict": "no_match",
+  "use_open_scout_spans": true,
+  "tags": []
+}

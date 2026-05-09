@@ -1,0 +1,106 @@
+WARNING ⚠️ torchvision==0.26 is incompatible with torch==2.10.
+Run 'pip install torchvision==0.25' to fix torchvision or 'pip install -U torch torchvision' to update both.
+For a full compatibility table see https://github.com/pytorch/vision#installation
+[37m[08:55:26 F0 TEST] INFO: [WS] Server started on ws://0.0.0.0:8765[0m
+[37m[08:55:26 F0 TEST] INFO: [WS] Commentary server on ws://0.0.0.0:8766[0m
+[37m[08:55:26 F0 TEST] INFO: ============================================================[0m
+[37m[08:55:26 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[08:55:26 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/151976/rr-vs-dc-43rd-match-indian-premier-league-2026[0m
+[37m[08:55:26 F0 SQUAD] INFO:   Rajasthan Royals: 11 XI + 14 bench[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Yashasvi Jaiswal — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Vaibhav Sooryavanshi — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Dhruv Jurel (WK) — wk_batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Riyan Parag (C) — bat_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Donovan Ferreira (WK) — wk_batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Ravindra Jadeja — bowl_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Shubham Dubey — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Jofra Archer — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Ravi Bishnoi — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Nandre Burger — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Brijesh Sharma — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Adam Milne — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Dasun Shanaka — bat_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Ravi Singh — wk_batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Yash Raj Punja — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Tushar Deshpande — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Shimron Hetmyer — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Aman Rao Perala — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Vignesh Puthur — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Lhuan-dre Pretorius — wk_batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Kwena Maphaka — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Yudhvir Singh Charak — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Sushant Mishra — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Kuldeep Sen — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Sandeep Sharma — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:   Delhi Capitals: 11 XI + 14 bench[0m
+[37m[08:55:26 F0 SQUAD] INFO:     KL Rahul (WK) — wk_batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Pathum Nissanka — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Nitish Rana — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Sameer Rizvi — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Tristan Stubbs (WK) — wk_batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Axar Patel (C) — bowl_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Ashutosh Sharma — bat_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Kyle Jamieson — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Mitchell Starc — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     Kuldeep Yadav — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     T Natarajan — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] David Miller — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Vipraj Nigam — bowl_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Karun Nair — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Abishek Porel — wk_batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Auqib Nabi Dar — bowl_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Sahil Parakh — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Dushmantha Chameera — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Tripurana Vijay — bowl_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Lungi Ngidi — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Mukesh Kumar — bowler[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Ajay Jadav Mandal — bowl_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Prithvi Shaw — batter[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Rehan Ahmed — bowl_allrounder[0m
+[37m[08:55:26 F0 SQUAD] INFO:     [bench] Madhav Tiwari — bowl_allrounder[0m
+[37m[08:55:26 F0 TEST] INFO: Teams: ['Rajasthan Royals', 'Delhi Capitals'][0m
+[37m[08:55:26 F0 ENRICH] INFO: Loaded cached styles from player_styles_366d2efa99d5.json (50 players)[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache] Rajasthan Royals — styles:[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Yashasvi Jaiswal         LHB  | Right-arm legbreak[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Vaibhav Sooryavanshi     unknown | unknown[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Dhruv Jurel              RHB  | None[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Riyan Parag              RHB  | Right-arm legbreak[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Donovan Ferreira         RHB  | None[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Ravindra Jadeja          LHB  | Slow left-arm orthodox[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Shubham Dubey            RHB  | None[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Jofra Archer             RHB  | Right-arm fast[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Ravi Bishnoi             RHB  | Right-arm legbreak[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Nandre Burger            LHB  | Left-arm fast medium[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Brijesh Sharma           unknown | unknown[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache] Delhi Capitals — styles:[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   KL Rahul                 RHB  | None[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Pathum Nissanka          RHB  | None[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Nitish Rana              LHB  | Right-arm off-spin[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Sameer Rizvi             RHB  | Right-arm medium[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Tristan Stubbs           RHB  | None[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Axar Patel               LHB  | Slow left-arm orthodox[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Ashutosh Sharma          unknown | unknown[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Kyle Jamieson            RHB  | Right-arm fast-medium[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Mitchell Starc           LHB  | Left-arm fast[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   Kuldeep Yadav            LHB  | Left-arm wrist-spin (chinaman)[0m
+[37m[08:55:26 F0 ENRICH] INFO: [cache]   T Natarajan              LHB  | Left-arm medium[0m
+[37m[08:55:26 F0 TEST] INFO: Team variants: ['CAP', 'CAPITALS', 'DC', 'DE', 'DEL', 'DELHI', 'DELHI CAPITALS', 'RA', 'RAJ', 'RAJASTHAN', 'RAJASTHAN ROYALS', 'ROY', 'ROYALS', 'RR'][0m
+[37m[08:55:26 F0 TEST] INFO: Found Firefox window (on-screen): id=372 1018.0x811.0 "JioHotstar - Watch TV Shows, Movies, Specials, Live Cricket "[0m
+[37m[08:55:26 F0 TEST] INFO: [BALL ANALYZER] Background capture started (source=window)[0m
+[37m[08:55:33 F0 FIELD] INFO: Pitch not detected — using default (0.50, 0.70)[0m
+[37m[08:55:33 F0 TEST] INFO: [CLEANUP] Archived 26 frames to debug_frames_archive/2026-05-02_085533 (was 26 in debug_frames)[0m
+[37m[08:55:33 F0 TEST] INFO: [CLEANUP] Removed old archive: debug_frames_archive/2026-04-29_194431[0m
+[37m[08:55:33 F0 TEST] INFO: [CACHE] Stale (>30 min old) — ignoring[0m
+[37m[08:55:33 F0 TEST] INFO: [CACHE] No cached state found — starting fresh[0m
+[37m[08:55:33 F0 TEST] INFO: ============================================================[0m
+[37m[08:55:33 F0 TEST] INFO: [CONFIG] Vision:    Scout 17B (single call tag+read)[0m
+[37m[08:55:33 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[08:55:33 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[08:55:33 F0 TEST] INFO: PIPELINE STARTED — 18000s — NO TEAM ASSUMPTION[0m
+[37m[08:55:33 F0 TEST] INFO: ============================================================[0m
+[37m[08:55:34 F1 VISION] INFO: [SCOUT] SCOREBOARD 827ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 384 chars[0m
+[37m[08:55:34 F1 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: Not visible, but no information to output.
+
+No o[0m

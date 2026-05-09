@@ -1,0 +1,36 @@
+{
+  "delivery_num": 24,
+  "window_id": 24,
+  "event_ts": 1777820442.246772,
+  "over_number": 11.2,
+  "innings": 1,
+  "event_type": "1_RUNS",
+  "runs": 1,
+  "window_source": "fallback_pre_event_window",
+  "window_reason": "no_bowlers_end_span",
+  "clip_start_ts": 1777820432.246772,
+  "clip_end_ts": 1777820444.746772,
+  "frame_count": 552,
+  "legacy_window": {
+    "source": "fallback_pre_event_window",
+    "span_start": null,
+    "span_end": null,
+    "clip_start": 1777820432.247,
+    "clip_end": 1777820444.747
+  },
+  "open_scout_window": null,
+  "open_scout_verdict": "no_match",
+  "use_open_scout_spans": true,
+  "tags": [
+    {
+      "ts": 1777820434.34655,
+      "camera_view": "bowlers_end",
+      "frame_phase": "between_play"
+    },
+    {
+      "ts": 1777820439.2336,
+      "camera_view": "bowlers_end",
+      "frame_phase": "between_play"
+    }
+  ]
+}

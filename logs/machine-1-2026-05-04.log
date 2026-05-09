@@ -1,0 +1,416 @@
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['TILAK VARMA', 'SURYAKUMAR'] popped=batters
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F241 reason=sentinel sentinel=' > ' popped=batters
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F841 reason=sentinel sentinel='IN T20' popped=batters
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=sentinel sentinel='RUN-RATE' popped=batters
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[08:38:48 F0 TEST] WARN:   [OVERLAY-LOCKOUT-BREAKOUT] frame=F0 strip_batters=['Marco Jansen', 'Vijaykumar Vyshak'] active=['Marcus Stoinis'] consecutive=3 force-updating active set (no pop)
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Xavier Bartlett', 'Arshad Khan'] popped=batters
+[08:38:48 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['TILAK VARMA', 'SURYAKUMAR'] popped=batters
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F241 reason=sentinel sentinel=' > ' popped=batters
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F841 reason=sentinel sentinel='IN T20' popped=batters
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=sentinel sentinel='RUN-RATE' popped=batters
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[08:38:54 F0 TEST] WARN:   [OVERLAY-LOCKOUT-BREAKOUT] frame=F0 strip_batters=['Marco Jansen', 'Vijaykumar Vyshak'] active=['Marcus Stoinis'] consecutive=3 force-updating active set (no pop)
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Xavier Bartlett', 'Arshad Khan'] popped=batters
+[08:38:54 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 TEST] INFO:   [INN2-TRANSITION-NULL-TEAM] frame=F700 score=10 requires 2-frame corroboration (advisory only)
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 TEST] INFO:   [INN2-TRANSITION-NULL-TEAM] frame=F700 score=10 requires 2-frame corroboration (advisory only)
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 TEST] INFO:   [INN2-TRANSITION-NULL-TEAM] frame=F700 score=10 requires 2-frame corroboration (advisory only)
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=warm_test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=warm_test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=warm_test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:55:22 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:55:22 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:55:22 F0 BOARD] INFO: Batter activated: P0
+[09:55:22 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:55:22 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:55:22 F0 BOARD] INFO: [XI-GATE] reject — Batter 'P0' is replaced_player — rejecting
+[09:55:22 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:55:22 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team CSK player S0 promoted from sub pool, impact_used=true
+[09:55:22 F0 BOARD] INFO: Batter activated: S0
+[09:55:22 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:55:22 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team CSK player S0 promoted from sub pool, impact_used=true
+[09:55:22 F0 BOARD] INFO: Batter activated: S0
+[09:55:22 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:55:22 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team CSK player S0 promoted from sub pool, impact_used=true
+[09:55:22 F0 BOARD] INFO: Batter activated: S0
+[09:55:22 F0 BOARD] INFO: [BATTER-CONSENSUS-RESET] S1 — clearing bat tracker streak
+[09:55:22 F0 BOARD] INFO: [XI-GATE] reject — team already used impact player, 'S1' rejected as second activation
+[09:55:22 F0 BOARD] INFO: Scorecards built: CSK (13 bat) vs MI (3 bowl)
+[09:55:22 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team MI player bws0 promoted from sub pool, impact_used=true
+[09:55:22 F0 BOARD] INFO: [BOWLER SEED] bws0 figures seeded from scout text to 0-0 (0.1) — mid-spell entry (impact sub / mid-match join)
+[09:55:22 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:55:22 F0 BOARD] INFO: [BATTER-CONSENSUS-RESET] P1 — clearing bat tracker streak
+[09:55:22 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing striker=P1 — already non; would self-collide
+[09:55:22 F0 BOARD] INFO: [BATTER-CONSENSUS-RESET] P0 — clearing bat tracker streak
+[09:55:22 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=P0 — already striker; would self-collide
+[09:55:22 F0 BOARD] INFO: Scorecards built: CSK (1 bat) vs MI (2 bowl)
+[09:55:22 F0 OVER] INFO: [TIMEOUT-GAP-INFER] frame=10 prev_overs='16.0' new_overs='16.2' score 124→126 +2 inferred tokens → ['?', '2']
+[09:55:22 F0 OVER] INFO: [TIMEOUT-GAP-INFER] frame=10 prev_overs='16.0' new_overs='16.2' score 124→124 +2 inferred tokens → ['?', '?']
+[09:55:22 F0 OVER] INFO: [TIMEOUT-GAP-INFER] frame=10 prev_overs='16.0' new_overs='16.2' score 124→132 +2 inferred tokens → ['?', '?']
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['TILAK VARMA', 'SURYAKUMAR'] popped=batters
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F241 reason=sentinel sentinel=' > ' popped=batters
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F841 reason=sentinel sentinel='IN T20' popped=batters
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=sentinel sentinel='RUN-RATE' popped=batters
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:55:24 F0 TEST] WARN:   [OVERLAY-LOCKOUT-BREAKOUT] frame=F0 strip_batters=['Marco Jansen', 'Vijaykumar Vyshak'] active=['Marcus Stoinis'] consecutive=3 force-updating active set (no pop)
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Xavier Bartlett', 'Arshad Khan'] popped=batters
+[09:55:24 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 TEST] INFO:   [INN2-TRANSITION-NULL-TEAM] frame=F700 score=10 requires 2-frame corroboration (advisory only)
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 TEST] INFO:   [INN2-TRANSITION-NULL-TEAM] frame=F700 score=10 requires 2-frame corroboration (advisory only)
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 TEST] INFO:   [INN2-TRANSITION-NULL-TEAM] frame=F700 score=10 requires 2-frame corroboration (advisory only)
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=warm_test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=warm_test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=warm_test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[09:56:43 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[09:56:43 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:56:43 F0 BOARD] INFO: Batter activated: P0
+[09:56:43 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:56:43 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:56:43 F0 BOARD] INFO: [XI-GATE] reject — Batter 'P0' is replaced_player — rejecting
+[09:56:43 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:56:43 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team CSK player S0 promoted from sub pool, impact_used=true
+[09:56:43 F0 BOARD] INFO: Batter activated: S0
+[09:56:43 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:56:43 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team CSK player S0 promoted from sub pool, impact_used=true
+[09:56:43 F0 BOARD] INFO: Batter activated: S0
+[09:56:43 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:56:43 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team CSK player S0 promoted from sub pool, impact_used=true
+[09:56:43 F0 BOARD] INFO: Batter activated: S0
+[09:56:43 F0 BOARD] INFO: [BATTER-CONSENSUS-RESET] S1 — clearing bat tracker streak
+[09:56:43 F0 BOARD] INFO: [XI-GATE] reject — team already used impact player, 'S1' rejected as second activation
+[09:56:43 F0 BOARD] INFO: Scorecards built: CSK (13 bat) vs MI (3 bowl)
+[09:56:43 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team MI player bws0 promoted from sub pool, impact_used=true
+[09:56:43 F0 BOARD] INFO: [BOWLER SEED] bws0 figures seeded from scout text to 0-0 (0.1) — mid-spell entry (impact sub / mid-match join)
+[09:56:43 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[09:56:43 F0 BOARD] INFO: [BATTER-CONSENSUS-RESET] P1 — clearing bat tracker streak
+[09:56:43 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing striker=P1 — already non; would self-collide
+[09:56:43 F0 BOARD] INFO: [BATTER-CONSENSUS-RESET] P0 — clearing bat tracker streak
+[09:56:43 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=P0 — already striker; would self-collide
+[09:56:43 F0 BOARD] INFO: Scorecards built: CSK (1 bat) vs MI (2 bowl)
+[09:56:43 F0 OVER] INFO: [TIMEOUT-GAP-INFER] frame=10 prev_overs='16.0' new_overs='16.2' score 124→126 +2 inferred tokens → ['?', '2']
+[09:56:43 F0 OVER] INFO: [TIMEOUT-GAP-INFER] frame=10 prev_overs='16.0' new_overs='16.2' score 124→124 +2 inferred tokens → ['?', '?']
+[09:56:43 F0 OVER] INFO: [TIMEOUT-GAP-INFER] frame=10 prev_overs='16.0' new_overs='16.2' score 124→132 +2 inferred tokens → ['?', '?']
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['TILAK VARMA', 'SURYAKUMAR'] popped=batters
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F241 reason=sentinel sentinel=' > ' popped=batters
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F841 reason=sentinel sentinel='IN T20' popped=batters
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=sentinel sentinel='RUN-RATE' popped=batters
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:56:46 F0 TEST] WARN:   [OVERLAY-LOCKOUT-BREAKOUT] frame=F0 strip_batters=['Marco Jansen', 'Vijaykumar Vyshak'] active=['Marcus Stoinis'] consecutive=3 force-updating active set (no pop)
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Xavier Bartlett', 'Arshad Khan'] popped=batters
+[09:56:46 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 TEST] INFO:   [INN2-TRANSITION-NULL-TEAM] frame=F700 score=10 requires 2-frame corroboration (advisory only)
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 TEST] INFO:   [INN2-TRANSITION-NULL-TEAM] frame=F700 score=10 requires 2-frame corroboration (advisory only)
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 TEST] INFO:   [INN2-TRANSITION-NULL-TEAM] frame=F700 score=10 requires 2-frame corroboration (advisory only)
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=warm_test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=warm_test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=warm_test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO: [SM-INNINGS-2-RESET] reason=test: resetting all per-innings cached scalars (archive already performed by caller).  target=160 new_batting_team=CSK.
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=innings note=read_only_now sb_value=None sm_would_set=2
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=target sm_would_accept=160 sb_value=None divergence=true
+[11:46:04 F0 SCORE_MGR] INFO:   [SM-SHADOW-PARITY] field=batting_team sm_would_accept='CSK' sb_value=None divergence=true
+[11:46:04 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[11:46:04 F0 BOARD] INFO: Batter activated: P0
+[11:46:04 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[11:46:04 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[11:46:04 F0 BOARD] INFO: [XI-GATE] reject — Batter 'P0' is replaced_player — rejecting
+[11:46:04 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[11:46:04 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team CSK player S0 promoted from sub pool, impact_used=true
+[11:46:04 F0 BOARD] INFO: Batter activated: S0
+[11:46:04 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[11:46:04 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team CSK player S0 promoted from sub pool, impact_used=true
+[11:46:04 F0 BOARD] INFO: Batter activated: S0
+[11:46:04 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[11:46:04 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team CSK player S0 promoted from sub pool, impact_used=true
+[11:46:04 F0 BOARD] INFO: Batter activated: S0
+[11:46:04 F0 BOARD] INFO: [BATTER-CONSENSUS-RESET] S1 — clearing bat tracker streak
+[11:46:04 F0 BOARD] INFO: [XI-GATE] reject — team already used impact player, 'S1' rejected as second activation
+[11:46:04 F0 BOARD] INFO: Scorecards built: CSK (13 bat) vs MI (3 bowl)
+[11:46:04 F0 BOARD] INFO: [IMPACT-PLAYER-ACTIVATED] team MI player bws0 promoted from sub pool, impact_used=true
+[11:46:04 F0 BOARD] INFO: [BOWLER SEED] bws0 figures seeded from scout text to 0-0 (0.1) — mid-spell entry (impact sub / mid-match join)
+[11:46:04 F0 BOARD] INFO: Scorecards built: CSK (16 bat) vs MI (1 bowl)
+[11:46:04 F0 BOARD] INFO: [BATTER-CONSENSUS-RESET] P1 — clearing bat tracker streak
+[11:46:04 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing striker=P1 — already non; would self-collide
+[11:46:04 F0 BOARD] INFO: [BATTER-CONSENSUS-RESET] P0 — clearing bat tracker streak
+[11:46:04 F0 BOARD] WARN:   [STRIKER-COLLISION] Refusing non=P0 — already striker; would self-collide
+[11:46:04 F0 BOARD] INFO: Scorecards built: CSK (1 bat) vs MI (2 bowl)
+[11:46:04 F0 OVER] INFO: [TIMEOUT-GAP-INFER] frame=10 prev_overs='16.0' new_overs='16.2' score 124→126 +2 inferred tokens → ['?', '2']
+[11:46:04 F0 OVER] INFO: [TIMEOUT-GAP-INFER] frame=10 prev_overs='16.0' new_overs='16.2' score 124→124 +2 inferred tokens → ['?', '?']
+[11:46:04 F0 OVER] INFO: [TIMEOUT-GAP-INFER] frame=10 prev_overs='16.0' new_overs='16.2' score 124→132 +2 inferred tokens → ['?', '?']
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['TILAK VARMA', 'SURYAKUMAR'] popped=batters
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F241 reason=sentinel sentinel=' > ' popped=batters
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F841 reason=sentinel sentinel='IN T20' popped=batters
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=sentinel sentinel='RUN-RATE' popped=batters
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[11:46:07 F0 TEST] WARN:   [OVERLAY-LOCKOUT-BREAKOUT] frame=F0 strip_batters=['Marco Jansen', 'Vijaykumar Vyshak'] active=['Marcus Stoinis'] consecutive=3 force-updating active set (no pop)
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Xavier Bartlett', 'Arshad Khan'] popped=batters
+[11:46:07 F0 TEST] WARN:   [STRIP-OVERLAY-DETECTED] frame=F0 reason=active_batting strip_batters=['Vijaykumar Vyshak', 'Marco Jansen'] popped=batters
+[21:23:56 F0 SCORE_MGR] WARN:   [SM-FEEDER-SYNC] field=batting_team value='RCB' sb_accepted=false reason=abbreviation_conflict locked='Lucknow Super Giants'
+[21:23:56 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=batting_team value='LSG' sb_accepted=true
+[21:23:56 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=batting_team value='Lucknow Super Giants' sb_accepted=true
+[21:23:56 F0 SCORE_MGR] INFO:   [SM-FEEDER-SYNC] field=batting_team value='RCB' sb_accepted=true

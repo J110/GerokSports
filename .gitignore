@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+files/logs/deliveries/*/match_*.mp4
+files/logs/deliveries/*/match_*.mp4_fixed*.mp4
+files/logs/pipeline-*.log
+files/scripts/broadcast_mode_tuning/predicted_clips_*/
+files/scripts/broadcast_mode_tuning/may*_scout_run/
+files/scripts/broadcast_mode_tuning/*_5min_scout_run/
+files/scripts/broadcast_mode_tuning/*_5min_inspection/
+files/scripts/broadcast_mode_tuning/anchor_clips/
+files/scripts/broadcast_mode_tuning/live_raw/
+*.mp4

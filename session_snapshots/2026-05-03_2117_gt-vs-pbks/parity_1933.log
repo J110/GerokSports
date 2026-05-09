@@ -1,0 +1,60 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151976/rr-vs-dc-43rd-match-indian-premier-league-2026
+
+[19:33:21  iter#1]
+  UI: Delhi Capitals 0-0 (0.0)  str=Pathum Nissanka nstr=Prithvi Shaw  bowl=None None-None (None)
+  this_over=['4']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 6-1 (0.3)  crr=12.0  ps=6(3)  recent=6 0 W
+  CB BAT: Vaibhav Sooryavanshi* 0(0), Yashasvi Jaiswal 6(3)
+  LAST WKT: Yashasvi Jaiswal   c and b Mitchell Starc 6(3)  - 6/1 in 0.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=6 | WICKETS: ui=0 cb=1 | OVERS: ui=0.0 cb=0.3 | STRIKER: ui=Pathum Nissanka cb=Vaibhav Sooryavanshi | BATTERS_MISSING_IN_UI: {'sooryavanshi', 'jaiswal'} (ui={'shaw', 'nissanka'}, cb={'sooryavanshi', 'jaiswal'})
+
+[19:33:45  iter#2]
+  WS ERR: ''
+  CB: RR 6-1 (0.3)  crr=12.0  ps=6(3)  recent=6 0 W
+  CB BAT: Vaibhav Sooryavanshi* 0(0), Yashasvi Jaiswal 6(3)
+  LAST WKT: Yashasvi Jaiswal   c and b Mitchell Starc 6(3)  - 6/1 in 0.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sooryavanshi', 'jaiswal'} (ui=set(), cb={'sooryavanshi', 'jaiswal'})
+
+[19:34:08  iter#3]
+  UI: Delhi Capitals 0-0 (0.0)  str=Pathum Nissanka nstr=Prithvi Shaw  bowl=Yashasvi Jaiswal 0-0 (0.0)
+  this_over=['4']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 6-1 (0.3)  crr=12.0  ps=6(3)  recent=6 0 W
+  CB BAT: Vaibhav Sooryavanshi* 0(0), Yashasvi Jaiswal 6(3)
+  LAST WKT: Yashasvi Jaiswal   c and b Mitchell Starc 6(3)  - 6/1 in 0.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=6 | WICKETS: ui=0 cb=1 | OVERS: ui=0.0 cb=0.3 | STRIKER: ui=Pathum Nissanka cb=Vaibhav Sooryavanshi | BATTERS_MISSING_IN_UI: {'sooryavanshi', 'jaiswal'} (ui={'shaw', 'nissanka'}, cb={'sooryavanshi', 'jaiswal'})
+
+[19:34:29  iter#4]
+  UI: Delhi Capitals 0-0 (0.0)  str=Pathum Nissanka nstr=Prithvi Shaw  bowl=Yashasvi Jaiswal 0-0 (0.0)
+  this_over=['4']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 6-1 (0.3)  crr=12.0  ps=6(3)  recent=6 0 W
+  CB BAT: Vaibhav Sooryavanshi* 0(0), Yashasvi Jaiswal 6(3)
+  LAST WKT: Yashasvi Jaiswal   c and b Mitchell Starc 6(3)  - 6/1 in 0.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=6 | WICKETS: ui=0 cb=1 | OVERS: ui=0.0 cb=0.3 | STRIKER: ui=Pathum Nissanka cb=Vaibhav Sooryavanshi | BATTERS_MISSING_IN_UI: {'sooryavanshi', 'jaiswal'} (ui={'shaw', 'nissanka'}, cb={'sooryavanshi', 'jaiswal'})
+
+[19:34:49  iter#5]
+  UI: Delhi Capitals 0-0 (0.0)  str=Pathum Nissanka nstr=Prithvi Shaw  bowl=Yashasvi Jaiswal 0-0 (0.0)
+  this_over=['4']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 6-1 (0.3)  crr=12.0  ps=6(3)  recent=6 0 W
+  CB BAT: Vaibhav Sooryavanshi* 0(0), Yashasvi Jaiswal 6(3)
+  LAST WKT: Yashasvi Jaiswal   c and b Mitchell Starc 6(3)  - 6/1 in 0.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=6 | WICKETS: ui=0 cb=1 | OVERS: ui=0.0 cb=0.3 | STRIKER: ui=Pathum Nissanka cb=Vaibhav Sooryavanshi | BATTERS_MISSING_IN_UI: {'sooryavanshi', 'jaiswal'} (ui={'shaw', 'nissanka'}, cb={'sooryavanshi', 'jaiswal'})
+
+[19:35:11  iter#6]
+  UI: Delhi Capitals 0-0 (0.0)  str=Pathum Nissanka nstr=Prithvi Shaw  bowl=Yashasvi Jaiswal 0-0 (0.0)
+  this_over=['4']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 6-1 (0.3)  crr=12.0  ps=0(0)  recent=6 0 W
+  CB BAT: Dhruv Jurel* 0(0), Vaibhav Sooryavanshi 0(0)
+  LAST WKT: Yashasvi Jaiswal   c and b Mitchell Starc 6(3)  - 6/1 in 0.3 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=6 | WICKETS: ui=0 cb=1 | OVERS: ui=0.0 cb=0.3 | STRIKER: ui=Pathum Nissanka cb=Dhruv Jurel | BATTERS_MISSING_IN_UI: {'sooryavanshi', 'jurel'} (ui={'shaw', 'nissanka'}, cb={'sooryavanshi', 'jurel'})

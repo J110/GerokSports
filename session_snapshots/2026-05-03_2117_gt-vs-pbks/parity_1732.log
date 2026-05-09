@@ -1,0 +1,664 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151998/wi-vs-rsa-2nd-t20i-south-africa-tour-of-west-indies-2024
+
+[17:32:49  iter#1]
+  WS ERR: ''
+  CB: KKR 10-0 (1.4)  crr=6.0  ps=10(10)  recent=... 4 1 1 0 1 1
+  CB BAT: Finn Allen* 3(5), Ajinkya Rahane 7(5)
+  CB BOWL: Abhishek Sharma 0-8 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Abhishek Sharma
+
+[17:33:11  iter#2]
+  UI: Kolkata Knight Riders 10-0 (1.4)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Pat Cummins 0-2 (0.4)
+  this_over=['?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 10-0 (1.4)  crr=6.0  ps=10(10)  recent=... 4 1 1 0 1 1
+  CB BAT: Finn Allen* 3(5), Ajinkya Rahane 7(5)
+  CB BOWL: Abhishek Sharma 0-8 (1)
+  ⚠ DIVERGENCE: STRIKER: ui=Ajinkya Rahane cb=Finn Allen | BOWLER: ui=Pat Cummins cb=Abhishek Sharma
+
+[17:33:36  iter#3]
+  WS ERR: ''
+  CB: KKR 10-0 (1.4)  crr=6.0  ps=10(10)  recent=... 4 1 1 0 1 1
+  CB BAT: Finn Allen* 3(5), Ajinkya Rahane 7(5)
+  CB BOWL: Abhishek Sharma 0-8 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Abhishek Sharma
+
+[17:34:00  iter#4]
+  WS ERR: ''
+  CB: KKR 10-0 (1.5)  crr=5.45  ps=10(11)  recent=1 1 0 0 0
+  CB BAT: Finn Allen* 3(6), Ajinkya Rahane 7(5)
+  CB BOWL: Abhishek Sharma 0-8 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Abhishek Sharma
+
+[17:34:22  iter#5]
+  UI: Kolkata Knight Riders 10-0 (1.5)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Pat Cummins 0-2 (0.5)
+  this_over=['?', '?', '?', '?', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 10-0 (1.4)  crr=6.0  ps=10(10)  recent=... 4 1 1 0 1 1
+  CB BAT: Finn Allen* 3(5), Ajinkya Rahane 7(5)
+  CB BOWL: Abhishek Sharma 0-8 (1)
+  ⚠ DIVERGENCE: OVERS: ui=1.5 cb=1.4 | STRIKER: ui=Ajinkya Rahane cb=Finn Allen | BAT_allen: ui=3(6) cb=3(5) | BOWLER: ui=Pat Cummins cb=Abhishek Sharma
+
+[17:34:42  iter#6]
+  UI: Kolkata Knight Riders 10-0 (1.5)  str=Finn Allen nstr=Ajinkya Rahane  bowl=Pat Cummins 0-2 (1)
+  this_over=['?', '?', '?', '?', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 14-0 (2)  crr=7.0  ps=14(12)  recent=1 1 0 0 0 4
+  CB BAT: Ajinkya Rahane* 7(5), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: SCORE: ui=10 cb=14 | OVERS: ui=1.5 cb=2 | STRIKER: ui=Finn Allen cb=Ajinkya Rahane | BAT_allen: ui=3(6) cb=7(7) | BOWL_R: ui=2 cb=6
+
+[17:35:06  iter#7]
+  UI: Kolkata Knight Riders 10-0 (1.5)  str=Finn Allen nstr=Ajinkya Rahane  bowl=Pat Cummins 0-2 (1)
+  this_over=['?', '?', '?', '?', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 10-0 (1.5)  crr=5.45  ps=10(11)  recent=1 1 0 0 0
+  CB BAT: Finn Allen* 3(6), Ajinkya Rahane 7(5)
+  CB BOWL: Abhishek Sharma 0-8 (1)
+  ⚠ DIVERGENCE: BOWLER: ui=Pat Cummins cb=Abhishek Sharma
+
+[17:35:28  iter#8]
+  UI: Kolkata Knight Riders 14-0 (2.0)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Pat Cummins 0-8 (1.4)
+  this_over=['?', '?', '?', '?', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 14-0 (2)  crr=7.0  ps=14(12)  recent=1 1 0 0 0 4
+  CB BAT: Ajinkya Rahane* 7(5), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: OVERS: ui=2.0 cb=2 | BOWL_R: ui=8 cb=6 | BOWL_O: ui=1.4 cb=1
+
+[17:35:52  iter#9]
+  UI: Kolkata Knight Riders 14-0 (2.0)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Pat Cummins 0-8 (1.4)
+  this_over=['?', '?', '?', '?', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 14-0 (2)  crr=7.0  ps=14(12)  recent=... 4 1 1 0 1 1
+  CB BAT: Ajinkya Rahane* 7(5), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: OVERS: ui=2.0 cb=2 | BOWL_R: ui=8 cb=6 | BOWL_O: ui=1.4 cb=1
+
+[17:36:14  iter#10]
+  UI: Kolkata Knight Riders 14-0 (2.0)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Eshan Malinga 0-0 (0)
+  this_over=['?', '?', '?', '?', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 14-0 (2)  crr=7.0  ps=14(12)  recent=... 4 1 1 0 1 1
+  CB BAT: Ajinkya Rahane* 7(5), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: OVERS: ui=2.0 cb=2 | BOWLER: ui=Eshan Malinga cb=Pat Cummins
+
+[17:36:39  iter#11]
+  WS ERR: ''
+  CB: KKR 14-0 (2.1)  crr=6.46  ps=14(13)  recent=0
+  CB BAT: Ajinkya Rahane* 7(6), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Pat Cummins
+
+[17:37:01  iter#12]
+  UI: Kolkata Knight Riders 14-0 (2.2)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Eshan Malinga 0-0 (0.2)
+  this_over=['.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 14-0 (2.2)  crr=6.0  ps=14(14)  recent=0 0
+  CB BAT: Ajinkya Rahane* 7(7), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: BAT_rahane: ui=7(6) cb=7(7) | BOWLER: ui=Eshan Malinga cb=Pat Cummins
+
+[17:37:23  iter#13]
+  UI: Kolkata Knight Riders 14-0 (2.2)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Eshan Malinga 0-0 (0.2)
+  this_over=['.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 14-0 (2.2)  crr=6.0  ps=14(14)  recent=0 0
+  CB BAT: Ajinkya Rahane* 7(7), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: BAT_rahane: ui=7(6) cb=7(7) | BOWLER: ui=Eshan Malinga cb=Pat Cummins
+
+[17:37:47  iter#14]
+  WS ERR: ''
+  CB: KKR 14-0 (2.1)  crr=6.46  ps=14(13)  recent=0
+  CB BAT: Ajinkya Rahane* 7(6), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Pat Cummins
+
+[17:38:09  iter#15]
+  UI: Kolkata Knight Riders 20-0 (2.4)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Eshan Malinga 0-6 (0.4)
+  this_over=['.', '.', '6', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 20-0 (2.3)  crr=8.0  ps=20(15)  recent=0 0 6
+  CB BAT: Ajinkya Rahane* 13(8), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: OVERS: ui=2.4 cb=2.3 | BAT_rahane: ui=13(9) cb=13(8) | BOWLER: ui=Eshan Malinga cb=Pat Cummins
+
+[17:38:29  iter#16]
+  UI: Kolkata Knight Riders 20-0 (2.4)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Eshan Malinga 0-6 (0.4)
+  this_over=['.', '.', '6', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 20-0 (2.3)  crr=8.0  ps=20(15)  recent=0 0 6
+  CB BAT: Ajinkya Rahane* 13(8), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: OVERS: ui=2.4 cb=2.3 | BAT_rahane: ui=13(9) cb=13(8) | BOWLER: ui=Eshan Malinga cb=Pat Cummins
+
+[17:38:54  iter#17]
+  WS ERR: ''
+  CB: KKR 20-0 (2.4)  crr=7.5  ps=20(16)  recent=0 0 6 0
+  CB BAT: Ajinkya Rahane* 13(9), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Pat Cummins
+
+[17:39:18  iter#18]
+  WS ERR: ''
+  CB: KKR 20-0 (2.5)  crr=7.06  ps=20(17)  recent=0 0 6 0 0
+  CB BAT: Ajinkya Rahane* 13(10), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Pat Cummins
+
+[17:39:39  iter#19]
+  UI: Kolkata Knight Riders 22-0 (3.0)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Eshan Malinga 0-8 (1)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 20-0 (2.5)  crr=7.06  ps=20(17)  recent=0 0 6 0 0
+  CB BAT: Ajinkya Rahane* 13(10), Finn Allen 7(7)
+  CB BOWL: Pat Cummins 0-6 (1)
+  ⚠ DIVERGENCE: SCORE: ui=22 cb=20 | OVERS: ui=3.0 cb=2.5 | BAT_rahane: ui=15(11) cb=13(10) | BOWLER: ui=Eshan Malinga cb=Pat Cummins
+
+[17:40:00  iter#20]
+  UI: Kolkata Knight Riders 22-0 (3.0)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Eshan Malinga 0-8 (1)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 22-0 (3)  crr=7.33  ps=22(18)  recent=0 0 6 0 0 2
+  CB BAT: Finn Allen* 7(7), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: OVERS: ui=3.0 cb=3 | STRIKER: ui=Ajinkya Rahane cb=Finn Allen
+
+[17:40:22  iter#21]
+  UI: Kolkata Knight Riders 22-0 (3.0)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Eshan Malinga 0-8 (1)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: KKR 22-0 (3)  crr=7.33  ps=22(18)  recent=0 0 6 0 0 2
+  CB BAT: Finn Allen* 7(7), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: OVERS: ui=3.0 cb=3 | STRIKER: ui=Ajinkya Rahane cb=Finn Allen
+
+[17:40:46  iter#22]
+  WS ERR: ''
+  CB: KKR 22-0 (3)  crr=7.33  ps=22(18)  recent=0 0 6 0 0 2
+  CB BAT: Finn Allen* 7(7), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Eshan Malinga
+
+[17:41:11  iter#23]
+  UI: Kolkata Knight Riders 27-0 (3.0)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Pat Cummins 0-11 (2.0)
+  this_over=['Nb+4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 27-0 (3)  crr=9.0  ps=27(18)  recent=W
+  CB BAT: Finn Allen* 7(7), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: OVERS: ui=3.0 cb=3 | STRIKER: ui=Ajinkya Rahane cb=Finn Allen | BOWLER: ui=Pat Cummins cb=Eshan Malinga
+
+[17:41:33  iter#24]
+  UI: Kolkata Knight Riders 27-0 (3.0)  str=Finn Allen nstr=Ajinkya Rahane  bowl=Pat Cummins 0-11 (4)
+  this_over=['Nb+4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 33-0 (3.1)  crr=10.42  ps=33(19)  recent=W
+  CB BAT: Finn Allen* 13(8), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: SCORE: ui=27 cb=33 | OVERS: ui=3.0 cb=3.1 | BAT_allen: ui=7(7) cb=13(8) | BOWLER: ui=Pat Cummins cb=Eshan Malinga
+
+[17:41:57  iter#25]
+  WS ERR: ''
+  CB: KKR 27-0 (3)  crr=9.0  ps=27(18)  recent=W
+  CB BAT: Finn Allen* 7(7), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Eshan Malinga
+
+[17:42:19  iter#26]
+  UI: Kolkata Knight Riders 33-0 (3.1)  str=Finn Allen nstr=Ajinkya Rahane  bowl=Pat Cummins 0-11 (4)
+  this_over=['Nb+4', '6']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 27-0 (3)  crr=9.0  ps=27(18)  recent=W
+  CB BAT: Finn Allen* 7(7), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: SCORE: ui=33 cb=27 | OVERS: ui=3.1 cb=3 | BAT_allen: ui=13(8) cb=7(7) | BOWLER: ui=Pat Cummins cb=Eshan Malinga
+
+[17:42:43  iter#27]
+  UI: Kolkata Knight Riders 35-0 (3.2)  str=Finn Allen nstr=Ajinkya Rahane  bowl=Pat Cummins 0-13 (4.1)
+  this_over=['Nb+4', '6', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 41-0 (3.3)  crr=11.71  ps=41(21)  recent=W
+  CB BAT: Finn Allen* 21(10), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: SCORE: ui=35 cb=41 | OVERS: ui=3.2 cb=3.3 | BAT_allen: ui=13(8) cb=21(10) | BOWLER: ui=Pat Cummins cb=Eshan Malinga
+
+[17:43:09  iter#28]
+  WS ERR: ''
+  CB: KKR 35-0 (3.2)  crr=10.5  ps=35(20)  recent=W
+  CB BAT: Finn Allen* 15(9), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Eshan Malinga
+
+[17:43:32  iter#29]
+  UI: Kolkata Knight Riders 41-0 (3.3)  str=Finn Allen nstr=Ajinkya Rahane  bowl=Pat Cummins 0-19 (0.1)
+  this_over=['Nb+4', '6', '2', '6']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 45-0 (3.4)  crr=12.27  ps=45(22)  recent=W
+  CB BAT: Finn Allen* 25(11), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: SCORE: ui=41 cb=45 | OVERS: ui=3.3 cb=3.4 | BAT_allen: ui=13(10) cb=25(11) | BOWLER: ui=Pat Cummins cb=Eshan Malinga
+
+[17:43:56  iter#30]
+  WS ERR: ''
+  CB: KKR 45-0 (3.4)  crr=12.27  ps=45(22)  recent=W
+  CB BAT: Finn Allen* 25(11), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Eshan Malinga
+
+[17:44:20  iter#31]
+  UI: Kolkata Knight Riders 49-0 (3.5)  str=Ajinkya Rahane nstr=Finn Allen  bowl=Pat Cummins 0-33 (1.5)
+  this_over=['Nb+4', '6', '2', '6', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 49-0 (3.5)  crr=12.78  ps=49(23)  recent=W
+  CB BAT: Finn Allen* 29(12), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: STRIKER: ui=Ajinkya Rahane cb=Finn Allen | BOWLER: ui=Pat Cummins cb=Eshan Malinga
+
+[17:44:42  iter#32]
+  UI: Kolkata Knight Riders 49-0 (3.5)  str=Finn Allen nstr=Ajinkya Rahane  bowl=Pat Cummins 0-33 (1.5)
+  this_over=['Nb+4', '6', '2', '6', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=1 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 45-0 (3.4)  crr=12.27  ps=45(22)  recent=W
+  CB BAT: Finn Allen* 25(11), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: SCORE: ui=49 cb=45 | OVERS: ui=3.5 cb=3.4 | BAT_allen: ui=29(12) cb=25(11) | BOWLER: ui=Pat Cummins cb=Eshan Malinga
+
+[17:45:07  iter#33]
+  WS ERR: ''
+  CB: KKR 49-1 (4)  crr=12.25  ps=49(24)  recent=W
+  CB BAT: Ajinkya Rahane* 15(11), Eshan Malinga 1(0)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'malinga', 'rahane'} (ui=set(), cb={'malinga', 'rahane'}) | BOWLER: ui=None cb=Pat Cummins
+
+[17:45:31  iter#34]
+  WS ERR: ''
+  CB: KKR 49-1 (4)  crr=12.25  ps=49(24)  recent=W
+  CB BAT: Ajinkya Rahane* 15(11), Eshan Malinga 1(0)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'malinga', 'rahane'} (ui=set(), cb={'malinga', 'rahane'}) | BOWLER: ui=None cb=Pat Cummins
+
+[17:45:55  iter#35]
+  WS ERR: ''
+  CB: KKR 49-0 (3.5)  crr=12.78  ps=49(23)  recent=W
+  CB BAT: Finn Allen* 29(12), Ajinkya Rahane 15(11)
+  CB BOWL: Eshan Malinga 0-8 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'rahane', 'allen'} (ui=set(), cb={'rahane', 'allen'}) | BOWLER: ui=None cb=Eshan Malinga
+
+[17:46:16  iter#36]
+  UI: Kolkata Knight Riders 49-1 (4.0)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Pat Cummins 1-33 (2)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 49-1 (4)  crr=12.25  ps=0(0)  recent=...
+  CB BAT: Ajinkya Rahane* 15(11), Angkrish Raghuvanshi 0(0)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.0 cb=4 | BAT_rahane: ui=18(10) cb=15(11) | FOW_COUNT: ui=0 vs wickets=1
+
+[17:46:37  iter#37]
+  UI: Kolkata Knight Riders 49-1 (4.0)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Pat Cummins 1-33 (2)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 49-1 (4)  crr=12.25  ps=0(0)  recent=...
+  CB BAT: Ajinkya Rahane* 15(11), Angkrish Raghuvanshi 0(0)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.0 cb=4 | FOW_COUNT: ui=0 vs wickets=1
+
+[17:46:58  iter#38]
+  UI: Kolkata Knight Riders 49-1 (4.0)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Pat Cummins 1-33 (2)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 49-1 (4)  crr=12.25  ps=0(0)  recent=...
+  CB BAT: Ajinkya Rahane* 15(11), Angkrish Raghuvanshi 0(0)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.0 cb=4 | FOW_COUNT: ui=0 vs wickets=1
+
+[17:47:22  iter#39]
+  WS ERR: ''
+  CB: KKR 50-1 (4.1)  crr=12.0  ps=1(1)  recent=1
+  CB BAT: Angkrish Raghuvanshi* 0(0), Ajinkya Rahane 16(12)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'raghuvanshi', 'rahane'} (ui=set(), cb={'raghuvanshi', 'rahane'}) | BOWLER: ui=None cb=Pat Cummins
+
+[17:47:43  iter#40]
+  UI: Kolkata Knight Riders 50-1 (4.2)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Pat Cummins 1-33 (3.2)
+  this_over=['1', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 50-1 (4.3)  crr=11.11  ps=1(3)  recent=1 0 0
+  CB BAT: Angkrish Raghuvanshi* 0(2), Ajinkya Rahane 16(12)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.2 cb=4.3 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_raghuvanshi: ui=0(0) cb=0(2) | BAT_rahane: ui=15(11) cb=16(12) | FOW_COUNT: ui=0 vs wickets=1 | BOWL_O: ui=3.2 cb=2
+
+[17:48:04  iter#41]
+  UI: Kolkata Knight Riders 50-1 (4.3)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Pat Cummins 1-33 (3.3)
+  this_over=['1', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 50-1 (4.4)  crr=10.71  ps=1(4)  recent=1 0 0 0
+  CB BAT: Angkrish Raghuvanshi* 0(3), Ajinkya Rahane 16(12)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.3 cb=4.4 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_raghuvanshi: ui=0(2) cb=0(3) | FOW_COUNT: ui=0 vs wickets=1 | BOWL_O: ui=3.3 cb=2
+
+[17:48:30  iter#42]
+  WS ERR: ''
+  CB: KKR 51-1 (4.5)  crr=10.55  ps=2(5)  recent=1 0 0 0 1
+  CB BAT: Ajinkya Rahane* 16(12), Angkrish Raghuvanshi 1(4)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'raghuvanshi', 'rahane'} (ui=set(), cb={'raghuvanshi', 'rahane'}) | BOWLER: ui=None cb=Pat Cummins
+
+[17:48:53  iter#43]
+  UI: Kolkata Knight Riders 55-1 (5.0)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Abhishek Sharma 0-14 (2)
+  this_over=['1', '.', '.', '.', '1', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 50-1 (4.3)  crr=11.11  ps=1(3)  recent=1 0 0
+  CB BAT: Angkrish Raghuvanshi* 0(2), Ajinkya Rahane 16(12)
+  CB BOWL: Pat Cummins 1-33 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=55 cb=50 | OVERS: ui=5.0 cb=4.3 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_raghuvanshi: ui=1(4) cb=0(2) | BAT_rahane: ui=14(14) cb=16(12) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Abhishek Sharma cb=Pat Cummins
+
+[17:49:14  iter#44]
+  UI: Kolkata Knight Riders 55-1 (5.0)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Abhishek Sharma 0-14 (2)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 55-1 (5)  crr=11.0  ps=6(6)  recent=1 0 0 0 1 4
+  CB BAT: Angkrish Raghuvanshi* 1(4), Ajinkya Rahane 20(13)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=5.0 cb=5 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_rahane: ui=14(14) cb=20(13) | FOW_COUNT: ui=0 vs wickets=1
+
+[17:49:38  iter#45]
+  WS ERR: ''
+  CB: KKR 61-1 (5.1)  crr=11.81  ps=12(7)  recent=6
+  CB BAT: Angkrish Raghuvanshi* 7(5), Ajinkya Rahane 20(13)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'raghuvanshi', 'rahane'} (ui=set(), cb={'raghuvanshi', 'rahane'}) | BOWLER: ui=None cb=Abhishek Sharma
+
+[17:50:02  iter#46]
+  UI: Kolkata Knight Riders 55-1 (5.0)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Abhishek Sharma 0-14 (2)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 55-1 (5)  crr=11.0  ps=6(6)  recent=1 0 0 0 1 4
+  CB BAT: Angkrish Raghuvanshi* 1(4), Ajinkya Rahane 20(13)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=5.0 cb=5 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_rahane: ui=14(14) cb=20(13) | FOW_COUNT: ui=0 vs wickets=1
+
+[17:50:25  iter#47]
+  UI: Kolkata Knight Riders 61-1 (5.1)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 0-14 (1.1)
+  this_over=['6']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 55-1 (5)  crr=11.0  ps=6(6)  recent=1 0 0 0 1 4
+  CB BAT: Angkrish Raghuvanshi* 1(4), Ajinkya Rahane 20(13)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=61 cb=55 | OVERS: ui=5.1 cb=5 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_raghuvanshi: ui=7(5) cb=1(4) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:50:47  iter#48]
+  UI: Kolkata Knight Riders 61-1 (5.2)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 0-14 (1.1)
+  this_over=['6', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 61-1 (5.2)  crr=11.44  ps=12(8)  recent=6 0
+  CB BAT: Angkrish Raghuvanshi* 7(6), Ajinkya Rahane 20(13)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:51:09  iter#49]
+  UI: Kolkata Knight Riders 61-1 (5.2)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 1-14 (2)
+  this_over=['6', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 61-1 (5.1)  crr=11.81  ps=12(7)  recent=6
+  CB BAT: Angkrish Raghuvanshi* 7(5), Ajinkya Rahane 20(13)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=5.2 cb=5.1 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_raghuvanshi: ui=7(6) cb=7(5) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:51:33  iter#50]
+  WS ERR: ''
+  CB: KKR 62-1 (5.3)  crr=11.27  ps=13(9)  recent=6 0 1
+  CB BAT: Ajinkya Rahane* 20(13), Angkrish Raghuvanshi 8(7)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'raghuvanshi', 'rahane'} (ui=set(), cb={'raghuvanshi', 'rahane'}) | BOWLER: ui=None cb=Abhishek Sharma
+
+[17:51:55  iter#51]
+  UI: Kolkata Knight Riders 62-1 (5.3)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 1-14 (2)
+  this_over=['6', '.', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 61-1 (5.1)  crr=11.81  ps=12(7)  recent=6
+  CB BAT: Angkrish Raghuvanshi* 7(5), Ajinkya Rahane 20(13)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=62 cb=61 | OVERS: ui=5.3 cb=5.1 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_raghuvanshi: ui=8(7) cb=7(5) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:52:17  iter#52]
+  UI: Kolkata Knight Riders 63-1 (5.4)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 1-14 (2)
+  this_over=['6', '.', '1', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 63-1 (5.4)  crr=11.12  ps=14(10)  recent=6 0 1 1
+  CB BAT: Angkrish Raghuvanshi* 8(7), Ajinkya Rahane 21(14)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:52:40  iter#53]
+  UI: Kolkata Knight Riders 63-1 (5.4)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 1-14 (2)
+  this_over=['6', '.', '1', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 62-1 (5.3)  crr=11.27  ps=13(9)  recent=6 0 1
+  CB BAT: Ajinkya Rahane* 20(13), Angkrish Raghuvanshi 8(7)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=63 cb=62 | OVERS: ui=5.4 cb=5.3 | BAT_rahane: ui=21(14) cb=20(13) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:53:05  iter#54]
+  UI: Kolkata Knight Riders 69-1 (5.5)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 1-20 (2.1)
+  this_over=['6', '.', '1', '1', '6']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 69-1 (5.5)  crr=11.83  ps=20(11)  recent=6 0 1 1 6
+  CB BAT: Angkrish Raghuvanshi* 14(8), Ajinkya Rahane 21(14)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:53:30  iter#55]
+  WS ERR: ''
+  CB: KKR 62-1 (5.3)  crr=11.27  ps=13(9)  recent=6 0 1
+  CB BAT: Ajinkya Rahane* 20(13), Angkrish Raghuvanshi 8(7)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'raghuvanshi', 'rahane'} (ui=set(), cb={'raghuvanshi', 'rahane'}) | BOWLER: ui=None cb=Abhishek Sharma
+
+[17:53:51  iter#56]
+  UI: Kolkata Knight Riders 69-1 (5.5)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 0-22 (1.5)
+  this_over=['6', '.', '1', '1', '6']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=1 [w0/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 63-1 (5.4)  crr=11.12  ps=14(10)  recent=6 0 1 1
+  CB BAT: Angkrish Raghuvanshi* 8(7), Ajinkya Rahane 21(14)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=69 cb=63 | OVERS: ui=5.5 cb=5.4 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_raghuvanshi: ui=14(8) cb=8(7) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:54:13  iter#57]
+  UI: Kolkata Knight Riders 70-1 (5.5)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 0-23 (1.5)
+  this_over=['6', '.', '1', '1', '6', 'Wd']  fow=0 (unk=0)  last_fow=None
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=1 innings=2 [w1/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '5.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 70-1 (5.5)  crr=12.0  ps=21(11)  recent=6 0 1 1 6 W
+  CB BAT: Angkrish Raghuvanshi* 14(8), Ajinkya Rahane 21(14)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:54:35  iter#58]
+  UI: Kolkata Knight Riders 71-1 (6.0)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 0-24 (2)
+  this_over=['6', '.', '1', '1', '6', 'Wd', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=2 [w1/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '5.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 71-1 (6)  crr=11.83  ps=22(12)  recent=6 0 1 1 6 W
+  CB BAT: Angkrish Raghuvanshi* 15(9), Ajinkya Rahane 21(14)
+  CB BOWL: Eshan Malinga 0-24 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=6.0 cb=6 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | FOW_COUNT: ui=0 vs wickets=1
+
+[17:55:00  iter#59]
+  WS ERR: ''
+  CB: KKR 70-1 (5.5)  crr=12.0  ps=21(11)  recent=6 0 1 1 6 W
+  CB BAT: Angkrish Raghuvanshi* 14(8), Ajinkya Rahane 21(14)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'raghuvanshi', 'rahane'} (ui=set(), cb={'raghuvanshi', 'rahane'}) | BOWLER: ui=None cb=Abhishek Sharma
+
+[17:55:23  iter#60]
+  UI: Kolkata Knight Riders 71-1 (6.0)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 0-24 (2)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=2 [w1/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '5.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 69-1 (5.5)  crr=11.83  ps=20(11)  recent=6 0 1 1 6
+  CB BAT: Angkrish Raghuvanshi* 14(8), Ajinkya Rahane 21(14)
+  CB BOWL: Abhishek Sharma 0-14 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=71 cb=69 | OVERS: ui=6.0 cb=5.5 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_raghuvanshi: ui=15(9) cb=14(8) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Eshan Malinga cb=Abhishek Sharma
+
+[17:55:45  iter#61]
+  UI: Kolkata Knight Riders 71-1 (6.0)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 0-24 (2)
+  this_over=['.', '.', '.', '.', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=2 [w1/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '5.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 71-1 (6)  crr=11.83  ps=22(12)  recent=...
+  CB BAT: Angkrish Raghuvanshi* 15(9), Ajinkya Rahane 21(14)
+  CB BOWL: Eshan Malinga 0-24 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=6.0 cb=6 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | FOW_COUNT: ui=0 vs wickets=1
+
+[17:56:09  iter#62]
+  WS ERR: ''
+  CB: KKR 72-1 (6.1)  crr=11.68  ps=23(13)  recent=1
+  CB BAT: Ajinkya Rahane* 21(14), Angkrish Raghuvanshi 16(10)
+  CB BOWL: Eshan Malinga 0-24 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'raghuvanshi', 'rahane'} (ui=set(), cb={'raghuvanshi', 'rahane'}) | BOWLER: ui=None cb=Eshan Malinga
+
+[17:56:30  iter#63]
+  UI: Kolkata Knight Riders 72-1 (6.1)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Eshan Malinga 0-24 (2)
+  this_over=['1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=2 [w1/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '5.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 71-1 (6)  crr=11.83  ps=22(12)  recent=6 0 1 1 6 W
+  CB BAT: Angkrish Raghuvanshi* 15(9), Ajinkya Rahane 21(14)
+  CB BOWL: Eshan Malinga 0-24 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=72 cb=71 | OVERS: ui=6.1 cb=6 | STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_raghuvanshi: ui=16(10) cb=15(9) | FOW_COUNT: ui=0 vs wickets=1
+
+[17:56:52  iter#64]
+  UI: Kolkata Knight Riders 76-1 (6.2)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Pat Cummins 1-33 (3.3)
+  this_over=['1', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=2 [w1/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '5.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 76-1 (6.2)  crr=12.0  ps=27(14)  recent=1 4
+  CB BAT: Ajinkya Rahane* 25(15), Angkrish Raghuvanshi 16(10)
+  CB BOWL: Eshan Malinga 0-24 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: BAT_rahane: ui=30(21) cb=25(15) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Pat Cummins cb=Eshan Malinga
+
+[17:57:15  iter#65]
+  UI: Kolkata Knight Riders 77-1 (6.3)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Pat Cummins 1-34 (3.4)
+  this_over=['1', '4', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=0 innings=2 [w1/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '5.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 77-1 (6.3)  crr=11.85  ps=28(15)  recent=1 4 1
+  CB BAT: Angkrish Raghuvanshi* 16(10), Ajinkya Rahane 26(16)
+  CB BOWL: Eshan Malinga 0-24 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ajinkya Rahane cb=Angkrish Raghuvanshi | BAT_rahane: ui=30(21) cb=26(16) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Pat Cummins cb=Eshan Malinga
+
+[17:57:38  iter#66]
+  UI: Kolkata Knight Riders 77-1 (6.3)  str=Ajinkya Rahane nstr=Angkrish Raghuvanshi  bowl=Pat Cummins 1-34 (3.4)
+  this_over=['1', '4', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=0 innings=2 [w1/nb1/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'no_ball', 'runs': 1, 'this_over_after': []}, {'over': '5.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: KKR 76-1 (6.2)  crr=12.0  ps=27(14)  recent=1 4
+  CB BAT: Ajinkya Rahane* 25(15), Angkrish Raghuvanshi 16(10)
+  CB BOWL: Eshan Malinga 0-24 (2)
+  LAST WKT: Finn Allen  c Heinrich Klaasen b Pat Cummins 29(13)  - 49/1 in 3.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=77 cb=76 | OVERS: ui=6.3 cb=6.2 | BAT_rahane: ui=26(22) cb=25(15) | BAT_raghuvanshi: ui=18(19) cb=16(10) | FOW_COUNT: ui=0 vs wickets=1 | BOWLER: ui=Pat Cummins cb=Eshan Malinga

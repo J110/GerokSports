@@ -1,0 +1,214 @@
+{
+  "qwen": {
+    "model": "accounts/fireworks/models/qwen3-vl-30b-a3b-instruct",
+    "ms": 7500,
+    "err": null,
+    "raw": "{\"ball_bounce_zone\": {\"value\": \"3\", \"confidence\": 0.8}, \"ball_position_at_batsman\": {\"value\": \"near_right_of_body\", \"confidence\": 0.9}, \"ball_height_at_batsman\": {\"value\": \"waist_to_chest\", \"confidence\": 0.9}, \"bat_swing\": {\"value\": \"horizontal\", \"confidence\": 0.8}, \"shot_intent\": {\"value\": \"aggressive\", \"confidence\": 0.7}, \"ball_direction_after_contact\": {\"value\": \"square_right\", \"confidence\": 0.8}, \"ball_elevation_after_contact\": {\"value\": \"high_air\", \"confidence\": 0.8}, \"fielder_reaction\": {\"value\": \"none_visible\", \"confidence\": 0.9}, \"ball_final_position\": {\"value\": \"outside_circle\", \"confidence\": 0.7}, \"bowling_style\": {\"value\": \"medium\", \"confidence\": 0.6}, \"ball_bat_contact_point\": {\"value\": \"outside_edge\", \"confidence\": 0.8}}",
+    "parsed": {
+      "ball_bounce_zone": {
+        "value": "3",
+        "confidence": 0.8
+      },
+      "ball_position_at_batsman": {
+        "value": "near_right_of_body",
+        "confidence": 0.9
+      },
+      "ball_height_at_batsman": {
+        "value": "waist_to_chest",
+        "confidence": 0.9
+      },
+      "bat_swing": {
+        "value": "horizontal",
+        "confidence": 0.8
+      },
+      "shot_intent": {
+        "value": "aggressive",
+        "confidence": 0.7
+      },
+      "ball_direction_after_contact": {
+        "value": "square_right",
+        "confidence": 0.8
+      },
+      "ball_elevation_after_contact": {
+        "value": "high_air",
+        "confidence": 0.8
+      },
+      "fielder_reaction": {
+        "value": "none_visible",
+        "confidence": 0.9
+      },
+      "ball_final_position": {
+        "value": "outside_circle",
+        "confidence": 0.7
+      },
+      "bowling_style": {
+        "value": "medium",
+        "confidence": 0.6
+      },
+      "ball_bat_contact_point": {
+        "value": "outside_edge",
+        "confidence": 0.8
+      }
+    },
+    "cricket_values": {
+      "is_valid_delivery": true,
+      "bowling_arm": "unknown",
+      "batsman_handed": "unknown",
+      "bowling_angle": "unknown",
+      "length": "good_length",
+      "line": "leg_stump",
+      "bounce": "normal",
+      "shot_side": "leg",
+      "shot_angle": "square",
+      "shot_played": true,
+      "shot_type": "pull",
+      "elevation": "in_air",
+      "bowling_type": "medium",
+      "contact_quality": "outside_edge"
+    },
+    "cricket_confidence": {
+      "is_valid_delivery": 0.9,
+      "bowling_arm": 0.0,
+      "batsman_handed": 0.0,
+      "bowling_angle": 0.0,
+      "length": 0.8,
+      "line": 0.9,
+      "bounce": 0.9,
+      "shot_side": 0.8,
+      "shot_angle": 0.8,
+      "shot_played": 0.7,
+      "shot_type": 0.8,
+      "elevation": 0.8,
+      "bowling_type": 0.6,
+      "contact_quality": 0.8
+    }
+  },
+  "conf_floor": 0.7,
+  "routed": {
+    "is_valid_delivery": true,
+    "batsman_handed": "unknown",
+    "bowling_arm": "unknown",
+    "bowling_angle": "unknown",
+    "bowling_type": "unknown",
+    "length": "good_length",
+    "line": "leg_stump",
+    "bounce": "normal",
+    "shot_played": true,
+    "shot_type": "pull",
+    "shot_side": "leg",
+    "shot_angle": "square",
+    "elevation": "in_air",
+    "contact_quality": "outside_edge"
+  },
+  "routed_conf": {
+    "is_valid_delivery": 0.9,
+    "batsman_handed": 0.0,
+    "bowling_arm": 0.0,
+    "bowling_angle": 0.0,
+    "bowling_type": 0.0,
+    "length": 0.8,
+    "line": 0.9,
+    "bounce": 0.9,
+    "shot_played": 0.7,
+    "shot_type": 0.8,
+    "shot_side": 0.8,
+    "shot_angle": 0.8,
+    "elevation": 0.8,
+    "contact_quality": 0.8
+  },
+  "per_field": {
+    "is_valid_delivery": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": true,
+      "owner_conf": 0.9
+    },
+    "batsman_handed": {
+      "owner": "qwen30b-instruct",
+      "committed": false,
+      "owner_value": "unknown",
+      "owner_conf": 0.0
+    },
+    "bowling_arm": {
+      "owner": "qwen30b-instruct",
+      "committed": false,
+      "owner_value": "unknown",
+      "owner_conf": 0.0
+    },
+    "bowling_angle": {
+      "owner": "qwen30b-instruct",
+      "committed": false,
+      "owner_value": "unknown",
+      "owner_conf": 0.0
+    },
+    "bowling_type": {
+      "owner": "qwen30b-instruct",
+      "committed": false,
+      "owner_value": "medium",
+      "owner_conf": 0.6
+    },
+    "length": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": "good_length",
+      "owner_conf": 0.8
+    },
+    "line": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": "leg_stump",
+      "owner_conf": 0.9
+    },
+    "bounce": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": "normal",
+      "owner_conf": 0.9
+    },
+    "shot_played": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": true,
+      "owner_conf": 0.7
+    },
+    "shot_type": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": "pull",
+      "owner_conf": 0.8
+    },
+    "shot_side": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": "leg",
+      "owner_conf": 0.8
+    },
+    "shot_angle": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": "square",
+      "owner_conf": 0.8
+    },
+    "elevation": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": "in_air",
+      "owner_conf": 0.8
+    },
+    "contact_quality": {
+      "owner": "qwen30b-instruct",
+      "committed": true,
+      "owner_value": "outside_edge",
+      "owner_conf": 0.8
+    }
+  },
+  "committed": 10,
+  "suppressed": [
+    "bowling_type",
+    "contact_quality",
+    "shot_elevation",
+    "bowling_angle"
+  ],
+  "wall_ms": 7503,
+  "_note": "Gemini retired in Fix C (2026-04-22); see layer2_classifier.py docstring."
+}

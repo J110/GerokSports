@@ -1,0 +1,11 @@
+{
+  "delivery_num": 10,
+  "event_ts": 1777819537.545454,
+  "ready_ts": 1777819552.545454,
+  "over_number": 8.4,
+  "event_type": "WICKET",
+  "runs": 0,
+  "replay_tag_count": 0,
+  "saved_frame_count": 0,
+  "tags": []
+}

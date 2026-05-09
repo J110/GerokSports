@@ -1,0 +1,1546 @@
+[37m[22:10:37 F0 TEST] INFO: ============================================================[0m
+[37m[22:10:37 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[22:10:37 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/149721/rcb-vs-csk-11th-match-indian-premier-league-2026[0m
+[37m[22:10:37 F0 SQUAD] INFO:   Royal Challengers Bengaluru: 11 XI + 12 bench[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Philip Salt (WK) — wk_batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Virat Kohli — batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Devdutt Padikkal — batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Rajat Patidar (C) — batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Jitesh Sharma (WK) — wk_batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Tim David — batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Romario Shepherd — bowl_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Krunal Pandya — bat_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Bhuvneshwar Kumar — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Abhinandan Singh — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Jacob Duffy — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Suyash Sharma — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Jacob Bethell — bat_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Rasikh Salam Dar — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Kanishk Chouhan — bowl_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Venkatesh Iyer — bat_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Josh Hazlewood — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Mangesh Yadav — bowl_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Vihaan Malhotra — bat_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Vicky Ostwal — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Jordan Cox — wk_batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Swapnil Singh — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Satvik Deswal — bowl_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:   Chennai Super Kings: 11 XI + 14 bench[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Sanju Samson (WK) — wk_batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Ruturaj Gaikwad (C) — batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Ayush Mhatre — batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Sarfaraz Khan — batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Shivam Dube — bat_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Prashant Veer — bowl_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Jamie Overton — bowl_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Noor Ahmad — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Anshul Kamboj — bowl_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Matt Henry — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     Khaleel Ahmed — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Matthew Short — batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Akeal Hosein — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Kartik Sharma — wk_batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Ramakrishna Ghosh — bat_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Gurjapneet Singh — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Rahul Chahar — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] MS Dhoni — wk_batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Shreyas Gopal — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Spencer Johnson — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Mukesh Choudhary — bowler[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Urvil Patel — wk_batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Aman Khan — bowl_allrounder[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Dewald Brevis — batter[0m
+[37m[22:10:37 F0 SQUAD] INFO:     [bench] Zakary Foulkes — bowl_allrounder[0m
+[37m[22:10:37 F0 TEST] INFO: Teams: ['Royal Challengers Bengaluru', 'Chennai Super Kings'][0m
+[37m[22:10:37 F0 TEST] INFO: Team variants: ['BAN', 'BANGALORE', 'BEN', 'BENGALURU', 'CH', 'CHA', 'CHALLENGERS', 'CHE', 'CHENNAI', 'CHENNAI SUPER KINGS', 'CSK', 'KIN', 'KINGS', 'RCB', 'RO', 'ROY', 'ROYAL', 'ROYAL CHALLENGERS BENGALURU', 'SUP', 'SUPER'][0m
+[37m[22:10:38 F0 TEST] INFO: Found Firefox window: id=6310 1739.0x1230.0 "RCB vs CSK Live video streaming | TATA IPL 2026"[0m
+[37m[22:10:39 F0 FIELD] INFO: Pitch detected from green mask at (0.83, 0.68) (fallback — will recalibrate from people)[0m
+[37m[22:10:39 F0 TEST] INFO: ============================================================[0m
+[37m[22:10:39 F0 TEST] INFO: [CONFIG] Vision:    Groq Scout 17B (strip + action merged)[0m
+[37m[22:10:39 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[22:10:39 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[22:10:39 F0 TEST] INFO: PIPELINE STARTED — 300s — NO TEAM ASSUMPTION[0m
+[37m[22:10:39 F0 TEST] INFO: ============================================================[0m
+[37m[22:10:40 F1 VISION] INFO: [SCOREBOARD] 0.8s (556 chars) +action[0m
+[37m[22:10:40 F1 TEST] INFO: 
+=======================================================[0m
+[37m[22:10:40 F1 TEST] INFO: [F1] SCOREBOARD — #1[0m
+[37m[22:10:40 F1 TEST] INFO:   [V 846ms] — 
+
+The live scoreboard strip at the bottom of the screen shows:
+
+Top line: Not fully visible
+Bottom line: Not fully visible
+
+However, above the scoreboard strip, a large blue banner with white text reads "WICKET". 
+
+There is no visible info panel or[0m
+[37m[22:10:41 F1 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:10:41 F1 TEST] INFO:   [E 936ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[22:10:41 F1 SCORER] INFO: Scored in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:10:41 F1 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[22:10:41 F1 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[22:10:41 F1 TEST] INFO:   [S 626ms] Changes: none[0m
+[37m[22:10:41 F1 TEST] INFO:   Total: 2409ms (V:846 E:936 S:626)[0m
+[37m[22:10:41 F1 TEST] INFO:   STATE: ? None-None (None) inn=1 | Bat: None | Bowl: None[0m
+[37m[22:10:41 F1 TEST] INFO:   [ACTION] The frame shows a large crowd celebrating, with many spectators holding blue fla[0m
+[37m[22:10:43 F2 VISION] INFO: [SCOREBOARD] 0.8s (690 chars) +action[0m
+[37m[22:10:43 F2 TEST] INFO: 
+=======================================================[0m
+[37m[22:10:43 F2 TEST] INFO: [F2] SCOREBOARD — #2[0m
+[37m[22:10:43 F2 TEST] INFO:   [V 764ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 84-5 (6.5)
+* Bottom line: 
+  * Batters: Kartik 6(3), Dube 7(3)
+  * Bowler: Krunal 2-7 (0.5)
+* Target: 251
+
+**Info/Career Panel:** Not visible
+
+**[0m
+[37m[22:10:44 F2 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:10:44 F2 TEST] INFO:   [GUARD] Info panel visible + score jump 0→84 — stripping[0m
+[37m[22:10:44 F2 TEST] INFO: [TEAM] Detected from players: ['KARTIK', 'DUBE'] → Chennai Super Kings batting (2 matches)[0m
+[37m[22:10:44 F2 BOARD] INFO: Scorecards built: Chennai Super Kings (25 bat) vs Royal Challengers Bengaluru (23 bowl)[0m
+[37m[22:10:44 F2 TEST] INFO: === TEAMS SET: Chennai Super Kings batting (inn 1) vs Royal Challengers Bengaluru bowling ===[0m
+[37m[22:10:44 F2 TEST] INFO:   [E 1245ms] visible_team=None score=None-None (6.5) target=251 rr=None[0m
+[37m[22:10:44 F2 TEST] INFO:     BAT: Kartik 6(3) [0m
+[37m[22:10:44 F2 TEST] INFO:     BAT: Dube 7(3) [0m
+[37m[22:10:44 F2 TEST] INFO:     BOWL: Krunal 2-7 (0.5)[0m
+[37m[22:10:44 F2 BOARD] INFO: Krunal Pandya: None/None (None) -> 2/7 (0.5) [F2][0m
+[37m[22:10:45 F2 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:10:45 F2 TEST] INFO:   [INNINGS] Scorer target 251 — pending confirmation[0m
+[37m[22:10:45 F2 TEST] INFO:   [S] Hint: Current batters: Kartik Sharma and Shivam Dube. Bowler: Krunal Pandya[0m
+[37m[22:10:45 F2 BOARD] INFO: overs: None -> 6.5 [F2][0m
+[37m[22:10:45 F2 BOARD] INFO: [CV:wickets] First value 5 — awaiting confirmation[0m
+[37m[22:10:45 F2 BOARD] INFO: Batter activated: Kartik Sharma[0m
+[37m[22:10:45 F2 BOARD] INFO: Kartik Sharma: 0(0) -> 6(3) [F2][0m
+[37m[22:10:45 F2 BOARD] INFO: Batter activated: Shivam Dube[0m
+[37m[22:10:45 F2 BOARD] INFO: Shivam Dube: 0(0) -> 7(3) [F2][0m
+[37m[22:10:45 F2 TEST] INFO:   [S 819ms] Changes: ['overs→6.5', 'bat:Kartik Sharma=6(3)', 'bat:Shivam Dube=7(3)', 'bowl:Krunal Pandya'][0m
+[37m[22:10:45 F2 TEST] INFO:   Total: 2828ms (V:764 E:1245 S:819)[0m
+[37m[22:10:45 F2 TEST] INFO:   [CODE] Innings 2 confirmed: Chennai Super Kings is chasing (inn 1 batters still visible)[0m
+[37m[22:10:45 F2 BOARD] INFO: [INNINGS] Set to 2. Target: 251. All trackers reset.[0m
+[37m[22:10:45 F2 TEST] INFO:   [CODE] Target set to 251[0m
+[37m[22:10:45 F2 TEST] INFO:   STATE: Chennai Super Kings None-None (None) inn=2 | Bat: Shivam Dube(7) Kartik Sharma(6) | Bowl: None[0m
+[37m[22:10:45 F2 TEST] INFO:   [ACTION] **
+
+The frame shows two players in brown jerseys with blue neck gaiters, likely [0m
+[37m[22:10:47 F3 VISION] INFO: [SCOREBOARD] 0.7s (508 chars) +action[0m
+[37m[22:10:47 F3 TEST] INFO: 
+=======================================================[0m
+[37m[22:10:47 F3 TEST] INFO: [F3] SCOREBOARD — #3[0m
+[37m[22:10:47 F3 TEST] INFO:   [V 748ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+- Top line: CSK 84-5 (6.5)
+- Bottom line: Kartik* 6(3), Dube 7(3), Krunal 2-7 (0.5)
+
+**ACTION:**
+The frame shows a close-up of a CSK player wearing a teal h[0m
+[37m[22:10:48 F3 EXTRACT] INFO: Extracted in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:10:48 F3 TEST] INFO:   [E 604ms] visible_team=Chennai Super Kings score=84-5 (6.5) target=None rr=None[0m
+[37m[22:10:48 F3 TEST] INFO:     BAT: Kartik 6(3) [0m
+[37m[22:10:48 F3 TEST] INFO:     BAT: Dube 7(3) [0m
+[37m[22:10:48 F3 TEST] INFO:     BOWL: Krunal 2-7 (0.5)[0m
+[37m[22:10:49 F3 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:10:49 F3 TEST] INFO:   [S] Hint: Current batters: Kartik Sharma and Shivam Dube. Bowler: Krunal Pandya[0m
+[37m[22:10:49 F3 BOARD] INFO: overs: None -> 6.5 [F3][0m
+[37m[22:10:49 F3 BOARD] INFO: [CV:wickets] First value 5 — awaiting confirmation[0m
+[37m[22:10:49 F3 TEST] INFO:   [S 887ms] Changes: ['overs→6.5', 'bat:Kartik Sharma=6(3)', 'bat:Shivam Dube=7(3)', 'bowl:Krunal Pandya'][0m
+[37m[22:10:49 F3 TEST] INFO:   Total: 2239ms (V:748 E:604 S:887)[0m
+[37m[22:10:49 F3 BOARD] INFO: Over 5 complete: no ball data (by Krunal Pandya)[0m
+[37m[22:10:49 F3 TEST] INFO:   STATE: Chennai Super Kings None-None (6.5) inn=2 | Bat: Shivam Dube(7) Kartik Sharma(6) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:10:49 F3 COMMENTARY] INFO: [BALL] DOT | 6.5 | bat=None bowl=Krunal Pandya +0 runs[0m
+[37m[22:10:49 F3 TEST] INFO:   [BALL EVENT] DOT | 6.5 | +0 runs | **
+The frame shows a close-up of a CSK player wearing a teal[0m
+[37m[22:10:49 F3 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 251 from 79 @ 19.06 rpo[0m
+[37m[22:10:50 F4 VISION] INFO: [SCOREBOARD] 0.6s (458 chars) +action[0m
+[37m[22:10:50 F4 TEST] INFO: 
+=======================================================[0m
+[37m[22:10:50 F4 TEST] INFO: [F4] SCOREBOARD — #4[0m
+[37m[22:10:50 F4 TEST] INFO:   [V 581ms] — 
+
+The live scoreboard strip is not visible in the provided image.
+
+However, I can see a blue box at the bottom which says: 
+WICKET BALL SPEED 
+97.2 kph
+
+ACTION: 
+The image shows a close-up of a delivery being bowled, with the ball in mid-air and th[0m
+[37m[22:10:51 F4 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:10:51 F4 TEST] INFO:   [E 1132ms] No data: closeup[0m
+[37m[22:10:53 F5 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:10:53 F5 TEST] INFO: [F5] AD 278ms (#1)[0m
+[37m[22:10:55 F6 VISION] INFO: [ADVERTISEMENT] 0.7s (13 chars)[0m
+[37m[22:10:55 F6 TEST] INFO: [F6] AD 699ms (#2)[0m
+[37m[22:10:56 F7 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:10:56 F7 TEST] INFO: [F7] AD 366ms (#3)[0m
+[37m[22:10:58 F8 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:10:58 F8 TEST] INFO: [F8] AD 449ms (#4)[0m
+[37m[22:10:59 F9 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:10:59 F9 TEST] INFO: [F9] AD 345ms (#5)[0m
+[37m[22:11:01 F10 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:11:01 F10 TEST] INFO: [F10] AD 336ms (#6)[0m
+[37m[22:11:02 F11 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:11:02 F11 TEST] INFO: [F11] AD 273ms (#7)[0m
+[37m[22:11:03 F12 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:11:03 F12 TEST] INFO: [F12] AD 368ms (#8)[0m
+[37m[22:11:05 F13 VISION] INFO: [ADVERTISEMENT] 0.5s (13 chars)[0m
+[37m[22:11:05 F13 TEST] INFO: [F13] AD 486ms (#9)[0m
+[37m[22:11:07 F14 VISION] INFO: [CLOSEUP] 0.4s (321 chars) +action[0m
+[37m[22:11:07 F14 TEST] INFO: [F14] CLOSEUP 428ms — The image shows a close-up of a man with blue paint on his face, wearing a red and purple jersey, an (#1)[0m
+[37m[22:11:08 F15 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:11:08 F15 TEST] INFO: [F15] AD 371ms (#10)[0m
+[37m[22:11:10 F16 VISION] INFO: [SCOREBOARD] 0.5s (508 chars) +action[0m
+[37m[22:11:10 F16 TEST] INFO: 
+=======================================================[0m
+[37m[22:11:10 F16 TEST] INFO: [F16] SCOREBOARD — #5[0m
+[37m[22:11:10 F16 TEST] INFO:   [V 526ms] — 
+
+The live scoreboard strip at the bottom of the screen displays:
+- Top line: CSK 84-5 (6.5)
+- Bottom line: The current batters' information and the bowler's information are not clearly visible.
+
+There is no rotating info panel visible.
+
+No bowling[0m
+[37m[22:11:11 F16 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:11 F16 TEST] INFO:   [E 919ms] visible_team=Chennai Super Kings score=84-5 (6.5) target=None rr=None[0m
+[37m[22:11:12 F16 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:12 F16 TEST] INFO:   [S] Hint: Current batters: DUBE and KARTIK SHARMA. Bowler: KRUNAL PANDYA[0m
+[37m[22:11:12 F16 BOARD] INFO: [CV:wickets] Initial 5 CONFIRMED[0m
+[37m[22:11:12 F16 BOARD] INFO: wickets: None -> 5 [F16][0m
+[37m[22:11:12 F16 BOARD] INFO: [INFER] Sanju Samson (opener pos 1) dismissed — openers always bat, 5 wickets fallen[0m
+[37m[22:11:12 F16 BOARD] INFO: [INFER] Ruturaj Gaikwad (opener pos 2) dismissed — openers always bat, 5 wickets fallen[0m
+[37m[22:11:12 F16 BOARD] INFO: [INFER] Ayush Mhatre (pos 3) dismissed — 1 seen between pos 3 and active pos 14[0m
+[37m[22:11:12 F16 BOARD] INFO: [INFER] Sarfaraz Khan (pos 4) dismissed — 1 seen between pos 4 and active pos 14[0m
+[37m[22:11:12 F16 BOARD] INFO: [INFER] Prashant Veer (pos 6) dismissed — 0 seen between pos 6 and active pos 14[0m
+[37m[22:11:12 F16 TEST] INFO:   [S 928ms] Changes: ['overs→6.5', 'wickets→5', 'bat:Shivam Dube=7(3)', 'bat:Kartik Sharma=6(3)', 'bowl:Krunal Pandya'][0m
+[37m[22:11:12 F16 TEST] INFO:   Total: 2372ms (V:526 E:919 S:928)[0m
+[37m[22:11:12 F16 TEST] INFO:   STATE: Chennai Super Kings None-5 (6.5) inn=2 | Bat: Shivam Dube(7) Kartik Sharma(6) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:11:12 F16 COMMENTARY] INFO: [BALL] WICKET | 6.5 | bat=None bowl=Krunal Pandya +0 runs[0m
+[37m[22:11:12 F16 TEST] INFO:   [BALL EVENT] WICKET | 6.5 | +0 runs | The frame shows a player in a light blue uniform walking off[0m
+[37m[22:11:12 F16 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 251 from 79 @ 19.06 rpo[0m
+[37m[22:11:13 F17 VISION] INFO: [SCOREBOARD] 0.7s (710 chars) +action[0m
+[37m[22:11:13 F17 TEST] INFO: 
+=======================================================[0m
+[37m[22:11:13 F17 TEST] INFO: [F17] SCOREBOARD — #6[0m
+[37m[22:11:13 F17 TEST] INFO:   [V 673ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 84-5 (6.5)
+* Bottom line: 
+  * DUBE* 21 (16)
+  * KARTIK SHARMA 63 (31) SR 200
+  * Bowler: KRUNAL 
+
+**Info/Career Panel:**
+No info panel visible.
+[0m
+[37m[22:11:15 F17 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:15 F17 TEST] INFO:   [GUARD] Info panel visible + score jump 0→84 — stripping[0m
+[37m[22:11:15 F17 TEST] INFO:   [GUARD] Info panel + Shivam Dube runs 7→21 — stripping[0m
+[37m[22:11:15 F17 TEST] INFO:   [GUARD] Info panel + Kartik Sharma runs 6→63 — stripping[0m
+[37m[22:11:15 F17 TEST] INFO:   [E 1128ms] visible_team=Chennai Super Kings score=None-None (6.5) target=None rr=None[0m
+[37m[22:11:15 F17 TEST] INFO:     BAT: DUBE None(None) [0m
+[37m[22:11:15 F17 TEST] INFO:     BAT: KARTIK SHARMA None(None) [0m
+[37m[22:11:15 F17 TEST] INFO:     BOWL: KRUNAL None-None (None)[0m
+[37m[22:11:16 F17 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:16 F17 TEST] INFO:   [S] Hint: Current batters: DUBE and KARTIK SHARMA. Bowler: KRUNA ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer[0m
+[37m[22:11:16 F17 BOARD] INFO: score: None -> 84 [F17][0m
+[37m[22:11:16 F17 BOARD] INFO: [CV:Shivam Dube:balls] Jump 3→16 (+13.0) HOLDING[0m
+[37m[22:11:16 F17 BOARD] INFO: Shivam Dube: 7(3) -> 21(3) [F17][0m
+[37m[22:11:16 F17 BOARD] INFO: [CV:Kartik Sharma:runs] Jump 6→63 (+57.0) HOLDING[0m
+[37m[22:11:16 F17 BOARD] INFO: [CV:Kartik Sharma:balls] Jump 3→31 (+28.0) HOLDING[0m
+[37m[22:11:16 F17 BOARD] INFO: [CV:Krunal Pandya:bowl_overs] Jump 5→12 (+7.0) HOLDING[0m
+[37m[22:11:16 F17 TEST] INFO:   [S 1032ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bat:Shivam Dube=21(16)', 'bat:Kartik Sharma=63(31)', 'bowl:Krunal Pandya'][0m
+[37m[22:11:16 F17 TEST] INFO:   Total: 2832ms (V:673 E:1128 S:1032)[0m
+[37m[22:11:16 F17 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube(21) Kartik Sharma(6) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:11:16 F17 COMMENTARY] INFO: [BALL] 84_RUNS | 6.5 | bat=None bowl=Krunal Pandya +84 runs[0m
+[37m[22:11:16 F17 TEST] INFO:   [BALL EVENT] 84_RUNS | 6.5 | +84 runs | **
+The frame shows Kartik Sharma walking off the field, wear[0m
+[37m[22:11:16 F17 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 167 from 79 @ 12.68 rpo[0m
+[37m[22:11:17 F18 VISION] INFO: [SCOREBOARD] 0.7s (660 chars) +action[0m
+[37m[22:11:17 F18 TEST] INFO: 
+=======================================================[0m
+[37m[22:11:17 F18 TEST] INFO: [F18] SCOREBOARD — #7[0m
+[37m[22:11:17 F18 TEST] INFO:   [V 654ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 84-5 (6.5)
+* Bottom line: KARTIK SHARMA 63(31) c ABHINANDAN b KRUNAL, 
+* No second batter info visible
+
+**INFO/CAREER PANEL:** None
+
+**SPEE[0m
+[37m[22:11:18 F18 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:18 F18 TEST] INFO:   [GUARD] Info panel + Kartik Sharma runs 6→63 — stripping[0m
+[37m[22:11:18 F18 BOARD] INFO: DISMISSED: Kartik Sharma 6(3) — caught | FOW 6/84 (6.5)[0m
+[37m[22:11:18 F18 TEST] INFO:   [E 961ms] visible_team=Chennai Super Kings score=84-5 (6.5) target=None rr=None[0m
+[37m[22:11:18 F18 TEST] INFO:     BAT: KARTIK SHARMA None(None) [0m
+[37m[22:11:18 F18 TEST] INFO:     BOWL: KRUNAL None-None (None)[0m
+[37m[22:11:19 F18 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:19 F18 TEST] INFO:   [S] Hint: Current batters: SHIVAM DUBE. Bowler: KRUNAL ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[33m[22:11:19 F18 BOARD] WARN: Dismiss: Kartik Sharma status is 'out', not batting[0m
+[37m[22:11:19 F18 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:11:19 F18 TEST] INFO:   [WARN] Score changed but no batter update — stats may be delayed[0m
+[37m[22:11:19 F18 TEST] INFO:   [S 904ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bowl:Krunal Pandya'][0m
+[37m[22:11:19 F18 TEST] INFO:   Total: 2519ms (V:654 E:961 S:904)[0m
+[37m[22:11:19 F18 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube(21) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:11:19 F18 TEST] INFO:   [ACTION] **
+The batter Kartik Sharma is walking off the field, likely after being dismiss[0m
+[37m[22:11:21 F19 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:11:21 F19 TEST] INFO: [F19] AD 419ms (#11)[0m
+[37m[22:11:22 F20 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:11:22 F20 TEST] INFO: [F20] AD 445ms (#12)[0m
+[37m[22:11:24 F21 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:11:24 F21 TEST] INFO: [F21] AD 435ms (#13)[0m
+[37m[22:11:25 F22 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:11:25 F22 TEST] INFO: [F22] AD 438ms (#14)[0m
+[37m[22:11:27 F23 VISION] INFO: [ADVERTISEMENT] 0.2s (13 chars)[0m
+[37m[22:11:27 F23 TEST] INFO: [F23] AD 231ms (#15)[0m
+[37m[22:11:28 F24 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:11:28 F24 TEST] INFO: [F24] AD 288ms (#16)[0m
+[37m[22:11:30 F25 VISION] INFO: [SCOREBOARD] 0.8s (636 chars) +action[0m
+[37m[22:11:30 F25 TEST] INFO: 
+=======================================================[0m
+[37m[22:11:30 F25 TEST] INFO: [F25] SCOREBOARD — #8[0m
+[37m[22:11:30 F25 TEST] INFO:   [V 765ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 84-5 (6.5)
+* Bottom line: 
+  * Batters: Prashant Dube 0(3), Shivam Dube 7(3)
+  * Bowler: Krunal 2-7 (0.5)
+* Target: 251
+
+**Cricket Action:**
+
+The[0m
+[37m[22:11:31 F25 EXTRACT] INFO: Extracted in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:31 F25 BOARD] INFO: [NAME] Exact miss for 'PRASHANT DUBE', trying fuzzy (439 keys)...[0m
+[37m[22:11:31 F25 BOARD] INFO: Fuzzy matched 'Prashant Dube' → 'Prashant Veer' (77%)[0m
+[37m[22:11:31 F25 TEST] INFO:   [E 798ms] visible_team=Chennai Super Kings score=84-5 (6.5) target=251 rr=None[0m
+[37m[22:11:31 F25 TEST] INFO:     BAT: Prashant Dube 0(3) [0m
+[37m[22:11:31 F25 TEST] INFO:     BAT: Shivam Dube 7(3) [0m
+[37m[22:11:31 F25 TEST] INFO:     BOWL: Krunal 2-7 (0.5)[0m
+[37m[22:11:32 F25 SCORER] INFO: Scored in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:32 F25 TEST] INFO:   [S] Hint: Current batters: Shivam Dube and Prashant Veer. Bowler: Krunal Pandya ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[33m[22:11:32 F25 BOARD] WARN: Dismiss: Kartik Sharma status is 'out', not batting[0m
+[37m[22:11:32 F25 TEST] INFO:   [GUARD] Batter 'Kartik Sharma' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:11:32 F25 TEST] INFO:   [S 1074ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bat:Shivam Dube=21(3)', 'bowl:Krunal Pandya'][0m
+[37m[22:11:32 F25 TEST] INFO:   Total: 2637ms (V:765 E:798 S:1074)[0m
+[37m[22:11:32 F25 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube(21) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:11:32 F25 TEST] INFO:   [ACTION] **
+
+The batter Prashant Dube and Shivam Dube are walking back to the pavilion, s[0m
+[37m[22:11:34 F26 VISION] INFO: [SCOREBOARD] 0.7s (599 chars) +action[0m
+[37m[22:11:34 F26 TEST] INFO: 
+=======================================================[0m
+[37m[22:11:34 F26 TEST] INFO: [F26] SCOREBOARD — #9[0m
+[37m[22:11:34 F26 TEST] INFO:   [V 701ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 84-5 (6.5), RCB 65-1 (6.5)
+* Bottom line: 
+  * Shivam Dube 0(0), Prashant Veer 7(3)
+  * Bowler: Krunal 2-7 (0.5)
+
+**INFO_PANEL:** Not visib[0m
+[37m[22:11:35 F26 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:35 F26 TEST] INFO:   [E 1050ms] visible_team=None score=84-5 (6.5) target=None rr=None[0m
+[37m[22:11:35 F26 TEST] INFO:     BAT: Shivam Dube 0(0) [0m
+[37m[22:11:35 F26 TEST] INFO:     BAT: Prashant Veer 7(3) [0m
+[37m[22:11:35 F26 TEST] INFO:     BOWL: Krunal 2-7 (0.5)[0m
+[37m[22:11:36 F26 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:36 F26 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: KRUNAL ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[33m[22:11:36 F26 BOARD] WARN: Batter Prashant Veer dismissed but seen again (1/3 for recovery)[0m
+[37m[22:11:36 F26 TEST] INFO:   [S 831ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bat:Shivam Dube=21(3)', 'bowl:Krunal Pandya'][0m
+[37m[22:11:36 F26 TEST] INFO:   Total: 2581ms (V:701 E:1050 S:831)[0m
+[37m[22:11:36 F26 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube*(21) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:11:36 F26 TEST] INFO:   [ACTION] **
+
+The frame shows a player in a light blue uniform walking on the field while [0m
+[37m[22:11:46 F34 VISION] INFO: [SCOREBOARD] 1.0s (840 chars) +action[0m
+[37m[22:11:46 F34 TEST] INFO: 
+=======================================================[0m
+[37m[22:11:46 F34 TEST] INFO: [F34] SCOREBOARD — #10[0m
+[37m[22:11:46 F34 TEST] INFO:   [V 989ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 84-5 (6.5)
+* Bottom line: 
+  * Prashant Dube 0(7) | Krunal 2-7 (0.5)
+  * Target: 251
+* RCB after 6.5 overs: 65-1
+
+**Info/Career Panel:** Not pres[0m
+[37m[22:11:47 F34 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:47 F34 TEST] INFO:   [GUARD] Info panel visible + score jump 84→65 — stripping[0m
+[37m[22:11:47 F34 TEST] INFO:   [E 1167ms] visible_team=Royal Challengers Bengaluru score=None-None (6.5) target=251 rr=None[0m
+[37m[22:11:47 F34 TEST] INFO:     BAT: Prashant Dube 0(7) [0m
+[37m[22:11:47 F34 TEST] INFO:     BOWL: Krunal 2-7 (0.5)[0m
+[37m[22:11:48 F34 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:48 F34 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: KRUNAL. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:11:48 F34 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:11:48 F34 TEST] INFO:   [WARN] Score changed but no batter update — stats may be delayed[0m
+[37m[22:11:48 F34 TEST] INFO:   [S 864ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bowl:Krunal Pandya'][0m
+[37m[22:11:48 F34 TEST] INFO:   Total: 3019ms (V:989 E:1167 S:864)[0m
+[37m[22:11:48 F34 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube*(21) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:11:48 F34 TEST] INFO:   [ACTION] **
+
+The cricketer in a light blue jersey and helmet is likely walking or positio[0m
+[37m[22:11:50 F35 VISION] INFO: [SCOREBOARD] 1.0s (822 chars) +action[0m
+[37m[22:11:50 F35 TEST] INFO: 
+=======================================================[0m
+[37m[22:11:50 F35 TEST] INFO: [F35] SCOREBOARD — #11[0m
+[37m[22:11:50 F35 TEST] INFO:   [V 993ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK: 84-5 (6.5)
+* Batter 1: Prashant Dube - 0(7)
+* Batter 2: Not shown
+* Bowler: Krunal - 2-7 (0.5)
+
+The info panel is not visible.
+
+There is no bowling [0m
+[37m[22:11:51 F35 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:51 F35 TEST] INFO:   [E 1048ms] visible_team=Chennai Super Kings score=84-5 (6.5) target=None rr=None[0m
+[37m[22:11:51 F35 TEST] INFO:     BAT: Prashant Dube 0(7) [0m
+[37m[22:11:51 F35 TEST] INFO:     BOWL: Krunal 2-7 (0.5)[0m
+[37m[22:11:52 F35 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:52 F35 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: KRUNAL ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:11:52 F35 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:11:52 F35 TEST] INFO:   [WARN] Score changed but no batter update — stats may be delayed[0m
+[37m[22:11:52 F35 TEST] INFO:   [S 906ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bowl:Krunal Pandya'][0m
+[37m[22:11:52 F35 TEST] INFO:   Total: 2947ms (V:993 E:1048 S:906)[0m
+[37m[22:11:52 F35 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube*(21) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:11:52 F35 TEST] INFO:   [ACTION] The frame shows a close-up of a player, likely Prashant Dube, wearing a blue jer[0m
+[37m[22:11:54 F36 VISION] INFO: [SCOREBOARD] 0.8s (639 chars) +action[0m
+[37m[22:11:54 F36 TEST] INFO: 
+=======================================================[0m
+[37m[22:11:54 F36 TEST] INFO: [F36] SCOREBOARD — #12[0m
+[37m[22:11:54 F36 TEST] INFO:   [V 751ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 84-5 (6.5)
+* Bottom line: 
+  * Prashant Dube 7(3) | Kruna 2-7 (0.5)
+  * Target: 251
+  * RCB after 6.5 overs: 65-1
+
+**INFO_PANEL:** Not visi[0m
+[37m[22:11:55 F36 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:55 F36 TEST] INFO:   [E 971ms] visible_team=Royal Challengers Bengaluru score=65-1 (6.5) target=251 rr=None[0m
+[37m[22:11:55 F36 TEST] INFO:     BAT: Prashant Dube 7(3) [0m
+[37m[22:11:55 F36 TEST] INFO:     BOWL: Kruna 2-7 (0.5)[0m
+[37m[22:11:55 F36 BOARD] INFO: [NAME] Exact miss for 'KRUNA', trying fuzzy (440 keys)...[0m
+[37m[22:11:55 F36 BOARD] INFO: Fuzzy matched 'Kruna' → 'Krunal Pandya' (91%)[0m
+[37m[22:11:55 F36 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:55 F36 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: KRUNAL ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:11:55 F36 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:11:55 F36 TEST] INFO:   [WARN] Score changed but no batter update — stats may be delayed[0m
+[37m[22:11:55 F36 TEST] INFO:   [S 809ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bowl:Krunal Pandya'][0m
+[37m[22:11:55 F36 TEST] INFO:   Total: 2531ms (V:751 E:971 S:809)[0m
+[37m[22:11:55 F36 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube*(21) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:11:55 F36 TEST] INFO:   [ACTION] The batter, Prashant Dube, is wearing a helmet and appears to be preparing to fa[0m
+[37m[22:11:57 F37 VISION] INFO: [SCOREBOARD] 0.7s (704 chars) +action[0m
+[37m[22:11:57 F37 TEST] INFO: 
+=======================================================[0m
+[37m[22:11:57 F37 TEST] INFO: [F37] SCOREBOARD — #13[0m
+[37m[22:11:57 F37 TEST] INFO:   [V 712ms] — 
+
+1. LIVE SCOREBOARD STRIP:
+  Top line: CSK, 84-5, 6.5
+  Bottom line: Not fully visible, but one batter is DUBE 
+
+2. INFO/CAREER PANEL: 
+  INFO_PANEL: 11 MATCHES, 118 RUNS, 159 SR, T20 CAREER
+
+ACTION: 
+The cricket action shows a live scene with pla[0m
+[37m[22:11:58 F37 EXTRACT] INFO: Extracted in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:58 F37 TEST] INFO:   [E 791ms] visible_team=Chennai Super Kings score=84-5 (6.5) target=None rr=None[0m
+[37m[22:11:58 F37 TEST] INFO:     BAT: DUBE None(None) [0m
+[37m[22:11:58 F37 TEST] INFO:     BAT: VEER None(None) [0m
+[37m[22:11:59 F37 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:11:59 F37 TEST] INFO:   [S] Hint: Current batters: DUBE. Bowler: KRUNAL. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:11:59 F37 TEST] INFO:   [S 845ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bat:Shivam Dube=21(3)', 'bowl:Krunal Pandya'][0m
+[37m[22:11:59 F37 TEST] INFO:   Total: 2348ms (V:712 E:791 S:845)[0m
+[37m[22:11:59 F37 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube*(21) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:11:59 F37 TEST] INFO:   [ACTION] The cricket action shows a live scene with players on the field; it seems that n[0m
+[37m[22:12:01 F38 VISION] INFO: [SCOREBOARD] 0.6s (500 chars) +action[0m
+[37m[22:12:01 F38 TEST] INFO: 
+=======================================================[0m
+[37m[22:12:01 F38 TEST] INFO: [F38] SCOREBOARD — #14[0m
+[37m[22:12:01 F38 TEST] INFO:   [V 637ms] — 
+
+1. LIVE SCOREBOARD STRIP:
+  Top line: CSK, 84-5, 6.5
+  Bottom line: Not fully visible, but shows DUBE and another batter
+
+2. INFO/CAREER PANEL: 
+  INFO_PANEL: Prashant Veer, 11 matches, 118 runs, 159 SR, T20 Career
+
+ACTION: 
+The cricket action sh[0m
+[37m[22:12:02 F38 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:02 F38 TEST] INFO:   [E 1225ms] visible_team=Chennai Super Kings score=84-5 (6.5) target=None rr=None[0m
+[37m[22:12:02 F38 TEST] INFO:     BAT: DUBE None(None) [0m
+[37m[22:12:03 F38 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:03 F38 TEST] INFO:   [S] Hint: Current batters: DUBE and another batter. Bowler: KRUNAL. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:12:03 F38 TEST] INFO:   [S 788ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bat:Shivam Dube=21(3)', 'bowl:Krunal Pandya'][0m
+[37m[22:12:03 F38 TEST] INFO:   Total: 2650ms (V:637 E:1225 S:788)[0m
+[37m[22:12:03 F38 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube*(21) | Bowl: Krunal Pandya 2-7[0m
+[37m[22:12:03 F38 TEST] INFO:   [ACTION] The cricket action shows a live match with players on the field. The focus seems[0m
+[37m[22:12:03 F38 FIELD] INFO: [F38] OC-deep_mid_on_area moved to OC-deep_midwicket[0m
+[37m[22:12:03 F38 FIELD] INFO: [F38] IC-point moved to IC-midwicket[0m
+[37m[22:12:06 F40 VISION] INFO: [SCOREBOARD] 1.3s (455 chars) +action[0m
+[37m[22:12:06 F40 TEST] INFO: 
+=======================================================[0m
+[37m[22:12:06 F40 TEST] INFO: [F40] SCOREBOARD — #15[0m
+[37m[22:12:06 F40 TEST] INFO:   [V 1305ms] — 
+
+The live scoreboard strip at the bottom of the screen displays:
+
+CSK 84-5 (6.5)
+
+Below that, it shows:
+DUBE  * 32(23) | GAikwad  14(10)  KRUNAL 2-16(2.5)
+
+There is no info panel visible.
+
+ACTION:
+The batter Dube is preparing to face the bowler, h[0m
+[37m[22:12:08 F40 EXTRACT] INFO: Extracted in 1.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:08 F40 TEST] INFO:   [E 1766ms] visible_team=Chennai Super Kings score=84-5 (6.5) target=None rr=None[0m
+[37m[22:12:08 F40 TEST] INFO:     BAT: DUBE 32(23) *[0m
+[37m[22:12:08 F40 TEST] INFO:     BAT: GAikwad 14(10) [0m
+[37m[22:12:08 F40 TEST] INFO:     BOWL: KRUNAL 2-16 (2.5)[0m
+[37m[22:12:08 F40 BOARD] INFO: [CV:Krunal Pandya:bowl_overs] Jump 5→17 (+12.0) HOLDING[0m
+[37m[22:12:08 F40 BOARD] INFO: Krunal Pandya: 2/7 (0.5) -> 2/16 (0.5) [F40][0m
+[37m[22:12:09 F40 SCORER] INFO: Scored in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:09 F40 TEST] INFO:   [S] Hint: Current batters: DUBE and GAikwad. Bowler: KRUNAL. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:12:09 F40 BOARD] INFO: [CV:Shivam Dube:balls] Jump 3→23 (+20.0) HOLDING[0m
+[37m[22:12:09 F40 BOARD] INFO: Shivam Dube: 21(3) -> 32(3) [F40][0m
+[33m[22:12:09 F40 BOARD] WARN: Batter Ruturaj Gaikwad dismissed but seen again (1/3 for recovery)[0m
+[37m[22:12:09 F40 BOARD] INFO: [CV:Krunal Pandya:bowl_overs] Jump 5→17 CONFIRMED after 2 sightings[0m
+[37m[22:12:09 F40 BOARD] INFO: Krunal Pandya: 2/16 (0.5) -> 2/16 (2.5) [F40][0m
+[37m[22:12:09 F40 TEST] INFO:   [S 1146ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bat:Shivam Dube=32(23)', 'bowl:Krunal Pandya'][0m
+[37m[22:12:09 F40 TEST] INFO:   Total: 4216ms (V:1305 E:1766 S:1146)[0m
+[37m[22:12:09 F40 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube*(32) | Bowl: Krunal Pandya 2-16[0m
+[37m[22:12:09 F40 TEST] INFO:   [ACTION] The batter Dube is preparing to face the bowler, holding the bat and standing ne[0m
+[37m[22:12:11 F41 VISION] INFO: [SCOREBOARD] 0.9s (546 chars) +action[0m
+[37m[22:12:11 F41 TEST] INFO: 
+=======================================================[0m
+[37m[22:12:11 F41 TEST] INFO: [F41] SCOREBOARD — #16[0m
+[37m[22:12:11 F41 TEST] INFO:   [V 924ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 84-5 (6.5)
+* Bottom line: 
+  * DUBE 7(3) * 
+  * KRUNAL 2-7 (0.5)
+  * RCB: 65-1
+
+**Info/Career Panel:** Not visible
+
+**Bowling Speed:** Not visibl[0m
+[37m[22:12:12 F41 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:12 F41 TEST] INFO:   [E 879ms] visible_team=Chennai Super Kings score=84-5 (6.5) target=None rr=None[0m
+[37m[22:12:12 F41 TEST] INFO:     BAT: DUBE 7(3) *[0m
+[37m[22:12:12 F41 TEST] INFO:     BOWL: KRUNAL 2-7 (0.5)[0m
+[37m[22:12:13 F41 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:13 F41 TEST] INFO:   [S] Hint: Current batters: DUBE and unknown. Bowler: KRUNAL. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[33m[22:12:13 F41 BOARD] WARN: Dismiss: Kartik Sharma status is 'out', not batting[0m
+[37m[22:12:13 F41 TEST] INFO:   [S 930ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bowl:Krunal Pandya'][0m
+[37m[22:12:13 F41 TEST] INFO:   Total: 2733ms (V:924 E:879 S:930)[0m
+[37m[22:12:13 F41 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube*(32) | Bowl: Krunal Pandya 2-16[0m
+[37m[22:12:13 F41 TEST] INFO:   [ACTION] **
+
+The batter, Prashant Dube, is preparing to face the bowler, with the bat pos[0m
+[37m[22:12:15 F43 TEST] INFO: [F43] Pixel skip #10[0m
+[FIELD] Pitch detected from people cluster: (0.44, 0.75) spread=0.184
+[37m[22:12:20 F46 VISION] INFO: [SCOREBOARD] 0.9s (798 chars) +action[0m
+[37m[22:12:20 F46 TEST] INFO: 
+=======================================================[0m
+[37m[22:12:20 F46 TEST] INFO: [F46] SCOREBOARD — #17[0m
+[37m[22:12:20 F46 TEST] INFO:   [V 943ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK v RCB
+- 84-5 (6.5)
+- BENGALURU
+- PRASHANT DUBE | 0(0) 7(3)
+- TARGET 251
+- KRUNAL | 2-7 (0.5) RCB AFTER 6.5 OVERS 65-1
+
+There is no info/career panel [0m
+[37m[22:12:21 F46 EXTRACT] INFO: Extracted in 1.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:21 F46 BOARD] INFO: [NAME] Exact miss for '7', trying fuzzy (441 keys)...[0m
+[33m[22:12:21 F46 BOARD] WARN: No match for '7'. Closest: [('SANJU SAMSON', '0.00'), ('SAMSON', '0.00'), ('S SAMSON', '0.00')][0m
+[37m[22:12:21 F46 TEST] INFO:   [E 1458ms] visible_team=Royal Challengers Bengaluru score=84-5 (6.5) target=251 rr=None[0m
+[37m[22:12:21 F46 TEST] INFO:     BAT: PRASHANT DUBE 0(0) [0m
+[37m[22:12:21 F46 TEST] INFO:     BAT: 7 3(None) [0m
+[37m[22:12:21 F46 TEST] INFO:     BOWL: KRUNAL 2-7 (0.5)[0m
+[37m[22:12:22 F46 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:22 F46 TEST] INFO:   [S] Hint: Current batters: Shivam Dube and Prashant Veer. Bowler: Krunal Pandya ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:12:22 F46 BOARD] INFO: [NAME] Exact miss for '7', trying fuzzy (441 keys)...[0m
+[33m[22:12:22 F46 BOARD] WARN: No match for '7'. Closest: [('SANJU SAMSON', '0.00'), ('SAMSON', '0.00'), ('S SAMSON', '0.00')][0m
+[37m[22:12:22 F46 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:12:22 F46 TEST] INFO:   [WARN] Score changed but no batter update — stats may be delayed[0m
+[37m[22:12:22 F46 TEST] INFO:   [S 1007ms] Changes: ['score→84', 'overs→6.5', 'wickets→5', 'bowl:Krunal Pandya'][0m
+[37m[22:12:22 F46 TEST] INFO:   Total: 3409ms (V:943 E:1458 S:1007)[0m
+[37m[22:12:22 F46 TEST] INFO:   STATE: Chennai Super Kings 84-5 (6.5) inn=2 | Bat: Shivam Dube*(32) | Bowl: Krunal Pandya 2-16[0m
+[37m[22:12:22 F46 TEST] INFO:   [ACTION] The frame shows a close-up of a player wearing a maroon jersey with "SUN PHARMA"[0m
+[37m[22:12:26 F48 VISION] INFO: [SCOREBOARD] 1.3s (1035 chars) +action[0m
+[37m[22:12:26 F48 TEST] INFO: 
+=======================================================[0m
+[37m[22:12:26 F48 TEST] INFO: [F48] SCOREBOARD — #18[0m
+[37m[22:12:26 F48 TEST] INFO:   [V 1304ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK: 84-5 (7 overs)
+- Batter 1: Prashant Dube - 7(3)
+- Batter 2: Shivam Dube - 0(1)
+- Bowler: Krunal - 2/7 (1 over)
+
+There is no rotating info panel visi[0m
+[37m[22:12:27 F48 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:27 F48 TEST] INFO:   [E 1267ms] visible_team=Chennai Super Kings score=84-5 (7) target=None rr=None[0m
+[37m[22:12:27 F48 TEST] INFO:     BAT: Prashant Dube 7(3) [0m
+[37m[22:12:27 F48 TEST] INFO:     BAT: Shivam Dube 0(1) [0m
+[37m[22:12:27 F48 TEST] INFO:     BOWL: Krunal 2-7 (1)[0m
+[37m[22:12:28 F48 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:12:28 F48 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: KRUNAL ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:12:28 F48 BOARD] INFO: overs: 6.5 -> 7.0 [F48][0m
+[37m[22:12:28 F48 TEST] INFO:   [S 902ms] Changes: ['score→84', 'overs→7', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bowl:Krunal Pandya'][0m
+[37m[22:12:28 F48 TEST] INFO:   Total: 3473ms (V:1304 E:1267 S:902)[0m
+[37m[22:12:28 F48 BOARD] INFO: Over 6 complete: no ball data (by Krunal Pandya)[0m
+[37m[22:12:28 F48 TEST] INFO:   STATE: Chennai Super Kings 84-5 (7.0) inn=2 | Bat: Shivam Dube*(32) | Bowl: Krunal Pandya 2-16[0m
+[37m[22:12:28 F48 COMMENTARY] INFO: [BALL] DOT | 7.0 | bat=None bowl=Krunal Pandya +0 runs[0m
+[37m[22:12:28 F48 TEST] INFO:   [BALL EVENT] DOT | 7.0 | +0 runs | The frame shows two players, one in a brown jersey with a li[0m
+[37m[22:12:28 F48 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 167 from 78 @ 12.85 rpo[0m
+[37m[22:12:29 F49 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:12:29 F49 TEST] INFO: [F49] AD 361ms (#17)[0m
+[37m[22:12:29 F49 TEST] INFO: [SLEEP] Ad tagged but scoreboard strip still visible — staying at 1s[0m
+[37m[22:12:31 F50 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:12:31 F50 TEST] INFO: [F50] AD 296ms (#18)[0m
+[37m[22:12:31 F50 TEST] INFO: [SLEEP] Ad tagged but scoreboard strip still visible — staying at 1s[0m
+[37m[22:12:32 F51 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:12:32 F51 TEST] INFO: [F51] AD 271ms (#19)[0m
+[37m[22:12:32 F51 TEST] INFO: [SLEEP] Over complete + full-screen ad → sleeping 25s[0m
+[37m[22:12:58 F52 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:12:58 F52 TEST] INFO: [F52] AD 361ms (#20)[0m
+[37m[22:13:05 F59 TEST] INFO: [F59] Pixel skip #20[0m
+[37m[22:13:07 F60 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:13:07 F60 TEST] INFO: [F60] AD 386ms (#21)[0m
+[37m[22:13:11 F61 VISION] INFO: [ADVERTISEMENT] 2.8s (13 chars)[0m
+[37m[22:13:11 F61 TEST] INFO: [F61] AD 2811ms (#22)[0m
+[37m[22:13:13 F62 VISION] INFO: [SCOREBOARD] 0.8s (651 chars) +action[0m
+[37m[22:13:13 F62 TEST] INFO: 
+=======================================================[0m
+[37m[22:13:13 F62 TEST] INFO: [F62] SCOREBOARD — #19[0m
+[37m[22:13:13 F62 TEST] INFO:   [V 755ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 84-5 (7)
+* Bottom line: 
+  - PRASHANT 0(1) > DUBE 7(3)
+  - ABHINANDAN 0-13(1)
+
+**INFO/CAREER PANEL:** Not visible
+
+**SPEED:** Not visible
+*[0m
+[37m[22:13:13 F62 EXTRACT] INFO: Extracted in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:13 F62 TEST] INFO:   [E 587ms] visible_team=Chennai Super Kings score=84-5 (7) target=None rr=None[0m
+[37m[22:13:13 F62 TEST] INFO:     BAT: PRASHANT 0(1) [0m
+[37m[22:13:13 F62 TEST] INFO:     BAT: DUBE 7(3) [0m
+[37m[22:13:13 F62 TEST] INFO:     BOWL: ABHINANDAN 0-13 (1)[0m
+[37m[22:13:13 F62 BOARD] INFO: Abhinandan Singh: None/None (None) -> 0/13 (1.0) [F62][0m
+[37m[22:13:14 F62 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:14 F62 TEST] INFO:   [S] Hint: Current batters: DUBE and PRASHANT. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:13:14 F62 TEST] INFO:   [S 814ms] Changes: ['score→84', 'overs→7.0', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bowl:Abhinandan Singh'][0m
+[37m[22:13:14 F62 TEST] INFO:   Total: 2155ms (V:755 E:587 S:814)[0m
+[37m[22:13:14 F62 TEST] INFO:   STATE: Chennai Super Kings 84-5 (7.0) inn=2 | Bat: Shivam Dube*(32) | Bowl: Abhinandan Singh 0-13[0m
+[37m[22:13:14 F62 TEST] INFO:   [ACTION] **
+
+The batter, Prashant Dube, is holding a cricket bat and wearing a helmet, li[0m
+[37m[22:13:17 F64 VISION] INFO: [SCOREBOARD] 0.7s (670 chars) +action[0m
+[37m[22:13:17 F64 TEST] INFO: 
+=======================================================[0m
+[37m[22:13:17 F64 TEST] INFO: [F64] SCOREBOARD — #20[0m
+[37m[22:13:17 F64 TEST] INFO:   [V 690ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 84-5 (7)
+* Bottom line: 
+  * DUBE > 0(1) 
+  * PRASHANT 7(3)
+  * ABHINANDAN 0-13 (1)
+
+**INFO/CAREER PANEL:** Not visible
+
+**SPEED:** Not vis[0m
+[37m[22:13:18 F64 EXTRACT] INFO: Extracted in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:18 F64 TEST] INFO:   [E 587ms] visible_team=Chennai Super Kings score=84-5 (7) target=None rr=None[0m
+[37m[22:13:18 F64 TEST] INFO:     BAT: DUBE 0(1) [0m
+[37m[22:13:18 F64 TEST] INFO:     BAT: PRASHANT 7(3) [0m
+[37m[22:13:18 F64 TEST] INFO:     BOWL: ABHINANDAN 0-13 (1)[0m
+[37m[22:13:18 F64 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:18 F64 TEST] INFO:   [S] Hint: Current batters: DUBE and PRASHANT. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:13:18 F64 TEST] INFO:   [S 892ms] Changes: ['score→84', 'overs→7.0', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bowl:Abhinandan Singh'][0m
+[37m[22:13:18 F64 TEST] INFO:   Total: 2169ms (V:690 E:587 S:892)[0m
+[37m[22:13:18 F64 TEST] INFO:   STATE: Chennai Super Kings 84-5 (7.0) inn=2 | Bat: Shivam Dube*(32) | Bowl: Abhinandan Singh 0-13[0m
+[37m[22:13:18 F64 TEST] INFO:   [ACTION] **
+
+The cricketer wearing a teal jersey and helmet is holding a cricket bat. The[0m
+[37m[22:13:20 F65 VISION] INFO: [SCOREBOARD] 0.8s (707 chars) +action[0m
+[37m[22:13:20 F65 TEST] INFO: 
+=======================================================[0m
+[37m[22:13:20 F65 TEST] INFO: [F65] SCOREBOARD — #21[0m
+[37m[22:13:20 F65 TEST] INFO:   [V 850ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 84-5 (7)
+* Bottom line: 
+  * DUBE > 0(1) 
+  * PRASHANT 7(3)
+  * Bowler: ABHINANDAN 0-13 (1)
+
+**Additional Information:**
+No rotating info panel o[0m
+[37m[22:13:21 F65 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:21 F65 TEST] INFO:   [E 1037ms] visible_team=Chennai Super Kings score=84-5 (7) target=None rr=None[0m
+[37m[22:13:21 F65 TEST] INFO:     BAT: DUBE 0(1) [0m
+[37m[22:13:21 F65 TEST] INFO:     BAT: PRASHANT 7(3) [0m
+[37m[22:13:21 F65 TEST] INFO:     BOWL: ABHINANDAN 0-13 (1)[0m
+[37m[22:13:22 F65 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:22 F65 TEST] INFO:   [S] Hint: Current batters: DUBE and PRASHANT. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:13:22 F65 TEST] INFO:   [S 886ms] Changes: ['score→84', 'overs→7.0', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bowl:Abhinandan Singh'][0m
+[37m[22:13:22 F65 TEST] INFO:   Total: 2774ms (V:850 E:1037 S:886)[0m
+[37m[22:13:22 F65 TEST] INFO:   STATE: Chennai Super Kings 84-5 (7.0) inn=2 | Bat: Shivam Dube*(32) | Bowl: Abhinandan Singh 0-13[0m
+[37m[22:13:22 F65 TEST] INFO:   [ACTION] **
+The frame shows a player in a blue jersey with orange accents, likely Dube, r[0m
+[37m[22:13:24 F66 VISION] INFO: [SCOREBOARD] 0.9s (560 chars) +action[0m
+[37m[22:13:24 F66 TEST] INFO: 
+=======================================================[0m
+[37m[22:13:24 F66 TEST] INFO: [F66] SCOREBOARD — #22[0m
+[37m[22:13:24 F66 TEST] INFO:   [V 920ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+1. LIVE SCOREBOARD STRIP:
+  - Top line: CSK 84-5 7 
+  - Bottom line: PRASHANT 0(1) | DUBE 7(3) | ABHINANDAN 0-13(1)
+
+2. INFO/CAREER PANEL: Not visible
+
+No bowling speed or extras are [0m
+[37m[22:13:25 F66 EXTRACT] INFO: Extracted in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:25 F66 TEST] INFO:   [E 562ms] visible_team=Chennai Super Kings score=84-5 (7) target=None rr=None[0m
+[37m[22:13:25 F66 TEST] INFO:     BAT: PRASHANT 0(1) [0m
+[37m[22:13:25 F66 TEST] INFO:     BAT: DUBE 7(3) *[0m
+[37m[22:13:25 F66 TEST] INFO:     BOWL: ABHINANDAN 0-13 (None)[0m
+[37m[22:13:26 F66 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:26 F66 TEST] INFO:   [S] Hint: Current batters: DUBE and PRASHANT. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:13:26 F66 TEST] INFO:   [S 854ms] Changes: ['score→84', 'overs→7.0', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bowl:Abhinandan Singh'][0m
+[37m[22:13:26 F66 TEST] INFO:   Total: 2335ms (V:920 E:562 S:854)[0m
+[37m[22:13:26 F66 TEST] INFO:   STATE: Chennai Super Kings 84-5 (7.0) inn=2 | Bat: Shivam Dube*(32) | Bowl: Abhinandan Singh 0-13[0m
+[37m[22:13:26 F66 TEST] INFO:   [ACTION] The cricket action shows two batters, PRASHANT and DUBE, on the field. DUBE is h[0m
+[37m[22:13:34 F72 VISION] INFO: [SCOREBOARD] 1.0s (732 chars) +action[0m
+[37m[22:13:34 F72 TEST] INFO: 
+=======================================================[0m
+[37m[22:13:34 F72 TEST] INFO: [F72] SCOREBOARD — #23[0m
+[37m[22:13:34 F72 TEST] INFO:   [V 1039ms] — 
+
+The live scoreboard strip shows:
+
+* CSK 85-5 (7.1)
+* Batters: Prashant Dube 0(1), 8(4)
+* Bowler: Not explicitly mentioned but presumably Prashant 
+* Target: 251
+
+There is no info panel visible.
+
+The bowling speed is: SPEED: 142.3 kph
+
+No extras a[0m
+[37m[22:13:35 F72 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:35 F72 TEST] INFO:   [E 1207ms] visible_team=Chennai Super Kings score=85-5 (7.1) target=251 rr=None[0m
+[37m[22:13:35 F72 TEST] INFO:     BAT: Prashant Dube 8(4) [0m
+[37m[22:13:36 F72 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:36 F72 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN SINGH. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:13:36 F72 BOARD] INFO: score: 84 -> 85 [F72][0m
+[37m[22:13:36 F72 BOARD] INFO: overs: 7.0 -> 7.1 [F72][0m
+[37m[22:13:36 F72 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[33m[22:13:36 F72 BOARD] WARN: Batter Prashant Veer dismissed but seen again (2/3 for recovery)[0m
+[37m[22:13:36 F72 TEST] INFO:   [WARN] Score changed but no batter update — stats may be delayed[0m
+[37m[22:13:36 F72 TEST] INFO:   [S 992ms] Changes: ['score→85', 'overs→7.1', 'wickets→5'][0m
+[37m[22:13:36 F72 TEST] INFO:   Total: 3238ms (V:1039 E:1207 S:992)[0m
+[37m[22:13:36 F72 TEST] INFO:   STATE: Chennai Super Kings 85-5 (7.1) inn=2 | Bat: Shivam Dube*(32) | Bowl: Abhinandan Singh 0-13[0m
+[37m[22:13:36 F72 COMMENTARY] INFO: [BALL] EXTRA | 7.1 | bat=None bowl=Abhinandan Singh +1 runs[0m
+[37m[22:13:36 F72 TEST] INFO:   [BALL EVENT] EXTRA | 7.1 | +1 runs | The frame shows a close-up of a player, likely Prashant Dube[0m
+[37m[22:13:36 F72 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 166 from 77 @ 12.94 rpo[0m
+[37m[22:13:38 F73 VISION] INFO: [SCOREBOARD] 0.8s (581 chars) +action[0m
+[37m[22:13:38 F73 TEST] INFO: 
+=======================================================[0m
+[37m[22:13:38 F73 TEST] INFO: [F73] SCOREBOARD — #24[0m
+[37m[22:13:38 F73 TEST] INFO:   [V 841ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 85-5 (7.1)
+* Bottom line: 
+  * Prashant Dube 8(4) 
+  * > 
+  * Target: 251
+  * Abhinandan 0-14 (1.1)
+
+**Info/Career Panel:** Not visible
+
+**Bowlin[0m
+[37m[22:13:39 F73 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:39 F73 TEST] INFO:   [E 1038ms] visible_team=Chennai Super Kings score=85-5 (7.1) target=251 rr=None[0m
+[37m[22:13:39 F73 TEST] INFO:     BAT: Prashant Dube 8(4) [0m
+[37m[22:13:39 F73 TEST] INFO:     BOWL: Abhinandan 0-14 (1.1)[0m
+[37m[22:13:39 F73 BOARD] INFO: Abhinandan Singh: 0/13 (1.0) -> 0/14 (1.1) [F73][0m
+[37m[22:13:40 F73 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:40 F73 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Prashant Veer, Kartik Sharma[0m
+[37m[22:13:40 F73 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:13:40 F73 BOARD] INFO: [GUARD] FALSE DISMISSAL RECOVERED: Prashant Veer seen batting in 3 frames after dismissal. Wickets set to 5 (confirmed out: 5)[0m
+[37m[22:13:40 F73 BOARD] INFO: Prashant Veer: None(None) -> 8(4) [F73][0m
+[37m[22:13:40 F73 TEST] INFO:   [S 814ms] Changes: ['score→85', 'overs→7.1', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:13:40 F73 TEST] INFO:   Total: 2692ms (V:841 E:1038 S:814)[0m
+[37m[22:13:40 F73 TEST] INFO:   STATE: Chennai Super Kings 85-5 (7.1) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-14[0m
+[37m[22:13:40 F73 TEST] INFO:   [ACTION] **
+The cricket action is currently not visible as the frame focuses on an advert[0m
+[37m[22:13:40 F73 FIELD] INFO: [F73] OC-deep_point moved to OC-deep_cover[0m
+[37m[22:13:40 F73 FIELD] INFO: [F73] IC-backward_point pushed back — defensive[0m
+[37m[22:13:40 F73 FIELD] INFO: [F73] IC-mid_off brought in — attacking[0m
+[37m[22:13:40 F73 FIELD] INFO: [F73] OC-wide_long_off moved to OC-deep_cover[0m
+[37m[22:13:41 F74 VISION] INFO: [SCOREBOARD] 0.7s (612 chars) +action[0m
+[37m[22:13:41 F74 TEST] INFO: 
+=======================================================[0m
+[37m[22:13:41 F74 TEST] INFO: [F74] SCOREBOARD — #25[0m
+[37m[22:13:41 F74 TEST] INFO:   [V 738ms] — 
+
+The live scoreboard strip at the bottom of the screen displays:
+
+* CSK 85-5 (7.1)
+* Batter: Prashant Dube (8* off 4) and an unknown batter (0* off 1)
+* Bowler: Abhinandan (0-14, 1.1 overs)
+* Target: 251
+
+There is no info panel visible.
+
+ACTION: 
+[0m
+[37m[22:13:43 F74 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:43 F74 TEST] INFO:   [E 1093ms] visible_team=Chennai Super Kings score=85-5 (7.1) target=251 rr=None[0m
+[37m[22:13:43 F74 TEST] INFO:     BAT: Prashant Dube 8(4) [0m
+[37m[22:13:43 F74 TEST] INFO:     BOWL: Abhinandan 0-14 (1.1)[0m
+[37m[22:13:43 F74 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:43 F74 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:13:43 F74 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:13:43 F74 TEST] INFO:   [S 881ms] Changes: ['score→85', 'overs→7.1', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:13:43 F74 TEST] INFO:   Total: 2713ms (V:738 E:1093 S:881)[0m
+[37m[22:13:43 F74 TEST] INFO:   STATE: Chennai Super Kings 85-5 (7.1) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-14[0m
+[37m[22:13:43 F74 TEST] INFO:   [ACTION] The cricket action shows Prashant Dube and another batter at the crease, with Du[0m
+[FIELD WARN] Middle overs but 9 outside circle (max 5). Possible misclassification.
+[37m[22:13:43 F74 FIELD] INFO: [F74] OC-deep_cover moved to OC-deep_extra_cover[0m
+[37m[22:13:43 F74 FIELD] INFO: [F74] IC-mid_off pushed back — defensive[0m
+[37m[22:13:47 F76 VISION] INFO: [SCOREBOARD] 1.0s (697 chars) +action[0m
+[37m[22:13:47 F76 TEST] INFO: 
+=======================================================[0m
+[37m[22:13:47 F76 TEST] INFO: [F76] SCOREBOARD — #26[0m
+[37m[22:13:47 F76 TEST] INFO:   [V 1021ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK: 85-5 (7.1)
+- Batter 1: Prashant Dube (0(1))
+- Batter 2: Not shown
+- Bowler: Abhinandan (0-14, 1.1)
+- Info section: TO WIN: 166 OFF 77
+
+There is no r[0m
+[37m[22:13:48 F76 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:48 F76 TEST] INFO:   [E 1306ms] visible_team=Chennai Super Kings score=85-5 (7.1) target=None rr=None[0m
+[37m[22:13:48 F76 TEST] INFO:     BAT: Prashant Dube 0(1) [0m
+[37m[22:13:48 F76 TEST] INFO:     BOWL: Abhinandan 0-14 (1.1)[0m
+[37m[22:13:49 F76 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:49 F76 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:13:49 F76 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:13:49 F76 TEST] INFO:   [S 866ms] Changes: ['score→85', 'overs→7.1', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:13:49 F76 TEST] INFO:   Total: 3194ms (V:1021 E:1306 S:866)[0m
+[37m[22:13:49 F76 TEST] INFO:   STATE: Chennai Super Kings 85-5 (7.1) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-14[0m
+[37m[22:13:49 F76 TEST] INFO:   [ACTION] The cricket action visible in the frame shows a large screen displaying an adver[0m
+[37m[22:13:53 F79 VISION] INFO: [SCOREBOARD] 1.0s (730 chars) +action[0m
+[37m[22:13:53 F79 TEST] INFO: 
+=======================================================[0m
+[37m[22:13:53 F79 TEST] INFO: [F79] SCOREBOARD — #27[0m
+[37m[22:13:53 F79 TEST] INFO:   [V 1012ms] — 
+
+The live scoreboard strip at the bottom of the frame shows:
+
+* CSK 85-5 (7.1)
+* Batter 1: Prashant 0(1)
+* Batter 2: Dube 8(4)
+* Bowler: Abhinandan 0-14 (1.1)
+* Required Rate: 12.94
+* To Win: 166 off 77
+
+There is no info panel visible.
+
+There is n[0m
+[37m[22:13:55 F79 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:55 F79 TEST] INFO:   [E 1238ms] visible_team=Chennai Super Kings score=85-5 (7.1) target=None rr=12.94[0m
+[37m[22:13:55 F79 TEST] INFO:     BAT: Prashant 0(1) [0m
+[37m[22:13:55 F79 TEST] INFO:     BAT: Dube 8(4) [0m
+[37m[22:13:55 F79 TEST] INFO:     BOWL: Abhinandan 0-14 (1.1)[0m
+[37m[22:13:55 F79 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:13:55 F79 TEST] INFO:   [S] Hint: Current batters: Veer and Dube. Bowler: Abhinandan ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:13:55 F79 TEST] INFO:   [S 911ms] Changes: ['score→85', 'overs→7.1', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bat:Shivam Dube=32(3)', 'bowl:Abhinandan Singh'][0m
+[37m[22:13:55 F79 TEST] INFO:   Total: 3161ms (V:1012 E:1238 S:911)[0m
+[37m[22:13:55 F79 TEST] INFO:   STATE: Chennai Super Kings 85-5 (7.1) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-14[0m
+[37m[22:13:55 F79 TEST] INFO:   [ACTION] The cricket action visible in the frame shows a crowd of spectators cheering, wi[0m
+[37m[22:13:57 F80 TEST] INFO: [F80] Pixel skip #30[0m
+[37m[22:14:00 F82 VISION] INFO: [SCOREBOARD] 1.4s (777 chars) +action[0m
+[37m[22:14:00 F82 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:00 F82 TEST] INFO: [F82] SCOREBOARD — #28[0m
+[37m[22:14:00 F82 TEST] INFO:   [V 1426ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK 85-5 (7.1)
+* Batter 1: Prashant Dube - 0(1)
+* Batter 2: Not shown
+* Bowler: Abhinandan - 0-14 (1.1)
+* Additional info: To win 166 off 77, Required Ra[0m
+[37m[22:14:02 F82 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:02 F82 TEST] INFO:   [E 1259ms] visible_team=Chennai Super Kings score=85-5 (7.1) target=None rr=12.94[0m
+[37m[22:14:02 F82 TEST] INFO:     BAT: Prashant Dube 0(1) [0m
+[37m[22:14:02 F82 TEST] INFO:     BOWL: Abhinandan 0-14 (1.1)[0m
+[37m[22:14:03 F82 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:03 F82 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:03 F82 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:14:03 F82 TEST] INFO:   [S 1041ms] Changes: ['score→85', 'overs→7.1', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:14:03 F82 TEST] INFO:   Total: 3726ms (V:1426 E:1259 S:1041)[0m
+[37m[22:14:03 F82 TEST] INFO:   STATE: Chennai Super Kings 85-5 (7.1) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-14[0m
+[37m[22:14:03 F82 TEST] INFO:   [ACTION] The frame shows a close-up of a player, likely Prashant Dube, wearing a teal jer[0m
+[37m[22:14:09 F87 VISION] INFO: [SCOREBOARD] 0.9s (538 chars) +action[0m
+[37m[22:14:09 F87 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:09 F87 TEST] INFO: [F87] SCOREBOARD — #29[0m
+[37m[22:14:09 F87 TEST] INFO:   [V 906ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 85-5 (7.1)
+* Bottom line: 
+  * PRASHANT 0(1) > DUBE 8(4)
+  * ABHINANDAN 0-14 (1.1)
+* Additional info: TO WIN 166 OFF 77, REQUIRED RATE 12.94
+
+**A[0m
+[37m[22:14:11 F87 EXTRACT] INFO: Extracted in 1.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:11 F87 TEST] INFO:   [E 1459ms] visible_team=Chennai Super Kings score=85-5 (7.1) target=None rr=12.94[0m
+[37m[22:14:11 F87 TEST] INFO:     BAT: PRASHANT 0(1) [0m
+[37m[22:14:11 F87 TEST] INFO:     BAT: DUBE 8(4) *[0m
+[37m[22:14:11 F87 TEST] INFO:     BOWL: ABHINANDAN 0-14 (1.1)[0m
+[37m[22:14:11 F87 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:11 F87 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:11 F87 TEST] INFO:   [S 965ms] Changes: ['score→85', 'overs→7.1', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:14:11 F87 TEST] INFO:   Total: 3330ms (V:906 E:1459 S:965)[0m
+[37m[22:14:11 F87 TEST] INFO:   STATE: Chennai Super Kings 85-5 (7.1) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-14[0m
+[37m[22:14:11 F87 TEST] INFO:   [ACTION] **
+
+The batter DUBE is on the crease, and the bowler ABHINANDAN is likely walkin[0m
+[37m[22:14:13 F88 VISION] INFO: [SCOREBOARD] 0.8s (678 chars) +action[0m
+[37m[22:14:13 F88 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:13 F88 TEST] INFO: [F88] SCOREBOARD — #30[0m
+[37m[22:14:13 F88 TEST] INFO:   [V 807ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK v RCB
+* CSK: 85-5 (7.1)
+* Batter 1: Prashant Dube (0(1))
+* Batter 2: 8(4)
+* Bowler: No bowler name mentioned, but figures: Not mentioned 
+* To Win: 1[0m
+[37m[22:14:14 F88 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:14 F88 TEST] INFO:   [E 1077ms] visible_team=Chennai Super Kings score=85-5 (7.1) target=None rr=12.94[0m
+[37m[22:14:14 F88 TEST] INFO:     BAT: Prashant Dube 0(1) [0m
+[37m[22:14:15 F88 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:15 F88 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN SINGH ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:15 F88 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:14:15 F88 TEST] INFO:   [S 858ms] Changes: ['score→85', 'overs→7.1', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:14:15 F88 TEST] INFO:   Total: 2742ms (V:807 E:1077 S:858)[0m
+[37m[22:14:15 F88 TEST] INFO:   STATE: Chennai Super Kings 85-5 (7.1) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-14[0m
+[37m[22:14:15 F88 TEST] INFO:   [ACTION] The frame shows two men in cricket jerseys, one with his arm outstretched, possi[0m
+[37m[22:14:17 F89 VISION] INFO: [CLOSEUP] 0.6s (518 chars) +action[0m
+[37m[22:14:17 F89 TEST] INFO: [F89] CLOSEUP 647ms — The frame shows a close-up of a cricketer wearing a light blue jersey with various sponsor logos, in (#2)[0m
+[37m[22:14:19 F90 VISION] INFO: [SCOREBOARD] 0.7s (595 chars) +action[0m
+[37m[22:14:19 F90 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:19 F90 TEST] INFO: [F90] SCOREBOARD — #31[0m
+[37m[22:14:19 F90 TEST] INFO:   [V 667ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 89-5 (7.2)
+* Bottom line: 
+  * Prashant Dube 4*(2) > 
+  * Veer 8*(4)
+* Bowler: Abhinandan 0-18 (1.2)
+* INFO_PANEL not visible on the strip.
+
+* To[0m
+[37m[22:14:20 F90 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:20 F90 TEST] INFO:   [E 1070ms] visible_team=Chennai Super Kings score=89-5 (7.2) target=None rr=12.79[0m
+[37m[22:14:20 F90 TEST] INFO:     BAT: Prashant Dube 4(2) [0m
+[37m[22:14:20 F90 TEST] INFO:     BAT: Veer 8(4) [0m
+[37m[22:14:20 F90 TEST] INFO:     BOWL: Abhinandan 0-18 (1.2)[0m
+[37m[22:14:20 F90 BOARD] INFO: Abhinandan Singh: 0/14 (1.1) -> 0/18 (1.2) [F90][0m
+[37m[22:14:21 F90 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:21 F90 TEST] INFO:   [S] Hint: Current batters: DUBE, VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:21 F90 BOARD] INFO: score: 85 -> 89 [F90][0m
+[37m[22:14:21 F90 BOARD] INFO: overs: 7.1 -> 7.2 [F90][0m
+[37m[22:14:21 F90 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:14:21 F90 TEST] INFO:   [S 873ms] Changes: ['score→89', 'overs→7.2', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:14:21 F90 TEST] INFO:   Total: 2610ms (V:667 E:1070 S:873)[0m
+[37m[22:14:21 F90 TEST] INFO:   STATE: Chennai Super Kings 89-5 (7.2) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-18[0m
+[37m[22:14:21 F90 COMMENTARY] INFO: [BALL] FOUR | 7.2 | bat=None bowl=Abhinandan Singh +4 runs[0m
+[37m[22:14:21 F90 COMMENTARY] INFO: [PARTNERSHIP] ['Kartik Sharma', 'Shivam Dube'] — 89 runs off 3 balls[0m
+[37m[22:14:21 F90 TEST] INFO:   [BALL EVENT] FOUR | 7.2 | +4 runs | **
+The frame shows a close-up of a drum being played by a pe[0m
+[37m[22:14:21 F90 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 162 from 76 @ 12.79 rpo[0m
+[37m[22:14:21 F90 FIELD] INFO: [F90] defensive | total:10 (yolo:10 vis:0) | slips:0 in:1 out:9 | keeper:back | fresh:0 balls ago | conf:1.0 | 36ms[0m
+[37m[22:14:23 F91 VISION] INFO: [SCOREBOARD] 0.9s (714 chars) +action[0m
+[37m[22:14:23 F91 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:23 F91 TEST] INFO: [F91] SCOREBOARD — #32[0m
+[37m[22:14:23 F91 TEST] INFO:   [V 892ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 89-5 (7.2)
+* Bottom line: PRASHANT DUBE 1* (2), 
+* No other batter or bowler information visible on the scoreboard strip.
+
+INFO_PANEL: Not [0m
+[37m[22:14:23 F91 EXTRACT] INFO: Extracted in 0.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:23 F91 TEST] INFO:   [E 463ms] visible_team=None score=89-5 (7.2) target=None rr=None[0m
+[37m[22:14:23 F91 TEST] INFO:     BAT: PRASHANT DUBE 1(2) [0m
+[37m[22:14:24 F91 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:24 F91 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:24 F91 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:14:24 F91 TEST] INFO:   [S 872ms] Changes: ['score→89', 'overs→7.2', 'wickets→5', 'bat:Prashant Veer=8(4)'][0m
+[37m[22:14:24 F91 TEST] INFO:   Total: 2227ms (V:892 E:463 S:872)[0m
+[37m[22:14:24 F91 TEST] INFO:   STATE: Chennai Super Kings 89-5 (7.2) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-18[0m
+[37m[22:14:24 F91 TEST] INFO:   [ACTION] The frame shows a "FOUR" graphic on the screen, indicating that the batter has h[0m
+[37m[22:14:26 F92 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:14:26 F92 TEST] INFO: [F92] AD 252ms (#23)[0m
+[37m[22:14:27 F93 VISION] INFO: [ADVERTISEMENT] 0.4s (13 chars)[0m
+[37m[22:14:27 F93 TEST] INFO: [F93] AD 368ms (#24)[0m
+[37m[22:14:28 F94 VISION] INFO: [ADVERTISEMENT] 0.2s (13 chars)[0m
+[37m[22:14:28 F94 TEST] INFO: [F94] AD 247ms (#25)[0m
+[37m[22:14:30 F95 VISION] INFO: [SCOREBOARD] 0.7s (582 chars) +action[0m
+[37m[22:14:30 F95 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:30 F95 TEST] INFO: [F95] SCOREBOARD — #33[0m
+[37m[22:14:30 F95 TEST] INFO:   [V 693ms] — 
+
+The live scoreboard strip shows:
+Top line: RCB, 49-3 (6.4)
+Bottom line: DUBE 18(10) VEER 2(4), ABHINANDAN 0-26 (3)
+
+There is no info panel visible.
+
+No bowling speed or extras are visible.
+
+The current over indicator does not show.
+
+The full scor[0m
+[37m[22:14:31 F95 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:31 F95 TEST] INFO:   [E 1250ms] visible_team=Royal Challengers Bengaluru score=49-3 (6.4) target=None rr=None[0m
+[37m[22:14:31 F95 TEST] INFO:     BAT: DUBE 18(10) [0m
+[37m[22:14:31 F95 TEST] INFO:     BAT: VEER 2(4) [0m
+[37m[22:14:31 F95 TEST] INFO:     BAT: ABHINANDAN 0(None) [0m
+[37m[22:14:31 F95 TEST] INFO:     BOWL: ABHINANDAN 0-26 (0)[0m
+[37m[22:14:31 F95 BOARD] INFO: Abhinandan Singh: 0/18 (1.2) -> 0/26 (1.2) [F95][0m
+[37m[22:14:32 F95 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:32 F95 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN. Read their stats from the scoreboard. ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:32 F95 TEST] INFO:   [S 856ms] Changes: ['bat:Shivam Dube=32(3)', 'bat:Prashant Veer=8(4)'][0m
+[37m[22:14:32 F95 TEST] INFO:   Total: 2799ms (V:693 E:1250 S:856)[0m
+[37m[22:14:32 F95 TEST] INFO:   STATE: Chennai Super Kings 89-5 (7.2) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:14:32 F95 TEST] INFO:   [ACTION] The batter in a light blue jersey with the number 13 is hitting the ball with a [0m
+[37m[22:14:32 F95 FIELD] INFO: [F95] OC-deep_gully moved to OC-wide_long_off[0m
+[37m[22:14:32 F95 FIELD] INFO: [F95] OC-deep_extra_cover moved to OC-wide_long_off[0m
+[37m[22:14:32 F95 FIELD] INFO: [F95] OC-deep_extra_cover moved to OC-straight_long_on[0m
+[37m[22:14:32 F95 FIELD] INFO: [F95] OC-deep_cover_point moved to OC-long_on[0m
+[37m[22:14:32 F95 FIELD] INFO: [F95] IC-backward_square pushed back — defensive[0m
+[37m[22:14:34 F96 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:14:34 F96 TEST] INFO: [F96] AD 266ms (#26)[0m
+[37m[22:14:36 F97 VISION] INFO: [SCOREBOARD] 0.7s (700 chars) +action[0m
+[37m[22:14:36 F97 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:36 F97 TEST] INFO: [F97] SCOREBOARD — #34[0m
+[37m[22:14:36 F97 TEST] INFO:   [V 736ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 89-5 (7.2)
+* Bottom line: 
+  * PRASHANT DUBE 4(2) | > ABHINANDAN 0-18 (1.2)
+  * TO WIN: 162 OFF 76
+
+**INFO/CAREER PANEL:** Not visible
+
+**S[0m
+[37m[22:14:37 F97 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:37 F97 TEST] INFO:   [E 1099ms] visible_team=Chennai Super Kings score=89-5 (7.2) target=None rr=None[0m
+[37m[22:14:37 F97 TEST] INFO:     BAT: PRASHANT DUBE 4(2) [0m
+[37m[22:14:37 F97 TEST] INFO:     BOWL: ABHINANDAN 0-18 (1.2)[0m
+[37m[22:14:38 F97 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:38 F97 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:38 F97 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:14:38 F97 TEST] INFO:   [S 862ms] Changes: ['score→89', 'overs→7.2', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:14:38 F97 TEST] INFO:   Total: 2697ms (V:736 E:1099 S:862)[0m
+[37m[22:14:38 F97 TEST] INFO:   STATE: Chennai Super Kings 89-5 (7.2) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:14:38 F97 TEST] INFO:   [ACTION] The frame shows a live shot of a player, Prashant Dube, wearing a teal jersey an[0m
+[37m[22:14:39 F98 VISION] INFO: [SCOREBOARD] 0.7s (550 chars) +action[0m
+[37m[22:14:39 F98 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:39 F98 TEST] INFO: [F98] SCOREBOARD — #35[0m
+[37m[22:14:39 F98 TEST] INFO:   [V 694ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 89-5 (7.2)
+* Bottom line: 
+  * DUBE 4(2) > 
+  * VEER 8(4)
+* Bowler: ABHINANDAN 0-18 (1.2)
+* INFO section: TO WIN 162 OFF 76
+
+**Cricket Action:**
+[0m
+[37m[22:14:41 F98 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:41 F98 TEST] INFO:   [E 1272ms] visible_team=Chennai Super Kings score=89-5 (7.2) target=None rr=None[0m
+[37m[22:14:41 F98 TEST] INFO:     BAT: DUBE 4(2) *[0m
+[37m[22:14:41 F98 TEST] INFO:     BAT: VEER 8(4) [0m
+[37m[22:14:41 F98 TEST] INFO:     BOWL: ABHINANDAN 0-18 (1.2)[0m
+[37m[22:14:42 F98 SCORER] INFO: Scored in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:42 F98 TEST] INFO:   [S] Hint: Current batters: DUBE, VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:42 F98 TEST] INFO:   [S 1122ms] Changes: ['score→89', 'overs→7.2', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:14:42 F98 TEST] INFO:   Total: 3088ms (V:694 E:1272 S:1122)[0m
+[37m[22:14:42 F98 TEST] INFO:   STATE: Chennai Super Kings 89-5 (7.2) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:14:42 F98 TEST] INFO:   [ACTION] **
+
+The bowler, Abhinandan, appears to be running back to their mark after bowli[0m
+[37m[22:14:42 F98 FIELD] INFO: [F98] IC-wide_mid_on brought in — attacking[0m
+[37m[22:14:42 F98 FIELD] INFO: [F98] OC-wide_long_off moved to OC-deep_cover[0m
+[37m[22:14:42 F98 FIELD] INFO: [F98] IC-backward_square brought in — attacking[0m
+[37m[22:14:42 F98 FIELD] INFO: [F98] OC-straight_long_on moved to OC-deep_point[0m
+[37m[22:14:47 F103 TEST] INFO: [F103] Pixel skip #40[0m
+[37m[22:14:49 F104 VISION] INFO: [SCOREBOARD] 0.8s (568 chars) +action[0m
+[37m[22:14:49 F104 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:49 F104 TEST] INFO: [F104] SCOREBOARD — #36[0m
+[37m[22:14:49 F104 TEST] INFO:   [V 835ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK: 90-5 (7.3)
+- Batter 1: Prashant Dube - 8(4)
+- Batter 2: 5(3)
+- Bowler: Abhinandan - 0-19 (1.3)
+- To Win: 161 off 75
+
+There is no info panel visible.[0m
+[37m[22:14:51 F104 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:51 F104 TEST] INFO:   [E 1166ms] visible_team=Chennai Super Kings score=90-5 (7.3) target=None rr=None[0m
+[37m[22:14:51 F104 TEST] INFO:     BAT: Prashant Dube 8(4) [0m
+[37m[22:14:51 F104 TEST] INFO:     BOWL: Abhinandan 0-19 (1.3)[0m
+[37m[22:14:51 F104 BOARD] INFO: Abhinandan Singh: 0/26 (1.2) -> 0/26 (1.3) [F104][0m
+[37m[22:14:52 F104 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:52 F104 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:52 F104 BOARD] INFO: score: 89 -> 90 [F104][0m
+[37m[22:14:52 F104 BOARD] INFO: overs: 7.2 -> 7.3 [F104][0m
+[37m[22:14:52 F104 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:14:52 F104 TEST] INFO:   [S 1050ms] Changes: ['score→90', 'overs→7.3', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:14:52 F104 TEST] INFO:   Total: 3051ms (V:835 E:1166 S:1050)[0m
+[37m[22:14:52 F104 TEST] INFO:   STATE: Chennai Super Kings 90-5 (7.3) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:14:52 F104 COMMENTARY] INFO: [BALL] EXTRA | 7.3 | bat=None bowl=Abhinandan Singh +1 runs[0m
+[37m[22:14:52 F104 TEST] INFO:   [BALL EVENT] EXTRA | 7.3 | +1 runs | The frame shows a close-up of a player wearing a light blue [0m
+[37m[22:14:52 F104 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 161 from 75 @ 12.88 rpo[0m
+[37m[22:14:54 F105 VISION] INFO: [SCOREBOARD] 0.9s (964 chars) +action[0m
+[37m[22:14:54 F105 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:54 F105 TEST] INFO: [F105] SCOREBOARD — #37[0m
+[37m[22:14:54 F105 TEST] INFO:   [V 880ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK: 90-5 (7.3 overs)
+- Batter 1: Prashant Dube - 5(3)
+- Batter 2: Not shown, likely another batter 
+- Bowler: Not shown
+- Info section: TO WIN 161 OFF 7[0m
+[37m[22:14:55 F105 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:55 F105 TEST] INFO:   [E 1004ms] visible_team=Chennai Super Kings score=90-5 (7.3) target=None rr=None[0m
+[37m[22:14:55 F105 TEST] INFO:     BAT: Prashant Dube 5(3) [0m
+[37m[22:14:55 F105 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:55 F105 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN SINGH ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:14:55 F105 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:14:55 F105 TEST] INFO:   [S 879ms] Changes: ['score→90', 'overs→7.3', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:14:56 F105 TEST] INFO:   Total: 2763ms (V:880 E:1004 S:879)[0m
+[37m[22:14:56 F105 TEST] INFO:   STATE: Chennai Super Kings 90-5 (7.3) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:14:56 F105 TEST] INFO:   [ACTION] The frame shows a close-up of a player, likely Prashant Dube, wearing a brown je[0m
+[37m[22:14:58 F106 VISION] INFO: [SCOREBOARD] 1.1s (754 chars) +action[0m
+[37m[22:14:58 F106 TEST] INFO: 
+=======================================================[0m
+[37m[22:14:58 F106 TEST] INFO: [F106] SCOREBOARD — #38[0m
+[37m[22:14:58 F106 TEST] INFO:   [V 1059ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 90-5 (7.3)
+* Bottom line: 
+  * Batters: Prashant Dube 5(3) > Abhinandan  8(4)
+  * Bowler: Abhinandan 0-19 (1.3)
+  * Info section: TO WIN 16[0m
+[37m[22:14:59 F106 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:14:59 F106 TEST] INFO:   [E 1222ms] visible_team=Chennai Super Kings score=90-5 (7.3) target=None rr=None[0m
+[37m[22:14:59 F106 TEST] INFO:     BAT: Prashant Dube 5(3) [0m
+[37m[22:14:59 F106 TEST] INFO:     BAT: Abhinandan 8(4) [0m
+[37m[22:14:59 F106 TEST] INFO:     BOWL: Abhinandan 0-19 (1.3)[0m
+[37m[22:15:00 F106 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:00 F106 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:15:00 F106 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:15:00 F106 TEST] INFO:   [S 960ms] Changes: ['score→90', 'overs→7.3', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:15:00 F106 TEST] INFO:   Total: 3240ms (V:1059 E:1222 S:960)[0m
+[37m[22:15:00 F106 TEST] INFO:   STATE: Chennai Super Kings 90-5 (7.3) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:15:00 F106 TEST] INFO:   [ACTION] **
+The frame shows a player in a blue cap and brown jersey with "SUN PHARMA" and[0m
+[37m[22:15:03 F108 VISION] INFO: [SCOREBOARD] 1.0s (718 chars) +action[0m
+[37m[22:15:03 F108 TEST] INFO: 
+=======================================================[0m
+[37m[22:15:03 F108 TEST] INFO: [F108] SCOREBOARD — #39[0m
+[37m[22:15:03 F108 TEST] INFO:   [V 1026ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK: 90-5 (7.3)
+- Batter: Prashant Dube (5(3)) > Abhinandan (1(4))
+- Bowler: Abhinandan (0-19) 1.3
+
+There is no info panel visible.
+
+There is no bowling [0m
+[37m[22:15:04 F108 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:04 F108 TEST] INFO:   [E 1096ms] visible_team=Chennai Super Kings score=90-5 (7.3) target=None rr=None[0m
+[37m[22:15:04 F108 TEST] INFO:     BAT: Prashant Dube 5(3) [0m
+[37m[22:15:04 F108 TEST] INFO:     BAT: Abhinandan 1(4) [0m
+[37m[22:15:04 F108 TEST] INFO:     BOWL: Abhinandan 0-19 (1.3)[0m
+[37m[22:15:05 F108 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:05 F108 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:15:05 F108 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:15:05 F108 TEST] INFO:   [S 854ms] Changes: ['score→90', 'overs→7.3', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:15:05 F108 TEST] INFO:   Total: 2976ms (V:1026 E:1096 S:854)[0m
+[37m[22:15:05 F108 TEST] INFO:   STATE: Chennai Super Kings 90-5 (7.3) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:15:05 F108 TEST] INFO:   [ACTION] The frame shows a player, likely Prashant Dube, wearing a blue cap and a brown a[0m
+[37m[22:15:07 F109 VISION] INFO: [SCOREBOARD] 0.7s (703 chars) +action[0m
+[37m[22:15:07 F109 TEST] INFO: 
+=======================================================[0m
+[37m[22:15:07 F109 TEST] INFO: [F109] SCOREBOARD — #40[0m
+[37m[22:15:07 F109 TEST] INFO:   [V 722ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+* CSK: 90-5 (7.3)
+* Batter 1: Prashant Dube - 5(3)
+* Batter 2: Not shown
+* Bowler: Abhinandan - 0-19 (1.3)
+
+There is no info panel visible.
+
+No bowling spe[0m
+[37m[22:15:08 F109 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:08 F109 TEST] INFO:   [E 1007ms] visible_team=Chennai Super Kings score=90-5 (7.3) target=None rr=None[0m
+[37m[22:15:08 F109 TEST] INFO:     BAT: Prashant Dube 5(3) [0m
+[37m[22:15:08 F109 TEST] INFO:     BOWL: Abhinandan 0-19 (1.3)[0m
+[37m[22:15:09 F109 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:09 F109 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:15:09 F109 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:15:09 F109 TEST] INFO:   [S 841ms] Changes: ['score→90', 'overs→7.3', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:15:09 F109 TEST] INFO:   Total: 2570ms (V:722 E:1007 S:841)[0m
+[37m[22:15:09 F109 TEST] INFO:   STATE: Chennai Super Kings 90-5 (7.3) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:15:09 F109 TEST] INFO:   [ACTION] The frame shows a player, Prashant Dube, wearing a purple cap and a brown and pu[0m
+[37m[22:15:11 F110 VISION] INFO: [SCOREBOARD] 0.9s (804 chars) +action[0m
+[37m[22:15:11 F110 TEST] INFO: 
+=======================================================[0m
+[37m[22:15:11 F110 TEST] INFO: [F110] SCOREBOARD — #41[0m
+[37m[22:15:11 F110 TEST] INFO:   [V 937ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**LIVE SCOREBOARD STRIP:**
+
+* Top line: CSK 90-5 (7.3)
+* Bottom line: 
+  * PRASHANT 5(3) * 
+  * DUBE 8(4)
+  * ABHINANDAN 0-19 (1.3)
+* TO WIN: 161 OFF 75
+
+**INFO/CAREER PANEL:** Not vi[0m
+[37m[22:15:12 F110 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:12 F110 TEST] INFO:   [E 1296ms] visible_team=Chennai Super Kings score=90-5 (7.3) target=None rr=9.37[0m
+[37m[22:15:12 F110 TEST] INFO:     BAT: PRASHANT 5(3) [0m
+[37m[22:15:12 F110 TEST] INFO:     BAT: DUBE 8(4) [0m
+[37m[22:15:12 F110 TEST] INFO:     BOWL: ABHINANDAN 0-19 (1.3)[0m
+[37m[22:15:13 F110 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:13 F110 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:15:13 F110 TEST] INFO:   [S 841ms] Changes: ['score→90', 'overs→7.3', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:15:13 F110 TEST] INFO:   Total: 3074ms (V:937 E:1296 S:841)[0m
+[37m[22:15:13 F110 TEST] INFO:   STATE: Chennai Super Kings 90-5 (7.3) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:15:13 F110 TEST] INFO:   [ACTION] The cricket action shows two batters, Prashant and Dube, standing at the crease.[0m
+[37m[22:15:13 F110 FIELD] INFO: [F110] IC-cover_point brought in — attacking[0m
+[37m[22:15:13 F110 FIELD] INFO: [F110] IC-midwicket brought in — attacking[0m
+[37m[22:15:13 F110 FIELD] INFO: [F110] IC-wide_mid_on pushed back — defensive[0m
+[37m[22:15:13 F110 FIELD] INFO: [F110] IC-backward_square pushed back — defensive[0m
+[37m[22:15:18 F114 VISION] INFO: [SCOREBOARD] 1.0s (785 chars) +action[0m
+[37m[22:15:18 F114 TEST] INFO: 
+=======================================================[0m
+[37m[22:15:18 F114 TEST] INFO: [F114] SCOREBOARD — #42[0m
+[37m[22:15:18 F114 TEST] INFO:   [V 985ms] — bottom scoreboard strip is visible with score/overs/batter info
+
+**Scoreboard Data:**
+
+* Top line: CSK 90-5 (7.3)
+* Bottom line: 
+  * PRASHANT 5(3) > DUBE 8(4)
+  * ABHINANDAN 0-19 (1.3)
+* Info section: TO WIN 161 OFF 75
+
+**Info/Career Panel:** Not [0m
+[37m[22:15:20 F114 EXTRACT] INFO: Extracted in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:20 F114 TEST] INFO:   [E 1360ms] visible_team=Chennai Super Kings score=90-5 (7.3) target=None rr=9.37[0m
+[37m[22:15:20 F114 TEST] INFO:     BAT: PRASHANT 5(3) [0m
+[37m[22:15:20 F114 TEST] INFO:     BAT: DUBE 8(4) [0m
+[37m[22:15:20 F114 TEST] INFO:     BOWL: ABHINANDAN 0-19 (1.3)[0m
+[37m[22:15:21 F114 SCORER] INFO: Scored in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:21 F114 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:15:21 F114 TEST] INFO:   [S 1419ms] Changes: ['score→90', 'overs→7.3', 'wickets→5', 'bat:PRASHANT VEER=8(4)', 'bat:SHIVAM DUBE=32(3)', 'bowl:ABHINANDAN SINGH'][0m
+[37m[22:15:21 F114 TEST] INFO:   Total: 3764ms (V:985 E:1360 S:1419)[0m
+[37m[22:15:21 F114 TEST] INFO:   STATE: Chennai Super Kings 90-5 (7.3) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:15:21 F114 TEST] INFO:   [ACTION] **
+
+The cricket action shows a live match with players on the field, but no spec[0m
+[FIELD WARN] Middle overs but 8 outside circle (max 5). Possible misclassification.
+[37m[22:15:21 F114 FIELD] INFO: [F114] IC-cover_point pushed back — defensive[0m
+[37m[22:15:21 F114 FIELD] INFO: [F114] IC-midwicket pushed back — defensive[0m
+[37m[22:15:21 F114 FIELD] INFO: [F114] OC-deep_midwicket_sq moved to OC-wide_long_on[0m
+[37m[22:15:21 F114 FIELD] INFO: [F114] OC-deep_midwicket_sq moved to OC-wide_long_on[0m
+[37m[22:15:23 F115 VISION] INFO: [SCOREBOARD] 0.8s (762 chars) +action[0m
+[37m[22:15:23 F115 TEST] INFO: 
+=======================================================[0m
+[37m[22:15:23 F115 TEST] INFO: [F115] SCOREBOARD — #43[0m
+[37m[22:15:23 F115 TEST] INFO:   [V 788ms] — 
+
+The live scoreboard strip at the bottom of the screen displays the following information:
+
+- CSK v RCB MATCH 11
+- CSK: 94-5 (7.4)
+- PRASHANT DUBE: 5(3) > 12(5)
+- TO WIN: 157 OFF 74
+- ABHINANDAN: 0-23 (1.4)
+
+There is no info panel visible.
+
+No bow[0m
+[37m[22:15:24 F115 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:24 F115 TEST] INFO:   [E 1021ms] visible_team=Chennai Super Kings score=94-5 (7.4) target=None rr=None[0m
+[37m[22:15:24 F115 TEST] INFO:     BAT: PRASHANT DUBE 12(5) [0m
+[37m[22:15:24 F115 TEST] INFO:     BOWL: ABHINANDAN 0-23 (1.4)[0m
+[37m[22:15:24 F115 BOARD] INFO: Abhinandan Singh: 0/26 (1.3) -> 0/26 (1.4) [F115][0m
+[37m[22:15:25 F115 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:25 F115 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:15:25 F115 BOARD] INFO: score: 90 -> 94 [F115][0m
+[37m[22:15:25 F115 BOARD] INFO: overs: 7.3 -> 7.4 [F115][0m
+[37m[22:15:25 F115 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:15:25 F115 TEST] INFO:   [S 876ms] Changes: ['score→94', 'overs→7.4', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:15:25 F115 TEST] INFO:   Total: 2686ms (V:788 E:1021 S:876)[0m
+[37m[22:15:25 F115 TEST] INFO:   STATE: Chennai Super Kings 94-5 (7.4) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:15:25 F115 COMMENTARY] INFO: [BALL] FOUR | 7.4 | bat=None bowl=Abhinandan Singh +4 runs[0m
+[37m[22:15:25 F115 TEST] INFO:   [BALL EVENT] FOUR | 7.4 | +4 runs | The batter Prashant Dube appears to be preparing for the nex[0m
+[37m[22:15:25 F115 TEST] INFO:   [SITUATION] VERY_DIFFICULT — need 157 from 74 @ 12.73 rpo[0m
+[37m[22:15:26 F116 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:15:26 F116 TEST] INFO: [F116] AD 314ms (#27)[0m
+[37m[22:15:28 F117 VISION] INFO: [SCOREBOARD] 0.7s (652 chars) +action[0m
+[37m[22:15:28 F117 TEST] INFO: 
+=======================================================[0m
+[37m[22:15:28 F117 TEST] INFO: [F117] SCOREBOARD — #44[0m
+[37m[22:15:28 F117 TEST] INFO:   [V 731ms] — 
+
+The live scoreboard strip at the bottom of the screen displays:
+
+* CSK: 94-5 (7.4)
+* Batter 1: Prashant Dube - 5(3)
+* Batter 2: not shown
+* Bowler: Abhinandan - 0-23 (1.4)
+
+There is no info panel visible.
+
+There is no bowling speed or extra infor[0m
+[37m[22:15:29 F117 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:29 F117 TEST] INFO:   [E 1041ms] visible_team=Chennai Super Kings score=94-5 (7.4) target=None rr=9.37[0m
+[37m[22:15:29 F117 TEST] INFO:     BAT: Prashant Dube 5(3) [0m
+[37m[22:15:29 F117 TEST] INFO:     BOWL: Abhinandan 0-23 (1.4)[0m
+[37m[22:15:30 F117 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:30 F117 TEST] INFO:   [S] Hint: Current batters: DUBE and VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:15:30 F117 TEST] INFO:   [GUARD] Batter 'Shivam Dube' not in extractor output — scorer inferred, rejecting[0m
+[37m[22:15:30 F117 TEST] INFO:   [S 832ms] Changes: ['score→94', 'overs→7.4', 'wickets→5', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:15:30 F117 TEST] INFO:   Total: 2604ms (V:731 E:1041 S:832)[0m
+[37m[22:15:30 F117 TEST] INFO:   STATE: Chennai Super Kings 94-5 (7.4) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:15:30 F117 TEST] INFO:   [ACTION] The frame shows a close-up of a player, likely Prashant Dube, wearing a red jers[0m
+[37m[22:15:32 F118 VISION] INFO: [SCOREBOARD] 0.6s (460 chars) +action[0m
+[37m[22:15:32 F118 TEST] INFO: 
+=======================================================[0m
+[37m[22:15:32 F118 TEST] INFO: [F118] SCOREBOARD — #45[0m
+[37m[22:15:32 F118 TEST] INFO:   [V 578ms] — 
+
+The live scoreboard strip at the bottom of the screen displays:
+
+* CSK: 94/5 (7.4 overs)
+* Batters: DUBE, VEER
+* Bowler: Not explicitly mentioned, but possibly ABHINANDAN 
+
+INFO_PANEL: DUBE IPL CAREER FOURS 
+
+No bowling speed or extras are visibl[0m
+[37m[22:15:33 F118 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:33 F118 TEST] INFO:   [E 1026ms] visible_team=Chennai Super Kings score=94-5 (7.4) target=None rr=None[0m
+[37m[22:15:33 F118 TEST] INFO:     BAT: DUBE None(None) [0m
+[37m[22:15:33 F118 TEST] INFO:     BAT: VEER None(None) [0m
+[37m[22:15:34 F118 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[22:15:34 F118 TEST] INFO:   [S] Hint: Current batters: DUBE, VEER. Bowler: ABHINANDAN ALREADY DISMISSED (do NOT dismiss again): Sanju Samson, Ruturaj Gaikwad, Ayush Mhatre, Sarfaraz Khan, Kartik Sharma[0m
+[37m[22:15:34 F118 TEST] INFO:   [S 812ms] Changes: ['score→94', 'overs→7.4', 'wickets→5', 'bat:Shivam Dube=32(3)', 'bat:Prashant Veer=8(4)', 'bowl:Abhinandan Singh'][0m
+[37m[22:15:34 F118 TEST] INFO:   Total: 2415ms (V:578 E:1026 S:812)[0m
+[37m[22:15:34 F118 TEST] INFO:   STATE: Chennai Super Kings 94-5 (7.4) inn=2 | Bat: Shivam Dube*(32) Prashant Veer(8) | Bowl: Abhinandan Singh 0-26[0m
+[37m[22:15:34 F118 TEST] INFO:   [ACTION] No live cricket action is visible in this frame; the focus is on a graphic overl[0m
+[37m[22:15:35 F119 VISION] INFO: [ADVERTISEMENT] 0.3s (13 chars)[0m
+[37m[22:15:35 F119 TEST] INFO: [F119] AD 328ms (#28)[0m
+[37m[22:15:37 F120 VISION] INFO: [ADVERTISEMENT] 0.5s (13 chars)[0m
+[37m[22:15:37 F120 TEST] INFO: [F120] AD 477ms (#29)[0m
+[37m[22:15:38 F120 TEST] INFO: 
+============================================================[0m
+[37m[22:15:38 F120 TEST] INFO: TEST COMPLETE — 301s[0m
+[37m[22:15:38 F120 TEST] INFO:   Frames: 120 | Pipeline: 45 | PixDiff: 44 | Ads: 29 | Context: 2[0m
+[37m[22:15:38 F120 TEST] INFO:   Final: {'score': 94, 'wickets': 5, 'overs': '7.4', 'batting_team': 'Chennai Super Kings', 'bowling_team': 'Royal Challengers Bengaluru', 'striker': 'Shivam Dube', 'non_striker': 'Prashant Veer', 'current_bowler': 'Abhinandan Singh', 'run_rate': None, 'target': 251, 'active_batters': {'Shivam Dube': {'runs': 32, 'balls': 3}, 'Prashant Veer': {'runs': 8, 'balls': 4}}, 'innings': 2}[0m
+[37m[22:15:38 F120 TEST] INFO: ============================================================[0m
+[37m[22:15:38 F120 TEST] INFO: 
+BATTING CARD:[0m
+[37m[22:15:38 F120 TEST] INFO:  # Player                 Status          R    B  4s  6s      SR
+-----------------------------------------------------------------
+ 1 Sanju Samson           out             -    -   -   -       -
+ 2 Ruturaj Gaikwad        out             -    -   -   -       -
+ 3 Ayush Mhatre           out             -    -   -   -       -
+ 4 Sarfaraz Khan          out             -    -   -   -       -
+ 5 Shivam Dube            batting        32    3   -   -       -
+ 6 Prashant Veer          batting         8    4   -   -       -
+ 7 Jamie Overton          yet_to_bat      -    -   -   -       -
+ 8 Noor Ahmad             yet_to_bat      -    -   -   -       -
+ 9 Anshul Kamboj          yet_to_bat      -    -   -   -       -
+10 Matt Henry             yet_to_bat      -    -   -   -       -
+11 Khaleel Ahmed          yet_to_bat      -    -   -   -       -
+12 Matthew Short          yet_to_bat      -    -   -   -       -
+13 Akeal Hosein           yet_to_bat      -    -   -   -       -
+14 Kartik Sharma          out             6    3   -   -       -
+15 Ramakrishna Ghosh      yet_to_bat      -    -   -   -       -
+16 Gurjapneet Singh       yet_to_bat      -    -   -   -       -
+17 Rahul Chahar           yet_to_bat      -    -   -   -       -
+18 MS Dhoni               yet_to_bat      -    -   -   -       -
+19 Shreyas Gopal          yet_to_bat      -    -   -   -       -
+20 Spencer Johnson        yet_to_bat      -    -   -   -       -
+21 Mukesh Choudhary       yet_to_bat      -    -   -   -       -
+22 Urvil Patel            yet_to_bat      -    -   -   -       -
+23 Aman Khan              yet_to_bat      -    -   -   -       -
+24 Dewald Brevis          yet_to_bat      -    -   -   -       -
+25 Zakary Foulkes         yet_to_bat      -    -   -   -       -[0m
+[37m[22:15:38 F120 TEST] INFO: 
+BOWLING CARD:[0m
+[37m[22:15:38 F120 TEST] INFO: Player                     O  M    R  W   Econ
+---------------------------------------------
+Philip Salt                -  -    -  -      -
+Virat Kohli                -  -    -  -      -
+Devdutt Padikkal           -  -    -  -      -
+Rajat Patidar              -  -    -  -      -
+Jitesh Sharma              -  -    -  -      -
+Tim David                  -  -    -  -      -
+Romario Shepherd           -  -    -  -      -
+Krunal Pandya            2.5  -   16  2      -
+Bhuvneshwar Kumar          -  -    -  -      -
+Abhinandan Singh         1.4  -   26  0      -
+Jacob Duffy                -  -    -  -      -
+Suyash Sharma              -  -    -  -      -
+Jacob Bethell              -  -    -  -      -
+Rasikh Salam Dar           -  -    -  -      -
+Kanishk Chouhan            -  -    -  -      -
+Venkatesh Iyer             -  -    -  -      -
+Josh Hazlewood             -  -    -  -      -
+Mangesh Yadav              -  -    -  -      -
+Vihaan Malhotra            -  -    -  -      -
+Vicky Ostwal               -  -    -  -      -
+Jordan Cox                 -  -    -  -      -
+Swapnil Singh              -  -    -  -      -
+Satvik Deswal              -  -    -  -      -[0m
+[37m[22:15:38 F120 TEST] INFO: 
+EXTRAS: wides=0 no_balls=0 byes=0 leg_byes=0 total=0[0m
+[37m[22:15:38 F120 TEST] INFO: OVERS TRACKED: 2 complete[0m
+[37m[22:15:38 F120 TEST] INFO:   Over 5: by Krunal Pandya — 2-7 (0.5)[0m
+[37m[22:15:38 F120 TEST] INFO:   Over 6: by Krunal Pandya — 2-16 (2.5)[0m
+[37m[22:15:38 F120 TEST] INFO: 
+BALL EVENTS: 8 detected[0m
+[37m[22:15:38 F120 TEST] INFO:   6.5 DOT: +0 (bat=None bowl=Krunal Pandya) — **
+The frame shows a close-up of a CSK player wearing a teal[0m
+[37m[22:15:38 F120 TEST] INFO:   6.5 WICKET: +0 (bat=None bowl=Krunal Pandya) — The frame shows a player in a light blue uniform walking off[0m
+[37m[22:15:38 F120 TEST] INFO:   6.5 84_RUNS: +84 (bat=None bowl=Krunal Pandya) — **
+The frame shows Kartik Sharma walking off the field, wear[0m
+[37m[22:15:38 F120 TEST] INFO:   7.0 DOT: +0 (bat=None bowl=Krunal Pandya) — The frame shows two players, one in a brown jersey with a li[0m
+[37m[22:15:38 F120 TEST] INFO:   7.1 EXTRA: +1 (bat=None bowl=Abhinandan Singh) — The frame shows a close-up of a player, likely Prashant Dube[0m
+[37m[22:15:38 F120 TEST] INFO:   7.2 FOUR: +4 (bat=None bowl=Abhinandan Singh) — **
+The frame shows a close-up of a drum being played by a pe[0m
+[37m[22:15:38 F120 TEST] INFO:   7.3 EXTRA: +1 (bat=None bowl=Abhinandan Singh) — The frame shows a close-up of a player wearing a light blue [0m
+[37m[22:15:38 F120 TEST] INFO:   7.4 FOUR: +4 (bat=None bowl=Abhinandan Singh) — The batter Prashant Dube appears to be preparing for the nex[0m
+[37m[22:15:38 F120 TEST] INFO: PARTNERSHIPS: 1 completed[0m
+[37m[22:15:38 F120 TEST] INFO:   ['Kartik Sharma', 'Shivam Dube'] — 89 runs off 3 balls[0m
+[37m[22:15:38 F120 TEST] INFO:   Current: ['Prashant Veer', 'Shivam Dube'] — 5 runs off 2 balls (unbroken)[0m
+[37m[22:15:38 F120 TEST] INFO: MATCH SITUATION: {"run_rate": 12.7, "balls_bowled": 46, "balls_remaining": 74, "wickets_in_hand": 5, "runs_needed": 157, "required_rate": 12.73, "phase": "VERY_DIFFICULT"}[0m
+[37m[22:15:38 F120 TEST] INFO: 
+FIELD STATE: balanced | slips:2 close:0 in:2 out:1 | 3 fielders | conf:0.3 | keeper:- | validated:True | freshness:live[0m
+[37m[22:15:38 F120 TEST] INFO:   Field changes detected: 28[0m
+[37m[22:15:38 F120 TEST] INFO:   Last merge source: yolo+vision (yolo:3 vision:0)[0m

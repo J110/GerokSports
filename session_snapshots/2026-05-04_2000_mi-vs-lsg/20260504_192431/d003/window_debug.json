@@ -1,0 +1,31 @@
+{
+  "delivery_num": 3,
+  "window_id": 3,
+  "event_ts": 1777903414.2927601,
+  "over_number": 0.4,
+  "innings": 1,
+  "event_type": "DOT",
+  "runs": 0,
+  "window_source": "retrospective_span",
+  "window_reason": "latest_bowlers_end_span",
+  "clip_start_ts": 1777903408.160037,
+  "clip_end_ts": 1777903411.660037,
+  "frame_count": 637,
+  "legacy_window": {
+    "source": "retrospective_span",
+    "span_start": 1777903410.16,
+    "span_end": 1777903410.16,
+    "clip_start": 1777903408.16,
+    "clip_end": 1777903411.66
+  },
+  "open_scout_window": null,
+  "open_scout_verdict": "no_match",
+  "use_open_scout_spans": true,
+  "tags": [
+    {
+      "ts": 1777903410.160037,
+      "camera_view": "bowlers_end",
+      "frame_phase": "release"
+    }
+  ]
+}

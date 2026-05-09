@@ -1,0 +1,19 @@
+{
+  "cursor.codebaseIndexing.enabled": true,
+  "cursor.codebaseIndexing.autoIndex": false,
+  "cursor.codebaseIndexing.includeInChatByDefault": false,
+  "cursor.composer.includeOpenEditors": false,
+  "cursor.composer.includeCurrentFile": false,
+  "cursor.composer.autoRunTerminalCommands": false,
+  "cursor.composer.autoRunTests": false,
+  "cursor.composer.maxAutoSteps": 5,
+  "cursor.chat.includeOpenEditors": false,
+  "cursor.chat.includeCurrentFile": false,
+  "cursor.tab.enabledLanguages": ["typescript", "javascript", "python", "rust", "go", "java", "kotlin", "swift"],
+  "cursor.tab.disabledFiles": ["**/*.md", "**/*.json", "**/*.yaml", "**/*.yml", "**/*.toml", "**/*.lock", "**/*.txt"],
+  "cursor.longContextMode.enabled": false,
+  "cursor.maxMode.enabled": false,
+  "cursor.thinking.showExtendedThinking": false,
+  "cursor.thinking.defaultEffortLevel": "medium",
+  "cursor.thinking.useMaxThinkingForSimpleTasks": false
+}

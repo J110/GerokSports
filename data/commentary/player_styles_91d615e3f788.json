@@ -1,0 +1,202 @@
+{
+  "Josh Inglis": {
+    "batting_style": "RHB",
+    "bowling_style": "None"
+  },
+  "Aiden Markram": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm off-spin"
+  },
+  "Vignesh Puthur": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Mohammed Shami": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm fast"
+  },
+  "Avesh Khan": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm medium-fast"
+  },
+  "Yashasvi Jaiswal": {
+    "batting_style": "LHB",
+    "bowling_style": "Right-arm legbreak"
+  },
+  "Abdul Samad": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm legbreak"
+  },
+  "Mitchell Marsh": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm medium"
+  },
+  "Ravindra Jadeja": {
+    "batting_style": "LHB",
+    "bowling_style": "Slow left-arm orthodox"
+  },
+  "Nicholas Pooran": {
+    "batting_style": "LHB",
+    "bowling_style": "None"
+  },
+  "Nandre Burger": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm fast"
+  },
+  "Shimron Hetmyer": {
+    "batting_style": "LHB",
+    "bowling_style": "None"
+  },
+  "Kuldeep Sen": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm medium-fast"
+  },
+  "Manimaran Siddharth": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Donovan Ferreira": {
+    "batting_style": "RHB",
+    "bowling_style": "None"
+  },
+  "Naman Tiwari": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Ravi Bishnoi": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm legbreak"
+  },
+  "Prince Yadav": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Akshat Raghuwanshi": {
+    "batting_style": "unknown",
+    "bowling_style": "None"
+  },
+  "Matthew Breetzke": {
+    "batting_style": "RHB",
+    "bowling_style": "None"
+  },
+  "Sushant Mishra": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Arjun Tendulkar": {
+    "batting_style": "LHB",
+    "bowling_style": "Left-arm medium-fast"
+  },
+  "Himmat Singh": {
+    "batting_style": "RHB",
+    "bowling_style": "None"
+  },
+  "Sandeep Sharma": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm medium"
+  },
+  "Vaibhav Sooryavanshi": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Kwena Maphaka": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Riyan Parag": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm legbreak"
+  },
+  "Digvesh Singh Rathi": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Arshin Kulkarni": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Adam Milne": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm fast"
+  },
+  "Ravi Singh": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Rishabh Pant": {
+    "batting_style": "LHB",
+    "bowling_style": "None"
+  },
+  "Yash Raj Punja": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Ayush Badoni": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm medium"
+  },
+  "Mukul Choudhary": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Tushar Deshpande": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm medium-fast"
+  },
+  "Akash Maharaj Singh": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Dhruv Jurel": {
+    "batting_style": "RHB",
+    "bowling_style": "None"
+  },
+  "Brijesh Sharma": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Mayank Yadav": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Shahbaz Ahmed": {
+    "batting_style": "LHB",
+    "bowling_style": "Slow left-arm orthodox"
+  },
+  "Dasun Shanaka": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm medium-fast"
+  },
+  "Yudhvir Singh Charak": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "George Linde": {
+    "batting_style": "LHB",
+    "bowling_style": "Slow left-arm orthodox"
+  },
+  "Aman Rao Perala": {
+    "batting_style": "unknown",
+    "bowling_style": "unknown"
+  },
+  "Mohsin Khan": {
+    "batting_style": "RHB",
+    "bowling_style": "Left-arm medium-fast"
+  },
+  "Lhuan-dre Pretorius": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm medium-fast"
+  },
+  "Anrich Nortje": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm fast"
+  },
+  "Shubham Dubey": {
+    "batting_style": "LHB",
+    "bowling_style": "Right-arm medium"
+  },
+  "Jofra Archer": {
+    "batting_style": "RHB",
+    "bowling_style": "Right-arm fast"
+  }
+}

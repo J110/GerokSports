@@ -1,0 +1,935 @@
+WARNING ⚠️ torchvision==0.26 is incompatible with torch==2.10.
+Run 'pip install torchvision==0.25' to fix torchvision or 'pip install -U torch torchvision' to update both.
+For a full compatibility table see https://github.com/pytorch/vision#installation
+[37m[15:30:19 F0 TEST] INFO: [WS] Server started on ws://0.0.0.0:8765[0m
+[37m[15:30:19 F0 TEST] INFO: [WS] Commentary server on ws://0.0.0.0:8766[0m
+[37m[15:30:19 F0 TEST] INFO: ============================================================[0m
+[37m[15:30:19 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[15:30:19 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/151902/rr-vs-srh-36th-match-indian-premier-league-2026[0m
+[37m[15:30:20 F0 SQUAD] INFO:   Rajasthan Royals: 11 XI + 14 bench[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Yashasvi Jaiswal — batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Vaibhav Sooryavanshi — batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Dhruv Jurel (WK) — wk_batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Riyan Parag (C) — bat_allrounder[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Shimron Hetmyer — batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Donovan Ferreira (WK) — wk_batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Ravindra Jadeja — bowl_allrounder[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Jofra Archer — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Tushar Deshpande — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Nandre Burger — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Brijesh Sharma — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Ravi Bishnoi — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Lhuan-dre Pretorius — wk_batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Ravi Singh — wk_batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Sandeep Sharma — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Shubham Dubey — batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Yash Raj Punja — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Adam Milne — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Dasun Shanaka — bat_allrounder[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Kuldeep Sen — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Sushant Mishra — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Yudhvir Singh Charak — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Kwena Maphaka — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Vignesh Puthur — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Aman Rao Perala — batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:   Sunrisers Hyderabad: 11 XI + 14 bench[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Abhishek Sharma — bat_allrounder[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Ishan Kishan (WK) — wk_batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Heinrich Klaasen (WK) — wk_batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Salil Arora (WK) — wk_batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Aniket Verma — batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Nitish Kumar Reddy — bat_allrounder[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Pat Cummins (C) — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Shivang Kumar — bowl_allrounder[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Sakib Hussain — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Praful Hinge — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     Eshan Malinga — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Travis Head — batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Smaran Ravichandran — batter[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Liam Livingstone — bat_allrounder[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Harsh Dubey — bowl_allrounder[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Harshal Patel — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Dilshan Madushanka — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Jaydev Unadkat — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Kamindu Mendis — bat_allrounder[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Zeeshan Ansari — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Shivam Mavi — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Gerald Coetzee — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Krains Fuletra — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Onkar Tarmale — bowler[0m
+[37m[15:30:20 F0 SQUAD] INFO:     [bench] Amit Kumar — bowler[0m
+[37m[15:30:20 F0 TEST] INFO: Teams: ['Rajasthan Royals', 'Sunrisers Hyderabad'][0m
+[37m[15:30:20 F0 ENRICH] INFO: Loaded cached styles from player_styles_0d19c92472a9.json (50 players)[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache] Rajasthan Royals — styles:[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Yashasvi Jaiswal         LHB  | None[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Vaibhav Sooryavanshi     unknown | unknown[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Dhruv Jurel              RHB  | None[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Riyan Parag              RHB  | Right-arm legbreak[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Shimron Hetmyer          LHB  | None[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Donovan Ferreira         RHB  | None[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Ravindra Jadeja          LHB  | Slow left-arm orthodox[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Jofra Archer             RHB  | Right-arm fast[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Tushar Deshpande         RHB  | Right-arm medium[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Nandre Burger            RHB  | Right-arm fast[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Brijesh Sharma           unknown | unknown[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache] Sunrisers Hyderabad — styles:[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Abhishek Sharma          LHB  | Slow left-arm orthodox[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Ishan Kishan             LHB  | None[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Heinrich Klaasen         RHB  | None[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Salil Arora              unknown | unknown[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Aniket Verma             unknown | unknown[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Nitish Kumar Reddy       RHB  | Right-arm off-spin[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Pat Cummins              RHB  | Right-arm fast[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Shivang Kumar            unknown | unknown[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Sakib Hussain            unknown | unknown[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Praful Hinge             unknown | unknown[0m
+[37m[15:30:20 F0 ENRICH] INFO: [cache]   Eshan Malinga            unknown | unknown[0m
+[37m[15:30:20 F0 TEST] INFO: Team variants: ['HYD', 'HYDERABAD', 'RA', 'RAJ', 'RAJASTHAN', 'RAJASTHAN ROYALS', 'ROY', 'ROYALS', 'RR', 'SH', 'SRH', 'SU', 'SUN', 'SUNRISERS', 'SUNRISERS HYDERABAD'][0m
+[37m[15:30:20 F0 TEST] INFO: Found Firefox window (on-screen): id=955 1018.0x811.0 "CSK vs GT Live video streaming | TATA IPL 2026"[0m
+[37m[15:30:20 F0 TEST] INFO: [BALL ANALYZER] Background capture started[0m
+[37m[15:30:21 F0 FIELD] INFO: Pitch detected from green mask at (0.47, 0.47) (fallback — will recalibrate from people)[0m
+[37m[15:30:21 F0 TEST] INFO: [CLEANUP] Archived 400 frames to debug_frames_archive/2026-04-26_153021 (was 400 in debug_frames)[0m
+[37m[15:30:21 F0 TEST] INFO: [CACHE] Stale (>30 min old) — ignoring[0m
+[37m[15:30:21 F0 TEST] INFO: [CACHE] No cached state found — starting fresh[0m
+[37m[15:30:21 F0 TEST] INFO: ============================================================[0m
+[37m[15:30:21 F0 TEST] INFO: [CONFIG] Vision:    Scout 17B (single call tag+read)[0m
+[37m[15:30:21 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[15:30:21 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[15:30:21 F0 TEST] INFO: PIPELINE STARTED — 18000s — NO TEAM ASSUMPTION[0m
+[37m[15:30:21 F0 TEST] INFO: ============================================================[0m
+[37m[15:30:22 F1 VISION] INFO: [SCOUT] ADVERTISEMENT 938ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 198 chars[0m
+[37m[15:30:22 F1 TEST] INFO: [F1] AD 944ms (#1)[0m
+[FIELD WARN] Powerplay but 3 outside circle (max 2). Possible misclassification.
+[37m[15:30:25 F1 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[15:30:27 F1 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:30:29 F1 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:30:31 F2 TEST] INFO: [WS] client disconnected (0 remain)[0m
+[37m[15:30:31 F2 VISION] INFO: [SCOUT] SCOREBOARD 1133ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 315 chars[0m
+[37m[15:30:31 F2 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+STRIP: GT 0-0 (0.0) | 
+INFO_PANEL: 
+SPEED: 
+EXTRA: [0m
+[37m[15:30:31 F2 TEST] INFO: 
+=======================================================[0m
+[37m[15:30:31 F2 TEST] INFO: [F2] SCOREBOARD — #1[0m
+[37m[15:30:31 F2 TEST] INFO:   [V 1136ms] STRIP: GT 0-0 (0.0) | 
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+The camera shows a close-up of a player wearing a helmet, indicating a break in play.[0m
+[37m[15:30:32 F2 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:30:32 F2 TEST] INFO:   [E 1109ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:30:33 F2 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:30:33 F2 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:30:33 F2 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:30:33 F2 TEST] INFO:   [S 809ms] Changes: none[0m
+[37m[15:30:33 F2 TEST] INFO:   Total: 3054ms (V:1136 E:1109 S:809)[0m
+[37m[15:30:33 F2 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:30:33 F2 TEST] INFO: DETAIL|F2|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: GT 0-0 (0.0) |  INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:  The camera shows a close-up of a player|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1136|lat_extract=1109|lat_scorer=809|lat_field=43|lat_comm=0|lat_code=0|lat_total=3060|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:30:35 F2 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[15:30:36 F3 VISION] INFO: [SCOUT] GRAPHIC 793ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 263 chars[0m
+[37m[15:30:36 F3 TEST] INFO: [F3] GRAPHIC cam=graphic → dead-time skip (#1)[0m
+[37m[15:30:36 F3 TEST] INFO: [WS] client disconnected (0 remain)[0m
+[37m[15:30:40 F4 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[15:30:40 F4 VISION] INFO: [SCOUT] GRAPHIC 928ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 395 chars[0m
+[37m[15:30:40 F4 TEST] INFO: [F4] GRAPHIC cam=graphic → dead-time skip (#2)[0m
+[37m[15:30:40 F4 TEST] INFO: [WS] client disconnected (0 remain)[0m
+[37m[15:30:42 F4 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[15:30:44 F5 VISION] INFO: [SCOUT] GRAPHIC 741ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 358 chars[0m
+[37m[15:30:44 F5 TEST] INFO: [F5] GRAPHIC cam=graphic → dead-time skip (#3)[0m
+[37m[15:30:44 F5 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:30:45 F5 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[15:30:47 F5 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[15:30:48 F6 VISION] INFO: [SCOUT] GRAPHIC 901ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 353 chars[0m
+[37m[15:30:48 F6 TEST] INFO: [F6] GRAPHIC cam=graphic → dead-time skip (#4)[0m
+[37m[15:30:48 F6 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:30:50 F6 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:30:52 F7 VISION] INFO: [SCOUT] SCOREBOARD 634ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 282 chars[0m
+[37m[15:30:52 F7 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: Not available (unable to read)
+
+No overlays[0m
+[37m[15:30:52 F7 TEST] INFO: [F7] cam=closeup → resuming active play after dead-time gap (#4 skipped)[0m
+[37m[15:30:52 F7 TEST] INFO: 
+=======================================================[0m
+[37m[15:30:52 F7 TEST] INFO: [F7] SCOREBOARD — #2[0m
+[37m[15:30:52 F7 TEST] INFO:   [V 637ms] STRIP: Not available (unable to read)
+
+No overlays visible.
+
+The player is preparing or taking a break, likely getting ready to bat.[0m
+[37m[15:30:52 F7 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[15:30:53 F7 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:30:53 F7 TEST] INFO:   [E 1031ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:30:54 F7 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:30:54 F7 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:30:54 F7 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:30:54 F7 TEST] INFO:   [S 1009ms] Changes: none[0m
+[37m[15:30:54 F7 TEST] INFO:   Total: 2677ms (V:637 E:1031 S:1009)[0m
+[37m[15:30:54 F7 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:30:54 F7 TEST] INFO: DETAIL|F7|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: Not available (unable to read)  No overlays visible.  The player is preparing or taking a break, likely getting r|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=637|lat_extract=1031|lat_scorer=1009|lat_field=42|lat_comm=0|lat_code=0|lat_total=2683|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:30:54 F7 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[15:30:54 F7 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:30:57 F8 VISION] INFO: [SCOUT] ADVERTISEMENT 734ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 163 chars[0m
+[37m[15:30:57 F8 TEST] INFO: [F8] AD 737ms (#2)[0m
+[37m[15:30:58 F8 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:02 F8 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:06 F9 VISION] INFO: [SCOUT] GRAPHIC 1252ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 297 chars[0m
+[37m[15:31:06 F9 TEST] INFO: [F9] GRAPHIC cam=graphic → dead-time skip (#5)[0m
+[37m[15:31:07 F9 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:10 F10 VISION] INFO: [SCOUT] SCOREBOARD 711ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 266 chars[0m
+[37m[15:31:10 F10 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.0) |  |  | 
+
+ACTION: A player is[0m
+[37m[15:31:10 F10 TEST] INFO: [F10] cam=closeup → resuming active play after dead-time gap (#5 skipped)[0m
+[37m[15:31:10 F10 TEST] INFO: 
+=======================================================[0m
+[37m[15:31:10 F10 TEST] INFO: [F10] SCOREBOARD — #3[0m
+[37m[15:31:10 F10 TEST] INFO:   [V 714ms] STRIP: CSK 0-0 (0.0) |  |  |[0m
+[37m[15:31:11 F10 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:11 F10 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:31:11 F10 TEST] INFO:   [E 1339ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:31:12 F10 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:31:12 F10 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:31:12 F10 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:31:12 F10 TEST] INFO:   [S 688ms] Changes: none[0m
+[37m[15:31:12 F10 TEST] INFO:   Total: 2741ms (V:714 E:1339 S:688)[0m
+[37m[15:31:12 F10 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:31:12 F10 TEST] INFO:   [ACTION] A player is standing with their hands on their hips, seemingly between plays.[0m
+[37m[15:31:12 F10 TEST] INFO: DETAIL|F10|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.0) |  |  ||action=A player is standing with their hands on their hips, seemingly between plays.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=714|lat_extract=1339|lat_scorer=688|lat_field=41|lat_comm=0|lat_code=0|lat_total=2747|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:31:13 F10 ENRICH] INFO: Pass-2 (verify) complete in 53202ms (28/50 known)[0m
+[37m[15:31:13 F10 ENRICH] INFO: Pass-2 corrected 10 players vs pass-1[0m
+[37m[15:31:13 F10 ENRICH] INFO: Saved styles to player_styles_0d19c92472a9.json[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg] Rajasthan Royals — styles:[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Yashasvi Jaiswal         LHB  | None[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Vaibhav Sooryavanshi     unknown | unknown[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Dhruv Jurel              RHB  | None[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Riyan Parag              LHB  | Right-arm legbreak[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Shimron Hetmyer          LHB  | None[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Donovan Ferreira         RHB  | Right-arm medium-fast[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Ravindra Jadeja          LHB  | Slow left-arm orthodox[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Jofra Archer             RHB  | Right-arm fast[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Tushar Deshpande         RHB  | Right-arm medium-fast[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Nandre Burger            RHB  | Right-arm fast[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Brijesh Sharma           unknown | unknown[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg] Sunrisers Hyderabad — styles:[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Abhishek Sharma          LHB  | Slow left-arm orthodox[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Ishan Kishan             LHB  | None[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Heinrich Klaasen         RHB  | None[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Salil Arora              unknown | unknown[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Aniket Verma             unknown | unknown[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Nitish Kumar Reddy       unknown | unknown[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Pat Cummins              RHB  | Right-arm fast[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Shivang Kumar            unknown | unknown[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Sakib Hussain            unknown | unknown[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Praful Hinge             unknown | unknown[0m
+[37m[15:31:13 F10 ENRICH] INFO: [pass2-bg]   Eshan Malinga            unknown | unknown[0m
+[37m[15:31:13 F10 BOARD] INFO: [STYLES-PATCH] Updated 0 card slots from background Pass-2 enrichment (50 players)[0m
+[37m[15:31:14 F11 TEST] INFO: [F11] No-strip skip #1 (lifetime=1)[0m
+[37m[15:31:14 F11 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:15 F12 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[15:31:16 F13 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[15:31:16 F13 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:20 F17 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:21 F19 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:24 F22 TEST] INFO: [F22] Force-processing after 12 no-strip skips (safety valve)[0m
+[37m[15:31:24 F22 VISION] INFO: [SCOUT] SCOREBOARD 782ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 350 chars[0m
+[37m[15:31:24 F22 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.0) | MS Dhoni 0(0) | Ruturaj Gai[0m
+[37m[15:31:24 F22 TEST] INFO: 
+=======================================================[0m
+[37m[15:31:24 F22 TEST] INFO: [F22] SCOREBOARD — #4[0m
+[37m[15:31:24 F22 TEST] INFO:   [V 785ms] STRIP: CSK 0-0 (0.0) | MS Dhoni 0(0) | Ruturaj Gaikwad 0(0) | 
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The player, likely MS Dhoni, is preparing or reacting during a break in play.[0m
+[37m[15:31:25 F22 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:25 F22 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:31:25 F22 TEST] INFO:   [E 1012ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:31:27 F22 SCORER] INFO: Scored in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:31:27 F22 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:31:27 F22 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:31:27 F22 TEST] INFO:   [S 1333ms] Changes: none[0m
+[37m[15:31:27 F22 TEST] INFO:   Total: 3130ms (V:785 E:1012 S:1333)[0m
+[37m[15:31:27 F22 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:31:27 F22 TEST] INFO: DETAIL|F22|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.0) | MS Dhoni 0(0) | Ruturaj Gaikwad 0(0) |   INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=785|lat_extract=1012|lat_scorer=1333|lat_field=40|lat_comm=0|lat_code=0|lat_total=3134|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:31:27 F22 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:29 F23 TEST] INFO: [F23] No-strip skip #1 (lifetime=13)[0m
+[37m[15:31:31 F25 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:33 F27 VISION] INFO: [SCOUT] SCOREBOARD 704ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 315 chars[0m
+[37m[15:31:33 F27 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: Not visible in this frame.
+
+No overlays vis[0m
+[37m[15:31:33 F27 TEST] INFO: 
+=======================================================[0m
+[37m[15:31:33 F27 TEST] INFO: [F27] SCOREBOARD — #5[0m
+[37m[15:31:33 F27 TEST] INFO:   [V 707ms] STRIP: Not visible in this frame.
+
+No overlays visible.
+
+The player wearing a brown jersey and hat appears to be walking on the field, likely during a break in play.[0m
+[37m[15:31:34 F27 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:31:34 F27 TEST] INFO:   [E 960ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:31:35 F27 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:35 F27 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:31:35 F27 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:31:35 F27 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:31:35 F27 TEST] INFO:   [S 747ms] Changes: none[0m
+[37m[15:31:35 F27 TEST] INFO:   Total: 2414ms (V:707 E:960 S:747)[0m
+[37m[15:31:35 F27 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:31:35 F27 TEST] INFO: DETAIL|F27|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: Not visible in this frame.  No overlays visible.  The player wearing a brown jersey and hat appears to be walking|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=707|lat_extract=960|lat_scorer=747|lat_field=43|lat_comm=0|lat_code=0|lat_total=2419|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:31:36 F27 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:37 F28 TEST] INFO: [F28] No-strip skip #1 (lifetime=17)[0m
+[37m[15:31:37 F28 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:39 F31 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:39 F32 TEST] INFO: [F32] Pixel skip #4[0m
+[37m[15:31:39 F32 TEST] INFO: [F32] Force-processing after 4 pixel skips[0m
+[37m[15:31:39 F32 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:43 F37 TEST] INFO: [F37] No-strip skip #4 (lifetime=20)[0m
+[37m[15:31:43 F37 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:44 F38 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:48 F42 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:49 F44 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:50 F45 TEST] INFO: [F45] Force-processing after 12 no-strip skips (safety valve)[0m
+[37m[15:31:51 F45 VISION] INFO: [SCOUT] GRAPHIC 901ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=False 251 chars[0m
+[37m[15:31:51 F45 VISION] INFO: [SCOUT] Preview: {"has_strip": false, "has_overlay_stats": true, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+INFO_PANEL: 
+ACTION: The screen is displaying a broadcas[0m
+[37m[15:31:51 F45 TEST] INFO: [F45] GRAPHIC cam=graphic → dead-time skip (#6)[0m
+[37m[15:31:53 F45 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:54 F46 TEST] INFO: [F46] No-strip skip #1 (lifetime=29)[0m
+[37m[15:31:54 F46 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:55 F47 TEST] INFO: [F47] Pixel skip #4[0m
+[37m[15:31:55 F47 TEST] INFO: [F47] Force-processing after 4 pixel skips[0m
+[37m[15:31:57 F49 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:57 F50 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:31:58 F51 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:31:59 F52 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:01 F54 VISION] INFO: [SCOUT] SCOREBOARD 752ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 344 chars[0m
+[37m[15:32:01 F54 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: CSK 0-0 (0) | Samson 0(0) | Gaikwad 0(0) |  Toss[0m
+[37m[15:32:01 F54 TEST] INFO: [F54] SCOREBOARD cam=graphic → dead-time skip (#7)[0m
+[37m[15:32:03 F54 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:05 F55 VISION] INFO: [SCOUT] SCOREBOARD 721ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 282 chars[0m
+[37m[15:32:05 F55 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: CSK 0-0 (0) | Samson 0(0) | Gaikwad 0(0) | Siraj[0m
+[37m[15:32:05 F55 TEST] INFO: [F55] SCOREBOARD cam=graphic → dead-time skip (#8)[0m
+[37m[15:32:05 F55 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:09 F56 VISION] INFO: [SCOUT] SCOREBOARD 824ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 304 chars[0m
+[37m[15:32:09 F56 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0) | Samson 0(0) | Gaikwad 0(0[0m
+[37m[15:32:09 F56 TEST] INFO: [F56] cam=bowlers_end → resuming active play after dead-time gap (#8 skipped)[0m
+[37m[15:32:09 F56 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:09 F56 TEST] INFO: [F56] SCOREBOARD — #6[0m
+[37m[15:32:09 F56 TEST] INFO:   [V 828ms] STRIP: CSK 0-0 (0) | Samson 0(0) | Gaikwad 0(0) | Siraj 0-0 (0)[0m
+[37m[15:32:09 F56 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:10 F56 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:10 F56 TEST] INFO:   [E 1174ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:32:10 F56 TEST] INFO:     BAT: Samson 0(0) [0m
+[37m[15:32:10 F56 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:32:10 F56 TEST] INFO:     BOWL: Siraj None-None (None)[0m
+[37m[15:32:11 F56 SCORER] INFO: Scored in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:11 F56 TEST] INFO:   [S] Hint: Current batters: SAMSON and GAIKWAD. Bowler: SIRAJ. Read their stats from the scoreboard.[0m
+[37m[15:32:11 F56 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:32:11 F56 TEST] INFO:   [S 1181ms] Changes: none[0m
+[37m[15:32:11 F56 TEST] INFO:   Total: 3183ms (V:828 E:1174 S:1181)[0m
+[37m[15:32:11 F56 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:32:11 F56 TEST] INFO:   [ACTION] The game is about to start as indicated by the toss information on the field.[0m
+[37m[15:32:11 F56 FIELD] INFO: [F56] OC-third_man_square moved to OC-third_man_fine[0m
+[37m[15:32:11 F56 FIELD] INFO: [F56] IC-behind_keeper_off brought in — attacking[0m
+[37m[15:32:11 F56 FIELD] INFO: [F56] IC-short_leg_area pushed back — defensive[0m
+[37m[15:32:11 F56 TEST] INFO:   [FIELD-MONITOR] Field unchanged for 54 frames (template=pace_powerplay, frozen=True, phase=powerplay). If a wicket / over / bowler change has happened in this window, the field-state updater is the bug.[0m
+[37m[15:32:11 F56 TEST] INFO: DETAIL|F56|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0) | Samson 0(0) | Gaikwad 0(0) | Siraj 0-0 (0)|action=The game is about to start as indicated by the toss information on the field.|ext_score=None-None(None)|ext_bat=Samson 0(0) | Gaikwad 0(0)|ext_bowl=Siraj None-None (None)|scorer_changes=[]|yolo=4|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=828|lat_extract=1174|lat_scorer=1181|lat_field=41|lat_comm=0|lat_code=0|lat_total=3189|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:32:11 F56 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:14 F57 VISION] INFO: [SCOUT] SCOREBOARD 767ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 282 chars[0m
+[37m[15:32:14 F57 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: CSK 0-0 (0) | Samson 0(0) | Gaikwad 0(0) | Siraj[0m
+[37m[15:32:14 F57 TEST] INFO: [F57] SCOREBOARD cam=graphic → dead-time skip (#9)[0m
+[37m[15:32:15 F57 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:18 F58 VISION] INFO: [SCOUT] SCOREBOARD 735ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 340 chars[0m
+[37m[15:32:18 F58 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.0) | Samson 0(0) | Gaikwad 0[0m
+[37m[15:32:18 F58 TEST] INFO: [F58] cam=bowlers_end → resuming active play after dead-time gap (#9 skipped)[0m
+[37m[15:32:18 F58 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:18 F58 TEST] INFO: [F58] SCOREBOARD — #7[0m
+[37m[15:32:18 F58 TEST] INFO:   [V 738ms] STRIP: CSK 0-0 (0.0) | Samson 0(0) | Gaikwad 0(0) | Siraj 0-0 (0.0)[0m
+[37m[15:32:18 F58 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[15:32:19 F58 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[15:32:19 F58 EXTRACT] INFO: Extracted in 1.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:19 F58 TEST] INFO:   [E 1491ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:32:19 F58 TEST] INFO:     BAT: Samson 0(0) [0m
+[37m[15:32:19 F58 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:32:19 F58 TEST] INFO:     BOWL: Siraj 0-0 (0.0)[0m
+[37m[15:32:20 F58 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:20 F58 TEST] INFO:   [S] Hint: Current batters: Samson and Gaikwad. Bowler: Siraj. Read their stats from the scoreboard.[0m
+[37m[15:32:20 F58 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:32:20 F58 TEST] INFO:   [S 923ms] Changes: none[0m
+[37m[15:32:20 F58 TEST] INFO:   Total: 3152ms (V:738 E:1491 S:923)[0m
+[37m[15:32:20 F58 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:32:20 F58 TEST] INFO:   [ACTION] The game is about to start, with the batsmen Samson and Gaikwad at the crease an[0m
+[37m[15:32:20 F58 FIELD] INFO: [F58] OC-deep_square_leg moved to OC-deep_mid_on_area[0m
+[37m[15:32:20 F58 FIELD] INFO: [F58] OC-deep_backward_square moved to OC-behind_keeper[0m
+[37m[15:32:20 F58 FIELD] INFO: [F58] slip added — expecting edge[0m
+[37m[15:32:20 F58 TEST] INFO: DETAIL|F58|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.0) | Samson 0(0) | Gaikwad 0(0) | Siraj 0-0 (0.0)|action=The game is about to start, with the batsmen Samson and Gaikwad at the crease and bowler Siraj ready|ext_score=None-None(None)|ext_bat=Samson 0(0) | Gaikwad 0(0)|ext_bowl=Siraj 0-0 (0.0)|scorer_changes=[]|yolo=5|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=738|lat_extract=1491|lat_scorer=923|lat_field=43|lat_comm=0|lat_code=0|lat_total=3158|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:32:20 F58 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:23 F59 VISION] INFO: [SCOUT] SCOREBOARD 582ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 245 chars[0m
+[37m[15:32:23 F59 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.1) | Samson 0(1) | Gaikwad 0(0) [0m
+[37m[15:32:23 F59 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:23 F59 TEST] INFO: [F59] SCOREBOARD — #8[0m
+[37m[15:32:23 F59 TEST] INFO:   [V 585ms] STRIP: CSK 0-0 (0.1) | Samson 0(1) | Gaikwad 0(0) |[0m
+[37m[15:32:23 F59 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:24 F59 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:24 F59 TEST] INFO:   [E 1008ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:32:24 F59 TEST] INFO:     BAT: Samson 0(1) [0m
+[37m[15:32:24 F59 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:32:25 F59 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:25 F59 TEST] INFO:   [S] Hint: Current batters: Samson, Gaikwad. Bowler: read name and stats from scoreboard.[0m
+[37m[15:32:25 F59 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:32:25 F59 TEST] INFO:   [S 712ms] Changes: none[0m
+[37m[15:32:25 F59 TEST] INFO:   Total: 2304ms (V:585 E:1008 S:712)[0m
+[37m[15:32:25 F59 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:32:25 F59 TEST] INFO:   [ACTION] A player is being shown clapping.[0m
+[37m[15:32:25 F59 TEST] INFO: DETAIL|F59|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.1) | Samson 0(1) | Gaikwad 0(0) ||action=A player is being shown clapping.|ext_score=None-None(None)|ext_bat=Samson 0(1) | Gaikwad 0(0)|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=585|lat_extract=1008|lat_scorer=712|lat_field=45|lat_comm=0|lat_code=0|lat_total=2309|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:32:25 F59 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:27 F60 TEST] INFO: [F60] Pixel skip #4[0m
+[37m[15:32:27 F60 TEST] INFO: [F60] Force-processing after 4 pixel skips[0m
+[37m[15:32:28 F60 VISION] INFO: [SCOUT] SCOREBOARD 886ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 360 chars[0m
+[37m[15:32:28 F60 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.1) | Samson 0(1) | Gaikwad 0(0) [0m
+[37m[15:32:28 F60 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:28 F60 TEST] INFO: [F60] SCOREBOARD — #9[0m
+[37m[15:32:28 F60 TEST] INFO:   [V 889ms] STRIP: CSK 0-0 (0.1) | Samson 0(1) | Gaikwad 0(0) | Siraj 0-0 (0.1)[0m
+[37m[15:32:29 F60 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:29 F60 EXTRACT] INFO: Extracted in 1.4s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:29 F60 TEST] INFO:   [E 1362ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:32:29 F60 TEST] INFO:     BAT: Samson 0(1) [0m
+[37m[15:32:29 F60 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:32:29 F60 TEST] INFO:     BOWL: Siraj 0-0 (0.1)[0m
+[37m[15:32:30 F60 SCORER] INFO: Scored in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:30 F60 TEST] INFO:   [S] Hint: Current batters: Samson, Gaikwad. Bowler: Siraj. Read their stats from the scoreboard.[0m
+[37m[15:32:30 F60 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:32:30 F60 TEST] INFO:   [S 1146ms] Changes: none[0m
+[37m[15:32:30 F60 TEST] INFO:   Total: 3397ms (V:889 E:1362 S:1146)[0m
+[37m[15:32:30 F60 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:32:30 F60 TEST] INFO:   [ACTION] The camera shows a close-up of a player, likely during a break in play, with the[0m
+[37m[15:32:30 F60 FIELD] INFO: [F60] balanced | total:5 (yolo:5 vis:0) | slips:1 in:2 out:3 | keeper:? | fresh:0 balls ago | conf:0.6 | 44ms[0m
+[37m[15:32:30 F60 TEST] INFO: DETAIL|F60|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.1) | Samson 0(1) | Gaikwad 0(0) | Siraj 0-0 (0.1)|action=The camera shows a close-up of a player, likely during a break in play, with the scoreboard displayi|ext_score=None-None(None)|ext_bat=Samson 0(1) | Gaikwad 0(0)|ext_bowl=Siraj 0-0 (0.1)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=889|lat_extract=1362|lat_scorer=1146|lat_field=44|lat_comm=0|lat_code=0|lat_total=3402|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:32:30 F60 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:33 F61 VISION] INFO: [SCOUT] SCOREBOARD 779ms strip=True overlay=False drs=False cam=bowlers_end phase=shot digits=False 273 chars[0m
+[37m[15:32:33 F61 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "shot", "ball_position": null}
+
+STRIP: GT 0-0 (0.0) | 
+
+No overlays or additional info[0m
+[37m[15:32:33 F61 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:33 F61 TEST] INFO: [F61] SCOREBOARD — #10[0m
+[37m[15:32:33 F61 TEST] INFO:   [V 782ms] STRIP: GT 0-0 (0.0) | 
+
+No overlays or additional information are visible in the provided image.
+
+The batter is playing a shot.[0m
+[37m[15:32:34 F61 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:34 F61 TEST] INFO:   [E 1018ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:32:34 F61 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:35 F61 SCORER] INFO: Scored in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:35 F61 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:32:35 F61 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:32:35 F61 TEST] INFO:   [S 625ms] Changes: none[0m
+[37m[15:32:35 F61 TEST] INFO:   Total: 2425ms (V:782 E:1018 S:625)[0m
+[37m[15:32:35 F61 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:32:35 F61 FIELD] INFO: [F61] OC-third_man_fine moved to OC-deep_third_man[0m
+[37m[15:32:35 F61 TEST] INFO: DETAIL|F61|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: GT 0-0 (0.0) |   No overlays or additional information are visible in the provided image.  The batter is playing |action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=5|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=782|lat_extract=1018|lat_scorer=625|lat_field=40|lat_comm=0|lat_code=0|lat_total=2430|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:32:35 F61 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:35 F62 TEST] INFO: [F62] No-strip skip #1 (lifetime=34)[0m
+[37m[15:32:37 F63 VISION] INFO: [SCOUT] SCOREBOARD 510ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 222 chars[0m
+[37m[15:32:37 F63 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.1) |  |  | 
+
+ACTION: A player is[0m
+[37m[15:32:37 F63 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:37 F63 TEST] INFO: [F63] SCOREBOARD — #11[0m
+[37m[15:32:37 F63 TEST] INFO:   [V 512ms] STRIP: CSK 0-0 (0.1) |  |  |[0m
+[37m[15:32:38 F63 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:38 F63 TEST] INFO:   [E 930ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:32:38 F63 SCORER] INFO: Scored in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:38 F63 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:32:38 F63 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:32:38 F63 TEST] INFO:   [S 612ms] Changes: none[0m
+[37m[15:32:38 F63 TEST] INFO:   Total: 2055ms (V:512 E:930 S:612)[0m
+[37m[15:32:38 F63 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:32:38 F63 TEST] INFO:   [ACTION] A player is walking on the field.[0m
+[37m[15:32:38 F63 TEST] INFO: DETAIL|F63|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.1) |  |  ||action=A player is walking on the field.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=512|lat_extract=930|lat_scorer=612|lat_field=114|lat_comm=0|lat_code=0|lat_total=2060|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:32:39 F63 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:40 F64 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:40 F64 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:42 F66 VISION] INFO: [SCOUT] SCOREBOARD 834ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 298 chars[0m
+[37m[15:32:42 F66 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.1) | Samson 0(0) |  | Siraj 0-0 [0m
+[37m[15:32:42 F66 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:42 F66 TEST] INFO: [F66] SCOREBOARD — #12[0m
+[37m[15:32:42 F66 TEST] INFO:   [V 837ms] STRIP: CSK 0-0 (0.1) | Samson 0(0) |  | Siraj 0-0 (0.1)[0m
+[37m[15:32:44 F66 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:44 F66 TEST] INFO:   [E 1287ms] visible_team=None score=None-None (0.1) target=None rr=None[0m
+[37m[15:32:44 F66 TEST] INFO:     BAT: Samson 0(0) [0m
+[37m[15:32:44 F66 TEST] INFO:     BOWL: Siraj 0-0 (0.1)[0m
+[37m[15:32:44 F66 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[15:32:44 F66 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[15:32:45 F66 SCORER] INFO: Scored in 1.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:45 F66 TEST] INFO:   [S] Hint: Current batters: SAMSON. Bowler: SIRAJ. Read their stats from the scoreboard.[0m
+[37m[15:32:45 F66 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:32:45 F66 TEST] INFO:   [S 1637ms] Changes: none[0m
+[37m[15:32:45 F66 TEST] INFO:   Total: 3761ms (V:837 E:1287 S:1637)[0m
+[37m[15:32:45 F66 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:32:45 F66 TEST] INFO:   [ACTION] The camera shows a close-up of a player, likely a batter, in a moment between pl[0m
+[37m[15:32:45 F66 TEST] INFO: DETAIL|F66|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.1) | Samson 0(0) |  | Siraj 0-0 (0.1)|action=The camera shows a close-up of a player, likely a batter, in a moment between play.|ext_score=None-None(0.1)|ext_bat=Samson 0(0)|ext_bowl=Siraj 0-0 (0.1)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=837|lat_extract=1287|lat_scorer=1637|lat_field=41|lat_comm=0|lat_code=0|lat_total=3766|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:32:45 F66 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:48 F67 VISION] INFO: [SCOUT] SCOREBOARD 848ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 388 chars[0m
+[37m[15:32:48 F67 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.1) | Samson 0(0) |  | Siraj 0-0 [0m
+[37m[15:32:48 F67 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:48 F67 TEST] INFO: [F67] SCOREBOARD — #13[0m
+[37m[15:32:48 F67 TEST] INFO:   [V 850ms] STRIP: CSK 0-0 (0.1) | Samson 0(0) |  | Siraj 0-0 (0.1)
+
+No overlays visible.
+
+The batter, Samson, appears to be preparing or adjusting his gear, as he is seen closely with his helmet on and bat in hand, indicating a moment between plays.[0m
+[37m[15:32:49 F67 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:49 F67 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:49 F67 TEST] INFO:   [E 1253ms] visible_team=None score=None-None (0.1) target=None rr=None[0m
+[37m[15:32:49 F67 TEST] INFO:     BAT: Samson 0(0) [0m
+[37m[15:32:49 F67 TEST] INFO:     BOWL: Siraj 0-0 (0.1)[0m
+[37m[15:32:49 F67 TRACK] INFO: overs: initial proposed 0.1 (2/3 — waiting)[0m
+[37m[15:32:50 F67 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:50 F67 TEST] INFO:   [S] Hint: Current batters: Samson. Bowler: Siraj. Read their stats from the scoreboard.[0m
+[37m[15:32:50 F67 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:32:50 F67 TEST] INFO:   [S 925ms] Changes: none[0m
+[37m[15:32:50 F67 TEST] INFO:   Total: 3028ms (V:850 E:1253 S:925)[0m
+[37m[15:32:50 F67 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:32:50 F67 TEST] INFO: DETAIL|F67|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.1) | Samson 0(0) |  | Siraj 0-0 (0.1)  No overlays visible.  The batter, Samson, appears to be prepari|action=—|ext_score=None-None(0.1)|ext_bat=Samson 0(0)|ext_bowl=Siraj 0-0 (0.1)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=850|lat_extract=1253|lat_scorer=925|lat_field=42|lat_comm=0|lat_code=0|lat_total=3033|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:32:50 F67 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:53 F68 VISION] INFO: [SCOUT] SCOREBOARD 724ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 322 chars[0m
+[37m[15:32:53 F68 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.1) | Samson 0(0) | *  | Sira[0m
+[37m[15:32:53 F68 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:53 F68 TEST] INFO: [F68] SCOREBOARD — #14[0m
+[37m[15:32:53 F68 TEST] INFO:   [V 726ms] STRIP: CSK 0-0 (0.1) | Samson 0(0) | *  | Siraj 0-0 (0.1)[0m
+[37m[15:32:54 F68 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:54 F68 TEST] INFO:   [E 1066ms] visible_team=None score=None-None (0.1) target=None rr=None[0m
+[37m[15:32:54 F68 TEST] INFO:     BAT: Samson 0(0) [0m
+[37m[15:32:54 F68 TEST] INFO:     BOWL: Siraj 0-0 (0.1)[0m
+[37m[15:32:54 F68 TRACK] INFO: overs: initial → 0.1 (cold-start consensus 3/3)[0m
+[37m[15:32:54 F68 BOARD] INFO: overs: None -> 0.1 [F68][0m
+[37m[15:32:54 F68 TEST] INFO:   [DIRECT] overs→0.1[0m
+[37m[15:32:54 F68 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:32:55 F68 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:55 F68 TEST] INFO:   [S] Hint: Current batters: SAMSON. Bowler: SIRAJ. Read their stats from the scoreboard.[0m
+[37m[15:32:55 F68 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:32:55 F68 TEST] INFO:   [S 786ms] Changes: none[0m
+[37m[15:32:55 F68 TEST] INFO:   Total: 2579ms (V:726 E:1066 S:786)[0m
+[37m[15:32:55 F68 OVER] INFO: Joined at 0.1, pre-filled 1 balls as '?'[0m
+[37m[15:32:55 F68 TEST] INFO:   [THIS OVER] ['?'] = 0 runs[0m
+[37m[15:32:55 F68 TEST] INFO:   STATE: ? None-None (0.1) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:32:55 F68 TEST] INFO:   [ACTION] The players are preparing for the next delivery, with the bowler Siraj and batte[0m
+[37m[15:32:55 F68 FIELD] INFO: [F68] slip removed — less catching pressure[0m
+[37m[15:32:55 F68 FIELD] INFO: [F68] IC-wide_mid_on brought in — attacking[0m
+[37m[15:32:55 F68 TEST] INFO: DETAIL|F68|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.1) | Samson 0(0) | *  | Siraj 0-0 (0.1)|action=The players are preparing for the next delivery, with the bowler Siraj and batter Samson in position|ext_score=None-None(0.1)|ext_bat=Samson 0(0)|ext_bowl=Siraj 0-0 (0.1)|scorer_changes=[]|yolo=5|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(0.1)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?']|AFTER_this_over_src=?(bcast)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=726|lat_extract=1066|lat_scorer=786|lat_field=43|lat_comm=0|lat_code=0|lat_total=2584|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:32:55 F68 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:32:58 F69 VISION] INFO: [SCOUT] SCOREBOARD 724ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 326 chars[0m
+[37m[15:32:58 F69 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.2) | Samson 0(0) |  | Siraj 0-0 [0m
+[37m[15:32:58 F69 TEST] INFO: 
+=======================================================[0m
+[37m[15:32:58 F69 TEST] INFO: [F69] SCOREBOARD — #15[0m
+[37m[15:32:58 F69 TEST] INFO:   [V 727ms] STRIP: CSK 0-0 (0.2) | Samson 0(0) |  | Siraj 0-0 (0.2)[0m
+[37m[15:32:59 F69 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:32:59 F69 TEST] INFO:   [E 1066ms] visible_team=None score=None-None (0.2) target=None rr=None[0m
+[37m[15:32:59 F69 TEST] INFO:     BAT: Samson 0(0) [0m
+[37m[15:32:59 F69 TEST] INFO:     BOWL: Siraj 0-0 (0.2)[0m
+[37m[15:32:59 F69 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:00 F69 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:00 F69 TEST] INFO:   [S] Hint: Current batters: SAMSON. Bowler: SIRAJ. Read their stats from the scoreboard.[0m
+[37m[15:33:00 F69 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:33:00 F69 TEST] INFO:   [S 833ms] Changes: none[0m
+[37m[15:33:00 F69 TEST] INFO:   Total: 2626ms (V:727 E:1066 S:833)[0m
+[37m[15:33:00 F69 TEST] INFO:   [THIS OVER] ['?'] = 0 runs[0m
+[37m[15:33:00 F69 TEST] INFO:   STATE: ? None-None (0.1) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:33:00 F69 TEST] INFO:   [ACTION] The game is in progress, with the batter Samson and bowler Siraj at the center, [0m
+[37m[15:33:00 F69 TEST] INFO: DETAIL|F69|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.2) | Samson 0(0) |  | Siraj 0-0 (0.2)|action=The game is in progress, with the batter Samson and bowler Siraj at the center, and the score is cur|ext_score=None-None(0.2)|ext_bat=Samson 0(0)|ext_bowl=Siraj 0-0 (0.2)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(0.1)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?']|AFTER_score=None-None(0.1)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?']|AFTER_this_over_src=?(bcast)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=727|lat_extract=1066|lat_scorer=833|lat_field=41|lat_comm=0|lat_code=0|lat_total=2630|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:33:00 F69 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:03 F70 VISION] INFO: [SCOUT] SCOREBOARD 796ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 382 chars[0m
+[37m[15:33:03 F70 TEST] INFO: 
+=======================================================[0m
+[37m[15:33:03 F70 TEST] INFO: [F70] SCOREBOARD — #16[0m
+[37m[15:33:03 F70 TEST] INFO:   [V 799ms] STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0(0) | Toss GT
+
+INFO_PANEL: 
+SPEED: 107.5 kph
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The players are preparing for the match, with the batter and bowler not actively engaged in a delivery.[0m
+[37m[15:33:04 F70 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:04 F70 TEST] INFO:   [E 1028ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:33:04 F70 TEST] INFO:     BAT: Samson 0(2) [0m
+[37m[15:33:04 F70 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:33:04 F70 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:04 F70 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:04 F70 TEST] INFO:   [S] Hint: Current batters: SAMSON and GAIKWAD. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:33:04 F70 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:33:04 F70 TEST] INFO:   [S 753ms] Changes: none[0m
+[37m[15:33:04 F70 TEST] INFO:   Total: 2581ms (V:799 E:1028 S:753)[0m
+[37m[15:33:04 F70 TEST] INFO:   [THIS OVER] ['?'] = 0 runs[0m
+[37m[15:33:04 F70 TEST] INFO:   STATE: ? None-None (0.1) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:33:04 F70 TEST] INFO: DETAIL|F70|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0(0) | Toss GT  INFO_PANEL:  SPEED: 107.5 kph EXTRA:  THIS OVER:  FULL SCOR|action=—|ext_score=None-None(None)|ext_bat=Samson 0(2) | Gaikwad 0(0)|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(0.1)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?']|AFTER_score=None-None(0.1)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?']|AFTER_this_over_src=?(bcast)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=107.5|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=799|lat_extract=1028|lat_scorer=753|lat_field=48|lat_comm=0|lat_code=0|lat_total=2586|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:33:04 F70 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:05 F70 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:06 F70 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[15:33:07 F71 VISION] INFO: [SCOUT] SCOREBOARD 858ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 323 chars[0m
+[37m[15:33:07 F71 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: CSK 0-0 (0.2) | Samson 0(1) | Gaikwad 0(0) | 
+
+A[0m
+[37m[15:33:07 F71 TEST] INFO: [F71] SCOREBOARD cam=graphic → dead-time skip (#10)[0m
+[37m[15:33:07 F71 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[15:33:07 F71 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:08 F71 TEST] INFO: [WS] client connected (2 total)[0m
+[FIELD] Pitch detected from people cluster: (0.34, 0.76) spread=0.205
+[37m[15:33:11 F72 VISION] INFO: [SCOUT] SCOREBOARD 710ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 351 chars[0m
+[37m[15:33:11 F72 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: CSK 0-0 (0.2) | Samson 0(0) | Gaikwad 0(0) | 
+
+I[0m
+[37m[15:33:11 F72 TEST] INFO: [TOSS] Can't resolve 'THE TEAMS ARE INTRODUCING THEIR PLAYING XI AS THE TITANS HAVE' to a team[0m
+[37m[15:33:11 F72 TEST] INFO: [F72] SCOREBOARD cam=graphic → dead-time skip (#11)[0m
+[37m[15:33:11 F72 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:14 F72 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:14 F73 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:15 F74 TEST] INFO: [F74] Pixel skip #4[0m
+[37m[15:33:15 F74 TEST] INFO: [F74] Force-processing after 4 pixel skips[0m
+[37m[15:33:15 F74 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:16 F74 VISION] INFO: [SCOUT] SCOREBOARD 780ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 285 chars[0m
+[37m[15:33:16 F74 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: CSK 0-0 (0.2) | Samson 0(0) | Gaikwad 0(0) | 
+
+A[0m
+[37m[15:33:16 F74 TEST] INFO: [F74] SCOREBOARD cam=graphic → dead-time skip (#12)[0m
+[37m[15:33:16 F74 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:20 F76 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:20 F76 VISION] INFO: [SCOUT] SCOREBOARD 751ms strip=True overlay=False drs=False cam=graphic phase=graphic digits=False 273 chars[0m
+[37m[15:33:20 F76 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "graphic", "frame_phase": "graphic", "ball_position": null}
+
+STRIP: CSK 0-0 (0.2) | Samson 0(0) | Gaikwad 0(0) 
+
+ACT[0m
+[37m[15:33:20 F76 TEST] INFO: [F76] SCOREBOARD cam=graphic → dead-time skip (#13)[0m
+[37m[15:33:20 F76 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:24 F77 VISION] INFO: [SCOUT] SCOREBOARD 757ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 369 chars[0m
+[37m[15:33:24 F77 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0[0m
+[37m[15:33:24 F77 TEST] INFO:   [DISMISSAL-HINT] action says 'bowled' (window 30f)[0m
+[37m[15:33:24 F77 TEST] INFO: [F77] cam=bowlers_end → resuming active play after dead-time gap (#13 skipped)[0m
+[37m[15:33:24 F77 TEST] INFO: 
+=======================================================[0m
+[37m[15:33:24 F77 TEST] INFO: [F77] SCOREBOARD — #17[0m
+[37m[15:33:24 F77 TEST] INFO:   [V 760ms] STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0(0) | Siraj 0-0 (0.2)[0m
+[37m[15:33:24 F77 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:25 F77 EXTRACT] INFO: Extracted in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:25 F77 TEST] INFO:   [E 1209ms] visible_team=None score=None-None (0.2) target=None rr=None[0m
+[37m[15:33:25 F77 TEST] INFO:     BAT: Samson 0(2) [0m
+[37m[15:33:25 F77 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:33:25 F77 TEST] INFO:     BOWL: Siraj 0-0 (0.2)[0m
+[37m[15:33:25 F77 TRACK] INFO: overs: 0.1 → 0.2 (confirmed F77)[0m
+[37m[15:33:25 F77 BOARD] INFO: overs: 0.1 -> 0.2 [F77][0m
+[37m[15:33:25 F77 TEST] INFO:   [DIRECT] overs→0.2[0m
+[37m[15:33:26 F77 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:26 F77 TEST] INFO:   [S] Hint: Current batters: Samson, Gaikwad. Bowler: Siraj. Read their stats from the scoreboard.[0m
+[37m[15:33:26 F77 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:33:26 F77 TEST] INFO:   [S 849ms] Changes: none[0m
+[37m[15:33:26 F77 TEST] INFO:   Total: 2819ms (V:760 E:1209 S:849)[0m
+[37m[15:33:26 F77 TEST] INFO:   [THIS OVER] ['?'] = 0 runs[0m
+[37m[15:33:26 F77 COMMENTARY] INFO: [BALL ✓] DOT | 0.2 +0 runs (Δballs=1)[0m
+[37m[15:33:26 F77 TEST] INFO:   [THIS-OVER] Ball DOT appended to over 0[0m
+[37m[15:33:26 F77 TEST] INFO:   [DELIVERY ENQUEUED] dnum=1 evt=DOT runs=0 (submit_ms=1, method=gemini_async) — awaiting async classification[0m
+[37m[15:33:26 F77 TEST] INFO:   STATE: ? None-None (0.2) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:33:26 F77 TEST] INFO:   [SHADOW] SM=None BED=DOT MISSED[0m
+[37m[15:33:26 F77 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:27 F77 TEST] INFO:   [COMM 1131ms] storyteller(1130ms), wire(1130ms)[0m
+[37m[15:33:27 F77 TEST] INFO:   [BALL EVENT ✓] DOT | 0.2 | +0 runs (Δballs=0) | The game is in its initial phase, with no delivery bowled ye[0m
+[37m[15:33:27 F77 FIELD] INFO: [F77] OC-behind_keeper moved to OC-deep_cover[0m
+[37m[15:33:27 F77 FIELD] INFO: [F77] IC-wide_mid_on pushed back — defensive[0m
+[37m[15:33:27 F77 FIELD] INFO: [F77] OC-deep_third_man moved to OC-deep_cover_point[0m
+[37m[15:33:27 F77 TEST] INFO: DETAIL|F77|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0(0) | Siraj 0-0 (0.2)|action=The game is in its initial phase, with no delivery bowled yet, as indicated by the score 0-0 and the|ext_score=None-None(0.2)|ext_bat=Samson 0(2) | Gaikwad 0(0)|ext_bowl=Siraj 0-0 (0.2)|scorer_changes=[]|yolo=3|BEFORE_score=None-None(0.1)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?']|AFTER_score=None-None(0.2)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '.']|AFTER_this_over_src=?(bcast),.(obs)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=DOT|ball_event_runs=0|ball_event_over=0.2|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=gemini_async|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=0.00|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=None|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=760|lat_extract=1209|lat_scorer=849|lat_field=42|lat_comm=1131|lat_code=0|lat_total=3959|comm_bowler=—|comm_wire=0.2: A dot ball to start the innings, no runs scored. The batter defends the delivery. Score remains 0/0.|comm_storyteller=The action is underway here, and the bowler strides in, setting the field. A dot ball to start, the batter takes his time, watching the ball closely. The umpire gives a nod, and it's a dot, no runs sc|comm_analyst=—|comm_colour=—|comm_wire_ms=1130|comm_story_ms=1130|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:33:27 F77 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:30 F78 VISION] INFO: [SCOUT] SCOREBOARD 1000ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 298 chars[0m
+[37m[15:33:30 F78 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0(0) [0m
+[37m[15:33:30 F78 TEST] INFO: 
+=======================================================[0m
+[37m[15:33:30 F78 TEST] INFO: [F78] SCOREBOARD — #18[0m
+[37m[15:33:30 F78 TEST] INFO:   [V 1003ms] STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0(0) | Siraj 0-0 (0.2)[0m
+[37m[15:33:30 F78 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[15:33:31 F78 EXTRACT] INFO: Extracted in 1.3s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:31 F78 TEST] INFO:   [E 1310ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:33:31 F78 TEST] INFO:     BAT: Samson 0(2) [0m
+[37m[15:33:31 F78 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:33:31 F78 TEST] INFO:     BOWL: Siraj 0-0 (0.2)[0m
+[37m[15:33:31 F78 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[15:33:32 F78 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:32 F78 TEST] INFO:   [S] Hint: Current batters: SAMSON and GAIKWAD. Bowler: SIRAJ. Read their stats from the scoreboard.[0m
+[37m[15:33:32 F78 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:33:32 F78 TEST] INFO:   [S 909ms] Changes: none[0m
+[37m[15:33:32 F78 TEST] INFO:   Total: 3221ms (V:1003 E:1310 S:909)[0m
+[37m[15:33:32 F78 TEST] INFO:   [THIS OVER] ['?', '.'] = 0 runs[0m
+[37m[15:33:32 F78 TEST] INFO:   STATE: ? None-None (0.2) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:33:32 F78 TEST] INFO:   [ACTION] The camera shows a close-up of a player, likely during a break in play.[0m
+[37m[15:33:32 F78 TEST] INFO: DETAIL|F78|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0(0) | Siraj 0-0 (0.2)|action=The camera shows a close-up of a player, likely during a break in play.|ext_score=None-None(None)|ext_bat=Samson 0(2) | Gaikwad 0(0)|ext_bowl=Siraj 0-0 (0.2)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(0.2)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '.']|AFTER_score=None-None(0.2)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '.']|AFTER_this_over_src=?(bcast),.(obs)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1003|lat_extract=1310|lat_scorer=909|lat_field=49|lat_comm=0|lat_code=0|lat_total=3226|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:33:32 F78 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:35 F79 VISION] INFO: [SCOUT] SCOREBOARD 691ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 289 chars[0m
+[37m[15:33:35 F79 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0[0m
+[37m[15:33:35 F79 TEST] INFO: 
+=======================================================[0m
+[37m[15:33:35 F79 TEST] INFO: [F79] SCOREBOARD — #19[0m
+[37m[15:33:35 F79 TEST] INFO:   [V 693ms] STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0(0) | Siraj 0-0 (0.2)[0m
+[37m[15:33:36 F79 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:37 F79 EXTRACT] INFO: Extracted in 1.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:37 F79 TEST] INFO:   [E 1626ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:33:37 F79 TEST] INFO:     BAT: Samson 0(2) [0m
+[37m[15:33:37 F79 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:33:37 F79 TEST] INFO:     BOWL: Siraj 0-0 (0.2)[0m
+[37m[15:33:38 F79 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:38 F79 TEST] INFO:   [S] Hint: Current batters: Samson, Gaikwad. Bowler: Siraj. Read their stats from the scoreboard.[0m
+[37m[15:33:38 F79 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:33:38 F79 TEST] INFO:   [S 813ms] Changes: none[0m
+[37m[15:33:38 F79 TEST] INFO:   Total: 3132ms (V:693 E:1626 S:813)[0m
+[37m[15:33:38 F79 TEST] INFO:   [THIS OVER] ['?', '.'] = 0 runs[0m
+[37m[15:33:38 F79 TEST] INFO:   STATE: ? None-None (0.2) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:33:38 F79 TEST] INFO:   [ACTION] The fielders are positioned as the game is about to start.[0m
+[37m[15:33:38 F79 TEST] INFO: DETAIL|F79|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.2) | Samson 0(2) | Gaikwad 0(0) | Siraj 0-0 (0.2)|action=The fielders are positioned as the game is about to start.|ext_score=None-None(None)|ext_bat=Samson 0(2) | Gaikwad 0(0)|ext_bowl=Siraj 0-0 (0.2)|scorer_changes=[]|yolo=2|BEFORE_score=None-None(0.2)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '.']|AFTER_score=None-None(0.2)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '.']|AFTER_this_over_src=?(bcast),.(obs)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=693|lat_extract=1626|lat_scorer=813|lat_field=45|lat_comm=0|lat_code=0|lat_total=3137|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:33:38 F79 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:40 F80 VISION] INFO: [SCOUT] SCOREBOARD 657ms strip=True overlay=False drs=False cam=bowlers_end phase=between_play digits=False 285 chars[0m
+[37m[15:33:40 F80 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.3) | Samson 0(3) | Gaikwad 0[0m
+[37m[15:33:40 F80 TEST] INFO: 
+=======================================================[0m
+[37m[15:33:40 F80 TEST] INFO: [F80] SCOREBOARD — #20[0m
+[37m[15:33:40 F80 TEST] INFO:   [V 660ms] STRIP: CSK 0-0 (0.3) | Samson 0(3) | Gaikwad 0(0) |[0m
+[37m[15:33:41 F80 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:41 F80 TEST] INFO:   [E 1045ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:33:41 F80 TEST] INFO:     BAT: Samson 0(3) [0m
+[37m[15:33:42 F80 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:42 F80 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:42 F80 TEST] INFO:   [S] Hint: Current batters: SAMSON. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:33:42 F80 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:33:42 F80 TEST] INFO:   [S 695ms] Changes: none[0m
+[37m[15:33:42 F80 TEST] INFO:   Total: 2399ms (V:660 E:1045 S:695)[0m
+[37m[15:33:42 F80 TEST] INFO:   [THIS OVER] ['?', '.'] = 0 runs[0m
+[37m[15:33:42 F80 TEST] INFO:   STATE: ? None-None (0.2) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:33:42 F80 TEST] INFO:   [ACTION] The players are taking their positions as the game is about to start.[0m
+[37m[15:33:42 F80 FIELD] INFO: [F80] IC-midwicket brought in — attacking[0m
+[37m[15:33:42 F80 FIELD] INFO: [F80] OC-deep_cover moved to OC-deep_backward_point[0m
+[37m[15:33:42 F80 FIELD] INFO: [F80] IC-wide_mid_on brought in — attacking[0m
+[37m[15:33:42 F80 TEST] INFO: DETAIL|F80|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.3) | Samson 0(3) | Gaikwad 0(0) ||action=The players are taking their positions as the game is about to start.|ext_score=None-None(None)|ext_bat=Samson 0(3)|ext_bowl=|scorer_changes=[]|yolo=3|BEFORE_score=None-None(0.2)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '.']|AFTER_score=None-None(0.2)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '.']|AFTER_this_over_src=?(bcast),.(obs)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=660|lat_extract=1045|lat_scorer=695|lat_field=43|lat_comm=0|lat_code=0|lat_total=2406|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:33:42 F80 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:45 F81 VISION] INFO: [SCOUT] SCOREBOARD 870ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 309 chars[0m
+[37m[15:33:45 F81 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.3) | Samson 0(3) | Gaikwad 0(0) [0m
+[37m[15:33:45 F81 TEST] INFO: 
+=======================================================[0m
+[37m[15:33:45 F81 TEST] INFO: [F81] SCOREBOARD — #21[0m
+[37m[15:33:45 F81 TEST] INFO:   [V 873ms] STRIP: CSK 0-0 (0.3) | Samson 0(3) | Gaikwad 0(0) | Siraj 0-0 (0.3)[0m
+[37m[15:33:46 F81 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:46 F81 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:46 F81 TEST] INFO:   [E 1116ms] visible_team=None score=None-None (0.3) target=None rr=None[0m
+[37m[15:33:46 F81 TEST] INFO:     BAT: Samson 0(3) [0m
+[37m[15:33:46 F81 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:33:46 F81 TEST] INFO:     BOWL: Siraj 0-0 (0.3)[0m
+[37m[15:33:46 F81 TRACK] INFO: overs: 0.2 → 0.3 (post-event immediate, grace=1)[0m
+[37m[15:33:46 F81 BOARD] INFO: overs: 0.2 -> 0.3 [F81][0m
+[37m[15:33:46 F81 TEST] INFO:   [DIRECT] overs→0.3[0m
+[37m[15:33:47 F81 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:47 F81 TEST] INFO:   [S] Hint: Current batters: Samson, Gaikwad. Bowler: Siraj. Read their stats from the scoreboard.[0m
+[37m[15:33:47 F81 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:33:47 F81 TEST] INFO:   [S 791ms] Changes: none[0m
+[37m[15:33:47 F81 TEST] INFO:   Total: 2780ms (V:873 E:1116 S:791)[0m
+[37m[15:33:47 F81 TEST] INFO:   [THIS OVER] ['?', '.'] = 0 runs[0m
+[37m[15:33:47 F81 COMMENTARY] INFO: [BALL ✓] DOT | 0.3 +0 runs (Δballs=1)[0m
+[37m[15:33:47 F81 TEST] INFO:   [THIS-OVER] Ball DOT appended to over 0[0m
+[37m[15:33:47 F81 TEST] INFO:   [DELIVERY ENQUEUED] dnum=2 evt=DOT runs=0 (submit_ms=0, method=gemini_async) — awaiting async classification[0m
+[37m[15:33:47 F81 TEST] INFO:   STATE: ? None-None (0.3) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:33:47 F81 TEST] INFO:   [SHADOW] SM=None BED=DOT MISSED[0m
+[37m[15:33:47 F81 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:48 F81 TEST] INFO:   [COMM 620ms] storyteller(618ms), wire(360ms)[0m
+[37m[15:33:48 F81 TEST] INFO:   [BALL EVENT ✓] DOT | 0.3 | +0 runs (Δballs=0) | The camera shows a close-up of a player, likely a pre-game o[0m
+[37m[15:33:48 F81 TEST] INFO: DETAIL|F81|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.3) | Samson 0(3) | Gaikwad 0(0) | Siraj 0-0 (0.3)|action=The camera shows a close-up of a player, likely a pre-game or between-play moment.|ext_score=None-None(0.3)|ext_bat=Samson 0(3) | Gaikwad 0(0)|ext_bowl=Siraj 0-0 (0.3)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(0.2)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '.']|AFTER_score=None-None(0.3)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '.', '.']|AFTER_this_over_src=?(bcast),.(obs),.(obs)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=DOT|ball_event_runs=0|ball_event_over=0.3|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=gemini_async|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=0.00|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=None|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=873|lat_extract=1116|lat_scorer=791|lat_field=49|lat_comm=620|lat_code=0|lat_total=3408|comm_bowler=—|comm_wire=0.3: A dot ball again, as the batter watches the ball closely, letting it pass without attempting a shot. The score remains unchanged. Short of length|comm_storyteller=The bowler charges in, and the batter, anticipating the short delivery, takes a step back. The ball is angled in, a tantalizing length that's neither short enough to pull nor full enough to drive. The|comm_analyst=—|comm_colour=—|comm_wire_ms=360|comm_story_ms=618|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:33:50 F82 TEST] INFO: [F82] No-strip skip #1 (lifetime=35)[0m
+[37m[15:33:51 F83 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:51 F84 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:52 F84 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:33:54 F86 VISION] INFO: [SCOUT] SCOREBOARD 902ms strip=True overlay=False drs=False cam=bowlers_end phase=shot digits=True 295 chars[0m
+[37m[15:33:54 F86 TEST] INFO: 
+=======================================================[0m
+[37m[15:33:54 F86 TEST] INFO: [F86] SCOREBOARD — #22[0m
+[37m[15:33:54 F86 TEST] INFO:   [V 905ms] STRIP: CSK 0-0 (0.0) | Ruturaj Gaikwad 0(0) | Rachin Ravindra 0(0) | Mohammed Shami 0-0 (0.0)[0m
+[37m[15:33:55 F86 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:55 F86 TEST] INFO:   [E 1126ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:33:56 F86 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[15:33:56 F86 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[15:33:56 F86 SCORER] INFO: Scored in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:56 F86 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[15:33:56 F86 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:33:56 F86 TEST] INFO:   [S 1072ms] Changes: none[0m
+[37m[15:33:56 F86 TEST] INFO:   Total: 3102ms (V:905 E:1126 S:1072)[0m
+[37m[15:33:56 F86 TEST] INFO:   [THIS OVER] ['?', '.', '.'] = 0 runs[0m
+[37m[15:33:56 F86 TEST] INFO:   STATE: ? None-None (0.3) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:33:56 F86 TEST] INFO:   [ACTION] A batsman is playing a shot.[0m
+[37m[15:33:56 F86 TEST] INFO:   [FIELD-MONITOR] Field unchanged for 84 frames (template=pace_powerplay, frozen=True, phase=powerplay). If a wicket / over / bowler change has happened in this window, the field-state updater is the bug.[0m
+[37m[15:33:56 F86 TEST] INFO: DETAIL|F86|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.0) | Ruturaj Gaikwad 0(0) | Rachin Ravindra 0(0) | Mohammed Shami 0-0 (0.0)|action=A batsman is playing a shot.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(0.3)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '.', '.']|AFTER_score=None-None(0.3)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '.', '.']|AFTER_this_over_src=?(bcast),.(obs),.(obs)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=905|lat_extract=1126|lat_scorer=1072|lat_field=40|lat_comm=0|lat_code=0|lat_total=3107|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:33:56 F86 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:33:57 F87 TEST] INFO: [F87] No-strip skip #1 (lifetime=39)[0m
+[37m[15:33:58 F88 VISION] INFO: [SCOUT] SCOREBOARD 682ms strip=True overlay=False drs=False cam=None phase=between_play digits=False 282 chars[0m
+[37m[15:33:58 F88 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "between_play", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.3) | Gaikwad 0(0) | Samson [0m
+[37m[15:33:58 F88 TEST] INFO: 
+=======================================================[0m
+[37m[15:33:58 F88 TEST] INFO: [F88] SCOREBOARD — #23[0m
+[37m[15:33:58 F88 TEST] INFO:   [V 684ms] STRIP: CSK 0-0 (0.3) | Gaikwad 0(0) | Samson 0(3) | Siraj 0-0 (0.3)[0m
+[37m[15:33:59 F88 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:33:59 F88 TEST] INFO:   [E 1131ms] visible_team=None score=None-None (0.3) target=None rr=None[0m
+[37m[15:33:59 F88 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:33:59 F88 TEST] INFO:     BAT: Samson 0(3) [0m
+[37m[15:33:59 F88 TEST] INFO:     BOWL: Siraj 0-0 (0.3)[0m
+[37m[15:33:59 F88 TEST] INFO:   [DIRECT] overs→0.3[0m
+[37m[15:34:00 F88 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:34:00 F88 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:34:00 F88 TEST] INFO:   [S] Hint: Current batters: GAIKWAD and SAMSON. Bowler: SIRAJ. Read their stats from the scoreboard.[0m
+[37m[15:34:00 F88 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:34:00 F88 TEST] INFO:   [S 823ms] Changes: none[0m
+[37m[15:34:00 F88 TEST] INFO:   Total: 2638ms (V:684 E:1131 S:823)[0m
+[37m[15:34:00 F88 TEST] INFO:   [THIS OVER] ['?', '.', '.'] = 0 runs[0m
+[37m[15:34:00 F88 TEST] INFO:   STATE: ? None-None (0.3) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:34:00 F88 TEST] INFO:   [ACTION] The players are walking on the field between play.[0m
+[37m[15:34:00 F88 TEST] INFO: DETAIL|F88|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.3) | Gaikwad 0(0) | Samson 0(3) | Siraj 0-0 (0.3)|action=The players are walking on the field between play.|ext_score=None-None(0.3)|ext_bat=Gaikwad 0(0) | Samson 0(3)|ext_bowl=Siraj 0-0 (0.3)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(0.3)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '.', '.']|AFTER_score=None-None(0.3)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '.', '.']|AFTER_this_over_src=?(bcast),.(obs),.(obs)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=684|lat_extract=1131|lat_scorer=823|lat_field=41|lat_comm=0|lat_code=0|lat_total=2644|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:34:00 F88 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:34:04 F91 TEST] INFO: [F91] Pixel skip #4[0m
+[37m[15:34:04 F91 TEST] INFO: [F91] Force-processing after 4 pixel skips[0m
+[37m[15:34:04 F91 VISION] INFO: [SCOUT] SCOREBOARD 746ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 260 chars[0m
+[37m[15:34:04 F91 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: CSK 0-0 (0.3) | Gaikwad 0(0) | Samson 0(3) [0m
+[37m[15:34:04 F91 TEST] INFO: 
+=======================================================[0m
+[37m[15:34:04 F91 TEST] INFO: [F91] SCOREBOARD — #24[0m
+[37m[15:34:04 F91 TEST] INFO:   [V 749ms] STRIP: CSK 0-0 (0.3) | Gaikwad 0(0) | Samson 0(3) | Siraj 0-0 (0.3)[0m
+[37m[15:34:04 F91 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:34:06 F91 EXTRACT] INFO: Extracted in 1.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:34:06 F91 TEST] INFO:   [E 1471ms] visible_team=None score=None-None (0.3) target=None rr=None[0m
+[37m[15:34:06 F91 TEST] INFO:     BAT: Gaikwad 0(0) [0m
+[37m[15:34:06 F91 TEST] INFO:     BAT: Samson 0(3) [0m
+[37m[15:34:06 F91 TEST] INFO:     BOWL: Siraj 0-0 (0.3)[0m
+[37m[15:34:06 F91 TEST] INFO:   [DIRECT] overs→0.3[0m
+[37m[15:34:07 F91 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:34:07 F91 TEST] INFO:   [S] Hint: Current batters: GAIKWAD and SAMSON. Bowler: SIRAJ. Read their stats from the scoreboard.[0m
+[37m[15:34:07 F91 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:34:07 F91 TEST] INFO:   [S 884ms] Changes: none[0m
+[37m[15:34:07 F91 TEST] INFO:   Total: 3105ms (V:749 E:1471 S:884)[0m
+[37m[15:34:07 F91 TEST] INFO:   [THIS OVER] ['?', '.', '.'] = 0 runs[0m
+[37m[15:34:07 F91 TEST] INFO:   STATE: ? None-None (0.3) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:34:07 F91 TEST] INFO:   [ACTION] A player is walking on the field.[0m
+[37m[15:34:07 F91 TEST] INFO: DETAIL|F91|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.3) | Gaikwad 0(0) | Samson 0(3) | Siraj 0-0 (0.3)|action=A player is walking on the field.|ext_score=None-None(0.3)|ext_bat=Gaikwad 0(0) | Samson 0(3)|ext_bowl=Siraj 0-0 (0.3)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(0.3)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '.', '.']|AFTER_score=None-None(0.3)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '.', '.']|AFTER_this_over_src=?(bcast),.(obs),.(obs)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=749|lat_extract=1471|lat_scorer=884|lat_field=41|lat_comm=0|lat_code=0|lat_total=3110|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:34:07 F91 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:34:10 F92 VISION] INFO: [SCOUT] SCOREBOARD 832ms strip=True overlay=False drs=False cam=bowlers_end phase=runup digits=False 311 chars[0m
+[37m[15:34:10 F92 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "bowlers_end", "frame_phase": "runup", "ball_position": null}
+
+STRIP: CSK 0-0 (0.3) | GAIKWAD 0(0) | SAMSON 0(3) | S[0m
+[37m[15:34:10 F92 TEST] INFO: 
+=======================================================[0m
+[37m[15:34:10 F92 TEST] INFO: [F92] SCOREBOARD — #25[0m
+[37m[15:34:10 F92 TEST] INFO:   [V 835ms] STRIP: CSK 0-0 (0.3) | GAIKWAD 0(0) | SAMSON 0(3) | SIRAJ 0-0 (0.3)[0m
+[37m[15:34:11 F92 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[15:34:11 F92 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:34:11 F92 TEST] INFO:   [E 1148ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[15:34:11 F92 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[15:34:11 F92 TEST] INFO:   [S] Hint: Current batters: GAIKWAD and SAMSON. Bowler: SIRAJ. Read their stats from the scoreboard.[0m
+[37m[15:34:11 F92 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[15:34:11 F92 TEST] INFO:   [S 657ms] Changes: none[0m
+[37m[15:34:11 F92 TEST] INFO:   Total: 2640ms (V:835 E:1148 S:657)[0m
+[37m[15:34:11 F92 TEST] INFO:   [THIS OVER] ['?', '.', '.'] = 0 runs[0m
+[37m[15:34:11 F92 TEST] INFO:   STATE: ? None-None (0.3) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[15:34:11 F92 TEST] INFO:   [ACTION] The bowler, Siraj, is in his run-up, preparing to bowl the first delivery of the[0m
+[37m[15:34:11 F92 TEST] INFO: DETAIL|F92|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: CSK 0-0 (0.3) | GAIKWAD 0(0) | SAMSON 0(3) | SIRAJ 0-0 (0.3)|action=The bowler, Siraj, is in his run-up, preparing to bowl the first delivery of the match.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(0.3)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=['?', '.', '.']|AFTER_score=None-None(0.3)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=['?', '.', '.']|AFTER_this_over_src=?(bcast),.(obs),.(obs)|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=True fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=835|lat_extract=1148|lat_scorer=657|lat_field=44|lat_comm=0|lat_code=0|lat_total=2645|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[15:34:11 F92 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[15:34:12 F92 TEST] INFO: [WS] client disconnected (0 remain)[0m
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py", line 8515, in main
+    await run_test()
+  File "/Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py", line 8370, in run_test
+    await asyncio.sleep(adaptive.get_sleep_time())
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py", line 665, in sleep
+    return await future
+           ^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py", line 8524, in <module>
+    asyncio.run(main())
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt

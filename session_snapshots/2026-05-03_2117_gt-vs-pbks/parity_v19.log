@@ -1,0 +1,74 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151807/rcb-vs-dc-26th-match-indian-premier-league-2026
+
+[19:17:26  iter#1]
+  UI: Delhi Capitals None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.39  ps=17(13)  recent=1 1 1 6 2 1
+  CB BAT: Tristan Stubbs* 51(42), David Miller 4(4)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'stubbs'} (ui=set(), cb={'miller', 'stubbs'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:17:48  iter#2]
+  UI: Delhi Capitals None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.39  ps=17(13)  recent=...
+  CB BAT: Tristan Stubbs* 51(42), David Miller 4(4)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'stubbs'} (ui=set(), cb={'miller', 'stubbs'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:18:09  iter#3]
+  UI: Delhi Capitals 151-4 (18.0)  str=Tristan Stubbs nstr=David Miller  bowl=None None-None (None)
+  this_over=[]  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.53  ps=21(14)  recent=4
+  CB BAT: Tristan Stubbs* 55(43), David Miller 4(4)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=151 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=18.0 cb=20 | BAT_stubbs: ui=51(42) cb=55(43) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:18:31  iter#4]
+  UI: Delhi Capitals 151-4 (18.0)  str=Tristan Stubbs nstr=David Miller  bowl=None None-None (None)
+  this_over=[]  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.53  ps=21(14)  recent=4
+  CB BAT: Tristan Stubbs* 55(43), David Miller 4(4)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=151 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=18.0 cb=20 | BAT_stubbs: ui=51(42) cb=55(43) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:18:55  iter#5]
+  WS ERR: ''
+  CB: RCB 175-8 (20)  crr=8.51  ps=22(15)  recent=4 1
+  CB BAT: David Miller* 4(4), Tristan Stubbs 56(44)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'stubbs'} (ui=set(), cb={'miller', 'stubbs'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:19:16  iter#6]
+  UI: Delhi Capitals 156-4 (18.2)  str=David Miller nstr=Tristan Stubbs  bowl=None None-None (None)
+  this_over=['4', '1']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RCB 175-8 (20)  crr=8.51  ps=22(15)  recent=... 1 1 0 0
+  CB BAT: David Miller* 4(4), Tristan Stubbs 56(44)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=156 cb=175 | WICKETS: ui=4 cb=8 | OVERS: ui=18.2 cb=20 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=None cb=Bhuvneshwar Kumar
+
+[19:19:40  iter#7]
+  WS ERR: ''
+  CB: RCB 175-8 (20)  crr=8.49  ps=23(16)  recent=4 1 1
+  CB BAT: Tristan Stubbs* 56(44), David Miller 5(5)
+  CB BOWL: Bhuvneshwar Kumar 3-26 (4)
+  LAST WKT: KL Rahul  c Virat Kohli b Krunal Pandya 57(34)  - 87/4 in 10.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'miller', 'stubbs'} (ui=set(), cb={'miller', 'stubbs'}) | BOWLER: ui=None cb=Bhuvneshwar Kumar

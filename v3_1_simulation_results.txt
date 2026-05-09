@@ -1,0 +1,893 @@
+v3.1 cricket-broadcast chunking simulation
+======================================================================
+
+[CLIP 20260503_205835/d001]
+  Truth window: NONE
+
+  Anchors found:
+    ts=0.00 label=AD score=0.80 margin=0.70 (STRONG)
+    ts=0.33 label=AD score=0.80 margin=0.50 (STRONG)
+    ts=0.67 label=AD score=0.80 margin=0.60 (STRONG)
+    ts=1.00 label=AD score=0.80 margin=0.60 (STRONG)
+    ts=1.33 label=AD score=0.80 margin=0.70 (STRONG)
+    ts=1.67 label=AD score=0.80 margin=0.70 (STRONG)
+    ts=2.00 label=AD score=0.80 margin=0.70 (STRONG)
+    ts=5.00 label=UMPIRE_SIGNAL score=0.80 margin=0.50 (STRONG)
+    ts=6.67 label=DELIVERY_ACTION score=0.60 margin=0.30 (WEAK)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+
+  Chunks (after walks + merging):
+    [0.00-4.67] AD strength=2.60
+    [5.00-6.00] UMPIRE_SIGNAL strength=0.80
+
+  Consequential delivery window: NONE
+  IoU vs truth: 1.00
+  Verdict: MATCH
+
+[CLIP 20260503_205835/d002]
+  Truth window: NONE
+
+  Anchors found:
+    ts=0.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=2.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=5.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=5.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=6.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=7.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+
+  Chunks (after walks + merging):
+    [0.00-9.67] NON_DELIVERY_ACTION strength=5.70
+
+  Consequential delivery window: NONE
+  IoU vs truth: 1.00
+  Verdict: MATCH
+
+[CLIP 20260503_205835/d003]
+  Truth window: NONE
+
+  Anchors found:
+    ts=0.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=0.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=0.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=2.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.67 label=DELIVERY_ACTION score=0.40 margin=0.10 (WEAK)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-9.67] NON_DELIVERY_ACTION strength=3.00
+
+  Consequential delivery window: NONE
+  IoU vs truth: 1.00
+  Verdict: MATCH
+
+[CLIP 20260503_205835/d004]
+  Truth window: 1.0-8.0s
+
+  Anchors found:
+    ts=0.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.00 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=1.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=2.00 label=DELIVERY_ACTION score=0.80 margin=0.70 (STRONG)
+    ts=2.33 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=2.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=5.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-3.00] DELIVERY_ACTION strength=1.90
+    [3.33-9.67] NON_DELIVERY_ACTION strength=1.50
+
+  Consequential delivery window: 0.00-5.00s
+  IoU vs truth: 0.50
+  Verdict: PARTIAL
+
+[CLIP 20260503_205835/d005]
+  Truth window: 5.0-9.0s
+
+  Anchors found:
+    ts=0.00 label=DELIVERY_ACTION score=0.80 margin=0.50 (STRONG)
+    ts=0.33 label=DELIVERY_ACTION score=0.70 margin=0.40 (STRONG)
+    ts=2.00 label=DELIVERY_ACTION score=0.70 margin=0.30 (STRONG)
+    ts=2.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=3.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=6.00 label=REPLAY score=0.40 margin=0.10 (WEAK)
+    ts=6.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=6.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=7.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=7.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=8.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=8.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=8.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=9.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-3.00] DELIVERY_ACTION strength=1.70
+    [3.33-6.67] NON_DELIVERY_ACTION strength=2.70
+    [7.00-9.67] DELIVERY_ACTION strength=1.30
+
+  Consequential delivery window: 0.00-5.00s
+  Extra windows: [(6.33, 9.67)]
+  IoU vs truth: 0.00
+  Verdict: WRONG
+
+[CLIP 20260503_205835/d006]
+  Truth window: NONE
+
+  Anchors found:
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=5.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=6.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=6.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-9.67] NON_DELIVERY_ACTION strength=2.70
+
+  Consequential delivery window: NONE
+  IoU vs truth: 1.00
+  Verdict: MATCH
+
+[CLIP 20260503_205835/d007]
+  Truth window: 0.0-5.0s
+
+  Anchors found:
+    ts=0.00 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=0.33 label=DELIVERY_ACTION score=1.00 margin=0.60 (STRONG)
+    ts=0.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=1.00 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=1.33 label=DELIVERY_ACTION score=0.80 margin=0.60 (STRONG)
+    ts=1.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=4.33 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=6.00 label=DELIVERY_ACTION score=0.90 margin=0.80 (STRONG)
+    ts=6.33 label=DELIVERY_ACTION score=0.40 margin=0.10 (WEAK)
+    ts=6.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=7.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=7.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.67 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=8.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=8.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.00 label=DELIVERY_ACTION score=0.40 margin=0.10 (WEAK)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-4.67] DELIVERY_ACTION strength=1.60
+    [5.00-5.33] NON_DELIVERY_ACTION strength=0.90
+    [5.67-7.00] DELIVERY_ACTION strength=1.20
+    [7.33-9.67] NON_DELIVERY_ACTION strength=1.20
+
+  Consequential delivery window: 0.00-9.00s
+  IoU vs truth: 0.56
+  Verdict: PARTIAL
+
+[CLIP 20260503_205835/d008]
+  Truth window: NONE
+
+  Anchors found:
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.33-9.67] NON_DELIVERY_ACTION strength=0.90
+
+  Consequential delivery window: NONE
+  IoU vs truth: 1.00
+  Verdict: MATCH
+
+[CLIP 20260421_195050/d046]
+  Truth window: 2.0-12.0s
+
+  Anchors found:
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.33 label=DELIVERY_ACTION score=0.80 margin=0.70 (STRONG)
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=4.00 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=5.00 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=5.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=5.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=6.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=6.33 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=6.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=7.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=7.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=8.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=10.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=10.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=10.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=11.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=11.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=12.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=12.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=12.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=13.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=13.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=13.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=14.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=14.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=14.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=15.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=15.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-7.00] DELIVERY_ACTION strength=1.70
+    [7.33-15.33] NON_DELIVERY_ACTION strength=5.10
+
+  Consequential delivery window: 0.00-9.00s
+  IoU vs truth: 0.58
+  Verdict: PARTIAL
+
+[CLIP 20260420_202239/d015]
+  Truth window: 8.0-18.0s
+
+  Anchors found:
+    ts=0.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=0.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=0.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=2.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=6.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=6.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=6.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.00 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=8.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=10.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=10.33 label=DELIVERY_ACTION score=0.40 margin=0.10 (WEAK)
+    ts=10.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=11.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=11.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=11.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=12.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=12.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=12.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=13.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=13.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=13.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=14.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=14.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=14.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=15.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=15.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=15.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=16.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=16.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=16.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=17.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=17.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=17.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=18.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=18.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=18.67 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=19.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=19.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=19.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=21.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=21.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=21.67 label=AD score=0.50 margin=0.10 (WEAK)
+    ts=22.00 label=REPLAY score=0.40 margin=0.30 (WEAK)
+    ts=22.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=22.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=23.00 label=DELIVERY_ACTION score=0.80 margin=0.70 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-22.67] NON_DELIVERY_ACTION strength=13.60
+    [22.00-23.00] DELIVERY_ACTION strength=0.80
+
+  Consequential delivery window: 22.00-23.00s
+  IoU vs truth: 0.00
+  Verdict: WRONG
+
+[CLIP 20260420_202239/d004]
+  Truth window: 7.0-18.0s
+
+  Anchors found:
+    ts=0.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=0.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=5.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=6.00 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=6.33 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=6.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.00 label=DELIVERY_ACTION score=0.80 margin=0.70 (STRONG)
+    ts=7.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=8.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=8.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=9.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=9.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=10.00 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=10.33 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=10.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=11.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=11.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=11.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=12.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=12.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=12.67 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=13.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=13.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=13.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=14.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=14.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=14.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=15.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=15.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=15.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=16.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=16.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=16.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=17.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=17.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=17.67 label=DELIVERY_ACTION score=0.60 margin=0.50 (STRONG)
+    ts=18.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=18.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=18.67 label=DELIVERY_ACTION score=0.90 margin=0.80 (STRONG)
+    ts=19.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=19.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=19.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-6.00] NON_DELIVERY_ACTION strength=3.00
+    [5.33-6.33] DELIVERY_ACTION strength=1.00
+    [6.67-6.67] NON_DELIVERY_ACTION strength=0.60
+    [7.00-7.00] DELIVERY_ACTION strength=0.80
+    [7.33-7.33] NON_DELIVERY_ACTION strength=0.60
+    [7.67-8.33] DELIVERY_ACTION strength=1.00
+    [8.00-10.00] NON_DELIVERY_ACTION strength=0.90
+    [9.00-11.67] DELIVERY_ACTION strength=1.00
+    [10.67-13.67] NON_DELIVERY_ACTION strength=1.50
+    [13.67-14.00] DELIVERY_ACTION strength=1.00
+    [14.33-14.33] NON_DELIVERY_ACTION strength=0.60
+    [16.33-17.00] NON_DELIVERY_ACTION strength=0.60
+    [17.67-17.67] DELIVERY_ACTION strength=0.60
+    [18.00-18.00] NON_DELIVERY_ACTION strength=0.60
+    [18.33-18.67] DELIVERY_ACTION strength=0.90
+    [19.00-21.00] NON_DELIVERY_ACTION strength=1.50
+
+  Consequential delivery window: 3.33-20.67s
+  IoU vs truth: 0.63
+  Verdict: MATCH
+
+[CLIP 20260421_195050/d059]
+  Truth window: 0.0-11.0s
+
+  Anchors found:
+    ts=1.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=3.67 label=DELIVERY_ACTION score=0.80 margin=0.00 (WEAK)
+    ts=4.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=4.33 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=5.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=6.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=6.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=6.67 label=DELIVERY_ACTION score=0.90 margin=0.80 (STRONG)
+    ts=7.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=7.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=8.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=10.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.33-2.67] NON_DELIVERY_ACTION strength=0.60
+    [3.00-5.33] DELIVERY_ACTION strength=1.30
+    [5.67-6.33] NON_DELIVERY_ACTION strength=0.90
+    [6.33-6.67] DELIVERY_ACTION strength=0.90
+    [7.00-10.67] NON_DELIVERY_ACTION strength=3.00
+
+  Consequential delivery window: 1.00-8.67s
+  IoU vs truth: 0.70
+  Verdict: MATCH
+
+[CLIP 20260420_202239/d036]
+  Truth window: 12.0-20.0s
+
+  Anchors found:
+    ts=0.00 label=DELIVERY_ACTION score=0.80 margin=0.70 (STRONG)
+    ts=0.33 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=0.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=1.00 label=REPLAY score=0.40 margin=0.10 (WEAK)
+    ts=1.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.67 label=REPLAY score=0.40 margin=0.10 (WEAK)
+    ts=4.00 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=4.33 label=DELIVERY_ACTION score=0.50 margin=0.10 (WEAK)
+    ts=4.67 label=DELIVERY_ACTION score=0.50 margin=0.10 (WEAK)
+    ts=5.00 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=5.33 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=6.00 label=REPLAY score=0.40 margin=0.10 (WEAK)
+    ts=6.33 label=REPLAY score=0.40 margin=0.10 (WEAK)
+    ts=6.67 label=REPLAY score=0.40 margin=0.10 (WEAK)
+    ts=7.00 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=7.33 label=DELIVERY_ACTION score=0.90 margin=0.80 (STRONG)
+    ts=7.67 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=8.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.33 label=REPLAY score=0.40 margin=0.10 (WEAK)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=10.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=10.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=10.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=11.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=11.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=11.67 label=REPLAY score=0.40 margin=0.10 (WEAK)
+    ts=12.33 label=DELIVERY_ACTION score=0.50 margin=0.10 (WEAK)
+    ts=12.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=13.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=13.33 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=13.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=14.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=14.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=14.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=15.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=15.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=15.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=16.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=16.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=16.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=17.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=17.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=17.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=18.00 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=18.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=19.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=19.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=22.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=23.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=24.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=24.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=24.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+
+  Chunks (after walks + merging):
+    [0.00-2.33] DELIVERY_ACTION strength=1.10
+    [2.67-2.67] NON_DELIVERY_ACTION strength=0.60
+    [3.00-7.67] DELIVERY_ACTION strength=2.40
+    [8.00-11.33] NON_DELIVERY_ACTION strength=2.70
+    [11.67-13.67] DELIVERY_ACTION strength=1.30
+    [14.00-24.67] NON_DELIVERY_ACTION strength=4.80
+
+  Consequential delivery window: 0.00-8.00s
+  Extra windows: [(9.67, 15.67)]
+  IoU vs truth: 0.00
+  Verdict: WRONG
+
+[CLIP 20260420_202239/d032]
+  Truth window: 12.0-22.0s
+
+  Anchors found:
+    ts=0.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=0.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=0.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.00 label=DELIVERY_ACTION score=0.40 margin=0.10 (WEAK)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=5.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=6.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=6.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=6.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=7.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=7.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=7.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=8.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=8.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=10.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=10.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=12.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=13.00 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=14.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=14.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=14.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=15.00 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=15.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=15.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=16.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=16.33 label=DELIVERY_ACTION score=0.80 margin=0.70 (STRONG)
+    ts=16.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=17.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=17.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=17.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=18.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=18.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=18.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=19.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=19.33 label=DELIVERY_ACTION score=0.60 margin=0.50 (STRONG)
+    ts=19.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=20.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=21.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=21.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=21.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=22.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=22.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=22.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=23.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=23.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=23.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=24.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=24.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=24.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=25.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-14.67] NON_DELIVERY_ACTION strength=8.70
+    [15.00-16.67] DELIVERY_ACTION strength=1.60
+    [17.00-19.00] NON_DELIVERY_ACTION strength=2.10
+    [19.33-19.33] DELIVERY_ACTION strength=0.60
+    [19.67-25.33] NON_DELIVERY_ACTION strength=3.60
+
+  Consequential delivery window: 13.00-21.33s
+  IoU vs truth: 0.83
+  Verdict: MATCH
+
+[CLIP 20260420_202239/d029]
+  Truth window: 8.0-13.0s
+
+  Anchors found:
+    ts=0.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=1.00 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=2.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=5.00 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=5.33 label=DELIVERY_ACTION score=0.70 margin=0.30 (STRONG)
+    ts=5.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=6.00 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=6.33 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=6.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=7.00 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=7.33 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=7.67 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=8.00 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=8.33 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=8.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=9.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=9.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=10.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=10.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=10.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=11.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=11.33 label=DELIVERY_ACTION score=0.80 margin=0.70 (STRONG)
+    ts=11.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=12.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=12.67 label=DELIVERY_ACTION score=0.40 margin=0.10 (WEAK)
+    ts=13.00 label=DELIVERY_ACTION score=0.40 margin=0.10 (WEAK)
+    ts=14.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=14.67 label=DELIVERY_ACTION score=0.90 margin=0.80 (STRONG)
+    ts=15.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-14.00] DELIVERY_ACTION strength=2.20
+    [14.33-14.33] NON_DELIVERY_ACTION strength=0.60
+    [14.67-14.67] DELIVERY_ACTION strength=0.90
+    [15.00-19.33] NON_DELIVERY_ACTION strength=0.60
+
+  Consequential delivery window: 0.00-16.67s
+  IoU vs truth: 0.30
+  Verdict: WRONG
+
+[CLIP 20260420_202239/d018]
+  Truth window: 8.0-22.0s
+
+  Anchors found:
+    ts=0.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=0.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=0.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=1.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=2.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=2.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=2.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=3.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=8.33 label=DELIVERY_ACTION score=0.40 margin=0.30 (WEAK)
+    ts=9.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=10.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=10.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=11.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=11.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=11.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=12.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=12.33 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=12.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=13.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=13.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=13.67 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=14.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=14.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=14.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=15.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=15.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=15.67 label=DELIVERY_ACTION score=0.90 margin=0.80 (STRONG)
+    ts=16.00 label=DELIVERY_ACTION score=0.90 margin=0.80 (STRONG)
+    ts=16.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=17.00 label=DELIVERY_ACTION score=0.70 margin=0.40 (STRONG)
+    ts=17.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=17.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=18.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=18.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=18.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=19.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=19.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.00 label=NON_DELIVERY_ACTION score=0.40 margin=0.20 (WEAK)
+    ts=20.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=21.00 label=DELIVERY_ACTION score=0.60 margin=0.30 (WEAK)
+    ts=21.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=21.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=22.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=22.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=22.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=24.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-10.67] NON_DELIVERY_ACTION strength=4.20
+    [11.00-12.33] DELIVERY_ACTION strength=1.60
+    [12.67-15.33] NON_DELIVERY_ACTION strength=2.70
+    [15.67-17.33] DELIVERY_ACTION strength=1.50
+    [17.67-20.33] NON_DELIVERY_ACTION strength=2.10
+    [20.67-24.00] DELIVERY_ACTION strength=1.30
+    [24.33-24.33] NON_DELIVERY_ACTION strength=0.60
+
+  Consequential delivery window: 9.00-24.33s
+  IoU vs truth: 0.80
+  Verdict: MATCH
+
+[CLIP 20260420_202239/d014]
+  Truth window: 0.0-7.0s
+
+  Anchors found:
+    ts=0.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=0.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=0.67 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=1.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=1.67 label=DELIVERY_ACTION score=0.40 margin=0.00 (WEAK)
+    ts=2.00 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=2.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=2.67 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=3.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=4.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=5.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=10.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=11.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-2.67] NON_DELIVERY_ACTION strength=0.90
+    [0.67-3.33] DELIVERY_ACTION strength=1.00
+    [3.33-11.67] NON_DELIVERY_ACTION strength=3.00
+
+  Consequential delivery window: 0.00-5.33s
+  IoU vs truth: 0.76
+  Verdict: MATCH
+
+[CLIP 20260421_195050/d051]
+  Truth window: 0.0-8.0s
+
+  Anchors found:
+    ts=0.00 label=DELIVERY_ACTION score=0.80 margin=0.70 (STRONG)
+    ts=0.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=0.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=1.33 label=DELIVERY_ACTION score=0.70 margin=0.10 (WEAK)
+    ts=1.67 label=DELIVERY_ACTION score=0.80 margin=0.70 (STRONG)
+    ts=2.00 label=DELIVERY_ACTION score=0.60 margin=0.50 (STRONG)
+    ts=2.33 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=2.67 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=3.00 label=DELIVERY_ACTION score=1.00 margin=0.90 (STRONG)
+    ts=3.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=3.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.10 (WEAK)
+    ts=4.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=4.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=6.00 label=UMPIRE_SIGNAL score=0.80 margin=0.50 (STRONG)
+    ts=6.33 label=UMPIRE_SIGNAL score=0.80 margin=0.50 (STRONG)
+    ts=7.00 label=UMPIRE_SIGNAL score=0.80 margin=0.50 (STRONG)
+    ts=7.33 label=UMPIRE_SIGNAL score=0.80 margin=0.50 (STRONG)
+    ts=12.33 label=DELIVERY_ACTION score=0.50 margin=0.20 (WEAK)
+    ts=18.67 label=UMPIRE_SIGNAL score=0.50 margin=0.40 (WEAK)
+    ts=19.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=19.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=19.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=20.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=21.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=21.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=22.00 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+    ts=22.33 label=NON_DELIVERY_ACTION score=0.60 margin=0.20 (STRONG)
+    ts=22.67 label=NON_DELIVERY_ACTION score=0.60 margin=0.40 (STRONG)
+
+  Chunks (after walks + merging):
+    [0.00-3.00] DELIVERY_ACTION strength=2.30
+    [3.33-4.33] NON_DELIVERY_ACTION strength=1.20
+    [4.67-18.67] UMPIRE_SIGNAL strength=2.00
+    [19.00-22.67] NON_DELIVERY_ACTION strength=2.70
+
+  Consequential delivery window: 0.00-20.67s
+  IoU vs truth: 0.39
+  Verdict: PARTIAL
+
+======================================================================
+OVERALL SCORECARD (v3.1)
+======================================================================
+  MATCH=10  PARTIAL=4  WRONG=4  FP=0  / 18
+
+Per-clip:
+  20260503_205835/d001                IoU=1.00  MATCH
+  20260503_205835/d002                IoU=1.00  MATCH
+  20260503_205835/d003                IoU=1.00  MATCH
+  20260503_205835/d004                IoU=0.50  PARTIAL
+  20260503_205835/d005                IoU=0.00  WRONG
+  20260503_205835/d006                IoU=1.00  MATCH
+  20260503_205835/d007                IoU=0.56  PARTIAL
+  20260503_205835/d008                IoU=1.00  MATCH
+  20260421_195050/d046                IoU=0.58  PARTIAL
+  20260420_202239/d015                IoU=0.00  WRONG
+  20260420_202239/d004                IoU=0.63  MATCH
+  20260421_195050/d059                IoU=0.70  MATCH
+  20260420_202239/d036                IoU=0.00  WRONG
+  20260420_202239/d032                IoU=0.83  MATCH
+  20260420_202239/d029                IoU=0.30  WRONG
+  20260420_202239/d018                IoU=0.80  MATCH
+  20260420_202239/d014                IoU=0.76  MATCH
+  20260421_195050/d051                IoU=0.39  PARTIAL
+
+v3 baseline (for comparison):
+  MATCH=10  PARTIAL=7  WRONG=1  FP=0  / 18

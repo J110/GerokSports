@@ -1,0 +1,210 @@
+WARNING ⚠️ torchvision==0.26 is incompatible with torch==2.10.
+Run 'pip install torchvision==0.25' to fix torchvision or 'pip install -U torch torchvision' to update both.
+For a full compatibility table see https://github.com/pytorch/vision#installation
+[37m[21:09:51 F0 TEST] INFO: [WS] Server started on ws://0.0.0.0:8765[0m
+[37m[21:09:51 F0 TEST] INFO: [WS] Commentary server on ws://0.0.0.0:8766[0m
+[37m[21:09:51 F0 TEST] INFO: ============================================================[0m
+[37m[21:09:51 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[21:09:51 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/151924/lsg-vs-kkr-38th-match-indian-premier-league-2026[0m
+[37m[21:09:51 F0 SQUAD] INFO:   Lucknow Super Giants: 11 XI + 14 bench[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Aiden Markram — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Mitchell Marsh — bat_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Rishabh Pant (C,WK) — wk_batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Nicholas Pooran (WK) — wk_batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Ayush Badoni — bat_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Mukul Choudhary (WK) — wk_batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     George Linde — bat_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Mohammed Shami — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Prince Yadav — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Digvesh Singh Rathi — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Mohsin Khan — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Himmat Singh — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Akshat Raghuwanshi — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Abdul Samad — bat_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Avesh Khan — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Manimaran Siddharth — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Matthew Breetzke — wk_batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Josh Inglis — wk_batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Anrich Nortje — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Arjun Tendulkar — bowl_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Shahbaz Ahmed — bowl_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Akash Maharaj Singh — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Arshin Kulkarni — bat_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Naman Tiwari — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Mayank Yadav — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:   Kolkata Knight Riders: 11 XI + 14 bench[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Ajinkya Rahane (C) — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Tim Seifert (WK) — wk_batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Cameron Green — bat_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Angkrish Raghuvanshi — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Rovman Powell — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Rinku Singh — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Sunil Narine — bowl_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Ramandeep Singh — bat_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Anukul Roy — bat_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Vaibhav Arora — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     Kartik Tyagi — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Manish Pandey — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Finn Allen — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Tejasvi Dahiya — wk_batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Navdeep Saini — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Varun Chakaravarthy — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Rahul Tripathi — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Sarthak Ranjan — batter[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Rachin Ravindra — bat_allrounder[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Prashant Solanki — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Blessing Muzarabani — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Saurabh Dubey — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Matheesha Pathirana — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Umran Malik — bowler[0m
+[37m[21:09:51 F0 SQUAD] INFO:     [bench] Daksh Kamra — bowl_allrounder[0m
+[37m[21:09:51 F0 TEST] INFO: Teams: ['Lucknow Super Giants', 'Kolkata Knight Riders'][0m
+[37m[21:09:51 F0 ENRICH] INFO: Loaded cached styles from player_styles_242f360951fc.json (50 players)[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache] Lucknow Super Giants — styles:[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Aiden Markram            RHB  | Right-arm off-spin[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Mitchell Marsh           RHB  | Right-arm medium[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Rishabh Pant             LHB  | None[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Nicholas Pooran          LHB  | None[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Ayush Badoni             LHB  | Right-arm medium[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Mukul Choudhary          RHB  | Right-arm medium-fast[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   George Linde             LHB  | Slow left-arm orthodox[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Mohammed Shami           RHB  | Right-arm fast[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Prince Yadav             RHB  | Right-arm medium-fast[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Digvesh Singh Rathi      unknown | unknown[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Mohsin Khan              RHB  | Left-arm fast[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache] Kolkata Knight Riders — styles:[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Ajinkya Rahane           RHB  | Right-arm medium[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Tim Seifert              RHB  | None[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Cameron Green            RHB  | Right-arm fast-medium[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Angkrish Raghuvanshi     LHB  | Right-arm off-spin[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Rovman Powell            RHB  | Right-arm medium-fast[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Rinku Singh              LHB  | None[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Sunil Narine             LHB  | Right-arm off-spin[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Ramandeep Singh          RHB  | Right-arm medium[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Anukul Roy               LHB  | Slow left-arm orthodox[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Vaibhav Arora            RHB  | Right-arm fast-medium[0m
+[37m[21:09:51 F0 ENRICH] INFO: [cache]   Kartik Tyagi             RHB  | Right-arm fast[0m
+[37m[21:09:51 F0 TEST] INFO: Team variants: ['GIA', 'GIANTS', 'KKR', 'KNI', 'KNIGHT', 'KO', 'KOL', 'KOLKATA', 'KOLKATA KNIGHT RIDERS', 'LKN', 'LSG', 'LU', 'LUC', 'LUCKNOW', 'LUCKNOW SUPER GIANTS', 'RID', 'RIDERS', 'SUP', 'SUPER'][0m
+[37m[21:09:51 F0 TEST] INFO: Found Firefox window (on-screen): id=955 1018.0x811.0 "LSG vs KKR Live video streaming | TATA IPL 2026"[0m
+[37m[21:09:52 F0 TEST] INFO: [BALL ANALYZER] Background capture started[0m
+[37m[21:09:52 F0 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[21:09:53 F0 FIELD] INFO: Pitch detected from green mask at (0.48, 0.42) (fallback — will recalibrate from people)[0m
+[37m[21:09:53 F0 TEST] INFO: [CLEANUP] Archived 907 frames to debug_frames_archive/2026-04-26_210953 (was 907 in debug_frames)[0m
+[37m[21:09:53 F0 TEST] INFO: [CACHE] Cached state found — DISCARDING all scorecard/team data (Rule 1: always cold-start). Toss data is preserved if present.[0m
+[37m[21:09:53 F0 TEST] INFO: ============================================================[0m
+[37m[21:09:53 F0 TEST] INFO: [CONFIG] Vision:    Scout 17B (single call tag+read)[0m
+[37m[21:09:53 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[21:09:53 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[21:09:53 F0 TEST] INFO: PIPELINE STARTED — 18000s — NO TEAM ASSUMPTION[0m
+[37m[21:09:53 F0 TEST] INFO: ============================================================[0m
+[37m[21:09:53 F1 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[21:09:53 F1 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:09:53 F1 TEST] INFO: [WS] client connected (4 total)[0m
+[37m[21:09:54 F1 VISION] INFO: [SCOUT] SCOREBOARD 812ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 289 chars[0m
+[31m[21:09:54 F1 TEST] ERROR: Error: cannot access local variable 'extracted' where it is not associated with a value[0m
+Traceback (most recent call last):
+  File "/Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py", line 4878, in run_test
+    _ext_score_a = extracted.get("score") if extracted else None
+                                             ^^^^^^^^^
+UnboundLocalError: cannot access local variable 'extracted' where it is not associated with a value
+[37m[21:09:54 F1 TEST] INFO: 
+============================================================[0m
+[37m[21:09:54 F1 TEST] INFO: TEST COMPLETE — 3s[0m
+[37m[21:09:54 F1 TEST] INFO:   Frames: 1 | Pipeline: 0 | PixDiff: 0 | NoStrip: 0 | Ads: 0 | Context: 0[0m
+[37m[21:09:54 F1 TEST] INFO:   Final: {'score': None, 'wickets': None, 'overs': None, 'batting_team': None, 'bowling_team': None, 'striker': None, 'non_striker': None, 'current_bowler': None, 'run_rate': None, 'target': None, 'active_batters': {}, 'innings': 1, 'match_complete': False, 'match_end_reason': None, 'match_result': None}[0m
+[37m[21:09:54 F1 TEST] INFO: ============================================================[0m
+[37m[21:09:54 F1 TEST] INFO: 
+BATTING CARD:[0m
+[37m[21:09:54 F1 TEST] INFO:  # Player                 Status          R    B  4s  6s      SR
+-----------------------------------------------------------------[0m
+[37m[21:09:54 F1 TEST] INFO: 
+BOWLING CARD:[0m
+[37m[21:09:54 F1 TEST] INFO: Player                     O  M    R  W   Econ
+---------------------------------------------[0m
+[37m[21:09:54 F1 TEST] INFO: 
+EXTRAS: wides=0 no_balls=0 byes=0 leg_byes=0 total=0[0m
+[37m[21:09:54 F1 TEST] INFO: OVERS TRACKED: 0 complete[0m
+[37m[21:09:54 F1 TEST] INFO: 
+BALL EVENTS: 0 detected[0m
+[37m[21:09:54 F1 TEST] INFO: PARTNERSHIPS: 0 completed[0m
+[37m[21:09:54 F1 TEST] INFO: MATCH SITUATION: {"run_rate": 0.0, "balls_bowled": 0, "balls_remaining": 120, "wickets_in_hand": 10}[0m
+[37m[21:09:54 F1 TEST] INFO: 
+FIELD STATE: unknown | slips:0 close:0 in:0 out:0 | 0 fielders | conf:0.0 | keeper:- | validated:False | freshness:live[0m
+[37m[21:09:54 F1 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:09:54 F1 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:09:54 F1 TEST] INFO: [WS] client disconnected (1 remain)[0m
+[37m[21:09:54 F1 TEST] INFO: [WS] client disconnected (0 remain)[0m
+Exception in callback run_test.<locals>.<lambda>(<Task cancell...hment.py:519>>) at /Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py:2879
+handle: <Handle run_test.<locals>.<lambda>(<Task cancell...hment.py:519>>) at /Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py:2879>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/anmolmohan/Projects/SportsComm/files/test_pipeline.py", line 2879, in <lambda>
+    lambda t: t.exception() and log.error(
+              ^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/eyes/player_enrichment.py", line 545, in enrich_squad_styles_pass2_async
+    pass2 = await _run_pass2(client, raw_data, pass1_styles, players)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/eyes/player_enrichment.py", line 422, in _run_pass2
+    raw2 = await _call_groq_with_search(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/eyes/player_enrichment.py", line 350, in _call_groq_with_search
+    resp = await client.chat.completions.create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/groq/resources/chat/completions.py", line 941, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/groq/_base_client.py", line 1852, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/groq/_base_client.py", line 1587, in request
+    response = await self._client.send(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/anyio/streams/tls.py", line 244, in receive
+    data = await self._call_sslobject_method(self._ssl_object.read, max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/anyio/streams/tls.py", line 187, in _call_sslobject_method
+    data = await self.transport_stream.receive()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anmolmohan/Projects/SportsComm/files/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1269, in receive
+    await self._protocol.read_event.wait()
+  File "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/locks.py", line 212, in wait
+    await fut
+asyncio.exceptions.CancelledError

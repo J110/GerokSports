@@ -1,0 +1,423 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151818/srh-vs-csk-27th-match-indian-premier-league-2026
+
+[22:03:24  iter#1]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: SRH 194-9 (20)  crr=13.66  ps=0(1)  recent=W
+  CB BAT: Matthew Short* 0(1), Ruturaj Gaikwad 19(12)
+  CB BOWL: Sakib Hussain 0-13 (1)
+  LAST WKT: Ayush Mhatre  c Heinrich Klaasen b Nitish Reddy 30(13)  - 66/2 in 4.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'gaikwad', 'short'} (ui=set(), cb={'gaikwad', 'short'}) | BOWLER: ui=None cb=Sakib Hussain
+
+[22:03:45  iter#2]
+  UI: CSK 66-2 (4.5)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=None None-None (None)
+  this_over=['?', '?', '?', '?', '?']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.66  ps=0(1)  recent=W
+  CB BAT: Matthew Short* 0(1), Ruturaj Gaikwad 19(12)
+  CB BOWL: Sakib Hussain 0-13 (1)
+  LAST WKT: Ayush Mhatre  c Heinrich Klaasen b Nitish Reddy 30(13)  - 66/2 in 4.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=2 cb=9 | OVERS: ui=4.5 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Matthew Short | FOW_COUNT: ui=0 vs wickets=2 | BOWLER: ui=None cb=Sakib Hussain
+
+[22:04:08  iter#3]
+  UI: Chennai Super Kings 66-2 (4.5)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=None None-None (None)
+  this_over=['?', '?', '?', '?', '?']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Ayush Mhatre', 'score': 66, 'overs': None}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.66  ps=0(1)  recent=W
+  CB BAT: Matthew Short* 0(1), Ruturaj Gaikwad 19(12)
+  CB BOWL: Sakib Hussain 0-13 (1)
+  LAST WKT: Ayush Mhatre  c Heinrich Klaasen b Nitish Reddy 30(13)  - 66/2 in 4.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=2 cb=9 | OVERS: ui=4.5 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Matthew Short | BAT_short: ui=1(0) cb=0(1) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=None cb=Sakib Hussain
+
+[22:04:32  iter#4]
+  UI: Chennai Super Kings 66-2 (5.0)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-14 (2.0)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Ayush Mhatre', 'score': 66, 'overs': None}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.2  ps=0(2)  recent=W
+  CB BAT: Ruturaj Gaikwad* 19(12), Matthew Short 0(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ayush Mhatre  c Heinrich Klaasen b Nitish Reddy 30(13)  - 66/2 in 4.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=2 cb=9 | OVERS: ui=5.0 cb=20 | BAT_short: ui=19(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.0 cb=2
+
+[22:04:54  iter#5]
+  UI: Chennai Super Kings 66-2 (5.0)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-14 (2.0)
+  this_over=[]  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Ayush Mhatre', 'score': 66, 'overs': None}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.2  ps=0(2)  recent=... 0 0 1 1 1 W
+  CB BAT: Ruturaj Gaikwad* 19(12), Matthew Short 0(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ayush Mhatre  c Heinrich Klaasen b Nitish Reddy 30(13)  - 66/2 in 4.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=2 cb=9 | OVERS: ui=5.0 cb=20 | BAT_short: ui=19(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.0 cb=2
+
+[22:05:16  iter#6]
+  UI: Chennai Super Kings 66-2 (5.0)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-14 (2.0)
+  this_over=[]  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Ayush Mhatre', 'score': 66, 'overs': None}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.2  ps=0(2)  recent=... 0 0 1 1 1 W
+  CB BAT: Ruturaj Gaikwad* 19(12), Matthew Short 0(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ayush Mhatre  c Heinrich Klaasen b Nitish Reddy 30(13)  - 66/2 in 4.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=2 cb=9 | OVERS: ui=5.0 cb=20 | BAT_short: ui=19(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.0 cb=2
+
+[22:05:37  iter#7]
+  UI: Chennai Super Kings 66-2 (5.0)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-14 (2.0)
+  this_over=[]  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Ayush Mhatre', 'score': 66, 'overs': None}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.77  ps=0(3)  recent=W
+  CB BAT: Matthew Short* 0(2), Ruturaj Gaikwad 19(13)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=2 cb=9 | OVERS: ui=5.0 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Matthew Short | BAT_short: ui=19(12) cb=0(2) | BAT_gaikwad: ui=19(12) cb=19(13) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.0 cb=2
+
+[22:05:58  iter#8]
+  UI: Chennai Super Kings 66-3 (5.1)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-14 (2.0)
+  this_over=['W']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '5.1'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.77  ps=0(3)  recent=W
+  CB BAT: Matthew Short* 0(2), Nitish Kumar Reddy 2(0)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.1 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Matthew Short | BATTERS_MISSING_IN_UI: {'reddy'} (ui={'gaikwad', 'short'}, cb={'reddy', 'short'}) | BAT_short: ui=19(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.0 cb=2
+
+[22:06:20  iter#9]
+  UI: Chennai Super Kings 66-3 (5.1)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-14 (2.0)
+  this_over=['?']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.77  ps=0(3)  recent=W
+  CB BAT: Matthew Short* 0(2), Nitish Kumar Reddy 2(0)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.1 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Matthew Short | BATTERS_MISSING_IN_UI: {'reddy'} (ui={'gaikwad', 'short'}, cb={'reddy', 'short'}) | BAT_short: ui=19(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.0 cb=2
+
+[22:06:43  iter#10]
+  UI: Chennai Super Kings 66-3 (5.1)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-14 (2.0)
+  this_over=['?']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.77  ps=0(0)  recent=... 1 1 W
+  CB BAT: Sarfaraz Khan* 0(0), Matthew Short 0(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.1 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Sarfaraz Khan | BATTERS_MISSING_IN_UI: {'khan'} (ui={'gaikwad', 'short'}, cb={'khan', 'short'}) | BAT_short: ui=19(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.0 cb=2
+
+[22:07:06  iter#11]
+  UI: Chennai Super Kings 66-3 (5.1)  str=Ruturaj Gaikwad nstr=Matthew Short  bowl=Nitish Kumar Reddy 2-14 (2.0)
+  this_over=['?']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.77  ps=0(0)  recent=... 1 1 W
+  CB BAT: Sarfaraz Khan* 0(0), Matthew Short 0(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=66 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.1 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Sarfaraz Khan | BATTERS_MISSING_IN_UI: {'khan'} (ui={'gaikwad', 'short'}, cb={'khan', 'short'}) | BAT_short: ui=19(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=2.0 cb=2
+
+[22:07:28  iter#12]
+  UI: Chennai Super Kings 68-3 (5.2)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-2 (0.1)
+  this_over=['?', '2']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.75  ps=2(1)  recent=W 2
+  CB BAT: Sarfaraz Khan* 2(1), Matthew Short 0(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=68 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.2 cb=20 | BAT_short: ui=19(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Eshan Malinga cb=Nitish Kumar Reddy
+
+[22:07:52  iter#13]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=12.75  ps=2(1)  recent=W 2
+  CB BAT: Sarfaraz Khan* 2(1), Matthew Short 0(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'khan', 'short'} (ui=set(), cb={'khan', 'short'}) | BOWLER: ui=None cb=Nitish Kumar Reddy
+
+[22:08:17  iter#14]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=12.75  ps=2(1)  recent=W 2
+  CB BAT: Sarfaraz Khan* 2(1), Matthew Short 0(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'khan', 'short'} (ui=set(), cb={'khan', 'short'}) | BOWLER: ui=None cb=Nitish Kumar Reddy
+
+[22:08:39  iter#15]
+  UI: Chennai Super Kings 69-3 (5.2)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-3 (0.2)
+  this_over=['2', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.94  ps=3(1)  recent=W 2 W
+  CB BAT: Sarfaraz Khan* 2(1), Matthew Short 0(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=69 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.2 cb=20 | BAT_short: ui=19(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Eshan Malinga cb=Nitish Kumar Reddy
+
+[22:08:59  iter#16]
+  UI: Chennai Super Kings 70-3 (5.3)  str=Matthew Short nstr=Sarfaraz Khan  bowl=Eshan Malinga 1-4 (0.3)
+  this_over=['2', '1', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.73  ps=4(2)  recent=W 2 W
+  CB BAT: Matthew Short* 0(2), Sarfaraz Khan 3(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=70 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.3 cb=20 | BAT_short: ui=2(12) cb=0(2) | BAT_khan: ui=2(2) cb=3(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Eshan Malinga cb=Nitish Kumar Reddy
+
+[22:09:22  iter#17]
+  UI: Chennai Super Kings 70-3 (5.3)  str=Matthew Short nstr=Sarfaraz Khan  bowl=Eshan Malinga 1-4 (0.3)
+  this_over=['2', '1', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.73  ps=4(2)  recent=W 2 W
+  CB BAT: Matthew Short* 0(2), Sarfaraz Khan 3(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=70 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.3 cb=20 | BAT_short: ui=2(12) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Eshan Malinga cb=Nitish Kumar Reddy
+
+[22:09:45  iter#18]
+  UI: Chennai Super Kings 70-3 (5.3)  str=Matthew Short nstr=Sarfaraz Khan  bowl=Eshan Malinga 1-4 (0.3)
+  this_over=['2', '1', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.06  ps=8(3)  recent=W 2 W
+  CB BAT: Matthew Short* 4(3), Sarfaraz Khan 3(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=70 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.3 cb=20 | BAT_short: ui=0(12) cb=4(3) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Eshan Malinga cb=Nitish Kumar Reddy
+
+[22:10:08  iter#19]
+  UI: Chennai Super Kings 74-3 (5.4)  str=Matthew Short nstr=Sarfaraz Khan  bowl=Eshan Malinga 1-8 (0.4)
+  this_over=['2', '1', '1', '4']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.06  ps=8(3)  recent=W 2 W
+  CB BAT: Matthew Short* 4(3), Sarfaraz Khan 3(2)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=74 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.4 cb=20 | BAT_short: ui=4(12) cb=4(3) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Eshan Malinga cb=Nitish Kumar Reddy
+
+[22:10:31  iter#20]
+  UI: Chennai Super Kings 75-3 (5.5)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-9 (0.5)
+  this_over=['2', '1', '1', '4', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.86  ps=9(4)  recent=W 2 W
+  CB BAT: Sarfaraz Khan* 3(2), Matthew Short 5(4)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=75 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.5 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Eshan Malinga cb=Nitish Kumar Reddy
+
+[22:10:51  iter#21]
+  UI: Chennai Super Kings 75-3 (5.5)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-9 (0.5)
+  this_over=['2', '1', '1', '4', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.86  ps=9(4)  recent=W 2 W
+  CB BAT: Sarfaraz Khan* 3(2), Matthew Short 5(4)
+  CB BOWL: Nitish Kumar Reddy 2-14 (2)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=75 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=5.5 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Eshan Malinga cb=Nitish Kumar Reddy
+
+[22:11:13  iter#22]
+  UI: CSK 76-3 (6.0)  str=Matthew Short nstr=Sarfaraz Khan  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=W 2 W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | STRIKER: ui=Matthew Short cb=Sarfaraz Khan | FOW_COUNT: ui=0 vs wickets=3 | BOWLER: ui=None cb=Eshan Malinga
+
+[22:11:34  iter#23]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-10 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=W 2 W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[22:11:55  iter#24]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-10 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=W 2 W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[22:12:17  iter#25]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-10 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=... W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[22:12:39  iter#26]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-10 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=... W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[22:12:59  iter#27]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-10 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=... W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[22:13:20  iter#28]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-10 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=... W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[22:13:40  iter#29]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Eshan Malinga 1-10 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=... W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[22:14:00  iter#30]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Sakib Hussain 0-13 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=... W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[22:14:24  iter#31]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Matthew Short nstr=Sarfaraz Khan  bowl=Sakib Hussain 0-13 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.67  ps=10(5)  recent=... W
+  CB BAT: Sarfaraz Khan* 4(3), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | STRIKER: ui=Matthew Short cb=Sarfaraz Khan | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[22:14:45  iter#32]
+  UI: Chennai Super Kings 76-3 (6.0)  str=Matthew Short nstr=Sarfaraz Khan  bowl=Sakib Hussain 0-13 (1)
+  this_over=[]  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.32  ps=10(6)  recent=0
+  CB BAT: Sarfaraz Khan* 4(4), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.0 cb=20 | STRIKER: ui=Matthew Short cb=Sarfaraz Khan | BAT_khan: ui=4(3) cb=4(4) | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[22:15:07  iter#33]
+  UI: Chennai Super Kings 76-3 (6.1)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Sakib Hussain 0-13 (1)
+  this_over=['.']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.63  ps=14(7)  recent=0 4
+  CB BAT: Sarfaraz Khan* 8(5), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.1 cb=20 | BAT_khan: ui=4(4) cb=8(5) | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[22:15:29  iter#34]
+  UI: Chennai Super Kings 76-3 (6.1)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Shivang Kumar 0-0 (0.1)
+  this_over=['.']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.63  ps=14(7)  recent=0 4
+  CB BAT: Sarfaraz Khan* 8(5), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=76 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.1 cb=20 | BAT_khan: ui=None(None) cb=8(5) | BAT_short: ui=None(None) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Shivang Kumar cb=Eshan Malinga
+
+[22:15:51  iter#35]
+  UI: Chennai Super Kings 80-3 (6.2)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Shivang Kumar 0-4 (0.2)
+  this_over=['.', '4']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=unknown line=unknown shot=in_the_air [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.63  ps=14(7)  recent=0 4
+  CB BAT: Sarfaraz Khan* 8(5), Matthew Short 5(4)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=80 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.2 cb=20 | BAT_short: ui=5(12) cb=5(4) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Shivang Kumar cb=Eshan Malinga
+
+[22:16:11  iter#36]
+  UI: Chennai Super Kings 81-3 (6.3)  str=Matthew Short nstr=Sarfaraz Khan  bowl=Shivang Kumar 0-6 (0.4)
+  this_over=['.', '4', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.46  ps=15(8)  recent=0 4 1
+  CB BAT: Matthew Short* 5(4), Sarfaraz Khan 9(6)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=81 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.3 cb=20 | BAT_short: ui=None(None) cb=5(4) | BAT_khan: ui=None(None) cb=9(6) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Shivang Kumar cb=Eshan Malinga
+
+[22:16:32  iter#37]
+  UI: Chennai Super Kings 81-3 (6.3)  str=Matthew Short nstr=Sarfaraz Khan  bowl=Shivang Kumar 0-5 (0.3)
+  this_over=['.', '4', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.3  ps=16(9)  recent=0 4 1 1
+  CB BAT: Sarfaraz Khan* 9(6), Matthew Short 6(5)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=81 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.3 cb=20 | STRIKER: ui=Matthew Short cb=Sarfaraz Khan | BAT_short: ui=5(12) cb=6(5) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Shivang Kumar cb=Eshan Malinga
+
+[22:16:55  iter#38]
+  UI: Chennai Super Kings 82-3 (6.4)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Shivang Kumar 0-6 (0.4)
+  this_over=['.', '4', '1', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.3  ps=16(9)  recent=0 4 1 1
+  CB BAT: Sarfaraz Khan* 9(6), Matthew Short 6(5)
+  CB BOWL: Eshan Malinga 1-10 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=82 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.4 cb=20 | BAT_short: ui=6(12) cb=6(5) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Shivang Kumar cb=Eshan Malinga
+
+[22:17:17  iter#39]
+  UI: Chennai Super Kings 82-3 (6.5)  str=Sarfaraz Khan nstr=Matthew Short  bowl=Shivang Kumar 0-6 (0.5)
+  this_over=['.', '4', '1', '1', '.']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Ruturaj Gaikwad', 'score': 66, 'overs': '6.0'}
+  delivery: len=short line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=11.86  ps=17(11)  recent=0 4 1 1 0 1
+  CB BAT: Sarfaraz Khan* 10(8), Matthew Short 6(5)
+  CB BOWL: Shivang Kumar 0-7 (1)
+  LAST WKT: Ruturaj Gaikwad  c Salil Arora b Eshan Malinga 19(13)  - 66/3 in 5.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=82 cb=194 | WICKETS: ui=3 cb=9 | OVERS: ui=6.5 cb=20 | BAT_khan: ui=9(7) cb=10(8) | BAT_short: ui=6(12) cb=6(5) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=6 cb=7 | BOWL_O: ui=0.5 cb=1

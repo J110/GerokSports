@@ -1,0 +1,1591 @@
+=== ELEMENT CHECKER — wi-vs-rsa-2nd-t20i-south-africa-tour-of-west-indies-2024 ===
+WS:   ws://localhost:8765
+CB:   https://www.cricbuzz.com/live-cricket-scores/151998/wi-vs-rsa-2nd-t20i-south-africa-tour-of-west-indies-2024
+JSONL: logs/element-checker-2026-05-03-173254.jsonl
+
+[17:32:57  iter#1]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.4', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.4 gt=1; R ui=2 gt=8
+[17:33:05  iter#2]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:33:11  iter#3]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.4', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.4 gt=1; R ui=2 gt=8
+[17:33:17  iter#4]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.4', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.4 gt=1; R ui=2 gt=8
+[17:33:22  iter#5]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.4', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.4 gt=1; R ui=2 gt=8
+[17:33:30  iter#6]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:33:36  iter#7]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.4', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.4 gt=1; R ui=2 gt=8
+[17:33:42  iter#8]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.4', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.4 gt=1; R ui=2 gt=8
+[17:33:46  iter#9]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.4', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.4 gt=1; R ui=2 gt=8
+[17:33:53  iter#10]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=6.0 | gt=5.45 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 3, 'ball… | why=allen ui=3(5) gt=3(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.4', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.4 gt=1; R ui=2 gt=8
+[17:34:01  iter#11]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=6.0 | gt=5.45 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 3, 'ball… | why=allen ui=3(5) gt=3(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.4', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.4 gt=1; R ui=2 gt=8
+[17:34:09  iter#12]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.5', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.5 gt=1; R ui=2 gt=8
+[17:34:15  iter#13]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.5', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.5 gt=1; R ui=2 gt=8
+[17:34:21  iter#14]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=5.45 | gt=6.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 3, 'ball… | why=allen ui=3(6) gt=3(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.5', … | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=O ui=0.5 gt=1; R ui=2 gt=8
+[17:34:27  iter#15]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=5.45 | gt=6.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 3, 'ball… | why=allen ui=3(6) gt=3(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1', 'm… | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=R ui=2 gt=8
+[17:34:33  iter#16]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=5.45 | gt=6.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 3, 'ball… | why=allen ui=3(6) gt=3(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1', 'm… | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=R ui=2 gt=8
+[17:34:38  iter#17]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=5.45 | gt=6.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 3, 'ball… | why=allen ui=3(6) gt=3(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1', 'm… | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=R ui=2 gt=8
+[17:34:44  iter#18]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=5.45 | gt=6.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 3, 'ball… | why=allen ui=3(6) gt=3(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1', 'm… | gt={'name': 'Abhishek Sharma', 'overs': '1'… | why=R ui=2 gt=8
+[17:34:49  iter#19]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=5.45 | gt=7.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Finn Allen | gt=Ajinkya Rahane | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Ajinkya Rahane | gt=Finn Allen | why=non mismatch
+  ✗ live.partnership                            ui=10 | gt=14 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=allen ui=3(6) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1', 'm… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=R ui=2 gt=6
+[17:34:57  iter#20]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:35:05  iter#21]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:35:10  iter#22]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=5.45 | gt=7.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Finn Allen | gt=Ajinkya Rahane | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Ajinkya Rahane | gt=Finn Allen | why=non mismatch
+  ✗ live.partnership                            ui=10 | gt=14 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=allen ui=3(6) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1', 'm… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=R ui=2 gt=6
+[17:35:16  iter#23]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=5.45 | gt=7.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Finn Allen | gt=Ajinkya Rahane | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Ajinkya Rahane | gt=Finn Allen | why=non mismatch
+  ✗ live.partnership                            ui=10 | gt=14 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=allen ui=3(6) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1', 'm… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=R ui=2 gt=6
+[17:35:22  iter#24]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=5.45 | gt=7.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ live.partnership                            ui=10 | gt=14 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=allen ui=6(4) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.4', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=1.4 gt=1; R ui=8 gt=6
+[17:35:28  iter#25]  diverging=1/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+[17:35:34  iter#26]  diverging=1/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+[17:35:41  iter#27]  diverging=1/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+[17:35:46  iter#28]  diverging=1/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+[17:35:51  iter#29]  diverging=1/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+[17:35:56  iter#30]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.0'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.0 gt=1; R ui=0 gt=6
+[17:36:01  iter#31]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0 gt=1; R ui=0 gt=6
+[17:36:06  iter#32]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0 gt=1; R ui=0 gt=6
+[17:36:11  iter#33]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0 gt=1; R ui=0 gt=6
+[17:36:17  iter#34]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0 gt=1; R ui=0 gt=6
+[17:36:22  iter#35]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0 gt=1; R ui=0 gt=6
+[17:36:27  iter#36]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0 gt=1; R ui=0 gt=6
+[17:36:34  iter#37]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=7.0 | gt=6.46 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=7(5) gt=7(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0 gt=1; R ui=0 gt=6
+[17:36:38  iter#38]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.1'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.1 gt=1; R ui=0 gt=6
+[17:36:44  iter#39]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=6.0 | gt=6.46 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.2'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.2 gt=1; R ui=0 gt=6
+[17:36:52  iter#40]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:37:00  iter#41]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:37:05  iter#42]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=7(6) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.2'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.2 gt=1; R ui=0 gt=6
+[17:37:11  iter#43]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=7(6) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.2'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.2 gt=1; R ui=0 gt=6
+[17:37:17  iter#44]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=7(6) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.2'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.2 gt=1; R ui=0 gt=6
+[17:37:22  iter#45]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=7(6) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.2'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.2 gt=1; R ui=0 gt=6
+[17:37:28  iter#46]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=6.0 | gt=8.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=14 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=7(6) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.2'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.2 gt=1; R ui=0 gt=6
+[17:37:33  iter#47]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=6.0 | gt=8.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=14 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=7(6) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.2'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.2 gt=1; R ui=0 gt=6
+[17:37:39  iter#48]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=6.0 | gt=8.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=14 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=7(6) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.2'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.2 gt=1; R ui=0 gt=6
+[17:37:47  iter#49]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:37:54  iter#50]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=8.0 | gt=6.46 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=20 | gt=14 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=13(8) gt=7(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.3'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.3 gt=1
+[17:38:00  iter#51]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=7.5 | gt=6.46 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=20 | gt=14 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=13(9) gt=7(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.4'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.4 gt=1
+[17:38:05  iter#52]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=7.5 | gt=6.46 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=20 | gt=14 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=13(9) gt=7(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.4'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.4 gt=1
+[17:38:10  iter#53]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=7.5 | gt=6.46 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=20 | gt=14 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=13(9) gt=7(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.4'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.4 gt=1
+[17:38:15  iter#54]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=7.5 | gt=6.46 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=20 | gt=14 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 7, '… | why=rahane ui=13(9) gt=7(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.4'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.4 gt=1
+[17:38:22  iter#55]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=7.5 | gt=8.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=13(9) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.4'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.4 gt=1
+[17:38:29  iter#56]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=7.5 | gt=8.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=13(9) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.4'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.4 gt=1
+[17:38:37  iter#57]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:38:43  iter#58]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=7.5 | gt=8.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=13(9) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.4'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.4 gt=1
+[17:38:48  iter#59]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.4'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.4 gt=1
+[17:38:55  iter#60]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.5'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.5 gt=1
+[17:39:00  iter#61]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.5'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.5 gt=1
+[17:39:08  iter#62]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:39:17  iter#63]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:39:22  iter#64]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '0.5'… | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=0.5 gt=1
+[17:39:30  iter#65]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:39:35  iter#66]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=15(11) gt=13(10)
+[17:39:40  iter#67]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=15(11) gt=13(10)
+[17:39:49  iter#68]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:39:54  iter#69]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=15(11) gt=13(10)
+[17:39:59  iter#70]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=15(11) gt=13(10)
+[17:40:07  iter#71]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:40:12  iter#72]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=15(11) gt=13(10)
+[17:40:20  iter#73]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Finn Allen | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:40:26  iter#74]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ live.partnership                            ui=22 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=15(11) gt=13(9)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '2.0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=2.0 gt=1; R ui=8 gt=6
+[17:40:34  iter#75]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ live.partnership                            ui=23 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=15(11) gt=13(9)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '2.0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=2.0 gt=1; R ui=8 gt=6
+[17:40:39  iter#76]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=9.0 | gt=7.5 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ live.partnership                            ui=27 | gt=20 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 13, … | why=rahane ui=15(11) gt=13(9)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '2.0', … | gt={'name': 'Pat Cummins', 'overs': '1', 'm… | why=O ui=2.0 gt=1; R ui=11 gt=6
+[17:40:48  iter#77]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:40:52  iter#78]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=9.0 | gt=7.33 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=27 | gt=22 | why=partnership runs drift
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '2.0', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=2.0 gt=1; R ui=11 gt=8
+[17:41:00  iter#79]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:41:05  iter#80]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=9.0 | gt=7.33 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=27 | gt=22 | why=partnership runs drift
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '2.0', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=2.0 gt=1; R ui=11 gt=8
+[17:41:10  iter#81]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=9.0 | gt=7.33 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=27 | gt=22 | why=partnership runs drift
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '2.0', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=2.0 gt=1; R ui=11 gt=8
+[17:41:15  iter#82]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '2.0', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=2.0 gt=1; R ui=11 gt=8
+[17:41:22  iter#83]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:41:27  iter#84]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:41:32  iter#85]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:41:40  iter#86]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:41:45  iter#87]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=9.0 | gt=10.42 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=27 | gt=33 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 13, 'bal… | why=allen ui=7(7) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:41:49  iter#88]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=9.0 | gt=10.42 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=27 | gt=33 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 13, 'bal… | why=allen ui=7(7) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:41:57  iter#89]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:42:05  iter#90]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:42:10  iter#91]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=10.42 | gt=9.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=33 | gt=27 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 7, 'ball… | why=allen ui=13(8) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:42:16  iter#92]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=10.42 | gt=9.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=33 | gt=27 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 7, 'ball… | why=allen ui=13(8) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:42:20  iter#93]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=10.42 | gt=9.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=33 | gt=27 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 7, 'ball… | why=allen ui=13(8) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:42:25  iter#94]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=10.42 | gt=9.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=33 | gt=27 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 7, 'ball… | why=allen ui=13(8) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:42:29  iter#95]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=10.42 | gt=9.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=33 | gt=27 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 7, 'ball… | why=allen ui=13(8) gt=7(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4', 'm… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4 gt=1; R ui=11 gt=8
+[17:42:38  iter#96]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:42:43  iter#97]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=10.42 | gt=11.71 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=35 | gt=41 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 21, 'bal… | why=allen ui=13(8) gt=21(10)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4.1', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4.1 gt=1; R ui=13 gt=8
+[17:42:51  iter#98]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:42:56  iter#99]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=10.42 | gt=11.71 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=35 | gt=41 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 21, 'bal… | why=allen ui=13(8) gt=21(10)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4.1', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=4.1 gt=1; R ui=13 gt=8
+[17:43:03  iter#100]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=35 | gt=33 | why=partnership runs drift
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': None, '… | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=None gt=1; R ui=13 gt=8
+[17:43:11  iter#101]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:43:19  iter#102]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.71 | gt=10.42 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=41 | gt=33 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 13, 'bal… | why=allen ui=13(10) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.1', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=0.1 gt=1; R ui=19 gt=8
+[17:43:26  iter#103]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.71 | gt=10.42 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=41 | gt=33 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 13, 'bal… | why=allen ui=13(10) gt=13(8)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.1', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=0.1 gt=1; R ui=19 gt=8
+[17:43:33  iter#104]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.71 | gt=12.27 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=41 | gt=45 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 25, 'bal… | why=allen ui=13(10) gt=25(11)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.1', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=0.1 gt=1; R ui=19 gt=8
+[17:43:41  iter#105]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:43:46  iter#106]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '0.1', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=0.1 gt=1; R ui=19 gt=8
+[17:43:54  iter#107]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:44:00  iter#108]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.4', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=1.4 gt=1; R ui=29 gt=8
+[17:44:05  iter#109]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.4', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=1.4 gt=1; R ui=29 gt=8
+[17:44:10  iter#110]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.4', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=1.4 gt=1; R ui=29 gt=8
+[17:44:18  iter#111]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:44:29  iter#112]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.5', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=1.5 gt=1; R ui=33 gt=8
+[17:44:34  iter#113]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Finn Allen | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.5', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=1.5 gt=1; R ui=33 gt=8
+[17:44:39  iter#114]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.5', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=1.5 gt=1; R ui=33 gt=8
+[17:44:45  iter#115]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.5', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=1.5 gt=1; R ui=33 gt=8
+[17:44:49  iter#116]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.5', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=1.5 gt=1; R ui=33 gt=8
+[17:44:54  iter#117]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=12.78 | gt=12.27 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=49 | gt=45 | why=partnership runs drift
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 25, 'bal… | why=allen ui=29(12) gt=25(11)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '1.5', … | gt={'name': 'Eshan Malinga', 'overs': '1', … | why=O ui=1.5 gt=1; R ui=33 gt=8
+[17:44:58  iter#118]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.partnership                            ui=49 | gt=45 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 25, 'bal… | why=Finn Allen not in active; rahane ui=18(10) gt=15(11)
+[17:45:06  iter#119]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:45:11  iter#120]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Finn Allen | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.partnership                            ui=49 | gt=45 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Finn Allen', 'runs': 25, 'bal… | why=Finn Allen not in active; rahane ui=18(10) gt=15(11)
+[17:45:19  iter#121]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:45:27  iter#122]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.non                              ui=None | gt=Eshan Malinga | why=non null
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 15, … | why=rahane ui=18(10) gt=15(11); Eshan Malinga not in active
+[17:45:32  iter#123]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Eshan Malinga | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=49 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 15, … | why=rahane ui=18(10) gt=15(11); Eshan Malinga not in active
+[17:45:37  iter#124]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Eshan Malinga | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=49 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 15, … | why=rahane ui=18(10) gt=15(11); Eshan Malinga not in active
+[17:45:45  iter#125]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Eshan Malinga | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:45:49  iter#126]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Eshan Malinga | why=non mismatch
+  ✗ live.partnership                            ui=0 | gt=49 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 15, … | why=rahane ui=18(10) gt=15(11); Eshan Malinga not in active
+[17:45:58  iter#127]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:46:06  iter#128]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:46:14  iter#129]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:46:22  iter#130]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Finn Allen | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:46:27  iter#131]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 15, … | why=rahane ui=18(10) gt=15(11)
+[17:46:32  iter#132]  diverging=1/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+[17:46:36  iter#133]  diverging=1/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+[17:46:44  iter#134]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Angkrish Raghuvanshi | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:46:50  iter#135]  diverging=1/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+[17:46:56  iter#136]  diverging=1/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+[17:47:02  iter#137]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4.0', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=4.0 gt=2
+[17:47:08  iter#138]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4.0', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=4.0 gt=2
+[17:47:12  iter#139]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '4.0', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=4.0 gt=2
+[17:47:20  iter#140]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Angkrish Raghuvanshi | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:47:27  iter#141]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=15(11) gt=16(12)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.2', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.2 gt=2
+[17:47:34  iter#142]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.54 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=15(11) gt=16(12)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.2', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.2 gt=2
+[17:47:42  iter#143]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:47:46  iter#144]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.54 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=15(11) gt=16(12)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.2', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.2 gt=2
+[17:47:51  iter#145]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.11 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=0(2) gt=0(0)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.3 gt=2
+[17:47:59  iter#146]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.11 | gt=10.71 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=0(2) gt=0(3)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.3 gt=2
+[17:48:04  iter#147]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.11 | gt=10.71 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=0(2) gt=0(3)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.3 gt=2
+[17:48:09  iter#148]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.3 gt=2
+[17:48:15  iter#149]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.3 gt=2
+[17:48:23  iter#150]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:48:30  iter#151]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 16, … | why=raghuvanshi ui=4(4) gt=1(4)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.3 gt=2
+[17:48:36  iter#152]  diverging=3/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 16, … | why=raghuvanshi ui=4(4) gt=1(4)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.3 gt=2
+[17:48:41  iter#153]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.3 gt=2
+[17:48:48  iter#154]  diverging=2/27  ws_ok=True  gt_ok=True
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=O ui=3.3 gt=2
+[17:48:53  iter#155]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.0 | gt=10.55 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Abhishek Sharma | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=6 | gt=2 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 16, … | why=rahane ui=14(14) gt=16(12)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Abhishek Sharma', 'overs': '2'… | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=R ui=14 gt=33; W ui=0 gt=1
+[17:48:59  iter#156]  diverging=7/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Abhishek Sharma | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=6 | gt=1 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=1(4) gt=0(2); rahane ui=14(14) gt=16(12)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Abhishek Sharma', 'overs': '2'… | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=R ui=14 gt=33; W ui=0 gt=1
+[17:49:04  iter#157]  diverging=7/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Abhishek Sharma | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=6 | gt=1 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=1(4) gt=0(2); rahane ui=14(14) gt=16(12)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Abhishek Sharma', 'overs': '2'… | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=R ui=14 gt=33; W ui=0 gt=1
+[17:49:12  iter#158]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Pat Cummins | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:49:16  iter#159]  diverging=7/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Abhishek Sharma | gt=Pat Cummins | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=6 | gt=1 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=1(4) gt=0(2); rahane ui=14(14) gt=16(12)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Abhishek Sharma', 'overs': '2'… | gt={'name': 'Pat Cummins', 'overs': '2', 'm… | why=R ui=14 gt=33; W ui=0 gt=1
+[17:49:25  iter#160]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:49:29  iter#161]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=14(14) gt=20(13)
+[17:49:37  iter#162]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:49:43  iter#163]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=14(14) gt=20(13)
+[17:49:48  iter#164]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=14(14) gt=20(13)
+[17:49:56  iter#165]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=14(14) gt=20(13)
+[17:50:01  iter#166]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=14(14) gt=20(13)
+[17:50:07  iter#167]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ live.partnership                            ui=12 | gt=6 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=14(14) gt=20(13)
+[17:50:12  iter#168]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.81 | gt=11.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=12 | gt=6 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=14(14) gt=20(13)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1 gt=2; R ui=8 gt=14
+[17:50:19  iter#169]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.81 | gt=11.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=12 | gt=6 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=rahane ui=14(14) gt=20(13)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1 gt=2; R ui=8 gt=14
+[17:50:31  iter#170]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.81 | gt=11.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=12 | gt=6 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=7(5) gt=1(4)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.1'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.1 gt=2
+[17:50:37  iter#171]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.44 | gt=11.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=12 | gt=6 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=7(6) gt=1(4)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.1'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.1 gt=2
+[17:50:41  iter#172]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.44 | gt=11.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=12 | gt=6 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=7(6) gt=1(4)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.1'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.1 gt=2
+[17:50:46  iter#173]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.44 | gt=11.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=12 | gt=6 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=7(6) gt=1(4)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.1'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.1 gt=2
+[17:50:54  iter#174]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:51:02  iter#175]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:51:08  iter#176]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:51:13  iter#177]  diverging=7/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=13 | gt=12 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=8(7) gt=7(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:51:18  iter#178]  diverging=7/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=13 | gt=12 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=8(7) gt=7(6)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:51:23  iter#179]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.27 | gt=11.81 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=13 | gt=12 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=8(7) gt=7(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:51:31  iter#180]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:51:35  iter#181]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.27 | gt=11.81 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=13 | gt=12 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=8(7) gt=7(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:51:43  iter#182]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:51:52  iter#183]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:51:59  iter#184]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.27 | gt=11.81 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=13 | gt=12 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=8(7) gt=7(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:52:05  iter#185]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.27 | gt=11.81 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=13 | gt=12 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=8(7) gt=7(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:52:10  iter#186]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.27 | gt=11.81 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=13 | gt=12 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=8(7) gt=7(5)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:52:18  iter#187]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:52:24  iter#188]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:52:31  iter#189]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:52:39  iter#190]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:52:46  iter#191]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=14 | gt=13 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 20, … | why=rahane ui=21(14) gt=20(13)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:52:50  iter#192]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=14 | gt=13 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 20, … | why=rahane ui=21(14) gt=20(13)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2', … | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=W ui=1 gt=0
+[17:52:58  iter#193]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Angkrish Raghuvanshi | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:53:04  iter#194]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.83 | gt=11.27 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=20 | gt=13 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 20, … | why=rahane ui=21(14) gt=20(13); raghuvanshi ui=14(8) gt=8(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2.1'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=2.1 gt=2; R ui=20 gt=14; W ui=1 gt=0
+[17:53:08  iter#195]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.83 | gt=11.27 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=20 | gt=13 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 20, … | why=rahane ui=21(14) gt=20(13); raghuvanshi ui=14(8) gt=8(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2.1'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=2.1 gt=2; R ui=20 gt=14; W ui=1 gt=0
+[17:53:15  iter#196]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2.1'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=2.1 gt=2; R ui=20 gt=14; W ui=1 gt=0
+[17:53:21  iter#197]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2.1'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=2.1 gt=2; R ui=20 gt=14; W ui=1 gt=0
+[17:53:29  iter#198]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:53:33  iter#199]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '2.1'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=2.1 gt=2; R ui=20 gt=14; W ui=1 gt=0
+[17:53:40  iter#200]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=22 gt=14
+[17:53:45  iter#201]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.83 | gt=11.12 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=20 | gt=14 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=14(8) gt=8(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=22 gt=14
+[17:53:50  iter#202]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.83 | gt=11.12 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=20 | gt=14 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=14(8) gt=8(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=22 gt=14
+[17:53:57  iter#203]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=12.0 | gt=11.12 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=21 | gt=14 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=14(8) gt=8(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=23 gt=14
+[17:54:03  iter#204]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=12.0 | gt=11.12 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=21 | gt=14 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=14(8) gt=8(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=23 gt=14
+[17:54:07  iter#205]  diverging=8/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=12.0 | gt=11.12 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=21 | gt=14 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=14(8) gt=8(7)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=23 gt=14
+[17:54:12  iter#206]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=23 gt=14
+[17:54:18  iter#207]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=23 gt=14
+[17:54:24  iter#208]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=23 gt=14
+[17:54:30  iter#209]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Eshan Malinga | gt=Abhishek Sharma | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.bowler_figures                    ui={'name': 'Eshan Malinga', 'overs': '1.5'… | gt={'name': 'Abhishek Sharma', 'overs': '2'… | why=O ui=1.5 gt=2; R ui=23 gt=14
+[17:54:35  iter#210]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=21 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=15(9) gt=14(8)
+[17:54:41  iter#211]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+[17:54:49  iter#212]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:54:57  iter#213]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:55:05  iter#214]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Angkrish Raghuvanshi | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Ajinkya Rahane | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:55:10  iter#215]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=21 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=15(9) gt=14(8)
+[17:55:15  iter#216]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=21 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=15(9) gt=14(8)
+[17:55:22  iter#217]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=21 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=15(9) gt=14(8)
+[17:55:27  iter#218]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=21 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=15(9) gt=14(8)
+[17:55:32  iter#219]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Abhishek Sharma | why=no current_bowler
+  ✗ live.partnership                            ui=22 | gt=21 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=15(9) gt=14(8)
+[17:55:38  iter#220]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+[17:55:44  iter#221]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+[17:55:49  iter#222]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+[17:55:57  iter#223]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+[17:56:02  iter#224]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.partnership                            ui=23 | gt=22 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=16(10) gt=15(9)
+[17:56:10  iter#225]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.68 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.partnership                            ui=23 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=21(14) gt=25(15)
+[17:56:15  iter#226]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.68 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.partnership                            ui=23 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=21(14) gt=25(15)
+[17:56:19  iter#227]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.68 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.partnership                            ui=23 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=21(14) gt=25(15)
+[17:56:24  iter#228]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.68 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.partnership                            ui=23 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=21(14) gt=25(15)
+[17:56:29  iter#229]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.68 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.partnership                            ui=23 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=21(14) gt=25(15)
+[17:56:35  iter#230]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ live.partnership                            ui=23 | gt=22 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=16(10) gt=15(9)
+[17:56:40  iter#231]  diverging=7/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=27 | gt=22 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=16(10) gt=15(9); rahane ui=30(21) gt=21(14)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.3 gt=2; R ui=33 gt=24; W ui=1 gt=0
+[17:56:46  iter#232]  diverging=7/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=27 | gt=22 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=16(10) gt=15(9); rahane ui=30(21) gt=21(14)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.3 gt=2; R ui=33 gt=24; W ui=1 gt=0
+[17:56:52  iter#233]  diverging=7/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=27 | gt=22 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=16(10) gt=15(9); rahane ui=30(21) gt=21(14)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.3 gt=2; R ui=33 gt=24; W ui=1 gt=0
+[17:56:57  iter#234]  diverging=7/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.striker                          ui=Ajinkya Rahane | gt=Angkrish Raghuvanshi | why=striker mismatch (broadcast hint vs OCR)
+  ✗ scorestrip.non                              ui=Angkrish Raghuvanshi | gt=Ajinkya Rahane | why=non mismatch
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=27 | gt=22 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Angkrish Raghuvanshi', 'runs'… | why=raghuvanshi ui=16(10) gt=15(9); rahane ui=30(21) gt=21(14)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.3 gt=2; R ui=33 gt=24; W ui=1 gt=0
+[17:57:04  iter#235]  diverging=4/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=30(21) gt=25(15)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.3', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.3 gt=2; R ui=33 gt=24; W ui=1 gt=0
+[17:57:12  iter#236]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Angkrish Raghuvanshi | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:57:20  iter#237]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Angkrish Raghuvanshi | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:57:28  iter#238]  diverging=9/27  ws_ok=False  gt_ok=True
+  ✗ scorestrip.team_a                           ui=None | gt=expected | why=match.team_a missing
+  ✗ scorestrip.team_b                           ui=None | gt=expected | why=match.team_b missing
+  ✗ scorestrip.innings                          ui=None | gt=1 or 2 | why=innings still 0/null
+  ✗ scorestrip.batting_team                     ui=None | gt=expected | why=scorecard.batting_team null
+  ✗ scorestrip.striker                          ui=None | gt=Ajinkya Rahane | why=striker not assigned by pipeline
+  ✗ scorestrip.non                              ui=None | gt=Angkrish Raghuvanshi | why=non null
+  ✗ scorestrip.bowler                           ui=None | gt=Eshan Malinga | why=no current_bowler
+  ✗ scorecard.batting_card_full                 ui=0 | gt=11 | why=no batting card yet
+  ✗ ui.connection                               ui=DISCONNECTED | gt=CONNECTED | why=
+[17:57:34  iter#239]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=28 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=26(22) gt=25(15); raghuvanshi ui=18(19) gt=16(10)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.4', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.4 gt=2; R ui=34 gt=24; W ui=1 gt=0
+[17:57:38  iter#240]  diverging=5/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=28 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=26(22) gt=25(15); raghuvanshi ui=18(19) gt=16(10)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.4', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.4 gt=2; R ui=34 gt=24; W ui=1 gt=0
+[17:57:43  iter#241]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.7 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=29 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=26(22) gt=25(15); raghuvanshi ui=18(19) gt=16(10)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.4', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.4 gt=2; R ui=34 gt=24; W ui=1 gt=0
+[17:57:50  iter#242]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.7 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=29 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=26(22) gt=25(15); raghuvanshi ui=18(19) gt=16(10)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.4', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.4 gt=2; R ui=34 gt=24; W ui=1 gt=0
+[17:57:57  iter#243]  diverging=6/27  ws_ok=True  gt_ok=True
+  ✗ scorestrip.run_rate                         ui=11.7 | gt=12.0 | why=CRR drift > 0.3 — score/overs out of sync
+  ✗ scorestrip.bowler                           ui=Pat Cummins | gt=Eshan Malinga | why=bowler mismatch — likely OCR or bowler-change miss
+  ✗ live.partnership                            ui=29 | gt=27 | why=partnership runs drift
+  ✗ live.fall_of_wickets                        ui=0 | gt=1 | why=FOW count != wickets
+  ✗ scorecard.active_batter_runs                ui=[{'name': 'Ajinkya Rahane', 'status': 'b… | gt=[{'name': 'Ajinkya Rahane', 'runs': 25, … | why=rahane ui=26(22) gt=25(15); raghuvanshi ui=18(19) gt=16(10)
+  ✗ scorecard.bowler_figures                    ui={'name': 'Pat Cummins', 'overs': '3.4', … | gt={'name': 'Eshan Malinga', 'overs': '2', … | why=O ui=3.4 gt=2; R ui=34 gt=24; W ui=1 gt=0

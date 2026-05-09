@@ -1,0 +1,46 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+
+> scorecard-ui@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.2 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.102:3000
+- Environments: .env.local
+✓ Ready in 332ms
+
+ GET / 200 in 214ms (next.js: 111ms, application-code: 103ms)
+ GET / 200 in 33ms (next.js: 6ms, application-code: 27ms)
+✓ Compiled in 292ms
+✓ Compiled in 17ms
+[browser] Uncaught ReferenceError: DeliveryInfoPanel is not defined
+    at Home (app/page.tsx:292:16)
+    at Set.forEach (<anonymous>)
+  290 |                 )}
+  291 |               </div>
+> 292 |               <DeliveryInfoPanel di={state.delivery_info} />
+      |                ^
+  293 |               {state.match?.innings === 2 &&
+  294 |                 sit.runs_needed != null &&
+  295 |                 sit.runs_needed > 0 && (
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 22ms
+ GET / 200 in 83ms (next.js: 15ms, application-code: 67ms)
+✓ Compiled in 24ms
+✓ Compiled in 17ms
+✓ Compiled in 15ms
+✓ Compiled in 12ms
+✓ Compiled in 12ms
+✓ Compiled in 14ms
+✓ Compiled in 13ms
+✓ Compiled in 22ms
+✓ Compiled in 15ms
+✓ Compiled in 10ms
+✓ Compiled in 16ms
+✓ Compiled in 17ms
+[?25h
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.12.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.12.1
+npm notice To update run: npm install -g npm@11.12.1
+npm notice

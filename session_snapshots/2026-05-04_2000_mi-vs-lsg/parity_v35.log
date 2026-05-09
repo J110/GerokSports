@@ -1,0 +1,798 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151818/srh-vs-csk-27th-match-indian-premier-league-2026
+
+[22:52:50  iter#1]
+  WS ERR: "Multiple exceptions: [Errno 61] Connect call failed ('::1', 8765, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 8765)"
+  CB: SRH 194-9 (20)  crr=9.47  ps=18(13)  recent=
+  CB BAT: Matthew Short* 28(25), Shivam Dube 10(7)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'short', 'dube'} (ui=set(), cb={'short', 'dube'}) | BOWLER: ui=None cb=Nitish Kumar Reddy
+
+[22:53:12  iter#2]
+  UI: Chennai Super Kings 131-5 (13.5)  str=Matthew Short nstr=Shivam Dube  bowl=Praful Hinge 0-50 (2.5)
+  this_over=['?', '?', '?', '?', '?']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.47  ps=18(13)  recent=
+  CB BAT: Matthew Short* 28(25), Shivam Dube 10(7)
+  CB BOWL: Nitish Kumar Reddy 2-19 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=131 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=13.5 cb=20 | BOWLER: ui=Praful Hinge cb=Nitish Kumar Reddy
+
+[22:53:34  iter#3]
+  UI: CSK 135-5 (14.0)  str=Shivam Dube nstr=Matthew Short  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.64  ps=22(14)  recent=
+  CB BAT: Shivam Dube* 10(7), Matthew Short 32(26)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=135 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=14.0 cb=20 | FOW_COUNT: ui=0 vs wickets=5 | BOWLER: ui=None cb=Praful Hinge
+
+[22:53:54  iter#4]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=Shivam Dube  bowl=Praful Hinge 0-54 (3.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.64  ps=22(14)  recent=
+  CB BAT: Shivam Dube* 10(7), Matthew Short 32(26)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'short'} (ui={'dube'}, cb={'short', 'dube'}) | BAT_dube: ui=25(7) cb=10(7) | BOWL_O: ui=3.0 cb=3
+
+[22:54:15  iter#5]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=Shivam Dube  bowl=Praful Hinge 0-54 (3.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.64  ps=22(14)  recent=...
+  CB BAT: Shivam Dube* 10(7), Matthew Short 32(26)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'short'} (ui={'dube'}, cb={'short', 'dube'}) | BAT_dube: ui=25(7) cb=10(7) | BOWL_O: ui=3.0 cb=3
+
+[22:54:38  iter#6]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=Shivam Dube  bowl=Praful Hinge 0-54 (3.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.64  ps=22(14)  recent=...
+  CB BAT: Shivam Dube* 10(7), Matthew Short 32(26)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'short'} (ui={'dube'}, cb={'short', 'dube'}) | BAT_dube: ui=25(7) cb=10(7) | BOWL_O: ui=3.0 cb=3
+
+[22:54:59  iter#7]
+  UI: Chennai Super Kings 135-5 (14.0)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-54 (3.0)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.64  ps=22(14)  recent=...
+  CB BAT: Shivam Dube* 10(7), Matthew Short 32(26)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=135 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=14.0 cb=20 | BAT_dube: ui=25(7) cb=10(7) | BOWL_O: ui=3.0 cb=3
+
+[22:55:20  iter#8]
+  UI: Chennai Super Kings 135-5 (14.0)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-54 (3.0)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.64  ps=22(14)  recent=...
+  CB BAT: Shivam Dube* 10(7), Matthew Short 32(26)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=135 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=14.0 cb=20 | BAT_dube: ui=25(7) cb=10(7) | BOWL_O: ui=3.0 cb=3
+
+[22:55:40  iter#9]
+  UI: Chennai Super Kings 135-5 (14.0)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-54 (3.0)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.64  ps=22(14)  recent=...
+  CB BAT: Shivam Dube* 10(7), Matthew Short 32(26)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=135 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=14.0 cb=20 | BAT_dube: ui=25(7) cb=10(7) | BOWL_O: ui=3.0 cb=3
+
+[22:56:02  iter#10]
+  UI: Chennai Super Kings 135-5 (14.0)  str=Shivam Dube nstr=Matthew Short  bowl=Praful Hinge 0-54 (3.0)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.64  ps=22(14)  recent=...
+  CB BAT: Shivam Dube* 10(7), Matthew Short 32(26)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=135 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=14.0 cb=20 | BAT_dube: ui=25(7) cb=10(7) | BOWL_O: ui=3.0 cb=3
+
+[22:56:24  iter#11]
+  UI: Chennai Super Kings 135-5 (14.0)  str=Shivam Dube nstr=Matthew Short  bowl=Sakib Hussain 0-20 (2)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.64  ps=22(14)  recent=...
+  CB BAT: Shivam Dube* 10(7), Matthew Short 32(26)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=135 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=14.0 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:56:47  iter#12]
+  UI: Chennai Super Kings 135-5 (14.0)  str=Shivam Dube nstr=Matthew Short  bowl=Sakib Hussain 0-20 (2)
+  this_over=[]  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.6  ps=23(15)  recent=1
+  CB BAT: Matthew Short* 32(26), Shivam Dube 11(8)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=135 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=14.0 cb=20 | STRIKER: ui=Shivam Dube cb=Matthew Short | BAT_dube: ui=10(7) cb=11(8) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:57:08  iter#13]
+  UI: Chennai Super Kings 136-5 (14.1)  str=Matthew Short nstr=Shivam Dube  bowl=Sakib Hussain 0-20 (2)
+  this_over=['1']  fow=5 (unk=0)  last_fow={'wicket': 5, 'batter': 'Jamie Overton', 'score': '?', 'overs': '?'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.6  ps=23(15)  recent=1
+  CB BAT: Matthew Short* 32(26), Shivam Dube 11(8)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=136 cb=194 | WICKETS: ui=5 cb=9 | OVERS: ui=14.1 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:57:29  iter#14]
+  UI: Chennai Super Kings 136-6 (14.1)  str=Matthew Short nstr=Shivam Dube  bowl=Sakib Hussain 0-21 (2.1)
+  this_over=['W']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.6  ps=23(15)  recent=1
+  CB BAT: Matthew Short* 32(26), Shivam Dube 11(8)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=136 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.1 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:57:51  iter#15]
+  UI: Chennai Super Kings 137-6 (14.1)  str=Matthew Short nstr=Shivam Dube  bowl=Sakib Hussain 0-22 (2.1)
+  this_over=['W', 'Wd']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.67  ps=24(15)  recent=1 W
+  CB BAT: Matthew Short* 32(26), Shivam Dube 11(8)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=137 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.1 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:58:12  iter#16]
+  UI: Chennai Super Kings 137-6 (14.1)  str=Matthew Short nstr=Shivam Dube  bowl=Sakib Hussain 0-22 (2.1)
+  this_over=['W', 'Wd']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.63  ps=25(16)  recent=1 W
+  CB BAT: Shivam Dube* 11(8), Matthew Short 33(27)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=137 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.1 cb=20 | STRIKER: ui=Matthew Short cb=Shivam Dube | BAT_short: ui=32(26) cb=33(27) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:58:32  iter#17]
+  UI: Chennai Super Kings 138-6 (14.2)  str=Shivam Dube nstr=Matthew Short  bowl=Sakib Hussain 0-23 (2.3)
+  this_over=['W', 'Wd', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.63  ps=25(16)  recent=1 W
+  CB BAT: Shivam Dube* 11(8), Matthew Short 33(27)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=138 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.2 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:58:53  iter#18]
+  UI: Chennai Super Kings 138-6 (14.2)  str=Shivam Dube nstr=Matthew Short  bowl=Sakib Hussain 0-23 (2.2)
+  this_over=['W', 'Wd', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=1 [w1/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.63  ps=25(16)  recent=1 W
+  CB BAT: Shivam Dube* 11(8), Matthew Short 33(27)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=138 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.2 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:59:14  iter#19]
+  UI: Chennai Super Kings 138-6 (14.2)  str=Shivam Dube nstr=Matthew Short  bowl=Sakib Hussain 0-23 (2.2)
+  this_over=['W', 'Wd', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.63  ps=25(16)  recent=1 W
+  CB BAT: Shivam Dube* 11(8), Matthew Short 33(27)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=138 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.2 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:59:35  iter#20]
+  UI: Chennai Super Kings 139-6 (14.3)  str=Matthew Short nstr=Shivam Dube  bowl=Sakib Hussain 0-25 (2.3)
+  this_over=['W', 'Wd', '1', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.59  ps=26(17)  recent=... 1
+  CB BAT: Matthew Short* 33(27), Shivam Dube 12(9)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=139 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.3 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[22:59:57  iter#21]
+  UI: Chennai Super Kings 140-6 (14.4)  str=Shivam Dube nstr=Matthew Short  bowl=Sakib Hussain 1-25 (2.4)
+  this_over=['W', 'Wd', '1', '1', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.55  ps=27(18)  recent=1 W
+  CB BAT: Shivam Dube* 12(9), Matthew Short 34(28)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=140 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.4 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[23:00:19  iter#22]
+  UI: Chennai Super Kings 140-6 (14.4)  str=Shivam Dube nstr=Matthew Short  bowl=Sakib Hussain 1-25 (2.4)
+  this_over=['W', 'Wd', '1', '1', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.51  ps=28(19)  recent=1 W
+  CB BAT: Matthew Short* 34(28), Shivam Dube 13(10)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=140 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.4 cb=20 | STRIKER: ui=Shivam Dube cb=Matthew Short | BAT_dube: ui=12(9) cb=13(10) | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[23:00:40  iter#23]
+  UI: Chennai Super Kings 141-6 (14.5)  str=Matthew Short nstr=Shivam Dube  bowl=Sakib Hussain 0-26 (3.0)
+  this_over=['W', 'Wd', '1', '1', '1', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.51  ps=28(19)  recent=1 W
+  CB BAT: Matthew Short* 34(28), Shivam Dube 13(10)
+  CB BOWL: Praful Hinge 0-54 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=141 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.5 cb=20 | BOWLER: ui=Sakib Hussain cb=Praful Hinge
+
+[23:01:01  iter#24]
+  UI: Chennai Super Kings 141-6 (14.5)  str=Matthew Short nstr=Shivam Dube  bowl=Sakib Hussain 0-26 (2.5)
+  this_over=['W', 'Wd', '1', '1', '1', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.4  ps=28(20)  recent=1 W
+  CB BAT: Shivam Dube* 13(10), Matthew Short 34(29)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=141 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=14.5 cb=20 | STRIKER: ui=Matthew Short cb=Shivam Dube | BAT_short: ui=34(28) cb=34(29) | BOWL_O: ui=2.5 cb=3
+
+[23:01:23  iter#25]
+  UI: Chennai Super Kings 141-6 (15.0)  str=Shivam Dube nstr=Matthew Short  bowl=Sakib Hussain 0-26 (4.0)
+  this_over=[]  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.4  ps=28(20)  recent=1 W
+  CB BAT: Shivam Dube* 13(10), Matthew Short 34(29)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=141 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.0 cb=20 | BOWL_O: ui=4.0 cb=3
+
+[23:01:43  iter#26]
+  UI: Chennai Super Kings 141-6 (15.0)  str=Shivam Dube nstr=Matthew Short  bowl=Sakib Hussain 0-26 (4.0)
+  this_over=[]  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.4  ps=28(20)  recent=1 W
+  CB BAT: Shivam Dube* 13(10), Matthew Short 34(29)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=141 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.0 cb=20 | BOWL_O: ui=4.0 cb=3
+
+[23:02:06  iter#27]
+  UI: Chennai Super Kings 141-6 (15.0)  str=Shivam Dube nstr=Matthew Short  bowl=Eshan Malinga 2-11 (2)
+  this_over=[]  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.56  ps=32(21)  recent=4
+  CB BAT: Shivam Dube* 17(11), Matthew Short 34(29)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=141 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.0 cb=20 | BAT_dube: ui=13(10) cb=17(11) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:02:27  iter#28]
+  UI: Chennai Super Kings 145-6 (15.1)  str=Shivam Dube nstr=Matthew Short  bowl=Eshan Malinga 2-15 (2.1)
+  this_over=['4']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=good_length line=on_stumps shot=in_the_air [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.56  ps=32(21)  recent=4
+  CB BAT: Shivam Dube* 17(11), Matthew Short 34(29)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=145 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.1 cb=20 | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:02:48  iter#29]
+  UI: Chennai Super Kings 145-6 (15.1)  str=Shivam Dube nstr=Matthew Short  bowl=Eshan Malinga 2-15 (2.1)
+  this_over=['4']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=good_length line=on_stumps shot=in_the_air [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.59  ps=34(22)  recent=4 2
+  CB BAT: Shivam Dube* 19(12), Matthew Short 34(29)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=145 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.1 cb=20 | BAT_dube: ui=17(11) cb=19(12) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:03:11  iter#30]
+  UI: Chennai Super Kings 147-6 (15.2)  str=Shivam Dube nstr=Matthew Short  bowl=Eshan Malinga 2-19 (2.3)
+  this_over=['4', '2']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.59  ps=34(22)  recent=4 2
+  CB BAT: Shivam Dube* 19(12), Matthew Short 34(29)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=147 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.2 cb=20 | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:03:32  iter#31]
+  UI: Chennai Super Kings 147-6 (15.2)  str=Shivam Dube nstr=Matthew Short  bowl=Eshan Malinga 2-19 (2.3)
+  this_over=['4', '2']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.59  ps=34(22)  recent=... 6 1 4
+  CB BAT: Shivam Dube* 19(12), Matthew Short 34(29)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=147 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.2 cb=20 | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:03:54  iter#32]
+  UI: Chennai Super Kings 147-6 (15.2)  str=Shivam Dube nstr=Matthew Short  bowl=Eshan Malinga 2-19 (2.3)
+  this_over=['4', '2']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.55  ps=35(23)  recent=4 2 1
+  CB BAT: Matthew Short* 34(29), Shivam Dube 20(13)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=147 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.2 cb=20 | STRIKER: ui=Shivam Dube cb=Matthew Short | BAT_dube: ui=19(12) cb=20(13) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:04:16  iter#33]
+  UI: Chennai Super Kings 148-6 (15.3)  str=Matthew Short nstr=Shivam Dube  bowl=Eshan Malinga 2-20 (2.4)
+  this_over=['4', '2', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.55  ps=35(23)  recent=4 2 1
+  CB BAT: Matthew Short* 34(29), Shivam Dube 20(13)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Dewald Brevis  c Liam Livingstone b Shivang Kumar 0(4)  - 113/5 in 11.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=148 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.3 cb=20 | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:04:36  iter#34]
+  UI: Chennai Super Kings 148-6 (15.3)  str=Matthew Short nstr=Shivam Dube  bowl=Eshan Malinga 2-20 (2.4)
+  this_over=['4', '2', '1']  fow=6 (unk=0)  last_fow={'wicket': 6, 'batter': 'Matthew Short', 'score': 136, 'overs': '14.1'}
+  delivery: len=short line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.45  ps=35(24)  recent=4 2 1 W
+  CB BAT: Shivam Dube* 20(13), Sakib Hussain 3(0)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=148 cb=194 | WICKETS: ui=6 cb=9 | OVERS: ui=15.3 cb=20 | STRIKER: ui=Matthew Short cb=Shivam Dube | BATTERS_MISSING_IN_UI: {'hussain'} (ui={'short', 'dube'}, cb={'hussain', 'dube'}) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:05:00  iter#35]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=9.45  ps=35(24)  recent=4 2 1 W
+  CB BAT: Shivam Dube* 20(13), Sakib Hussain 3(0)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dube', 'hussain'} (ui=set(), cb={'hussain', 'dube'}) | BOWLER: ui=None cb=Sakib Hussain
+
+[23:05:24  iter#36]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=9.45  ps=35(24)  recent=4 2 1 W
+  CB BAT: Shivam Dube* 20(13), Sakib Hussain 3(0)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dube', 'hussain'} (ui=set(), cb={'hussain', 'dube'}) | BOWLER: ui=None cb=Sakib Hussain
+
+[23:05:47  iter#37]
+  UI: Chennai Super Kings 148-7 (15.4)  str=Matthew Short nstr=Shivam Dube  bowl=Eshan Malinga 2-21 (2.5)
+  this_over=['4', '2', '1', 'W']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.45  ps=0(0)  recent=... 4
+  CB BAT: Jamie Overton* 0(0), Shivam Dube 20(13)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=148 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=15.4 cb=20 | STRIKER: ui=Matthew Short cb=Jamie Overton | BATTERS_MISSING_IN_UI: {'overton'} (ui={'short', 'dube'}, cb={'overton', 'dube'}) | BAT_dube: ui=None(None) cb=20(13) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:06:07  iter#38]
+  UI: Chennai Super Kings 148-7 (15.4)  str=Shivam Dube nstr=Jamie Overton  bowl=Eshan Malinga 2-21 (2.5)
+  this_over=['4', '2', '1', 'W']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.41  ps=1(1)  recent=4 2 1 W 1
+  CB BAT: Shivam Dube* 20(13), Jamie Overton 1(1)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=148 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=15.4 cb=20 | BAT_overton: ui=0(0) cb=1(1) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:06:31  iter#39]
+  UI: Chennai Super Kings 149-7 (15.5)  str=Jamie Overton nstr=Shivam Dube  bowl=Eshan Malinga 2-22 (3.1)
+  this_over=['4', '2', '1', 'W', '1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.41  ps=1(1)  recent=4 2 1 W 1
+  CB BAT: Shivam Dube* 20(13), Jamie Overton 1(1)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=149 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=15.5 cb=20 | STRIKER: ui=Jamie Overton cb=Shivam Dube | BAT_overton: ui=0(0) cb=1(1) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:06:52  iter#40]
+  UI: Chennai Super Kings 149-7 (15.5)  str=Jamie Overton nstr=Shivam Dube  bowl=Eshan Malinga 3-19 (3.1)
+  this_over=['4', '2', '1', 'W', '1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.41  ps=1(1)  recent=4 2 1 W 1
+  CB BAT: Shivam Dube* 20(13), Jamie Overton 1(1)
+  CB BOWL: Sakib Hussain 0-26 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=149 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=15.5 cb=20 | STRIKER: ui=Jamie Overton cb=Shivam Dube | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:07:13  iter#41]
+  UI: Chennai Super Kings 149-7 (15.5)  str=Jamie Overton nstr=Shivam Dube  bowl=Eshan Malinga 3-19 (3.1)
+  this_over=['4', '2', '1', 'W', '1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.31  ps=1(2)  recent=4 2 1 W 1 0
+  CB BAT: Jamie Overton* 1(1), Shivam Dube 20(14)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=149 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=15.5 cb=20 | BAT_dube: ui=20(13) cb=20(14) | BOWL_O: ui=3.1 cb=3
+
+[23:07:37  iter#42]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=9.31  ps=1(2)  recent=4 2 1 W 1 0
+  CB BAT: Jamie Overton* 1(1), Shivam Dube 20(14)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'overton', 'dube'} (ui=set(), cb={'overton', 'dube'}) | BOWLER: ui=None cb=Eshan Malinga
+
+[23:07:58  iter#43]
+  UI: Chennai Super Kings 149-7 (16.0)  str=Jamie Overton nstr=Shivam Dube  bowl=Eshan Malinga 3-19 (4.0)
+  this_over=[]  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.28  ps=2(3)  recent=1
+  CB BAT: Shivam Dube* 20(14), Jamie Overton 2(2)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=149 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.0 cb=20 | STRIKER: ui=Jamie Overton cb=Shivam Dube | BAT_overton: ui=1(1) cb=2(2) | BOWL_O: ui=4.0 cb=3
+
+[23:08:18  iter#44]
+  UI: Chennai Super Kings 150-7 (16.1)  str=Shivam Dube nstr=Shivam Dube  bowl=Eshan Malinga 3-19 (3.2)
+  this_over=['1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.28  ps=2(3)  recent=1
+  CB BAT: Shivam Dube* 20(14), Jamie Overton 2(2)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=150 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.1 cb=20 | BATTERS_MISSING_IN_UI: {'overton'} (ui={'dube'}, cb={'overton', 'dube'}) | BAT_overton: ui=0(0) cb=2(2) | BOWL_O: ui=3.2 cb=3
+
+[23:08:38  iter#45]
+  UI: Chennai Super Kings 150-7 (16.1)  str=Shivam Dube nstr=Jamie Overton  bowl=Eshan Malinga 3-19 (3.2)
+  this_over=['1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=good_length line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=2 [w2/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.34  ps=3(3)  recent=1 W
+  CB BAT: Shivam Dube* 20(14), Jamie Overton 2(2)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=150 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.1 cb=20 | BAT_dube: ui=20(20) cb=20(14) | BOWL_O: ui=3.2 cb=3
+
+[23:09:01  iter#46]
+  UI: Chennai Super Kings 151-7 (16.1)  str=Shivam Dube nstr=Jamie Overton  bowl=Eshan Malinga 3-20 (3.2)
+  this_over=['1', 'Wd']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=3 [w3/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.34  ps=3(3)  recent=1 W
+  CB BAT: Shivam Dube* 20(14), Jamie Overton 2(2)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=151 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.1 cb=20 | BAT_dube: ui=20(20) cb=20(14) | BOWL_R: ui=20 cb=19 | BOWL_O: ui=3.2 cb=3
+
+[23:09:23  iter#47]
+  UI: Chennai Super Kings 151-7 (16.1)  str=Shivam Dube nstr=Jamie Overton  bowl=Sakib Hussain 0-28 (3.1)
+  this_over=['1', 'Wd']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=3 [w3/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.34  ps=3(3)  recent=1 W
+  CB BAT: Shivam Dube* 20(14), Jamie Overton 2(2)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=151 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.1 cb=20 | BAT_dube: ui=20(20) cb=20(14) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:09:44  iter#48]
+  UI: Chennai Super Kings 151-7 (16.1)  str=Shivam Dube nstr=Jamie Overton  bowl=Sakib Hussain 0-28 (3.1)
+  this_over=['1', 'Wd']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=3 [w3/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.31  ps=4(4)  recent=1 W
+  CB BAT: Jamie Overton* 2(2), Shivam Dube 21(15)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=151 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.1 cb=20 | STRIKER: ui=Shivam Dube cb=Jamie Overton | BAT_dube: ui=20(20) cb=21(15) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:10:06  iter#49]
+  UI: Chennai Super Kings 152-7 (16.2)  str=Jamie Overton nstr=Shivam Dube  bowl=Sakib Hussain 0-29 (3.2)
+  this_over=['1', 'Wd', '1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=full_toss line=on_stumps shot=along_ground [vlm]
+  extras: this_over=1 innings=3 [w3/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.31  ps=4(4)  recent=1 W
+  CB BAT: Jamie Overton* 2(2), Shivam Dube 21(15)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=152 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.2 cb=20 | BAT_dube: ui=21(20) cb=21(15) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:10:27  iter#50]
+  UI: Chennai Super Kings 153-7 (16.2)  str=Jamie Overton nstr=Shivam Dube  bowl=Sakib Hussain 1-30 (3.2)
+  this_over=['1', 'Wd', '1', 'Wd']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=1 innings=4 [w4/nb0/b0/lb0]
+  extras_log: [{'over': '14.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.31  ps=4(4)  recent=... 1 1 0
+  CB BAT: Jamie Overton* 2(2), Shivam Dube 21(15)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=153 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.2 cb=20 | BAT_dube: ui=21(20) cb=21(15) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:10:50  iter#51]
+  UI: Chennai Super Kings 153-7 (16.3)  str=Shivam Dube nstr=Jamie Overton  bowl=Sakib Hussain 1-31 (3.3)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=wide_outside_off shot=defended [vlm]
+  extras: this_over=4 innings=8 [w8/nb0/b0/lb0]
+  extras_log: [{'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.31  ps=4(4)  recent=... 1 1 0
+  CB BAT: Jamie Overton* 2(2), Shivam Dube 21(15)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=153 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.3 cb=20 | STRIKER: ui=Shivam Dube cb=Jamie Overton | BAT_dube: ui=22(21) cb=21(15) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:11:11  iter#52]
+  UI: Chennai Super Kings 153-7 (16.2)  str=Shivam Dube nstr=Jamie Overton  bowl=Sakib Hussain 1-31 (3.3)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=wide_outside_off shot=defended [vlm]
+  extras: this_over=8 innings=12 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.31  ps=4(4)  recent=... 1 1 0
+  CB BAT: Jamie Overton* 2(2), Shivam Dube 21(15)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=153 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.2 cb=20 | STRIKER: ui=Shivam Dube cb=Jamie Overton | BAT_dube: ui=22(21) cb=21(15) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:11:32  iter#53]
+  UI: Chennai Super Kings 153-7 (16.2)  str=Shivam Dube nstr=Jamie Overton  bowl=Sakib Hussain 1-31 (3.3)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=wide_outside_off shot=defended [vlm]
+  extras: this_over=9 innings=13 [w13/nb0/b0/lb0]
+  extras_log: [{'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.37  ps=5(4)  recent=1 W
+  CB BAT: Jamie Overton* 2(2), Shivam Dube 21(15)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=153 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.2 cb=20 | STRIKER: ui=Shivam Dube cb=Jamie Overton | BAT_dube: ui=22(21) cb=21(15) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:11:54  iter#54]
+  UI: Chennai Super Kings 153-7 (16.2)  str=Shivam Dube nstr=Jamie Overton  bowl=Sakib Hussain 0-30 (3.2)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=wide_outside_off shot=defended [vlm]
+  extras: this_over=9 innings=13 [w13/nb0/b0/lb0]
+  extras_log: [{'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.37  ps=5(4)  recent=1 W
+  CB BAT: Jamie Overton* 2(2), Shivam Dube 21(15)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=153 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.2 cb=20 | STRIKER: ui=Shivam Dube cb=Jamie Overton | BAT_dube: ui=21(21) cb=21(15) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:12:17  iter#55]
+  UI: Chennai Super Kings 153-7 (16.2)  str=Shivam Dube nstr=Jamie Overton  bowl=Sakib Hussain 0-30 (3.2)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=wide_outside_off shot=defended [vlm]
+  extras: this_over=10 innings=15 [w15/nb0/b0/lb0]
+  extras_log: [{'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.2', 'type': 'wide', 'runs': 2, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.27  ps=5(5)  recent=1 W
+  CB BAT: Jamie Overton* 2(3), Shivam Dube 21(15)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=153 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.2 cb=20 | STRIKER: ui=Shivam Dube cb=Jamie Overton | BAT_overton: ui=2(2) cb=2(3) | BAT_dube: ui=21(21) cb=21(15) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:12:37  iter#56]
+  UI: Chennai Super Kings 153-7 (16.3)  str=Jamie Overton nstr=Shivam Dube  bowl=Sakib Hussain 0-30 (3.3)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=wide_outside_off shot=defended [vlm]
+  extras: this_over=11 innings=16 [w16/nb0/b0/lb0]
+  extras_log: [{'over': '16.2', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.2', 'type': 'wide', 'runs': 2, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.24  ps=6(6)  recent=1 W
+  CB BAT: Shivam Dube* 21(15), Jamie Overton 3(4)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=153 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.3 cb=20 | STRIKER: ui=Jamie Overton cb=Shivam Dube | BAT_dube: ui=21(21) cb=21(15) | BAT_overton: ui=2(3) cb=3(4) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:13:01  iter#57]
+  UI: Chennai Super Kings 154-7 (16.4)  str=Shivam Dube nstr=Jamie Overton  bowl=Sakib Hussain 0-31 (3.4)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.', '1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=short line=on_stumps shot=along_ground [vlm]
+  extras: this_over=13 innings=18 [w18/nb0/b0/lb0]
+  extras_log: [{'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.24  ps=6(6)  recent=1 W
+  CB BAT: Shivam Dube* 21(15), Jamie Overton 3(4)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Matthew Short  c Aniket Verma b Eshan Malinga 34(30)  - 148/6 in 15.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=154 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.4 cb=20 | BAT_dube: ui=21(21) cb=21(15) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:13:21  iter#58]
+  UI: Chennai Super Kings 154-7 (16.4)  str=Shivam Dube nstr=Jamie Overton  bowl=Sakib Hussain 0-31 (3.4)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.', '1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=short line=on_stumps shot=along_ground [vlm]
+  extras: this_over=13 innings=18 [w18/nb0/b0/lb0]
+  extras_log: [{'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.15  ps=6(7)  recent=1 W
+  CB BAT: Jamie Overton* 3(4), Eshan Malinga 3(0)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=154 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.4 cb=20 | STRIKER: ui=Shivam Dube cb=Jamie Overton | BATTERS_MISSING_IN_UI: {'malinga'} (ui={'overton', 'dube'}, cb={'overton', 'malinga'}) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:13:42  iter#59]
+  UI: Chennai Super Kings 154-7 (16.5)  str=Jamie Overton nstr=Shivam Dube  bowl=Sakib Hussain 1-31 (3.5)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.', '1', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.15  ps=6(7)  recent=1 W
+  CB BAT: Jamie Overton* 3(4), Eshan Malinga 3(0)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=154 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.5 cb=20 | BATTERS_MISSING_IN_UI: {'malinga'} (ui={'overton', 'dube'}, cb={'overton', 'malinga'}) | BAT_overton: ui=21(16) cb=3(4) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:14:03  iter#60]
+  UI: Chennai Super Kings 154-7 (16.5)  str=Jamie Overton nstr=Shivam Dube  bowl=Sakib Hussain 1-31 (3.5)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.', '1', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.15  ps=6(7)  recent=1 W
+  CB BAT: Jamie Overton* 3(4), Eshan Malinga 3(0)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=154 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.5 cb=20 | BATTERS_MISSING_IN_UI: {'malinga'} (ui={'overton', 'dube'}, cb={'overton', 'malinga'}) | BAT_overton: ui=3(16) cb=3(4) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:14:23  iter#61]
+  UI: Chennai Super Kings 154-7 (16.5)  str=Jamie Overton nstr=Shivam Dube  bowl=Sakib Hussain 1-31 (3.5)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.', '1', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.15  ps=0(0)  recent=...
+  CB BAT: Anshul Kamboj* 0(0), Jamie Overton 3(4)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=154 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.5 cb=20 | STRIKER: ui=Jamie Overton cb=Anshul Kamboj | BATTERS_MISSING_IN_UI: {'kamboj'} (ui={'overton', 'dube'}, cb={'kamboj', 'overton'}) | BAT_overton: ui=3(16) cb=3(4) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:14:44  iter#62]
+  UI: Chennai Super Kings 154-7 (16.5)  str=Jamie Overton nstr=Shivam Dube  bowl=Sakib Hussain 1-31 (3.5)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.', '1', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.15  ps=0(0)  recent=...
+  CB BAT: Anshul Kamboj* 0(0), Jamie Overton 3(4)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=154 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.5 cb=20 | STRIKER: ui=Jamie Overton cb=Anshul Kamboj | BATTERS_MISSING_IN_UI: {'kamboj'} (ui={'overton', 'dube'}, cb={'kamboj', 'overton'}) | BAT_overton: ui=3(16) cb=3(4) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:15:04  iter#63]
+  UI: Chennai Super Kings 154-7 (16.5)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Sakib Hussain 1-31 (3.5)
+  this_over=['1', 'Wd', '1', 'Wd', 'Wd', '.', '1', '.']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.15  ps=0(0)  recent=...
+  CB BAT: Anshul Kamboj* 0(0), Jamie Overton 3(4)
+  CB BOWL: Eshan Malinga 3-19 (3)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=154 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=16.5 cb=20 | STRIKER: ui=Jamie Overton cb=Anshul Kamboj | BAT_overton: ui=3(16) cb=3(4) | BOWLER: ui=Sakib Hussain cb=Eshan Malinga
+
+[23:15:25  iter#64]
+  UI: Chennai Super Kings 155-7 (17.0)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Sakib Hussain 1-32 (4)
+  this_over=[]  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=full_toss line=on_stumps shot=in_the_air [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.12  ps=1(1)  recent=... 1 W
+  CB BAT: Anshul Kamboj* 1(1), Jamie Overton 3(4)
+  CB BOWL: Sakib Hussain 1-32 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=155 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=17.0 cb=20 | BAT_overton: ui=3(16) cb=3(4)
+
+[23:15:46  iter#65]
+  UI: Chennai Super Kings 155-7 (17.0)  str=Anshul Kamboj nstr=Jamie Overton  bowl=Sakib Hussain 1-32 (4)
+  this_over=[]  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=full_toss line=on_stumps shot=in_the_air [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.09  ps=2(2)  recent=1
+  CB BAT: Jamie Overton* 3(4), Anshul Kamboj 2(2)
+  CB BOWL: Sakib Hussain 1-32 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=155 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=17.0 cb=20 | STRIKER: ui=Anshul Kamboj cb=Jamie Overton | BAT_overton: ui=3(16) cb=3(4) | BAT_kamboj: ui=1(1) cb=2(2)
+
+[23:16:11  iter#66]
+  UI: Chennai Super Kings 156-7 (17.1)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Sakib Hussain 1-32 (4)
+  this_over=['1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.09  ps=2(2)  recent=1
+  CB BAT: Jamie Overton* 3(4), Anshul Kamboj 2(2)
+  CB BOWL: Sakib Hussain 1-32 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=156 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=17.1 cb=20 | BAT_overton: ui=3(16) cb=3(4)
+
+[23:16:31  iter#67]
+  UI: Chennai Super Kings 156-7 (17.1)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Eshan Malinga 3-20 (3.1)
+  this_over=['1']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.12  ps=4(3)  recent=1 2
+  CB BAT: Jamie Overton* 5(5), Anshul Kamboj 2(2)
+  CB BOWL: Sakib Hussain 1-32 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=156 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=17.1 cb=20 | BAT_overton: ui=3(16) cb=5(5) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:16:52  iter#68]
+  UI: Chennai Super Kings 158-7 (17.2)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Eshan Malinga 3-24 (3.2)
+  this_over=['1', '2']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=good_length line=on_stumps shot=in_the_air [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.12  ps=4(3)  recent=1 2
+  CB BAT: Jamie Overton* 5(5), Anshul Kamboj 2(2)
+  CB BOWL: Sakib Hussain 1-32 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=158 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=17.2 cb=20 | BAT_overton: ui=5(16) cb=5(5) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain
+
+[23:17:14  iter#69]
+  UI: Chennai Super Kings 158-7 (17.2)  str=Jamie Overton nstr=Anshul Kamboj  bowl=Eshan Malinga 3-22 (3.2)
+  this_over=['1', '2']  fow=7 (unk=0)  last_fow={'wicket': 7, 'batter': 'Matthew Short', 'score': 148, 'overs': '15.4'}
+  delivery: len=good_length line=on_stumps shot=in_the_air [vlm]
+  extras: this_over=15 innings=20 [w20/nb0/b0/lb0]
+  extras_log: [{'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '16.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: SRH 194-9 (20)  crr=9.03  ps=4(4)  recent=1 2 0
+  CB BAT: Jamie Overton* 5(6), Anshul Kamboj 2(2)
+  CB BOWL: Sakib Hussain 1-32 (4)
+  LAST WKT: Shivam Dube   b Sakib Hussain 21(16)  - 154/7 in 16.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=158 cb=194 | WICKETS: ui=7 cb=9 | OVERS: ui=17.2 cb=20 | BAT_overton: ui=5(16) cb=5(6) | BOWLER: ui=Eshan Malinga cb=Sakib Hussain

@@ -1,0 +1,492 @@
+WARNING ⚠️ torchvision==0.26 is incompatible with torch==2.10.
+Run 'pip install torchvision==0.25' to fix torchvision or 'pip install -U torch torchvision' to update both.
+For a full compatibility table see https://github.com/pytorch/vision#installation
+[37m[16:13:47 F0 TEST] INFO: [WS] Server started on ws://0.0.0.0:8765[0m
+[37m[16:13:47 F0 TEST] INFO: [WS] Commentary server on ws://0.0.0.0:8766[0m
+[37m[16:13:47 F0 TEST] INFO: ============================================================[0m
+[37m[16:13:47 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[16:13:47 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/151807/rcb-vs-dc-26th-match-indian-premier-league-2026[0m
+[37m[16:13:47 F0 SQUAD] INFO:   Royal Challengers Bengaluru: 11 XI + 13 bench[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Virat Kohli — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Philip Salt (WK) — wk_batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Devdutt Padikkal — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Rajat Patidar (C) — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Jitesh Sharma (WK) — wk_batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Tim David — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Romario Shepherd — bowl_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Krunal Pandya — bat_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Bhuvneshwar Kumar — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Suyash Sharma — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Josh Hazlewood — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Rasikh Salam Dar — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Venkatesh Iyer — bat_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Jordan Cox — wk_batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Mangesh Yadav — bowl_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Vicky Ostwal — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Kanishk Chouhan — bowl_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Jacob Duffy — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Swapnil Singh — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Nuwan Thushara — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Jacob Bethell — bat_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Vihaan Malhotra — bat_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Abhinandan Singh — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Satvik Deswal — bowl_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:   Delhi Capitals: 11 XI + 13 bench[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Pathum Nissanka — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     KL Rahul (WK) — wk_batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Sameer Rizvi — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Axar Patel (C) — bowl_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     David Miller — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Tristan Stubbs (WK) — wk_batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Auqib Nabi Dar — bowl_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Lungi Ngidi — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Kuldeep Yadav — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     T Natarajan — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     Mukesh Kumar — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Vipraj Nigam — bowl_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Ashutosh Sharma — bat_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Karun Nair — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Dushmantha Chameera — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Nitish Rana — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Mitchell Starc — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Kyle Jamieson — bowler[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Ajay Jadav Mandal — bowl_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Prithvi Shaw — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Tripurana Vijay — bowl_allrounder[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Abishek Porel — wk_batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Sahil Parakh — batter[0m
+[37m[16:13:47 F0 SQUAD] INFO:     [bench] Madhav Tiwari — bowl_allrounder[0m
+[37m[16:13:47 F0 TEST] INFO: Teams: ['Royal Challengers Bengaluru', 'Delhi Capitals'][0m
+[37m[16:13:47 F0 TEST] INFO: Team variants: ['BAN', 'BANGALORE', 'BEN', 'BENGALURU', 'CAP', 'CAPITALS', 'CHA', 'CHALLENGERS', 'DC', 'DE', 'DEL', 'DELHI', 'DELHI CAPITALS', 'RCB', 'RO', 'ROY', 'ROYAL', 'ROYAL CHALLENGERS BENGALURU'][0m
+[37m[16:13:47 F0 TEST] INFO: Found Firefox window (on-screen): id=722 1019.0x825.0 "RCB vs DC Live video streaming | TATA IPL 2026"[0m
+[37m[16:13:48 F0 TEST] INFO: [BALL ANALYZER] Background capture started[0m
+[37m[16:13:49 F0 FIELD] INFO: Pitch detected from green mask at (0.87, 0.57) (fallback — will recalibrate from people)[0m
+[37m[16:13:49 F0 TEST] INFO: [CLEANUP] Cleared old debug frames[0m
+[37m[16:13:49 F0 TEST] INFO: [CACHE] Found state from frame 190 (35s ago)[0m
+[37m[16:13:49 F0 BOARD] INFO: Scorecards built: Royal Challengers Bengaluru (24 bat) vs Delhi Capitals (24 bowl)[0m
+[37m[16:13:49 F0 TEST] INFO: === TEAMS SET: Royal Challengers Bengaluru batting (inn 1) vs Delhi Capitals bowling ===[0m
+[37m[16:13:49 F0 BOARD] INFO: [CACHE] Restored: 87-1 (8.2) from frame 190[0m
+[37m[16:13:49 F0 TEST] INFO: ============================================================[0m
+[37m[16:13:49 F0 TEST] INFO: [CONFIG] Vision:    Scout 17B (single call tag+read)[0m
+[37m[16:13:49 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[16:13:49 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[16:13:49 F0 TEST] INFO: PIPELINE STARTED — 18000s — NO TEAM ASSUMPTION[0m
+[37m[16:13:49 F0 TEST] INFO: ============================================================[0m
+[37m[16:13:49 F1 OVER] INFO: this_over count mismatch: team@8.2 expects 2 legal balls, observed 0 legal (tokens=[]) — keeping observations[0m
+[37m[16:13:50 F1 VISION] INFO: [SCOUT] SCOREBOARD 1242ms strip=True overlay=False drs=False digits=True 142 chars[0m
+[37m[16:13:50 F1 TEST] INFO: 
+=======================================================[0m
+[37m[16:13:50 F1 TEST] INFO: [F1] SCOREBOARD — #1[0m
+[37m[16:13:50 F1 TEST] INFO:   [V 1339ms] STRIP: RCB 88-1 (8.3) | SALT 54(31) | PADIKKAL 11(7) | KULDEEP 0-15 (1.3)[0m
+[37m[16:13:50 F1 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[16:13:51 F1 EXTRACT] INFO: Extracted in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:13:51 F1 TEST] INFO:   [E 684ms] visible_team=Royal Challengers Bengaluru score=88-1 (8.3) target=None rr=None[0m
+[37m[16:13:51 F1 TEST] INFO:     BAT: SALT 54(31) [0m
+[37m[16:13:51 F1 TEST] INFO:     BAT: PADIKKAL 11(7) [0m
+[37m[16:13:51 F1 TEST] INFO:     BOWL: KULDEEP 0-15 (1.3)[0m
+[37m[16:13:51 F1 TRACK] INFO: bat:Philip Salt:runs: 53 → 54 (fast-confirm, natural increment F1)[0m
+[37m[16:13:51 F1 TRACK] INFO: bat:Philip Salt:balls: 30 → 31 (fast-confirm, natural increment F1)[0m
+[37m[16:13:51 F1 BOARD] INFO: Philip Salt: 53(30) -> 54(31) [F1][0m
+[37m[16:13:51 F1 TEST] INFO:   [DIRECT] Batter updates: ['SALT: ext=54(31) → tracker=54(31) [was 53(30)]', 'PADIKKAL: ext=11(7) → tracker=11(7) [was 11(7)]'][0m
+[37m[16:13:51 F1 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:13:51 F1 TEST] INFO:   [INIT] First-frame initialization complete: 87-1(8.2)[0m
+[37m[16:13:52 F1 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:13:52 F1 TEST] INFO:   [S] Hint: Current batters: SALT and PADIKKAL. Bowler: KULDEEP. Read their stats from the scoreboard.[0m
+[37m[16:13:52 F1 TRACK] INFO: score: 87 → 88 (confirmed F1)[0m
+[37m[16:13:52 F1 BOARD] INFO: score: 87 -> 88 [F1][0m
+[37m[16:13:52 F1 TRACK] INFO: overs: 8.2 → 8.3 (confirmed F1)[0m
+[37m[16:13:52 F1 BOARD] INFO: overs: 8.2 -> 8.3 [F1][0m
+[37m[16:13:52 F1 TEST] INFO:   [FLOW] Extractor batters not in scorer: {'PADIKKAL', 'SALT'}[0m
+[37m[16:13:52 F1 TRACK] INFO: bowl:Kuldeep Yadav:runs: initial proposed 15 (2/3 — waiting)[0m
+[37m[16:13:52 F1 TRACK] INFO: bowl:Kuldeep Yadav:wickets: initial proposed 0 (2/3 — waiting)[0m
+[37m[16:13:52 F1 TRACK] INFO: bowl:Kuldeep Yadav:overs: initial proposed 1.3 (2/3 — waiting)[0m
+[37m[16:13:52 F1 TEST] INFO:   [S 904ms] Changes: ['score→88', 'overs→8.3', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:13:52 F1 TEST] INFO:   Total: 2927ms (V:1339 E:684 S:904)[0m
+[37m[16:13:52 F1 OVER] INFO: Joined at 8.3, pre-filled 3 balls as '?'[0m
+[37m[16:13:52 F1 TEST] INFO:   [THIS OVER] ['?', '?', '?'] = 0 runs[0m
+[37m[16:13:52 F1 BOARD] INFO: run_rate: 10.44 -> 10.35 [F1][0m
+[37m[16:13:52 F1 TEST] INFO:   STATE: Royal Challengers Bengaluru 88-1 (8.3) inn=1 RR=10.35 | Bat: Philip Salt*(54) Devdutt Padikkal(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:13:52 F1 SCORE_MGR] INFO: [SM] cold-start candidate seeded 88/1 (8.3) — streak 1/3[0m
+[37m[16:13:52 F1 TEST] INFO: DETAIL|F1|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 88-1 (8.3) | SALT 54(31) | PADIKKAL 11(7) | KULDEEP 0-15 (1.3)|action=—|ext_score=88-1(8.3)|ext_bat=SALT 54(31) | PADIKKAL 11(7)|ext_bowl=KULDEEP 0-15 (1.3)|scorer_changes=['score→88', 'overs→8.3', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=0|BEFORE_score=87-1(8.2)|BEFORE_bat1=Philip Salt 53(30)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=[]|AFTER_score=88-1(8.3)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast)|AFTER_striker=Philip Salt|AFTER_non_striker=Devdutt Padikkal|AFTER_run_rate=10.35|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=1|AFTER_field=spin_powerplay frozen=False fielders=['slip_1', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'short_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Philip Salt|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1339|lat_extract=684|lat_scorer=904|lat_field=54|lat_comm=0|lat_code=0|lat_total=2931|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:13:53 F2 VISION] INFO: [SCOUT] SCOREBOARD 475ms strip=True overlay=False drs=False digits=True 106 chars[0m
+[37m[16:13:53 F2 TEST] INFO: 
+=======================================================[0m
+[37m[16:13:53 F2 TEST] INFO: [F2] SCOREBOARD — #2[0m
+[37m[16:13:53 F2 TEST] INFO:   [V 485ms] STRIP: RCB 88-1 (8.3) | - | - | - | -[0m
+[37m[16:13:54 F2 EXTRACT] INFO: Extracted in 0.5s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:13:54 F2 TEST] INFO:   [E 536ms] visible_team=Royal Challengers Bengaluru score=88-1 (8.3) target=None rr=None[0m
+[37m[16:13:54 F2 TEST] INFO:   [DIRECT] score→88[0m
+[37m[16:13:54 F2 TEST] INFO:   [DIRECT] overs→8.3[0m
+[37m[16:13:54 F2 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:13:55 F2 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:13:55 F2 TEST] INFO:   [S] Hint: Current batters: SALT and PADIKKAL. Bowler: KULDEEP[0m
+[37m[16:13:55 F2 TRACK] INFO: bowl:Kuldeep Yadav:runs: initial proposal flipped 15 → 8 — resetting consensus to 1/3[0m
+[37m[16:13:55 F2 TRACK] INFO: bowl:Kuldeep Yadav:wickets: initial → 0 (cold-start consensus 3/3)[0m
+[37m[16:13:55 F2 TRACK] INFO: bowl:Kuldeep Yadav:overs: initial proposal flipped 1.3 → 1.1 — resetting consensus to 1/3[0m
+[37m[16:13:55 F2 TEST] INFO:   [WICKET-TRACK] Wicket at F2[0m
+[37m[16:13:55 F2 TEST] INFO:   [S 969ms] Changes: ['score→88', 'overs→8.3', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:13:55 F2 TEST] INFO:   Total: 1990ms (V:485 E:536 S:969)[0m
+[37m[16:13:55 F2 TEST] INFO:   [THIS OVER] ['?', '?', '?'] = 0 runs[0m
+[37m[16:13:55 F2 TEST] INFO:   STATE: Royal Challengers Bengaluru 88-1 (8.3) inn=1 RR=10.35 | Bat: Philip Salt*(54) Devdutt Padikkal(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:13:55 F2 SCORE_MGR] INFO: [SM] cold-start consensus building 88/1 (8.3) — streak 2/3[0m
+[FIELD WARN] Middle overs but 6 outside circle (max 5). Possible misclassification.
+[37m[16:13:55 F2 TEST] INFO: DETAIL|F2|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 88-1 (8.3) | - | - | - | -|action=—|ext_score=88-1(8.3)|ext_bat=|ext_bowl=|scorer_changes=['score→88', 'overs→8.3', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=6|BEFORE_score=88-1(8.3)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?']|AFTER_score=88-1(8.3)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast)|AFTER_striker=Philip Salt|AFTER_non_striker=Devdutt Padikkal|AFTER_run_rate=10.35|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=1|AFTER_field=spin_powerplay frozen=True fielders=['silly_mid_off', 'forward_short_leg', 'point', 'silly_point', 'deep_cover', 'silly_mid_on', 'slip_1', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Philip Salt|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=485|lat_extract=536|lat_scorer=969|lat_field=78|lat_comm=0|lat_code=0|lat_total=1992|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:13:57 F3 VISION] INFO: [SCOUT] SCOREBOARD 1528ms strip=True overlay=False drs=False digits=True 240 chars[0m
+[37m[16:13:57 F3 TEST] INFO: 
+=======================================================[0m
+[37m[16:13:57 F3 TEST] INFO: [F3] SCOREBOARD — #3[0m
+[37m[16:13:57 F3 TEST] INFO:   [V 1531ms] STRIP: RCB 88-1 (8.3) 
+
+Since there are no overlaid stats visible apart from the score strip:[0m
+[37m[16:13:58 F3 EXTRACT] INFO: Extracted in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:13:58 F3 TEST] INFO:   [E 693ms] visible_team=Royal Challengers Bengaluru score=88-1 (8.3) target=None rr=None[0m
+[37m[16:13:58 F3 TEST] INFO:   [DIRECT] score→88[0m
+[37m[16:13:58 F3 TEST] INFO:   [DIRECT] overs→8.3[0m
+[37m[16:13:58 F3 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:13:59 F3 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:13:59 F3 TEST] INFO:   [S] Hint: Current batters: Salt and Padikkal. Bowler: Kuldeep Yadav[0m
+[37m[16:13:59 F3 TRACK] INFO: bowl:Kuldeep Yadav:runs: initial proposed 8 (2/3 — waiting)[0m
+[37m[16:13:59 F3 TRACK] INFO: bowl:Kuldeep Yadav:overs: initial proposed 1.1 (2/3 — waiting)[0m
+[37m[16:13:59 F3 TEST] INFO:   [WICKET-TRACK] Wicket at F3[0m
+[37m[16:13:59 F3 TEST] INFO:   [S 788ms] Changes: ['score→88', 'overs→8.3', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:13:59 F3 TEST] INFO:   Total: 3012ms (V:1531 E:693 S:788)[0m
+[37m[16:13:59 F3 TEST] INFO:   [THIS OVER] ['?', '?', '?'] = 0 runs[0m
+[37m[16:13:59 F3 TEST] INFO:   STATE: Royal Challengers Bengaluru 88-1 (8.3) inn=1 RR=10.35 | Bat: Philip Salt*(54) Devdutt Padikkal(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:13:59 F3 SCORE_MGR] INFO: [SM] COLD_START → WARM (consensus 3/3)  88/1 (8.3)[0m
+[37m[16:13:59 F3 TEST] INFO:   [ACTION] The bowler is running towards the stumps to bowl the next delivery.[0m
+[37m[16:13:59 F3 FIELD] INFO: [F3] OC-deep_midwicket moved to OC-deep_midwicket_sq[0m
+[37m[16:13:59 F3 FIELD] INFO: [F3] OC-deep_midwicket moved to OC-deep_midwicket_sq[0m
+[37m[16:13:59 F3 FIELD] INFO: [F3] OC-deep_midwicket moved to OC-deep_mid_on_area[0m
+[37m[16:13:59 F3 FIELD] INFO: [F3] OC-deep_midwicket moved to OC-deep_mid_on_area[0m
+[37m[16:13:59 F3 TEST] INFO: DETAIL|F3|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 88-1 (8.3)   Since there are no overlaid stats visible apart from the score strip:|action=The bowler is running towards the stumps to bowl the next delivery.|ext_score=88-1(8.3)|ext_bat=|ext_bowl=|scorer_changes=['score→88', 'overs→8.3', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=6|BEFORE_score=88-1(8.3)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?']|AFTER_score=88-1(8.3)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast)|AFTER_striker=Philip Salt|AFTER_non_striker=Devdutt Padikkal|AFTER_run_rate=10.35|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=1|AFTER_field=spin_powerplay frozen=True fielders=['silly_mid_off', 'forward_short_leg', 'point', 'silly_point', 'deep_cover', 'silly_mid_on', 'slip_1', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=Philip Salt|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1531|lat_extract=693|lat_scorer=788|lat_field=49|lat_comm=0|lat_code=0|lat_total=3014|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:01 F4 VISION] INFO: [SCOUT] SCOREBOARD 750ms strip=True overlay=False drs=False digits=True 227 chars[0m
+[37m[16:14:01 F4 TEST] INFO:   [BROADCAST] Dismissal mode: bowled[0m
+[37m[16:14:01 F4 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:01 F4 TEST] INFO: [F4] SCOREBOARD — #4[0m
+[37m[16:14:01 F4 TEST] INFO:   [V 754ms] STRIP: RCB 88-1 (8.3) | *  |  | 
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The bowler, Kuldeep Yadav, seems to have just bowled a delivery.[0m
+[37m[16:14:02 F4 EXTRACT] INFO: Extracted in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:02 F4 TEST] INFO:   [E 814ms] visible_team=Royal Challengers Bengaluru score=88-1 (8.3) target=None rr=None[0m
+[37m[16:14:02 F4 TEST] INFO:     BOWL: Kuldeep Yadav None-None (None)[0m
+[37m[16:14:02 F4 TEST] INFO:   [DIRECT] score→88[0m
+[37m[16:14:02 F4 TEST] INFO:   [DIRECT] overs→8.3[0m
+[37m[16:14:02 F4 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:14:03 F4 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:03 F4 TEST] INFO:   [S] Hint: Current batters: SALT and PADIKKAL. Bowler: KULDEEP YADAV. Read their stats from the scoreboard.[0m
+[37m[16:14:03 F4 TRACK] INFO: bowl:Kuldeep Yadav:runs: initial → 8 (cold-start consensus 3/3)[0m
+[37m[16:14:03 F4 TRACK] INFO: bowl:Kuldeep Yadav:overs: initial → 1.1 (cold-start consensus 3/3)[0m
+[37m[16:14:03 F4 TEST] INFO:   [S 960ms] Changes: ['score→88', 'overs→8.3', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:14:03 F4 TEST] INFO:   Total: 2527ms (V:754 E:814 S:960)[0m
+[37m[16:14:03 F4 TEST] INFO:   [THIS OVER] ['?', '?', '?'] = 0 runs[0m
+[37m[16:14:03 F4 TEST] INFO:   STATE: Royal Challengers Bengaluru 88-1 (8.3) inn=1 RR=10.35 | Bat: Philip Salt*(54) Devdutt Padikkal(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:03 F4 FIELD] INFO: [F4] OC-deep_midwicket_sq moved to OC-deep_square_leg[0m
+[37m[16:14:03 F4 FIELD] INFO: [F4] OC-deep_midwicket_sq moved to OC-deep_square_leg[0m
+[37m[16:14:03 F4 FIELD] INFO: [F4] deep fine leg — protecting against top edges[0m
+[37m[16:14:03 F4 FIELD] INFO: [F4] OC-deep_midwicket moved to OC-deep_square_leg[0m
+[37m[16:14:03 F4 TEST] INFO: DETAIL|F4|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 88-1 (8.3) | *  |  |   INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:   The bowler, Kuldeep Yadav, |action=—|ext_score=88-1(8.3)|ext_bat=|ext_bowl=Kuldeep Yadav None-None (None)|scorer_changes=['score→88', 'overs→8.3', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=4|BEFORE_score=88-1(8.3)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?']|AFTER_score=88-1(8.3)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast)|AFTER_striker=Philip Salt|AFTER_non_striker=Devdutt Padikkal|AFTER_run_rate=10.35|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=1|AFTER_field=spin_powerplay frozen=True fielders=['silly_mid_off', 'forward_short_leg', 'point', 'silly_point', 'deep_cover', 'silly_mid_on', 'slip_1', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Philip Salt|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=754|lat_extract=814|lat_scorer=960|lat_field=44|lat_comm=0|lat_code=0|lat_total=2529|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:04 F5 VISION] INFO: [SCOUT] SCOREBOARD 622ms strip=True overlay=False drs=False digits=True 244 chars[0m
+[37m[16:14:04 F5 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:04 F5 TEST] INFO: [F5] SCOREBOARD — #5[0m
+[37m[16:14:04 F5 TEST] INFO:   [V 625ms] STRIP: RCB 88-1 (8.3) | 
+PROJECTED SCORE 207 
+10.35 RPO (CURRENT) 
+12 RPO 226 
+14 RPO 249 
+16 RPO 272[0m
+[37m[16:14:05 F5 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:05 F5 TEST] INFO:   [INFO PANEL] Detected — tracker will bound values[0m
+[37m[16:14:05 F5 TEST] INFO:   [E 967ms] visible_team=Royal Challengers Bengaluru score=88-1 (8.3) target=None rr=None[0m
+[37m[16:14:05 F5 TEST] INFO:   [DIRECT] score→88[0m
+[37m[16:14:05 F5 TEST] INFO:   [DIRECT] overs→8.3[0m
+[37m[16:14:05 F5 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:14:06 F5 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:06 F5 TEST] INFO:   [S] Hint: Current batters: Salt and Padikkal. Bowler: Kuldeep Yadav[0m
+[37m[16:14:06 F5 TEST] INFO:   [WICKET-TRACK] Wicket at F5[0m
+[37m[16:14:06 F5 TEST] INFO:   [S 859ms] Changes: ['score→88', 'overs→8.3', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:14:06 F5 TEST] INFO:   Total: 2451ms (V:625 E:967 S:859)[0m
+[37m[16:14:06 F5 TEST] INFO:   [THIS OVER] ['?', '?', '?'] = 0 runs[0m
+[37m[16:14:06 F5 TEST] INFO:   STATE: Royal Challengers Bengaluru 88-1 (8.3) inn=1 RR=10.35 | Bat: Philip Salt*(54) Devdutt Padikkal(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:06 F5 TEST] INFO:   [ACTION] A player in orange uniform is bending down to pick up the ball.[0m
+[37m[16:14:06 F5 FIELD] INFO: [F5] OC-deep_square_leg moved to OC-deep_midwicket[0m
+[37m[16:14:06 F5 FIELD] INFO: [F5] OC-deep_square_leg moved to OC-deep_midwicket[0m
+[37m[16:14:06 F5 FIELD] INFO: [F5] IC-mid_on brought in — attacking[0m
+[37m[16:14:06 F5 TEST] INFO: DETAIL|F5|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 88-1 (8.3) |  PROJECTED SCORE 207  10.35 RPO (CURRENT)  12 RPO 226  14 RPO 249  16 RPO 272|action=A player in orange uniform is bending down to pick up the ball.|ext_score=88-1(8.3)|ext_bat=|ext_bowl=|scorer_changes=['score→88', 'overs→8.3', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=4|BEFORE_score=88-1(8.3)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?']|AFTER_score=88-1(8.3)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast)|AFTER_striker=Philip Salt|AFTER_non_striker=Devdutt Padikkal|AFTER_run_rate=10.35|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=1|AFTER_field=spin_powerplay frozen=True fielders=['silly_mid_off', 'forward_short_leg', 'point', 'silly_point', 'deep_cover', 'silly_mid_on', 'slip_1', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Philip Salt|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=625|lat_extract=967|lat_scorer=859|lat_field=45|lat_comm=0|lat_code=0|lat_total=2452|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:08 F6 VISION] INFO: [SCOUT] SCOREBOARD 517ms strip=True overlay=False drs=False digits=True 188 chars[0m
+[37m[16:14:08 F6 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:08 F6 TEST] INFO: [F6] SCOREBOARD — #6[0m
+[37m[16:14:08 F6 TEST] INFO:   [V 520ms] STRIP: RCB 88-1 (8.3)
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The batter is walking on the ground.[0m
+[37m[16:14:08 F6 EXTRACT] INFO: Extracted in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:08 F6 TEST] INFO:   [E 556ms] visible_team=Royal Challengers Bengaluru score=88-1 (8.3) target=None rr=None[0m
+[37m[16:14:08 F6 TEST] INFO:   [DIRECT] score→88[0m
+[37m[16:14:08 F6 TEST] INFO:   [DIRECT] overs→8.3[0m
+[37m[16:14:08 F6 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:14:09 F6 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:09 F6 TEST] INFO:   [S] Hint: Current batters: Salt and Padikkal. Bowler: Kuldeep Yadav[0m
+[37m[16:14:09 F6 TEST] INFO:   [WICKET-TRACK] Wicket at F6[0m
+[37m[16:14:09 F6 TEST] INFO:   [S 832ms] Changes: ['score→88', 'overs→8.3', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:14:09 F6 TEST] INFO:   Total: 1908ms (V:520 E:556 S:832)[0m
+[37m[16:14:09 F6 TEST] INFO:   [THIS OVER] ['?', '?', '?'] = 0 runs[0m
+[37m[16:14:09 F6 TEST] INFO:   STATE: Royal Challengers Bengaluru 88-1 (8.3) inn=1 RR=10.35 | Bat: Philip Salt*(54) Devdutt Padikkal(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:09 F6 TEST] INFO: DETAIL|F6|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 88-1 (8.3)  INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:   The batter is walking on the ground.|action=—|ext_score=88-1(8.3)|ext_bat=|ext_bowl=|scorer_changes=['score→88', 'overs→8.3', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=0|BEFORE_score=88-1(8.3)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?']|AFTER_score=88-1(8.3)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast)|AFTER_striker=Philip Salt|AFTER_non_striker=Devdutt Padikkal|AFTER_run_rate=10.35|AFTER_target=—|AFTER_innings=1|AFTER_partnership=0(0)|AFTER_fow_count=1|AFTER_field=spin_powerplay frozen=True fielders=['silly_mid_off', 'forward_short_leg', 'point', 'silly_point', 'deep_cover', 'silly_mid_on', 'slip_1', 'cover', 'mid_off']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Philip Salt|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=520|lat_extract=556|lat_scorer=832|lat_field=42|lat_comm=0|lat_code=0|lat_total=1909|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:11 F7 VISION] INFO: [SCOUT] SCOREBOARD 464ms strip=True overlay=False drs=False digits=True 209 chars[0m
+[37m[16:14:11 F7 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:11 F7 TEST] INFO: [F7] SCOREBOARD — #7[0m
+[37m[16:14:11 F7 TEST] INFO:   [V 467ms] STRIP: RCB 89-1 (8.6) |  |  | 
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+The RCB team logo is being displayed on the screen.[0m
+[37m[16:14:12 F7 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:12 F7 TEST] INFO:   [E 985ms] visible_team=Royal Challengers Bengaluru score=89-1 (8.6) target=None rr=None[0m
+[37m[16:14:12 F7 BOARD] INFO: Overs '8.6' had ball>5 — normalized to 9.0[0m
+[37m[16:14:12 F7 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:14:13 F7 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:13 F7 TEST] INFO:   [S] Hint: Current batters: SALT and PADIKKAL. Bowler: KULDEEP. Read their stats from the scoreboard.[0m
+[37m[16:14:13 F7 TRACK] INFO: score: 88 → 89 (confirmed F7)[0m
+[37m[16:14:13 F7 BOARD] INFO: score: 88 -> 89 [F7][0m
+[37m[16:14:13 F7 BOARD] INFO: Overs '8.6' had ball>5 — normalized to 9.0[0m
+[37m[16:14:13 F7 TRACK] INFO: overs: 8.3 → 9.0 (confirmed F7)[0m
+[37m[16:14:13 F7 BOARD] INFO: overs: 8.3 -> 9.0 [F7][0m
+[37m[16:14:13 F7 TEST] INFO:   [S 1029ms] Changes: ['score→89', 'overs→8.6', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:14:13 F7 TEST] INFO:   Total: 2481ms (V:467 E:985 S:1029)[0m
+[37m[16:14:13 F7 TEST] INFO:   [THIS OVER] ['?', '?', '?'] = 0 runs[0m
+[37m[16:14:13 F7 COMMENTARY] INFO: [BALL ?] MULTI_BALL | 9.0 +1 runs (Δballs=3)[0m
+[37m[16:14:13 F7 OVER] INFO: Missed 3 balls (+1 runs) — added 3 placeholders (capped from 3)[0m
+[37m[16:14:13 F7 TEST] INFO:   [THIS-OVER] Ball MULTI_BALL appended to over 8[0m
+[37m[16:14:13 F7 OVER] INFO: Last-ball runs: +1 appended to over 8 (src=synth)[0m
+[37m[16:14:13 F7 OVER] INFO: Over 8 complete: ['?', '?', '?', '?', '?', '?', '1'] = 1 runs, 0 wkts (by Kuldeep Yadav)[0m
+[37m[16:14:13 F7 TEST] INFO:   [STRIKER] Over change rotation: Devdutt Padikkal ← Philip Salt[0m
+[37m[16:14:13 F7 TEST] INFO:   [OVER CHANGE] → 9.0[0m
+[37m[16:14:13 F7 BOARD] INFO: run_rate: 10.35 -> 9.89 [F7][0m
+[37m[16:14:13 F7 TEST] INFO:   STATE: Royal Challengers Bengaluru 89-1 (9.0) inn=1 RR=9.89 | Bat: Philip Salt(54) Devdutt Padikkal*(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:13 F7 SCORE_MGR] INFO: [SM] MULTI_BALL  89/1 (9.0)  striker=None[0m
+[37m[16:14:13 F7 TEST] INFO:   [SHADOW] SM=MULTI_BALL BED=MULTI_BALL MATCH[0m
+[37m[16:14:13 F7 TEST] INFO:   [BALL EVENT ?] MULTI_BALL | None | +0 runs (Δballs=0)[0m
+[37m[16:14:13 F7 TEST] INFO: DETAIL|F7|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 89-1 (8.6) |  |  |  INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:  The RCB team logo is being disp|action=—|ext_score=89-1(8.6)|ext_bat=|ext_bowl=|scorer_changes=['score→89', 'overs→8.6', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=0|BEFORE_score=88-1(8.3)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?']|AFTER_score=89-1(9.0)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?', '?', '?', '?', '1']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(obs),?(obs),?(obs),1(synth)|AFTER_striker=Devdutt Padikkal|AFTER_non_striker=Philip Salt|AFTER_run_rate=9.89|AFTER_target=—|AFTER_innings=1|AFTER_partnership=1(3)|AFTER_fow_count=1|AFTER_field=spin_middle frozen=False fielders=['silly_mid_off', 'forward_short_leg', 'point', 'silly_point', 'slip_1', 'cover', 'mid_off', 'mid_on', 'midwicket']|ball_event=MULTI_BALL|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Philip Salt|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=['?', '?', '?']|completed_over_runs=0|drs_state=NONE|corrections=none|lat_vision=467|lat_extract=985|lat_scorer=1029|lat_field=44|lat_comm=0|lat_code=0|lat_total=2483|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:14 F8 VISION] INFO: [SCOUT] SCOREBOARD 686ms strip=True overlay=False drs=False digits=True 471 chars[0m
+[37m[16:14:14 F8 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:14 F8 TEST] INFO: [F8] SCOREBOARD — #8[0m
+[37m[16:14:14 F8 TEST] INFO:   [V 689ms] STRIP: RCB  [SCORE]-[WICKETS] ([OVERS]) | SALT [RUNS]([BALLS]) | PADIKKAL [RUNS]([BALLS]) | KULDEEP [W]-[R] ([OVERS])
+
+Assuming score and stats based on typical format but actual data not provided:
+STRIP: RCB 47-0 (5.5) | SALT 23(14) | PADIKKAL 20(15[0m
+[37m[16:14:15 F8 EXTRACT] INFO: Extracted in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:15 F8 TEST] INFO:   [GUARD] Philip Salt diff 54→23 — comparison strip for batting team[0m
+[37m[16:14:15 F8 TEST] INFO:   [E 616ms] visible_team=Royal Challengers Bengaluru score=None-0 (None) target=None rr=None[0m
+[37m[16:14:15 F8 TEST] INFO:   [POISONED] Extracted score 47 vs tracker 89 (delta=-42) — blocking ALL updates this frame[0m
+[37m[16:14:16 F8 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:16 F8 TEST] INFO:   [S] Hint: Current batters: SALT and PADIKKAL. Bowler: KULDEEP[0m
+[37m[16:14:16 F8 TEST] INFO:   [CONSENSUS] Poisoned score 47 frame 1/2, waiting[0m
+[37m[16:14:16 F8 TEST] INFO:   [S 920ms] Changes: ['FRAME_POISONED:47'][0m
+[37m[16:14:16 F8 TEST] INFO:   Total: 2225ms (V:689 E:616 S:920)[0m
+[37m[16:14:16 F8 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?', '?', '?', '1'] = 1 runs[0m
+[37m[16:14:16 F8 TEST] INFO:   STATE: Royal Challengers Bengaluru 89-1 (9.0) inn=1 RR=9.89 | Bat: Philip Salt(54) Devdutt Padikkal*(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:16 F8 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:16 F8 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:16 F8 TEST] INFO:   [ACTION] The bowler, Kuldeep, is bowling to the RCB batsmen, Salt and Paddikkal.[0m
+[37m[16:14:16 F8 TEST] INFO: DETAIL|F8|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB  [SCORE]-[WICKETS] ([OVERS]) | SALT [RUNS]([BALLS]) | PADIKKAL [RUNS]([BALLS]) | KULDEEP [W]-[R] ([OVERS])  A|action=The bowler, Kuldeep, is bowling to the RCB batsmen, Salt and Paddikkal.|ext_score=None-0(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:47']|yolo=0|BEFORE_score=89-1(9.0)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?', '?', '?', '?', '1']|AFTER_score=89-1(9.0)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?', '?', '?', '?', '1']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(obs),?(obs),?(obs),1(synth)|AFTER_striker=Devdutt Padikkal|AFTER_non_striker=Philip Salt|AFTER_run_rate=9.89|AFTER_target=—|AFTER_innings=1|AFTER_partnership=1(3)|AFTER_fow_count=1|AFTER_field=spin_middle frozen=False fielders=['silly_mid_off', 'forward_short_leg', 'point', 'silly_point', 'slip_1', 'cover', 'mid_off', 'mid_on', 'midwicket']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Devdutt Padikkal|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=689|lat_extract=616|lat_scorer=920|lat_field=42|lat_comm=0|lat_code=0|lat_total=2227|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:18 F9 VISION] INFO: [SCOUT] SCOREBOARD 502ms strip=True overlay=False drs=False digits=False 221 chars[0m
+[37m[16:14:18 F9 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false}
+
+STRIP: RCB 0-0 (0.0) | Salt 0(0) | Padikkal 0(0) | Kuldeep 0-0 (0.0)
+
+ACTION: The players are walking onto the field, likely at th[0m
+[37m[16:14:18 F9 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:18 F9 TEST] INFO: [F9] SCOREBOARD — #9[0m
+[37m[16:14:18 F9 TEST] INFO:   [V 505ms] STRIP: RCB 0-0 (0.0) | Salt 0(0) | Padikkal 0(0) | Kuldeep 0-0 (0.0)[0m
+[37m[16:14:19 F9 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:19 F9 TEST] INFO:   [GUARD] Extractor returned 0-0(0.0) mid-innings (current score=89) — stripping all data[0m
+[37m[16:14:19 F9 TEST] INFO:   [E 1080ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[16:14:20 F9 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:20 F9 TEST] INFO:   [S] Hint: Current batters: PADIKKAL and SALT. Bowler: KULDEEP. Read their stats from the scoreboard.[0m
+[37m[16:14:20 F9 TEST] INFO:   [S 971ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[16:14:20 F9 TEST] INFO:   Total: 2556ms (V:505 E:1080 S:971)[0m
+[37m[16:14:20 F9 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?', '?', '?', '1'] = 1 runs[0m
+[37m[16:14:20 F9 TEST] INFO:   STATE: Royal Challengers Bengaluru 89-1 (9.0) inn=1 RR=9.89 | Bat: Philip Salt(54) Devdutt Padikkal*(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:20 F9 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:20 F9 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:20 F9 TEST] INFO:   [ACTION] The players are walking onto the field, likely at the start of the match.[0m
+[37m[16:14:20 F9 TEST] INFO: DETAIL|F9|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 0-0 (0.0) | Salt 0(0) | Padikkal 0(0) | Kuldeep 0-0 (0.0)|action=The players are walking onto the field, likely at the start of the match.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=2|BEFORE_score=89-1(9.0)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?', '?', '?', '?', '1']|AFTER_score=89-1(9.0)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?', '?', '?', '?', '1']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(obs),?(obs),?(obs),1(synth)|AFTER_striker=Devdutt Padikkal|AFTER_non_striker=Philip Salt|AFTER_run_rate=9.89|AFTER_target=—|AFTER_innings=1|AFTER_partnership=1(3)|AFTER_fow_count=1|AFTER_field=spin_middle frozen=False fielders=['silly_mid_off', 'forward_short_leg', 'point', 'silly_point', 'slip_1', 'cover', 'mid_off', 'mid_on', 'midwicket']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Devdutt Padikkal|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=505|lat_extract=1080|lat_scorer=971|lat_field=42|lat_comm=0|lat_code=0|lat_total=2557|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:21 F10 VISION] INFO: [SCOUT] SCOREBOARD 459ms strip=True overlay=False drs=False digits=False 187 chars[0m
+[37m[16:14:21 F10 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false}
+STRIP: RCB 0-0 (0.0) | *Padikkal 0(0) | Salt 0(0) | Kuldeep 0-0 (0.0)
+ACTION: The batter is walking towards the field.[0m
+[37m[16:14:21 F10 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:21 F10 TEST] INFO: [F10] SCOREBOARD — #10[0m
+[37m[16:14:21 F10 TEST] INFO:   [V 462ms] STRIP: RCB 0-0 (0.0) | *Padikkal 0(0) | Salt 0(0) | Kuldeep 0-0 (0.0)[0m
+[37m[16:14:22 F10 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:22 F10 TEST] INFO:   [GUARD] Extractor returned 0-0(0.0) mid-innings (current score=89) — stripping all data[0m
+[37m[16:14:22 F10 TEST] INFO:   [E 1122ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[16:14:23 F10 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:23 F10 TEST] INFO:   [S] Hint: Current batters: Padikkal and Salt. Bowler: Kuldeep Yadav[0m
+[37m[16:14:23 F10 TEST] INFO:   [S 965ms] Changes: ['FRAME_POISONED:None'][0m
+[37m[16:14:23 F10 TEST] INFO:   Total: 2549ms (V:462 E:1122 S:965)[0m
+[37m[16:14:23 F10 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?', '?', '?', '1'] = 1 runs[0m
+[37m[16:14:23 F10 TEST] INFO:   STATE: Royal Challengers Bengaluru 89-1 (9.0) inn=1 RR=9.89 | Bat: Philip Salt(54) Devdutt Padikkal*(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:23 F10 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:23 F10 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:23 F10 TEST] INFO:   [ACTION] The batter is walking towards the field.[0m
+[37m[16:14:23 F10 FIELD] INFO: [F10] OC-deep_square_leg moved to OC-deep_midwicket[0m
+[37m[16:14:23 F10 FIELD] INFO: [F10] IC-mid_on moved to IC-extra_cover[0m
+[37m[16:14:23 F10 FIELD] INFO: [F10] OC-deep_midwicket moved to OC-deep_midwicket_sq[0m
+[37m[16:14:23 F10 FIELD] INFO: [F10] IC-midwicket brought in — attacking[0m
+[37m[16:14:23 F10 TEST] INFO: DETAIL|F10|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 0-0 (0.0) | *Padikkal 0(0) | Salt 0(0) | Kuldeep 0-0 (0.0)|action=The batter is walking towards the field.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:None']|yolo=8|BEFORE_score=89-1(9.0)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?', '?', '?', '?', '1']|AFTER_score=89-1(9.0)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=['?', '?', '?', '?', '?', '?', '1']|AFTER_this_over_src=?(bcast),?(bcast),?(bcast),?(obs),?(obs),?(obs),1(synth)|AFTER_striker=Devdutt Padikkal|AFTER_non_striker=Philip Salt|AFTER_run_rate=9.89|AFTER_target=—|AFTER_innings=1|AFTER_partnership=1(3)|AFTER_fow_count=1|AFTER_field=spin_middle frozen=True fielders=['forward_short_leg', 'silly_point', 'gully', 'deep_fine_leg', 'silly_mid_off', 'deep_square_leg', 'point', 'slip_1', 'cover']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Devdutt Padikkal|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=462|lat_extract=1122|lat_scorer=965|lat_field=43|lat_comm=0|lat_code=0|lat_total=2551|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:25 F11 VISION] INFO: [SCOUT] SCOREBOARD 536ms strip=True overlay=False drs=False digits=False 232 chars[0m
+[37m[16:14:25 F11 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false}
+STRIP: RCB  * - * ( * ) | * *(*) | * *(*) | Kuldeep Yadav  *-* (*)
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+The bo[0m
+[37m[16:14:25 F11 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:25 F11 TEST] INFO: [F11] SCOREBOARD — #11[0m
+[37m[16:14:25 F11 TEST] INFO:   [V 539ms] STRIP: RCB  * - * ( * ) | * *(*) | * *(*) | Kuldeep Yadav  *-* (*)
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+The bowler, Kuldeep Yadav, is bowling.[0m
+[37m[16:14:26 F11 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:26 F11 TEST] INFO:   [E 1100ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[16:14:26 F11 TEST] INFO:     BOWL: Kuldeep Yadav None-None (None)[0m
+[37m[16:14:26 F11 TEST] INFO:   [GUARD] Same bowler Kuldeep Yadav after over change — waiting for new bowler name[0m
+[37m[16:14:27 F11 SCORER] INFO: Scored in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:27 F11 TEST] INFO:   [S] Hint: Current batters: Padikkal and Salt. Bowler: Kuldeep Yadav[0m
+[37m[16:14:27 F11 TEST] INFO:   [GUARD] Scorer proposed score=89 — extractor empty, blocking[0m
+[37m[16:14:27 F11 TEST] INFO:   [GUARD] Scorer proposed overs=9.0 — extractor empty, blocking[0m
+[37m[16:14:27 F11 TEST] INFO:   [GUARD] Scorer proposed wickets=1 — extractor empty, blocking[0m
+[37m[16:14:27 F11 TEST] INFO:   [S 931ms] Changes: ['bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:14:27 F11 TEST] INFO:   Total: 2570ms (V:539 E:1100 S:931)[0m
+[37m[16:14:27 F11 TEST] INFO:   [THIS OVER] ['?', '?', '?', '?', '?', '?', '1'] = 1 runs[0m
+[37m[16:14:27 F11 OVER] INFO: Completed over flushed (hold-window 12s elapsed): ['?', '?', '?', '?', '?', '?', '1'] → [][0m
+[37m[16:14:27 F11 TEST] INFO:   STATE: Royal Challengers Bengaluru 89-1 (9.0) inn=1 RR=9.89 | Bat: Philip Salt(54) Devdutt Padikkal*(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:27 F11 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:27 F11 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:27 F11 TEST] INFO: DETAIL|F11|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB  * - * ( * ) | * *(*) | * *(*) | Kuldeep Yadav  *-* (*) INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECA|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=Kuldeep Yadav None-None (None)|scorer_changes=['bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=0|BEFORE_score=89-1(9.0)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=['?', '?', '?', '?', '?', '?', '1']|AFTER_score=89-1(9.0)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Devdutt Padikkal|AFTER_non_striker=Philip Salt|AFTER_run_rate=9.89|AFTER_target=—|AFTER_innings=1|AFTER_partnership=1(3)|AFTER_fow_count=1|AFTER_field=spin_middle frozen=True fielders=['forward_short_leg', 'silly_point', 'gully', 'deep_fine_leg', 'silly_mid_off', 'deep_square_leg', 'point', 'slip_1', 'cover']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Devdutt Padikkal|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=539|lat_extract=1100|lat_scorer=931|lat_field=42|lat_comm=0|lat_code=0|lat_total=2572|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:28 F12 VISION] INFO: [SCOUT] SCOREBOARD 475ms strip=True overlay=False drs=False digits=True 257 chars[0m
+[37m[16:14:28 F12 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:28 F12 TEST] INFO: [F12] SCOREBOARD — #12[0m
+[37m[16:14:28 F12 TEST] INFO:   [V 478ms] STRIP: RCB 89-1 8.4 | 
+ 
+
+There is no information about batsmen and bowler on the strip.
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The bowler, Kuldeep Yadav, is bowling.[0m
+[37m[16:14:29 F12 EXTRACT] INFO: Extracted in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:29 F12 TEST] INFO:   [E 553ms] visible_team=Royal Challengers Bengaluru score=89-1 (8.4) target=None rr=None[0m
+[37m[16:14:29 F12 TEST] INFO:     BOWL: Kuldeep Yadav None-None (None)[0m
+[37m[16:14:29 F12 TEST] INFO:   [GUARD] Same bowler Kuldeep Yadav after over change — waiting for new bowler name[0m
+[37m[16:14:29 F12 TEST] INFO:   [DIRECT] score→89[0m
+[37m[16:14:29 F12 TRACK] INFO: [SUSPICIOUS] overs: 9.0→8.4 (backwards)[0m
+[37m[16:14:29 F12 TRACK] INFO: [SUSPICIOUS] overs: 9.0→8.4 (backwards)[0m
+[37m[16:14:29 F12 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:14:30 F12 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:30 F12 TEST] INFO:   [S] Hint: Current batters: Padikkal and Salt. Bowler: Yadav[0m
+[37m[16:14:30 F12 TEST] INFO:   [WICKET-TRACK] Wicket at F12[0m
+[37m[16:14:30 F12 TEST] INFO:   [S 1022ms] Changes: ['score→89', 'overs→9.0', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:14:30 F12 TEST] INFO:   Total: 2053ms (V:478 E:553 S:1022)[0m
+[37m[16:14:30 F12 TEST] INFO:   STATE: Royal Challengers Bengaluru 89-1 (9.0) inn=1 RR=9.89 | Bat: Philip Salt(54) Devdutt Padikkal*(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:30 F12 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:30 F12 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:30 F12 FIELD] INFO: [F12] IC-midwicket pushed back — defensive[0m
+[37m[16:14:30 F12 FIELD] INFO: [F12] IC-point pushed back — defensive[0m
+[37m[16:14:30 F12 FIELD] INFO: [F12] OC-deep_square_leg moved to OC-deep_midwicket[0m
+[37m[16:14:30 F12 TEST] INFO: DETAIL|F12|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 89-1 8.4 |     There is no information about batsmen and bowler on the strip.  INFO_PANEL:  SPEED:  EXTRA:  T|action=—|ext_score=89-1(8.4)|ext_bat=|ext_bowl=Kuldeep Yadav None-None (None)|scorer_changes=['score→89', 'overs→9.0', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=5|BEFORE_score=89-1(9.0)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=[]|AFTER_score=89-1(9.0)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Devdutt Padikkal|AFTER_non_striker=Philip Salt|AFTER_run_rate=9.89|AFTER_target=—|AFTER_innings=1|AFTER_partnership=1(3)|AFTER_fow_count=1|AFTER_field=spin_middle frozen=True fielders=['forward_short_leg', 'silly_point', 'gully', 'deep_fine_leg', 'silly_mid_off', 'deep_square_leg', 'point', 'slip_1', 'cover']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Devdutt Padikkal|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=478|lat_extract=553|lat_scorer=1022|lat_field=42|lat_comm=0|lat_code=0|lat_total=2055|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:32 F13 VISION] INFO: [SCOUT] GRAPHIC 462ms strip=True overlay=True drs=False digits=True 180 chars[0m
+[37m[16:14:32 F13 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:32 F13 TEST] INFO: [F13] GRAPHIC — #13[0m
+[37m[16:14:32 F13 TEST] INFO:   [V 465ms] STRIP: RCB 89-1 (8.4) | 
+
+INFO_PANEL: SALT THIS MATCH (SR) v SPIN 200 v PACE 168
+
+The batter is playing a shot.[0m
+[37m[16:14:32 F13 EXTRACT] INFO: Extracted in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:32 F13 TEST] INFO:   [GUARD] GRAPHIC frame — player stats stripped, score matches tracker[0m
+[37m[16:14:32 F13 TEST] INFO:   [E 621ms] visible_team=Royal Challengers Bengaluru score=89-1 (8.4) target=None rr=None[0m
+[37m[16:14:32 F13 TEST] INFO:   [DIRECT] score→89[0m
+[37m[16:14:32 F13 TRACK] INFO: [SUSPICIOUS] overs: 9.0→8.4 (backwards)[0m
+[37m[16:14:32 F13 TRACK] INFO: [SUSPICIOUS] overs: 9.0→8.4 (backwards)[0m
+[37m[16:14:32 F13 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:14:33 F13 SCORER] INFO: Scored in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:33 F13 TEST] INFO:   [S] Hint: Current batters: SALT and PADIKKAL. Bowler: KULDEEP. Read their stats from the scoreboard.[0m
+[37m[16:14:33 F13 TEST] INFO:   [WICKET-TRACK] Wicket at F13[0m
+[37m[16:14:33 F13 TEST] INFO:   [S 1030ms] Changes: ['score→89', 'overs→9.0', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:14:33 F13 TEST] INFO:   Total: 2115ms (V:465 E:621 S:1030)[0m
+[37m[16:14:33 F13 TEST] INFO:   STATE: Royal Challengers Bengaluru 89-1 (9.0) inn=1 RR=9.89 | Bat: Philip Salt(54) Devdutt Padikkal*(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:33 F13 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:33 F13 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:33 F13 FIELD] INFO: [F13] OC-deep_backward_square moved to OC-deep_square_leg[0m
+[37m[16:14:33 F13 FIELD] INFO: [F13] OC-deep_midwicket_sq moved to OC-deep_square_leg[0m
+[37m[16:14:33 F13 TEST] INFO: DETAIL|F13|GRAPHIC|tag=GRAPHIC|scout=STRIP: RCB 89-1 (8.4) |   INFO_PANEL: SALT THIS MATCH (SR) v SPIN 200 v PACE 168  The batter is playing a shot.|action=—|ext_score=89-1(8.4)|ext_bat=|ext_bowl=|scorer_changes=['score→89', 'overs→9.0', 'wickets→1', 'bat:Philip Salt=54(31)', 'bat:Devdutt Padikkal=11(7)', 'bowl:Kuldeep Yadav']|yolo=3|BEFORE_score=89-1(9.0)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=[]|AFTER_score=89-1(9.0)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Devdutt Padikkal|AFTER_non_striker=Philip Salt|AFTER_run_rate=9.89|AFTER_target=—|AFTER_innings=1|AFTER_partnership=1(3)|AFTER_fow_count=1|AFTER_field=spin_middle frozen=True fielders=['forward_short_leg', 'silly_point', 'gully', 'deep_fine_leg', 'silly_mid_off', 'deep_square_leg', 'point', 'slip_1', 'cover']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Devdutt Padikkal|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=465|lat_extract=621|lat_scorer=1030|lat_field=43|lat_comm=0|lat_code=0|lat_total=2117|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[16:14:35 F14 VISION] INFO: [SCOUT] SCOREBOARD 425ms strip=True overlay=False drs=False digits=True 183 chars[0m
+[37m[16:14:35 F14 TEST] INFO: 
+=======================================================[0m
+[37m[16:14:35 F14 TEST] INFO: [F14] SCOREBOARD — #14[0m
+[37m[16:14:35 F14 TEST] INFO:   [V 428ms] STRIP: RCB 89-1 (8.4) | SALT  
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The bowler is bowling.[0m
+[37m[16:14:35 F14 EXTRACT] INFO: Extracted in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:35 F14 TEST] INFO:   [E 678ms] visible_team=Royal Challengers Bengaluru score=89-1 (8.4) target=None rr=None[0m
+[37m[16:14:35 F14 TEST] INFO:     BAT: SALT None(None) [0m
+[37m[16:14:35 F14 TEST] INFO:   [DIRECT] Batter updates: ['SALT: ext=None(None) → tracker=54(31) [was 54(31)]'][0m
+[37m[16:14:35 F14 TEST] INFO:   [DIRECT] score→89[0m
+[37m[16:14:35 F14 TRACK] INFO: [SUSPICIOUS] overs: 9.0→8.4 (backwards)[0m
+[37m[16:14:35 F14 TRACK] INFO: [SUSPICIOUS] overs: 9.0→8.4 (backwards)[0m
+[37m[16:14:35 F14 TEST] INFO:   [DIRECT] wickets→1[0m
+[37m[16:14:37 F14 SCORER] INFO: Scored in 1.2s (llama-4-scout-17b-16e-instruct)[0m
+[37m[16:14:37 F14 TEST] INFO:   [S] Hint: Current batters: SALT and PADIKKAL. Bowler: KULDEEP[0m
+[37m[16:14:37 F14 TEST] INFO:   [FLOW] Extractor batters not in scorer: {'SALT'}[0m
+[37m[16:14:37 F14 TEST] INFO:   [GUARD] Batter 'Devdutt Padikkal' not in extractor output — scorer inferred, rejecting[0m
+[37m[16:14:37 F14 TEST] INFO:   [WICKET-TRACK] Wicket at F14[0m
+[37m[16:14:37 F14 TEST] INFO:   [S 1206ms] Changes: ['score→89', 'overs→9.0', 'wickets→1', 'bat:Philip Salt=54(31)', 'bowl:Kuldeep Yadav'][0m
+[37m[16:14:37 F14 TEST] INFO:   Total: 2312ms (V:428 E:678 S:1206)[0m
+[37m[16:14:37 F14 TEST] INFO:   STATE: Royal Challengers Bengaluru 89-1 (9.0) inn=1 RR=9.89 | Bat: Philip Salt(54) Devdutt Padikkal*(11) | Bowl: Kuldeep Yadav 0-8[0m
+[37m[16:14:37 F14 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:37 F14 TEST] INFO:   [CONSISTENCY] Kuldeep Yadav overs 1.1 → 2.0 (team @ 9.0, bowler must finish over)[0m
+[37m[16:14:37 F14 TEST] INFO: DETAIL|F14|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RCB 89-1 (8.4) | SALT    INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:   The bowler is bowling.|action=—|ext_score=89-1(8.4)|ext_bat=SALT None(None)|ext_bowl=|scorer_changes=['score→89', 'overs→9.0', 'wickets→1', 'bat:Philip Salt=54(31)', 'bowl:Kuldeep Yadav']|yolo=0|BEFORE_score=89-1(9.0)|BEFORE_bat1=Philip Salt 54(31)|BEFORE_bat2=Devdutt Padikkal 11(7)|BEFORE_bowl=Kuldeep Yadav 0-8 (1.1)|BEFORE_this_over=[]|AFTER_score=89-1(9.0)|AFTER_bat1=Philip Salt 54(31)|AFTER_bat2=Devdutt Padikkal 11(7)|AFTER_bowl=Kuldeep Yadav 0-8 (1.1)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=Devdutt Padikkal|AFTER_non_striker=Philip Salt|AFTER_run_rate=9.89|AFTER_target=—|AFTER_innings=1|AFTER_partnership=1(3)|AFTER_fow_count=1|AFTER_field=spin_middle frozen=True fielders=['forward_short_leg', 'silly_point', 'gully', 'deep_fine_leg', 'silly_mid_off', 'deep_square_leg', 'point', 'slip_1', 'cover']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=bowled|striker_this_ball=Devdutt Padikkal|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_pitch_pos=—|delivery_shot_action=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Royal Challengers Bengaluru|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=428|lat_extract=678|lat_scorer=1206|lat_field=42|lat_comm=0|lat_code=0|lat_total=2313|comm_bowler=Kuldeep Yadav|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[FIELD] Pitch detected from people cluster: (0.77, 0.49) spread=0.231
+[37m[16:14:39 F15 VISION] INFO: [SCOUT] GRAPHIC 851ms strip=True overlay=True drs=False digits=True 209 chars[0m
+[37m[16:14:39 F15 TEST] INFO: 
+=======================================================[0m-[AGXG13XFamilyCommandBuffer tryCoalescingPreviousComputeCommandEncoderWithConfig:nextEncoderClass:]:1094: failed assertion `A command encoder is already encoding to this command buffer'

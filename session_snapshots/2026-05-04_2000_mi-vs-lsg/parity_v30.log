@@ -1,0 +1,455 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151818/srh-vs-csk-27th-match-indian-premier-league-2026
+
+[21:19:24  iter#1]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:19:45  iter#2]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:20:08  iter#3]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:20:29  iter#4]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:20:51  iter#5]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:21:12  iter#6]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:21:33  iter#7]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:21:53  iter#8]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:22:16  iter#9]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:22:38  iter#10]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:23:00  iter#11]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:23:22  iter#12]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:23:43  iter#13]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:24:06  iter#14]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:24:28  iter#15]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:24:50  iter#16]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:25:13  iter#17]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui=set(), cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:25:33  iter#18]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=Sanju Samson  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui={'samson'}, cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:25:54  iter#19]
+  UI: Chennai Super Kings None-None (None)  str=None nstr=Sanju Samson  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui={'samson'}, cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:26:15  iter#20]
+  UI: Chennai Super Kings 0-0 (0.0)  str=None nstr=Sanju Samson  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=0.0 cb=20 | BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui={'samson'}, cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:26:36  iter#21]
+  UI: Chennai Super Kings 0-0 (0.0)  str=None nstr=Sanju Samson  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.7  ps=1(2)  recent=...
+  CB BAT: Praful Hinge* 0(1), Anshul Kamboj 3(0)
+  CB BOWL: Gurjapneet Singh 1-34 (4)
+  LAST WKT: Liam Livingstone  c Dewald Brevis b Anshul Kamboj 1(5)  - 194/9 in 19.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=0.0 cb=20 | BATTERS_MISSING_IN_UI: {'kamboj', 'hinge'} (ui={'samson'}, cb={'kamboj', 'hinge'}) | BOWLER: ui=None cb=Gurjapneet Singh
+
+[21:26:59  iter#22]
+  UI: Chennai Super Kings 0-0 (0.0)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=0.0  ps=0(0)  recent=None
+  CB BAT: Sanju Samson* 0(0), Ruturaj Gaikwad 0(0)
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=0.0 cb=20
+
+[21:27:20  iter#23]
+  UI: Chennai Super Kings 6-0 (0.1)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-6 (0.2)
+  this_over=['.']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=36.0  ps=6(1)  recent=6
+  CB BAT: Sanju Samson* 6(1), Ruturaj Gaikwad 0(0)
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=0.1 cb=20 | BAT_gaikwad: ui=6(0) cb=0(0)
+
+[21:27:40  iter#24]
+  UI: Chennai Super Kings 6-0 (1.0)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-6 (1.0)
+  this_over=['.', '?', '?', '?', '?', '?', '6']  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=21.0  ps=7(2)  recent=6 1
+  CB BAT: Ruturaj Gaikwad* 0(0), Sanju Samson 7(2)
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=1.0 cb=20 | STRIKER: ui=Sanju Samson cb=Ruturaj Gaikwad | BAT_gaikwad: ui=6(0) cb=0(0) | BAT_samson: ui=6(1) cb=7(2)
+
+[21:28:03  iter#25]
+  UI: Chennai Super Kings 7-0 (1.0)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-6 (1.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=21.0  ps=7(2)  recent=6 1
+  CB BAT: Ruturaj Gaikwad* 0(0), Sanju Samson 7(2)
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=1.0 cb=20 | STRIKER: ui=Sanju Samson cb=Ruturaj Gaikwad | BAT_gaikwad: ui=None(None) cb=0(0) | BAT_samson: ui=None(None) cb=7(2)
+
+[21:28:26  iter#26]
+  UI: Chennai Super Kings 7-0 (2.0)  str=Ruturaj Gaikwad nstr=Sanju Samson  bowl=Praful Hinge 0-7 (1.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=21.0  ps=7(2)  recent=6 1
+  CB BAT: Ruturaj Gaikwad* 0(0), Sanju Samson 7(2)
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=2.0 cb=20 | BAT_gaikwad: ui=6(0) cb=0(0)
+
+[21:28:48  iter#27]
+  UI: Chennai Super Kings 7-0 (0.3)  str=Ruturaj Gaikwad nstr=Sanju Samson  bowl=Praful Hinge 0-7 (0.3)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=10.5  ps=7(4)  recent=6 1 0 0
+  CB BAT: Ruturaj Gaikwad* 0(2), Sanju Samson 7(2)
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=0.3 cb=20 | BAT_gaikwad: ui=6(1) cb=0(2)
+
+[21:29:11  iter#28]
+  UI: Chennai Super Kings 7-0 (0.4)  str=Ruturaj Gaikwad nstr=Sanju Samson  bowl=Praful Hinge 0-4 (0.4)
+  this_over=['.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=full_toss line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=10.5  ps=7(4)  recent=6 1 0 0
+  CB BAT: Ruturaj Gaikwad* 0(2), Sanju Samson 7(2)
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=0.4 cb=20 | BAT_gaikwad: ui=6(2) cb=0(2)
+
+[21:29:33  iter#29]
+  UI: Chennai Super Kings 7-0 (0.4)  str=Ruturaj Gaikwad nstr=Sanju Samson  bowl=Praful Hinge 0-7 (0.4)
+  this_over=['.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=full_toss line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=13.2  ps=11(5)  recent=6 1 0 0 4
+  CB BAT: Ruturaj Gaikwad* 4(3), Sanju Samson 7(2)
+  ⚠ DIVERGENCE: SCORE: ui=7 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=0.4 cb=20 | BAT_gaikwad: ui=6(2) cb=4(3)
+
+[21:29:57  iter#30]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=13.2  ps=11(5)  recent=6 1 0 0 4
+  CB BAT: Ruturaj Gaikwad* 4(3), Sanju Samson 7(2)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'gaikwad', 'samson'} (ui=set(), cb={'gaikwad', 'samson'})
+
+[21:30:18  iter#31]
+  UI: Chennai Super Kings 11-0 (0.5)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-11 (0.5)
+  this_over=['.', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.0  ps=15(6)  recent=6 1 0 0 4 4
+  CB BAT: Sanju Samson* 7(2), Ruturaj Gaikwad 8(4)
+  ⚠ DIVERGENCE: SCORE: ui=11 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=0.5 cb=20 | BAT_gaikwad: ui=4(3) cb=8(4)
+
+[21:30:40  iter#32]
+  UI: Chennai Super Kings 15-0 (1.0)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-15 (1.0)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=15.0  ps=15(6)  recent=6 1 0 0 4 4
+  CB BAT: Sanju Samson* 7(2), Ruturaj Gaikwad 8(4)
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=1.0 cb=20
+
+[21:31:04  iter#33]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=15.0  ps=15(6)  recent=6 1 0 0 4 4
+  CB BAT: Sanju Samson* 7(2), Ruturaj Gaikwad 8(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'gaikwad', 'samson'} (ui=set(), cb={'gaikwad', 'samson'}) | BOWLER: ui=None cb=Praful Hinge
+
+[21:31:27  iter#34]
+  UI: Chennai Super Kings 15-0 (1.0)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-15 (1)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.86  ps=15(7)  recent=W
+  CB BAT: Ruturaj Gaikwad* 8(4), Praful Hinge 1(0)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=0 cb=9 | OVERS: ui=1.0 cb=20 | STRIKER: ui=Sanju Samson cb=Ruturaj Gaikwad | BATTERS_MISSING_IN_UI: {'hinge'} (ui={'gaikwad', 'samson'}, cb={'hinge', 'gaikwad'})
+
+[21:31:48  iter#35]
+  UI: Chennai Super Kings 15-1 (1.1)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-15 (1)
+  this_over=['W']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sarfaraz Khan', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.86  ps=15(7)  recent=W
+  CB BAT: Ruturaj Gaikwad* 8(4), Praful Hinge 1(0)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.1 cb=20 | STRIKER: ui=Sanju Samson cb=Ruturaj Gaikwad | BATTERS_MISSING_IN_UI: {'hinge'} (ui={'gaikwad', 'samson'}, cb={'hinge', 'gaikwad'}) | BAT_gaikwad: ui=8(8) cb=8(4)
+
+[21:32:10  iter#36]
+  UI: Chennai Super Kings 15-1 (1.1)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-15 (1)
+  this_over=['W']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sarfaraz Khan', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.86  ps=15(7)  recent=W
+  CB BAT: Ruturaj Gaikwad* 8(4), Praful Hinge 1(0)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.1 cb=20 | STRIKER: ui=Sanju Samson cb=Ruturaj Gaikwad | BATTERS_MISSING_IN_UI: {'hinge'} (ui={'gaikwad', 'samson'}, cb={'hinge', 'gaikwad'}) | BAT_gaikwad: ui=8(8) cb=8(4)
+
+[21:32:31  iter#37]
+  UI: Chennai Super Kings 15-1 (1.1)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-15 (1)
+  this_over=['W']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sarfaraz Khan', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.86  ps=15(7)  recent=W
+  CB BAT: Ruturaj Gaikwad* 8(4), Praful Hinge 1(0)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.1 cb=20 | STRIKER: ui=Sanju Samson cb=Ruturaj Gaikwad | BATTERS_MISSING_IN_UI: {'hinge'} (ui={'gaikwad', 'samson'}, cb={'hinge', 'gaikwad'}) | BAT_gaikwad: ui=8(8) cb=8(4)
+
+[21:32:52  iter#38]
+  UI: Chennai Super Kings 15-1 (1.1)  str=Sanju Samson nstr=Ruturaj Gaikwad  bowl=Praful Hinge 0-15 (1)
+  this_over=['W']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sarfaraz Khan', 'score': '?', 'overs': '?'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.86  ps=0(0)  recent=W
+  CB BAT: Ayush Mhatre* 0(0), Ruturaj Gaikwad 8(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.1 cb=20 | STRIKER: ui=Sanju Samson cb=Ayush Mhatre | BATTERS_MISSING_IN_UI: {'mhatre'} (ui={'gaikwad', 'samson'}, cb={'gaikwad', 'mhatre'}) | BAT_gaikwad: ui=8(8) cb=8(4)
+
+[21:33:13  iter#39]
+  UI: Chennai Super Kings 15-1 (1.1)  str=Ruturaj Gaikwad nstr=Ayush Mhatre  bowl=Praful Hinge 1-15 (1)
+  this_over=['W']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': 15, 'overs': '1.1'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=12.86  ps=0(0)  recent=... 6 1 0 0 4 4
+  CB BAT: Ayush Mhatre* 0(0), Ruturaj Gaikwad 8(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.1 cb=20 | STRIKER: ui=Ruturaj Gaikwad cb=Ayush Mhatre | BAT_gaikwad: ui=8(8) cb=8(4) | BOWL_W: ui=1 cb=0
+
+[21:33:38  iter#40]
+  WS ERR: ''
+  CB: SRH 194-9 (20)  crr=11.25  ps=0(1)  recent=W 0
+  CB BAT: Ayush Mhatre* 0(1), Ruturaj Gaikwad 8(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'gaikwad', 'mhatre'} (ui=set(), cb={'gaikwad', 'mhatre'}) | BOWLER: ui=None cb=Praful Hinge
+
+[21:33:59  iter#41]
+  UI: Chennai Super Kings 15-1 (1.2)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Praful Hinge 1-15 (1.1)
+  this_over=['W', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': 15, 'overs': '1.1'}
+  delivery: len=full_toss line=on_stumps shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=11.25  ps=0(1)  recent=W 0
+  CB BAT: Ayush Mhatre* 0(1), Ruturaj Gaikwad 8(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.2 cb=20 | BAT_mhatre: ui=1(1) cb=0(1) | BAT_gaikwad: ui=8(8) cb=8(4) | BOWL_W: ui=1 cb=0 | BOWL_O: ui=1.1 cb=1
+
+[21:34:22  iter#42]
+  UI: Chennai Super Kings 15-1 (1.3)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-0 (0.3)
+  this_over=['W', '.', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': 15, 'overs': '1.1'}
+  delivery: len=short line=outside_off shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=10.0  ps=0(2)  recent=W 0 0
+  CB BAT: Ayush Mhatre* 0(2), Ruturaj Gaikwad 8(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.3 cb=20 | BAT_gaikwad: ui=8(8) cb=8(4) | BOWLER: ui=Nitish Kumar Reddy cb=Praful Hinge
+
+[21:34:43  iter#43]
+  UI: Chennai Super Kings 15-1 (1.3)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-0 (0.3)
+  this_over=['W', '.', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': 15, 'overs': '1.1'}
+  delivery: len=short line=outside_off shot=along_ground [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.0  ps=0(3)  recent=W 0 0 0
+  CB BAT: Ayush Mhatre* 0(3), Ruturaj Gaikwad 8(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.3 cb=20 | BAT_mhatre: ui=0(2) cb=0(3) | BAT_gaikwad: ui=8(8) cb=8(4) | BOWLER: ui=Nitish Kumar Reddy cb=Praful Hinge
+
+[21:35:04  iter#44]
+  UI: Chennai Super Kings 15-1 (1.4)  str=Ayush Mhatre nstr=Ruturaj Gaikwad  bowl=Nitish Kumar Reddy 1-1 (1.1)
+  this_over=['W', '.', '.', '.']  fow=1 (unk=0)  last_fow={'wicket': 1, 'batter': 'Sanju Samson', 'score': 15, 'overs': '1.1'}
+  delivery: len=unknown line=unknown shot=defended [vlm]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: SRH 194-9 (20)  crr=9.0  ps=0(3)  recent=W 0 0 0
+  CB BAT: Ayush Mhatre* 0(3), Ruturaj Gaikwad 8(4)
+  CB BOWL: Praful Hinge 0-15 (1)
+  LAST WKT: Sanju Samson  c Heinrich Klaasen b Nitish Reddy 7(3)  - 15/1 in 1.1 ov.
+  ⚠ DIVERGENCE: SCORE: ui=15 cb=194 | WICKETS: ui=1 cb=9 | OVERS: ui=1.4 cb=20 | BAT_gaikwad: ui=8(8) cb=8(4) | BOWLER: ui=Nitish Kumar Reddy cb=Praful Hinge

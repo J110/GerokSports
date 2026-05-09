@@ -1,0 +1,332 @@
+WARNING ⚠️ torchvision==0.26 is incompatible with torch==2.10.
+Run 'pip install torchvision==0.25' to fix torchvision or 'pip install -U torch torchvision' to update both.
+For a full compatibility table see https://github.com/pytorch/vision#installation
+[37m[21:21:32 F0 TEST] INFO: [WS] Server started on ws://0.0.0.0:8765[0m
+[37m[21:21:32 F0 TEST] INFO: [WS] Commentary server on ws://0.0.0.0:8766[0m
+[37m[21:21:32 F0 TEST] INFO: ============================================================[0m
+[37m[21:21:32 F0 TEST] INFO: SCRAPING SQUADS...[0m
+[37m[21:21:32 F0 SQUAD] INFO: Fetching: https://www.cricbuzz.com/cricket-match-squads/151924/lsg-vs-kkr-38th-match-indian-premier-league-2026[0m
+[37m[21:21:33 F0 SQUAD] INFO:   Lucknow Super Giants: 11 XI + 14 bench[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Aiden Markram — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Mitchell Marsh — bat_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Rishabh Pant (C,WK) — wk_batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Nicholas Pooran (WK) — wk_batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Ayush Badoni — bat_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Mukul Choudhary (WK) — wk_batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     George Linde — bat_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Mohammed Shami — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Prince Yadav — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Digvesh Singh Rathi — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Mohsin Khan — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Himmat Singh — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Akshat Raghuwanshi — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Abdul Samad — bat_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Avesh Khan — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Manimaran Siddharth — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Matthew Breetzke — wk_batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Josh Inglis — wk_batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Anrich Nortje — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Arjun Tendulkar — bowl_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Shahbaz Ahmed — bowl_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Akash Maharaj Singh — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Arshin Kulkarni — bat_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Naman Tiwari — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Mayank Yadav — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:   Kolkata Knight Riders: 11 XI + 14 bench[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Ajinkya Rahane (C) — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Tim Seifert (WK) — wk_batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Cameron Green — bat_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Angkrish Raghuvanshi — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Rovman Powell — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Rinku Singh — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Sunil Narine — bowl_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Ramandeep Singh — bat_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Anukul Roy — bat_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Vaibhav Arora — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     Kartik Tyagi — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Manish Pandey — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Finn Allen — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Tejasvi Dahiya — wk_batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Navdeep Saini — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Varun Chakaravarthy — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Rahul Tripathi — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Sarthak Ranjan — batter[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Rachin Ravindra — bat_allrounder[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Prashant Solanki — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Blessing Muzarabani — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Saurabh Dubey — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Matheesha Pathirana — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Umran Malik — bowler[0m
+[37m[21:21:33 F0 SQUAD] INFO:     [bench] Daksh Kamra — bowl_allrounder[0m
+[37m[21:21:33 F0 TEST] INFO: Teams: ['Lucknow Super Giants', 'Kolkata Knight Riders'][0m
+[37m[21:21:33 F0 ENRICH] INFO: Loaded cached styles from player_styles_242f360951fc.json (50 players)[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache] Lucknow Super Giants — styles:[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Aiden Markram            RHB  | Right-arm off spin[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Mitchell Marsh           RHB  | Right-arm medium[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Rishabh Pant             LHB  | None[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Nicholas Pooran          LHB  | None[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Ayush Badoni             LHB  | Right-arm medium[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Mukul Choudhary          RHB  | None[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   George Linde             LHB  | Slow left-arm orthodox[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Mohammed Shami           RHB  | Right-arm fast[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Prince Yadav             RHB  | Right-arm medium-fast[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Digvesh Singh Rathi      unknown | unknown[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Mohsin Khan              RHB  | Left-arm fast[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache] Kolkata Knight Riders — styles:[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Ajinkya Rahane           RHB  | Right-arm medium[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Tim Seifert              RHB  | None[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Cameron Green            RHB  | Right-arm fast-medium[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Angkrish Raghuvanshi     LHB  | Right-arm off spin[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Rovman Powell            RHB  | Right-arm medium-fast[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Rinku Singh              LHB  | None[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Sunil Narine             LHB  | Right-arm off spin[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Ramandeep Singh          RHB  | Right-arm medium[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Anukul Roy               LHB  | Slow left-arm orthodox[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Vaibhav Arora            RHB  | Right-arm fast-medium[0m
+[37m[21:21:33 F0 ENRICH] INFO: [cache]   Kartik Tyagi             RHB  | Right-arm fast[0m
+[37m[21:21:33 F0 TEST] INFO: Team variants: ['GIA', 'GIANTS', 'KKR', 'KNI', 'KNIGHT', 'KO', 'KOL', 'KOLKATA', 'KOLKATA KNIGHT RIDERS', 'LKN', 'LSG', 'LU', 'LUC', 'LUCKNOW', 'LUCKNOW SUPER GIANTS', 'RID', 'RIDERS', 'SUP', 'SUPER'][0m
+[37m[21:21:33 F0 TEST] INFO: Found Firefox window (on-screen): id=955 1018.0x811.0 "LSG vs KKR Live video streaming | TATA IPL 2026"[0m
+[37m[21:21:33 F0 TEST] INFO: [BALL ANALYZER] Background capture started[0m
+[37m[21:21:34 F0 TEST] INFO: [WS] client connected (1 total)[0m
+[37m[21:21:34 F0 TEST] INFO: [WS] client connected (2 total)[0m
+[37m[21:21:34 F0 FIELD] INFO: Pitch detected from green mask at (0.28, 0.47) (fallback — will recalibrate from people)[0m
+[37m[21:21:34 F0 TEST] INFO: [CLEANUP] Archived 52 frames to debug_frames_archive/2026-04-26_212134 (was 52 in debug_frames)[0m
+[37m[21:21:34 F0 TEST] INFO: [CLEANUP] Removed old archive: debug_frames_archive/2026-04-25_195311[0m
+[37m[21:21:34 F0 TEST] INFO: [CACHE] Cached state found — DISCARDING all scorecard/team data (Rule 1: always cold-start). Toss data is preserved if present.[0m
+[37m[21:21:34 F0 TEST] INFO: ============================================================[0m
+[37m[21:21:34 F0 TEST] INFO: [CONFIG] Vision:    Scout 17B (single call tag+read)[0m
+[37m[21:21:34 F0 TEST] INFO: [CONFIG] Extractor: Groq (Scout 17B → 8B fallback)[0m
+[37m[21:21:34 F0 TEST] INFO: [CONFIG] Scorer:    Groq (Scout 17B → 8B fallback)[0m
+[37m[21:21:34 F0 TEST] INFO: PIPELINE STARTED — 18000s — NO TEAM ASSUMPTION[0m
+[37m[21:21:34 F0 TEST] INFO: ============================================================[0m
+[37m[21:21:34 F1 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:21:35 F1 VISION] INFO: [SCOUT] SCOREBOARD 730ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 304 chars[0m
+[37m[21:21:35 F1 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+SPEED: 
+EXTRA:[0m
+[37m[21:21:35 F1 TEST] INFO:   [PRE-MATCH-GRAPHIC-GATE] team_abbr=LSG present on 0-0(0.0) strip with no committed score — treating as pre-match graphic, NOT assigning teams (Fix 17 Path A).[0m
+[37m[21:21:35 F1 TEST] INFO: 
+=======================================================[0m
+[37m[21:21:35 F1 TEST] INFO: [F1] SCOREBOARD — #1[0m
+[37m[21:21:35 F1 TEST] INFO:   [V 733ms] STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+The players are on the field, and it appears to be a moment between play.[0m
+[37m[21:21:36 F1 EXTRACT] INFO: Extracted in 0.9s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:21:36 F1 TEST] INFO:   [E 944ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:21:36 F1 TEST] INFO: [WS] client connected (4 total)[0m
+[37m[21:21:37 F1 SCORER] INFO: Scored in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:21:37 F1 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[21:21:37 F1 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[21:21:37 F1 TEST] INFO:   [S 755ms] Changes: none[0m
+[37m[21:21:37 F1 TEST] INFO:   Total: 2431ms (V:733 E:944 S:755)[0m
+[37m[21:21:37 F1 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[21:21:37 F1 TEST] INFO: DETAIL|F1|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG 0-0 (0.0) |  INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:  The players are on the field, and it a|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=2|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=733|lat_extract=944|lat_scorer=755|lat_field=55|lat_comm=0|lat_code=0|lat_total=2439|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:21:38 F1 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:21:40 F2 VISION] INFO: [SCOUT] SCOREBOARD 776ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 297 chars[0m
+[37m[21:21:40 F2 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+SPEED: 
+EXTRA:[0m
+[37m[21:21:40 F2 TEST] INFO:   [PRE-MATCH-GRAPHIC-GATE] team_abbr=LSG present on 0-0(0.0) strip with no committed score — treating as pre-match graphic, NOT assigning teams (Fix 17 Path A).[0m
+[37m[21:21:40 F2 TEST] INFO: 
+=======================================================[0m
+[37m[21:21:40 F2 TEST] INFO: [F2] SCOREBOARD — #2[0m
+[37m[21:21:40 F2 TEST] INFO:   [V 778ms] STRIP: LSG 0-0 (0.0) | 
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+The players are taking a break, likely strategizing or discussing.[0m
+[37m[21:21:40 F2 EXTRACT] INFO: Extracted in 0.8s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:21:40 F2 TEST] INFO:   [E 846ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:21:40 F2 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:21:41 F2 SCORER] INFO: Scored in 0.6s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:21:41 F2 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[21:21:41 F2 TEST] INFO:   No batting team set — skipping all updates[0m
+[37m[21:21:41 F2 TEST] INFO:   [S 615ms] Changes: none[0m
+[37m[21:21:41 F2 TEST] INFO:   Total: 2239ms (V:778 E:846 S:615)[0m
+[37m[21:21:41 F2 TEST] INFO:   STATE: ? None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[21:21:41 F2 TEST] INFO: DETAIL|F2|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG 0-0 (0.0) |  INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD:  The players are taking a break, likely|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=—|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=778|lat_extract=846|lat_scorer=615|lat_field=53|lat_comm=0|lat_code=0|lat_total=2244|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:21:42 F2 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:21:44 F3 VISION] INFO: [SCOUT] SCOREBOARD 621ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=True 287 chars[0m
+[37m[21:21:44 F3 TEST] INFO:   [TEAM] From broadcast abbr: LSG → Lucknow Super Giants[0m
+[37m[21:21:44 F3 BOARD] INFO: Scorecards built: Lucknow Super Giants (25 bat) vs Kolkata Knight Riders (25 bowl)[0m
+[37m[21:21:44 F3 TEST] INFO: === TEAMS SET: Lucknow Super Giants batting (inn 1) vs Kolkata Knight Riders bowling ===[0m
+[37m[21:21:44 F3 TEST] INFO: 
+=======================================================[0m
+[37m[21:21:44 F3 TEST] INFO: [F3] SCOREBOARD — #3[0m
+[37m[21:21:44 F3 TEST] INFO:   [V 624ms] STRIP: RR 89-3 (10.4) | Buttler 13(9) | Samson 40(31) | Chahal 1-23 (3.4)[0m
+[37m[21:21:45 F3 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:21:45 F3 BOARD] INFO: [NAME] Exact miss for 'BUTTLER', trying fuzzy (520 keys)...[0m
+[33m[21:21:45 F3 BOARD] WARN: No match for 'BUTTLER'. Closest: [('ABDUL', '0.50'), ('BRITZKE', '0.43'), ('MATTHEW', '0.43')][0m
+[37m[21:21:45 F3 BOARD] INFO: [NAME] Exact miss for 'SAMSON', trying fuzzy (520 keys)...[0m
+[33m[21:21:45 F3 BOARD] WARN: No match for 'SAMSON'. Closest: [('CAMERON', '0.62'), ('SHAM', '0.60'), ('SAMA', '0.60')][0m
+[37m[21:21:45 F3 TEST] INFO:   [GUARD] Batter names ['BUTTLER', 'SAMSON'] don't match batting squad — comparison strip, stripping score/batters/bowler[0m
+[37m[21:21:45 F3 TEST] INFO:   [E 1087ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:21:46 F3 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:21:46 F3 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[21:21:46 F3 TEST] INFO:   [S 656ms] Changes: ['FRAME_POISONED:89'][0m
+[37m[21:21:46 F3 TEST] INFO:   Total: 2368ms (V:624 E:1087 S:656)[0m
+[37m[21:21:46 F3 TEST] INFO:   STATE: Lucknow Super Giants None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[21:21:46 F3 TEST] INFO: [WS-COLD-START-GATE] OPEN — batting_team committed (team='Lucknow Super Giants' score=0).  All subsequent WS broadcasts pass through (Fix 17 Path D).[0m
+[37m[21:21:46 F3 TEST] INFO:   [ACTION] A player in an orange jersey is standing on the field.[0m
+[37m[21:21:46 F3 TEST] INFO: DETAIL|F3|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: RR 89-3 (10.4) | Buttler 13(9) | Samson 40(31) | Chahal 1-23 (3.4)|action=A player in an orange jersey is standing on the field.|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=['FRAME_POISONED:89']|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Lucknow Super Giants|match_info=—|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=624|lat_extract=1087|lat_scorer=656|lat_field=48|lat_comm=0|lat_code=46|lat_total=2461|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:21:46 F3 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:21:48 F4 VISION] INFO: [SCOUT] SCOREBOARD 789ms strip=True overlay=False drs=False cam=other phase=between_play digits=False 227 chars[0m
+[37m[21:21:48 F4 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "other", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: LSG 0-0 (0.0) | 
+
+ 
+
+ACTION: The crowd is che[0m
+[37m[21:21:48 F4 TEST] INFO: [F4] SCOREBOARD cam=other → dead-time skip (#1)[0m
+[37m[21:21:50 F4 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:21:51 F5 VISION] INFO: [SCOUT] GRAPHIC 844ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 462 chars[0m
+[37m[21:21:51 F5 TEST] INFO:   [BROADCAST] Match: IPL 2026[0m
+[37m[21:21:51 F5 TEST] INFO: [F5] GRAPHIC cam=graphic → dead-time skip (#2)[0m
+[37m[21:21:51 F5 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:21:55 F6 VISION] INFO: [SCOUT] GRAPHIC 965ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 429 chars[0m
+[37m[21:21:55 F6 TEST] INFO: [F6] GRAPHIC cam=graphic → dead-time skip (#3)[0m
+[37m[21:21:56 F6 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:21:59 F7 VISION] INFO: [SCOUT] GRAPHIC 1002ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 437 chars[0m
+[37m[21:21:59 F7 TEST] INFO: [F7] GRAPHIC cam=graphic → dead-time skip (#4)[0m
+[37m[21:21:59 F7 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:01 F7 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:22:03 F8 VISION] INFO: [SCOUT] GRAPHIC 781ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 421 chars[0m
+[37m[21:22:03 F8 TEST] INFO: [F8] GRAPHIC cam=graphic → dead-time skip (#5)[0m
+[37m[21:22:03 F8 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:03 F8 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:22:07 F9 VISION] INFO: [SCOUT] GRAPHIC 688ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 352 chars[0m
+[37m[21:22:07 F9 TEST] INFO: [F9] GRAPHIC cam=graphic → dead-time skip (#6)[0m
+[37m[21:22:07 F9 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:11 F10 VISION] INFO: [SCOUT] GRAPHIC 821ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 359 chars[0m
+[37m[21:22:11 F10 TEST] INFO: [F10] GRAPHIC cam=graphic → dead-time skip (#7)[0m
+[37m[21:22:11 F10 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:22:14 F11 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:16 F14 TEST] INFO: [F14] Pixel skip #4[0m
+[37m[21:22:16 F14 TEST] INFO: [F14] Force-processing after 4 pixel skips[0m
+[37m[21:22:16 F14 TEST] INFO: [F14] No-strip skip #1 (lifetime=1)[0m
+[37m[21:22:18 F17 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:22:19 F18 TEST] INFO: [F18] Pixel skip #4[0m
+[37m[21:22:19 F18 TEST] INFO: [F18] Force-processing after 4 pixel skips[0m
+[37m[21:22:20 F19 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:22 F22 TEST] INFO: [F22] Pixel skip #4[0m
+[37m[21:22:22 F22 TEST] INFO: [F22] Force-processing after 4 pixel skips[0m
+[37m[21:22:24 F25 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:22:24 F26 TEST] INFO: [F26] Pixel skip #4[0m
+[37m[21:22:24 F26 TEST] INFO: [F26] Force-processing after 4 pixel skips[0m
+[37m[21:22:24 F26 TEST] INFO: [WS] client connected (4 total)[0m
+[37m[21:22:25 F27 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:22:25 F27 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:27 F29 VISION] INFO: [SCOUT] GRAPHIC 1028ms strip=False overlay=True drs=False cam=graphic phase=graphic digits=True 448 chars[0m
+[37m[21:22:27 F29 TEST] INFO: [F29] GRAPHIC cam=graphic → dead-time skip (#8)[0m
+[37m[21:22:29 F29 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:22:32 F30 VISION] INFO: [SCOUT] ADVERTISEMENT 2003ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 163 chars[0m
+[37m[21:22:32 F30 TEST] INFO: [F30] AD 2006ms (#1)[0m
+[37m[21:22:32 F30 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:36 F30 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:22:40 F31 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:42 F31 VISION] INFO: [SCOUT] SCOREBOARD 1242ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 498 chars[0m
+[37m[21:22:42 F31 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: Not available in the image.
+
+INFO_PANEL: No[0m
+[37m[21:22:42 F31 TEST] INFO: [F31] cam=closeup → resuming active play after dead-time gap (#8 skipped)[0m
+[37m[21:22:42 F31 TEST] INFO: 
+=======================================================[0m
+[37m[21:22:42 F31 TEST] INFO: [F31] SCOREBOARD — #4[0m
+[37m[21:22:42 F31 TEST] INFO:   [V 1245ms] STRIP: Not available in the image.
+
+INFO_PANEL: Not available in the image.
+SPEED: Not available in the image.
+EXTRA: Not available in the image.
+THIS OVER: Not available in the image.
+FULL SCORECARD: Not available in the image.
+
+The man in the image[0m
+[37m[21:22:43 F31 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:22:43 F31 TEST] INFO:   [E 1010ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:22:43 F31 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:22:43 F31 TEST] INFO:   [S] Hint: Current batters: None. Bowler: None. Read their stats from the scoreboard.[0m
+[37m[21:22:43 F31 TEST] INFO:   No players from our match recognized — skipping score[0m
+[37m[21:22:43 F31 TEST] INFO:   [S 732ms] Changes: none[0m
+[37m[21:22:43 F31 TEST] INFO:   Total: 2987ms (V:1245 E:1010 S:732)[0m
+[37m[21:22:43 F31 TEST] INFO:   STATE: Lucknow Super Giants None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[21:22:43 F31 TEST] INFO:   [FIELD-MONITOR] Field unchanged for 30 frames (template=pace_powerplay, frozen=False, phase=powerplay). If a wicket / over / bowler change has happened in this window, the field-state updater is the bug.[0m
+[37m[21:22:43 F31 TEST] INFO: DETAIL|F31|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: Not available in the image.  INFO_PANEL: Not available in the image. SPEED: Not available in the image. EXTRA: No|action=—|ext_score=None-None(None)|ext_bat=|ext_bowl=|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Lucknow Super Giants|match_info=IPL 2026|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=1245|lat_extract=1010|lat_scorer=732|lat_field=45|lat_comm=0|lat_code=0|lat_total=2994|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:22:44 F31 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:22:45 F31 TEST] INFO: [WS] client connected (4 total)[0m
+[37m[21:22:46 F32 VISION] INFO: [SCOUT] SCOREBOARD 619ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 256 chars[0m
+[37m[21:22:46 F32 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: LSG 0-0 (0.0) |  |  | Mohsin Khan 0-0 (0.0)[0m
+[37m[21:22:46 F32 TEST] INFO: 
+=======================================================[0m
+[37m[21:22:46 F32 TEST] INFO: [F32] SCOREBOARD — #5[0m
+[37m[21:22:46 F32 TEST] INFO:   [V 622ms] STRIP: LSG 0-0 (0.0) |  |  | Mohsin Khan 0-0 (0.0)[0m
+[37m[21:22:47 F32 EXTRACT] INFO: Extracted in 1.0s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:22:47 F32 TEST] INFO:   [E 952ms] visible_team=None score=None-None (None) target=None rr=None[0m
+[37m[21:22:47 F32 TEST] INFO:     BOWL: Mohsin Khan None-None (None)[0m
+[33m[21:22:47 F32 BOARD] WARN: Bowler 'Mohsin Khan' not in bowling card (resolved: Mohsin Khan)[0m
+[37m[21:22:48 F32 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:22:48 F32 TEST] INFO:   [S] Hint: Current batters: Aiden Markram and Mitchell Marsh. Bowler: Mohsin Khan. Read their stats from the scoreboard.[0m
+[37m[21:22:48 F32 TEST] INFO:   No players from our match recognized — skipping score[0m
+[37m[21:22:48 F32 TEST] INFO:   [S 685ms] Changes: none[0m
+[37m[21:22:48 F32 TEST] INFO:   Total: 2259ms (V:622 E:952 S:685)[0m
+[37m[21:22:48 F32 TEST] INFO:   STATE: Lucknow Super Giants None-None (None) inn=1 RR=— | Bat: None | Bowl: None[0m
+[37m[21:22:48 F32 TEST] INFO:   [ACTION] The bowler, Mohsin Khan, is being interviewed.[0m
+[37m[21:22:48 F32 TEST] INFO: DETAIL|F32|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG 0-0 (0.0) |  |  | Mohsin Khan 0-0 (0.0)|action=The bowler, Mohsin Khan, is being interviewed.|ext_score=None-None(None)|ext_bat=|ext_bowl=Mohsin Khan None-None (None)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=—|AFTER_bat2=—|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=—|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Lucknow Super Giants|match_info=IPL 2026|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=622|lat_extract=952|lat_scorer=685|lat_field=44|lat_comm=0|lat_code=0|lat_total=2265|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:22:48 F32 TEST] INFO: [WS] client disconnected (3 remain)[0m
+[37m[21:22:48 F32 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:51 F33 VISION] INFO: [SCOUT] SCOREBOARD 645ms strip=True overlay=False drs=False cam=closeup phase=between_play digits=False 304 chars[0m
+[37m[21:22:51 F33 VISION] INFO: [SCOUT] Preview: {"has_strip": true, "has_overlay_stats": false, "drs_review": false, "camera_view": "closeup", "frame_phase": "between_play", "ball_position": null}
+
+STRIP: LSG  | Aiden Markram  | Mitchell Marsh  | M[0m
+[37m[21:22:51 F33 TEST] INFO: 
+=======================================================[0m
+[37m[21:22:51 F33 TEST] INFO: [F33] SCOREBOARD — #6[0m
+[37m[21:22:51 F33 TEST] INFO:   [V 648ms] STRIP: LSG  | Aiden Markram  | Mitchell Marsh  | Mohsin Khan 
+
+INFO_PANEL: 
+SPEED: 
+EXTRA: 
+THIS OVER: 
+FULL SCORECARD: 
+
+The player is being interviewed.[0m
+[37m[21:22:52 F33 EXTRACT] INFO: Extracted in 1.1s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:22:52 F33 TEST] INFO:   [E 1084ms] visible_team=Lucknow Super Giants score=None-None (None) target=None rr=None[0m
+[37m[21:22:52 F33 TEST] INFO:     BAT: Aiden Markram None(None) [0m
+[37m[21:22:52 F33 TEST] INFO:     BAT: Mitchell Marsh None(None) [0m
+[37m[21:22:52 F33 TEST] INFO:     BOWL: Mohsin Khan None-None (None)[0m
+[33m[21:22:52 F33 BOARD] WARN: Bowler 'Mohsin Khan' not in bowling card (resolved: Mohsin Khan)[0m
+[37m[21:22:52 F33 BOARD] INFO: Batter activated: Aiden Markram[0m
+[37m[21:22:52 F33 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6838 (run_test): non_striker None->Aiden Markram[0m
+[37m[21:22:52 F33 BOARD] INFO: Batter activated: Mitchell Marsh[0m
+[37m[21:22:52 F33 TEST] INFO:   [STRIKER-WRITE] test_pipeline.py:6838 (run_test): non_striker Aiden Markram->Mitchell Marsh[0m
+[37m[21:22:52 F33 TEST] INFO:   [DIRECT] Batter updates: ['Aiden Markram: ext=None(None) → tracker=0(0) [was None(None)]', 'Mitchell Marsh: ext=None(None) → tracker=0(0) [was None(None)]'][0m
+[37m[21:22:52 F33 TEST] INFO: [WS] client connected (3 total)[0m
+[37m[21:22:52 F33 SCORER] INFO: Scored in 0.7s (llama-4-scout-17b-16e-instruct)[0m
+[37m[21:22:52 F33 TEST] INFO:   [S] Hint: Current batters: Aiden Markram, Mitchell Marsh. Bowler: Mohsin Khan.[0m
+[37m[21:22:52 F33 TEST] INFO:   No players from our match recognized — skipping score[0m
+[37m[21:22:52 F33 TEST] INFO:   [S 712ms] Changes: none[0m
+[37m[21:22:52 F33 TEST] INFO:   Total: 2443ms (V:648 E:1084 S:712)[0m
+[37m[21:22:52 F33 TEST] INFO:   STATE: Lucknow Super Giants None-None (None) inn=1 RR=— | Bat: Aiden Markram(0) Mitchell Marsh(0) | Bowl: None[0m
+[37m[21:22:52 F33 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Mitchell Marsh' surfaced from sb._inn (SM-null, in active_batting)[0m
+[33m[21:22:52 F33 TEST] WARN:   [WS-PROJECTION-GAP] striker=None (payload) sb._inn.striker=None sm.striker=None active_batting=['Aiden Markram', 'Mitchell Marsh'][0m
+[37m[21:22:52 F33 TEST] INFO: DETAIL|F33|SCOREBOARD|tag=SCOREBOARD|scout=STRIP: LSG  | Aiden Markram  | Mitchell Marsh  | Mohsin Khan   INFO_PANEL:  SPEED:  EXTRA:  THIS OVER:  FULL SCORECARD: |action=—|ext_score=None-None(None)|ext_bat=Aiden Markram None(None) | Mitchell Marsh None(None)|ext_bowl=Mohsin Khan None-None (None)|scorer_changes=[]|yolo=0|BEFORE_score=None-None(None)|BEFORE_bat1=—|BEFORE_bat2=—|BEFORE_bowl=— ?-? (?)|BEFORE_this_over=[]|AFTER_score=None-None(None)|AFTER_bat1=Aiden Markram 0(0)|AFTER_bat2=Mitchell Marsh 0(0)|AFTER_bowl=— ?-? (?)|AFTER_this_over=[]|AFTER_this_over_src=|AFTER_striker=—|AFTER_non_striker=Mitchell Marsh|AFTER_run_rate=—|AFTER_target=—|AFTER_innings=1|AFTER_partnership=—|AFTER_fow_count=0|AFTER_field=pace_powerplay frozen=False fielders=['slip_1', 'gully', 'point', 'cover', 'mid_off', 'mid_on', 'midwicket', 'square_leg', 'fine_leg']|ball_event=—|ball_event_runs=—|ball_event_over=—|ball_event_extra=—|ball_event_free_hit=—|broadcast_extra=—|dismissal_mode=—|striker_this_ball=—|delivery_length=—|delivery_line=—|delivery_angle=—|delivery_shot=—|delivery_direction=—|delivery_elevation=—|delivery_bounce=—|delivery_dets=0|delivery_method=—|delivery_snap_dets=—|delivery_3layer_dets=—|delivery_det_rate=—|delivery_dir_zone=—|delivery_dir_conf=0|delivery_shot_action=—|delivery_shot_intent=—|delivery_swing=—|delivery_speed_vlm=—|delivery_vlm_conf=—|delivery_vlm_ms=—|speed_kph=—|venue=—|batting_team=Lucknow Super Giants|match_info=IPL 2026|completed_over=—|completed_over_runs=—|drs_state=NONE|corrections=none|lat_vision=648|lat_extract=1084|lat_scorer=712|lat_field=43|lat_comm=0|lat_code=0|lat_total=2456|comm_bowler=—|comm_wire=—|comm_storyteller=—|comm_analyst=—|comm_colour=—|comm_wire_ms=0|comm_story_ms=0|comm_analyst_ms=0|comm_colour_ms=0[0m
+[37m[21:22:52 F33 TEST] INFO: [WS] client disconnected (2 remain)[0m
+[37m[21:22:55 F34 VISION] INFO: [SCOUT] ADVERTISEMENT 616ms strip=False overlay=False drs=False cam=ad phase=advertisement digits=False 163 chars[0m
+[37m[21:22:55 F34 TEST] INFO: [F34] AD 619ms (#2)[0m
+[37m[21:22:55 F34 TEST] INFO:   [WS-PROJECTION-FALLBACK] non_striker='Mitchell Marsh' surfaced from sb._inn (SM-null, in active_batting)[0m
+[37m[21:22:56 F34 TEST] INFO: [WS] client connected (3 total)[0m

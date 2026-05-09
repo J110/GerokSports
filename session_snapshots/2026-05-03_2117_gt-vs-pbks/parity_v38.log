@@ -1,0 +1,1187 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151867/lsg-vs-rr-32nd-match-indian-premier-league-2026
+
+[21:22:10  iter#1]
+  UI: Lucknow Super Giants None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=4 2 4 2 2 6
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:22:31  iter#2]
+  UI: Lucknow Super Giants None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=4 2 4 2 2 6
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:22:52  iter#3]
+  UI: Lucknow Super Giants None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:23:14  iter#4]
+  UI: Lucknow Super Giants None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:23:35  iter#5]
+  UI: Lucknow Super Giants None-None (None)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:23:57  iter#6]
+  UI: Lucknow Super Giants 0-0 (0.0)  str=None nstr=None  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=0 cb=6 | OVERS: ui=0.0 cb=20 | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:24:21  iter#7]
+  WS ERR: ''
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:24:45  iter#8]
+  UI: Lucknow Super Giants 0-0 (0.0)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=0 cb=6 | OVERS: ui=0.0 cb=20 | STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:25:06  iter#9]
+  UI: Lucknow Super Giants 0-0 (0.0)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=0 cb=6 | OVERS: ui=0.0 cb=20 | STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:25:36  iter#10]
+  UI: Lucknow Super Giants 0-0 (0.0)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=0 cb=6 | OVERS: ui=0.0 cb=20 | STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:25:58  iter#11]
+  UI: Lucknow Super Giants 0-0 (0.0)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=0 cb=6 | OVERS: ui=0.0 cb=20 | STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:26:22  iter#12]
+  WS ERR: ''
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:26:43  iter#13]
+  UI: Lucknow Super Giants 0-0 (0.0)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=0 cb=6 | OVERS: ui=0.0 cb=20 | STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:27:05  iter#14]
+  UI: Lucknow Super Giants 0-0 (0.0)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=0 cb=6 | OVERS: ui=0.0 cb=20 | STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:27:26  iter#15]
+  UI: Lucknow Super Giants 0-0 (0.0)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=0 cb=6 | OVERS: ui=0.0 cb=20 | STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:27:49  iter#16]
+  UI: Lucknow Super Giants None-None (None)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:28:14  iter#17]
+  UI: Lucknow Super Giants None-None (None)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:28:36  iter#18]
+  UI: Lucknow Super Giants None-None (None)  str=Mitchell Marsh nstr=Ayush Badoni  bowl=None None-None (None)
+  this_over=[]  fow=0 (unk=0)  last_fow=None
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Mitchell Marsh cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'badoni', 'marsh'}, cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:29:00  iter#19]
+  WS ERR: ''
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:29:25  iter#20]
+  WS ERR: ''
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:29:48  iter#21]
+  UI: Lucknow Super Giants 1-1 (1.0)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=[]  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=1 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=1.0 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:30:11  iter#22]
+  UI: Lucknow Super Giants 1-1 (1.0)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=[]  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=1 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=1.0 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:30:35  iter#23]
+  UI: Lucknow Super Giants 0-1 (1.0)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=[]  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=1.0 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:30:58  iter#24]
+  UI: Lucknow Super Giants 0-1 (0.1)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=0 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.1 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:31:21  iter#25]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:31:44  iter#26]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:32:04  iter#27]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:32:25  iter#28]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:32:49  iter#29]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:33:11  iter#30]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:33:35  iter#31]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:33:57  iter#32]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:34:19  iter#33]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:34:41  iter#34]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:35:02  iter#35]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:35:23  iter#36]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:35:47  iter#37]
+  WS ERR: ''
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[21:36:11  iter#38]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Ravindra Jadeja 1-1 (1.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Mayank Yadav
+
+[21:36:31  iter#39]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Jofra Archer 0-0 (0.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Mayank Yadav
+
+[21:36:53  iter#40]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Jofra Archer 0-0 (0.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Mayank Yadav
+
+[21:37:14  iter#41]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Jofra Archer 0-0 (0.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Mayank Yadav
+
+[21:37:35  iter#42]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Jofra Archer 0-0 (0.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Mayank Yadav
+
+[21:37:57  iter#43]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Jofra Archer 0-0 (0.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Mayank Yadav
+
+[21:38:18  iter#44]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=Mayank Yadav nstr=Himmat Singh  bowl=Jofra Archer 0-0 (0.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | STRIKER: ui=Mayank Yadav cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui={'yadav', 'singh'}, cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Mayank Yadav
+
+[21:38:42  iter#45]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=None nstr=None  bowl=Jofra Archer 0-0 (0.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Mayank Yadav
+
+[21:39:02  iter#46]
+  UI: Lucknow Super Giants 6-1 (0.5)  str=None nstr=None  bowl=Jofra Archer 0-0 (0.0)
+  this_over=['?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 159-6 (20)  crr=7.95  ps=49(25)  recent=...
+  CB BAT: Shubham Dubey* 19(11), Ravindra Jadeja 43(29)
+  CB BOWL: Mayank Yadav 0-56 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=159 | WICKETS: ui=1 cb=6 | OVERS: ui=0.5 cb=20 | BATTERS_MISSING_IN_UI: {'jadeja', 'dubey'} (ui=set(), cb={'jadeja', 'dubey'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Mayank Yadav
+
+[21:39:27  iter#47]
+  WS ERR: ''
+  CB: LSG 0-0 (0)  crr=0.0  ps=0(0)  recent=None
+  CB BAT: Mitchell Marsh* 0(0), Ayush Badoni 0(0)
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'badoni', 'marsh'} (ui=set(), cb={'badoni', 'marsh'})
+
+[21:39:50  iter#48]
+  UI: Lucknow Super Giants 0-1 (1.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-0 (0.1)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: LSG 0-0 (0.2)  crr=0.0  ps=0(2)  recent=0 0
+  CB BAT: Mitchell Marsh* 0(2), Ayush Badoni 0(0)
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=0 | OVERS: ui=1.0 cb=0.2 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:40:13  iter#49]
+  UI: Lucknow Super Giants 0-0 (2.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-0 (1.0)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: LSG 0-0 (0.2)  crr=0.0  ps=0(2)  recent=0 0
+  CB BAT: Mitchell Marsh* 0(2), Ayush Badoni 0(0)
+  ⚠ DIVERGENCE: OVERS: ui=2.0 cb=0.2 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | FOW_COUNT: ui=1 vs wickets=0 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:40:34  iter#50]
+  UI: Lucknow Super Giants 6-0 (3.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-0 (1.0)
+  this_over=['Wd+5', '?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=0 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: LSG 0-0 (0.2)  crr=0.0  ps=0(2)  recent=0 0
+  CB BAT: Mitchell Marsh* 0(2), Ayush Badoni 0(0)
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=0 | OVERS: ui=3.0 cb=0.2 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | FOW_COUNT: ui=1 vs wickets=0 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:40:54  iter#51]
+  UI: Lucknow Super Giants 6-0 (3.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-0 (0.3)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=1 innings=0 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: LSG 8-0 (0.4)  crr=12.0  ps=8(4)  recent=0 0 4 4
+  CB BAT: Mitchell Marsh* 8(4), Ayush Badoni 0(0)
+  ⚠ DIVERGENCE: SCORE: ui=6 cb=8 | OVERS: ui=3.0 cb=0.4 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | FOW_COUNT: ui=1 vs wickets=0 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:41:15  iter#52]
+  UI: Lucknow Super Giants 8-0 (4.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-0 (0.3)
+  this_over=['Wd+3', '?', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 8-0 (0.4)  crr=12.0  ps=8(4)  recent=0 0 4 4
+  CB BAT: Mitchell Marsh* 8(4), Ayush Badoni 0(0)
+  ⚠ DIVERGENCE: OVERS: ui=4.0 cb=0.4 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | FOW_COUNT: ui=1 vs wickets=0 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:41:36  iter#53]
+  UI: Lucknow Super Giants 8-0 (4.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-0 (0.3)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=2 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 8-0 (0.4)  crr=12.0  ps=8(4)  recent=0 0 4 4
+  CB BAT: Mitchell Marsh* 8(4), Ayush Badoni 0(0)
+  ⚠ DIVERGENCE: OVERS: ui=4.0 cb=0.4 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | FOW_COUNT: ui=1 vs wickets=0 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:41:58  iter#54]
+  UI: Lucknow Super Giants 9-0 (5.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-9 (0.5)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 9-0 (0.5)  crr=10.8  ps=9(5)  recent=0 0 4 4 1
+  CB BAT: Ayush Badoni* 0(0), Mitchell Marsh 9(5)
+  ⚠ DIVERGENCE: OVERS: ui=5.0 cb=0.5 | FOW_COUNT: ui=1 vs wickets=0 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:42:19  iter#55]
+  UI: Lucknow Super Giants 9-0 (5.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-9 (0.5)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 9-0 (0.5)  crr=10.8  ps=9(5)  recent=0 0 4 4 1
+  CB BAT: Ayush Badoni* 0(0), Mitchell Marsh 9(5)
+  ⚠ DIVERGENCE: OVERS: ui=5.0 cb=0.5 | FOW_COUNT: ui=1 vs wickets=0 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:42:40  iter#56]
+  UI: Lucknow Super Giants 9-0 (5.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-9 (0.5)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 9-0 (0.5)  crr=10.8  ps=9(5)  recent=0 0 4 4 1
+  CB BAT: Ayush Badoni* 0(0), Mitchell Marsh 9(5)
+  ⚠ DIVERGENCE: OVERS: ui=5.0 cb=0.5 | FOW_COUNT: ui=1 vs wickets=0 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:43:01  iter#57]
+  UI: Lucknow Super Giants 9-1 (5.0)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-9 (0.5)
+  this_over=['W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 9-0 (0.5)  crr=10.8  ps=9(5)  recent=0 0 4 4 1
+  CB BAT: Ayush Badoni* 0(0), Mitchell Marsh 9(5)
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=0 | OVERS: ui=5.0 cb=0.5 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:43:24  iter#58]
+  UI: Lucknow Super Giants 9-1 (0.5)  str=Ayush Badoni nstr=Mitchell Marsh  bowl=Jofra Archer 0-9 (0.5)
+  this_over=['W', '?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 9-0 (0.5)  crr=10.8  ps=9(5)  recent=0 0 4 4 1
+  CB BAT: Ayush Badoni* 0(0), Mitchell Marsh 9(5)
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=0 | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:43:47  iter#59]
+  UI: Lucknow Super Giants 9-1 (1.0)  str=Ayush Badoni nstr=None  bowl=Ravindra Jadeja 1-1 (1)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 9-1 (1)  crr=9.0  ps=9(6)  recent=0 0 4 4 1 W
+  CB BAT: Mitchell Marsh* 9(5), Jofra Archer 1(0)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: OVERS: ui=1.0 cb=1 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | BATTERS_MISSING_IN_UI: {'archer', 'marsh'} (ui={'badoni'}, cb={'archer', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade
+
+[21:44:08  iter#60]
+  UI: Lucknow Super Giants 9-1 (1.0)  str=Ayush Badoni nstr=None  bowl=Ravindra Jadeja 1-1 (1)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 9-1 (1)  crr=9.0  ps=0(0)  recent=0 0 4 4 1 W
+  CB BAT: Mitchell Marsh* 9(5), Rishabh Pant 0(0)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: OVERS: ui=1.0 cb=1 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | BATTERS_MISSING_IN_UI: {'marsh', 'pant'} (ui={'badoni'}, cb={'pant', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Jofra Archer
+
+[21:44:30  iter#61]
+  UI: Lucknow Super Giants 9-1 (1.0)  str=Ayush Badoni nstr=None  bowl=Ravindra Jadeja 1-1 (1)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 10-1 (1.1)  crr=8.57  ps=1(1)  recent=1
+  CB BAT: Rishabh Pant* 0(0), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: SCORE: ui=9 cb=10 | OVERS: ui=1.0 cb=1.1 | STRIKER: ui=Ayush Badoni cb=Rishabh Pant | BATTERS_MISSING_IN_UI: {'pant', 'marsh'} (ui={'badoni'}, cb={'marsh', 'pant'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Jofra Archer
+
+[21:44:51  iter#62]
+  UI: Lucknow Super Giants 9-1 (1.0)  str=Ayush Badoni nstr=None  bowl=Ravindra Jadeja 1-1 (1)
+  this_over=['?', '?', '?', '?', '?', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=2 innings=3 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}]
+  CB: LSG 10-1 (1.1)  crr=8.57  ps=1(1)  recent=1
+  CB BAT: Rishabh Pant* 0(0), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: SCORE: ui=9 cb=10 | OVERS: ui=1.0 cb=1.1 | STRIKER: ui=Ayush Badoni cb=Rishabh Pant | BATTERS_MISSING_IN_UI: {'pant', 'marsh'} (ui={'badoni'}, cb={'marsh', 'pant'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Ravindra Jadeja cb=Jofra Archer
+
+[21:45:14  iter#63]
+  UI: Lucknow Super Giants 10-1 (1.0)  str=Ayush Badoni nstr=None  bowl=Nandre Burger 1-1 (1.0)
+  this_over=['Wd']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-1 (1.1)  crr=8.57  ps=1(1)  recent=1
+  CB BAT: Rishabh Pant* 0(0), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: OVERS: ui=1.0 cb=1.1 | STRIKER: ui=Ayush Badoni cb=Rishabh Pant | BATTERS_MISSING_IN_UI: {'pant', 'marsh'} (ui={'badoni'}, cb={'marsh', 'pant'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:45:36  iter#64]
+  UI: Lucknow Super Giants 10-1 (1.1)  str=None nstr=Ayush Badoni  bowl=Nandre Burger 1-1 (1.1)
+  this_over=['Wd', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-1 (1.2)  crr=7.5  ps=1(2)  recent=1 0
+  CB BAT: Rishabh Pant* 0(1), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: OVERS: ui=1.1 cb=1.2 | BATTERS_MISSING_IN_UI: {'pant', 'marsh'} (ui={'badoni'}, cb={'marsh', 'pant'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:45:57  iter#65]
+  UI: Lucknow Super Giants 10-1 (1.2)  str=None nstr=Ayush Badoni  bowl=Nandre Burger 1-1 (1.3)
+  this_over=['Wd', '.', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-1 (1.2)  crr=7.5  ps=1(2)  recent=1 0
+  CB BAT: Rishabh Pant* 0(1), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pant', 'marsh'} (ui={'badoni'}, cb={'marsh', 'pant'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:46:21  iter#66]
+  WS ERR: ''
+  CB: LSG 10-1 (1.3)  crr=6.67  ps=1(3)  recent=1 0 0
+  CB BAT: Rishabh Pant* 0(2), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pant', 'marsh'} (ui=set(), cb={'marsh', 'pant'}) | BOWLER: ui=None cb=Jofra Archer
+
+[21:46:45  iter#67]
+  UI: Lucknow Super Giants 10-1 (1.3)  str=None nstr=Ayush Badoni  bowl=Nandre Burger 1-1 (1.4)
+  this_over=['Wd', '.', '.', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-1 (1.3)  crr=6.67  ps=1(3)  recent=1 0 0
+  CB BAT: Rishabh Pant* 0(2), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pant', 'marsh'} (ui={'badoni'}, cb={'marsh', 'pant'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:47:07  iter#68]
+  UI: Lucknow Super Giants 10-1 (1.3)  str=None nstr=Ayush Badoni  bowl=Nandre Burger 1-1 (1.3)
+  this_over=['Wd', '.', '.', '.']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-1 (1.3)  crr=6.67  ps=1(3)  recent=1 0 0
+  CB BAT: Rishabh Pant* 0(2), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Ayush Badoni  run out (Ravi Singh)  0(1)  - 9/1 in 1.0 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pant', 'marsh'} (ui={'badoni'}, cb={'marsh', 'pant'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:47:29  iter#69]
+  UI: Lucknow Super Giants 10-1 (2.4)  str=Ayush Badoni nstr=None  bowl=Nandre Burger 1-4 (1.4)
+  this_over=['?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-2 (1.4)  crr=6.0  ps=1(4)  recent=1 0 0 W
+  CB BAT: Mitchell Marsh* 10(6), Jofra Archer 1(0)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=2 | OVERS: ui=2.4 cb=1.4 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | BATTERS_MISSING_IN_UI: {'archer', 'marsh'} (ui={'badoni'}, cb={'archer', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:47:53  iter#70]
+  UI: Lucknow Super Giants 10-1 (2.4)  str=Ayush Badoni nstr=None  bowl=Nandre Burger 1-4 (1.4)
+  this_over=['?', '?', '?', 'W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-2 (1.4)  crr=6.0  ps=0(0)  recent=... 0 0 4 4 1 W
+  CB BAT: Aiden Markram* 0(0), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=2 | OVERS: ui=2.4 cb=1.4 | STRIKER: ui=Ayush Badoni cb=Aiden Markram | BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui={'badoni'}, cb={'markram', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:48:13  iter#71]
+  UI: Lucknow Super Giants 10-1 (2.4)  str=Ayush Badoni nstr=None  bowl=Nandre Burger 1-4 (1.4)
+  this_over=['?', '?', '?', 'W']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-2 (1.4)  crr=6.0  ps=0(0)  recent=... 0 0 4 4 1 W
+  CB BAT: Aiden Markram* 0(0), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=2 | OVERS: ui=2.4 cb=1.4 | STRIKER: ui=Ayush Badoni cb=Aiden Markram | BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui={'badoni'}, cb={'markram', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:48:37  iter#72]
+  UI: Lucknow Super Giants 10-1 (1.4)  str=Ayush Badoni nstr=None  bowl=Nandre Burger 1-4 (1.4)
+  this_over=['?', '?', '?', '?']  fow=1 (unk=1)  last_fow={'wicket': 1, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=4 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-2 (1.4)  crr=6.0  ps=0(0)  recent=... 0 0 4 4 1 W
+  CB BAT: Aiden Markram* 0(0), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=1 cb=2 | STRIKER: ui=Ayush Badoni cb=Aiden Markram | BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui={'badoni'}, cb={'markram', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:49:02  iter#73]
+  WS ERR: ''
+  CB: LSG 10-2 (1.5)  crr=5.45  ps=0(1)  recent=1 0 0 W 0
+  CB BAT: Aiden Markram* 0(1), Mitchell Marsh 10(6)
+  CB BOWL: Jofra Archer 0-9 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui=set(), cb={'markram', 'marsh'}) | BOWLER: ui=None cb=Jofra Archer
+
+[21:49:25  iter#74]
+  UI: Lucknow Super Giants 10-2 (1.5)  str=Ayush Badoni nstr=None  bowl=Nandre Burger 2-10 (1.5)
+  this_over=['?', '?', '?', '?', '?']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Prince Yadav', 'score': 10, 'overs': '1.4', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-2 (2)  crr=5.0  ps=0(2)  recent=1 0 0 W 0 0
+  CB BAT: Mitchell Marsh* 10(6), Aiden Markram 0(2)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: OVERS: ui=1.5 cb=2 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui={'badoni'}, cb={'markram', 'marsh'}) | BAT_markram: ui=0(1) cb=0(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1 | BOWL_R: ui=10 cb=1 | BOWL_O: ui=1.5 cb=1
+
+[21:49:47  iter#75]
+  UI: Lucknow Super Giants 10-2 (2.0)  str=Ayush Badoni nstr=None  bowl=Nandre Burger 2-10 (2.0)
+  this_over=['1', '.', '.', '.']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Prince Yadav', 'score': 10, 'overs': '1.4', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 10-2 (2)  crr=5.0  ps=0(2)  recent=1 0 0 W 0 0
+  CB BAT: Mitchell Marsh* 10(6), Aiden Markram 0(2)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: OVERS: ui=2.0 cb=2 | STRIKER: ui=Ayush Badoni cb=Mitchell Marsh | BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui={'badoni'}, cb={'markram', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1 | BOWL_R: ui=10 cb=1 | BOWL_O: ui=2.0 cb=1
+
+[21:50:11  iter#76]
+  WS ERR: ''
+  CB: LSG 10-2 (2)  crr=5.0  ps=0(2)  recent=1 0 0 W 0 0
+  CB BAT: Mitchell Marsh* 10(6), Aiden Markram 0(2)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui=set(), cb={'markram', 'marsh'}) | BOWLER: ui=None cb=Nandre Burger
+
+[21:50:32  iter#77]
+  UI: Lucknow Super Giants 10-2 (2.0)  str=Ayush Badoni nstr=None  bowl=Jofra Archer 0-9 (1.0)
+  this_over=['1', '.', '.', '.']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Prince Yadav', 'score': 10, 'overs': '1.4', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-2 (2.1)  crr=5.08  ps=1(3)  recent=1
+  CB BAT: Aiden Markram* 0(2), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=10 cb=11 | OVERS: ui=2.0 cb=2.1 | STRIKER: ui=Ayush Badoni cb=Aiden Markram | BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui={'badoni'}, cb={'markram', 'marsh'}) | BAT_marsh: ui=10(6) cb=11(7) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:50:53  iter#78]
+  UI: Lucknow Super Giants 10-2 (2.0)  str=Ayush Badoni nstr=None  bowl=Jofra Archer 0-9 (1.0)
+  this_over=['1', '.', '.', '.']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Prince Yadav', 'score': 10, 'overs': '1.4', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=unknown shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-2 (2.1)  crr=5.08  ps=1(3)  recent=1
+  CB BAT: Aiden Markram* 0(2), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: SCORE: ui=10 cb=11 | OVERS: ui=2.0 cb=2.1 | STRIKER: ui=Ayush Badoni cb=Aiden Markram | BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui={'badoni'}, cb={'markram', 'marsh'}) | BAT_marsh: ui=10(6) cb=11(7) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:51:18  iter#79]
+  UI: Lucknow Super Giants 11-2 (2.2)  str=Ayush Badoni nstr=None  bowl=Jofra Archer 0-10 (1.2)
+  this_over=['1', '.']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Prince Yadav', 'score': 10, 'overs': '1.4', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-2 (2.2)  crr=4.71  ps=1(4)  recent=1 0
+  CB BAT: Aiden Markram* 0(3), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ayush Badoni cb=Aiden Markram | BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui={'badoni'}, cb={'markram', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:51:43  iter#80]
+  WS ERR: ''
+  CB: LSG 11-2 (2.2)  crr=4.71  ps=1(4)  recent=1 0
+  CB BAT: Aiden Markram* 0(3), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'markram', 'marsh'} (ui=set(), cb={'markram', 'marsh'}) | BOWLER: ui=None cb=Nandre Burger
+
+[21:52:04  iter#81]
+  UI: Lucknow Super Giants 11-2 (2.3)  str=Aiden Markram nstr=Mitchell Marsh  bowl=Jofra Archer 1-10 (1.4)
+  this_over=['1', '.', '.']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Prince Yadav', 'score': 10, 'overs': '1.4', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-2 (2.3)  crr=4.4  ps=1(5)  recent=1 0 0
+  CB BAT: Aiden Markram* 0(4), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:52:27  iter#82]
+  UI: Lucknow Super Giants 11-2 (2.3)  str=Aiden Markram nstr=Mitchell Marsh  bowl=Jofra Archer 1-10 (1.4)
+  this_over=['1', '.', '.']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Prince Yadav', 'score': 10, 'overs': '1.4', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-2 (2.4)  crr=4.12  ps=1(6)  recent=1 0 0 0
+  CB BAT: Aiden Markram* 0(5), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: OVERS: ui=2.3 cb=2.4 | BAT_markram: ui=0(4) cb=0(5) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:52:48  iter#83]
+  UI: Lucknow Super Giants 11-2 (2.4)  str=Aiden Markram nstr=Mitchell Marsh  bowl=Jofra Archer 1-10 (1.5)
+  this_over=['1', '.', '.', '.']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Prince Yadav', 'score': 10, 'overs': '1.4', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-2 (2.4)  crr=4.12  ps=1(6)  recent=1 0 0 0
+  CB BAT: Aiden Markram* 0(5), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:53:09  iter#84]
+  UI: Lucknow Super Giants 11-2 (2.4)  str=Aiden Markram nstr=Mitchell Marsh  bowl=Jofra Archer 1-10 (1.5)
+  this_over=['1', '.', '.', '.']  fow=2 (unk=1)  last_fow={'wicket': 2, 'batter': 'Prince Yadav', 'score': 10, 'overs': '1.4', 'bowler': None, 'how': 'auto-inferred (striker on wicket)', '_unwitnessed': False}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-2 (2.4)  crr=4.12  ps=1(6)  recent=1 0 0 0
+  CB BAT: Aiden Markram* 0(5), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Rishabh Pant  c Dhruv Jurel b Nandre Burger 0(3)  - 10/2 in 1.4 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:53:32  iter#85]
+  UI: Lucknow Super Giants 11-3 (2.5)  str=None nstr=Mitchell Marsh  bowl=Jofra Archer 1-10 (2.0)
+  this_over=['1', '.', '.', '.', 'W']  fow=3 (unk=2)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-3 (2.5)  crr=3.88  ps=1(7)  recent=1 0 0 0 W
+  CB BAT: Mitchell Marsh* 11(7), Nandre Burger 1(0)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'burger'} (ui={'marsh'}, cb={'burger', 'marsh'}) | FOW_UNKNOWN: 2 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:53:56  iter#86]
+  UI: Lucknow Super Giants 11-3 (2.5)  str=None nstr=Mitchell Marsh  bowl=Jofra Archer 1-10 (2.0)
+  this_over=['1', '.', '.', '.', 'W']  fow=3 (unk=2)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=good_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-3 (2.5)  crr=3.88  ps=1(7)  recent=1 0 0 0 W
+  CB BAT: Mitchell Marsh* 11(7), Nandre Burger 1(0)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'burger'} (ui={'marsh'}, cb={'burger', 'marsh'}) | FOW_UNKNOWN: 2 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:54:17  iter#87]
+  UI: Lucknow Super Giants 11-3 (2.5)  str=None nstr=Mitchell Marsh  bowl=Jofra Archer 1-10 (2.0)
+  this_over=['1', '.', '.', '.', 'W']  fow=3 (unk=2)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-3 (2.5)  crr=3.88  ps=0(0)  recent=... W
+  CB BAT: Nicholas Pooran* 0(0), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 2 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:54:38  iter#88]
+  UI: Lucknow Super Giants 11-3 (2.5)  str=None nstr=Mitchell Marsh  bowl=Jofra Archer 1-10 (2.0)
+  this_over=['1', '.', '.', '.', 'W']  fow=3 (unk=2)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-3 (2.5)  crr=3.88  ps=0(0)  recent=... W
+  CB BAT: Nicholas Pooran* 0(0), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 2 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:55:00  iter#89]
+  UI: Lucknow Super Giants 11-3 (2.5)  str=None nstr=Mitchell Marsh  bowl=Jofra Archer 1-10 (2.0)
+  this_over=['1', '.', '.', '.', 'W']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-3 (2.5)  crr=3.88  ps=0(0)  recent=... W
+  CB BAT: Nicholas Pooran* 0(0), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:55:24  iter#90]
+  UI: Lucknow Super Giants 11-3 (2.5)  str=None nstr=Mitchell Marsh  bowl=Jofra Archer 1-11 (2.5)
+  this_over=['1', '.', '.', '.', 'W']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-3 (2.5)  crr=3.88  ps=0(0)  recent=... W
+  CB BAT: Nicholas Pooran* 0(0), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:55:45  iter#91]
+  UI: Lucknow Super Giants 11-3 (2.5)  str=None nstr=Mitchell Marsh  bowl=Jofra Archer 1-11 (2.5)
+  this_over=['1', '.', '.', '.', 'W']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=3 innings=0 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '2.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 11-3 (2.5)  crr=3.88  ps=0(0)  recent=... W
+  CB BAT: Nicholas Pooran* 0(0), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:56:09  iter#92]
+  WS ERR: ''
+  CB: LSG 12-3 (2.5)  crr=4.24  ps=1(0)  recent=1 0 0 0 W W
+  CB BAT: Nicholas Pooran* 0(0), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran', 'marsh'} (ui=set(), cb={'pooran', 'marsh'}) | BOWLER: ui=None cb=Nandre Burger
+
+[21:56:33  iter#93]
+  UI: Lucknow Super Giants 12-3 (2.5)  str=None nstr=Mitchell Marsh  bowl=Jofra Archer 1-12 (2.5)
+  this_over=['1', '.', '.', '.', 'W', 'Wd']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 12-3 (2.5)  crr=4.24  ps=1(0)  recent=1 0 0 0 W W
+  CB BAT: Nicholas Pooran* 0(0), Mitchell Marsh 11(7)
+  CB BOWL: Nandre Burger 1-1 (1)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Jofra Archer cb=Nandre Burger
+
+[21:56:53  iter#94]
+  UI: Lucknow Super Giants 12-3 (2.5)  str=None nstr=Mitchell Marsh  bowl=Jofra Archer 1-12 (2.5)
+  this_over=['1', '.', '.', '.', 'W', 'Wd']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 16-3 (3)  crr=5.33  ps=5(1)  recent=1 0 0 0 W W
+  CB BAT: Mitchell Marsh* 11(7), Nicholas Pooran 4(1)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=12 cb=16 | OVERS: ui=2.5 cb=3 | BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=12 cb=15 | BOWL_O: ui=2.5 cb=2
+
+[21:57:17  iter#95]
+  WS ERR: ''
+  CB: LSG 16-3 (3)  crr=5.33  ps=5(1)  recent=1 0 0 0 W W
+  CB BAT: Mitchell Marsh* 11(7), Nicholas Pooran 4(1)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran', 'marsh'} (ui=set(), cb={'pooran', 'marsh'}) | BOWLER: ui=None cb=Jofra Archer
+
+[21:57:39  iter#96]
+  UI: Lucknow Super Giants 16-3 (3.0)  str=Mitchell Marsh nstr=None  bowl=Nandre Burger 2-10 (2.0)
+  this_over=['?', '?', '.', '.', 'W', 'Wd', '4']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 16-3 (3.1)  crr=5.05  ps=5(2)  recent=0
+  CB BAT: Mitchell Marsh* 11(8), Nicholas Pooran 4(1)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=3.0 cb=3.1 | BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | BAT_marsh: ui=11(7) cb=11(8) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:58:01  iter#97]
+  UI: Lucknow Super Giants 16-3 (3.1)  str=Mitchell Marsh nstr=None  bowl=Nandre Burger 2-10 (2.0)
+  this_over=['?']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 20-3 (3.2)  crr=6.0  ps=9(3)  recent=0 4
+  CB BAT: Mitchell Marsh* 15(9), Nicholas Pooran 4(1)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=16 cb=20 | OVERS: ui=3.1 cb=3.2 | BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | BAT_marsh: ui=11(8) cb=15(9) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:58:24  iter#98]
+  UI: Lucknow Super Giants 20-3 (3.2)  str=Mitchell Marsh nstr=None  bowl=Nandre Burger 2-14 (2.1)
+  this_over=['?', '4']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=leg_stump shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 20-3 (3.2)  crr=6.0  ps=9(3)  recent=0 4
+  CB BAT: Mitchell Marsh* 15(9), Nicholas Pooran 4(1)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:58:47  iter#99]
+  UI: Lucknow Super Giants 20-3 (3.2)  str=Mitchell Marsh nstr=None  bowl=Nandre Burger 2-14 (2.1)
+  this_over=['?', '4']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 20-3 (3.2)  crr=6.0  ps=9(3)  recent=0 4
+  CB BAT: Mitchell Marsh* 15(9), Nicholas Pooran 4(1)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:59:08  iter#100]
+  UI: Lucknow Super Giants 21-3 (3.3)  str=None nstr=Mitchell Marsh  bowl=Nandre Burger 2-15 (2.2)
+  this_over=['?', '4', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 20-3 (3.2)  crr=6.0  ps=9(3)  recent=0 4
+  CB BAT: Mitchell Marsh* 15(9), Nicholas Pooran 4(1)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=21 cb=20 | OVERS: ui=3.3 cb=3.2 | BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | BAT_marsh: ui=15(10) cb=15(9) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:59:32  iter#101]
+  UI: Lucknow Super Giants 21-3 (3.3)  str=None nstr=Mitchell Marsh  bowl=Nandre Burger 2-15 (2.2)
+  this_over=['?', '4', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 21-3 (3.3)  crr=6.0  ps=10(4)  recent=0 4
+  CB BAT: Nicholas Pooran* 4(1), Mitchell Marsh 15(10)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[21:59:54  iter#102]
+  UI: Lucknow Super Giants 22-3 (3.4)  str=Mitchell Marsh nstr=None  bowl=Nandre Burger 2-16 (2.3)
+  this_over=['?', '4', '1', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 22-3 (3.4)  crr=6.0  ps=11(5)  recent=0 4
+  CB BAT: Mitchell Marsh* 15(10), Nicholas Pooran 5(2)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | BAT_pooran: ui=4(1) cb=5(2) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[22:00:15  iter#103]
+  UI: Lucknow Super Giants 22-3 (3.4)  str=Mitchell Marsh nstr=None  bowl=Nandre Burger 2-16 (2.3)
+  this_over=['?', '4', '1', '1']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=good_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 22-3 (3.4)  crr=6.0  ps=11(5)  recent=0 4
+  CB BAT: Mitchell Marsh* 15(10), Nicholas Pooran 5(2)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[22:00:38  iter#104]
+  UI: Lucknow Super Giants 22-3 (3.5)  str=Mitchell Marsh nstr=None  bowl=Nandre Burger 2-16 (2.4)
+  this_over=['?', '4', '1', '1', '.']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 22-3 (3.5)  crr=5.74  ps=11(6)  recent=...
+  CB BAT: Mitchell Marsh* 15(11), Nicholas Pooran 5(2)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[22:00:59  iter#105]
+  UI: Lucknow Super Giants 22-3 (3.5)  str=Mitchell Marsh nstr=None  bowl=Nandre Burger 2-16 (2.4)
+  this_over=['?', '4', '1', '1', '.']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 22-3 (3.5)  crr=5.74  ps=11(6)  recent=...
+  CB BAT: Mitchell Marsh* 15(11), Nicholas Pooran 5(2)
+  CB BOWL: Jofra Archer 1-15 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Nandre Burger cb=Jofra Archer
+
+[22:01:19  iter#106]
+  UI: Lucknow Super Giants 22-3 (4.0)  str=None nstr=Mitchell Marsh  bowl=Nandre Burger 2-16 (2.5)
+  this_over=['.', '4', '1', '1', '.', '.']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 22-3 (4)  crr=5.5  ps=11(7)  recent=0 4
+  CB BAT: Nicholas Pooran* 5(2), Mitchell Marsh 15(12)
+  CB BOWL: Nandre Burger 1-6 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.0 cb=4 | BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1 | BOWL_R: ui=16 cb=6 | BOWL_O: ui=2.5 cb=2
+
+[22:01:43  iter#107]
+  WS ERR: ''
+  CB: LSG 22-3 (4)  crr=5.5  ps=11(7)  recent=0 4
+  CB BAT: Nicholas Pooran* 5(2), Mitchell Marsh 15(12)
+  CB BOWL: Nandre Burger 1-6 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran', 'marsh'} (ui=set(), cb={'pooran', 'marsh'}) | BOWLER: ui=None cb=Nandre Burger
+
+[22:02:04  iter#108]
+  UI: Lucknow Super Giants 22-3 (4.0)  str=None nstr=Mitchell Marsh  bowl=Nandre Burger 2-16 (2.5)
+  this_over=['.', '4', '1', '1', '.', '.']  fow=3 (unk=1)  last_fow={'wicket': 3, 'batter': 'Aiden Markram', 'score': 11, 'overs': '2.5', 'bowler': 'Jofra Archer', 'how': None, '_unwitnessed': False}
+  delivery: len=short_of_length line=outside_off shot=in_the_air [layer2]
+  extras: this_over=4 innings=0 [w12/nb0/b0/lb0]
+  extras_log: [{'over': '3.0', 'type': 'wide', 'runs': 4, 'this_over_after': []}, {'over': '1.0', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '2.5', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: LSG 22-3 (4)  crr=5.5  ps=11(7)  recent=0 4
+  CB BAT: Nicholas Pooran* 5(2), Mitchell Marsh 15(12)
+  CB BOWL: Nandre Burger 1-6 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=4.0 cb=4 | BATTERS_MISSING_IN_UI: {'pooran'} (ui={'marsh'}, cb={'pooran', 'marsh'}) | FOW_UNKNOWN: 1 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=1 | BOWL_R: ui=16 cb=6 | BOWL_O: ui=2.5 cb=2
+
+[22:02:28  iter#109]
+  WS ERR: ''
+  CB: LSG 22-3 (4.1)  crr=5.28  ps=11(8)  recent=0
+  CB BAT: Nicholas Pooran* 5(3), Mitchell Marsh 15(12)
+  CB BOWL: Nandre Burger 1-6 (2)
+  LAST WKT: Aiden Markram  c Dhruv Jurel b Jofra Archer 0(6)  - 11/3 in 2.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'pooran', 'marsh'} (ui=set(), cb={'pooran', 'marsh'}) | BOWLER: ui=None cb=Nandre Burger

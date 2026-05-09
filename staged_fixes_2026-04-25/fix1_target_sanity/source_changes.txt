@@ -1,0 +1,94 @@
+=== test_pipeline.py — _should_latch_innings_1_candidate helper (new, ~L870) ===
+def _balls_to_overs_str(balls: int) -> str:
+    """Inverse of overs_to_balls. 6 -> '1.0', 11 -> '1.5', 13 -> '2.1'."""
+    return f"{balls // 6}.{balls % 6}"
+
+
+# Maximum overs / score for a single T20 innings, used as sanity
+# bounds for the innings-1 final-state latch.  T20 caps at 20 overs;
+# a 350-run innings would shatter the IPL record by ~85 (max in IPL
+# history is 287/3 by SRH on 2024-03-27).  Anything above these
+# thresholds is an extractor hallucination (e.g. F921 on 2026-04-25
+# read 639-4 (76.5) from a partly-tornoff broadcast graphic).
+# Without these bounds the latch's max-wins logic locks out
+# subsequent legitimate finals — see backlog "P0: Innings-1-final
+# latch poisoned".
+_INNINGS_TOTAL_MAX_OVERS = 20.0
+_INNINGS_TOTAL_MAX_SCORE = 350
+
+
+def _should_latch_innings_1_candidate(
+        cand_score: int, cand_wkts: int, cand_overs_raw,
+        existing_score: int, existing_wkts: int) -> tuple[bool, str | None]:
+    """Decide whether a candidate innings-1 final should overwrite
+    the latched value via max-wins logic, gated by T20 sanity bounds.
+
+    Returns (should_latch, reject_reason).  When `should_latch` is
+    False, `reject_reason` is "sanity_bound" if the candidate is
+    impossibly high (extractor hallucination) or "max_wins_lost" if
+    the candidate is legitimate but doesn't beat the existing latch.
+    """
+    try:
+        cand_overs_f = float(cand_overs_raw)
+    except (TypeError, ValueError):
+        cand_overs_f = -1.0
+    if (cand_overs_f > _INNINGS_TOTAL_MAX_OVERS
+            or cand_score > _INNINGS_TOTAL_MAX_SCORE):
+        return False, "sanity_bound"
+    if (cand_score > existing_score
+            or (cand_score == existing_score
+                and cand_wkts > existing_wkts)):
+        return True, None
+    return False, "max_wins_lost"
+
+
+def _reconcile_bowler_overs(
+        bowling_card: list[dict],
+        team_overs: str | float | None,
+        current_bowler: str | None) -> list[dict]:
+    """Cross-field consistency for bowler overs vs. team overs.
+
+    Cricket invariant: a bowler bowls a complete over (no mid-over
+
+=== test_pipeline.py — callsite update (~L5430) ===
+                        except (ValueError, TypeError):
+                            _existing_score_i = 0
+                        try:
+                            _existing_wkts_i = int(
+                                (innings_1_total or {}).get("wickets") or 0)
+                        except (ValueError, TypeError):
+                            _existing_wkts_i = 0
+                        # Higher score is always more authoritative; if
+                        # tied, take the higher wicket count (more balls
+                        # accounted for).  T20 sanity bounds gate the
+                        # max-wins predicate so an upward extractor
+                        # hallucination (e.g. 639-4 (76.5)) cannot lock
+                        # out subsequent legitimate finals.
+                        _should_latch, _latch_reject = (
+                            _should_latch_innings_1_candidate(
+                                _cand_score_i, _cand_wkts_i,
+                                _ext_overs_raw,
+                                _existing_score_i, _existing_wkts_i))
+                        if _should_latch:
+                            innings_1_total = {
+                                "score": _cand_score_i,
+                                "wickets": _cand_wkts_i,
+                                "overs": _ext_overs_raw,
+                            }
+                            log.info(
+                                f"  [INNINGS-END] Latched innings 1 "
+                                f"final candidate: "
+                                f"{_cand_score_i}-{_cand_wkts_i} "
+                                f"({_ext_overs_raw}).")
+                        elif _latch_reject == "sanity_bound":
+                            log.info(
+                                f"  [INNINGS-END] Rejecting bogus "
+                                f"latch candidate "
+                                f"{_cand_score_i}-{_cand_wkts_i} "
+                                f"({_ext_overs_raw}) — exceeds T20 "
+                                f"sanity bounds (>20 overs or >350 "
+                                f"runs).")
+                        # Archive and clear this-over for innings end
+                        if over_mgr.this_over:
+                            over_mgr.check_over_change(
+                                _ext_overs_raw,

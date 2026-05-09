@@ -1,0 +1,15 @@
+
+> scorecard-ui@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.2 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.101:3000
+- Environments: .env.local
+✓ Ready in 368ms
+
+ GET / 200 in 203ms (next.js: 108ms, application-code: 95ms)
+ GET / 200 in 40ms (next.js: 1974µs, application-code: 38ms)
+ GET / 200 in 33ms (next.js: 6ms, application-code: 26ms)
+ GET / 200 in 180ms (next.js: 19ms, application-code: 160ms)
+[?25h

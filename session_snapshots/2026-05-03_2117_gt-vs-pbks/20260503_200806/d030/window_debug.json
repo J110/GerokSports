@@ -1,0 +1,31 @@
+{
+  "delivery_num": 30,
+  "window_id": 30,
+  "event_ts": 1777820646.422987,
+  "over_number": 12.2,
+  "innings": 1,
+  "event_type": "SIX",
+  "runs": 6,
+  "window_source": "fallback_pre_event_window",
+  "window_reason": "no_bowlers_end_span",
+  "clip_start_ts": 1777820636.422987,
+  "clip_end_ts": 1777820648.922987,
+  "frame_count": 564,
+  "legacy_window": {
+    "source": "fallback_pre_event_window",
+    "span_start": null,
+    "span_end": null,
+    "clip_start": 1777820636.423,
+    "clip_end": 1777820648.923
+  },
+  "open_scout_window": null,
+  "open_scout_verdict": "no_match",
+  "use_open_scout_spans": true,
+  "tags": [
+    {
+      "ts": 1777820642.8684428,
+      "camera_view": "bowlers_end",
+      "frame_phase": "between_play"
+    }
+  ]
+}

@@ -1,0 +1,534 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151807/rcb-vs-dc-26th-match-indian-premier-league-2026
+
+[16:48:42  iter#1]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.89  ps=14(12)  recent=1 1 0 W
+  CB BAT: Tim David* 25(14), Jitesh Sharma 3(7)
+  CB BOWL: Axar Patel 1-16 (2)
+  LAST WKT: Rajat Patidar  c Rahul b Mukesh Kumar 8(4)  - 131/4 in 12.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'david'} (ui=set(), cb={'sharma', 'david'}) | BOWLER: ui=None cb=Axar Patel
+
+[16:49:03  iter#2]
+  UI: Royal Challengers Bengaluru 145-4 (14.4)  str=Tim David nstr=Jitesh Sharma  bowl=Mukesh Kumar 1-31 (3.4)
+  this_over=['?', '?', '?', '1']  fow=4  last_fow={'wicket': 4, 'batter': 'Rajat Patidar', 'score': 131, 'overs': '12.4'}
+  CB: None None-None (None)  crr=9.89  ps=14(12)  recent=1 1 0 W
+  CB BAT: Tim David* 25(14), Jitesh Sharma 3(7)
+  CB BOWL: Axar Patel 1-16 (2)
+  LAST WKT: Rajat Patidar  c Rahul b Mukesh Kumar 8(4)  - 131/4 in 12.4 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Mukesh Kumar cb=Axar Patel
+
+[16:49:25  iter#3]
+  UI: Royal Challengers Bengaluru 145-4 (14.4)  str=Tim David nstr=Jitesh Sharma  bowl=Mukesh Kumar 1-31 (3.4)
+  this_over=['?', '?', '?', '1']  fow=4  last_fow={'wicket': 4, 'batter': 'Rajat Patidar', 'score': 131, 'overs': '12.4'}
+  CB: None None-None (None)  crr=9.84  ps=15(13)  recent=1 1 0 W
+  CB BAT: Jitesh Sharma* 3(7), Tim David 26(15)
+  CB BOWL: Axar Patel 1-16 (2)
+  LAST WKT: Rajat Patidar  c Rahul b Mukesh Kumar 8(4)  - 131/4 in 12.4 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BAT_david: ui=25(14) cb=26(15) | BOWLER: ui=Mukesh Kumar cb=Axar Patel
+
+[16:49:49  iter#4]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.84  ps=15(13)  recent=1 1 0 W
+  CB BAT: Jitesh Sharma* 3(7), Tim David 26(15)
+  CB BOWL: Axar Patel 1-16 (2)
+  LAST WKT: Rajat Patidar  c Rahul b Mukesh Kumar 8(4)  - 131/4 in 12.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'david'} (ui=set(), cb={'sharma', 'david'}) | BOWLER: ui=None cb=Axar Patel
+
+[16:50:12  iter#5]
+  UI: Royal Challengers Bengaluru 146-4 (14.5)  str=Tim David nstr=Jitesh Sharma  bowl=Mukesh Kumar 1-32 (3.5)
+  this_over=['Wd', '1', 'Nb', '1', '1', '1', '.']  fow=4  last_fow={'wicket': 4, 'batter': 'Rajat Patidar', 'score': 131, 'overs': '12.4'}
+  CB: None None-None (None)  crr=9.73  ps=15(14)  recent=... 1 1 0 W
+  CB BAT: Tim David* 26(15), Jitesh Sharma 3(8)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Rajat Patidar  c Rahul b Mukesh Kumar 8(4)  - 131/4 in 12.4 ov.
+  ⚠ DIVERGENCE: BAT_sharma: ui=3(7) cb=3(8) | BOWL_O: ui=3.5 cb=4
+
+[16:50:36  iter#6]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.73  ps=15(14)  recent=... 1 1 0 W
+  CB BAT: Tim David* 26(15), Jitesh Sharma 3(8)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Rajat Patidar  c Rahul b Mukesh Kumar 8(4)  - 131/4 in 12.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'david'} (ui=set(), cb={'sharma', 'david'}) | BOWLER: ui=None cb=Mukesh Kumar
+
+[16:51:00  iter#7]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.73  ps=15(14)  recent=... 1 1 0 W
+  CB BAT: Tim David* 26(15), Jitesh Sharma 3(8)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Rajat Patidar  c Rahul b Mukesh Kumar 8(4)  - 131/4 in 12.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'david'} (ui=set(), cb={'sharma', 'david'}) | BOWLER: ui=None cb=Mukesh Kumar
+
+[16:51:24  iter#8]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.73  ps=15(14)  recent=... 1 1 0 W
+  CB BAT: Tim David* 26(15), Jitesh Sharma 3(8)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Rajat Patidar  c Rahul b Mukesh Kumar 8(4)  - 131/4 in 12.4 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'david'} (ui=set(), cb={'sharma', 'david'}) | BOWLER: ui=None cb=Mukesh Kumar
+
+[16:51:44  iter#9]
+  UI: Royal Challengers Bengaluru 146-4 (15.1)  str=Tim David nstr=Jitesh Sharma  bowl=Axar Patel 1-15 (2)
+  this_over=['.']  fow=4  last_fow={'wicket': 4, 'batter': 'Rajat Patidar', 'score': 131, 'overs': '12.4'}
+  CB: None None-None (None)  crr=9.52  ps=15(16)  recent=0 W
+  CB BAT: Jitesh Sharma* 3(8), Mukesh Kumar 4(0)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'kumar'} (ui={'sharma', 'david'}, cb={'sharma', 'kumar'}) | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:52:05  iter#10]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Tim David nstr=Jitesh Sharma  bowl=Axar Patel 1-16 (2)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  CB: None None-None (None)  crr=9.52  ps=15(16)  recent=0 W
+  CB BAT: Jitesh Sharma* 3(8), Mukesh Kumar 4(0)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'kumar'} (ui={'sharma', 'david'}, cb={'sharma', 'kumar'}) | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:52:26  iter#11]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Tim David nstr=Jitesh Sharma  bowl=Axar Patel 2-16 (2.2)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.52  ps=15(16)  recent=0 W
+  CB BAT: Jitesh Sharma* 3(8), Mukesh Kumar 4(0)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'kumar'} (ui={'sharma', 'david'}, cb={'sharma', 'kumar'}) | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:52:47  iter#12]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Tim David nstr=Jitesh Sharma  bowl=Axar Patel 2-16 (2.2)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.52  ps=15(16)  recent=0 W
+  CB BAT: Jitesh Sharma* 3(8), Mukesh Kumar 4(0)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'kumar'} (ui={'sharma', 'david'}, cb={'sharma', 'kumar'}) | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:53:08  iter#13]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Tim David nstr=Jitesh Sharma  bowl=Axar Patel 2-16 (2.2)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.52  ps=15(16)  recent=0 W
+  CB BAT: Jitesh Sharma* 3(8), Mukesh Kumar 4(0)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'kumar'} (ui={'sharma', 'david'}, cb={'sharma', 'kumar'}) | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:53:28  iter#14]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Tim David nstr=Jitesh Sharma  bowl=Axar Patel 2-16 (2.2)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.52  ps=15(16)  recent=0 W
+  CB BAT: Jitesh Sharma* 3(8), Mukesh Kumar 4(0)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'kumar'} (ui={'sharma', 'david'}, cb={'sharma', 'kumar'}) | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:53:48  iter#15]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Tim David nstr=Jitesh Sharma  bowl=Axar Patel 2-16 (2.2)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.52  ps=15(16)  recent=... 1 1
+  CB BAT: Jitesh Sharma* 3(8), Mukesh Kumar 4(0)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'kumar'} (ui={'sharma', 'david'}, cb={'sharma', 'kumar'}) | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:54:08  iter#16]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Tim David nstr=Jitesh Sharma  bowl=Axar Patel 2-16 (2.2)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.52  ps=15(16)  recent=... 1 1
+  CB BAT: Jitesh Sharma* 3(8), Mukesh Kumar 4(0)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'kumar'} (ui={'sharma', 'david'}, cb={'sharma', 'kumar'}) | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:54:30  iter#17]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Tim David nstr=Jitesh Sharma  bowl=Axar Patel 3-16 (3)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.52  ps=15(16)  recent=... 1 1
+  CB BAT: Jitesh Sharma* 3(8), Mukesh Kumar 4(0)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Tim David cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'kumar'} (ui={'sharma', 'david'}, cb={'sharma', 'kumar'}) | BAT_sharma: ui=None(None) cb=3(8) | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:54:52  iter#18]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Jitesh Sharma nstr=Romario Shepherd  bowl=Axar Patel 3-16 (3)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.52  ps=0(0)  recent=... 1 1
+  CB BAT: Romario Shepherd* 0(0), Jitesh Sharma 3(8)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Jitesh Sharma cb=Romario Shepherd | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:55:14  iter#19]
+  UI: Royal Challengers Bengaluru 146-5 (15.2)  str=Jitesh Sharma nstr=Romario Shepherd  bowl=Axar Patel 2-16 (2.2)
+  this_over=['.', 'W']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.52  ps=0(0)  recent=... 1 1
+  CB BAT: Romario Shepherd* 0(0), Jitesh Sharma 3(8)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Jitesh Sharma cb=Romario Shepherd | BOWLER: ui=Axar Patel cb=Mukesh Kumar
+
+[16:55:38  iter#20]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.42  ps=0(1)  recent=0 W 0
+  CB BAT: Romario Shepherd* 0(1), Jitesh Sharma 3(8)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'shepherd', 'sharma'} (ui=set(), cb={'shepherd', 'sharma'}) | BOWLER: ui=None cb=Mukesh Kumar
+
+[16:56:02  iter#21]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.38  ps=1(2)  recent=0 W 0 1
+  CB BAT: Jitesh Sharma* 3(8), Romario Shepherd 1(2)
+  CB BOWL: Mukesh Kumar 1-32 (4)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'shepherd', 'sharma'} (ui=set(), cb={'shepherd', 'sharma'}) | BOWLER: ui=None cb=Mukesh Kumar
+
+[16:56:30  iter#22]
+  UI: Royal Challengers Bengaluru 148-5 (15.5)  str=Jitesh Sharma nstr=Romario Shepherd  bowl=Axar Patel 2-17 (2.4)
+  this_over=['.', 'W', '.', '1', '.']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.25  ps=2(4)  recent=0 W 0 1 1 0
+  CB BAT: Jitesh Sharma* 4(9), Romario Shepherd 1(3)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BAT_sharma: ui=3(8) cb=4(9) | BAT_shepherd: ui=1(2) cb=1(3) | BOWL_R: ui=17 cb=18 | BOWL_O: ui=2.4 cb=3
+
+[16:56:52  iter#23]
+  UI: Royal Challengers Bengaluru 148-5 (15.5)  str=Jitesh Sharma nstr=Romario Shepherd  bowl=Axar Patel 2-17 (2.4)
+  this_over=['.', 'W', '.', '1', '.']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.25  ps=2(4)  recent=0 W 0 1 1 0
+  CB BAT: Jitesh Sharma* 4(9), Romario Shepherd 1(3)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BAT_sharma: ui=3(8) cb=4(9) | BAT_shepherd: ui=0(2) cb=1(3) | BOWL_R: ui=17 cb=18 | BOWL_O: ui=2.4 cb=3
+
+[16:57:13  iter#24]
+  UI: Royal Challengers Bengaluru 148-5 (16.0)  str=Romario Shepherd nstr=Jitesh Sharma  bowl=Kuldeep Yadav 1-27 (3)
+  this_over=['.', 'W', '.', '1', '.', '.', '1']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.15  ps=2(5)  recent=0
+  CB BAT: Jitesh Sharma* 4(10), Romario Shepherd 1(3)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Romario Shepherd cb=Jitesh Sharma | BAT_sharma: ui=4(9) cb=4(10) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:57:36  iter#25]
+  UI: Royal Challengers Bengaluru 148-5 (16.1)  str=Jitesh Sharma nstr=Romario Shepherd  bowl=Kuldeep Yadav 1-27 (3.1)
+  this_over=['.']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.15  ps=2(5)  recent=0
+  CB BAT: Jitesh Sharma* 4(10), Romario Shepherd 1(3)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:58:02  iter#26]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.12  ps=3(6)  recent=0 1
+  CB BAT: Romario Shepherd* 1(3), Jitesh Sharma 5(11)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'shepherd', 'sharma'} (ui=set(), cb={'shepherd', 'sharma'}) | BOWLER: ui=None cb=Axar Patel
+
+[16:58:23  iter#27]
+  UI: Royal Challengers Bengaluru 149-5 (16.2)  str=Romario Shepherd nstr=Jitesh Sharma  bowl=Kuldeep Yadav 1-28 (3.2)
+  this_over=['.', '1']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.12  ps=3(6)  recent=...
+  CB BAT: Romario Shepherd* 1(3), Jitesh Sharma 5(11)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:58:43  iter#28]
+  UI: Royal Challengers Bengaluru 149-5 (16.2)  str=Romario Shepherd nstr=Jitesh Sharma  bowl=Kuldeep Yadav 1-28 (3.2)
+  this_over=['.', '1']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.12  ps=3(6)  recent=...
+  CB BAT: Romario Shepherd* 1(3), Jitesh Sharma 5(11)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:59:03  iter#29]
+  UI: Royal Challengers Bengaluru 149-5 (16.2)  str=Romario Shepherd nstr=Jitesh Sharma  bowl=Kuldeep Yadav 1-28 (3.2)
+  this_over=['.', '1']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.12  ps=3(6)  recent=...
+  CB BAT: Romario Shepherd* 1(3), Jitesh Sharma 5(11)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:59:24  iter#30]
+  UI: Royal Challengers Bengaluru 149-5 (16.2)  str=Romario Shepherd nstr=Jitesh Sharma  bowl=Kuldeep Yadav 1-28 (3.2)
+  this_over=['.', '1']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.12  ps=3(6)  recent=...
+  CB BAT: Romario Shepherd* 1(3), Jitesh Sharma 5(11)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[16:59:46  iter#31]
+  UI: Royal Challengers Bengaluru 149-5 (16.2)  str=Romario Shepherd nstr=Jitesh Sharma  bowl=Kuldeep Yadav 1-28 (3.2)
+  this_over=['.', '1']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.12  ps=3(6)  recent=...
+  CB BAT: Romario Shepherd* 1(3), Jitesh Sharma 5(11)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Tim David  c Natarajan b Axar Patel 26(17)  - 146/5 in 15.2 ov.
+  ⚠ DIVERGENCE: BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[17:00:06  iter#32]
+  UI: Royal Challengers Bengaluru 149-5 (16.2)  str=Romario Shepherd nstr=Jitesh Sharma  bowl=Kuldeep Yadav 1-28 (3.2)
+  this_over=['.', '1']  fow=5  last_fow={'wicket': 5, 'batter': 'Tim David', 'score': 146, 'overs': '15.2'}
+  CB: None None-None (None)  crr=9.03  ps=3(7)  recent=0 1 W
+  CB BAT: Jitesh Sharma* 5(11), Axar Patel 3(0)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Romario Shepherd cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'patel'} (ui={'shepherd', 'sharma'}, cb={'patel', 'sharma'}) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[17:00:30  iter#33]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.03  ps=0(0)  recent=... 1 1 0
+  CB BAT: Krunal Pandya* 0(0), Jitesh Sharma 5(11)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Axar Patel
+
+[17:00:50  iter#34]
+  UI: Royal Challengers Bengaluru 149-6 (16.3)  str=Romario Shepherd nstr=Jitesh Sharma  bowl=Kuldeep Yadav 1-28 (3.2)
+  this_over=['.', '1', 'W']  fow=6  last_fow={'wicket': 6, 'batter': 'unknown', 'score': '?', 'overs': '?'}
+  CB: None None-None (None)  crr=9.03  ps=0(0)  recent=... 1 1 0
+  CB BAT: Krunal Pandya* 0(0), Jitesh Sharma 5(11)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Romario Shepherd cb=Krunal Pandya | BATTERS_MISSING_IN_UI: {'pandya'} (ui={'shepherd', 'sharma'}, cb={'sharma', 'pandya'}) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[17:01:11  iter#35]
+  UI: Royal Challengers Bengaluru 149-6 (16.3)  str=Jitesh Sharma nstr=Jitesh Sharma  bowl=Kuldeep Yadav 2-28 (3.3)
+  this_over=['.', '1', 'W']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.03  ps=0(0)  recent=... 1 1 0
+  CB BAT: Krunal Pandya* 0(0), Jitesh Sharma 5(11)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Jitesh Sharma cb=Krunal Pandya | BATTERS_MISSING_IN_UI: {'pandya'} (ui={'sharma'}, cb={'sharma', 'pandya'}) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[17:01:33  iter#36]
+  UI: Royal Challengers Bengaluru 149-6 (16.3)  str=Jitesh Sharma nstr=Jitesh Sharma  bowl=Kuldeep Yadav 2-28 (3.3)
+  this_over=['.', '1', 'W']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=8.97  ps=2(2)  recent=0 1 W 1 1
+  CB BAT: Krunal Pandya* 1(1), Jitesh Sharma 6(12)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Jitesh Sharma cb=Krunal Pandya | BATTERS_MISSING_IN_UI: {'pandya'} (ui={'sharma'}, cb={'sharma', 'pandya'}) | BAT_pandya: ui=0(0) cb=1(1) | BAT_sharma: ui=5(11) cb=6(12) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[17:01:57  iter#37]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=8.97  ps=2(2)  recent=0 1 W 1 1
+  CB BAT: Krunal Pandya* 1(1), Jitesh Sharma 6(12)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Axar Patel
+
+[17:02:19  iter#38]
+  UI: Royal Challengers Bengaluru 152-6 (16.5)  str=Krunal Pandya nstr=Jitesh Sharma  bowl=Kuldeep Yadav 2-28 (3.3)
+  this_over=['.', '1', 'W', '1', '1']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.03  ps=3(2)  recent=0 1 W 1 1 W
+  CB BAT: Krunal Pandya* 1(1), Jitesh Sharma 6(12)
+  CB BOWL: Axar Patel 2-18 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=1(6) cb=1(1) | BOWLER: ui=Kuldeep Yadav cb=Axar Patel
+
+[17:02:43  iter#39]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.0  ps=4(3)  recent=0 1 W 1 1 W
+  CB BAT: Krunal Pandya* 2(2), Jitesh Sharma 6(12)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[17:03:07  iter#40]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.0  ps=4(3)  recent=0 1 W 1 1 W
+  CB BAT: Krunal Pandya* 2(2), Jitesh Sharma 6(12)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[17:03:30  iter#41]
+  UI: Royal Challengers Bengaluru 153-6 (17.0)  str=Krunal Pandya nstr=Jitesh Sharma  bowl=Kuldeep Yadav 2-28 (4.0)
+  this_over=[]  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.0  ps=4(3)  recent=0 1 W 1 1 W
+  CB BAT: Krunal Pandya* 2(2), Jitesh Sharma 6(12)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=2(6) cb=2(2) | BOWL_R: ui=28 cb=32 | BOWL_O: ui=4.0 cb=4
+
+[17:04:04  iter#42]
+  WS ERR: ''
+  CB: None None-None (None)  crr=8.97  ps=5(4)  recent=1
+  CB BAT: Jitesh Sharma* 6(12), Krunal Pandya 3(3)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[17:04:26  iter#43]
+  UI: Royal Challengers Bengaluru 154-6 (17.1)  str=Jitesh Sharma nstr=Krunal Pandya  bowl=Lungi Ngidi 1-20 (2.1)
+  this_over=['1']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.12  ps=9(5)  recent=1 4
+  CB BAT: Jitesh Sharma* 10(13), Krunal Pandya 3(3)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_sharma: ui=6(12) cb=10(13) | BAT_pandya: ui=3(6) cb=3(3) | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[17:04:54  iter#44]
+  UI: Royal Challengers Bengaluru 158-6 (17.2)  str=Jitesh Sharma nstr=Krunal Pandya  bowl=Lungi Ngidi 1-20 (2.2)
+  this_over=['1', '4']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.12  ps=9(5)  recent=1 4
+  CB BAT: Jitesh Sharma* 10(13), Krunal Pandya 3(3)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=3(6) cb=3(3) | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[17:05:16  iter#45]
+  UI: Royal Challengers Bengaluru 158-6 (17.2)  str=Jitesh Sharma nstr=Krunal Pandya  bowl=Lungi Ngidi 1-24 (2.2)
+  this_over=['1', '4']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.12  ps=9(5)  recent=1 4
+  CB BAT: Jitesh Sharma* 10(13), Krunal Pandya 3(3)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=3(6) cb=3(3) | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[17:05:36  iter#46]
+  UI: Royal Challengers Bengaluru 158-6 (17.2)  str=Jitesh Sharma nstr=Krunal Pandya  bowl=Lungi Ngidi 1-24 (2.2)
+  this_over=['1', '4']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.12  ps=9(5)  recent=1 4
+  CB BAT: Jitesh Sharma* 10(13), Krunal Pandya 3(3)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=3(6) cb=3(3) | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[17:05:57  iter#47]
+  UI: Royal Challengers Bengaluru 158-6 (17.2)  str=Jitesh Sharma nstr=Krunal Pandya  bowl=Lungi Ngidi 1-24 (2.2)
+  this_over=['1', '4']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.12  ps=9(5)  recent=1 4
+  CB BAT: Jitesh Sharma* 10(13), Krunal Pandya 3(3)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=3(6) cb=3(3) | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[17:06:21  iter#48]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.09  ps=10(6)  recent=1 4 1
+  CB BAT: Krunal Pandya* 3(3), Jitesh Sharma 11(14)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[17:06:43  iter#49]
+  UI: Royal Challengers Bengaluru 159-6 (17.3)  str=Krunal Pandya nstr=Jitesh Sharma  bowl=Lungi Ngidi 1-25 (2.3)
+  this_over=['1', '4', '1']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.06  ps=11(7)  recent=1 4 1 1
+  CB BAT: Jitesh Sharma* 11(14), Krunal Pandya 4(4)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Krunal Pandya cb=Jitesh Sharma | BAT_pandya: ui=3(6) cb=4(4) | BOWLER: ui=Lungi Ngidi cb=Kuldeep Yadav
+
+[17:07:07  iter#50]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.06  ps=11(7)  recent=1 4 1 1
+  CB BAT: Jitesh Sharma* 11(14), Krunal Pandya 4(4)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[17:07:41  iter#51]
+  WS ERR: ''
+  CB: None None-None (None)  crr=9.03  ps=12(8)  recent=1 4 1 1 1
+  CB BAT: Krunal Pandya* 4(4), Jitesh Sharma 12(15)
+  CB BOWL: Kuldeep Yadav 2-32 (4)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Kuldeep Yadav
+
+[17:08:03  iter#52]
+  UI: Royal Challengers Bengaluru 161-6 (17.5)  str=Krunal Pandya nstr=Jitesh Sharma  bowl=Lungi Ngidi 1-27 (2.5)
+  this_over=['1', '4', '1', '1', '1']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.28  ps=18(9)  recent=1 4 1 1 1 6
+  CB BAT: Jitesh Sharma* 12(15), Krunal Pandya 10(5)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Krunal Pandya cb=Jitesh Sharma | BAT_pandya: ui=4(14) cb=10(5) | BOWL_R: ui=27 cb=33 | BOWL_O: ui=2.5 cb=3
+
+[17:08:24  iter#53]
+  UI: Royal Challengers Bengaluru 167-6 (17.5)  str=Krunal Pandya nstr=Jitesh Sharma  bowl=Lungi Ngidi 1-27 (2.5)
+  this_over=['1', '4', '1', '1', '1']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.28  ps=18(9)  recent=1 4 1 1 1 6
+  CB BAT: Jitesh Sharma* 12(15), Krunal Pandya 10(5)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Krunal Pandya cb=Jitesh Sharma | BAT_sharma: ui=None(None) cb=12(15) | BAT_pandya: ui=None(None) cb=10(5) | BOWL_R: ui=27 cb=33 | BOWL_O: ui=2.5 cb=3
+
+[17:08:47  iter#54]
+  UI: RCB 167-6 (17.5)  str=TIM DAVID nstr=None  bowl=None None-None (None)
+  this_over=['1', '4', '1', '1', '1', '6']  fow=0  last_fow=None
+  CB: None None-None (None)  crr=9.28  ps=18(9)  recent=1 4 1 1 1 6
+  CB BAT: Jitesh Sharma* 12(15), Krunal Pandya 10(5)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=TIM DAVID cb=Jitesh Sharma | BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui={'david'}, cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Lungi Ngidi
+
+[17:09:11  iter#55]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.28  ps=18(9)  recent=...
+  CB BAT: Jitesh Sharma* 12(15), Krunal Pandya 10(5)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Lungi Ngidi
+
+[17:09:34  iter#56]
+  UI: Royal Challengers Bengaluru 167-6 (18.0)  str=Jitesh Sharma nstr=Krunal Pandya  bowl=T Natarajan 0-13 (1.0)
+  this_over=[]  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.25  ps=19(10)  recent=1
+  CB BAT: Krunal Pandya* 10(5), Jitesh Sharma 13(16)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Jitesh Sharma cb=Krunal Pandya | BAT_pandya: ui=10(14) cb=10(5) | BAT_sharma: ui=12(15) cb=13(16) | BOWLER: ui=T Natarajan cb=Lungi Ngidi
+
+[17:09:56  iter#57]
+  UI: Royal Challengers Bengaluru 168-6 (18.1)  str=Krunal Pandya nstr=Jitesh Sharma  bowl=T Natarajan 0-13 (1)
+  this_over=['1']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.25  ps=19(10)  recent=1
+  CB BAT: Krunal Pandya* 10(5), Jitesh Sharma 13(16)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=10(14) cb=10(5) | BOWLER: ui=T Natarajan cb=Lungi Ngidi
+
+[17:10:20  iter#58]
+  WS ERR: 'timed out during opening handshake'
+  CB: None None-None (None)  crr=9.16  ps=19(11)  recent=1 0
+  CB BAT: Krunal Pandya* 10(6), Jitesh Sharma 13(16)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'sharma', 'pandya'} (ui=set(), cb={'sharma', 'pandya'}) | BOWLER: ui=None cb=Lungi Ngidi
+
+[17:10:41  iter#59]
+  UI: Royal Challengers Bengaluru 168-6 (18.2)  str=Krunal Pandya nstr=Jitesh Sharma  bowl=T Natarajan 0-15 (1.2)
+  this_over=['1', '.']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.08  ps=19(12)  recent=1 0 0
+  CB BAT: Krunal Pandya* 10(7), Jitesh Sharma 13(16)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=10(14) cb=10(7) | BOWLER: ui=T Natarajan cb=Lungi Ngidi
+
+[17:11:02  iter#60]
+  UI: Royal Challengers Bengaluru 168-6 (18.3)  str=Krunal Pandya nstr=Jitesh Sharma  bowl=T Natarajan 0-15 (1.3)
+  this_over=['1', '.', '.']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.08  ps=19(12)  recent=1 0 0
+  CB BAT: Krunal Pandya* 10(7), Jitesh Sharma 13(16)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=10(14) cb=10(7) | BOWLER: ui=T Natarajan cb=Lungi Ngidi
+
+[17:11:22  iter#61]
+  UI: Royal Challengers Bengaluru 168-6 (18.3)  str=Krunal Pandya nstr=Jitesh Sharma  bowl=T Natarajan 0-15 (1.3)
+  this_over=['1', '.', '.']  fow=6  last_fow={'wicket': 6, 'batter': 'Romario Shepherd', 'score': 149, 'overs': '16.3'}
+  CB: None None-None (None)  crr=9.0  ps=19(13)  recent=1 0 0 0
+  CB BAT: Krunal Pandya* 10(8), Jitesh Sharma 13(16)
+  CB BOWL: Lungi Ngidi 1-33 (3)
+  LAST WKT: Romario Shepherd  lbw b Kuldeep Yadav 1(4)  - 149/6 in 16.3 ov.
+  ⚠ DIVERGENCE: BAT_pandya: ui=10(14) cb=10(8) | BOWLER: ui=T Natarajan cb=Lungi Ngidi

@@ -1,0 +1,1860 @@
+=== PARITY MONITOR — pipeline UI vs cricbuzz ===
+WS:  ws://localhost:8765
+CB:  https://www.cricbuzz.com/live-cricket-scores/151867/lsg-vs-rr-32nd-match-indian-premier-league-2026
+
+[20:17:16  iter#1]
+  UI: Rajasthan Royals 60-3 (8.0)  str=None nstr=None  bowl=Prince Yadav 0-13 (1)
+  this_over=[]  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: (none yet on UI)
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 61-3 (8.1)  crr=7.47  ps=29(25)  recent=1
+  CB BAT: Shimron Hetmyer* 7(8), Riyan Parag 20(17)
+  CB BOWL: Digvesh Singh Rathi 0-6 (1)
+  LAST WKT: Vaibhav Sooryavanshi  c Digvesh Singh Rathi b Mohsin Khan 8(11)  - 32/3 in 3.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=60 cb=61 | OVERS: ui=8.0 cb=8.1 | BATTERS_MISSING_IN_UI: {'hetmyer', 'parag'} (ui=set(), cb={'hetmyer', 'parag'}) | BAT_parag: ui=19(16) cb=20(17) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[20:17:41  iter#2]
+  WS ERR: ''
+  CB: RR 61-3 (8.1)  crr=7.47  ps=29(25)  recent=1
+  CB BAT: Shimron Hetmyer* 7(8), Riyan Parag 20(17)
+  CB BOWL: Digvesh Singh Rathi 0-6 (1)
+  LAST WKT: Vaibhav Sooryavanshi  c Digvesh Singh Rathi b Mohsin Khan 8(11)  - 32/3 in 3.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'hetmyer', 'parag'} (ui=set(), cb={'hetmyer', 'parag'}) | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[20:18:04  iter#3]
+  UI: Rajasthan Royals 61-3 (8.2)  str=Shimron Hetmyer nstr=Riyan Parag  bowl=Prince Yadav 0-14 (1.2)
+  this_over=['1', '.']  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=unknown shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 61-3 (8.2)  crr=7.32  ps=29(26)  recent=1 0
+  CB BAT: Shimron Hetmyer* 7(9), Riyan Parag 20(17)
+  CB BOWL: Digvesh Singh Rathi 0-6 (1)
+  LAST WKT: Vaibhav Sooryavanshi  c Digvesh Singh Rathi b Mohsin Khan 8(11)  - 32/3 in 3.6 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[20:18:26  iter#4]
+  UI: Rajasthan Royals 61-3 (8.2)  str=Shimron Hetmyer nstr=Riyan Parag  bowl=Prince Yadav 0-14 (1.2)
+  this_over=['1', '.']  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 61-3 (8.2)  crr=7.32  ps=29(26)  recent=1 0
+  CB BAT: Shimron Hetmyer* 7(9), Riyan Parag 20(17)
+  CB BOWL: Digvesh Singh Rathi 0-6 (1)
+  LAST WKT: Vaibhav Sooryavanshi  c Digvesh Singh Rathi b Mohsin Khan 8(11)  - 32/3 in 3.6 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[20:18:49  iter#5]
+  UI: Rajasthan Royals 61-3 (8.3)  str=Shimron Hetmyer nstr=Riyan Parag  bowl=Prince Yadav 0-14 (1.3)
+  this_over=['1', '.', '.']  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 61-3 (8.3)  crr=7.18  ps=29(27)  recent=1 0 0
+  CB BAT: Shimron Hetmyer* 7(10), Riyan Parag 20(17)
+  CB BOWL: Digvesh Singh Rathi 0-6 (1)
+  LAST WKT: Vaibhav Sooryavanshi  c Digvesh Singh Rathi b Mohsin Khan 8(11)  - 32/3 in 3.6 ov.
+  ⚠ DIVERGENCE: BAT_hetmyer: ui=7(9) cb=7(10) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[20:19:12  iter#6]
+  UI: Rajasthan Royals 62-3 (8.4)  str=Riyan Parag nstr=Shimron Hetmyer  bowl=Prince Yadav 1-16 (1.5)
+  this_over=['1', '.', '.', '1']  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 62-3 (8.4)  crr=7.15  ps=30(28)  recent=1 0 0 1
+  CB BAT: Riyan Parag* 20(17), Shimron Hetmyer 8(11)
+  CB BOWL: Digvesh Singh Rathi 0-6 (1)
+  LAST WKT: Vaibhav Sooryavanshi  c Digvesh Singh Rathi b Mohsin Khan 8(11)  - 32/3 in 3.6 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[20:19:36  iter#7]
+  UI: Rajasthan Royals 62-3 (8.4)  str=Riyan Parag nstr=Shimron Hetmyer  bowl=Prince Yadav 1-16 (1.5)
+  this_over=['1', '.', '.', '1']  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 62-3 (8.5)  crr=7.02  ps=30(29)  recent=1 0 0 1 0
+  CB BAT: Riyan Parag* 20(18), Shimron Hetmyer 8(11)
+  CB BOWL: Digvesh Singh Rathi 0-6 (1)
+  LAST WKT: Vaibhav Sooryavanshi  c Digvesh Singh Rathi b Mohsin Khan 8(11)  - 32/3 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=8.4 cb=8.5 | BAT_parag: ui=20(17) cb=20(18) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[20:19:57  iter#8]
+  UI: Rajasthan Royals 62-3 (8.4)  str=Riyan Parag nstr=Shimron Hetmyer  bowl=Prince Yadav 1-16 (1.5)
+  this_over=['1', '.', '.', '1']  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 62-3 (8.5)  crr=7.02  ps=30(29)  recent=1 0 0 1 0
+  CB BAT: Riyan Parag* 20(18), Shimron Hetmyer 8(11)
+  CB BOWL: Digvesh Singh Rathi 0-6 (1)
+  LAST WKT: Vaibhav Sooryavanshi  c Digvesh Singh Rathi b Mohsin Khan 8(11)  - 32/3 in 3.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=8.4 cb=8.5 | BAT_parag: ui=20(17) cb=20(18) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[20:20:19  iter#9]
+  UI: Rajasthan Royals 62-3 (8.5)  str=Riyan Parag nstr=Shimron Hetmyer  bowl=Prince Yadav 1-16 (2.0)
+  this_over=['1', '.', '.', '1', '.']  fow=3 (unk=3)  last_fow={'wicket': 3, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 62-3 (8.5)  crr=7.02  ps=30(29)  recent=1 0 0 1 0
+  CB BAT: Riyan Parag* 20(18), Shimron Hetmyer 8(11)
+  CB BOWL: Digvesh Singh Rathi 0-6 (1)
+  LAST WKT: Vaibhav Sooryavanshi  c Digvesh Singh Rathi b Mohsin Khan 8(11)  - 32/3 in 3.6 ov.
+  ⚠ DIVERGENCE: FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[20:20:41  iter#10]
+  UI: Rajasthan Royals 62-4 (9.0)  str=None nstr=Riyan Parag  bowl=Prince Yadav 1-16 (2.1)
+  this_over=['W']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 62-4 (9)  crr=6.89  ps=30(30)  recent=1 0 0 1 0 W
+  CB BAT: Shimron Hetmyer* 8(11), Digvesh Singh Rathi 1(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'hetmyer', 'rathi'} (ui={'parag'}, cb={'rathi', 'hetmyer'}) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=16 cb=15 | BOWL_O: ui=2.1 cb=2
+
+[20:21:03  iter#11]
+  UI: Rajasthan Royals 62-4 (9.0)  str=None nstr=Riyan Parag  bowl=Prince Yadav 1-16 (2.1)
+  this_over=['W']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 62-4 (9)  crr=6.89  ps=0(0)  recent=...
+  CB BAT: Shimron Hetmyer* 8(11), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'jadeja', 'hetmyer'} (ui={'parag'}, cb={'jadeja', 'hetmyer'}) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=16 cb=15 | BOWL_O: ui=2.1 cb=2
+
+[20:21:27  iter#12]
+  UI: Rajasthan Royals 62-4 (9.0)  str=None nstr=Riyan Parag  bowl=Prince Yadav 1-16 (2.1)
+  this_over=['W']  fow=4 (unk=4)  last_fow={'wicket': 4, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 62-4 (9)  crr=6.89  ps=0(0)  recent=...
+  CB BAT: Shimron Hetmyer* 8(11), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=9.0 cb=9 | BATTERS_MISSING_IN_UI: {'jadeja', 'hetmyer'} (ui={'parag'}, cb={'jadeja', 'hetmyer'}) | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=16 cb=15 | BOWL_O: ui=2.1 cb=2
+
+[20:21:51  iter#13]
+  WS ERR: ''
+  CB: RR 62-4 (9)  crr=6.89  ps=0(0)  recent=...
+  CB BAT: Shimron Hetmyer* 8(11), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'hetmyer'} (ui=set(), cb={'jadeja', 'hetmyer'}) | BOWLER: ui=None cb=Prince Yadav
+
+[20:22:15  iter#14]
+  WS ERR: ''
+  CB: RR 62-4 (9)  crr=6.89  ps=0(0)  recent=...
+  CB BAT: Shimron Hetmyer* 8(11), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'hetmyer'} (ui=set(), cb={'jadeja', 'hetmyer'}) | BOWLER: ui=None cb=Prince Yadav
+
+[20:22:38  iter#15]
+  UI: Rajasthan Royals 68-6 (9.1)  str=None nstr=None  bowl=Mayank Yadav 0-10 (2)
+  this_over=['W', 'W']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 68-4 (9.1)  crr=7.42  ps=6(1)  recent=6
+  CB BAT: Shimron Hetmyer* 14(12), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=4 | BATTERS_MISSING_IN_UI: {'jadeja', 'hetmyer'} (ui=set(), cb={'jadeja', 'hetmyer'}) | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=0 cb=1 | BOWL_R: ui=10 cb=15
+
+[20:22:59  iter#16]
+  UI: Rajasthan Royals 68-6 (9.1)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mayank Yadav 0-16 (1.1)
+  this_over=['W', 'W']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 68-4 (9.1)  crr=7.42  ps=6(1)  recent=6
+  CB BAT: Shimron Hetmyer* 14(12), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=0 cb=1 | BOWL_R: ui=16 cb=15 | BOWL_O: ui=1.1 cb=2
+
+[20:23:23  iter#17]
+  UI: Rajasthan Royals 72-6 (9.2)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mayank Yadav 0-24 (1.3)
+  this_over=['W', 'W', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 72-4 (9.2)  crr=7.71  ps=10(2)  recent=6 4
+  CB BAT: Shimron Hetmyer* 18(13), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=0 cb=1 | BOWL_R: ui=24 cb=15 | BOWL_O: ui=1.3 cb=2
+
+[20:23:43  iter#18]
+  UI: Rajasthan Royals 72-6 (9.2)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mayank Yadav 0-24 (1.3)
+  this_over=['W', 'W', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 72-4 (9.2)  crr=7.71  ps=10(2)  recent=6 4
+  CB BAT: Shimron Hetmyer* 18(13), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=0 cb=1 | BOWL_R: ui=24 cb=15 | BOWL_O: ui=1.3 cb=2
+
+[20:24:08  iter#19]
+  UI: Rajasthan Royals 72-6 (9.2)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mayank Yadav 0-20 (1.2)
+  this_over=['W', 'W', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 76-4 (9.3)  crr=8.0  ps=14(3)  recent=6 4 4
+  CB BAT: Shimron Hetmyer* 22(14), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=72 cb=76 | WICKETS: ui=6 cb=4 | OVERS: ui=9.2 cb=9.3 | BAT_hetmyer: ui=18(13) cb=22(14) | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=0 cb=1 | BOWL_R: ui=20 cb=15 | BOWL_O: ui=1.2 cb=2
+
+[20:24:30  iter#20]
+  UI: RR 76-6 (9.3)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=None None-None (None)
+  this_over=['W', 'W', '4', '4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RR 76-4 (9.3)  crr=8.0  ps=14(3)  recent=6 4 4
+  CB BAT: Shimron Hetmyer* 22(14), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=4 | FOW_COUNT: ui=0 vs wickets=6 | BOWLER: ui=None cb=Prince Yadav
+
+[20:24:51  iter#21]
+  UI: Rajasthan Royals 76-4 (9.4)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mayank Yadav 0-24 (1.4)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 76-4 (9.4)  crr=7.86  ps=14(4)  recent=6 4 4 0
+  CB BAT: Shimron Hetmyer* 22(15), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=6 vs wickets=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=0 cb=1 | BOWL_R: ui=24 cb=15 | BOWL_O: ui=1.4 cb=2
+
+[20:25:12  iter#22]
+  UI: Rajasthan Royals 76-4 (9.4)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mayank Yadav 0-24 (1.4)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 76-4 (9.4)  crr=7.86  ps=14(4)  recent=6 4 4 0
+  CB BAT: Shimron Hetmyer* 22(15), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=6 vs wickets=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=0 cb=1 | BOWL_R: ui=24 cb=15 | BOWL_O: ui=1.4 cb=2
+
+[20:25:33  iter#23]
+  UI: Rajasthan Royals 76-4 (9.5)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mayank Yadav 0-24 (1.5)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 76-4 (9.5)  crr=7.73  ps=14(5)  recent=6 4 4 0 0
+  CB BAT: Shimron Hetmyer* 22(16), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=6 vs wickets=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=0 cb=1 | BOWL_R: ui=24 cb=15 | BOWL_O: ui=1.5 cb=2
+
+[20:25:56  iter#24]
+  UI: Rajasthan Royals 76-4 (9.5)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mayank Yadav 1-24 (4)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 76-4 (9.5)  crr=7.73  ps=14(5)  recent=6 4 4 0 0
+  CB BAT: Shimron Hetmyer* 22(16), Ravindra Jadeja 0(0)
+  CB BOWL: Prince Yadav 1-15 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=6 vs wickets=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=24 cb=15 | BOWL_O: ui=4 cb=2
+
+[20:26:18  iter#25]
+  UI: Rajasthan Royals 76-4 (10.0)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Prince Yadav 1-16 (2.1)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 76-4 (10)  crr=7.6  ps=14(6)  recent=6 4 4 0 0 0
+  CB BAT: Ravindra Jadeja* 0(0), Shimron Hetmyer 22(17)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=10.0 cb=10 | STRIKER: ui=Shimron Hetmyer cb=Ravindra Jadeja | FOW_COUNT: ui=6 vs wickets=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=16 cb=24 | BOWL_O: ui=2.1 cb=2
+
+[20:26:38  iter#26]
+  UI: Rajasthan Royals 76-4 (10.0)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Prince Yadav 1-16 (2.1)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 76-4 (10)  crr=7.6  ps=14(6)  recent=6 4 4 0 0 0
+  CB BAT: Ravindra Jadeja* 0(0), Shimron Hetmyer 22(17)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=10.0 cb=10 | STRIKER: ui=Shimron Hetmyer cb=Ravindra Jadeja | FOW_COUNT: ui=6 vs wickets=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=16 cb=24 | BOWL_O: ui=2.1 cb=2
+
+[20:27:01  iter#27]
+  UI: Rajasthan Royals 76-4 (10.0)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-7 (2)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 76-4 (10)  crr=7.6  ps=14(6)  recent=...
+  CB BAT: Ravindra Jadeja* 0(0), Shimron Hetmyer 22(17)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: OVERS: ui=10.0 cb=10 | STRIKER: ui=Shimron Hetmyer cb=Ravindra Jadeja | FOW_COUNT: ui=6 vs wickets=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:27:24  iter#28]
+  UI: Rajasthan Royals 77-4 (10.1)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-8 (2.1)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 76-4 (10)  crr=7.6  ps=14(6)  recent=...
+  CB BAT: Ravindra Jadeja* 0(0), Shimron Hetmyer 22(17)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: SCORE: ui=77 cb=76 | OVERS: ui=10.1 cb=10 | STRIKER: ui=Shimron Hetmyer cb=Ravindra Jadeja | BAT_jadeja: ui=1(1) cb=0(0) | FOW_COUNT: ui=6 vs wickets=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:27:47  iter#29]
+  UI: Rajasthan Royals 77-4 (10.1)  str=Shimron Hetmyer nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-8 (2.1)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=5)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 77-4 (10.1)  crr=7.57  ps=15(7)  recent=1
+  CB BAT: Shimron Hetmyer* 22(17), Ravindra Jadeja 1(1)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Riyan Parag  c Nicholas Pooran b Prince Yadav 20(19)  - 62/4 in 8.6 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=6 vs wickets=4 | FOW_UNKNOWN: 5 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:28:12  iter#30]
+  WS ERR: ''
+  CB: RR 77-5 (10.2)  crr=7.45  ps=15(8)  recent=1 W
+  CB BAT: Ravindra Jadeja* 1(1), Mayank Yadav 2(0)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'yadav'} (ui=set(), cb={'jadeja', 'yadav'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[20:28:33  iter#31]
+  UI: Rajasthan Royals 77-5 (10.2)  str=None nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-8 (3.2)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=4)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 77-5 (10.2)  crr=7.45  ps=15(8)  recent=1 W
+  CB BAT: Ravindra Jadeja* 1(1), Mayank Yadav 2(0)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'yadav'} (ui={'jadeja'}, cb={'jadeja', 'yadav'}) | BAT_jadeja: ui=4(4) cb=1(1) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:28:58  iter#32]
+  WS ERR: ''
+  CB: RR 77-5 (10.2)  crr=7.45  ps=15(8)  recent=1 W
+  CB BAT: Ravindra Jadeja* 1(1), Mayank Yadav 2(0)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'yadav'} (ui=set(), cb={'jadeja', 'yadav'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[20:29:19  iter#33]
+  UI: Rajasthan Royals 77-5 (10.2)  str=None nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-8 (3.2)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=4)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 77-5 (10.2)  crr=7.45  ps=0(0)  recent=... 0 1 0 W
+  CB BAT: Donovan Ferreira* 0(0), Ravindra Jadeja 1(1)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'ferreira', 'jadeja'}) | BAT_jadeja: ui=4(4) cb=1(1) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:29:43  iter#34]
+  WS ERR: ''
+  CB: RR 77-5 (10.3)  crr=7.33  ps=0(1)  recent=1 W 0
+  CB BAT: Donovan Ferreira* 0(1), Ravindra Jadeja 1(1)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira', 'jadeja'} (ui=set(), cb={'ferreira', 'jadeja'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[20:30:07  iter#35]
+  UI: Rajasthan Royals 77-5 (10.3)  str=None nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-8 (3.3)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=4)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 78-5 (10.4)  crr=7.31  ps=1(2)  recent=1 W 0 1
+  CB BAT: Ravindra Jadeja* 1(1), Donovan Ferreira 1(2)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=77 cb=78 | OVERS: ui=10.3 cb=10.4 | BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'jadeja', 'ferreira'}) | BAT_jadeja: ui=4(4) cb=1(1) | BAT_ferreira: ui=0(1) cb=1(2) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:30:28  iter#36]
+  UI: Rajasthan Royals 77-5 (10.3)  str=None nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-8 (3.3)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=4)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 78-5 (10.4)  crr=7.31  ps=1(2)  recent=1 W 0 1
+  CB BAT: Ravindra Jadeja* 1(1), Donovan Ferreira 1(2)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=77 cb=78 | OVERS: ui=10.3 cb=10.4 | BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'jadeja', 'ferreira'}) | BAT_jadeja: ui=4(4) cb=1(1) | BAT_ferreira: ui=0(0) cb=1(2) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:30:53  iter#37]
+  WS ERR: ''
+  CB: RR 78-5 (10.4)  crr=7.31  ps=1(2)  recent=1 W 0 1
+  CB BAT: Ravindra Jadeja* 1(1), Donovan Ferreira 1(2)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[20:31:13  iter#38]
+  UI: Rajasthan Royals 78-5 (10.4)  str=None nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-9 (3.4)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=4)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 78-5 (10.4)  crr=7.31  ps=1(2)  recent=1 W 0 1
+  CB BAT: Ravindra Jadeja* 1(1), Donovan Ferreira 1(2)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'jadeja', 'ferreira'}) | BAT_jadeja: ui=4(4) cb=1(1) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:31:38  iter#39]
+  WS ERR: ''
+  CB: RR 78-5 (10.4)  crr=7.31  ps=1(2)  recent=1 W 0 1
+  CB BAT: Ravindra Jadeja* 1(1), Donovan Ferreira 1(2)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[20:32:01  iter#40]
+  UI: Rajasthan Royals 78-5 (10.4)  str=None nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-9 (3.4)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=4)  last_fow={'wicket': 6, 'batter': None, 'score': None, 'overs': None, 'bowler': None, 'how': None, '_unwitnessed': True}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 78-5 (10.4)  crr=7.31  ps=1(2)  recent=1 W 0 1
+  CB BAT: Ravindra Jadeja* 1(1), Donovan Ferreira 1(2)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'jadeja', 'ferreira'}) | BAT_jadeja: ui=4(4) cb=1(1) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 4 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:32:24  iter#41]
+  UI: Rajasthan Royals 78-6 (10.4)  str=None nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-9 (3.4)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 78-5 (10.4)  crr=7.31  ps=1(2)  recent=... 0 W
+  CB BAT: Ravindra Jadeja* 1(1), Donovan Ferreira 1(2)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=5 | BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'jadeja', 'ferreira'}) | BAT_jadeja: ui=4(4) cb=1(1) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mayank Yadav
+
+[20:32:48  iter#42]
+  WS ERR: ''
+  CB: RR 79-5 (10.5)  crr=7.29  ps=2(3)  recent=1 W 0 1 1
+  CB BAT: Donovan Ferreira* 1(2), Ravindra Jadeja 2(2)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira', 'jadeja'} (ui=set(), cb={'ferreira', 'jadeja'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[20:33:12  iter#43]
+  WS ERR: ''
+  CB: RR 79-5 (10.5)  crr=7.29  ps=2(3)  recent=1 W 0 1 1
+  CB BAT: Donovan Ferreira* 1(2), Ravindra Jadeja 2(2)
+  CB BOWL: Mayank Yadav 0-24 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira', 'jadeja'} (ui=set(), cb={'ferreira', 'jadeja'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[20:33:37  iter#44]
+  WS ERR: ''
+  CB: RR 80-5 (11)  crr=7.27  ps=3(4)  recent=1 W 0 1 1 1
+  CB BAT: Donovan Ferreira* 2(3), Ravindra Jadeja 2(2)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira', 'jadeja'} (ui=set(), cb={'ferreira', 'jadeja'}) | BOWLER: ui=None cb=Mohsin Khan
+
+[20:33:59  iter#45]
+  UI: Rajasthan Royals 79-6 (10.5)  str=None nstr=Ravindra Jadeja  bowl=Mohsin Khan 1-10 (3.5)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 80-5 (11)  crr=7.27  ps=3(4)  recent=1 W 0 1 1 1
+  CB BAT: Donovan Ferreira* 2(3), Ravindra Jadeja 2(2)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=79 cb=80 | WICKETS: ui=6 cb=5 | OVERS: ui=10.5 cb=11 | BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'ferreira', 'jadeja'}) | BAT_ferreira: ui=1(2) cb=2(3) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=10 cb=11 | BOWL_O: ui=3.5 cb=3
+
+[20:34:23  iter#46]
+  WS ERR: ''
+  CB: RR 80-5 (11)  crr=7.27  ps=3(4)  recent=1 W 0 1 1 1
+  CB BAT: Donovan Ferreira* 2(3), Ravindra Jadeja 2(2)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira', 'jadeja'} (ui=set(), cb={'ferreira', 'jadeja'}) | BOWLER: ui=None cb=Mohsin Khan
+
+[20:34:47  iter#47]
+  WS ERR: ''
+  CB: RR 80-5 (11)  crr=7.27  ps=3(4)  recent=...
+  CB BAT: Donovan Ferreira* 2(3), Ravindra Jadeja 2(2)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira', 'jadeja'} (ui=set(), cb={'ferreira', 'jadeja'}) | BOWLER: ui=None cb=Mohsin Khan
+
+[20:35:09  iter#48]
+  UI: Rajasthan Royals 80-6 (11.1)  str=None nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-6 (1.1)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 80-5 (11.2)  crr=7.06  ps=3(6)  recent=0 0
+  CB BAT: Donovan Ferreira* 2(5), Ravindra Jadeja 2(2)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=5 | OVERS: ui=11.1 cb=11.2 | BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'ferreira', 'jadeja'}) | BAT_ferreira: ui=2(4) cb=2(5) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[20:35:30  iter#49]
+  UI: Rajasthan Royals 80-6 (11.2)  str=None nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-6 (1.2)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 80-5 (11.2)  crr=7.06  ps=3(6)  recent=0 0
+  CB BAT: Donovan Ferreira* 2(5), Ravindra Jadeja 2(2)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=5 | BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'ferreira', 'jadeja'}) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[20:35:54  iter#50]
+  WS ERR: ''
+  CB: RR 81-5 (11.3)  crr=7.04  ps=4(7)  recent=0 0 1
+  CB BAT: Ravindra Jadeja* 2(2), Donovan Ferreira 3(6)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Mohsin Khan
+
+[20:36:17  iter#51]
+  UI: Rajasthan Royals 80-5 (11.2)  str=None nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-6 (1.2)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 82-5 (11.4)  crr=7.03  ps=5(8)  recent=0 0 1 1
+  CB BAT: Donovan Ferreira* 3(6), Ravindra Jadeja 3(3)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=80 cb=82 | OVERS: ui=11.2 cb=11.4 | BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'ferreira', 'jadeja'}) | BAT_ferreira: ui=2(5) cb=3(6) | BAT_jadeja: ui=2(2) cb=3(3) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[20:36:41  iter#52]
+  UI: Rajasthan Royals 82-5 (11.4)  str=None nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-8 (1.4)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 83-5 (11.5)  crr=7.01  ps=6(9)  recent=0 0 1 1 1
+  CB BAT: Ravindra Jadeja* 3(3), Donovan Ferreira 4(7)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=82 cb=83 | OVERS: ui=11.4 cb=11.5 | BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'jadeja', 'ferreira'}) | BAT_ferreira: ui=3(6) cb=4(7) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[20:37:10  iter#53]
+  UI: Rajasthan Royals 83-5 (11.5)  str=None nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-10 (2.0)
+  this_over=['W', 'W', '4', '4']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 83-5 (11.5)  crr=7.01  ps=6(9)  recent=0 0 1 1 1
+  CB BAT: Ravindra Jadeja* 3(3), Donovan Ferreira 4(7)
+  CB BOWL: Mohsin Khan 2-11 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira'} (ui={'jadeja'}, cb={'jadeja', 'ferreira'}) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[20:37:32  iter#54]
+  UI: Rajasthan Royals 83-5 (12.0)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-10 (2.1)
+  this_over=['W', 'W', '4', '4', '?', '.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 83-5 (12)  crr=6.92  ps=6(10)  recent=0 0 1 1 1 0
+  CB BAT: Donovan Ferreira* 4(7), Ravindra Jadeja 3(4)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=12.0 cb=12 | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=10 cb=9 | BOWL_O: ui=2.1 cb=2
+
+[20:37:53  iter#55]
+  UI: Rajasthan Royals 83-5 (12.0)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-10 (2.1)
+  this_over=['W', 'W', '4', '4', '?', '.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 83-5 (12)  crr=6.92  ps=6(10)  recent=0 0 1 1 1 0
+  CB BAT: Donovan Ferreira* 4(7), Ravindra Jadeja 3(4)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=12.0 cb=12 | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=10 cb=9 | BOWL_O: ui=2.1 cb=2
+
+[20:38:17  iter#56]
+  UI: Rajasthan Royals 83-5 (12.0)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Mohammed Shami 2-24 (3)
+  this_over=['W', 'W', '4', '4', '?', '.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 83-5 (12)  crr=6.92  ps=6(10)  recent=...
+  CB BAT: Donovan Ferreira* 4(7), Ravindra Jadeja 3(4)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=12.0 cb=12 | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohammed Shami cb=Digvesh Singh Rathi
+
+[20:38:38  iter#57]
+  UI: Rajasthan Royals 83-5 (12.0)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Mohammed Shami 2-24 (3)
+  this_over=['W', 'W', '4', '4', '?', '.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 83-5 (12)  crr=6.92  ps=6(10)  recent=...
+  CB BAT: Donovan Ferreira* 4(7), Ravindra Jadeja 3(4)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=12.0 cb=12 | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohammed Shami cb=Digvesh Singh Rathi
+
+[20:38:59  iter#58]
+  UI: RR 87-5 (12.1)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=None None-None (None)
+  this_over=['4']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RR 87-5 (12.1)  crr=7.15  ps=10(11)  recent=4
+  CB BAT: Donovan Ferreira* 8(8), Ravindra Jadeja 3(4)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=0 vs wickets=5 | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[20:39:23  iter#59]
+  WS ERR: ''
+  CB: RR 88-5 (12.2)  crr=7.14  ps=11(12)  recent=4 1
+  CB BAT: Ravindra Jadeja* 3(4), Donovan Ferreira 9(9)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[20:39:47  iter#60]
+  UI: RR 88-5 (12.3)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=None None-None (None)
+  this_over=['4', '1', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RR 88-5 (12.3)  crr=7.04  ps=11(13)  recent=4 1 0
+  CB BAT: Ravindra Jadeja* 3(5), Donovan Ferreira 9(9)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=0 vs wickets=5 | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[20:40:09  iter#61]
+  UI: Rajasthan Royals 88-5 (12.3)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohammed Shami 2-29 (3.3)
+  this_over=['4', '1', '.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 88-5 (12.3)  crr=7.04  ps=11(13)  recent=4 1 0
+  CB BAT: Ravindra Jadeja* 3(5), Donovan Ferreira 9(9)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohammed Shami cb=Digvesh Singh Rathi
+
+[20:40:31  iter#62]
+  UI: RR 88-5 (12.4)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=None None-None (None)
+  this_over=['4', '1', '.', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RR 88-5 (12.4)  crr=6.95  ps=11(14)  recent=4 1 0 0
+  CB BAT: Ravindra Jadeja* 3(6), Donovan Ferreira 9(9)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=0 vs wickets=5 | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[20:40:54  iter#63]
+  UI: Rajasthan Royals 88-5 (12.4)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohammed Shami 2-29 (3.4)
+  this_over=['4', '1', '.', '.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 89-5 (12.5)  crr=6.94  ps=12(15)  recent=4 1 0 0 1
+  CB BAT: Donovan Ferreira* 9(9), Ravindra Jadeja 4(7)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=88 cb=89 | OVERS: ui=12.4 cb=12.5 | STRIKER: ui=Ravindra Jadeja cb=Donovan Ferreira | BAT_jadeja: ui=3(6) cb=4(7) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohammed Shami cb=Digvesh Singh Rathi
+
+[20:41:15  iter#64]
+  UI: Rajasthan Royals 89-5 (12.5)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Mohammed Shami 2-30 (3.5)
+  this_over=['4', '1', '.', '.', '1']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 89-5 (12.5)  crr=6.94  ps=12(15)  recent=4 1 0 0 1
+  CB BAT: Donovan Ferreira* 9(9), Ravindra Jadeja 4(7)
+  CB BOWL: Digvesh Singh Rathi 0-9 (2)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohammed Shami cb=Digvesh Singh Rathi
+
+[20:41:37  iter#65]
+  UI: Rajasthan Royals 89-5 (12.5)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Mohammed Shami 2-30 (3.5)
+  this_over=['4', '1', '.', '.', '1']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=0 [w0/nb0/b0/lb0]
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=4 1 0 0 1 0
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=12.5 cb=13 | STRIKER: ui=Donovan Ferreira cb=Ravindra Jadeja | BAT_ferreira: ui=9(9) cb=9(10) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_O: ui=3.5 cb=4
+
+[20:42:01  iter#66]
+  WS ERR: ''
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=4 1 0 0 1 0
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Mohammed Shami
+
+[20:42:25  iter#67]
+  WS ERR: ''
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=...
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Mohammed Shami
+
+[20:42:47  iter#68]
+  UI: Rajasthan Royals 95-5 (13.0)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Digvesh Singh Rathi 0-10 (2.1)
+  this_over=['6']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=...
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=95 cb=89 | OVERS: ui=13.0 cb=13 | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohammed Shami
+
+[20:43:10  iter#69]
+  UI: Rajasthan Royals 95-5 (13.0)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Digvesh Singh Rathi 0-10 (2.1)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=...
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: SCORE: ui=95 cb=89 | OVERS: ui=13.0 cb=13 | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohammed Shami
+
+[20:43:31  iter#70]
+  UI: Rajasthan Royals 89-5 (13.0)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 1-18 (4.0)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=...
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=13.0 cb=13 | BAT_jadeja: ui=19(17) cb=4(7) | BAT_ferreira: ui=13(8) cb=9(10) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:43:53  iter#71]
+  UI: Rajasthan Royals 89-5 (13.0)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 1-18 (4.0)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=...
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=13.0 cb=13 | BAT_jadeja: ui=19(17) cb=4(7) | BAT_ferreira: ui=13(8) cb=9(10) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:44:13  iter#72]
+  UI: Rajasthan Royals 89-5 (13.0)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 1-18 (4.0)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=...
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=13.0 cb=13 | BAT_jadeja: ui=19(17) cb=4(7) | BAT_ferreira: ui=13(8) cb=9(10) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:44:34  iter#73]
+  UI: Rajasthan Royals 89-5 (13.0)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 1-18 (4.0)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=...
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=13.0 cb=13 | BAT_jadeja: ui=19(17) cb=4(7) | BAT_ferreira: ui=13(10) cb=9(10) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:44:57  iter#74]
+  UI: Rajasthan Royals 89-5 (13.0)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 1-18 (4.0)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 89-5 (13)  crr=6.85  ps=12(16)  recent=...
+  CB BAT: Ravindra Jadeja* 4(7), Donovan Ferreira 9(10)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=13.0 cb=13 | BAT_jadeja: ui=19(17) cb=4(7) | BAT_ferreira: ui=13(10) cb=9(10) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:45:18  iter#75]
+  UI: Rajasthan Royals 90-5 (13.1)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 1-18 (4.0)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 90-5 (13.1)  crr=6.84  ps=13(17)  recent=1
+  CB BAT: Donovan Ferreira* 9(10), Ravindra Jadeja 5(8)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Donovan Ferreira | BAT_ferreira: ui=13(10) cb=9(10) | BAT_jadeja: ui=19(17) cb=5(8) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:45:42  iter#76]
+  UI: Rajasthan Royals 90-5 (13.1)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 1-18 (4.0)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 90-5 (13.1)  crr=6.84  ps=13(17)  recent=1
+  CB BAT: Donovan Ferreira* 9(10), Ravindra Jadeja 5(8)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Donovan Ferreira | BAT_ferreira: ui=13(10) cb=9(10) | BAT_jadeja: ui=19(17) cb=5(8) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:46:06  iter#77]
+  WS ERR: ''
+  CB: RR 92-5 (13.2)  crr=6.9  ps=15(18)  recent=1 2
+  CB BAT: Donovan Ferreira* 11(11), Ravindra Jadeja 5(8)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira', 'jadeja'} (ui=set(), cb={'ferreira', 'jadeja'}) | BOWLER: ui=None cb=Mohammed Shami
+
+[20:46:28  iter#78]
+  UI: Rajasthan Royals 92-5 (13.3)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 2-23 (3.3)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 92-5 (13.3)  crr=6.81  ps=15(19)  recent=1 2 0
+  CB BAT: Donovan Ferreira* 11(12), Ravindra Jadeja 5(8)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Donovan Ferreira | BAT_ferreira: ui=13(12) cb=11(12) | BAT_jadeja: ui=19(17) cb=5(8) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:46:51  iter#79]
+  UI: Rajasthan Royals 93-5 (13.4)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 2-24 (3.4)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 93-5 (13.4)  crr=6.8  ps=16(20)  recent=1 2 0 1
+  CB BAT: Ravindra Jadeja* 5(8), Donovan Ferreira 12(13)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=5(8) | BAT_ferreira: ui=13(13) cb=12(13) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:47:15  iter#80]
+  WS ERR: ''
+  CB: RR 93-5 (13.4)  crr=6.8  ps=16(20)  recent=1 2 0 1
+  CB BAT: Ravindra Jadeja* 5(8), Donovan Ferreira 12(13)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Mohammed Shami
+
+[20:47:36  iter#81]
+  UI: Rajasthan Royals 94-5 (13.5)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mohsin Khan 2-25 (3.5)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 94-5 (13.5)  crr=6.8  ps=17(21)  recent=1 2 0 1 1
+  CB BAT: Donovan Ferreira* 12(13), Ravindra Jadeja 6(9)
+  CB BOWL: Mohammed Shami 2-30 (4)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Donovan Ferreira | BAT_ferreira: ui=13(13) cb=12(13) | BAT_jadeja: ui=19(17) cb=6(9) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Mohammed Shami
+
+[20:47:58  iter#82]
+  UI: Rajasthan Royals 95-5 (14.0)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 95-5 (14)  crr=6.79  ps=18(22)  recent=1 2 0 1 1 1
+  CB BAT: Donovan Ferreira* 13(14), Ravindra Jadeja 6(9)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=14.0 cb=14 | BAT_jadeja: ui=19(17) cb=6(9) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:48:19  iter#83]
+  UI: Rajasthan Royals 95-5 (14.0)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 95-5 (14)  crr=6.79  ps=18(22)  recent=...
+  CB BAT: Donovan Ferreira* 13(14), Ravindra Jadeja 6(9)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=14.0 cb=14 | BAT_jadeja: ui=19(17) cb=6(9) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:48:39  iter#84]
+  UI: Rajasthan Royals 95-5 (14.0)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['Wd']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 95-5 (14)  crr=6.79  ps=18(22)  recent=...
+  CB BAT: Donovan Ferreira* 13(14), Ravindra Jadeja 6(9)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=14.0 cb=14 | BAT_jadeja: ui=19(17) cb=6(9) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:49:04  iter#85]
+  WS ERR: ''
+  CB: RR 95-5 (14)  crr=6.79  ps=18(22)  recent=...
+  CB BAT: Donovan Ferreira* 13(14), Ravindra Jadeja 6(9)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira', 'jadeja'} (ui=set(), cb={'ferreira', 'jadeja'}) | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[20:49:25  iter#86]
+  UI: Rajasthan Royals 97-5 (14.1)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 97-5 (14.1)  crr=6.85  ps=20(23)  recent=2
+  CB BAT: Donovan Ferreira* 15(15), Ravindra Jadeja 6(9)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=6(9) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:49:49  iter#87]
+  WS ERR: ''
+  CB: RR 97-5 (14.1)  crr=6.85  ps=20(23)  recent=2
+  CB BAT: Donovan Ferreira* 15(15), Ravindra Jadeja 6(9)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'ferreira', 'jadeja'} (ui=set(), cb={'ferreira', 'jadeja'}) | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[20:50:09  iter#88]
+  UI: RR 98-5 (14.2)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=None None-None (None)
+  this_over=['2', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RR 98-5 (14.2)  crr=6.84  ps=21(24)  recent=2 1
+  CB BAT: Ravindra Jadeja* 6(9), Donovan Ferreira 16(16)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=0 vs wickets=5 | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[20:50:32  iter#89]
+  UI: Rajasthan Royals 98-5 (14.2)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 98-5 (14.2)  crr=6.84  ps=21(24)  recent=2 1
+  CB BAT: Ravindra Jadeja* 6(9), Donovan Ferreira 16(16)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=6(9) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:50:53  iter#90]
+  UI: Rajasthan Royals 100-5 (14.3)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1', '2']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 100-5 (14.3)  crr=6.9  ps=23(25)  recent=2 1 2
+  CB BAT: Ravindra Jadeja* 8(10), Donovan Ferreira 16(16)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=8(10) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:51:14  iter#91]
+  UI: Rajasthan Royals 100-5 (14.3)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1', '2']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 100-5 (14.3)  crr=6.9  ps=23(25)  recent=2 1 2
+  CB BAT: Ravindra Jadeja* 8(10), Donovan Ferreira 16(16)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=8(10) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:51:38  iter#92]
+  WS ERR: ''
+  CB: RR 102-5 (14.4)  crr=6.95  ps=25(26)  recent=2 1 2 2
+  CB BAT: Ravindra Jadeja* 10(11), Donovan Ferreira 16(16)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[20:51:59  iter#93]
+  UI: Rajasthan Royals 102-5 (14.4)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1', '2', '2']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 102-5 (14.4)  crr=6.95  ps=25(26)  recent=2 1 2 2
+  CB BAT: Ravindra Jadeja* 10(11), Donovan Ferreira 16(16)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=10(11) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:52:22  iter#94]
+  UI: Rajasthan Royals 102-5 (14.4)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1', '2', '2']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 102-5 (14.4)  crr=6.95  ps=25(26)  recent=2 1 2 2
+  CB BAT: Ravindra Jadeja* 10(11), Donovan Ferreira 16(16)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=10(11) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:52:46  iter#95]
+  UI: Rajasthan Royals 102-5 (14.4)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1', '2', '2']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 102-5 (14.4)  crr=6.95  ps=25(26)  recent=2 1 2 2
+  CB BAT: Ravindra Jadeja* 10(11), Donovan Ferreira 16(16)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=10(11) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:53:10  iter#96]
+  UI: Rajasthan Royals 102-5 (14.4)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1', '2', '2']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 102-5 (14.4)  crr=6.95  ps=25(26)  recent=... 1 0
+  CB BAT: Ravindra Jadeja* 10(11), Donovan Ferreira 16(16)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=10(11) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:53:32  iter#97]
+  UI: Rajasthan Royals 103-5 (14.5)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1', '2', '2', '1']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 103-5 (14.5)  crr=6.94  ps=26(27)  recent=2 1 2 2 1
+  CB BAT: Donovan Ferreira* 16(16), Ravindra Jadeja 11(12)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=11(12) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:53:53  iter#98]
+  UI: Rajasthan Royals 103-5 (14.5)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1', '2', '2', '1']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 103-5 (14.5)  crr=6.94  ps=26(27)  recent=2 1 2 2 1
+  CB BAT: Donovan Ferreira* 16(16), Ravindra Jadeja 11(12)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=11(12) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:54:17  iter#99]
+  UI: Rajasthan Royals 103-5 (14.5)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['2', '1', '2', '2', '1']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 103-5 (14.5)  crr=6.94  ps=26(27)  recent=2 1 2 2 1
+  CB BAT: Donovan Ferreira* 16(16), Ravindra Jadeja 11(12)
+  CB BOWL: Digvesh Singh Rathi 0-15 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=11(12) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade
+
+[20:54:39  iter#100]
+  UI: Rajasthan Royals 107-5 (15.0)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['2', '1', '2', '2', '1', '4']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 107-5 (15)  crr=7.13  ps=30(28)  recent=2 1 2 2 1 4
+  CB BAT: Ravindra Jadeja* 11(12), Donovan Ferreira 20(17)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=15.0 cb=15 | BAT_jadeja: ui=19(17) cb=11(12) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=40 cb=36 | BOWL_O: ui=3.1 cb=3
+
+[20:55:03  iter#101]
+  UI: Rajasthan Royals 107-5 (15.0)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['2', '1', '2', '2', '1', '4']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 107-5 (15)  crr=7.13  ps=30(28)  recent=2 1 2 2 1 4
+  CB BAT: Ravindra Jadeja* 11(12), Donovan Ferreira 20(17)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: OVERS: ui=15.0 cb=15 | BAT_jadeja: ui=19(17) cb=11(12) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=40 cb=36 | BOWL_O: ui=3.1 cb=3
+
+[20:55:27  iter#102]
+  WS ERR: ''
+  CB: RR 107-5 (15)  crr=7.13  ps=30(28)  recent=...
+  CB BAT: Ravindra Jadeja* 11(12), Donovan Ferreira 20(17)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[20:55:51  iter#103]
+  WS ERR: ''
+  CB: RR 107-5 (15)  crr=7.13  ps=30(28)  recent=...
+  CB BAT: Ravindra Jadeja* 11(12), Donovan Ferreira 20(17)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'jadeja', 'ferreira'} (ui=set(), cb={'jadeja', 'ferreira'}) | BOWLER: ui=None cb=Mayank Yadav
+
+[20:56:15  iter#104]
+  UI: RR 107-5 (15.1)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=None None-None (None)
+  this_over=['.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RR 107-5 (15.1)  crr=7.05  ps=30(29)  recent=0
+  CB BAT: Ravindra Jadeja* 11(13), Donovan Ferreira 20(17)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=0 vs wickets=5 | BOWLER: ui=None cb=Mayank Yadav
+
+[20:56:36  iter#105]
+  UI: Rajasthan Royals 107-5 (15.1)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Prince Yadav 1-16 (2.1)
+  this_over=['.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 107-5 (15.1)  crr=7.05  ps=30(29)  recent=0
+  CB BAT: Ravindra Jadeja* 11(13), Donovan Ferreira 20(17)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=11(13) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=16 cb=36 | BOWL_O: ui=2.1 cb=3
+
+[20:56:57  iter#106]
+  UI: Rajasthan Royals 109-5 (15.2)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Prince Yadav 1-18 (2.2)
+  this_over=['.', '2']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 109-5 (15.2)  crr=7.11  ps=32(30)  recent=0 2
+  CB BAT: Ravindra Jadeja* 13(14), Donovan Ferreira 20(17)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=13(14) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=18 cb=36 | BOWL_O: ui=2.2 cb=3
+
+[20:57:21  iter#107]
+  UI: Rajasthan Royals 109-5 (15.2)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Prince Yadav 1-18 (2.2)
+  this_over=['.', '2']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 109-5 (15.2)  crr=7.11  ps=32(30)  recent=0 2
+  CB BAT: Ravindra Jadeja* 13(14), Donovan Ferreira 20(17)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(17) cb=13(14) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=18 cb=36 | BOWL_O: ui=2.2 cb=3
+
+[20:57:43  iter#108]
+  UI: Rajasthan Royals 110-5 (15.3)  str=Ravindra Jadeja nstr=Donovan Ferreira  bowl=Prince Yadav 1-19 (2.4)
+  this_over=['.', '2', '1']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-5 (15.3)  crr=7.1  ps=33(31)  recent=0 2 1
+  CB BAT: Donovan Ferreira* 20(17), Ravindra Jadeja 14(15)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Donovan Ferreira | BAT_jadeja: ui=19(15) cb=14(15) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=19 cb=36 | BOWL_O: ui=2.4 cb=3
+
+[20:58:08  iter#109]
+  UI: Rajasthan Royals 110-5 (15.4)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Prince Yadav 1-19 (2.5)
+  this_over=['.', '2', '1', '.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-5 (15.4)  crr=7.02  ps=33(32)  recent=0 2 1 0
+  CB BAT: Donovan Ferreira* 20(18), Ravindra Jadeja 14(15)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(15) cb=14(15) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=19 cb=36 | BOWL_O: ui=2.5 cb=3
+
+[20:58:32  iter#110]
+  UI: Rajasthan Royals 110-5 (15.4)  str=Donovan Ferreira nstr=Ravindra Jadeja  bowl=Prince Yadav 1-19 (2.5)
+  this_over=['.', '2', '1', '.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-5 (15.4)  crr=7.02  ps=33(32)  recent=0 2 1 0
+  CB BAT: Donovan Ferreira* 20(18), Ravindra Jadeja 14(15)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=19(15) cb=14(15) | FOW_COUNT: ui=6 vs wickets=5 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=0 | BOWL_R: ui=19 cb=36 | BOWL_O: ui=2.5 cb=3
+
+[20:58:55  iter#111]
+  UI: Rajasthan Royals 110-6 (15.5)  str=Donovan Ferreira nstr=None  bowl=Prince Yadav 2-20 (3)
+  this_over=['.', '2', '1', '.', 'W']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-5 (15.4)  crr=7.02  ps=33(32)  recent=0 2 1 0
+  CB BAT: Donovan Ferreira* 20(18), Ravindra Jadeja 14(15)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=5 | OVERS: ui=15.5 cb=15.4 | BATTERS_MISSING_IN_UI: {'jadeja'} (ui={'ferreira'}, cb={'ferreira', 'jadeja'}) | BAT_ferreira: ui=20(19) cb=20(18) | BAT_jadeja: ui=19(20) cb=14(15) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=0 | BOWL_R: ui=20 cb=36
+
+[20:59:17  iter#112]
+  UI: Rajasthan Royals 110-6 (15.5)  str=Donovan Ferreira nstr=None  bowl=Prince Yadav 2-20 (3)
+  this_over=['.', '2', '1', '.', 'W']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=unknown shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-6 (15.5)  crr=6.95  ps=33(33)  recent=0 2 1 0 W
+  CB BAT: Ravindra Jadeja* 14(15), Mayank Yadav 3(0)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Donovan Ferreira cb=Ravindra Jadeja | BATTERS_MISSING_IN_UI: {'jadeja', 'yadav'} (ui={'ferreira'}, cb={'jadeja', 'yadav'}) | BAT_jadeja: ui=19(20) cb=14(15) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=0 | BOWL_R: ui=20 cb=36
+
+[20:59:37  iter#113]
+  UI: Rajasthan Royals 110-6 (15.5)  str=Donovan Ferreira nstr=None  bowl=Prince Yadav 2-20 (3)
+  this_over=['.', '2', '1', '.', 'W']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=unknown shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-5 (15.4)  crr=7.02  ps=33(32)  recent=0 2 1 0
+  CB BAT: Donovan Ferreira* 20(18), Ravindra Jadeja 14(15)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Shimron Hetmyer  c Prince Yadav b Mohsin Khan 22(18)  - 77/5 in 10.2 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=6 cb=5 | OVERS: ui=15.5 cb=15.4 | BATTERS_MISSING_IN_UI: {'jadeja'} (ui={'ferreira'}, cb={'ferreira', 'jadeja'}) | BAT_ferreira: ui=20(19) cb=20(18) | BAT_jadeja: ui=19(20) cb=14(15) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=0 | BOWL_R: ui=20 cb=36
+
+[21:00:02  iter#114]
+  UI: Rajasthan Royals 110-6 (15.5)  str=Donovan Ferreira nstr=None  bowl=Prince Yadav 2-20 (3)
+  this_over=['.', '2', '1', '.', 'W']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=unknown shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-6 (15.5)  crr=6.95  ps=33(33)  recent=0 2 1 0 W
+  CB BAT: Ravindra Jadeja* 14(15), Mayank Yadav 3(0)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Donovan Ferreira cb=Ravindra Jadeja | BATTERS_MISSING_IN_UI: {'jadeja', 'yadav'} (ui={'ferreira'}, cb={'jadeja', 'yadav'}) | BAT_jadeja: ui=19(20) cb=14(15) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=0 | BOWL_R: ui=20 cb=36
+
+[21:00:24  iter#115]
+  UI: Rajasthan Royals 110-6 (15.5)  str=Donovan Ferreira nstr=None  bowl=Prince Yadav 2-20 (3)
+  this_over=['.', '2', '1', '.', 'W']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=unknown shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-6 (15.5)  crr=6.95  ps=33(33)  recent=0 2 1 0 W
+  CB BAT: Ravindra Jadeja* 14(15), Mayank Yadav 3(0)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Donovan Ferreira cb=Ravindra Jadeja | BATTERS_MISSING_IN_UI: {'jadeja', 'yadav'} (ui={'ferreira'}, cb={'jadeja', 'yadav'}) | BAT_jadeja: ui=19(20) cb=14(15) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=0 | BOWL_R: ui=20 cb=36
+
+[21:00:47  iter#116]
+  UI: Rajasthan Royals 110-6 (15.5)  str=Donovan Ferreira nstr=None  bowl=Prince Yadav 2-20 (3)
+  this_over=['.', '2', '1', '.', 'W']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=unknown shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-6 (15.5)  crr=6.95  ps=0(0)  recent=... 1
+  CB BAT: Shubham Dubey* 0(0), Ravindra Jadeja 14(15)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Donovan Ferreira cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui={'ferreira'}, cb={'dubey', 'jadeja'}) | BAT_jadeja: ui=19(20) cb=14(15) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=0 | BOWL_R: ui=20 cb=36
+
+[21:01:09  iter#117]
+  UI: Rajasthan Royals 110-6 (15.5)  str=Donovan Ferreira nstr=None  bowl=Prince Yadav 2-20 (3)
+  this_over=['.', '2', '1', '.', 'W']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=unknown shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-6 (15.5)  crr=6.95  ps=0(0)  recent=... 1
+  CB BAT: Shubham Dubey* 0(0), Ravindra Jadeja 14(15)
+  CB BOWL: Mayank Yadav 0-36 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Donovan Ferreira cb=Shubham Dubey | BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui={'ferreira'}, cb={'dubey', 'jadeja'}) | BAT_jadeja: ui=19(20) cb=14(15) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=2 cb=0 | BOWL_R: ui=20 cb=36
+
+[21:01:32  iter#118]
+  UI: RR 110-6 (16.0)  str=None nstr=Donovan Ferreira  bowl=None None-None (None)
+  this_over=['.', '2', '1', '.', 'W', '.']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=unknown shot=defended [layer2]
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RR 110-6 (16)  crr=6.88  ps=0(1)  recent=0 2 1 0 W 0
+  CB BAT: Ravindra Jadeja* 14(15), Shubham Dubey 0(1)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=16.0 cb=16 | BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui={'ferreira'}, cb={'dubey', 'jadeja'}) | FOW_COUNT: ui=0 vs wickets=6 | BOWLER: ui=None cb=Prince Yadav
+
+[21:01:53  iter#119]
+  UI: Rajasthan Royals 110-6 (16.0)  str=None nstr=Donovan Ferreira  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['.', '2', '1', '.', 'W', '.']  fow=6 (unk=3)  last_fow={'wicket': 6, 'batter': 'Shimron Hetmyer', 'score': 78, 'overs': '10.4', 'bowler': 'Mohsin Khan', 'how': 'run_out', '_unwitnessed': False}
+  delivery: len=unknown line=unknown shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 110-6 (16)  crr=6.88  ps=0(1)  recent=0 2 1 0 W 0
+  CB BAT: Ravindra Jadeja* 14(15), Shubham Dubey 0(1)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=16.0 cb=16 | BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui={'ferreira'}, cb={'dubey', 'jadeja'}) | BAT_jadeja: ui=19(20) cb=14(15) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=40 cb=18 | BOWL_O: ui=3.1 cb=3
+
+[21:02:17  iter#120]
+  WS ERR: ''
+  CB: RR 110-6 (16)  crr=6.88  ps=0(1)  recent=0 2 1 0 W 0
+  CB BAT: Ravindra Jadeja* 14(15), Shubham Dubey 0(1)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui=set(), cb={'dubey', 'jadeja'}) | BOWLER: ui=None cb=Prince Yadav
+
+[21:02:42  iter#121]
+  WS ERR: ''
+  CB: RR 110-6 (16.1)  crr=6.8  ps=0(2)  recent=0
+  CB BAT: Ravindra Jadeja* 14(16), Shubham Dubey 0(1)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui=set(), cb={'dubey', 'jadeja'}) | BOWLER: ui=None cb=Prince Yadav
+
+[21:03:06  iter#122]
+  UI: RR 111-7 (16.2)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=None None-None (None)
+  this_over=['W', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RR 111-6 (16.2)  crr=6.8  ps=1(3)  recent=0 1
+  CB BAT: Shubham Dubey* 0(1), Ravindra Jadeja 15(17)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=7 cb=6 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | FOW_COUNT: ui=0 vs wickets=7 | BOWLER: ui=None cb=Prince Yadav
+
+[21:03:28  iter#123]
+  UI: Rajasthan Royals 111-7 (16.2)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mohsin Khan 2-27 (3.2)
+  this_over=['W', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 111-6 (16.2)  crr=6.8  ps=1(3)  recent=0 1
+  CB BAT: Shubham Dubey* 0(1), Ravindra Jadeja 15(17)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=7 cb=6 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_jadeja: ui=19(20) cb=15(17) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Prince Yadav
+
+[21:03:49  iter#124]
+  UI: Rajasthan Royals 111-7 (16.2)  str=Shubham Dubey nstr=Ravindra Jadeja  bowl=Mohsin Khan 2-27 (3.2)
+  this_over=['W', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=1 innings=6 [w6/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}]
+  CB: RR 112-6 (16.3)  crr=6.79  ps=2(4)  recent=0 1 1
+  CB BAT: Ravindra Jadeja* 15(17), Shubham Dubey 1(2)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=111 cb=112 | WICKETS: ui=7 cb=6 | OVERS: ui=16.2 cb=16.3 | STRIKER: ui=Shubham Dubey cb=Ravindra Jadeja | BAT_jadeja: ui=19(20) cb=15(17) | BAT_dubey: ui=0(1) cb=1(2) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Prince Yadav
+
+[21:04:13  iter#125]
+  WS ERR: ''
+  CB: RR 113-6 (16.4)  crr=6.78  ps=3(5)  recent=0 1 1 1
+  CB BAT: Shubham Dubey* 1(2), Ravindra Jadeja 16(18)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui=set(), cb={'dubey', 'jadeja'}) | BOWLER: ui=None cb=Prince Yadav
+
+[21:04:34  iter#126]
+  UI: Rajasthan Royals 113-7 (16.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mohsin Khan 2-29 (3.5)
+  this_over=['W', '1', '.', '2']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=2 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: RR 113-6 (16.4)  crr=6.78  ps=3(5)  recent=0 1 1 1
+  CB BAT: Shubham Dubey* 1(2), Ravindra Jadeja 16(18)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=7 cb=6 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_jadeja: ui=19(18) cb=16(18) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Prince Yadav
+
+[21:04:56  iter#127]
+  UI: RR 114-7 (16.5)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=None None-None (None)
+  this_over=['W', '1', '.', '2', '1']  fow=0 (unk=0)  last_fow=None
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=0 innings=None [w0/nb0/b0/lb0]
+  CB: RR 114-6 (16.5)  crr=6.77  ps=4(6)  recent=0 1 1 1 1
+  CB BAT: Ravindra Jadeja* 16(18), Shubham Dubey 2(3)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=7 cb=6 | FOW_COUNT: ui=0 vs wickets=7 | BOWLER: ui=None cb=Prince Yadav
+
+[21:05:19  iter#128]
+  UI: Rajasthan Royals 114-7 (16.5)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mohsin Khan 2-30 (4.0)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=2 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: RR 114-6 (16.5)  crr=6.77  ps=4(6)  recent=0 1 1 1 1
+  CB BAT: Ravindra Jadeja* 16(18), Shubham Dubey 2(3)
+  CB BOWL: Prince Yadav 2-18 (3)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: WICKETS: ui=7 cb=6 | BAT_jadeja: ui=19(18) cb=16(18) | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mohsin Khan cb=Prince Yadav
+
+[21:05:41  iter#129]
+  UI: Rajasthan Royals 116-6 (17.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=2 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: RR 116-6 (17)  crr=6.82  ps=6(7)  recent=0 1 1 1 1 2
+  CB BAT: Shubham Dubey* 2(3), Ravindra Jadeja 18(19)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=17.0 cb=17 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_jadeja: ui=19(19) cb=18(19) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mayank Yadav cb=Mohsin Khan
+
+[21:06:05  iter#130]
+  WS ERR: ''
+  CB: RR 116-6 (17)  crr=6.82  ps=6(7)  recent=0 1 1 1 1 2
+  CB BAT: Shubham Dubey* 2(3), Ravindra Jadeja 18(19)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui=set(), cb={'dubey', 'jadeja'}) | BOWLER: ui=None cb=Mohsin Khan
+
+[21:06:29  iter#131]
+  UI: Rajasthan Royals 116-6 (17.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=2 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: RR 116-6 (17)  crr=6.82  ps=6(7)  recent=...
+  CB BAT: Shubham Dubey* 2(3), Ravindra Jadeja 18(19)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=17.0 cb=17 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_jadeja: ui=19(19) cb=18(19) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mayank Yadav cb=Mohsin Khan
+
+[21:06:52  iter#132]
+  UI: Rajasthan Royals 116-6 (17.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Digvesh Singh Rathi 0-15 (3)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=2 innings=7 [w7/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: RR 117-6 (17.1)  crr=6.82  ps=7(8)  recent=1
+  CB BAT: Ravindra Jadeja* 18(19), Shubham Dubey 3(4)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=116 cb=117 | OVERS: ui=17.0 cb=17.1 | BAT_jadeja: ui=19(19) cb=18(19) | BAT_dubey: ui=2(3) cb=3(4) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[21:07:13  iter#133]
+  UI: Rajasthan Royals 119-6 (17.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Digvesh Singh Rathi 0-15 (4.0)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 119-6 (17.2)  crr=6.87  ps=9(9)  recent=1 2
+  CB BAT: Ravindra Jadeja* 20(20), Shubham Dubey 3(4)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=17.0 cb=17.2 | BAT_jadeja: ui=19(19) cb=20(20) | BAT_dubey: ui=0(0) cb=3(4) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[21:07:34  iter#134]
+  UI: Rajasthan Royals 119-6 (17.2)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Digvesh Singh Rathi 0-18 (3.3)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 119-6 (17.2)  crr=6.87  ps=9(9)  recent=1 2
+  CB BAT: Ravindra Jadeja* 20(20), Shubham Dubey 3(4)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[21:07:56  iter#135]
+  UI: Rajasthan Royals 119-6 (17.2)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Digvesh Singh Rathi 0-18 (3.2)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 119-6 (17.2)  crr=6.87  ps=9(9)  recent=1 2
+  CB BAT: Ravindra Jadeja* 20(20), Shubham Dubey 3(4)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[21:08:17  iter#136]
+  UI: Rajasthan Royals 120-6 (17.3)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Digvesh Singh Rathi 0-19 (3.3)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 120-6 (17.3)  crr=6.86  ps=10(10)  recent=1 2 1
+  CB BAT: Shubham Dubey* 3(4), Ravindra Jadeja 21(21)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[21:08:41  iter#137]
+  WS ERR: ''
+  CB: RR 122-6 (17.4)  crr=6.91  ps=12(11)  recent=1 2 1 2
+  CB BAT: Shubham Dubey* 5(5), Ravindra Jadeja 21(21)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui=set(), cb={'dubey', 'jadeja'}) | BOWLER: ui=None cb=Mohsin Khan
+
+[21:09:03  iter#138]
+  UI: Rajasthan Royals 122-6 (17.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Digvesh Singh Rathi 0-21 (3.4)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 126-6 (17.5)  crr=7.07  ps=16(12)  recent=1 2 1 2 4
+  CB BAT: Shubham Dubey* 9(6), Ravindra Jadeja 21(21)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=122 cb=126 | OVERS: ui=17.4 cb=17.5 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=5(5) cb=9(6) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[21:09:25  iter#139]
+  UI: Rajasthan Royals 126-6 (17.5)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Digvesh Singh Rathi 0-29 (4.0)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 126-6 (17.5)  crr=7.07  ps=16(12)  recent=1 2 1 2 4
+  CB BAT: Shubham Dubey* 9(6), Ravindra Jadeja 21(21)
+  CB BOWL: Mohsin Khan 2-17 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Digvesh Singh Rathi cb=Mohsin Khan
+
+[21:09:48  iter#140]
+  UI: Rajasthan Royals 126-6 (17.5)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Digvesh Singh Rathi 0-25 (3.5)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 127-6 (18)  crr=7.06  ps=17(13)  recent=1 2 1 2 4 1
+  CB BAT: Shubham Dubey* 10(7), Ravindra Jadeja 21(21)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=126 cb=127 | OVERS: ui=17.5 cb=18 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=9(6) cb=10(7) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=25 cb=26 | BOWL_O: ui=3.5 cb=4
+
+[21:10:09  iter#141]
+  UI: Rajasthan Royals 127-6 (18.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 127-6 (18)  crr=7.06  ps=17(13)  recent=1 2 1 2 4 1
+  CB BAT: Shubham Dubey* 10(7), Ravindra Jadeja 21(21)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=18.0 cb=18 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mayank Yadav cb=Digvesh Singh Rathi
+
+[21:10:30  iter#142]
+  UI: Rajasthan Royals 127-6 (18.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 127-6 (18)  crr=7.06  ps=17(13)  recent=1 2 1 2 4 1
+  CB BAT: Shubham Dubey* 10(7), Ravindra Jadeja 21(21)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=18.0 cb=18 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Mayank Yadav cb=Digvesh Singh Rathi
+
+[21:10:51  iter#143]
+  UI: Rajasthan Royals 127-6 (18.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-20 (4.0)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 127-6 (18)  crr=7.06  ps=17(13)  recent=...
+  CB BAT: Shubham Dubey* 10(7), Ravindra Jadeja 21(21)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=18.0 cb=18 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:11:13  iter#144]
+  UI: Rajasthan Royals 127-6 (18.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-20 (4.0)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 127-6 (18.1)  crr=6.99  ps=17(14)  recent=0
+  CB BAT: Shubham Dubey* 10(8), Ravindra Jadeja 21(21)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=18.0 cb=18.1 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=21(7) cb=10(8) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:11:35  iter#145]
+  UI: Rajasthan Royals 127-6 (18.1)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-20 (3.1)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 127-6 (18.1)  crr=6.99  ps=17(14)  recent=0
+  CB BAT: Shubham Dubey* 10(8), Ravindra Jadeja 21(21)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=21(7) cb=10(8) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:11:58  iter#146]
+  UI: Rajasthan Royals 131-6 (18.2)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-26 (3.3)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 131-6 (18.2)  crr=7.15  ps=21(15)  recent=0 4
+  CB BAT: Shubham Dubey* 14(9), Ravindra Jadeja 21(21)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=21(8) cb=14(9) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:12:20  iter#147]
+  UI: Rajasthan Royals 131-6 (18.2)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-26 (3.3)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 131-6 (18.2)  crr=7.15  ps=21(15)  recent=... 1 1 1 2
+  CB BAT: Shubham Dubey* 14(9), Ravindra Jadeja 21(21)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=21(8) cb=14(9) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:12:45  iter#148]
+  WS ERR: ''
+  CB: RR 132-6 (18.3)  crr=7.14  ps=22(16)  recent=0 4 1
+  CB BAT: Ravindra Jadeja* 21(21), Shubham Dubey 15(10)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui=set(), cb={'dubey', 'jadeja'}) | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[21:13:09  iter#149]
+  UI: Rajasthan Royals 132-6 (18.3)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-27 (3.4)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 132-6 (18.3)  crr=7.14  ps=22(16)  recent=0 4 1
+  CB BAT: Ravindra Jadeja* 21(21), Shubham Dubey 15(10)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(8) cb=15(10) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:13:31  iter#150]
+  UI: Rajasthan Royals 134-6 (18.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-29 (3.5)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 134-6 (18.4)  crr=7.18  ps=24(17)  recent=0 4 1 2
+  CB BAT: Ravindra Jadeja* 23(22), Shubham Dubey 15(10)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_jadeja: ui=21(21) cb=23(22) | BAT_dubey: ui=21(8) cb=15(10) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:13:53  iter#151]
+  UI: Rajasthan Royals 134-6 (18.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-29 (3.5)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 135-6 (18.5)  crr=7.17  ps=25(18)  recent=0 4 1 2
+  CB BAT: Shubham Dubey* 15(10), Ravindra Jadeja 23(23)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=134 cb=135 | OVERS: ui=18.4 cb=18.5 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=21(8) cb=15(10) | BAT_jadeja: ui=23(22) cb=23(23) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:14:18  iter#152]
+  WS ERR: ''
+  CB: RR 135-6 (18.5)  crr=7.17  ps=25(18)  recent=0 4 1 2
+  CB BAT: Shubham Dubey* 15(10), Ravindra Jadeja 23(23)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui=set(), cb={'dubey', 'jadeja'}) | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[21:14:38  iter#153]
+  UI: Rajasthan Royals 134-6 (18.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-29 (3.5)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 135-6 (18.5)  crr=7.17  ps=25(18)  recent=0 4 1 2
+  CB BAT: Shubham Dubey* 15(10), Ravindra Jadeja 23(23)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=134 cb=135 | OVERS: ui=18.4 cb=18.5 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=21(8) cb=15(10) | BAT_jadeja: ui=23(22) cb=23(23) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:14:59  iter#154]
+  UI: Rajasthan Royals 134-6 (18.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-29 (3.5)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 135-6 (18.5)  crr=7.17  ps=25(18)  recent=0 4 1 2
+  CB BAT: Shubham Dubey* 15(10), Ravindra Jadeja 23(23)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=134 cb=135 | OVERS: ui=18.4 cb=18.5 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=21(8) cb=15(10) | BAT_jadeja: ui=23(22) cb=23(23) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:15:22  iter#155]
+  UI: Rajasthan Royals 134-6 (18.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-29 (3.5)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 135-6 (18.5)  crr=7.17  ps=25(18)  recent=0 4 1 2
+  CB BAT: Shubham Dubey* 15(10), Ravindra Jadeja 23(23)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=134 cb=135 | OVERS: ui=18.4 cb=18.5 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=21(8) cb=15(10) | BAT_jadeja: ui=23(22) cb=23(23) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:15:44  iter#156]
+  UI: Rajasthan Royals 134-6 (18.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Prince Yadav 2-29 (3.5)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 135-6 (18.5)  crr=7.17  ps=25(18)  recent=0 4 1 2
+  CB BAT: Shubham Dubey* 15(10), Ravindra Jadeja 23(23)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=134 cb=135 | OVERS: ui=18.4 cb=18.5 | STRIKER: ui=Ravindra Jadeja cb=Shubham Dubey | BAT_dubey: ui=21(8) cb=15(10) | BAT_jadeja: ui=23(22) cb=23(23) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWLER: ui=Prince Yadav cb=Digvesh Singh Rathi
+
+[21:16:08  iter#157]
+  WS ERR: ''
+  CB: RR 135-6 (18.5)  crr=7.17  ps=25(18)  recent=0 4 1 2
+  CB BAT: Shubham Dubey* 15(10), Ravindra Jadeja 23(23)
+  CB BOWL: Digvesh Singh Rathi 0-26 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BATTERS_MISSING_IN_UI: {'dubey', 'jadeja'} (ui=set(), cb={'dubey', 'jadeja'}) | BOWLER: ui=None cb=Digvesh Singh Rathi
+
+[21:16:29  iter#158]
+  UI: Rajasthan Royals 139-6 (19.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 139-6 (19)  crr=7.32  ps=29(19)  recent=0 4 1 2
+  CB BAT: Ravindra Jadeja* 23(23), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=19.0 cb=19 | BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=40 cb=29 | BOWL_O: ui=3.1 cb=4
+
+[21:16:49  iter#159]
+  UI: Rajasthan Royals 139-6 (19.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=leg_stump shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 139-6 (19)  crr=7.32  ps=29(19)  recent=0 4 1 2
+  CB BAT: Ravindra Jadeja* 23(23), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: OVERS: ui=19.0 cb=19 | BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=40 cb=29 | BOWL_O: ui=3.1 cb=4
+
+[21:17:13  iter#160]
+  UI: Rajasthan Royals 139-6 (19.0)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-40 (4.0)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 143-6 (19.1)  crr=7.46  ps=33(20)  recent=4
+  CB BAT: Ravindra Jadeja* 27(24), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=139 cb=143 | OVERS: ui=19.0 cb=19.1 | BAT_jadeja: ui=23(23) cb=27(24) | BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=40 cb=29 | BOWL_O: ui=4.0 cb=4
+
+[21:17:36  iter#161]
+  UI: Rajasthan Royals 143-6 (19.1)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-40 (3.1)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 143-6 (19.1)  crr=7.46  ps=33(20)  recent=4
+  CB BAT: Ravindra Jadeja* 27(24), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=40 cb=29 | BOWL_O: ui=3.1 cb=4
+
+[21:17:56  iter#162]
+  UI: Rajasthan Royals 145-6 (19.2)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-44 (3.3)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 145-6 (19.2)  crr=7.5  ps=35(21)  recent=4 2
+  CB BAT: Ravindra Jadeja* 29(25), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=44 cb=29 | BOWL_O: ui=3.3 cb=4
+
+[21:18:18  iter#163]
+  UI: Rajasthan Royals 145-6 (19.2)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-44 (3.3)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 145-6 (19.2)  crr=7.5  ps=35(21)  recent=4 2
+  CB BAT: Ravindra Jadeja* 29(25), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=44 cb=29 | BOWL_O: ui=3.3 cb=4
+
+[21:18:40  iter#164]
+  UI: Rajasthan Royals 149-6 (19.3)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-50 (3.4)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 149-6 (19.3)  crr=7.64  ps=39(22)  recent=4 2 4
+  CB BAT: Ravindra Jadeja* 33(26), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=50 cb=29 | BOWL_O: ui=3.4 cb=4
+
+[21:19:02  iter#165]
+  UI: Rajasthan Royals 149-6 (19.3)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-50 (3.4)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 149-6 (19.3)  crr=7.64  ps=39(22)  recent=4 2 4
+  CB BAT: Ravindra Jadeja* 33(26), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=50 cb=29 | BOWL_O: ui=3.4 cb=4
+
+[21:19:23  iter#166]
+  UI: Rajasthan Royals 149-6 (19.3)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 1-50 (3.4)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 149-6 (19.3)  crr=7.64  ps=39(22)  recent=4 2 4
+  CB BAT: Ravindra Jadeja* 33(26), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_W: ui=1 cb=2 | BOWL_R: ui=50 cb=29 | BOWL_O: ui=3.4 cb=4
+
+[21:19:46  iter#167]
+  UI: Rajasthan Royals 149-6 (19.3)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 2-50 (4)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=3 innings=10 [w10/nb0/b0/lb0]
+  extras_log: [{'over': '13.0', 'type': 'wide', 'runs': 6, 'this_over_after': []}, {'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}]
+  CB: RR 149-6 (19.3)  crr=7.64  ps=39(22)  recent=4 2 4
+  CB BAT: Ravindra Jadeja* 33(26), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=50 cb=29
+
+[21:20:08  iter#168]
+  UI: Rajasthan Royals 151-6 (19.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 2-52 (3.4)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=4 innings=11 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}, {'over': '19.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: RR 151-6 (19.4)  crr=7.68  ps=41(23)  recent=4 2 4 2
+  CB BAT: Ravindra Jadeja* 35(27), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=52 cb=29 | BOWL_O: ui=3.4 cb=4
+
+[21:20:32  iter#169]
+  UI: Rajasthan Royals 151-6 (19.4)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 2-52 (3.4)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=4 innings=11 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}, {'over': '19.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: RR 151-6 (19.4)  crr=7.68  ps=41(23)  recent=4 2 4 2
+  CB BAT: Ravindra Jadeja* 35(27), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=52 cb=29 | BOWL_O: ui=3.4 cb=4
+
+[21:20:54  iter#170]
+  UI: Rajasthan Royals 153-6 (19.5)  str=Ravindra Jadeja nstr=Shubham Dubey  bowl=Mayank Yadav 2-54 (3.5)
+  this_over=['W', '1', '.', '2', '1']  fow=7 (unk=3)  last_fow={'wicket': 7, 'batter': 'Donovan Ferreira', 'score': 111, 'overs': '16.2', 'bowler': 'Mohsin Khan', 'how': 'caught', '_unwitnessed': False}
+  delivery: len=unknown line=outside_off shot=defended [layer2]
+  extras: this_over=4 innings=11 [w11/nb0/b0/lb0]
+  extras_log: [{'over': '16.3', 'type': 'wide', 'runs': 1, 'this_over_after': []}, {'over': '17.0', 'type': 'wide', 'runs': 3, 'this_over_after': []}, {'over': '19.4', 'type': 'wide', 'runs': 1, 'this_over_after': []}]
+  CB: RR 151-6 (19.4)  crr=7.68  ps=41(23)  recent=4 2 4 2
+  CB BAT: Ravindra Jadeja* 35(27), Shubham Dubey 19(11)
+  CB BOWL: Prince Yadav 2-29 (4)
+  LAST WKT: Donovan Ferreira  c Mohsin Khan b Prince Yadav 20(19)  - 110/6 in 15.5 ov.
+  ⚠ DIVERGENCE: SCORE: ui=153 cb=151 | OVERS: ui=19.5 cb=19.4 | BAT_jadeja: ui=37(28) cb=35(27) | BAT_dubey: ui=21(11) cb=19(11) | FOW_COUNT: ui=7 vs wickets=6 | FOW_UNKNOWN: 3 placeholder(s) awaiting broadcast upgrade | BOWL_R: ui=54 cb=29 | BOWL_O: ui=3.5 cb=4

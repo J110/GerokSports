@@ -1,0 +1,18 @@
+{
+  "output": {
+    "filePath": "repomix-tests.xml",
+    "style": "xml",
+    "showLineNumbers": true,
+    "topFilesLength": 20
+  },
+  "include": [
+    "files/test_recent_fixes.py"
+  ],
+  "ignore": {
+    "useGitignore": true,
+    "useDefaultPatterns": true
+  },
+  "security": {
+    "enableSecurityCheck": true
+  }
+}

@@ -1,0 +1,114 @@
+# Build artifacts
+node_modules/
+dist/
+build/
+out/
+.next/
+.nuxt/
+target/
+.cache/
+.parcel-cache/
+.turbo/
+
+# Lockfiles
+*.lock
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+Cargo.lock
+poetry.lock
+Gemfile.lock
+composer.lock
+
+# Generated content
+*.generated.*
+*.min.js
+*.min.css
+*.map
+public/audio/
+public/renders/
+public/generated/
+
+# Large data
+*.csv
+*.tsv
+*.parquet
+*.sqlite
+*.db
+*.sqlite3
+data/
+fixtures/
+seed/
+dumps/
+
+# Media
+*.mp4
+*.mov
+*.avi
+*.webm
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+*.ico
+*.mp3
+*.wav
+*.ogg
+*.flac
+
+# Documents
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Logs and temp
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Git and IDE
+.git/
+.idea/
+.vscode/
+.history/
+
+# Coverage and reports
+coverage/
+.nyc_output/
+.pytest_cache/
+htmlcov/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Node
+.npm/
+.yarn/
