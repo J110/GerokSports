@@ -436,16 +436,6 @@ class ScoreManager:
                     return None
         return None
 
-    @bat1_runs.setter
-    def bat1_runs(self, v: int | None) -> None:
-        sbv = None
-        if self.scoreboard is not None and self.bat1_name:
-            c = (self.scoreboard.batting_card or {}).get(self.bat1_name) or {}
-            sbv = c.get("runs")
-        log.info(
-            "  [SM-FEEDER-SYNC] field=bat1_runs note=read_only_now "
-            f"sb_value={self._fmt_sb_val(sbv)}")
-
     @property
     def bat1_balls(self) -> int | None:
         if self.scoreboard is not None and self.bat1_name:
@@ -457,16 +447,6 @@ class ScoreManager:
                 except (TypeError, ValueError):
                     return None
         return None
-
-    @bat1_balls.setter
-    def bat1_balls(self, v: int | None) -> None:
-        sbv = None
-        if self.scoreboard is not None and self.bat1_name:
-            c = (self.scoreboard.batting_card or {}).get(self.bat1_name) or {}
-            sbv = c.get("balls")
-        log.info(
-            "  [SM-FEEDER-SYNC] field=bat1_balls note=read_only_now "
-            f"sb_value={self._fmt_sb_val(sbv)}")
 
     @property
     def bat2_runs(self) -> int | None:
@@ -480,16 +460,6 @@ class ScoreManager:
                     return None
         return None
 
-    @bat2_runs.setter
-    def bat2_runs(self, v: int | None) -> None:
-        sbv = None
-        if self.scoreboard is not None and self.bat2_name:
-            c = (self.scoreboard.batting_card or {}).get(self.bat2_name) or {}
-            sbv = c.get("runs")
-        log.info(
-            "  [SM-FEEDER-SYNC] field=bat2_runs note=read_only_now "
-            f"sb_value={self._fmt_sb_val(sbv)}")
-
     @property
     def bat2_balls(self) -> int | None:
         if self.scoreboard is not None and self.bat2_name:
@@ -501,16 +471,6 @@ class ScoreManager:
                 except (TypeError, ValueError):
                     return None
         return None
-
-    @bat2_balls.setter
-    def bat2_balls(self, v: int | None) -> None:
-        sbv = None
-        if self.scoreboard is not None and self.bat2_name:
-            c = (self.scoreboard.batting_card or {}).get(self.bat2_name) or {}
-            sbv = c.get("balls")
-        log.info(
-            "  [SM-FEEDER-SYNC] field=bat2_balls note=read_only_now "
-            f"sb_value={self._fmt_sb_val(sbv)}")
 
     @property
     def bowler_wickets(self) -> int | None:
@@ -524,16 +484,6 @@ class ScoreManager:
                     return None
         return None
 
-    @bowler_wickets.setter
-    def bowler_wickets(self, v: int | None) -> None:
-        sbv = None
-        if self.scoreboard is not None and self.bowler_name:
-            c = (self.scoreboard.bowling_card or {}).get(self.bowler_name) or {}
-            sbv = c.get("wickets")
-        log.info(
-            "  [SM-FEEDER-SYNC] field=bowler_wickets note=read_only_now "
-            f"sb_value={self._fmt_sb_val(sbv)}")
-
     @property
     def bowler_runs(self) -> int | None:
         if self.scoreboard is not None and self.bowler_name:
@@ -546,16 +496,6 @@ class ScoreManager:
                     return None
         return None
 
-    @bowler_runs.setter
-    def bowler_runs(self, v: int | None) -> None:
-        sbv = None
-        if self.scoreboard is not None and self.bowler_name:
-            c = (self.scoreboard.bowling_card or {}).get(self.bowler_name) or {}
-            sbv = c.get("runs")
-        log.info(
-            "  [SM-FEEDER-SYNC] field=bowler_runs note=read_only_now "
-            f"sb_value={self._fmt_sb_val(sbv)}")
-
     @property
     def bowler_overs(self) -> float | None:
         if self.scoreboard is not None and self.bowler_name:
@@ -567,16 +507,6 @@ class ScoreManager:
                 except (TypeError, ValueError):
                     return None
         return None
-
-    @bowler_overs.setter
-    def bowler_overs(self, v: float | str | None) -> None:
-        sbv = None
-        if self.scoreboard is not None and self.bowler_name:
-            c = (self.scoreboard.bowling_card or {}).get(self.bowler_name) or {}
-            sbv = c.get("overs")
-        log.info(
-            "  [SM-FEEDER-SYNC] field=bowler_overs note=read_only_now "
-            f"sb_value={self._fmt_sb_val(sbv)}")
 
     @property
     def innings(self) -> int:
@@ -1555,17 +1485,10 @@ class ScoreManager:
                     card.pop(_key.replace("_name", "_balls"), None)
 
         self.bat1_name = card.get("bat1_name")
-        self.bat1_runs = card.get("bat1_runs")
-        self.bat1_balls = card.get("bat1_balls")
         _prev_b2_accept = self.bat2_name
         self.bat2_name = card.get("bat2_name")
-        self.bat2_runs = card.get("bat2_runs")
-        self.bat2_balls = card.get("bat2_balls")
 
         self.bowler_name = card.get("bowler_name")
-        self.bowler_wickets = card.get("bowler_wickets")
-        self.bowler_runs = card.get("bowler_runs")
-        self.bowler_overs = card.get("bowler_overs")
 
         # Striker identification (W3–W6 → Lever 1 `_set_slot_pair`)
         _strip_bc = card.get("broadcast")
@@ -2307,116 +2230,11 @@ class ScoreManager:
         if card.get("bowler_name"):
             # Issue 2 (2026-04-21): bowler rotation rule.  A bowler
             # can't bowl two consecutive overs — if the incoming name
-            # matches the previous-over bowler, reject the identity
-            # flip AND the attached figures (the whole row is poisoned
-            # because Scout is reading the wrong graphic).
+            # matches the previous-over bowler, reject the identity flip.
             _prev = (getattr(self.scoreboard, "_prev_over_bowler", None)
                      if self.scoreboard else None)
-            # Stale-graphic detection (refined 2026-04-21): if the
-            # proposed bowler is DIFFERENT from the current SM bowler
-            # (including null→named transitions right after over
-            # rollover) and their figures match/regress against the
-            # scoreboard's historical snapshot, it's a resurrected
-            # end-of-spell graphic.  Same-figures rejection is gated
-            # on NOT being in the `_bowler_must_change` grace window
-            # (legitimate returning bowlers read as "same figures" for
-            # the first frame before delivering).  Overs-regression
-            # rejection applies unconditionally — a spell can never go
-            # backwards.
-            _is_stale = False
-            _stale_sub_a = False
-            _stale_sub_b = False
-            _hist_runs: Any = None
-            _hist_wkts: Any = None
-            _hist_overs: Any = None
-            if (card["bowler_name"] != self.bowler_name
-                    and self.scoreboard is not None):
-                hist = self.scoreboard.bowling_card.get(
-                    card["bowler_name"], {})
-                hr = hist.get("runs")
-                hw = hist.get("wickets")
-                ho = hist.get("overs")
-                cr = card.get("bowler_runs")
-                cw = card.get("bowler_wickets")
-                co = card.get("bowler_overs")
-                _must_change = bool(getattr(
-                    self.scoreboard, "_bowler_must_change", False))
-                if (not _must_change
-                        and hr is not None and cr is not None
-                        and cw is not None and co is not None):
-                    try:
-                        if (int(cr) == int(hr)
-                                and int(cw) == int(hw or 0)
-                                and str(co) == str(ho)):
-                            _stale_sub_a = True
-                    except (TypeError, ValueError):
-                        pass
-                if ho is not None and co is not None:
-                    try:
-                        if float(co) < float(ho):
-                            _stale_sub_b = True
-                    except (TypeError, ValueError):
-                        pass
-                _is_stale = _stale_sub_a or _stale_sub_b
-                _hist_runs, _hist_wkts, _hist_overs = hr, hw, ho
-            if _prev and card["bowler_name"] == _prev:
-                # Rotation-rule rejection: skip all bowler fields.
-                pass
-            elif _is_stale:
-                # Batch V (2026-05-05): per-field BOWLER-STALE rejection.
-                # Sub-condition A (figures match historical) implies the
-                # whole row is a resurrected end-of-spell graphic — drop
-                # all four fields. Sub-condition B (overs regress) means
-                # only the overs figure is numerically inconsistent — keep
-                # runs/wickets when accept-eligible, drop overs. The outer
-                # AND on `bowler_name != self.bowler_name` always rejects
-                # the name field with reason "name-mismatch-sm".
-                _cr = card.get("bowler_runs")
-                _cw = card.get("bowler_wickets")
-                _co = card.get("bowler_overs")
-                log.warn(
-                    f"  [BOWLER-STALE] field=bowler_name "
-                    f"reason=name-mismatch-sm "
-                    f"proposed={card['bowler_name']!r} "
-                    f"historical={self.bowler_name!r}")
-                if _stale_sub_a:
-                    log.warn(
-                        f"  [BOWLER-STALE] field=bowler_runs "
-                        f"reason=figures-match-historical "
-                        f"proposed={_cr!r} historical={_hist_runs!r}")
-                    log.warn(
-                        f"  [BOWLER-STALE] field=bowler_wickets "
-                        f"reason=figures-match-historical "
-                        f"proposed={_cw!r} historical={_hist_wkts!r}")
-                    log.warn(
-                        f"  [BOWLER-STALE] field=bowler_overs "
-                        f"reason=figures-match-historical "
-                        f"proposed={_co!r} historical={_hist_overs!r}")
-                else:
-                    if _stale_sub_b:
-                        log.warn(
-                            f"  [BOWLER-STALE] field=bowler_overs "
-                            f"reason=overs-regress "
-                            f"proposed={_co!r} historical={_hist_overs!r}")
-                    if _cw is not None:
-                        self.bowler_wickets = _cw
-                    if _cr is not None:
-                        self.bowler_runs = _cr
-            else:
+            if not (_prev and card["bowler_name"] == _prev):
                 self.bowler_name = card["bowler_name"]
-                if card.get("bowler_wickets") is not None:
-                    self.bowler_wickets = card["bowler_wickets"]
-                if card.get("bowler_runs") is not None:
-                    self.bowler_runs = card["bowler_runs"]
-                if card.get("bowler_overs") is not None:
-                    self.bowler_overs = card["bowler_overs"]
-        else:
-            if card.get("bowler_wickets") is not None:
-                self.bowler_wickets = card["bowler_wickets"]
-            if card.get("bowler_runs") is not None:
-                self.bowler_runs = card["bowler_runs"]
-            if card.get("bowler_overs") is not None:
-                self.bowler_overs = card["bowler_overs"]
 
         if card.get("speed_kph"):
             self.last_speed = card["speed_kph"]
@@ -2507,11 +2325,7 @@ class ScoreManager:
         # Bootstrap: adopt batter names when internal state has none
         if not self.bat1_name and not self.bat2_name:
             self.bat1_name = card_b1
-            self.bat1_runs = card.get("bat1_runs")
-            self.bat1_balls = card.get("bat1_balls")
             self.bat2_name = card_b2
-            self.bat2_runs = card.get("bat2_runs")
-            self.bat2_balls = card.get("bat2_balls")
             if not self.striker:
                 self._set_slot_pair(
                     self.bat1_name, self.bat2_name,
@@ -2537,37 +2351,9 @@ class ScoreManager:
             new = arrived[0]
             if self.bat1_name == gone:
                 self.bat1_name = new
-                self.bat1_runs = (card.get("bat1_runs") if card_b1 == new
-                                  else card.get("bat2_runs"))
-                self.bat1_balls = (card.get("bat1_balls") if card_b1 == new
-                                   else card.get("bat2_balls"))
             elif self.bat2_name == gone:
                 self.bat2_name = new
-                self.bat2_runs = (card.get("bat2_runs") if card_b2 == new
-                                  else card.get("bat1_runs"))
-                self.bat2_balls = (card.get("bat2_balls") if card_b2 == new
-                                   else card.get("bat1_balls"))
                 self._w8_guard_fired.clear()
-        else:
-            # Cross-match card batters to internal batters by fuzzy name
-            for card_name, card_runs, card_balls in [
-                (card_b1, card.get("bat1_runs"), card.get("bat1_balls")),
-                (card_b2, card.get("bat2_runs"), card.get("bat2_balls")),
-            ]:
-                if not card_name:
-                    continue
-                if (self.bat1_name
-                        and self._same_name(card_name, self.bat1_name)):
-                    if card_runs is not None:
-                        self.bat1_runs = card_runs
-                    if card_balls is not None:
-                        self.bat1_balls = card_balls
-                elif (self.bat2_name
-                        and self._same_name(card_name, self.bat2_name)):
-                    if card_runs is not None:
-                        self.bat2_runs = card_runs
-                    if card_balls is not None:
-                        self.bat2_balls = card_balls
 
     def _update_supplements(self, card: dict, frame: FrameInput) -> None:
         if card.get("speed_kph"):
@@ -3135,12 +2921,8 @@ class ScoreManager:
                 break
         if self.bat1_name == best_dismissed:
             self.bat1_name = None
-            self.bat1_runs = None
-            self.bat1_balls = None
         if self.bat2_name == best_dismissed:
             self.bat2_name = None
-            self.bat2_runs = None
-            self.bat2_balls = None
         if best_dismissed == self.striker:
             self._set_slot_pair(
                 None, survivor,
