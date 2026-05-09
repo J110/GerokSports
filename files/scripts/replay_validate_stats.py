@@ -157,16 +157,18 @@ def map_event_to_accumulator(ev: dict) -> dict | None:
 
 
 def setup_state(gt: dict) -> tuple[Scoreboard, ScoreManager]:
-    bat_squad = [b["name"] for b in gt["batters"]] + gt.get("did_not_bat", [])
-    bowl_squad = [b["name"] for b in gt["bowlers"]]
+    bat_xi = [b["name"] for b in gt["batters"]] + gt.get("did_not_bat", [])
+    bowl_xi = [b["name"] for b in gt["bowlers"]]
+    bat_squad = bat_xi + gt.get("dc_bench_not_in_xi", [])
+    bowl_squad = bowl_xi + gt.get("kkr_bench_not_in_xi", [])
     sb = Scoreboard()
     sb.setup_innings(
         batting_team=gt["batting_team"],
         bowling_team=gt["bowling_team"],
         batting_squad=bat_squad,
         bowling_squad=bowl_squad,
-        batting_xi=bat_squad,
-        bowling_xi=bowl_squad,
+        batting_xi=bat_xi,
+        bowling_xi=bowl_xi,
     )
     sm = ScoreManager(shadow=False)
     sm.scoreboard = sb

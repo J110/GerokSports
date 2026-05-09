@@ -1,7 +1,7 @@
 # Replay validation: derive-not-detect vs ground truth
 
-- Match: DC vs CSK 48th Match IPL 2026
-- Innings: DC 1st innings  ground truth = 155/7 (20.0)
+- Match: DC vs KKR 51st Match IPL 2026
+- Innings: DC 1st innings  ground truth = 142/8 (20.0)
 
 ## Replay coverage
 
@@ -28,34 +28,35 @@
 
 | Batter | GT runs(b) 4s/6s out? | Replay runs(b) 4s/6s status | Δrun/Δb/Δ4/Δ6 | Verdict |
 |---|---|---|---|---|
-| Pathum Nissanka | 19(15) 3/1 out | 37(17) 5/2 batting | +18/+2/+2/+1 | ?? overshoot — investigate |
-| KL Rahul | 12(13) 2/0 out | 18(12) 2/1 batting | +6/-1/+0/+1 | ?? overshoot — investigate |
-| Nitish Rana | 15(13) 2/0 out | 4(15) 0/0 batting | -11/+2/-2/+0 | ?? overshoot — investigate |
-| Karun Nair | 13(13) 2/0 out | 2(5) 0/0 batting | -11/-8/-2/+0 | (d) detection-loss undershoot |
-| Axar Patel | 2(6) 0/0 out | 21(32) 1/1 batting | +19/+26/+1/+1 | ?? overshoot — investigate |
-| Tristan Stubbs | 38(31) 1/2 out | None(None) None/None yet_to_bat | -38/-31/-1/-2 | (d) detection-loss undershoot |
-| Sameer Rizvi | 40(24) 0/4 no | None(None) None/None yet_to_bat | -40/-24/+0/-4 | (d) detection-loss undershoot |
-| Ashutosh Sharma | 14(5) 0/2 out | 28(16) 2/2 batting | +14/+11/+2/+0 | ?? overshoot — investigate |
-| Mitchell Starc | 0(0) 0/0 no | 0(1) 0/0 batting | +0/+1/+0/+0 | ?? overshoot — investigate |
+| Pathum Nissanka | 50(29) 5/3 out | 37(17) 5/2 batting | -13/-12/+0/-1 | (d) detection-loss undershoot |
+| KL Rahul | 23(14) 4/0 out | 18(12) 2/1 batting | -5/-2/-2/+1 | ?? overshoot — investigate |
+| Nitish Rana | 8(10) 1/0 out | 4(15) 0/0 batting | -4/+5/-1/+0 | ?? overshoot — investigate |
+| Sameer Rizvi | 3(7) 0/0 out | None(None) None/None yet_to_bat | -3/-7/+0/+0 | (d) detection-loss undershoot |
+| Tristan Stubbs | 2(4) 0/0 out | None(None) None/None yet_to_bat | -2/-4/+0/+0 | (d) detection-loss undershoot |
+| Axar Patel | 11(22) 0/0 out | 21(32) 1/1 batting | +10/+10/+1/+1 | ?? overshoot — investigate |
+| Ashutosh Sharma | 39(28) 3/3 out | 28(16) 2/2 batting | -11/-12/-1/-1 | (d) detection-loss undershoot |
+| Vipraj Nigam | 3(3) 0/0 no | 1(1) 0/0 batting | -2/-2/+0/+0 | (d) detection-loss undershoot |
+| Mitchell Starc | 0(2) 0/0 out | 0(1) 0/0 batting | +0/-1/+0/+0 | (d) detection-loss undershoot |
+| Lungi Ngidi | 1(1) 0/0 no | 1(1) 0/0 batting | +0/+0/+0/+0 | ✓ exact |
 
 ## Bowlers
 
 | Bowler | GT O R W | Replay O R W | Δballs/Δr/Δw | Verdict |
 |---|---|---|---|---|
-| Akeal Hosein | 4.0 19-1 | None None-None | -24/-19/-1 | (d) detection-loss undershoot |
-| Mukesh Choudhary | 4.0 31-1 | None None-None | -24/-31/-1 | (d) detection-loss undershoot |
-| Anshul Kamboj | 4.0 49-0 | None None-None | -24/-49/+0 | (d) detection-loss undershoot |
-| Noor Ahmad | 3.0 22-2 | None None-None | -18/-22/-2 | (d) detection-loss undershoot |
-| Gurjapneet Singh | 4.0 29-1 | None None-None | -24/-29/-1 | (d) detection-loss undershoot |
-| Jamie Overton | 1.0 5-1 | None None-None | -6/-5/-1 | (d) detection-loss undershoot |
+| Anukul Roy | 4.0 31-2 | None None-None | -24/-31/-2 | (d) detection-loss undershoot |
+| Vaibhav Arora | 3.0 29-1 | None None-None | -18/-29/-1 | (d) detection-loss undershoot |
+| Sunil Narine | 4.0 17-1 | None None-None | -24/-17/-1 | (d) detection-loss undershoot |
+| Kartik Tyagi | 4.0 25-2 | None None-None | -24/-25/-2 | (d) detection-loss undershoot |
+| Varun Chakaravarthy | 4.0 28-0 | None None-None | -24/-28/+0 | (d) detection-loss undershoot |
+| Cameron Green | 1.0 12-1 | None None-None | -6/-12/-1 | (d) detection-loss undershoot |
 
 ## Totals
 
-- GT batter-runs total: 153
+- GT batter-runs total: 140
 - Replay batter-runs total: 110
 - GT balls faced total: 120
-- Replay balls faced total: 98
-- GT 4s/6s: 10/9
+- Replay balls faced total: 95
+- GT 4s/6s: 13/6
 - Replay 4s/6s: 10/6
 
 ## Verdict legend
