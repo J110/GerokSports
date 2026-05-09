@@ -167,8 +167,7 @@ def apply_scorer_decision(scoreboard: Scoreboard, decision: dict,
         for name, update in batter_ups.items():
             if not isinstance(update, dict) or not update.get("accepted", True):
                 continue
-            if scoreboard.update_batter(name, runs=update.get("runs"),
-                                        balls=update.get("balls"),
+            if scoreboard.update_batter(name,
                                         striker=update.get("striker"),
                                         frame=frame):
                 changes.append(f"bat:{name}")
@@ -178,10 +177,7 @@ def apply_scorer_decision(scoreboard: Scoreboard, decision: dict,
         for bname, bdata in bowler_up.items():
             if not isinstance(bdata, dict) or not bdata.get("accepted", True):
                 continue
-            if scoreboard.update_bowler(bname, overs=bdata.get("overs"),
-                                        runs=bdata.get("runs"),
-                                        wickets=bdata.get("wickets"),
-                                        frame=frame):
+            if scoreboard.update_bowler(bname, frame=frame):
                 changes.append(f"bowl:{bname}")
 
     rejected = decision.get("rejected", {})

@@ -2998,6 +2998,90 @@ class ScoreManager:
         if frame.delivery_info:
             evt["delivery"] = frame.delivery_info
 
+    def _accumulate_stats_from_event(self, event: dict) -> None:
+        """Single-writer derivation: post one ball event's contribution
+        to scoreboard.batting_card / bowling_card via the *_delta API.
+
+        Runs before strike rotation so `event["striker"]` / `self.striker`
+        names the batter who actually faced the ball. Bowler is
+        `self.bowler_name`. Skips if scoreboard isn't attached (shadow
+        / no-SB tests), if name slots are unset, or for MULTI_BALL
+        (ambiguous distribution).
+        """
+        if self.scoreboard is None:
+            return
+        etype = event.get("type")
+        if etype in (None, "MULTI_BALL", ABSORBED_LEGAL):
+            return
+
+        striker_name = event.get("striker") or self.striker
+        bowler_name = self.bowler_name
+
+        if etype == "WICKET":
+            legal = bool(event.get("legal", True))
+            wkt_kind = event.get("wicket_type") or "unknown"
+            bowler_attributable = wkt_kind not in ("run_out", "unknown")
+            runs_this_ball = int(event.get("runs", 0) or 0)
+            if striker_name:
+                self.scoreboard.update_batter(
+                    striker_name,
+                    runs_delta=runs_this_ball,
+                    balls_delta=1 if legal else 0,
+                    fours_delta=0, sixes_delta=0,
+                    frame=self._current_frame)
+            if bowler_name:
+                self.scoreboard.update_bowler(
+                    bowler_name,
+                    runs_delta=runs_this_ball,
+                    balls_delta=1 if legal else 0,
+                    wickets_delta=1 if bowler_attributable else 0,
+                    frame=self._current_frame)
+            return
+
+        if etype == "DOT":
+            runs_off_bat, runs_total, legal = 0, 0, True
+        elif etype == "FOUR":
+            runs_off_bat, runs_total, legal = 4, 4, True
+        elif etype == "SIX":
+            runs_off_bat, runs_total, legal = 6, 6, True
+        elif etype == "RUNS":
+            runs_off_bat = int(
+                event.get("batter_runs", event.get("runs", 0)) or 0)
+            runs_total = int(event.get("runs", 0) or 0)
+            legal = True
+        elif etype == "WIDE":
+            runs_off_bat = 0
+            runs_total = int(event.get("runs", 0) or 0)
+            legal = False
+        elif etype == "NO_BALL":
+            runs_off_bat = int(event.get("batter_runs", 0) or 0)
+            runs_total = int(event.get("runs", 0) or 0)
+            legal = False
+        elif etype == "EXTRA":
+            # Pending unresolved extra — credit bowler with the runs;
+            # no batter credit until resolution upgrades the type.
+            runs_off_bat = 0
+            runs_total = int(event.get("runs", 0) or 0)
+            legal = False
+        else:
+            return
+
+        if striker_name and (runs_off_bat != 0 or legal):
+            self.scoreboard.update_batter(
+                striker_name,
+                runs_delta=runs_off_bat,
+                balls_delta=1 if legal else 0,
+                fours_delta=1 if etype == "FOUR" else 0,
+                sixes_delta=1 if etype == "SIX" else 0,
+                frame=self._current_frame)
+        if bowler_name and (runs_total != 0 or legal):
+            self.scoreboard.update_bowler(
+                bowler_name,
+                runs_delta=runs_total,
+                balls_delta=1 if legal else 0,
+                wickets_delta=0,
+                frame=self._current_frame)
+
     def _apply_event(self, event: dict, prev: dict, card: dict,
                      frame: FrameInput) -> None:
         if event.get("type") == ABSORBED_LEGAL:
@@ -3005,6 +3089,15 @@ class ScoreManager:
                 "[SM] ABSORBED_LEGAL reached _apply_event — "
                 "should use _apply_absorbed_event; skipping")
             return
+        # --- Stat accumulation (single-writer derivation path) ---
+        # Must run BEFORE strike rotation so `event["striker"]` /
+        # `self.striker` still names the batter who actually faced the
+        # ball. NO_BALL/EXTRA pending resolution is a known gap: an
+        # initially-EXTRA-typed event credits the bowler with the
+        # extras runs but not the no-ball batter portion if it later
+        # resolves to NO_BALL. Out of scope this round.
+        self._accumulate_stats_from_event(event)
+
         # --- This Over ---
         is_over_change = (int(card.get("overs", 0)) != int(prev.get("overs", 0))
                           and (card.get("overs", 0) or 0)
