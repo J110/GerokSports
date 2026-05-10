@@ -11,6 +11,7 @@ from __future__ import annotations
 import asyncio
 import base64
 import json
+import os
 import re
 import time
 
@@ -19,7 +20,7 @@ import numpy as np
 from groq import AsyncGroq
 
 from eyes.config import GROQ_API_KEY, GROQ_PRIMARY_MODEL
-from eyes.cricket_logger import CricketLogger
+from eyes.cricket_logger import CricketLogger, get_global_frame
 
 log = CricketLogger("VISION")
 
@@ -295,6 +296,42 @@ class Vision:
     def __init__(self):
         self._groq = AsyncGroq(
             api_key=GROQ_API_KEY, timeout=_SCOUT_TIMEOUT + 2)
+        # Raw-Scout dump (opt-in via SCOUT_RAW_DUMP=1). Each call's
+        # full multi-line response is appended to
+        # files/logs/deliveries/<SESSION_ID>/scout_raw.jsonl so future
+        # runs can replay the match deterministically with $0 Groq cost.
+        self._raw_dump_fp = None
+        if os.environ.get("SCOUT_RAW_DUMP") == "1":
+            sid = os.environ.get("BMF_SESSION_ID", "no_session")
+            ddir = os.path.join("files", "logs", "deliveries", sid)
+            os.makedirs(ddir, exist_ok=True)
+            self._raw_dump_fp = open(
+                os.path.join(ddir, "scout_raw.jsonl"),
+                "a", buffering=1, encoding="utf-8")
+        # Replay cache (opt-in via SCOUT_REPLAY_LOG=<path>). When a
+        # frame_id is present in the cache, _scout_call returns the
+        # cached raw_response instead of calling Groq. Takes precedence
+        # over real API calls; misses fall through to Groq (so partial
+        # caches still work — paired with SCOUT_RAW_DUMP=1 they'll be
+        # filled on the fly).
+        self._replay_cache: dict[int, str] = {}
+        replay_path = os.environ.get("SCOUT_REPLAY_LOG")
+        if replay_path and os.path.exists(replay_path):
+            with open(replay_path, encoding="utf-8") as fh:
+                for line in fh:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        rec = json.loads(line)
+                        fid = rec.get("frame_id")
+                        raw = rec.get("raw_response")
+                        if isinstance(fid, int) and isinstance(raw, str):
+                            self._replay_cache[fid] = raw
+                    except json.JSONDecodeError:
+                        continue
+            log.info(f"[SCOUT-REPLAY] loaded {len(self._replay_cache)} "
+                     f"cached responses from {replay_path}")
         self.last_drs_flag: bool = False
         # Fix #4: cumulative count of frames where Scout returned a
         # prompt-template placeholder response.  Surfaced for monitoring;
@@ -495,6 +532,11 @@ class Vision:
     # ------------------------------------------------------------------
     async def _scout_call(self, image_b64: str,
                           prompt: str) -> str | None:
+        fid = get_global_frame()
+        if self._replay_cache:
+            cached = self._replay_cache.get(fid)
+            if cached is not None:
+                return cached
         try:
             resp = await self._groq.chat.completions.create(
                 model=GROQ_PRIMARY_MODEL,
@@ -516,6 +558,17 @@ class Vision:
             tokens = usage.completion_tokens if usage else "?"
             if finish != "stop":
                 log.info(f"[SCOUT] finish={finish} tokens={tokens}")
+            if self._raw_dump_fp is not None:
+                try:
+                    self._raw_dump_fp.write(json.dumps({
+                        "ts": time.time(),
+                        "frame_id": fid,
+                        "raw_response": content,
+                        "finish_reason": finish,
+                        "tokens": tokens if isinstance(tokens, int) else None,
+                    }) + "\n")
+                except Exception:
+                    pass
             return content
         except Exception as e:
             log.error(f"[SCOUT] Error: {e}")
