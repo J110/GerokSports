@@ -8,6 +8,10 @@
 # Override defaults via env:
 #   PROD_ENTRY (default: python -m eyes.main; set to "python files/test_pipeline.py" to use that)
 #   RECORDER_DURATION_S (default: 18000 — 5h)
+#
+# To target a specific cricbuzz match:
+#   CRICBUZZ_MATCH_ID=<id> ./start_live_match.sh
+# (or pass --match-id <id> if invoking test_pipeline.py directly)
 
 set -euo pipefail
 

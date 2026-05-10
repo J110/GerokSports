@@ -887,7 +887,44 @@ async def broadcast_state(payload: dict):
                 await client.close()
             except Exception:
                 pass
-SQUAD_URL = "https://www.cricbuzz.com/cricket-match-squads/152075/rr-vs-gt-52nd-match-indian-premier-league-2026"
+# D9 fix (2026-05-10): squad URL is parametrized via CRICBUZZ_MATCH_ID
+# env var or `--match-id <id>` CLI arg. Env wins over arg; both fall
+# back to the last-known-good default with a WARN log so an out-of-date
+# constant doesn't silently scrape the wrong squad list.
+DEFAULT_MATCH_ID = "152075"
+DEFAULT_MATCH_SLUG = "rr-vs-gt-52nd-match-indian-premier-league-2026"
+
+
+def _resolve_match_id() -> tuple[str, str]:
+    """Returns (match_id, source_label). Env > CLI > default."""
+    env_id = os.environ.get("CRICBUZZ_MATCH_ID")
+    if env_id:
+        return env_id, "env:CRICBUZZ_MATCH_ID"
+    argv_id = None
+    argv = list(sys.argv) if hasattr(sys, "argv") else []
+    for i, tok in enumerate(argv):
+        if tok == "--match-id" and i + 1 < len(argv):
+            argv_id = argv[i + 1]
+            break
+        if tok.startswith("--match-id="):
+            argv_id = tok.split("=", 1)[1]
+            break
+    if argv_id:
+        return argv_id, "arg:--match-id"
+    return DEFAULT_MATCH_ID, "default"
+
+
+def _build_squad_url() -> str:
+    mid, source = _resolve_match_id()
+    if source == "default":
+        log.warn(
+            f"[CONFIG] CRICBUZZ_MATCH_ID not set, falling back to "
+            f"default {DEFAULT_MATCH_ID}")
+    return (f"https://www.cricbuzz.com/cricket-match-squads/"
+            f"{mid}/{DEFAULT_MATCH_SLUG}")
+
+
+SQUAD_URL = _build_squad_url()
 SESSION_ID = uuid.uuid4().hex[:8]
 os.environ["BMF_SESSION_ID"] = SESSION_ID
 
@@ -2659,6 +2696,7 @@ def enforce_ws_slot_invariant(state: dict,
 # --- WS full-payload helpers (module-level; see
 #     docs/investigations/build_full_payload_extraction_design.md)
 _ws_scrub_counts: dict[str, int] = {}
+_ws_scrub_consec: dict[str, int] = {}
 _last_gap_sig: dict = {"sig": None}
 _last_feeder_div_sig: dict = {"sig": None}
 
@@ -4925,11 +4963,25 @@ def _build_full_payload_from_state(
                     continue
                 _c = _bc.get(_nm)
                 if _c and _c.get("status") == "batting":
+                    _ws_scrub_consec.pop(f"{_slot}:{_nm}", None)
                     continue  # passes admission
 
                 _reason = _classify_reject_reason(_nm)
                 _key = f"{_slot}:{_reason}"
                 _scrub_counts[_key] = _scrub_counts.get(_key, 0) + 1
+                _consec_key = f"{_slot}:{_nm}"
+                _ws_scrub_consec[_consec_key] = (
+                    _ws_scrub_consec.get(_consec_key, 0) + 1)
+
+                if (_c is not None
+                        and _ws_scrub_consec[_consec_key] >= 2):
+                    _old_status = _c.get("status")
+                    _c["status"] = "batting"
+                    _ws_scrub_consec.pop(_consec_key, None)
+                    log.info(
+                        f"  [WS-PROMOTE] {_slot}='{_nm}' auto-promoted "
+                        f"via 2-frame consensus (was={_old_status})")
+                    continue
 
                 if _slot == "striker":
                     _fallback = _active[0] if _active else None
