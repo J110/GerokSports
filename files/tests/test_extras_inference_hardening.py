@@ -63,6 +63,16 @@ def _make_warm_sm(*, score: int, overs: float, wickets: int = 1) -> ScoreManager
     # seeded directly — the scoreboard-backed `score`/`wickets`
     # properties pick up the values written above.
     sm.overs = overs
+    # Pre-confirm `_tracker` so the FIRST `Scoreboard.set("score", ...)`
+    # commits without needing 3 cold-start frames of consensus warm-up.
+    # (INITIAL_CONSENSUS_FRAMES=3 in eyes/consistent_tracker.py.)
+    sb._tracker.confirmed["score"] = score
+    sb._tracker.confirmed["wickets"] = wickets
+    sb._tracker.confirmed["overs"] = overs
+    # Skip warm-mode pending-confirmation too: production grants this
+    # grace window for a few frames after every ball event; tests jump
+    # straight to a fresh frame so no grace would otherwise be active.
+    sb._tracker._post_event_grace = 100
     sm.bat1_name = "A"
     sm.bat2_name = "B"
     sm._cold_pipeline_frames = 100
