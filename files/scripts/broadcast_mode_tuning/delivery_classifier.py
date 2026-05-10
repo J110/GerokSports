@@ -239,6 +239,10 @@ STRONG_POST_ACTION_PHRASES = re.compile(
     r"catching\s+the\s+ball|caught\s+(?:behind\s+|out\s*)?\b|"
     r"(?:lunges?|lunging|diving|dives)\s+(?:forward\s+)?to\s+catch|"
     r"(?:lunges?|lunging|diving|dives)\s+for\s+the\s+ball|"
+    r"(?:lunges?|lunging|diving|dives)\s+on\s+the\s+ground|"
+    r"(?:attempting|trying)\s+to\s+(?:catch|take\s+the\s+catch)|"
+    r"(?:going\s+for|going\s+to|attempts\s+to\s+take)\s+(?:the\s+|a\s+)?catch|"
+    r"(?:reach(?:ing|es)|stretches?|stretching)\s+for\s+the\s+ball|"
     r"fielder\s+(?:lunging|diving)\b|"
     r"\bWICKET\b\s+(?:graphic|overlay|text|sign)|"
     r"\b(?:FOUR|SIX)\b\s+(?:graphic|overlay|text|sign|celebration))",
@@ -455,4 +459,24 @@ def pick_anchor(cluster: dict) -> FrameInfo:
         pr = _PATH_PREF.get(f.path, 0)
         if (sc > best_score) or (sc == best_score and pr > best_pref):
             best, best_score, best_pref = f, sc, pr
+    frames_sorted = sorted(cluster["frames"], key=lambda x: x.t)
+    for f in frames_sorted:
+        if f.t >= best.t:
+            break
+        if not f.signals.V:
+            continue
+        if not (f.signals.M2 or f.signals.W):
+            continue
+        if (best.t - f.t) <= 4.0:
+            continue
+        bridge = [g for g in frames_sorted if f.t < g.t < best.t]
+        if not bridge:
+            continue
+        hard_in_bridge = any(g.signals.HARD for g in bridge)
+        empty_in_bridge = sum(
+            1 for g in bridge
+            if not (g.signals.M or g.signals.W) and not g.signals.HARD
+        )
+        if not hard_in_bridge and empty_in_bridge <= 1:
+            return f
     return best
