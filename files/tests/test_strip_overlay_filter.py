@@ -25,9 +25,14 @@ from test_pipeline import (  # noqa: E402
 
 
 def _mk_scoreboard(active: dict[str, dict],
-                   resolve_map: dict[str, str] | None = None):
+                   resolve_map: dict[str, str] | None = None,
+                   current_innings: int = 1):
     sb = MagicMock()
     sb.batting_card = active
+    # `filter_strip_wrong_team` (test_pipeline.py:3653) compares
+    # `sb.current_innings` against an int — without an explicit value
+    # MagicMock auto-mocks the attribute and the `<` raises TypeError.
+    sb.current_innings = current_innings
     rm = {k.upper(): v for k, v in (resolve_map or {}).items()}
     rm.update({k.upper(): k for k in active})
 
