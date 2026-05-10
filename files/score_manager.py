@@ -355,6 +355,12 @@ class ScoreManager:
         self._regression_streak: int = 0
         self._REGRESSION_STREAK_THRESHOLD: int = 10
         self._LARGE_OVERS_REGRESSION_GAP: float = 3.0
+        # D4 inn2-preserve gating: True only after a real forward score
+        # advance happens while in WARM mode. A cold-start commit that
+        # immediately freezes (no live progress) leaves this False, so
+        # the inn1→inn2 preserve heuristic in the pipeline can refuse
+        # to carry the stale state across the innings flip.
+        self._warm_advancing_observed: bool = False
 
         # Innings history (for archiving at innings change)
         self.innings_history: list[dict] = []
@@ -2274,6 +2280,11 @@ class ScoreManager:
         if frame and frame != self._current_frame:
             self._current_frame = int(frame)
         if card.get("score") is not None:
+            _prior_score = self.score
+            if (self.mode == "WARM"
+                    and _prior_score is not None
+                    and card["score"] > _prior_score):
+                self._warm_advancing_observed = True
             self.score = card["score"]
         if card.get("wickets") is not None:
             self.wickets = card["wickets"]

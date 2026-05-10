@@ -5676,7 +5676,9 @@ async def run_test():
             _has_progress = (_pre_score > 0 or _pre_overs_f > 0.0)
             _impossible_end = (
                 _pre_overs_f < 18.0 and _pre_wkts < 8)
-            if _has_progress and _impossible_end:
+            _warm_advanced = bool(getattr(
+                score_mgr, "_warm_advancing_observed", False))
+            if _has_progress and _impossible_end and _warm_advanced:
                 _is_cold_start_correction = True
                 _pre_state = dict(scoreboard._inn)
                 log.info(
@@ -5685,6 +5687,12 @@ async def run_test():
                     f"({_pre_overs_f}) — preserving (innings 1 "
                     f"physically incomplete; this is a cold-"
                     f"start mid-innings-2 correction).")
+            elif _has_progress and _impossible_end:
+                log.info(
+                    f"[INNINGS] set_innings_2 with cold-start state "
+                    f"{_pre_score}/{_pre_wkts} ({_pre_overs_f}) — NOT "
+                    f"preserving (score never advanced after cold-start "
+                    f"commit, likely frozen on stale-graphic).")
         # Live-monitoring v1: emit innings-1 RETRO-SUMMARY before
         # the scoreboard flips so the per-innings counter is sealed.
         try:
