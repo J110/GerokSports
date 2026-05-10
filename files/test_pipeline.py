@@ -887,7 +887,7 @@ async def broadcast_state(payload: dict):
                 await client.close()
             except Exception:
                 pass
-SQUAD_URL = "https://www.cricbuzz.com/cricket-match-squads/152031/dc-vs-csk-48th-match-indian-premier-league-2026"
+SQUAD_URL = "https://www.cricbuzz.com/cricket-match-squads/152075/rr-vs-gt-52nd-match-indian-premier-league-2026"
 SESSION_ID = uuid.uuid4().hex[:8]
 os.environ["BMF_SESSION_ID"] = SESSION_ID
 
@@ -11530,9 +11530,6 @@ async def run_test():
                 # with the over rollover; SM's next ingest will
                 # repopulate from the new strip read.
                 score_mgr.bowler_name = None
-                score_mgr.bowler_wickets = None
-                score_mgr.bowler_runs = None
-                score_mgr.bowler_overs = None
                 # Also invalidate the in-flight `_cur_bowler_name`
                 # captured at the top of this frame so any DETAIL
                 # log / commentary downstream sees the cleared
