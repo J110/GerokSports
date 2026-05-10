@@ -287,16 +287,23 @@ def test_fix4_predictable_increment_commits_first_read():
 # ---------------------------------------------------------------------
 
 
+def _seed_bat_card(sm, name: str, runs: int, balls: int):
+    """Single-writer contract (post 4b972e5): direct sm.bat*_runs
+    setters are gone. Seed via the canonical batting_card store."""
+    sm.scoreboard.batting_card[name] = {
+        "runs": runs, "balls": balls, "fours": 0, "sixes": 0,
+        "status": "batting",
+    }
+
+
 def test_fix5_duplicate_strip_rows_rejected():
     """Strip rows ['KL Rahul 5(8)', 'KL Rahul 5(8)']: the entire
     frame's batter update must be rejected with [STRIP-ROW-DUPLICATE]."""
     sm = _make_warm_sm()
     sm.bat1_name = "KL Rahul"
     sm.bat2_name = "Pant"
-    sm.bat1_runs = 5
-    sm.bat1_balls = 8
-    sm.bat2_runs = 12
-    sm.bat2_balls = 9
+    _seed_bat_card(sm, "KL Rahul", 5, 8)
+    _seed_bat_card(sm, "Pant", 12, 9)
 
     card = {
         "bat1_name": "KL Rahul",
@@ -318,10 +325,8 @@ def test_fix5_neither_match_logs_name_mismatch_and_rejects():
     sm = _make_warm_sm()
     sm.bat1_name = "KL Rahul"
     sm.bat2_name = "Pant"
-    sm.bat1_runs = 5
-    sm.bat1_balls = 8
-    sm.bat2_runs = 12
-    sm.bat2_balls = 9
+    _seed_bat_card(sm, "KL Rahul", 5, 8)
+    _seed_bat_card(sm, "Pant", 12, 9)
 
     card = {
         "bat1_name": "Stubbs",
