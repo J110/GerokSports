@@ -1374,6 +1374,26 @@ class ScoreManager:
             return False
 
         ref = self._last_warm_state
+        if ref is None and (self.innings is None or self.innings == 1):
+            cs_v = cs or 0
+            co_v = co or 0
+            cw_v = cw or 0
+            if cw_v >= 2 and co_v < 1.0:
+                log.info(
+                    f"[SM] cold-start reject (inn1_impossible_wickets_overs: "
+                    f"{cs_v}/{cw_v} ({co_v}))")
+                return False
+            if cw_v >= 5 and co_v < 5.0:
+                log.info(
+                    f"[SM] cold-start reject (inn1_severe_collapse_implausible: "
+                    f"{cs_v}/{cw_v} ({co_v}))")
+                return False
+            if cw_v >= 3 and cs_v < cw_v * 2:
+                log.info(
+                    f"[SM] cold-start reject (inn1_score_too_low_for_wickets: "
+                    f"{cs_v}/{cw_v} ({co_v}))")
+                return False
+
         if ref is None:
             return True
 
