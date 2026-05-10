@@ -348,6 +348,13 @@ class ScoreManager:
         self._overs_regress_streak: int = 0
         self._overs_regress_from: float | None = None
         self._OVERS_REGRESS_THRESHOLD: int = 2
+        # D5 stuck-tracker recovery: count any rejected-regression frame
+        # (large or small). When the streak reaches the threshold, force
+        # a full reset — tracker is almost certainly anchored to a stale
+        # commit that the live broadcast keeps disagreeing with.
+        self._regression_streak: int = 0
+        self._REGRESSION_STREAK_THRESHOLD: int = 10
+        self._LARGE_OVERS_REGRESSION_GAP: float = 3.0
 
         # Innings history (for archiving at innings change)
         self.innings_history: list[dict] = []
@@ -859,6 +866,7 @@ class ScoreManager:
 
         self._overs_regress_streak = 0
         self._overs_regress_from = None
+        self._regression_streak = 0
 
     def full_reset(self, reason: str = "") -> None:
         """Cold-start re-entry **plus** full Fix-16 per-innings scalar wipe.
@@ -1684,6 +1692,31 @@ class ScoreManager:
         if d_wickets < 0:
             return None
         if d_overs < 0:
+            # D5 large-gap fast-track: a regression of >3 overs is almost
+            # never a transient glitch — it's a stuck tracker disagreeing
+            # with the live broadcast. Force re-COLD_START on the FIRST
+            # such frame instead of waiting for the 2-frame deferral.
+            if (old_overs is not None and new_overs is not None
+                    and (old_overs - new_overs)
+                    > self._LARGE_OVERS_REGRESSION_GAP):
+                log.info(
+                    f"[SM] Overs LARGE regression ({old_overs}→"
+                    f"{new_overs}, gap {old_overs - new_overs:.1f}) — "
+                    f"force re-COLD_START (stuck-tracker recovery)")
+                self.full_reset(reason="stuck_tracker_large_overs_regression")
+                self._regression_streak = 0
+                return None
+            # D5 streak detector: many small rejected regressions also
+            # indicate a stuck tracker, even when no individual frame
+            # crosses the large-gap threshold.
+            self._regression_streak += 1
+            if self._regression_streak >= self._REGRESSION_STREAK_THRESHOLD:
+                log.info(
+                    f"[SM] Regression streak {self._regression_streak} "
+                    f"— force re-COLD_START (persistent stuck-tracker)")
+                self.full_reset(reason="stuck_tracker_regression_streak")
+                self._regression_streak = 0
+                return None
             # Require N consecutive regression frames before re-entering
             # COLD_START.  A single FRAME_POISONED scout read (or a
             # _validate_overs correction triggered by a stale this_over
@@ -1722,6 +1755,7 @@ class ScoreManager:
             self._deferred_score = 0
             self._overs_regress_streak = 0
             self._overs_regress_from = None
+            self._regression_streak = 0
             return None
 
         # Forward progress (or equality) — clear any pending regression
@@ -1734,6 +1768,7 @@ class ScoreManager:
                 f"back in sync at {new_overs}")
             self._overs_regress_streak = 0
             self._overs_regress_from = None
+        self._regression_streak = 0
         if d_wickets > 2:
             return None
 
