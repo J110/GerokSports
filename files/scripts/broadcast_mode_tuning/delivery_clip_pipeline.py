@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -412,6 +413,18 @@ def main() -> int:
               "post-action evidence")
     merged = final_clusters
 
+    # 20b LLM rescue over V_post-rich gaps (env-gated, opt-in for prod).
+    if (os.environ.get("LLM_RESCUE_ENABLED") == "1"
+            and not os.environ.get("SCOUT_REPLAY_LOG")):
+        from llm_rescue import llm_rescue_v_post_gaps
+        before = len(merged)
+        merged = llm_rescue_v_post_gaps(merged, frames)
+        n_llm = sum(1 for c in merged
+                    if c.get("rescued_by") == "llm_v_post_gap")
+        if n_llm > 0:
+            print(f"LLM-rescued {n_llm} cluster(s) from V_post-rich gaps "
+                  f"(was {before} clusters before LLM pass)")
+
     # Rebuild plans from final merged cluster list. pick_anchor on merged
     # clusters re-evaluates anchor across combined frames (verb-rank wins).
     plans = []
@@ -432,7 +445,9 @@ def main() -> int:
         for f in c["frames"]:
             path_summary[f.path] = path_summary.get(f.path, 0) + 1
         ss_loose = " SS_loose" if a.signals.SS_via_loose else ""
-        rescued = (" PHANTOM-RESCUED" if c.get("phantom_rescued")
+        rescued = (" LLM-RESCUED"
+                   if c.get("rescued_by") == "llm_v_post_gap"
+                   else " PHANTOM-RESCUED" if c.get("phantom_rescued")
                    else " HIGH-SIG-RESCUED" if c.get("high_signal_rescued")
                    else " RESCUED" if c.get("rescued")
                    else " MERGED-RESCUED" if c.get("merged_rescued")
