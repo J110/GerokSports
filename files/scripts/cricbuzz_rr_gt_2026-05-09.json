@@ -1,0 +1,81 @@
+{
+  "match": "RR vs GT, 52nd Match, IPL 2026",
+  "date": "2026-05-09",
+  "innings": [
+    {
+      "innings_number": 1,
+      "batting_team": "Gujarat Titans",
+      "total": "229-4",
+      "overs": 20.0,
+      "run_rate": 11.45,
+      "extras": {"total": 19, "b": 1, "lb": 1, "w": 16, "nb": 1, "p": 0},
+      "batters": [
+        {"name": "Sai Sudharsan", "dismissal": "c Jofra Archer b Yash Raj Punja", "r": 55, "b": 36, "fours": 6, "sixes": 2, "sr": 152.78},
+        {"name": "Shubman Gill", "dismissal": "c Tushar Deshpande b Brijesh Sharma", "r": 84, "b": 44, "fours": 9, "sixes": 3, "sr": 190.91, "captain": true},
+        {"name": "Jos Buttler", "dismissal": "c Donovan Ferreira b Ravindra Jadeja", "r": 13, "b": 10, "fours": 1, "sixes": 1, "sr": 130.00, "wk": true},
+        {"name": "Washington Sundar", "dismissal": "not out", "r": 37, "b": 20, "fours": 2, "sixes": 3, "sr": 185.00},
+        {"name": "Jason Holder", "dismissal": "c Yashasvi Jaiswal b Brijesh Sharma", "r": 7, "b": 7, "fours": 1, "sixes": 0, "sr": 100.00},
+        {"name": "Rahul Tewatia", "dismissal": "not out", "r": 14, "b": 4, "fours": 0, "sixes": 2, "sr": 350.00}
+      ],
+      "did_not_bat": ["Nishant Sindhu", "Rashid Khan", "Arshad Khan", "Kagiso Rabada", "Mohammed Siraj"],
+      "bowlers": [
+        {"name": "Jofra Archer", "o": 3, "m": 0, "r": 46, "w": 0, "nb": 1, "wd": 9, "eco": 15.30},
+        {"name": "Tushar Deshpande", "o": 4, "m": 0, "r": 52, "w": 0, "nb": 0, "wd": 3, "eco": 13.00},
+        {"name": "Brijesh Sharma", "o": 4, "m": 0, "r": 47, "w": 2, "nb": 0, "wd": 2, "eco": 11.80},
+        {"name": "Yash Raj Punja", "o": 4, "m": 0, "r": 37, "w": 1, "nb": 0, "wd": 2, "eco": 9.20},
+        {"name": "Ravindra Jadeja", "o": 4, "m": 0, "r": 34, "w": 1, "nb": 0, "wd": 0, "eco": 8.50},
+        {"name": "Donovan Ferreira", "o": 1, "m": 0, "r": 11, "w": 0, "nb": 0, "wd": 0, "eco": 11.00}
+      ],
+      "fall_of_wickets": [
+        {"batter": "Sai Sudharsan", "score": 118, "wicket": 1, "over": 10.5},
+        {"batter": "Jos Buttler", "score": 150, "wicket": 2, "over": 13.2},
+        {"batter": "Shubman Gill", "score": 185, "wicket": 3, "over": 16.2},
+        {"batter": "Jason Holder", "score": 205, "wicket": 4, "over": 18.1}
+      ],
+      "powerplay": {"overs": "0.1 - 6", "runs": 82}
+    },
+    {
+      "innings_number": 2,
+      "batting_team": "Rajasthan Royals",
+      "total": "152-10",
+      "overs": 16.3,
+      "run_rate": 9.21,
+      "extras": {"total": 3, "b": 0, "lb": 1, "w": 2, "nb": 0, "p": 0},
+      "batters": [
+        {"name": "Yashasvi Jaiswal", "dismissal": "c Nishant Sindhu b Kagiso Rabada", "r": 3, "b": 4, "fours": 0, "sixes": 0, "sr": 75.00, "captain": true},
+        {"name": "Vaibhav Sooryavanshi", "dismissal": "c Arshad Khan b Mohammed Siraj", "r": 36, "b": 16, "fours": 3, "sixes": 3, "sr": 225.00},
+        {"name": "Dhruv Jurel", "dismissal": "b Rashid Khan", "r": 24, "b": 10, "fours": 1, "sixes": 3, "sr": 240.00, "wk": true},
+        {"name": "Shimron Hetmyer", "dismissal": "c Jason Holder b Kagiso Rabada", "r": 6, "b": 7, "fours": 1, "sixes": 0, "sr": 85.71},
+        {"name": "Ravindra Jadeja", "dismissal": "lbw b Rashid Khan", "r": 38, "b": 25, "fours": 3, "sixes": 2, "sr": 152.00},
+        {"name": "Donovan Ferreira", "dismissal": "b Rashid Khan", "r": 4, "b": 2, "fours": 1, "sixes": 0, "sr": 200.00},
+        {"name": "Shubham Dubey", "dismissal": "b Rashid Khan", "r": 15, "b": 14, "fours": 1, "sixes": 1, "sr": 107.14},
+        {"name": "Dasun Shanaka", "dismissal": "c Shubman Gill b Jason Holder", "r": 16, "b": 11, "fours": 2, "sixes": 0, "sr": 145.45},
+        {"name": "Jofra Archer", "dismissal": "c Jos Buttler b Jason Holder", "r": 5, "b": 6, "fours": 1, "sixes": 0, "sr": 83.33},
+        {"name": "Tushar Deshpande", "dismissal": "c Washington Sundar b Jason Holder", "r": 1, "b": 3, "fours": 0, "sixes": 0, "sr": 33.33},
+        {"name": "Brijesh Sharma", "dismissal": "not out", "r": 1, "b": 1, "fours": 0, "sixes": 0, "sr": 100.00}
+      ],
+      "did_not_bat": ["Yash Raj Punja"],
+      "bowlers": [
+        {"name": "Mohammed Siraj", "o": 4, "m": 0, "r": 55, "w": 1, "nb": 0, "wd": 2, "eco": 13.80},
+        {"name": "Kagiso Rabada", "o": 3, "m": 0, "r": 33, "w": 2, "nb": 0, "wd": 0, "eco": 11.00},
+        {"name": "Ravisrinivasan Sai Kishore", "o": 1, "m": 0, "r": 8, "w": 0, "nb": 0, "wd": 0, "eco": 8.00},
+        {"name": "Rashid Khan", "o": 4, "m": 0, "r": 33, "w": 4, "nb": 0, "wd": 0, "eco": 8.20},
+        {"name": "Washington Sundar", "o": 2, "m": 0, "r": 10, "w": 0, "nb": 0, "wd": 0, "eco": 5.00},
+        {"name": "Jason Holder", "o": 2.3, "m": 0, "r": 12, "w": 3, "nb": 0, "wd": 0, "eco": 4.80}
+      ],
+      "fall_of_wickets": [
+        {"batter": "Vaibhav Sooryavanshi", "score": 38, "wicket": 1, "over": 2.5},
+        {"batter": "Yashasvi Jaiswal", "score": 40, "wicket": 2, "over": 3.3},
+        {"batter": "Shimron Hetmyer", "score": 68, "wicket": 3, "over": 5.4},
+        {"batter": "Dhruv Jurel", "score": 87, "wicket": 4, "over": 7.3},
+        {"batter": "Donovan Ferreira", "score": 91, "wicket": 5, "over": 7.5},
+        {"batter": "Shubham Dubey", "score": 115, "wicket": 6, "over": 11.4},
+        {"batter": "Ravindra Jadeja", "score": 136, "wicket": 7, "over": 13.5},
+        {"batter": "Jofra Archer", "score": 141, "wicket": 8, "over": 14.5},
+        {"batter": "Dasun Shanaka", "score": 151, "wicket": 9, "over": 16.1},
+        {"batter": "Tushar Deshpande", "score": 152, "wicket": 10, "over": 16.3}
+      ],
+      "powerplay": {"overs": "0.1 - 6", "runs": 78}
+    }
+  ]
+}
