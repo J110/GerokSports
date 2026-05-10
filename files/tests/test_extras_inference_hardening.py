@@ -49,14 +49,20 @@ _ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
 def _make_warm_sm(*, score: int, overs: float, wickets: int = 1) -> ScoreManager:
     sm = ScoreManager(shadow=False)
     sb = Scoreboard()
-    sb._inn = {
+    # `_inn` is a read-through property — seed via the underlying
+    # `innings` dict (Scoreboard.__init__ pre-populates it with blanks).
+    sb.innings[sb.current_innings].update({
         "score": score, "wickets": wickets, "overs": overs,
         "current_bowler": None, "striker": None, "non": None,
-    }
+    })
     sb.batting_card = {}
     sb.bowling_card = {}
     sm.scoreboard = sb
     sm.mode = "WARM"
+    # `sm.overs` is a plain attribute (not a property), so it must be
+    # seeded directly — the scoreboard-backed `score`/`wickets`
+    # properties pick up the values written above.
+    sm.overs = overs
     sm.bat1_name = "A"
     sm.bat2_name = "B"
     sm._cold_pipeline_frames = 100

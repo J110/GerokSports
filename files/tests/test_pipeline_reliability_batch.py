@@ -183,10 +183,14 @@ def test_fix3_fast_commit_source_present():
     test_pipeline.py and gated by squad-roster validation."""
     src = open(os.path.join(ROOT, "test_pipeline.py")).read()
     assert "FAST-COMMIT swap" in src
-    assert "squad-validated, first clean read" in src
+    # Log line is wrapped across f-strings — match the post-concat
+    # tokens individually rather than the assembled message.
+    assert "squad-" in src and "validated, first clean read" in src
     # Must depend on the bowling-card squad check + non-poisoned frame.
+    # Window widened: the `bowling_card` derivation now lives a bit
+    # further upstream of the log emission than it used to.
     fc_block_start = src.find("FAST-COMMIT swap")
-    fc_window = src[max(0, fc_block_start - 800):fc_block_start + 200]
+    fc_window = src[max(0, fc_block_start - 2000):fc_block_start + 200]
     assert "bowling_card" in fc_window
     assert "_frame_poisoned" in fc_window
     assert "_bowler_must_change" in fc_window
@@ -201,14 +205,20 @@ def _make_warm_sm(score: int = 4, overs: float = 2.3,
                   wickets: int = 0) -> ScoreManager:
     sm = ScoreManager(shadow=False)
     sb = Scoreboard()
-    sb._inn = {
+    # `_inn` is a read-through property — seed via the underlying
+    # `innings` dict (Scoreboard.__init__ pre-populates it with blanks).
+    sb.innings[sb.current_innings].update({
         "score": score, "wickets": wickets, "overs": overs,
         "current_bowler": None, "striker": None, "non": None,
-    }
+    })
     sb.batting_card = {}
     sb.bowling_card = {}
     sm.scoreboard = sb
     sm.mode = "WARM"
+    # `sm.overs` is a plain attribute (not a property), so it must be
+    # seeded directly — the scoreboard-backed `score`/`wickets`
+    # properties pick up the values written above.
+    sm.overs = overs
     sm.bat1_name = "A"
     sm.bat2_name = "B"
     sm._cold_pipeline_frames = 100
