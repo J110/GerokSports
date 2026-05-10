@@ -59,6 +59,9 @@ class _LoopStub:
         self._capture_card = capture_card
         self._content_y = 0
         self._frame_buffer: collections.deque = collections.deque(maxlen=4096)
+        # ball_analyzer.py:372 added a parallel raw-frame buffer; the
+        # capture loop writes both. Stub the second to mirror.
+        self._frame_buffer_raw: collections.deque = collections.deque(maxlen=4096)
         self._buf_count = 0
         self._frames_read = 0
         self._actual_fps = 0.0
