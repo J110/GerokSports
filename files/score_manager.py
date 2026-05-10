@@ -1275,6 +1275,14 @@ class ScoreManager:
                     log.info(f"[SM] cold-start give-up REJECT "
                              f"({abs_check.reject_reason})")
                     return None
+                if not self._cold_start_plausible(card):
+                    log.info(
+                        f"[SM] cold-start max-frames-timeout deferred: "
+                        f"implausible_candidate "
+                        f"{card.get('score')}/{card.get('wickets')} "
+                        f"({card.get('overs')})")
+                    self.cold_frames = 0
+                    return None
                 self._last_warm_state = None
                 self._accept_initial(card, frame)
                 self.mode = "WARM"
@@ -1391,6 +1399,11 @@ class ScoreManager:
             target=self.target, innings=self.innings)
         if not abs_check.ok:
             log.info(f"[SM] cold-start reject ({abs_check.reject_reason})")
+            if self.striker is not None:
+                log.info(
+                    f"[SM] cold-start reject also cleared self.striker "
+                    f"(was={self.striker!r})")
+                self.striker = None
             return False
 
         ref = self._last_warm_state
@@ -1402,16 +1415,31 @@ class ScoreManager:
                 log.info(
                     f"[SM] cold-start reject (inn1_impossible_wickets_overs: "
                     f"{cs_v}/{cw_v} ({co_v}))")
+                if self.striker is not None:
+                    log.info(
+                        f"[SM] cold-start reject also cleared self.striker "
+                        f"(was={self.striker!r})")
+                    self.striker = None
                 return False
             if cw_v >= 5 and co_v < 5.0:
                 log.info(
                     f"[SM] cold-start reject (inn1_severe_collapse_implausible: "
                     f"{cs_v}/{cw_v} ({co_v}))")
+                if self.striker is not None:
+                    log.info(
+                        f"[SM] cold-start reject also cleared self.striker "
+                        f"(was={self.striker!r})")
+                    self.striker = None
                 return False
             if cw_v >= 3 and cs_v < cw_v * 2:
                 log.info(
                     f"[SM] cold-start reject (inn1_score_too_low_for_wickets: "
                     f"{cs_v}/{cw_v} ({co_v}))")
+                if self.striker is not None:
+                    log.info(
+                        f"[SM] cold-start reject also cleared self.striker "
+                        f"(was={self.striker!r})")
+                    self.striker = None
                 return False
 
         if ref is None:
@@ -1446,6 +1474,11 @@ class ScoreManager:
             log.info(
                 f"[SM] cold-start reject ({result.reject_reason})  "
                 f"ref={rs}/{rw}({ro}) → cand={cs_v}/{cw_v}({co_v})")
+            if self.striker is not None:
+                log.info(
+                    f"[SM] cold-start reject also cleared self.striker "
+                    f"(was={self.striker!r})")
+                self.striker = None
             return False
         return True
 
