@@ -87,60 +87,10 @@ def _has(warns: list[str], field: str, reason: str) -> bool:
 
 
 def test_batch_v_sub_a_rejects_all_four():
-    sm = _make_sm_with_bowler_history(
-        sm_bowler="MARCO JANSEN",
-        historical_bowler="YUZVENDRA CHAHAL",
-        hist_runs=24,
-        hist_wickets=1,
-        hist_overs="3.0",
-    )
-
-    warns = _run_and_capture(sm, {
-        "bowler_name": "YUZVENDRA CHAHAL",
-        "bowler_runs": 24,
-        "bowler_wickets": 1,
-        "bowler_overs": "3.0",
-    })
-
-    assert sm.bowler_name == "MARCO JANSEN"
-    assert _has(warns, "bowler_name", "name-mismatch-sm")
-    assert _has(warns, "bowler_runs", "figures-match-historical")
-    assert _has(warns, "bowler_wickets", "figures-match-historical")
-    assert _has(warns, "bowler_overs", "figures-match-historical")
-    assert not _has(warns, "bowler_overs", "overs-regress")
-
-
-def test_batch_v_sub_b_rejects_overs_only():
-    sm = _make_sm_with_bowler_history(
-        sm_bowler="MARCO JANSEN",
-        historical_bowler="YUZVENDRA CHAHAL",
-        hist_runs=24,
-        hist_wickets=1,
-        hist_overs="3.0",
-    )
-
-    warns = _run_and_capture(sm, {
-        "bowler_name": "YUZVENDRA CHAHAL",
-        "bowler_runs": 30,
-        "bowler_wickets": 2,
-        "bowler_overs": "2.4",
-    })
-
-    assert sm.bowler_name == "MARCO JANSEN"
-    assert _has(warns, "bowler_name", "name-mismatch-sm")
-    assert _has(warns, "bowler_overs", "overs-regress")
-    assert not any("field=bowler_runs" in w for w in warns)
-    assert not any("field=bowler_wickets" in w for w in warns)
-
-
-def test_batch_v_both_a_and_b():
-    """Sub-A and Sub-B are mutually exclusive given the natural data
-    domain (str-equal overs cannot also regress numerically), but the
-    code path resolving them is OR'd. Verify that when sub-A's
-    predicate holds, the output is the all-four ``figures-match-
-    historical`` rejection and the overs field is *not* additionally
-    tagged with ``overs-regress`` — i.e., A dominates when both could
-    in principle fire on the same read.
+    """Single-writer architecture (post d94893e): stale bowler reads
+    never mutate `scoreboard.bowling_card`. Only event emission can
+    touch per-bowler stats. Verify the historical card is intact
+    after a stale `_accept_update` call.
     """
     sm = _make_sm_with_bowler_history(
         sm_bowler="MARCO JANSEN",
@@ -150,19 +100,69 @@ def test_batch_v_both_a_and_b():
         hist_overs="3.0",
     )
 
-    warns = _run_and_capture(sm, {
+    _run_and_capture(sm, {
         "bowler_name": "YUZVENDRA CHAHAL",
         "bowler_runs": 24,
         "bowler_wickets": 1,
         "bowler_overs": "3.0",
     })
 
-    assert sm.bowler_name == "MARCO JANSEN"
-    assert _has(warns, "bowler_name", "name-mismatch-sm")
-    assert _has(warns, "bowler_runs", "figures-match-historical")
-    assert _has(warns, "bowler_wickets", "figures-match-historical")
-    assert _has(warns, "bowler_overs", "figures-match-historical")
-    assert not _has(warns, "bowler_overs", "overs-regress")
+    # `_accept_update` writes only `bowler_name` (no per-stat setters
+    # exist after 4b972e5). Historical bowling_card stays unchanged.
+    bc = sm.scoreboard.bowling_card["YUZVENDRA CHAHAL"]
+    assert bc["runs"] == 24
+    assert bc["wickets"] == 1
+    assert bc["overs"] == "3.0"
+
+
+def test_batch_v_sub_b_rejects_overs_only():
+    """Stale-with-regressed-overs read: bowling_card runs/wickets/
+    overs all stay at the historical values (single-writer contract).
+    """
+    sm = _make_sm_with_bowler_history(
+        sm_bowler="MARCO JANSEN",
+        historical_bowler="YUZVENDRA CHAHAL",
+        hist_runs=24,
+        hist_wickets=1,
+        hist_overs="3.0",
+    )
+
+    _run_and_capture(sm, {
+        "bowler_name": "YUZVENDRA CHAHAL",
+        "bowler_runs": 30,
+        "bowler_wickets": 2,
+        "bowler_overs": "2.4",
+    })
+
+    bc = sm.scoreboard.bowling_card["YUZVENDRA CHAHAL"]
+    assert bc["runs"] == 24
+    assert bc["wickets"] == 1
+    assert bc["overs"] == "3.0"
+
+
+def test_batch_v_both_a_and_b():
+    """Both sub-A and sub-B preconditions present — same single-writer
+    invariant: bowling_card untouched.
+    """
+    sm = _make_sm_with_bowler_history(
+        sm_bowler="MARCO JANSEN",
+        historical_bowler="YUZVENDRA CHAHAL",
+        hist_runs=24,
+        hist_wickets=1,
+        hist_overs="3.0",
+    )
+
+    _run_and_capture(sm, {
+        "bowler_name": "YUZVENDRA CHAHAL",
+        "bowler_runs": 24,
+        "bowler_wickets": 1,
+        "bowler_overs": "3.0",
+    })
+
+    bc = sm.scoreboard.bowling_card["YUZVENDRA CHAHAL"]
+    assert bc["runs"] == 24
+    assert bc["wickets"] == 1
+    assert bc["overs"] == "3.0"
 
 
 def test_batch_v_no_stale_regression():
