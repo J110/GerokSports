@@ -361,6 +361,12 @@ class ScoreManager:
         # the inn1→inn2 preserve heuristic in the pipeline can refuse
         # to carry the stale state across the innings flip.
         self._warm_advancing_observed: bool = False
+        # D7 team-change consensus: defer the inn-2 trigger until the
+        # same new team is seen on N consecutive frames. Single-frame
+        # pre-match-graphic flips otherwise commit a spurious flip.
+        self._team_change_candidate: str | None = None
+        self._team_change_streak: int = 0
+        self.TEAM_CHANGE_CONSENSUS_FRAMES: int = 3
 
         # Innings history (for archiving at innings change)
         self.innings_history: list[dict] = []
@@ -2097,11 +2103,37 @@ class ScoreManager:
             changed = True
             reason = "target_appeared"
 
-        # Batting team changed
+        # Batting team changed — require N-frame consensus to prevent
+        # single-frame pre-match-graphic flips from triggering spurious
+        # inn-2 transitions (D7 fix).
         if (frame.broadcast_team and self.batting_team
                 and frame.broadcast_team.upper() != self.batting_team.upper()):
-            changed = True
-            reason = reason or "batting_team_changed"
+            if frame.broadcast_team.upper() == (
+                    self._team_change_candidate or "").upper():
+                self._team_change_streak += 1
+            else:
+                self._team_change_candidate = frame.broadcast_team
+                self._team_change_streak = 1
+            if self._team_change_streak >= self.TEAM_CHANGE_CONSENSUS_FRAMES:
+                changed = True
+                reason = reason or "batting_team_changed"
+                log.info(
+                    f"[SM] team-change consensus committed: "
+                    f"{self.batting_team} → {frame.broadcast_team} "
+                    f"(streak {self._team_change_streak})")
+                self._team_change_candidate = None
+                self._team_change_streak = 0
+            else:
+                log.info(
+                    f"[SM] team-change candidate {frame.broadcast_team} "
+                    f"streak {self._team_change_streak}/"
+                    f"{self.TEAM_CHANGE_CONSENSUS_FRAMES} — deferring "
+                    f"inn-2 trigger")
+        elif (frame.broadcast_team and self.batting_team
+                and frame.broadcast_team.upper()
+                == self.batting_team.upper()):
+            self._team_change_candidate = None
+            self._team_change_streak = 0
 
         # Score dropping to 0 with wickets 0 while we had significant progress
         s = card.get("score", 0)
