@@ -20,6 +20,7 @@ from signal_extraction import extract_signals  # noqa: E402
 from delivery_classifier import (  # noqa: E402
     FrameInfo, annotate_all, build_clusters, pick_anchor,
     rescue_singletons, merge_rescued_with_neighbors, phantom_rescue,
+    rescue_high_signal_singletons,
 )
 from boundary_extractor import (  # noqa: E402
     extract_window, matched_inclusions, is_stop, is_C3, is_C5,
@@ -388,6 +389,14 @@ def main() -> int:
         print(f"Merged {n_merged} rescued singleton(s) into adjacent "
               "cluster(s) within 10s")
 
+    # P2: rescue isolated Path A/B/D frames with >=8 signals firing
+    # that fell outside any kept cluster and aren't near a kept anchor.
+    merged = rescue_high_signal_singletons(merged, frames)
+    n_high_sig = sum(1 for c in merged if c.get("high_signal_rescued"))
+    if n_high_sig > 0:
+        print(f"P2: rescued {n_high_sig} high-signal Path A/B/D singleton(s) "
+              "(>=8 signals, >=30s from kept anchors)")
+
     # Phantom rescue — V-filter-dropped Path-C-only runs with post-
     # action evidence in the next 3s.
     phantom_excluded = set(dropped_frame_ts)
@@ -424,6 +433,7 @@ def main() -> int:
             path_summary[f.path] = path_summary.get(f.path, 0) + 1
         ss_loose = " SS_loose" if a.signals.SS_via_loose else ""
         rescued = (" PHANTOM-RESCUED" if c.get("phantom_rescued")
+                   else " HIGH-SIG-RESCUED" if c.get("high_signal_rescued")
                    else " RESCUED" if c.get("rescued")
                    else " MERGED-RESCUED" if c.get("merged_rescued")
                    else "")

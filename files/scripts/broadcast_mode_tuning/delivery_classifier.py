@@ -370,6 +370,76 @@ def merge_rescued_with_neighbors(clusters: list[dict],
     return out
 
 
+def rescue_high_signal_singletons(
+        clusters: list[dict],
+        all_frames: list[FrameInfo],
+        min_signals: int = 8,
+        kept_cluster_min_dist_s: float = 30.0,
+        hard_window_s: float = 2.0,
+) -> list[dict]:
+    """Promote orphan Path A/B/D frames with very high signal density to
+    single-frame clusters. Recovers deliveries that the cluster builder
+    rejects because min_run=2 / gap_max=3 leaves a single high-signal
+    frame stranded between non-delivery neighbors.
+
+    Criteria for a frame to be rescued:
+      1. is_delivery=True with path in {A, B, D} (Path C excluded — its
+         predicate is too lax for singleton promotion).
+      2. >=min_signals of {V, V_post, S, M, M2, W, K, SS, CG} fire.
+      3. Frame sits >=kept_cluster_min_dist_s away from every kept
+         cluster's anchor (avoids duplicating splits of the same
+         delivery captured by a real cluster nearby).
+      4. No HARD_REJECT frame within +/- hard_window_s seconds.
+    """
+    if not all_frames:
+        return list(clusters)
+
+    in_cluster_t: set[float] = set()
+    kept_anchor_ts: list[float] = []
+    for c in clusters:
+        for f in c["frames"]:
+            in_cluster_t.add(f.t)
+        anchor_t = c.get("anchor_t")
+        if anchor_t is None:
+            anchor_obj = c.get("anchor")
+            anchor_t = anchor_obj.t if anchor_obj is not None else c["start_t"]
+        kept_anchor_ts.append(anchor_t)
+
+    hard_ts = [f.t for f in all_frames if f.signals.HARD]
+
+    rescued: list[dict] = []
+    for f in all_frames:
+        if f.t in in_cluster_t:
+            continue
+        if not f.is_delivery:
+            continue
+        if f.path not in ("A", "B", "D"):
+            continue
+        s = f.signals
+        sig_count = sum([
+            s.V, s.V_post, s.S, s.M, s.M2, s.W, s.K, s.SS, s.CG,
+        ])
+        if sig_count < min_signals:
+            continue
+        if any(abs(f.t - a) < kept_cluster_min_dist_s for a in kept_anchor_ts):
+            continue
+        if any(abs(f.t - h) <= hard_window_s for h in hard_ts):
+            continue
+        rescued.append({
+            "start_idx": -1,
+            "end_idx": -1,
+            "start_t": f.t,
+            "end_t": f.t,
+            "frames": [f],
+            "high_signal_rescued": True,
+            "rescue_signal_count": sig_count,
+        })
+
+    out = list(clusters) + rescued
+    out.sort(key=lambda c: c["start_t"])
+    return out
+
+
 def pick_anchor(cluster: dict) -> FrameInfo:
     if cluster.get("phantom_rescued"):
         delivery = [f for f in cluster["frames"] if f.is_delivery]
