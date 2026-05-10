@@ -920,8 +920,14 @@ def _build_squad_url() -> str:
         log.warn(
             f"[CONFIG] CRICBUZZ_MATCH_ID not set, falling back to "
             f"default {DEFAULT_MATCH_ID}")
+    slug = os.environ.get("CRICBUZZ_MATCH_SLUG", DEFAULT_MATCH_SLUG)
+    if slug == DEFAULT_MATCH_SLUG and source != "default":
+        log.warn(
+            f"[CONFIG] CRICBUZZ_MATCH_SLUG not set; using stale default "
+            f"slug '{slug}'. Cricbuzz returns content keyed to the slug — "
+            f"set CRICBUZZ_MATCH_SLUG to today's slug.")
     return (f"https://www.cricbuzz.com/cricket-match-squads/"
-            f"{mid}/{DEFAULT_MATCH_SLUG}")
+            f"{mid}/{slug}")
 
 
 SQUAD_URL = _build_squad_url()
@@ -4618,7 +4624,8 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
                 if not _scorer_batter_update_allowed(
                         scoreboard, ebn, frame, step3_notes):
                     continue
-                if scoreboard.update_batter(ebn, frame=frame):
+                if scoreboard.update_batter(ebn, runs=_r, balls=_b,
+                                            frame=frame):
                     changes.append(
                         f"bat:{ebn}={_r if _r is not None else '?'}"
                         f"({_b if _b is not None else '?'})")
@@ -4681,6 +4688,8 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
                          f"vs scorer balls={_scorer_balls} "
                          f"— USING EXTRACTOR")
             if scoreboard.update_batter(name,
+                                        runs=_final_runs,
+                                        balls=_final_balls,
                                         striker=update.get("striker"),
                                         frame=frame):
                 changes.append(
@@ -4692,17 +4701,45 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
 
     bowler_up = decision.get("bowler_update", {})
     if isinstance(bowler_up, dict) and bowler_up:
+        _ext_b_for_bowler = (extracted.get("bowler")
+                             if isinstance(extracted, dict) else None)
         if "name" in bowler_up:
             bname = bowler_up["name"]
             if not _is_placeholder(bname) and bowler_up.get("accepted", True):
-                if scoreboard.update_bowler(bname, frame=frame,
+                _b_overs = bowler_up.get("overs")
+                _b_runs = bowler_up.get("runs")
+                _b_wickets = bowler_up.get("wickets")
+                if (isinstance(_ext_b_for_bowler, dict)
+                        and (_ext_b_for_bowler.get("name") or "").upper()
+                        == bname.upper()):
+                    _b_overs = _ext_b_for_bowler.get("overs", _b_overs)
+                    _b_runs = _ext_b_for_bowler.get("runs", _b_runs)
+                    _b_wickets = _ext_b_for_bowler.get("wickets", _b_wickets)
+                if scoreboard.update_bowler(bname,
+                                            overs=_b_overs,
+                                            runs=_b_runs,
+                                            wickets=_b_wickets,
+                                            frame=frame,
                                             vision_desc=vision_desc):
                     changes.append(f"bowl:{bname}")
         else:
             for bname, bdata in bowler_up.items():
                 if not isinstance(bdata, dict) or not bdata.get("accepted", True):
                     continue
-                if scoreboard.update_bowler(bname, frame=frame,
+                _b_overs = bdata.get("overs")
+                _b_runs = bdata.get("runs")
+                _b_wickets = bdata.get("wickets")
+                if (isinstance(_ext_b_for_bowler, dict)
+                        and (_ext_b_for_bowler.get("name") or "").upper()
+                        == bname.upper()):
+                    _b_overs = _ext_b_for_bowler.get("overs", _b_overs)
+                    _b_runs = _ext_b_for_bowler.get("runs", _b_runs)
+                    _b_wickets = _ext_b_for_bowler.get("wickets", _b_wickets)
+                if scoreboard.update_bowler(bname,
+                                            overs=_b_overs,
+                                            runs=_b_runs,
+                                            wickets=_b_wickets,
+                                            frame=frame,
                                             vision_desc=vision_desc):
                     changes.append(f"bowl:{bname}")
 
@@ -4715,7 +4752,11 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
                 log.info(f"  [INIT] No bowler set — populating from "
                          f"extractor: {_ebn}")
                 if scoreboard.update_bowler(
-                        _ebn, frame=frame,
+                        _ebn,
+                        overs=_ext_b.get("overs"),
+                        runs=_ext_b.get("runs"),
+                        wickets=_ext_b.get("wickets"),
+                        frame=frame,
                         vision_desc=vision_desc):
                     changes.append(f"bowl:{_ebn}")
 
@@ -4723,7 +4764,11 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
         if isinstance(b, dict) and b.get("name"):
             bname = b["name"]
             if not _is_placeholder(bname):
-                if scoreboard.update_bowler(bname, frame=frame,
+                if scoreboard.update_bowler(bname,
+                                            overs=b.get("overs"),
+                                            runs=b.get("runs"),
+                                            wickets=b.get("wickets"),
+                                            frame=frame,
                                             vision_desc=vision_desc):
                     changes.append(f"bowl:{bname}")
 
@@ -7987,6 +8032,8 @@ async def run_test():
                                 if _cb_n and not _is_placeholder(_cb_n):
                                     if scoreboard.update_batter(
                                             _cb_n,
+                                            runs=_cb.get("runs"),
+                                            balls=_cb.get("balls"),
                                             striker=_cb.get("striker"),
                                             frame=frame_count):
                                         _cu_changes.append(
@@ -7999,6 +8046,9 @@ async def run_test():
                             if _cu_bn and not _is_placeholder(_cu_bn):
                                 scoreboard.update_bowler(
                                     _cu_bn,
+                                    overs=_cu_bw.get("overs"),
+                                    runs=_cu_bw.get("runs"),
+                                    wickets=_cu_bw.get("wickets"),
                                     frame=frame_count,
                                     vision_desc=description)
                                 _cu_changes.append(f"bowl:{_cu_bn}")
@@ -8312,6 +8362,15 @@ async def run_test():
                 extracted.pop("score", None)
                 extracted.pop("wickets", None)
                 extracted.pop("match_overs", None)
+
+            # Toss banners are GRAPHIC frames — check before bailing on
+            # the score path so the toss assignment fires even if the
+            # downstream GRAPHIC handling poisons / drops extractor
+            # fields. check_toss_in_vision is idempotent (gated by
+            # toss_captured), so calling it here in addition to the
+            # earlier call at the description-arrival site is safe.
+            if not toss_captured and description:
+                check_toss_in_vision(description)
 
             # GRAPHIC frames show aggregated/end-of-innings stats —
             # never use for live batter/bowler updates, but don't
@@ -9880,6 +9939,8 @@ async def run_test():
                         # files/docs/investigations/striker_write_thrashing.md
                         if scoreboard.update_batter(
                                 _db_name,
+                                runs=_db.get("runs"),
+                                balls=_db.get("balls"),
                                 frame=frame_count):
                             _new_entry = scoreboard.batting_card.get(
                                 _card_key, {}) if _card_key else {}
