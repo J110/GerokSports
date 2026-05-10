@@ -36,6 +36,14 @@ class ConsistentReadTracker:
         # assignment uses team_confirm_count >= 3 in test_pipeline).
     }
 
+    # Cross-field consensus gate (B5, 2026-05-10). score/wickets/overs
+    # are physically coupled; per-field consensus alone allowed pre-match
+    # graphics that flashed a consistent wickets value to publish a
+    # phantom `-/3` while score/overs were still churning. None of these
+    # fields publish to `self.confirmed` until ALL three have reached
+    # cold-start consensus.
+    CROSS_FIELD_GATE_FIELDS = {"score", "wickets", "overs"}
+
     # --- Batter physics bounds (2026-04-24, Fix #1 for F24 row-swap) ---
     # Max legal single-delivery credit to a batter is a SIX (6 runs).
     # With a no-ball on the same delivery, the batter can still only
@@ -79,6 +87,10 @@ class ConsistentReadTracker:
         # Cold-start consensus bookkeeping: maps field → [proposed_value, count].
         # Reset to 1 if a different value arrives before INITIAL_CONSENSUS_FRAMES.
         self._initial_consensus: dict[str, list] = {}
+        # Cross-field gate state: gated fields that have reached cold-start
+        # consensus but are waiting for the other gated fields.
+        self._gate_holding: dict = {}
+        self._gate_holding_logged: set = set()
 
     def update(self, field: str, value, frame_count: int = 0):
         """Submit a reading. Returns the confirmed value."""
@@ -127,10 +139,52 @@ class ConsistentReadTracker:
                 log.info(f"{field}: initial → {value} (exempt)")
                 return value
 
+            if field in self._gate_holding:
+                if self._gate_holding[field] == value:
+                    return None
+                self._gate_holding.pop(field, None)
+                self._gate_holding_logged.discard(field)
+                self._initial_consensus[field] = [value, 1]
+                return None
+
             streak = self._initial_consensus.get(field)
             if streak and streak[0] == value:
                 streak[1] += 1
                 if streak[1] >= self.INITIAL_CONSENSUS_FRAMES:
+                    if field in self.CROSS_FIELD_GATE_FIELDS:
+                        self._gate_holding[field] = value
+                        self._initial_consensus.pop(field, None)
+                        if self.CROSS_FIELD_GATE_FIELDS.issubset(
+                                self._gate_holding.keys()):
+                            s = self._gate_holding["score"]
+                            w = self._gate_holding["wickets"]
+                            o = self._gate_holding["overs"]
+                            self.confirmed["score"] = s
+                            self.confirmed["wickets"] = w
+                            self.confirmed["overs"] = o
+                            self.pending.pop("score", None)
+                            self.pending.pop("wickets", None)
+                            self.pending.pop("overs", None)
+                            self.pending_counts.pop("score", None)
+                            self.pending_counts.pop("wickets", None)
+                            self.pending_counts.pop("overs", None)
+                            self._prev_confirmed_score = None
+                            self._gate_holding.clear()
+                            self._gate_holding_logged.clear()
+                            log.info(
+                                f"[TRACK] cross-field gate satisfied: "
+                                f"score={s} wickets={w} overs={o} "
+                                f"(all confirmed)")
+                            return value
+                        if field not in self._gate_holding_logged:
+                            log.info(
+                                f"[TRACK] {field}: consensus "
+                                f"{self.INITIAL_CONSENSUS_FRAMES}/"
+                                f"{self.INITIAL_CONSENSUS_FRAMES} "
+                                f"reached — holding for cross-field "
+                                f"gate")
+                            self._gate_holding_logged.add(field)
+                        return None
                     self.confirmed[field] = value
                     self._initial_consensus.pop(field, None)
                     self.pending.pop(field, None)
