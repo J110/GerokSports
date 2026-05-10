@@ -117,7 +117,10 @@ def test_extra_deferred_when_overs_lags_score():
     assert ev is not None and ev["type"] != "EXTRA", (
         f"event must resolve as a legal delivery once overs catch up, "
         f"got {ev}")
-    assert ev["legal"] is True
+    # Legal events no longer set "legal": True explicitly — the field is
+    # only stamped on illegal events; downstream code uses
+    # event.get("legal", True). Mirror that read here.
+    assert ev.get("legal", True) is True
     assert ev["runs"] == 6, f"expected SIX, got runs={ev['runs']}"
     assert sm.score == 44
 
@@ -137,7 +140,8 @@ def test_extra_committed_on_broadcast_extra_signal():
     assert ev is not None
     assert ev["type"] == "WIDE", f"expected WIDE, got {ev['type']}"
     assert ev["this_over_token"] == "Wd"
-    assert ev["legal"] is False
+    # WIDE/NO_BALL/EXTRA events explicitly set legal=False.
+    assert ev.get("legal") is False
     assert sm.score == 39
 
 
@@ -195,7 +199,7 @@ def test_legal_six_with_overs_lag():
          "bat1_name": None, "bat2_name": None, "bowler_name": None},
         _frame_mock(frame_id="F2"))
     assert sm.last_event is not None
-    assert sm.last_event["legal"] is True
+    assert sm.last_event.get("legal", True) is True
     assert sm.last_event["runs"] == 6
     assert sm.score == 44
 
