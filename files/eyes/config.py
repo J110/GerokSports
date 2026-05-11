@@ -70,10 +70,11 @@ OPEN_SCOUT_TIMEOUT_S = float(
     os.environ.get("OPEN_SCOUT_TIMEOUT_S", "8.0"))
 
 # ── Decoupled OpenScout loop (parallel async coroutine) ──
-# When 1, OpenScout runs in a dedicated coroutine that polls the capture
-# frame source directly at OPENSCOUT_DECOUPLED_TARGET_INTERVAL_S cadence,
-# independent of main pipeline iteration timing.  When 0, OpenScout
-# piggybacks on the per-frame vision loop (legacy behavior).
+# When 1 (default since 2026-05-11), OpenScout runs in a dedicated
+# coroutine that polls the capture frame source directly at
+# OPENSCOUT_DECOUPLED_TARGET_INTERVAL_S cadence, independent of main
+# pipeline iteration timing.  When 0, OpenScout piggybacks on the
+# per-frame vision loop (legacy behavior).
 #
 # Quota verified on Groq Developer plan
 # (meta-llama/llama-4-scout-17b-16e-instruct):
@@ -83,7 +84,7 @@ OPEN_SCOUT_TIMEOUT_S = float(
 # TPM is the only meaningful ceiling; OPENSCOUT_TPM_BUDGET trips
 # auto-derate before the cap is reached.  See
 # files/docs/operations/openscout_decoupled_setup.md.
-OPENSCOUT_DECOUPLED = os.environ.get("OPENSCOUT_DECOUPLED", "0") == "1"
+OPENSCOUT_DECOUPLED = os.environ.get("OPENSCOUT_DECOUPLED", "1") != "0"
 OPENSCOUT_DECOUPLED_TARGET_INTERVAL_S = float(
     os.environ.get("OPENSCOUT_DECOUPLED_TARGET_INTERVAL_S", "1.0"))
 OPENSCOUT_TPM_BUDGET = int(

@@ -43,8 +43,9 @@ OPENSCOUT_TPM_BUDGET=240000
 USE_OPEN_SCOUT=1            # required — provides the OpenScout instance
 ```
 
-Both decoupled flags default to 0.  Behavior with `OPENSCOUT_DECOUPLED=0`
-is unchanged from the legacy inline path.
+`OPENSCOUT_DECOUPLED` defaults to 1 (2026-05-11). The legacy inline
+path is reachable via `OPENSCOUT_DECOUPLED=0`.
+`OPENSCOUT_DECOUPLED_TARGET_INTERVAL_S` still defaults to 1.0s.
 
 ## Pre-flight check (run before live match)
 

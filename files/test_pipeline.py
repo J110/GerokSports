@@ -971,6 +971,13 @@ log.info(_format_session_config(_SessionConfigInputs(
     use_open_scout=USE_OPEN_SCOUT,
     use_open_scout_spans=USE_OPEN_SCOUT_SPANS,
 )))
+if OPENSCOUT_DECOUPLED:
+    log.warn(
+        f"[CONFIG] OPENSCOUT_DECOUPLED=1 (new default 2026-05-11). "
+        f"Decoupled loop runs at OPENSCOUT_DECOUPLED_TARGET_INTERVAL_S="
+        f"{OPENSCOUT_DECOUPLED_TARGET_INTERVAL_S:.2f}s. Watch first "
+        f"5 min for [OPEN-SCOUT-LOOP] cadence anomalies. Set "
+        f"OPENSCOUT_DECOUPLED=0 to revert.")
 _TRACE_LAST_HANDOFF_FRAME: int | None = None
 _TRACE_LAST_INNINGS: int | None = None
 

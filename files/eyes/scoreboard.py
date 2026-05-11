@@ -3124,7 +3124,10 @@ class Scoreboard:
                 entry["overs"] = str(eff_ov)
 
         if maidens is not None:
-            entry["maidens"] = int(maidens)
+            try:
+                entry["maidens"] = int(maidens)
+            except (ValueError, TypeError):
+                pass
 
         new_str = f"{entry['wickets']}/{entry['runs']} ({entry['overs']})"
         if old_str != new_str:

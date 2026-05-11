@@ -79,5 +79,44 @@ def test_bootstrap_accepts_first_bowler_at_cold_start():
     assert sb._inn.get("current_bowler") == "Akeal Hosein"
 
 
+# ---------------------------------------------------------------------
+# Fix #26: pin str→int coercion regression in update_bowler (F651 hotfix).
+# Yesterday's crash trace: extractor proposed bowler runs/wickets/maidens
+# as string-numeric values which fed straight into int() arithmetic
+# downstream — TypeError on comparison. Hotfix wraps the casts in
+# try/except; these tests pin both the success and crash-free failure
+# paths.
+# ---------------------------------------------------------------------
+def test_update_bowler_coerces_string_numeric_fields():
+    sb = _setup_sb(current_bowler="Akeal Hosein",
+                   prev_over_bowler=None, must_change=False)
+    # Team overs must lead bowler overs to clear the sanity gate.
+    sb._inn["overs"] = "5.0"
+    # Pre-confirm tracker so single-frame string-numeric kwargs commit.
+    sb._tracker.confirmed["bowl:Akeal Hosein:runs"] = 1
+    sb._tracker.confirmed["bowl:Akeal Hosein:wickets"] = 0
+    sb.update_bowler("Akeal Hosein", overs="3.0",
+                     runs="1", wickets="0", maidens="0", frame=200)
+    entry = sb.bowling_card["Akeal Hosein"]
+    assert entry["runs"] == 1 and isinstance(entry["runs"], int)
+    assert entry["wickets"] == 0 and isinstance(entry["wickets"], int)
+    assert entry["maidens"] == 0 and isinstance(entry["maidens"], int)
+
+
+def test_update_bowler_handles_unparseable_strings():
+    sb = _setup_sb(current_bowler="Akeal Hosein",
+                   prev_over_bowler=None, must_change=False)
+    sb.update_bowler("Akeal Hosein", overs="3.0",
+                     runs="invalid", wickets="abc", maidens="??",
+                     frame=201)
+    entry = sb.bowling_card["Akeal Hosein"]
+    # No TypeError on unparseable strings — that's the regression.
+    # Unparseable values coerce to None and never reach tracker.update,
+    # so the entry's int fields stay at their None defaults.
+    assert entry.get("runs") is None
+    assert entry.get("wickets") is None
+    assert entry.get("maidens") is None
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
