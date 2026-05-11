@@ -14,7 +14,7 @@ if [ ! -f "$INPUT" ]; then
 fi
 
 echo "[stream-test] Source: $INPUT"
-echo "[stream-test] Server: srt://$SERVER_IP:$SERVER_PORT"
+echo "[stream-test] Server: udp://$SERVER_IP:$SERVER_PORT"
 echo "[stream-test] Streaming at real-time pace (-re), 5 min, Ctrl-C to stop"
 echo
 
@@ -24,4 +24,4 @@ ffmpeg \
     -t 300 \
     -c:v libx264 -preset veryfast -tune zerolatency -b:v 6M \
     -c:a aac -b:a 128k \
-    -f mpegts "srt://${SERVER_IP}:${SERVER_PORT}?streamid=qrackpot_test"
+    -f mpegts "udp://${SERVER_IP}:${SERVER_PORT}?pkt_size=1316"

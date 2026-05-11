@@ -51,8 +51,8 @@ jobs:
           MODE: ${{ github.event.inputs.mode || 'fixture' }}
         run: |
           if [ "$MODE" = "live" ]; then
-            FRAME_PATH='srt://0.0.0.0:9999?mode=listener&latency=2000000'
-            echo "::notice ::Pipeline mode = LIVE (SRT listener on UDP 9999)"
+            FRAME_PATH='udp://0.0.0.0:9999?fifo_size=1000000&overrun_nonfatal=1'
+            echo "::notice ::Pipeline mode = LIVE (UDP MPEG-TS listener on 9999)"
           else
             FRAME_PATH='/mnt/data/sportscomm/files/fixtures/cricket_test_30s.mp4'
             echo "::notice ::Pipeline mode = FIXTURE replay"

@@ -17,7 +17,7 @@ LOCAL_MP4="$LOCAL_REC_DIR/match_${TS}.mp4"
 DEVICE_INDEX="${DEVICE_INDEX:-0}"
 
 echo "[stream] Source: avfoundation device $DEVICE_INDEX"
-echo "[stream] Server: srt://$SERVER_IP:$SERVER_PORT"
+echo "[stream] Server: udp://$SERVER_IP:$SERVER_PORT"
 echo "[stream] Local archive: $LOCAL_MP4"
 echo "[stream] Press Ctrl-C to stop (cleanly closes both outputs)"
 echo
@@ -36,7 +36,7 @@ ffmpeg \
     -i "$DEVICE_INDEX:0" \
     -c:v libx264 -preset veryfast -tune zerolatency -b:v 6M -maxrate 6M -bufsize 12M \
     -c:a aac -b:a 128k -ac 2 \
-    -map 0 -f mpegts "srt://${SERVER_IP}:${SERVER_PORT}?streamid=qrackpot_live" \
+    -map 0 -f mpegts "udp://${SERVER_IP}:${SERVER_PORT}?pkt_size=1316" \
     -map 0 -c copy -movflags +frag_keyframe+empty_moov+default_base_moof \
     -frag_duration 1000000 \
     "$LOCAL_MP4"
