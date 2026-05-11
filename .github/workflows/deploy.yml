@@ -26,7 +26,7 @@ jobs:
           gcloud compute ssh qrackpot-prod-1 \
             --zone=asia-south1-a \
             --tunnel-through-iap \
-            --command="cd /mnt/data/sportscomm && git pull && bash deploy/deploy.sh"
+            --command="git config --global --replace-all safe.directory /mnt/data/sportscomm && cd /mnt/data/sportscomm && git pull && bash deploy/deploy.sh"
 
       - name: Verify
         run: |
