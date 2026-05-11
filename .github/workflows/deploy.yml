@@ -76,5 +76,35 @@ jobs:
           gcloud compute ssh qrackpot-prod-1 \
             --zone=asia-south1-a \
             --tunnel-through-iap \
-            --command="sudo systemctl is-active pipeline.service && \
-                       sudo journalctl -u pipeline.service -n 30 --no-pager"
+            --command="
+              echo '=== systemctl status ==='
+              sudo systemctl status pipeline.service --no-pager -n 0 || true
+              echo
+              echo '=== waiting up to 90s for active state ==='
+              for i in 1 2 3 4 5 6 7 8 9; do
+                state=\$(sudo systemctl is-active pipeline.service)
+                echo \"attempt \$i: state=\$state\"
+                if [ \"\$state\" = active ]; then
+                  echo 'pipeline.service ACTIVE'
+                  break
+                fi
+                sleep 10
+              done
+              echo
+              echo '=== final state ==='
+              sudo systemctl is-active pipeline.service || true
+              echo
+              echo '=== journalctl last 60 lines ==='
+              sudo journalctl -u pipeline.service -n 60 --no-pager
+              echo
+              echo '=== pipeline.log tail ==='
+              sudo tail -30 /var/log/sportscomm/pipeline.log 2>/dev/null || echo '(no pipeline.log yet)'
+              echo '=== pipeline-err.log tail ==='
+              sudo tail -30 /var/log/sportscomm/pipeline-err.log 2>/dev/null || echo '(no pipeline-err.log yet)'
+            "
+          FINAL_STATE=$(gcloud compute ssh qrackpot-prod-1 --zone=asia-south1-a --tunnel-through-iap \
+            --command="sudo systemctl is-active pipeline.service" 2>/dev/null || true)
+          if [ "$FINAL_STATE" != "active" ]; then
+            echo "::error ::pipeline.service did not reach active state (got: $FINAL_STATE)"
+            exit 1
+          fi
