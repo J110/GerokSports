@@ -1,6 +1,24 @@
 # Deploy
 
-## First-time bootstrap (on VM)
+## Routine deploys
+
+Just `git push` to `derive-not-detect` or `main`. GitHub Actions handles
+the rest — see `.github/workflows/deploy.yml`. No SSH required.
+
+## If CI fails
+
+1. View logs: https://github.com/J110/GerokSports/actions
+2. Manual emergency override (console SSH from GCP web UI):
+   ```
+   cd /mnt/data/sportscomm
+   bash deploy/deploy.sh
+   ```
+3. Standalone health check:
+   ```
+   bash deploy/healthcheck.sh
+   ```
+
+## First-time VM bootstrap
 
 ```
 cd /mnt/data/sportscomm
@@ -13,15 +31,14 @@ sudo chmod 0600 /etc/sportscomm/secrets.env
 bash deploy/deploy.sh
 ```
 
-## Subsequent deploys
+## GitHub Actions one-time setup
 
-```
-cd /mnt/data/sportscomm
-git pull
-bash deploy/deploy.sh
-```
+1. GCP Console → IAM → Service Accounts → create `qrackpot-github-actions`
+2. Grant roles: `roles/compute.osAdminLogin`, `roles/iap.tunnelResourceAccessor`
+3. Generate JSON key, download
+4. GitHub repo → Settings → Secrets → Actions → add `GCP_SA_KEY` = paste JSON
 
-## Service controls
+## Service controls (on VM, manual override only)
 
 ```
 sudo systemctl status ui.service
@@ -29,7 +46,7 @@ sudo systemctl restart ui.service
 sudo journalctl -u ui.service -f
 
 sudo systemctl status caddy
-sudo systemctl reload caddy
+sudo journalctl -u caddy -f
 ```
 
 ## Pipeline service

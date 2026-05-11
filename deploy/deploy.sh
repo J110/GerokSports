@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
-# qrackpot deploy script — idempotent
+# qrackpot deploy script — idempotent, self-healing
 # Run from /mnt/data/sportscomm after git pull
 
 set -euo pipefail
+
+LOG() { echo "[$(date '+%H:%M:%S')] $*"; }
+DEPLOY_START=$SECONDS
+trap 'LOG "FAILED after ${SECONDS}s: line $LINENO"' ERR
 
 # Defensive cleanup: kill any stale hung deploy / systemctl reload from prior runs
 for pid in $(pgrep -f "deploy.sh" | grep -v $$); do
@@ -13,56 +17,90 @@ for pid in $(pgrep -f "systemctl reload caddy"); do
 done
 sudo systemctl reset-failed caddy 2>/dev/null || true
 
+# Self-heal: if caddy is wedged in reloading state, restart instead
+caddy_state=$(systemctl show caddy --property=ActiveState --value 2>/dev/null)
+caddy_substate=$(systemctl show caddy --property=SubState --value 2>/dev/null)
+if [ "$caddy_substate" = "reloading" ]; then
+    LOG "Caddy wedged in reloading state — forcing restart"
+    sudo systemctl reset-failed caddy
+    sudo systemctl restart caddy
+    sleep 3
+fi
+
 REPO_ROOT="/mnt/data/sportscomm"
 cd "$REPO_ROOT"
 
-echo "[deploy] python venv + deps"
+step_start=$SECONDS
+LOG "python venv + deps START"
 if [ ! -d .venv ]; then
     python3 -m venv .venv
 fi
 source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
+LOG "python venv + deps END ($((SECONDS - step_start))s)"
 
-echo "[deploy] UI build"
+step_start=$SECONDS
+LOG "UI build START"
 cd scorecard-ui
 npm ci
 npm run build
 cd ..
+LOG "UI build END ($((SECONDS - step_start))s)"
 
-echo "[deploy] log/runtime dirs"
+step_start=$SECONDS
+LOG "log/runtime dirs START"
 sudo mkdir -p /var/log/sportscomm /etc/sportscomm
 sudo chown -R $USER:$USER /var/log/sportscomm
+LOG "log/runtime dirs END ($((SECONDS - step_start))s)"
 
-echo "[deploy] Caddyfile"
+step_start=$SECONDS
+LOG "Caddyfile START"
 sudo cp deploy/Caddyfile /etc/caddy/Caddyfile
 
-# Validate before reload — fail fast on bad config
+LOG "validating Caddyfile"
 if ! sudo caddy validate --config /etc/caddy/Caddyfile >/dev/null 2>&1; then
-    echo "[deploy] ERROR: Caddyfile failed validation"
     sudo caddy validate --config /etc/caddy/Caddyfile
     exit 1
 fi
-
-# Bounded reload — if it doesn't return in 30s, kill and report
-if ! timeout 30s sudo systemctl reload caddy; then
-    echo "[deploy] ERROR: caddy reload timed out or failed"
-    sudo journalctl -u caddy -n 30 --no-pager
-    exit 1
+LOG "reloading caddy (10s timeout)"
+if ! timeout 10s sudo systemctl reload caddy; then
+    LOG "reload failed/timeout — restarting caddy instead"
+    sudo systemctl restart caddy
+    sleep 2
 fi
-echo "[deploy] caddy reloaded OK"
+LOG "Caddyfile END ($((SECONDS - step_start))s)"
 
-echo "[deploy] systemd units"
+step_start=$SECONDS
+LOG "systemd units START"
 for unit in deploy/systemd/*.service; do
     name=$(basename "$unit")
     sudo install -m 0644 -o root -g root "$unit" "/etc/systemd/system/$name"
 done
 sudo systemctl daemon-reload
+LOG "systemd units END ($((SECONDS - step_start))s)"
 
-echo "[deploy] enable UI"
+step_start=$SECONDS
+LOG "enable UI START"
 sudo systemctl enable ui.service
 sudo systemctl restart ui.service
+LOG "enable UI END ($((SECONDS - step_start))s)"
 
-echo "[deploy] DONE"
-echo "[deploy] UI: $(sudo systemctl is-active ui.service)"
-echo "[deploy] Caddy: $(sudo systemctl is-active caddy)"
+LOG "UI: $(sudo systemctl is-active ui.service)"
+LOG "Caddy: $(sudo systemctl is-active caddy)"
+
+LOG "health check"
+health_ok=0
+for i in 1 2 3; do
+    if curl -fsS -o /dev/null https://qrackpot.com/; then
+        LOG "qrackpot.com responsive (attempt $i)"
+        health_ok=1
+        break
+    fi
+    sleep 2
+done
+if [ "$health_ok" -ne 1 ]; then
+    LOG "WARN: qrackpot.com health check failed after 3 attempts"
+fi
+
+LOG "DONE in ${SECONDS}s"
