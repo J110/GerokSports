@@ -260,6 +260,13 @@ class ScoreManager:
 
         self.striker: str | None = None
         self.non: str | None = None
+        # Fix #20: set True for the lifetime of the frame whose
+        # _cold_start_plausible returned False. Reset per-frame in
+        # the run_test loop. Consumed by the prompt assembly to skip
+        # the "ALREADY DISMISSED" Scorer hint when the cold-start
+        # verdict is implausible — phantom dismissals from a poisoned
+        # cold-start frame must not propagate into Scorer prompts.
+        self.last_cold_start_verdict_implausible: bool = False
         # Lever 1 PR3: dedupe [SM-W8-DISMISSED-GUARD] telemetry (§14.8).
         self._w8_guard_fired: set[str] = set()
 
@@ -1390,6 +1397,7 @@ class ScoreManager:
             COLD_START): the candidate must be a legal cricket diff
             from the last warm state.
         """
+        self.last_cold_start_verdict_implausible = False
         cs = card.get("score")
         co = card.get("overs")
         cw = card.get("wickets")
@@ -1406,6 +1414,7 @@ class ScoreManager:
                     f"[SM] cold-start reject also cleared self.striker "
                     f"(was={self.striker!r})")
                 self.striker = None
+            self.last_cold_start_verdict_implausible = True
             return False
 
         ref = self._last_warm_state
@@ -1422,6 +1431,7 @@ class ScoreManager:
                         f"[SM] cold-start reject also cleared self.striker "
                         f"(was={self.striker!r})")
                     self.striker = None
+                self.last_cold_start_verdict_implausible = True
                 return False
             if cw_v >= 5 and co_v < 5.0:
                 log.info(
@@ -1432,6 +1442,7 @@ class ScoreManager:
                         f"[SM] cold-start reject also cleared self.striker "
                         f"(was={self.striker!r})")
                     self.striker = None
+                self.last_cold_start_verdict_implausible = True
                 return False
             if cw_v >= 3 and cs_v < cw_v * 2:
                 log.info(
@@ -1442,6 +1453,7 @@ class ScoreManager:
                         f"[SM] cold-start reject also cleared self.striker "
                         f"(was={self.striker!r})")
                     self.striker = None
+                self.last_cold_start_verdict_implausible = True
                 return False
 
         if ref is None:
@@ -1481,6 +1493,7 @@ class ScoreManager:
                     f"[SM] cold-start reject also cleared self.striker "
                     f"(was={self.striker!r})")
                 self.striker = None
+            self.last_cold_start_verdict_implausible = True
             return False
         return True
 

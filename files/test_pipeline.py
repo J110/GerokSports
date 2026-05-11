@@ -7105,6 +7105,10 @@ async def run_test():
                 continue
 
             frame_count += 1
+            try:
+                score_mgr.last_cold_start_verdict_implausible = False
+            except Exception:
+                pass
             set_global_frame(frame_count)
             try:
                 _TRACE_RECORDER.begin_frame(frame_count)
@@ -10785,13 +10789,19 @@ async def run_test():
             vision_hint = _sanitize_vision_hint_names(
                 vision_hint, scoreboard)
             # Append dismissed batters so scorer doesn't re-dismiss
-            if scoreboard.batting_card:
+            _cold_implausible = getattr(
+                score_mgr, "last_cold_start_verdict_implausible", False)
+            if scoreboard.batting_card and not _cold_implausible:
                 dismissed = [n for n, c in scoreboard.batting_card.items()
                              if c.get("status") == "out"]
                 if dismissed:
                     _dm = ", ".join(dismissed)
                     _suffix = f" ALREADY DISMISSED (do NOT dismiss again): {_dm}"
                     vision_hint = (vision_hint or "") + _suffix
+            elif _cold_implausible:
+                log.info(
+                    "  [S] Hint: skipped ALREADY-DISMISSED suffix "
+                    "(cold-start verdict implausible this frame)")
             if vision_hint:
                 log.info(f"  [S] Hint: {vision_hint}")
 

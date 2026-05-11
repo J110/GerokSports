@@ -68,3 +68,46 @@ def test_warm_state_present_skips_inn1_gate():
     sm._innings_fallback = 1
     card = {"score": 5, "wickets": 4, "overs": 0.1}
     sm._cold_start_plausible(card)
+
+
+# ---------------------------------------------------------------------
+# Fix #20: last_cold_start_verdict_implausible flag — consumed by
+# test_pipeline.py prompt assembly to skip the "ALREADY DISMISSED"
+# Scorer hint when the cold-start verdict is implausible this frame.
+# ---------------------------------------------------------------------
+def test_bug20_implausible_flag_set_on_absolute_reject():
+    sm = _sm_fresh_inn1()
+    ok = sm._cold_start_plausible(
+        {"score": 446, "wickets": 2, "overs": 0.0})
+    assert ok is False
+    assert sm.last_cold_start_verdict_implausible is True
+
+
+def test_bug20_implausible_flag_set_on_inn1_heuristic_reject():
+    sm = _sm_fresh_inn1()
+    ok = sm._cold_start_plausible(
+        {"score": 5, "wickets": 4, "overs": 0.1})
+    assert ok is False
+    assert sm.last_cold_start_verdict_implausible is True
+
+
+def test_bug20_implausible_flag_resets_on_plausible():
+    sm = _sm_fresh_inn1()
+    sm.last_cold_start_verdict_implausible = True  # simulated stale
+    ok = sm._cold_start_plausible(
+        {"score": 30, "wickets": 1, "overs": 4.2})
+    assert ok is True
+    assert sm.last_cold_start_verdict_implausible is False
+
+
+def test_bug20_implausible_flag_reset_clears_stale_before_new_verdict():
+    """Reset-at-top semantics: even a subsequent reject overwrites
+    a stale True with True via the False-return paths — the flag
+    always reflects ONLY the most recent call, never a leftover from
+    a prior frame."""
+    sm = _sm_fresh_inn1()
+    sm.last_cold_start_verdict_implausible = True  # stale from prior frame
+    ok = sm._cold_start_plausible(
+        {"score": 10, "wickets": 0, "overs": 1.0})
+    assert ok is True
+    assert sm.last_cold_start_verdict_implausible is False
