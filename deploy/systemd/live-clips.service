@@ -1,0 +1,18 @@
+[Unit]
+Description=qrackpot live clip extractor (Track 2)
+After=network.target pipeline.service recorder.service
+PartOf=pipeline.service
+
+[Service]
+Type=simple
+User=anmolmohan_turingsdesign_com
+WorkingDirectory=/mnt/data/sportscomm
+EnvironmentFile=/etc/sportscomm/pipeline.env
+ExecStart=/bin/bash /mnt/data/sportscomm/files/scripts/extract_live_clips_chunk.sh
+Restart=always
+RestartSec=30s
+StandardOutput=append:/var/log/sportscomm/live-clips.log
+StandardError=append:/var/log/sportscomm/live-clips-err.log
+
+[Install]
+WantedBy=multi-user.target

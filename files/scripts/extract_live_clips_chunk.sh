@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Path A live clip extractor — runs every 30 min.
+# Path A live clip extractor — polls every LIVE_CLIPS_INTERVAL_S (default 60s).
 #
 # Reads the live session's scout_raw.jsonl, materializes per-frame
 # sidecar txt files, runs the offline cluster builder + boundary
@@ -14,7 +14,7 @@
 # always-correct deliverable; ffmpeg trim is best-effort.
 #
 # Idempotent: skips already-extracted anchors by filename.
-# Loop: while true; sleep 1800. PID -> files/logs/live_clips/.pid.
+# Loop: while true; sleep ${LIVE_CLIPS_INTERVAL_S:-60}. PID -> files/logs/live_clips/.pid.
 
 set -uo pipefail
 
@@ -290,7 +290,8 @@ PY
     log "cycle=$cycle_tag detections=$pred_json new_clips=$extracted mp4_dur=${mp4_dur}s"
 }
 
+INTERVAL_S="${LIVE_CLIPS_INTERVAL_S:-60}"
 while true; do
     run_cycle || log "cycle errored (continuing)"
-    sleep 1800
+    sleep "$INTERVAL_S"
 done

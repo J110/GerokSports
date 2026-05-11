@@ -57,6 +57,7 @@ jobs:
             FRAME_PATH='/mnt/data/sportscomm/files/fixtures/cricket_test_30s.mp4'
             echo "::notice ::Pipeline mode = FIXTURE replay"
           fi
+          SESSION_ID="live_$(date -u +%Y%m%d)"
           gcloud compute ssh qrackpot-prod-1 \
             --zone=asia-south1-a \
             --tunnel-through-iap \
@@ -69,6 +70,7 @@ jobs:
           FRAME_SOURCE_FILE=$FRAME_PATH
           FRAME_SOURCE_FILE_OFFSET_S=0
           FRAME_SOURCE_FILE_LOOP=0
+          BMF_SESSION_ID=$SESSION_ID
           USE_OPEN_SCOUT=1
           OPENSCOUT_DECOUPLED=1
           SCOUT_RAW_DUMP=1
@@ -78,8 +80,8 @@ jobs:
           PIPENV
           sudo chmod 0600 /etc/sportscomm/pipeline.env
           sudo chown root:root /etc/sportscomm/pipeline.env
-          sudo systemctl enable pipeline.service
-          sudo systemctl restart pipeline.service"
+          sudo systemctl enable pipeline.service recorder.service live-clips.service
+          sudo systemctl restart pipeline.service recorder.service live-clips.service"
 
       - name: Health check qrackpot.com
         run: |

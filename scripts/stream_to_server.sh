@@ -8,6 +8,7 @@ set -euo pipefail
 
 SERVER_IP="34.14.170.238"
 SERVER_PORT="9999"
+RECORDER_PORT="9998"
 LOCAL_REC_DIR="${LOCAL_REC_DIR:-$HOME/Recordings/qrackpot}"
 mkdir -p "$LOCAL_REC_DIR"
 
@@ -17,9 +18,10 @@ LOCAL_MP4="$LOCAL_REC_DIR/match_${TS}.mp4"
 DEVICE_INDEX="${DEVICE_INDEX:-0}"
 
 echo "[stream] Source: avfoundation device $DEVICE_INDEX"
-echo "[stream] Server: udp://$SERVER_IP:$SERVER_PORT"
+echo "[stream] Pipeline: udp://$SERVER_IP:$SERVER_PORT"
+echo "[stream] Recorder: udp://$SERVER_IP:$RECORDER_PORT"
 echo "[stream] Local archive: $LOCAL_MP4"
-echo "[stream] Press Ctrl-C to stop (cleanly closes both outputs)"
+echo "[stream] Press Ctrl-C to stop (cleanly closes all outputs)"
 echo
 
 cleanup() {
@@ -37,6 +39,7 @@ ffmpeg \
     -c:v libx264 -preset veryfast -tune zerolatency -b:v 6M -maxrate 6M -bufsize 12M \
     -c:a aac -b:a 128k -ac 2 \
     -map 0 -f mpegts "udp://${SERVER_IP}:${SERVER_PORT}?pkt_size=1316" \
+    -map 0 -f mpegts "udp://${SERVER_IP}:${RECORDER_PORT}?pkt_size=1316" \
     -map 0 -c copy -movflags +frag_keyframe+empty_moov+default_base_moof \
     -frag_duration 1000000 \
     "$LOCAL_MP4"
