@@ -3,6 +3,15 @@ on:
   push:
     branches: [derive-not-detect, main]
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Pipeline input source'
+        required: true
+        default: 'fixture'
+        type: choice
+        options:
+          - fixture
+          - live
 
 permissions:
   id-token: write
@@ -38,7 +47,16 @@ jobs:
           exit 1
 
       - name: Sync pipeline.env on VM from GH secrets
+        env:
+          MODE: ${{ github.event.inputs.mode || 'fixture' }}
         run: |
+          if [ "$MODE" = "live" ]; then
+            FRAME_PATH='srt://0.0.0.0:9999?mode=listener&latency=2000000'
+            echo "::notice ::Pipeline mode = LIVE (SRT listener on UDP 9999)"
+          else
+            FRAME_PATH='/mnt/data/sportscomm/files/fixtures/cricket_test_30s.mp4'
+            echo "::notice ::Pipeline mode = FIXTURE replay"
+          fi
           gcloud compute ssh qrackpot-prod-1 \
             --zone=asia-south1-a \
             --tunnel-through-iap \
@@ -48,7 +66,7 @@ jobs:
           CRICBUZZ_MATCH_ID=152097
           CRICBUZZ_MATCH_SLUG=rcb-vs-mi-54th-match-indian-premier-league-2026
           FRAME_SOURCE=file
-          FRAME_SOURCE_FILE=/mnt/data/sportscomm/files/fixtures/cricket_test_30s.mp4
+          FRAME_SOURCE_FILE=$FRAME_PATH
           FRAME_SOURCE_FILE_OFFSET_S=0
           FRAME_SOURCE_FILE_LOOP=0
           USE_OPEN_SCOUT=1

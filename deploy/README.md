@@ -59,6 +59,47 @@ sudo systemctl status caddy
 sudo journalctl -u caddy -f
 ```
 
+## Live match operations
+
+### Pre-match (5-10 min before broadcast)
+
+1. Trigger live mode deploy via GitHub Actions:
+   - https://github.com/J110/GerokSports/actions/workflows/deploy.yml
+   - Click "Run workflow" (top right)
+   - Select branch: derive-not-detect
+   - Pipeline input source: **live**
+   - Click "Run workflow" green button
+   - Wait for green check (~2 min)
+
+   This puts the server pipeline into SRT-listener mode (UDP 9999). Pipeline
+   will block until Mac connects.
+
+2. On Mac (where capture card is attached):
+```
+   bash scripts/stream_to_server.sh
+```
+
+   Verifies capture card visible, then starts streaming + local recording.
+   Server pipeline connects, sees frames, starts processing.
+
+3. Verify: open https://qrackpot.com in browser. Should show match state
+   updating live (within ~3-8s of broadcast).
+
+### Mid-match issue / restart
+
+If pipeline crashes mid-match:
+- `Ctrl-C` the ffmpeg on Mac
+- Either trigger workflow again with mode=live
+- Or restart manually: gcloud compute ssh qrackpot-prod-1 --zone=asia-south1-a \
+    --tunnel-through-iap --command="sudo systemctl restart pipeline.service"
+- Re-run stream_to_server.sh on Mac
+
+### Post-match
+
+1. `Ctrl-C` ffmpeg on Mac — local mp4 stays in $HOME/Recordings/qrackpot/
+2. Trigger workflow with mode=fixture to return pipeline to test state
+   (avoid leaving SRT listener hung overnight)
+
 ## Phase 1A — pipeline.service auto-deployed from CI
 
 CI handles everything. One-time setup:
