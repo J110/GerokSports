@@ -1,13 +1,6 @@
 qrackpot.com, www.qrackpot.com {
 	encode gzip zstd
 	reverse_proxy localhost:3000
-
-	log {
-		output file /var/log/sportscomm/caddy-ui.log {
-			roll_size 100mb
-			roll_keep 5
-		}
-	}
 }
 
 api.qrackpot.com {
@@ -24,13 +17,6 @@ api.qrackpot.com {
 	handle {
 		reverse_proxy localhost:8765 {
 			flush_interval -1
-		}
-	}
-
-	log {
-		output file /var/log/sportscomm/caddy-api.log {
-			roll_size 100mb
-			roll_keep 5
 		}
 	}
 }
