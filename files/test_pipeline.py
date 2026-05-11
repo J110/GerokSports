@@ -5991,21 +5991,26 @@ async def run_test():
             cache["bowling_team_var"] = bowling_team
             cache["toss_winner"] = toss_winner_name
             cache["toss_decision"] = toss_decision_str
+            # Live SESSION_ID overrides any BMF_SESSION_ID env fallback
+            # so hot-resume can distinguish a real restart (different
+            # uuid in cache vs current process) from a same-session
+            # write-flush.
+            if not cache.get("session_id"):
+                cache["session_id"] = SESSION_ID
             with open(STATE_FILE, "w") as f:
                 json.dump(cache, f)
         except Exception as e:
             log.error(f"[CACHE] Save failed: {e}")
 
     def load_match_state() -> dict | None:
-        """Load cached state if recent enough (last 30 minutes)."""
+        """Load cached state. Age-agnostic — callers gate on age per
+        their tolerance (hot-resume identity block uses 3600s; toss-
+        restore path uses its own threshold)."""
         if not os.path.exists(STATE_FILE):
             return None
         try:
             with open(STATE_FILE) as f:
                 cached = json.load(f)
-            if time.time() - cached.get("saved_at", 0) > 1800:
-                log.info("[CACHE] Stale (>30 min old) — ignoring")
-                return None
             return cached
         except Exception as e:
             log.error(f"[CACHE] Load failed: {e}")
@@ -7023,32 +7028,73 @@ async def run_test():
     # mid-session pipeline restart.  Retention cap bounds disk usage.
     _archive_old_debug_frames()
 
-    # === COLD-START POLICY (Rule 1) ===
-    # On every pipeline start, assume innings 1 with no team / scorecard
-    # assumptions whatsoever. Whatever the broadcast shows IS the truth.
-    # The only piece of state worth restoring across runs is the toss
-    # outcome — that's pre-match data, not a "state" assumption, and it
-    # genuinely cannot change after the coin is tossed.
-    #
-    # Cached scorecard, batting/bowling assignments, FOW, dismissed
-    # players, etc. are deliberately discarded. ScoreManager's cold-
-    # start consensus rebuilds everything from the broadcast within
-    # a few frames; if the match is actually mid-innings-2 (e.g. you
-    # killed and restarted the pipeline 30 minutes in), Rule 2's
-    # deterministic + broadcast-signal triggers will detect that and
-    # auto-transition to innings 2 within 2-3 frames of seeing a
-    # target / "to win" / "required" panel.
+    # === CACHE POLICY (Rule 1 → validated hot-resume, 2026-05-11) ===
+    # Identity-validated hot-resume replaces the legacy always-discard
+    # policy. A cached snapshot is restored as authoritative when:
+    #   - match_id matches the current CRICBUZZ_MATCH_ID
+    #   - session_id differs from the live SESSION_ID (real restart,
+    #     not a same-session write-flush)
+    #   - cache age < 3600s (60 min)
+    #   - score / wickets / overs all non-null in the cache
+    # On identity failure we fall back to the legacy cold-start path
+    # (toss data still preserved). Validation against the first non-null
+    # broadcast read happens in the frame loop body and reverts to
+    # COLD_START on divergence.
     cached_state = load_match_state()
+    hot_resume_ok = False
+    hot_resume_validate_pending = False
     if cached_state:
-        log.info("[CACHE] Cached state found — DISCARDING all scorecard/"
-                 "team data (Rule 1: always cold-start). Toss data is "
-                 "preserved if present.")
-        if cached_state.get("toss_winner") and not toss_winner_name:
+        cached_match_id = cached_state.get("match_id")
+        current_match_id = os.environ.get("CRICBUZZ_MATCH_ID")
+        cached_session_id = cached_state.get("session_id")
+        current_session_id = SESSION_ID
+        cache_age_s = time.time() - (cached_state.get("saved_at") or 0)
+        identity_ok = (
+            cached_match_id == current_match_id
+            and cached_session_id != current_session_id
+            and cache_age_s < 3600)
+        if not identity_ok:
+            log.info(
+                f"[CACHE] hot-resume identity reject — "
+                f"match_id_match={cached_match_id == current_match_id} "
+                f"session_diff={cached_session_id != current_session_id} "
+                f"age_s={cache_age_s:.0f} (limit=3600). "
+                f"Falling back to cold-start.")
+        else:
+            cached_card_complete = all(
+                cached_state.get(k) is not None
+                for k in ("score", "wickets", "overs"))
+            if cached_card_complete:
+                scoreboard.restore_from_cache(cached_state)
+                score_mgr.hot_resume_from_cache(cached_state, frame=0)
+                hot_resume_ok = True
+                hot_resume_validate_pending = True
+                try:
+                    _TRACE_RECORDER.record(
+                        tag="HOT_RESUME",
+                        score=cached_state.get("score"),
+                        wickets=cached_state.get("wickets"),
+                        overs=cached_state.get("overs"),
+                        innings=cached_state.get("innings"),
+                        match_id=cached_match_id,
+                        cache_age_s=cache_age_s)
+                except Exception:
+                    pass
+            else:
+                log.info(
+                    "[CACHE] hot-resume skipped — cached "
+                    "score/wickets/overs has nulls")
+        # Toss data is always preserved when fresh (3600s window).
+        if (cached_state.get("toss_winner") and not toss_winner_name
+                and cache_age_s < 3600):
             toss_winner_name = cached_state["toss_winner"]
             toss_decision_str = cached_state.get("toss_decision")
             toss_captured = True
-            log.info(f"[CACHE] Toss restored only: {toss_winner_name} - "
-                     f"{toss_decision_str}")
+            log.info(
+                f"[CACHE] Toss restored: {toss_winner_name} - "
+                f"{toss_decision_str}")
+        if not hot_resume_ok:
+            log.info("[CACHE] cold-start path active (no valid hot-resume)")
     else:
         log.info("[CACHE] No cached state found — starting fresh")
 
@@ -8299,6 +8345,50 @@ async def run_test():
                            name_lookup=scoreboard._name_lookup if scoreboard.batting_card else None,
                            scoreboard=scoreboard,
                            vision_desc=description)
+
+            if hot_resume_validate_pending and hot_resume_ok:
+                _obs_score = extracted.get("score")
+                _obs_wkts = extracted.get("wickets")
+                _obs_overs_raw = extracted.get("overs")
+                _obs_overs_f = None
+                if _obs_overs_raw is not None:
+                    try:
+                        _obs_overs_f = float(_obs_overs_raw)
+                    except (TypeError, ValueError):
+                        _obs_overs_f = None
+                if (_obs_score is not None and _obs_wkts is not None
+                        and _obs_overs_f is not None):
+                    _cs = cached_state.get("score")
+                    _cw = cached_state.get("wickets")
+                    try:
+                        _co_f = float(cached_state.get("overs") or 0)
+                    except (TypeError, ValueError):
+                        _co_f = 0.0
+                    _score_ok = (_cs - 6) <= _obs_score <= (_cs + 30)
+                    _wkts_ok = _cw <= _obs_wkts <= (_cw + 2)
+                    _overs_ok = _obs_overs_f >= (_co_f - 0.1)
+                    if not (_score_ok and _wkts_ok and _overs_ok):
+                        log.warn(
+                            f"[HOT-RESUME-VALIDATE] REJECT — "
+                            f"cached={_cs}/{_cw}({_co_f}) "
+                            f"observed={_obs_score}/{_obs_wkts}"
+                            f"({_obs_overs_f}). "
+                            f"Reverting to COLD_START.")
+                        score_mgr.mode = "COLD_START"
+                        score_mgr.cold_candidate = None
+                        score_mgr.cold_candidate_streak = 0
+                        for _nm in list(scoreboard.batting_card.keys()):
+                            scoreboard.batting_card[_nm]["runs"] = None
+                            scoreboard.batting_card[_nm]["balls"] = None
+                            scoreboard.batting_card[_nm]["status"] = (
+                                "yet_to_bat")
+                        hot_resume_ok = False
+                    else:
+                        log.info(
+                            f"[HOT-RESUME-VALIDATE] OK — "
+                            f"observed {_obs_score}/{_obs_wkts}"
+                            f"({_obs_overs_f}) within tolerance")
+                    hot_resume_validate_pending = False
 
             _state_recovery_frame_candidate = (
                 _build_state_recovery_candidate(extracted, scoreboard))

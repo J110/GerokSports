@@ -1516,6 +1516,58 @@ class ScoreManager:
         return has_mid_match_graphic and not (
             has_player_shape and has_bowler_shape)
 
+    def hot_resume_from_cache(self, cached: dict, frame: int) -> None:
+        """Restore SM state from a validated cache dict.
+
+        Does NOT call ``_accept_initial`` — that path expects a
+        ``FrameInput`` and clobbers ``broadcast_team`` / ``target`` /
+        ``venue`` / ``match_info`` with ``frame.broadcast_*`` defaults
+        (None at hot-resume time), undoing what
+        ``scoreboard.restore_from_cache`` just did on the scoreboard side.
+
+        Caller must invoke ``scoreboard.restore_from_cache(cached)``
+        separately (this method does NOT touch the scoreboard).
+        Caller must also have already validated identity (match_id +
+        session_id + age) — this method commits the cache as
+        authoritative and exits ``COLD_START`` immediately.
+        """
+        self.score = cached.get("score")
+        self.wickets = cached.get("wickets")
+        self.overs = cached.get("overs")
+        if cached.get("target") is not None:
+            self.target = cached.get("target")
+            self._innings_fallback = 2
+        if cached.get("batting_team"):
+            self.batting_team = cached.get("batting_team")
+        # Mirror active batters / current bowler from the cache. Fields
+        # not present in the cache stay None and get filled by the first
+        # WARM frame's normal update path.
+        _bc = (cached.get("batting_card") or {})
+        _active = [n for n, c in _bc.items() if c.get("status") == "batting"]
+        if len(_active) >= 1:
+            self.bat1_name = _active[0]
+        if len(_active) >= 2:
+            self.bat2_name = _active[1]
+        _striker = cached.get("striker")
+        _non = cached.get("non")
+        if _striker and _non:
+            self._set_slot_pair(_striker, _non, source="hot_resume")
+        elif _active:
+            # Fall back to the active-pair ordering if striker/non
+            # weren't cached (older cache shapes).
+            self._set_slot_pair(
+                _active[0], _active[1] if len(_active) > 1 else None,
+                source="hot_resume")
+        if cached.get("current_bowler"):
+            self.bowler_name = cached.get("current_bowler")
+        self.mode = "WARM"
+        self.cold_candidate = None
+        self.cold_candidate_streak = 0
+        self.cold_frames = 0
+        log.info(
+            f"[SM] HOT-RESUME from cache  "
+            f"{self.score}/{self.wickets} ({self.overs}) frame=F{frame}")
+
     def _accept_initial(self, card: dict, frame: FrameInput) -> None:
         """Adopt a cold-start scorecard into WARM state.
 

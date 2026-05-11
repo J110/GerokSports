@@ -231,6 +231,14 @@ KNOWN_TAGS: set[str] = {
     "STRIP-STALE-DISMISSED",
     "STRIP-WRONG-TEAM",
     "INNINGS-2-BOOTSTRAP",
+    # Hot-resume on pipeline restart (2026-05-11). HOT_RESUME records
+    # the cache identity + restored state; HOT-RESUME-VALIDATE fires
+    # on the first non-null broadcast read post-restore (OK / REJECT
+    # outcomes); CACHE classifies legacy identity-reject / cold-start-
+    # path log lines from the startup block.
+    "HOT_RESUME",
+    "HOT-RESUME-VALIDATE",
+    "CACHE",
 }
 
 # Regex matches the leading ``[TAG]`` token in any log message. Captures
