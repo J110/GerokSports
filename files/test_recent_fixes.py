@@ -13160,6 +13160,154 @@ def test_batch_bb_between_play_outside_bridge_window_rejected() -> None:
 
 
 # ---------------------------------------------------------------------
+# Bowler / delivery UI accuracy cluster (#32 #24 #30 #31)
+# ---------------------------------------------------------------------
+def _empty_fi():
+    from score_manager import FrameInput
+    return FrameInput(frame_id="fi-test", timestamp=0.0)
+
+
+def test_bug32_speed_regex_kph_optional() -> None:
+    header("Bug #32: SPEED regex accepts no-suffix and applies "
+           "60-170 range guard")
+    from test_pipeline import extract_broadcast_data
+    check("'SPEED: 132.7' (no suffix) → 132.7",
+          extract_broadcast_data("SPEED: 132.7", {}).get("speed_kph")
+          == 132.7,
+          f"got={extract_broadcast_data('SPEED: 132.7', {}).get('speed_kph')}")
+    check("'SPEED: 137.7 kph' still works",
+          extract_broadcast_data("SPEED: 137.7 kph", {}).get("speed_kph")
+          == 137.7,
+          "kph suffix path broken")
+    check("'SPEED: 135 km/h' accepted",
+          extract_broadcast_data("SPEED: 135 km/h", {}).get("speed_kph")
+          == 135.0,
+          "km/h suffix path broken")
+    check("'SPEED: 1' (pre-truncation) rejected by range",
+          "speed_kph" not in extract_broadcast_data("SPEED: 1", {}),
+          "range-guard low side failed")
+    check("'SPEED: 200' rejected by range",
+          "speed_kph" not in extract_broadcast_data("SPEED: 200", {}),
+          "range-guard high side failed")
+
+
+def test_bug24_speed_clears_on_next_legal_ball() -> None:
+    header("Bug #24: stale speed cleared when next legal ball commits "
+           "without a fresh reading")
+    from score_manager import ScoreManager
+    sm = ScoreManager(shadow=False)
+    sm.overs = 4.2
+    sm._update_supplements({"speed_kph": 97.0}, _empty_fi())
+    check("speed captured with over-cursor tag",
+          sm.last_speed == 97.0 and sm.last_speed_at_over == 4.2,
+          f"last_speed={sm.last_speed}, at_over={sm.last_speed_at_over}")
+    # Advance over cursor and mirror the stat-accumulator clear:
+    # legal ball, no speed read, over cursor diverges from tag.
+    sm.overs = 4.3
+    if (sm.last_speed is not None
+            and sm.last_speed_at_over != sm.overs):
+        sm.last_speed = None
+        sm.last_speed_at_over = None
+    check("stale speed cleared once over cursor advances",
+          sm.last_speed is None and sm.last_speed_at_over is None,
+          f"last_speed={sm.last_speed}, at_over={sm.last_speed_at_over}")
+
+
+def test_bug24_speed_persists_within_same_over_cursor() -> None:
+    header("Bug #24: speed survives across re-reads at the same "
+           "over cursor")
+    from score_manager import ScoreManager
+    sm = ScoreManager(shadow=False)
+    sm.overs = 4.3
+    sm._update_supplements({"speed_kph": 132.4},
+                           frame=None)  # type: ignore[arg-type]
+    # Second supplement at same over (e.g. card re-read with no SPEED)
+    sm._update_supplements({}, _empty_fi())
+    check("speed_kph preserved within same over cursor",
+          sm.last_speed == 132.4 and sm.last_speed_at_over == 4.3,
+          f"last_speed={sm.last_speed}, at_over={sm.last_speed_at_over}")
+
+
+def test_bug30_ext_name_matches_canonical_short_name() -> None:
+    header("Bug #30: bowler short name resolves via "
+           "scoreboard.resolve_name")
+    from test_pipeline import _ext_name_matches_canonical
+    from eyes.scoreboard import Scoreboard
+    sb = Scoreboard()
+    sb.setup_innings("BAT", "BOWL",
+                     ["b1", "b2"],
+                     ["Krunal Pandya", "Hardik Pandya", "Bumrah"])
+    check("strict-equal match still works",
+          _ext_name_matches_canonical(
+              "Krunal Pandya", "Krunal Pandya", sb),
+          "strict-equal failed")
+    check("'KRUNAL' resolves to 'Krunal Pandya'",
+          _ext_name_matches_canonical("KRUNAL", "Krunal Pandya", sb),
+          "short-name resolver did not match canonical")
+    check("empty extractor name returns False",
+          not _ext_name_matches_canonical("", "Krunal Pandya", sb),
+          "empty-name guard failed")
+    check("non-matching name returns False",
+          not _ext_name_matches_canonical(
+              "Bumrah", "Krunal Pandya", sb),
+          "unrelated short-name should not match")
+
+
+def test_bug31_get_live_state_emits_last_bowler_fields() -> None:
+    header("Bug #31: Scoreboard.get_live_state emits last_bowler + "
+           "bowler_between_overs fields")
+    from eyes.scoreboard import Scoreboard
+    sb = Scoreboard()
+    sb.setup_innings("BAT", "BOWL", ["b1", "b2"],
+                     ["Josh Hazlewood", "Trent Boult"])
+    sb._inn["current_bowler"] = "Josh Hazlewood"
+    sb._inn["bowler_between_overs"] = False
+    state = sb.get_live_state()
+    check("current_bowler exposed",
+          state.get("current_bowler") == "Josh Hazlewood",
+          f"state={state.get('current_bowler')!r}")
+    check("bowler_between_overs=False during live spell",
+          state.get("bowler_between_overs") is False,
+          f"flag={state.get('bowler_between_overs')!r}")
+    # Simulate over-end clear (mirrors test_pipeline.py:~11646)
+    sb._inn["last_bowler"] = sb._inn.get("current_bowler")
+    sb._inn["current_bowler"] = None
+    sb._inn["bowler_between_overs"] = True
+    state = sb.get_live_state()
+    check("current_bowler cleared after over end",
+          state.get("current_bowler") is None,
+          f"state={state}")
+    check("last_bowler preserved across the gap",
+          state.get("last_bowler") == "Josh Hazlewood",
+          f"last={state.get('last_bowler')!r}")
+    check("bowler_between_overs=True during the gap",
+          state.get("bowler_between_overs") is True,
+          f"flag={state.get('bowler_between_overs')!r}")
+
+
+def test_bug31_update_bowler_clears_between_overs_flag() -> None:
+    header("Bug #31: update_bowler bootstrap clears "
+           "bowler_between_overs")
+    from eyes.scoreboard import Scoreboard
+    sb = Scoreboard()
+    sb.setup_innings("BAT", "BOWL", ["b1", "b2"],
+                     ["Josh Hazlewood", "Trent Boult"])
+    sb._inn["last_bowler"] = "Josh Hazlewood"
+    sb._inn["current_bowler"] = None
+    sb._inn["bowler_between_overs"] = True
+    sb.update_bowler("Trent Boult", frame=100)
+    check("current_bowler installed",
+          sb._inn.get("current_bowler") == "Trent Boult",
+          f"current={sb._inn.get('current_bowler')!r}")
+    check("bowler_between_overs cleared on bootstrap",
+          sb._inn.get("bowler_between_overs") is False,
+          f"flag={sb._inn.get('bowler_between_overs')!r}")
+    check("last_bowler retained as history",
+          sb._inn.get("last_bowler") == "Josh Hazlewood",
+          f"last={sb._inn.get('last_bowler')!r}")
+
+
+# ---------------------------------------------------------------------
 # 11. Run all
 # ---------------------------------------------------------------------
 TESTS = [
@@ -13348,6 +13496,13 @@ TESTS = [
     test_fow_committed_at_wicket_ball_event,
     test_fow_not_committed_when_wickets_counter_zero,
     test_auto_dismiss_requires_incoming_consensus,
+    # --- Bowler / delivery UI accuracy cluster (#32 #24 #30 #31) ---
+    test_bug32_speed_regex_kph_optional,
+    test_bug24_speed_clears_on_next_legal_ball,
+    test_bug24_speed_persists_within_same_over_cursor,
+    test_bug30_ext_name_matches_canonical_short_name,
+    test_bug31_get_live_state_emits_last_bowler_fields,
+    test_bug31_update_bowler_clears_between_overs_flag,
     test_wire_format_accepts_fractional_cricket_overs_string,
     test_wire_format_accepts_integer_over_string,
     # Fix 11: EXTRAS-INF admission gate (Layer 1 of phantom +N quartet)

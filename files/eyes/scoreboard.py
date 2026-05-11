@@ -3219,6 +3219,7 @@ class Scoreboard:
                     f"(reads={self._pending_bowler_count}, "
                     f"must_change={self._bowler_must_change})")
                 self._inn["current_bowler"] = name
+                self._inn["bowler_between_overs"] = False
                 self._tracker.force_set("current_bowler", name)
                 self._pending_bowler_name = None
                 self._pending_bowler_count = 0
@@ -3248,6 +3249,7 @@ class Scoreboard:
                     f"different name")
             else:
                 self._inn["current_bowler"] = name
+                self._inn["bowler_between_overs"] = False
                 self._tracker.force_set("current_bowler", name)
                 _bootstrapped = True
 
@@ -4122,6 +4124,8 @@ class Scoreboard:
             "striker": striker,
             "non": non,
             "current_bowler": inn.get("current_bowler"),
+            "last_bowler": inn.get("last_bowler"),
+            "bowler_between_overs": bool(inn.get("bowler_between_overs")),
             "run_rate": inn.get("run_rate"),
             "target": inn.get("target"),
             "active_batters": {n: {"runs": s["runs"], "balls": s["balls"]}

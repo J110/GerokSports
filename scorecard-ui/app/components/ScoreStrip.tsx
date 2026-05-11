@@ -123,6 +123,11 @@ export default function ScoreStrip({
           <span className="ml-auto">
             {scorecard.current_bowler.split(" ").pop()}
           </span>
+        ) : scorecard?.last_bowler ? (
+          <span className="ml-auto text-[#8B949E] italic">
+            {scorecard.last_bowler.split(" ").pop()}
+            {scorecard.bowler_between_overs ? " · over end" : ""}
+          </span>
         ) : (
           <span className="ml-auto text-[#484F58]">— bowler</span>
         )}

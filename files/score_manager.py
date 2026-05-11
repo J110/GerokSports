@@ -311,6 +311,7 @@ class ScoreManager:
 
         # Speed
         self.last_speed: float | None = None
+        self.last_speed_at_over: float | None = None
 
         # Pending resolutions
         self.pending_extra: dict | None = None
@@ -865,6 +866,7 @@ class ScoreManager:
         self.free_hit_next = False
 
         self.last_speed = None
+        self.last_speed_at_over = None
 
         self.pending_extra = None
         self.pending_extra_frames = 0
@@ -1659,6 +1661,7 @@ class ScoreManager:
 
         if card.get("speed_kph"):
             self.last_speed = card["speed_kph"]
+            self.last_speed_at_over = self.overs
 
         self._recompute()
 
@@ -2369,6 +2372,7 @@ class ScoreManager:
 
         if card.get("speed_kph"):
             self.last_speed = card["speed_kph"]
+            self.last_speed_at_over = self.overs
         if card.get("broadcast_target") and not self.target:
             # Fix 16: route through canonical setter so cached
             # innings-1 scalars are reset, not just the field flip.
@@ -2489,6 +2493,7 @@ class ScoreManager:
     def _update_supplements(self, card: dict, frame: FrameInput) -> None:
         if card.get("speed_kph"):
             self.last_speed = card["speed_kph"]
+            self.last_speed_at_over = self.overs
         if card.get("broadcast_target") and not self.target:
             # Fix 16: route through canonical setter so cached
             # innings-1 scalars are reset, not just the field flip.
@@ -3212,6 +3217,10 @@ class ScoreManager:
                 balls_delta=1 if legal else 0,
                 wickets_delta=0,
                 frame=self._current_frame)
+            if (legal and self.last_speed is not None
+                    and self.last_speed_at_over != self.overs):
+                self.last_speed = None
+                self.last_speed_at_over = None
 
     def _apply_event(self, event: dict, prev: dict, card: dict,
                      frame: FrameInput) -> None:
@@ -3604,7 +3613,10 @@ class ScoreManager:
                 "log_tail": self.extras_log[-5:],
             },
             "free_hit": self.free_hit_next,
-            "speed_kph": self.last_speed,
+            "speed_kph": (self.last_speed
+                          if self.last_speed_at_over == self.overs
+                          else None),
+            "speed_kph_at_over": self.last_speed_at_over,
             "ball_event": last_ev,
             "ball_events": be,
             "pending": {

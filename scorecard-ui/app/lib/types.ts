@@ -37,6 +37,8 @@ export interface Scorecard {
   striker?: string | null;
   non_striker?: string | null;
   current_bowler?: string | null;
+  last_bowler?: string | null;
+  bowler_between_overs?: boolean;
 }
 
 export interface MatchInfo {

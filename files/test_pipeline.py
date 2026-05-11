@@ -1544,6 +1544,17 @@ def _validate_overs(ext_overs: float | None,
     return corrected
 
 
+def _ext_name_matches_canonical(ext_name, canonical, sb) -> bool:
+    if not ext_name or not canonical:
+        return False
+    if str(ext_name).upper() == str(canonical).upper():
+        return True
+    try:
+        return sb.resolve_name(ext_name) == canonical
+    except Exception:
+        return False
+
+
 def _is_placeholder(name: str) -> bool:
     if not name:
         return True
@@ -1626,7 +1637,7 @@ def _parse_this_over_from_scout(scout_text: str) -> list[str] | None:
 
 
 # ── Compiled regexes for broadcast data extraction ──────────────────
-_RE_SPEED = re.compile(r'SPEED:\s*([\d.]+)\s*kph', re.IGNORECASE)
+_RE_SPEED = re.compile(r'SPEED:\s*([\d.]+)\s*(?:kph|km/?h)?', re.IGNORECASE)
 _RE_TARGET = re.compile(r'TARGET\s+(\d{2,3})', re.IGNORECASE)
 _RE_TO_WIN = re.compile(
     r'(?:TO\s+WIN|NEED|REQUIRED)\s+(\d{2,3})\s+(?:OFF|FROM)\s+(\d{1,3})',
@@ -1680,7 +1691,9 @@ def extract_broadcast_data(scout_text: str, cache: dict) -> dict:
     m = _RE_SPEED.search(scout_text)
     if m:
         try:
-            result["speed_kph"] = float(m.group(1))
+            _spd = float(m.group(1))
+            if 60.0 <= _spd <= 170.0:
+                result["speed_kph"] = _spd
         except (ValueError, TypeError):
             pass
 
@@ -4710,8 +4723,9 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
                 _b_runs = bowler_up.get("runs")
                 _b_wickets = bowler_up.get("wickets")
                 if (isinstance(_ext_b_for_bowler, dict)
-                        and (_ext_b_for_bowler.get("name") or "").upper()
-                        == bname.upper()):
+                        and _ext_name_matches_canonical(
+                            _ext_b_for_bowler.get("name"),
+                            bname, scoreboard)):
                     _b_overs = _ext_b_for_bowler.get("overs", _b_overs)
                     _b_runs = _ext_b_for_bowler.get("runs", _b_runs)
                     _b_wickets = _ext_b_for_bowler.get("wickets", _b_wickets)
@@ -4730,8 +4744,9 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
                 _b_runs = bdata.get("runs")
                 _b_wickets = bdata.get("wickets")
                 if (isinstance(_ext_b_for_bowler, dict)
-                        and (_ext_b_for_bowler.get("name") or "").upper()
-                        == bname.upper()):
+                        and _ext_name_matches_canonical(
+                            _ext_b_for_bowler.get("name"),
+                            bname, scoreboard)):
                     _b_overs = _ext_b_for_bowler.get("overs", _b_overs)
                     _b_runs = _ext_b_for_bowler.get("runs", _b_runs)
                     _b_wickets = _ext_b_for_bowler.get("wickets", _b_wickets)
@@ -11628,7 +11643,10 @@ async def run_test():
                 # wicket falling between over-change and the new
                 # bowler being read would otherwise get credited to
                 # the previous-over bowler. ===
+                scoreboard._inn["last_bowler"] = (
+                    scoreboard._inn.get("current_bowler"))
                 scoreboard._inn["current_bowler"] = None
+                scoreboard._inn["bowler_between_overs"] = True
                 scoreboard._pending_bowler_name = None
                 scoreboard._pending_bowler_count = 0
                 # === #10: event-driven comm_bowler invalidation ===
@@ -11739,7 +11757,10 @@ async def run_test():
                             f"{_lag_bc_secs:.1f}s since over change "
                             f"(now={_now_bowler!r} was={_prev_bowler!r}) "
                             f"— clearing current_bowler")
+                        scoreboard._inn["last_bowler"] = (
+                            scoreboard._inn.get("current_bowler"))
                         scoreboard._inn["current_bowler"] = None
+                        scoreboard._inn["bowler_between_overs"] = True
                         scoreboard._pending_bowler_name = None
                         scoreboard._pending_bowler_count = 0
                         _bowler_change_request_at_frame = None
