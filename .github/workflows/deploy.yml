@@ -48,7 +48,9 @@ jobs:
           CRICBUZZ_MATCH_ID=152097
           CRICBUZZ_MATCH_SLUG=rcb-vs-mi-54th-match-indian-premier-league-2026
           FRAME_SOURCE=file
-          FRAME_FILE_PATH=/mnt/data/sportscomm/files/fixtures/cricket_test_30s.mp4
+          FRAME_SOURCE_FILE=/mnt/data/sportscomm/files/fixtures/cricket_test_30s.mp4
+          FRAME_SOURCE_FILE_OFFSET_S=0
+          FRAME_SOURCE_FILE_LOOP=0
           USE_OPEN_SCOUT=1
           OPENSCOUT_DECOUPLED=1
           SCOUT_RAW_DUMP=1
