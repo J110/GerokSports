@@ -1737,7 +1737,25 @@ class ScoreManager:
     def _handle_warm(self, card: dict, frame: FrameInput) -> dict | None:
         self._try_resolve_pending(frame)
 
-        # Innings transition detection
+        if card.get("score") is not None:
+            try: card["score"] = int(card["score"])
+            except (TypeError, ValueError): card["score"] = 0
+        if card.get("wickets") is not None:
+            try: card["wickets"] = int(card["wickets"])
+            except (TypeError, ValueError): card["wickets"] = 0
+        if card.get("overs") is not None:
+            try: card["overs"] = float(card["overs"])
+            except (TypeError, ValueError): card["overs"] = 0.0
+        if isinstance(self.score, str):
+            try: self.score = int(self.score)
+            except ValueError: self.score = 0
+        if isinstance(self.wickets, str):
+            try: self.wickets = int(self.wickets)
+            except ValueError: self.wickets = 0
+        if isinstance(self.overs, str):
+            try: self.overs = float(self.overs)
+            except ValueError: self.overs = 0.0
+
         if self._detect_innings_change(card, frame):
             return self._build_payload()
 
@@ -1754,8 +1772,23 @@ class ScoreManager:
         new_overs = _val(card.get("overs"), self.overs)
         old_overs = self.overs if self.overs is not None else 0
 
-        d_score = c_score - (self.score if self.score is not None else 0)
-        d_wickets = c_wickets - (self.wickets if self.wickets is not None else 0)
+        try: c_score = int(c_score)
+        except (TypeError, ValueError): c_score = 0
+        try: c_wickets = int(c_wickets)
+        except (TypeError, ValueError): c_wickets = 0
+        try: new_overs = float(new_overs)
+        except (TypeError, ValueError): new_overs = 0.0
+        try: old_overs = float(old_overs)
+        except (TypeError, ValueError): old_overs = 0.0
+
+        _self_score = self.score if self.score is not None else 0
+        _self_wickets = self.wickets if self.wickets is not None else 0
+        try: _self_score = int(_self_score)
+        except (TypeError, ValueError): _self_score = 0
+        try: _self_wickets = int(_self_wickets)
+        except (TypeError, ValueError): _self_wickets = 0
+        d_score = c_score - _self_score
+        d_wickets = c_wickets - _self_wickets
         d_overs = round(new_overs - old_overs, 2)
 
         # DC-vs-CSK Fix 4: 2-frame consensus gate for ambiguous score

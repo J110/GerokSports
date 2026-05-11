@@ -124,7 +124,12 @@ jobs:
             "
           FINAL_STATE=$(gcloud compute ssh qrackpot-prod-1 --zone=asia-south1-a --tunnel-through-iap \
             --command="sudo systemctl is-active pipeline.service" 2>/dev/null || true)
-          if [ "$FINAL_STATE" != "active" ]; then
+          MODE="${{ github.event.inputs.mode || 'fixture' }}"
+          if [ "$MODE" = "live" ] && [ "$FINAL_STATE" = "activating" ]; then
+            echo "::notice ::pipeline.service is activating (waiting for SRT stream — expected for live mode)"
+          elif [ "$FINAL_STATE" != "active" ]; then
             echo "::error ::pipeline.service did not reach active state (got: $FINAL_STATE)"
             exit 1
+          else
+            echo "::notice ::pipeline.service active"
           fi
