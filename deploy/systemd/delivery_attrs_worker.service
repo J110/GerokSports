@@ -1,0 +1,22 @@
+[Unit]
+Description=qrackpot delivery attribute extractor (vision model, Track 2 inference)
+After=network.target pipeline.service
+PartOf=pipeline.service
+
+# PLACEHOLDER — worker script not yet implemented.
+# Design: files/docs/investigations/track2_realtime_inference_design.md
+# When ready, replace ExecStart and enable via deploy.sh.
+
+[Service]
+Type=simple
+User=anmolmohan_turingsdesign_com
+WorkingDirectory=/mnt/data/sportscomm
+EnvironmentFile=/etc/sportscomm/pipeline.env
+ExecStart=/mnt/data/sportscomm/.venv/bin/python files/scripts/delivery_attrs_worker.py
+Restart=on-failure
+RestartSec=15s
+StandardOutput=append:/var/log/sportscomm/delivery-attrs.log
+StandardError=append:/var/log/sportscomm/delivery-attrs-err.log
+
+[Install]
+WantedBy=multi-user.target

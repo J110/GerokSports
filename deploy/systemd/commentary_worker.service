@@ -1,0 +1,22 @@
+[Unit]
+Description=qrackpot commentary generator (Track 2 inference)
+After=network.target pipeline.service delivery_attrs_worker.service
+PartOf=pipeline.service
+
+# PLACEHOLDER — worker script not yet implemented.
+# Design: files/docs/investigations/track2_realtime_inference_design.md
+# When ready, replace ExecStart and enable via deploy.sh.
+
+[Service]
+Type=simple
+User=anmolmohan_turingsdesign_com
+WorkingDirectory=/mnt/data/sportscomm
+EnvironmentFile=/etc/sportscomm/pipeline.env
+ExecStart=/mnt/data/sportscomm/.venv/bin/python files/scripts/commentary_worker.py
+Restart=on-failure
+RestartSec=15s
+StandardOutput=append:/var/log/sportscomm/commentary.log
+StandardError=append:/var/log/sportscomm/commentary-err.log
+
+[Install]
+WantedBy=multi-user.target

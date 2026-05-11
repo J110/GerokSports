@@ -73,11 +73,16 @@ LOG "Caddyfile END ($((SECONDS - step_start))s)"
 
 step_start=$SECONDS
 LOG "systemd units START"
+PLACEHOLDER_UNITS="delivery_attrs_worker.service commentary_worker.service"
 for unit in deploy/systemd/*.service; do
     name=$(basename "$unit")
     sudo install -m 0644 -o root -g root "$unit" "/etc/systemd/system/$name"
 done
 sudo systemctl daemon-reload
+for ph in $PLACEHOLDER_UNITS; do
+    sudo systemctl disable "$ph" 2>/dev/null || true
+    sudo systemctl stop "$ph" 2>/dev/null || true
+done
 LOG "systemd units END ($((SECONDS - step_start))s)"
 
 step_start=$SECONDS
