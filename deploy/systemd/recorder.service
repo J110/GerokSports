@@ -1,5 +1,5 @@
 [Unit]
-Description=qrackpot UDP recorder (fragmented mp4 for Track 2)
+Description=qrackpot UDP recorder (mpegts .ts for Track 2)
 After=network.target
 PartOf=pipeline.service
 
@@ -9,13 +9,11 @@ User=anmolmohan_turingsdesign_com
 WorkingDirectory=/mnt/data/sportscomm
 EnvironmentFile=/etc/sportscomm/pipeline.env
 ExecStartPre=/bin/mkdir -p /mnt/data/sportscomm/files/logs/deliveries/${BMF_SESSION_ID}
-ExecStart=/usr/bin/ffmpeg -hide_banner -loglevel warning \
+ExecStart=/usr/bin/ffmpeg -y -hide_banner -loglevel warning \
     -fflags +genpts -err_detect ignore_err \
     -i "udp://0.0.0.0:9998?fifo_size=1000000&overrun_nonfatal=1" \
-    -c copy \
-    -movflags +frag_keyframe+empty_moov+default_base_moof+faststart \
-    -frag_duration 1000000 \
-    /mnt/data/sportscomm/files/logs/deliveries/${BMF_SESSION_ID}/match_${BMF_SESSION_ID}.mp4
+    -c copy -f mpegts \
+    /mnt/data/sportscomm/files/logs/deliveries/${BMF_SESSION_ID}/match_${BMF_SESSION_ID}.ts
 Restart=always
 RestartSec=10s
 StandardOutput=append:/var/log/sportscomm/recorder.log
