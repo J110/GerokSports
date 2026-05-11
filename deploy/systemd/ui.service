@@ -1,0 +1,18 @@
+[Unit]
+Description=qrackpot Next.js UI
+After=network.target
+
+[Service]
+Type=simple
+User=anmolmohan_turingsdesign_com
+WorkingDirectory=/mnt/data/sportscomm/scorecard-ui
+Environment=NODE_ENV=production
+Environment=PORT=3000
+ExecStart=/usr/bin/npm run start
+Restart=on-failure
+RestartSec=5s
+StandardOutput=append:/var/log/sportscomm/ui.log
+StandardError=append:/var/log/sportscomm/ui-err.log
+
+[Install]
+WantedBy=multi-user.target

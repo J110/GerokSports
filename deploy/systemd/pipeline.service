@@ -1,0 +1,17 @@
+[Unit]
+Description=qrackpot cricket pipeline
+After=network.target
+
+[Service]
+Type=simple
+User=anmolmohan_turingsdesign_com
+WorkingDirectory=/mnt/data/sportscomm
+EnvironmentFile=/etc/sportscomm/secrets.env
+ExecStart=/mnt/data/sportscomm/.venv/bin/python files/test_pipeline.py
+Restart=on-failure
+RestartSec=15s
+StandardOutput=append:/var/log/sportscomm/pipeline.log
+StandardError=append:/var/log/sportscomm/pipeline-err.log
+
+[Install]
+WantedBy=multi-user.target
