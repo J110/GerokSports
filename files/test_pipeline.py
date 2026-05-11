@@ -5019,6 +5019,7 @@ def _build_full_payload_from_state(
                     _ws_scrub_consec.get(_consec_key, 0) + 1)
 
                 if (_c is not None
+                        and _c.get("status") in ("yet_to_bat", None)
                         and _ws_scrub_consec[_consec_key] >= 2):
                     _old_status = _c.get("status")
                     _c["status"] = "batting"

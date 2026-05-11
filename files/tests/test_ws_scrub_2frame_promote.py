@@ -51,7 +51,9 @@ def _ws_scrub_one_pass(state, batting_card, scrub_consec, scrub_counts):
         consec_key = f"{slot}:{nm}"
         scrub_consec[consec_key] = scrub_consec.get(consec_key, 0) + 1
 
-        if c is not None and scrub_consec[consec_key] >= 2:
+        if (c is not None
+                and c.get("status") in ("yet_to_bat", None)
+                and scrub_consec[consec_key] >= 2):
             c["status"] = "batting"
             scrub_consec.pop(consec_key, None)
 
@@ -120,6 +122,25 @@ def test_absent_from_card_no_promote():
     # increments but no key gets a 'status' field set to batting.
     assert consec.get("striker:Phantom Stale Read") == 2
     assert "Phantom Stale Read" not in bc
+
+
+def test_does_not_promote_dismissed():
+    bc = _bc_with(("Tilak Varma", "out"))
+    consec, counts = {}, {}
+    state = {"striker": "Tilak Varma"}
+    _ws_scrub_one_pass(state, bc, consec, counts)
+    _ws_scrub_one_pass(state, bc, consec, counts)
+    _ws_scrub_one_pass(state, bc, consec, counts)
+    assert bc["Tilak Varma"]["status"] == "out"
+
+
+def test_does_not_promote_did_not_bat():
+    bc = _bc_with(("Reserve Player", "did_not_bat"))
+    consec, counts = {}, {}
+    state = {"striker": "Reserve Player"}
+    _ws_scrub_one_pass(state, bc, consec, counts)
+    _ws_scrub_one_pass(state, bc, consec, counts)
+    assert bc["Reserve Player"]["status"] == "did_not_bat"
 
 
 def test_module_dict_exists_in_test_pipeline():

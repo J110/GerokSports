@@ -6220,10 +6220,120 @@ def test_fix13_path_b_known_wicket_increment_cleans_placeholder_gap() -> None:
     check("batting_card status flipped to out",
           sb.batting_card["Marsh"]["status"] == "out",
           f"status={sb.batting_card['Marsh']['status']}")
-    check("FOW placeholder remains unwitnessed/no-fabrication",
-          sb.fall_of_wickets[0].get("_unwitnessed") is True
-          and sb.fall_of_wickets[0].get("batter") is None,
+    check("FOW placeholder upgraded to witnessed Marsh "
+          "(Fix B: immediate FOW commit on WICKET ball-event)",
+          sb.fall_of_wickets[0].get("batter") == "Marsh"
+          and sb.fall_of_wickets[0].get("_witnessed") is True
+          and sb.fall_of_wickets[0].get("score") == 8,
           f"fow={sb.fall_of_wickets}")
+
+
+def test_fow_committed_at_wicket_ball_event() -> None:
+    """Fix B (#27): apply_known_wicket_increment must commit FOW
+    immediately rather than waiting for a witnessed read.  Closes the
+    39s _unwitnessed gap observed when score/wickets are reliable but
+    the FOW upgrade event arrives much later."""
+    header("Fix B: FOW committed at apply_known_wicket_increment")
+    from eyes.scoreboard import Scoreboard
+    sb = Scoreboard()
+    sb.setup_innings("PBKS", "RR",
+                     ["Raj Bawa", "Other", "Next", "D", "E"],
+                     ["B1", "B2"])
+    sb.batting_card["Raj Bawa"]["status"] = "batting"
+    sb.batting_card["Other"]["status"] = "batting"
+    sb._inn["striker"] = "Raj Bawa"
+    sb._inn["non"] = "Other"
+    sb._inn["score"] = 161
+    sb._inn["wickets"] = 7
+    sb._inn["overs"] = "19.0"
+    sb.pending_dismissal_hint = "bowled"
+    sb.pending_dismissal_bowler = "B1"
+
+    sb.apply_known_wicket_increment("Raj Bawa")
+
+    fow = sb.fall_of_wickets[-1] if sb.fall_of_wickets else {}
+    check("FOW row created for the dismissal",
+          fow.get("batter") == "Raj Bawa",
+          f"fow={sb.fall_of_wickets}")
+    check("FOW marked witnessed",
+          fow.get("_witnessed") is True,
+          f"fow={fow}")
+    check("FOW score=161",
+          fow.get("score") == 161,
+          f"fow={fow}")
+    check("FOW overs='19.0'",
+          fow.get("overs") == "19.0",
+          f"fow={fow}")
+    check("Raj Bawa status='out'",
+          sb.batting_card["Raj Bawa"]["status"] == "out",
+          f"status={sb.batting_card['Raj Bawa']['status']}")
+
+
+def test_fow_not_committed_when_wickets_counter_zero() -> None:
+    """Fix B guard: wk > 0 check prevents double-fire on cold-start
+    when wickets counter is still 0."""
+    header("Fix B: FOW commit skipped when wickets=0")
+    from eyes.scoreboard import Scoreboard
+    sb = Scoreboard()
+    sb.setup_innings("BAT", "BOWL", ["A", "B", "C"], ["X", "Y"])
+    sb.batting_card["A"]["status"] = "batting"
+    sb._inn["striker"] = "A"
+    sb._inn["non"] = "B"
+    sb._inn["score"] = 0
+    sb._inn["wickets"] = 0
+    sb._inn["overs"] = "0.0"
+    sb.apply_known_wicket_increment("A")
+    check("no FOW row created when wickets=0",
+          len(sb.fall_of_wickets) == 0,
+          f"fow={sb.fall_of_wickets}")
+
+
+def test_auto_dismiss_requires_incoming_consensus() -> None:
+    """Fix C (#28): 2-frame consensus on the incoming new_batter name.
+    Prevents F72-class phantom replacements where ext_bat momentarily
+    surfaces a wrong incoming name (panel/replay carrying stale row)."""
+    header("Fix C: _auto_dismiss_for_new_batter requires "
+           "incoming-batter consensus")
+    from eyes.scoreboard import Scoreboard
+    sb = Scoreboard()
+    sb.setup_innings(
+        "MI", "BOWL",
+        ["Tilak Varma", "Raj Bawa", "Deepak Chahar", "Rohit Sharma", "D"],
+        ["B1", "B2"])
+    sb.batting_card["Tilak Varma"]["status"] = "batting"
+    sb.batting_card["Raj Bawa"]["status"] = "batting"
+    sb._inn["striker"] = "Tilak Varma"
+    sb._inn["non"] = "Raj Bawa"
+    sb._inn["score"] = 50
+    sb._inn["wickets"] = 2
+    sb._inn["overs"] = "8.4"
+    sb._last_autodismiss_wickets = 1
+    sb._extractor_batter_names = ["RAJ BAWA", "DEEPAK CHAHAR"]
+    sb._missing_batter_streak = {"Tilak Varma": 2}
+
+    active = ["Tilak Varma", "Raj Bawa"]
+
+    result = sb._auto_dismiss_for_new_batter(active, "Rohit Sharma")
+    check("phantom incoming Rohit Sharma defers (streak=1/2)",
+          result is None,
+          f"result={result!r}")
+    check("Tilak Varma still batting (no premature dismissal)",
+          sb.batting_card["Tilak Varma"]["status"] == "batting",
+          f"status={sb.batting_card['Tilak Varma']['status']}")
+
+    result = sb._auto_dismiss_for_new_batter(active, "Deepak Chahar")
+    check("different incoming Deepak Chahar still defers "
+          "(streak resets to 1/2)",
+          result is None,
+          f"result={result!r}")
+
+    result = sb._auto_dismiss_for_new_batter(active, "Deepak Chahar")
+    check("repeated Deepak Chahar fires (streak=2/2)",
+          result == "Tilak Varma",
+          f"result={result!r}")
+    check("Tilak Varma now out",
+          sb.batting_card["Tilak Varma"]["status"] == "out",
+          f"status={sb.batting_card['Tilak Varma']['status']}")
 
 
 def test_fix13_path_b_wicket_handler_wired_in_source() -> None:
@@ -13235,6 +13345,9 @@ TESTS = [
     test_fix10_hook_call_present_in_source,
     test_fix13_path_b_known_wicket_increment_cleans_placeholder_gap,
     test_fix13_path_b_wicket_handler_wired_in_source,
+    test_fow_committed_at_wicket_ball_event,
+    test_fow_not_committed_when_wickets_counter_zero,
+    test_auto_dismiss_requires_incoming_consensus,
     test_wire_format_accepts_fractional_cricket_overs_string,
     test_wire_format_accepts_integer_over_string,
     # Fix 11: EXTRAS-INF admission gate (Layer 1 of phantom +N quartet)

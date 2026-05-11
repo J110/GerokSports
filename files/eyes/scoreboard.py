@@ -589,6 +589,9 @@ class Scoreboard:
         # to require at least 2 consecutive misses before believing a
         # dismissal signal.
         self._missing_batter_streak: dict[str, int] = {}
+        # Fix C (#28): incoming-batter consensus streak — clear on innings
+        # transition so a deferred-incoming candidate doesn't leak across.
+        self._incoming_streak: dict[str, int] = {}
         # Layer 4 (Fix 12): clear runs-rejection-streak state so an
         # innings-1 stuck-window doesn't leak into innings-2 (different
         # batter pool, different name keys, but defensive hygiene).
@@ -1785,6 +1788,17 @@ class Scoreboard:
             return None
 
         dismissed = missing[0]
+        _streak_in = getattr(self, "_incoming_streak", {})
+        if _streak_in and new_batter not in _streak_in:
+            _streak_in = {}
+        _streak_in[new_batter] = _streak_in.get(new_batter, 0) + 1
+        self._incoming_streak = _streak_in
+        if _streak_in[new_batter] < 2:
+            log.info(
+                f"[DISMISS] incoming '{new_batter}' "
+                f"streak={_streak_in[new_batter]}/2 — deferring")
+            return None
+        self._incoming_streak = {}
         self._last_autodismiss_wickets = _cur_wk
         self._missing_batter_streak = {}
         # === S17: prefer the structured dismissal hint piped in from
@@ -3658,6 +3672,18 @@ class Scoreboard:
             return
         self.batting_card[card_key]["status"] = "out"
         self.batting_card[card_key]["dismissal_source"] = "wicket_ball_event"
+        try:
+            wk = int(self._inn.get("wickets") or 0)
+        except (TypeError, ValueError):
+            wk = 0
+        if wk > 0:
+            self._add_fow(
+                wk, card_key,
+                self._inn.get("score"),
+                self._inn.get("overs"),
+                how=getattr(self, "pending_dismissal_hint", None),
+                bowler=(getattr(self, "pending_dismissal_bowler", None)
+                        or self._inn.get("current_bowler")))
         self._post_witnessed_dismissal_slot_rotation(card_key)
         self._promote_incoming_batter_after_wicket(
             card_key, extracted_batters=extracted_batters,
