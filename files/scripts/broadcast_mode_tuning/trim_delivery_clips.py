@@ -37,6 +37,11 @@ SIDECAR_DIRS = [SCOUT_BASE / d for d in [
     "seventh_5min_scout_run", "eighth_5min_scout_run",
     "ninth_5min_scout_run", "tenth_5min_scout_run",
     "eleventh_5min_scout_run", "twelfth_5min_scout_run",
+    "may9_o1_b1to6_scout_run",
+    "may9_o1_b4to6_scout_run",
+    "may9_o2_b2to6_scout_run",
+    "may9_o3_b2to6_scout_run",
+    "may9_o4_scout_run",
 ]]
 
 MIN_DUR = 5.0
@@ -44,8 +49,8 @@ MAX_DUR = 12.0
 DEFAULT_TAIL_CAP_S = 8.0
 WICKET_TAIL_CAP_S = 12.0
 FLOOR_BEFORE_S = 1.5
-FLOOR_AFTER_S = 4.0
-HEAD_BACKWARD_CAP_S = 6.0
+FLOOR_AFTER_S = 5.5
+HEAD_BACKWARD_CAP_S = 8.0
 HEAD_GAP_TOLERANCE_S = 3.0
 TAIL_GAP_TOLERANCE_S = 6.0
 TAIL_DROP_AFTER_S = 8.0
@@ -78,6 +83,10 @@ BALL_TRACKING_PATTERNS = [
     re.compile(
         r"\b(?:after|following)\s+(?:a\s+|the\s+)?"
         r"(?:hit|stroke|shot|delivery)\b", re.IGNORECASE),
+    re.compile(
+        r"\b(?:player|fielder)\s+(?:diving|lunging|stretching)"
+        r"\s+on\s+the\s+ground\b", re.IGNORECASE),
+    re.compile(r"\battempting\s+to\s+catch\b", re.IGNORECASE),
 ]
 
 GRAPHIC_OVERLAY_PAT = re.compile(

@@ -151,6 +151,13 @@ class ShadowDeliveryDetector:
         rel_t = self._rel_t(item["timestamp"])
         text = item["raw_description"]
         if not text:
+            self._emit({
+                "type": "frame_skipped",
+                "rel_t": rel_t,
+                "ts": item["timestamp"],
+                "frame_class": item.get("frame_class", ""),
+                "reason": "empty_raw_description",
+            })
             return
         f = FrameInfo(t=rel_t, text=text)
         f.signals = extract_signals(text)

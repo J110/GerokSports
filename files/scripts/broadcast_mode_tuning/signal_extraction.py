@@ -246,7 +246,11 @@ BOWLER_WALKBACK_AFTER_V_PAT = re.compile(
 HEDGE_BEFORE_V_PAT = re.compile(
     r"\b(?:bowling|delivering|throwing|swinging|hitting|bowled|"
     r"delivered|thrown|swung|hit|played|released|struck|"
-    r"action|stride|follow[-\s]through)\b[,\s]*or\s*$",
+    r"action|stride|follow[-\s]through)\b[,\s]*or\s*$"
+    r"|"
+    r"\b(?:possibly|perhaps|maybe|appears\s+to\s+be|seems\s+to\s+be|"
+    r"likely|may\s+have|might\s+have)\s+"
+    r"(?:[\w,'-]+\s+){0,4}$",
     re.IGNORECASE,
 )
 

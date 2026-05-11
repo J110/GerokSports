@@ -2673,6 +2673,15 @@ class Scoreboard:
                       runs_delta: int | None = None,
                       balls_delta: int | None = None,
                       wickets_delta: int | None = None) -> bool:
+        if isinstance(runs, str):
+            try: runs = int(runs)
+            except (TypeError, ValueError): runs = None
+        if isinstance(wickets, str):
+            try: wickets = int(wickets)
+            except (TypeError, ValueError): wickets = None
+        if isinstance(maidens, str):
+            try: maidens = int(maidens)
+            except (TypeError, ValueError): maidens = None
         if any(d is not None for d in
                (runs_delta, balls_delta, wickets_delta)):
             return self._apply_bowler_delta(

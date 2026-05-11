@@ -18,11 +18,18 @@ set -euo pipefail
 cd "$(dirname "$0")/../.."  # repo root
 
 export SHADOW_DELIVERY_DETECTOR=1
+export BMF_SESSION_ID="${BMF_SESSION_ID:-live_$(date +%Y%m%d_%H%M%S)}"
+export SCOUT_RAW_DUMP=1
+export PYTHONUNBUFFERED=1
 
 PROD_ENTRY="${PROD_ENTRY:-python -m eyes.main}"
 RECORDER_DURATION_S="${RECORDER_DURATION_S:-18000}"
 
+mkdir -p files/logs files/logs/trace "files/logs/deliveries/${BMF_SESSION_ID}"
+
 echo "[start_live_match] SHADOW_DELIVERY_DETECTOR=$SHADOW_DELIVERY_DETECTOR"
+echo "[start_live_match] BMF_SESSION_ID=$BMF_SESSION_ID"
+echo "[start_live_match] SCOUT_RAW_DUMP=$SCOUT_RAW_DUMP"
 echo "[start_live_match] starting recorder (--duration $RECORDER_DURATION_S)"
 
 python files/scripts/record_live_match.py \
@@ -54,8 +61,20 @@ trap cleanup INT TERM EXIT
 LOG_TS="$(date +%Y%m%d_%H%M%S)"
 LOG_FILE="files/logs/pipeline-${LOG_TS}.log"
 mkdir -p files/logs
+
+ln -sfn "pipeline-${LOG_TS}.log" "files/logs/pipeline-live.log"
+ln -sfn "${BMF_SESSION_ID}.jsonl" "files/logs/trace/live.jsonl"
+
+echo "============================================================"
+echo "[start_live_match] LIVE PATHS (grep these mid-match):"
+echo "  pipeline log    : $LOG_FILE"
+echo "  pipeline alias  : files/logs/pipeline-live.log"
+echo "  trace alias     : files/logs/trace/live.jsonl"
+echo "  trace target    : files/logs/trace/${BMF_SESSION_ID}.jsonl"
+echo "  scout_raw       : files/logs/deliveries/${BMF_SESSION_ID}/scout_raw.jsonl"
+echo "  recorder mp4    : files/logs/deliveries/${BMF_SESSION_ID}/match_<id>.mp4"
+echo "============================================================"
 echo "[start_live_match] starting prod pipeline: $PROD_ENTRY"
-echo "[start_live_match] pipeline log: $LOG_FILE"
 $PROD_ENTRY 2>&1 | tee "$LOG_FILE"
 
 # When prod exits naturally, trap EXIT handler still cleans up recorder.

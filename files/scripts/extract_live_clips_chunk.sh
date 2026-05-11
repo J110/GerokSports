@@ -45,13 +45,17 @@ run_cycle() {
     # BMF_SESSION_ID with a uuid and writes scout_raw under THAT dir. The active
     # session is uniquely the one with both files present.
     local session_dir
+    local session_id
     session_dir=""
+    session_id=""
     for d in $(ls -dt files/logs/deliveries/*/ 2>/dev/null \
                | grep -v archive_pre_fix \
                | grep -v archive_run2); do
-        [ -s "${d}scout_raw.jsonl" ] || continue
+        sid=$(basename "${d%/}")
+        [ -s "logs/openscout-${sid}.jsonl" ] || continue
         compgen -G "${d}match_*.mp4" >/dev/null 2>&1 || continue
         session_dir="$d"
+        session_id="$sid"
         break
     done
     if [ -z "${session_dir:-}" ]; then
@@ -59,12 +63,10 @@ run_cycle() {
         return 0
     fi
     session_dir=${session_dir%/}
-    local session_id
-    session_id=$(basename "$session_dir")
 
-    local scout_raw="$session_dir/scout_raw.jsonl"
-    if [ ! -f "$scout_raw" ]; then
-        log "session=$session_id has no scout_raw.jsonl yet — skip"
+    local openscout_file="logs/openscout-${session_id}.jsonl"
+    if [ ! -f "$openscout_file" ]; then
+        log "session=$session_id has no openscout-${session_id}.jsonl yet — skip"
         return 0
     fi
 
@@ -86,19 +88,20 @@ run_cycle() {
     #    Each line in scout_raw.jsonl is expected to carry the rel_t
     #    in either a top-level numeric field or inside the raw_response
     #    body. We are defensive about the schema.
-    python3 - "$scout_raw" "$sidecar_dir" <<'PY'
-import json, os, re, sys
+    python3 - "$openscout_file" "$sidecar_dir" <<'PY'
+import json, sys
 from pathlib import Path
 
-scout_raw = Path(sys.argv[1])
+src = Path(sys.argv[1])
 out_dir = Path(sys.argv[2])
 out_dir.mkdir(parents=True, exist_ok=True)
 
 written = 0
 skipped = 0
 errs = 0
+first_ts = None
 
-for i, line in enumerate(scout_raw.read_text().splitlines()):
+for line_no, line in enumerate(src.read_text().splitlines()):
     line = line.strip()
     if not line:
         continue
@@ -107,40 +110,35 @@ for i, line in enumerate(scout_raw.read_text().splitlines()):
     except Exception:
         errs += 1
         continue
-    # Try several schema variants for rel_t / frame_no.
-    rel_t = None
-    for k in ("rel_t", "t", "timestamp_rel", "ts_rel"):
-        if k in rec and isinstance(rec[k], (int, float)):
-            rel_t = float(rec[k])
-            break
-    if rel_t is None:
-        # Some schemas embed rel_t inside raw_response prose.
-        body = rec.get("raw_response") or rec.get("text") or ""
-        m = re.search(r"\brel_t[:= ]+([\d.]+)", body)
-        if m:
-            rel_t = float(m.group(1))
-    if rel_t is None:
-        # Last resort: derive from frame_id if frames are ~2 fps.
-        fid = rec.get("frame_id") or rec.get("frame_no")
-        if isinstance(fid, int):
-            rel_t = float(fid) * 0.5
-    if rel_t is None:
+
+    if rec.get("frame_class") != "action":
+        skipped += 1
+        continue
+    if rec.get("error"):
         skipped += 1
         continue
 
-    body = rec.get("raw_response") or rec.get("text") or rec.get("body") or ""
-    if not body:
+    raw = rec.get("raw_text") or ""
+    if not raw:
         skipped += 1
         continue
 
-    fname = f"f_{i:06d}_t={rel_t:06.1f}.txt"
+    ts = rec.get("ts")
+    if ts is None:
+        skipped += 1
+        continue
+
+    if first_ts is None:
+        first_ts = float(ts)
+    rel_t = float(ts) - first_ts
+
+    fidx = rec.get("frame_idx", line_no)
+    fname = f"f_{fidx:06d}_t={rel_t:06.1f}.txt"
     p = out_dir / fname
     if p.exists():
         continue
-    # Write with the standard "header --- body" shape so load_sidecars
-    # split-on-`---\n` works downstream.
-    header = f"ts: 0\nrel_t: {rel_t:.3f}\nframe_no: {i}\n"
-    p.write_text(header + "---\n" + body)
+    header = f"ts: {ts}\nrel_t: {rel_t:.3f}\nframe_no: {fidx}\nframe_class: action\n"
+    p.write_text(header + "---\n" + raw)
     written += 1
 
 print(f"sidecar: written={written} skipped={skipped} errs={errs}")
