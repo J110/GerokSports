@@ -8,6 +8,7 @@ Hard limits only: negative scores, overs > 20, wickets > 10.
 """
 from __future__ import annotations
 
+import os
 import time
 from copy import deepcopy
 from difflib import SequenceMatcher
@@ -4458,6 +4459,8 @@ class Scoreboard:
             },
             "fall_of_wickets": self.fall_of_wickets[:],
             "over_history": {str(k): v for k, v in self.over_history.items()},
+            "match_id": os.environ.get("CRICBUZZ_MATCH_ID"),
+            "session_id": os.environ.get("BMF_SESSION_ID"),
             "frame": frame,
             "saved_at": time.time(),
         }

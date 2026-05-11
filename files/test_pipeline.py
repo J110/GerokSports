@@ -5981,6 +5981,10 @@ async def run_test():
         """Persist scoreboard state every 10 frames."""
         if frame_ct % 10 != 0:
             return
+        if (scoreboard._inn.get("score") is None
+                and scoreboard._inn.get("wickets") is None
+                and scoreboard._inn.get("overs") is None):
+            return
         try:
             cache = scoreboard.get_cache_dict(frame_ct)
             cache["batting_team_var"] = batting_team
