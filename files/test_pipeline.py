@@ -931,7 +931,8 @@ def _build_squad_url() -> str:
 
 
 SQUAD_URL = _build_squad_url()
-SESSION_ID = uuid.uuid4().hex[:8]
+_env_sid = os.environ.get("BMF_SESSION_ID", "").strip()
+SESSION_ID = _env_sid if _env_sid else uuid.uuid4().hex[:8]
 os.environ["BMF_SESSION_ID"] = SESSION_ID
 
 # Trace-and-Detect v1 wiring (see files/docs/operations/trace_and_detect_setup.md).
