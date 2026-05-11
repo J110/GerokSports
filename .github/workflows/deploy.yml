@@ -33,10 +33,11 @@ jobs:
       - name: Deploy via IAP SSH
         run: |
           set +e
+          BRANCH="${GITHUB_REF_NAME:-derive-not-detect}"
           gcloud compute ssh qrackpot-prod-1 \
             --zone=asia-south1-a \
             --tunnel-through-iap \
-            --command="sudo -u anmolmohan_turingsdesign_com -H bash -c 'cd /mnt/data/sportscomm && git pull && bash deploy/deploy.sh'" \
+            --command="sudo -u anmolmohan_turingsdesign_com -H bash -c 'cd /mnt/data/sportscomm && git fetch origin && git reset --hard origin/${BRANCH} && bash deploy/deploy.sh'" \
             2>&1 | tee /tmp/deploy.log
           ssh_rc=${PIPESTATUS[0]}
           if grep -q "DONE in" /tmp/deploy.log; then
