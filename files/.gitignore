@@ -43,6 +43,7 @@ test_logs/
 
 # --- Media / model weights / archives ------------------------------------
 *.mp4
+!fixtures/cricket_test_30s.mp4
 *.mov
 *.avi
 *.pt

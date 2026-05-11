@@ -59,6 +59,25 @@ sudo systemctl status caddy
 sudo journalctl -u caddy -f
 ```
 
+## Phase 1A — pipeline.service auto-deployed from CI
+
+CI handles everything. One-time setup:
+
+1. Add GitHub Actions secrets at https://github.com/J110/GerokSports/settings/secrets/actions
+   - GROQ_API_KEY (required)
+   - GEMINI_API_KEY (set to empty string if not used)
+
+2. Push to derive-not-detect. CI will:
+   - Run deploy.sh on the VM
+   - Sync /etc/sportscomm/pipeline.env from GH secrets
+   - Enable + restart pipeline.service
+   - Health-check qrackpot.com
+   - Dump last 30 lines of pipeline log into Action output
+
+3. After CI goes green: open https://qrackpot.com
+   - Pipeline replays the 30s test fixture
+   - UI should show match state derived from the replay
+
 ## Pipeline service
 
 `pipeline.service` is installed but disabled by default. Enable once SRT

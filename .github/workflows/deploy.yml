@@ -37,6 +37,44 @@ jobs:
           echo "Remote deploy failed (no DONE marker); ssh rc=$ssh_rc"
           exit 1
 
-      - name: Verify
+      - name: Sync pipeline.env on VM from GH secrets
         run: |
-          curl -fsS -o /dev/null https://qrackpot.com/ && echo "OK"
+          gcloud compute ssh qrackpot-prod-1 \
+            --zone=asia-south1-a \
+            --tunnel-through-iap \
+            --command="sudo tee /etc/sportscomm/pipeline.env > /dev/null <<'PIPENV'
+          GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          CRICBUZZ_MATCH_ID=152097
+          CRICBUZZ_MATCH_SLUG=rcb-vs-mi-54th-match-indian-premier-league-2026
+          FRAME_SOURCE=file
+          FRAME_FILE_PATH=/mnt/data/sportscomm/files/fixtures/cricket_test_30s.mp4
+          USE_OPEN_SCOUT=1
+          OPENSCOUT_DECOUPLED=1
+          SCOUT_RAW_DUMP=1
+          SHADOW_DELIVERY_DETECTOR=0
+          PYTHONUNBUFFERED=1
+          SKIP_PREMATCH_S=400
+          PIPENV
+          sudo chmod 0600 /etc/sportscomm/pipeline.env
+          sudo chown root:root /etc/sportscomm/pipeline.env
+          sudo systemctl enable pipeline.service
+          sudo systemctl restart pipeline.service"
+
+      - name: Health check qrackpot.com
+        run: |
+          sleep 15
+          if curl -fsS -o /dev/null https://qrackpot.com/; then
+            echo "::notice ::qrackpot.com is responding"
+          else
+            echo "::error ::qrackpot.com health check failed"
+            exit 1
+          fi
+
+      - name: Pipeline service status
+        run: |
+          gcloud compute ssh qrackpot-prod-1 \
+            --zone=asia-south1-a \
+            --tunnel-through-iap \
+            --command="sudo systemctl is-active pipeline.service && \
+                       sudo journalctl -u pipeline.service -n 30 --no-pager"
