@@ -23,10 +23,19 @@ jobs:
 
       - name: Deploy via IAP SSH
         run: |
+          set +e
           gcloud compute ssh qrackpot-prod-1 \
             --zone=asia-south1-a \
             --tunnel-through-iap \
-            --command="sudo -u anmolmohan_turingsdesign_com -H bash -c 'cd /mnt/data/sportscomm && git pull && bash deploy/deploy.sh'"
+            --command="sudo -u anmolmohan_turingsdesign_com -H bash -c 'cd /mnt/data/sportscomm && git pull && bash deploy/deploy.sh'" \
+            2>&1 | tee /tmp/deploy.log
+          ssh_rc=${PIPESTATUS[0]}
+          if grep -q "DONE in" /tmp/deploy.log; then
+            echo "Remote deploy succeeded (DONE marker found; ssh rc=$ssh_rc — tolerated)"
+            exit 0
+          fi
+          echo "Remote deploy failed (no DONE marker); ssh rc=$ssh_rc"
+          exit 1
 
       - name: Verify
         run: |
