@@ -61,8 +61,10 @@ def _fi() -> FrameInput:
 
 def test_this_over_dedup_skips_consecutive_redelivery_of_same_ball():
     sm = _make_warm_sm(score=10, overs=3.4)
-    sm.this_over = ['W', '.', '.', '1']
-    sm.this_over_src = ['obs', 'obs', 'obs', 'obs']
+    # Seed 3 legal balls at overs=3.4 expecting 4 legal — first apply
+    # legitimately appends; second is the dedup case under test.
+    sm.this_over = ['W', '.', '.']
+    sm.this_over_src = ['obs', 'obs', 'obs']
     prev = {"overs": 3.4, "score": 10}
     card = {"overs": 3.4, "score": 11,
             "bat1_name": "A", "bat2_name": "B", "bowler_name": "X"}
@@ -72,22 +74,24 @@ def test_this_over_dedup_skips_consecutive_redelivery_of_same_ball():
          "type": "LEGAL", "runs": 1,
          "striker": "A", "bowler": "X"},
         prev, card, _fi())
-    assert sm.this_over == ['W', '.', '.', '1', '1'], (
-        f"first apply must append → got {sm.this_over}")
+    assert sm.this_over == ['W', '.', '.', '1'], (
+        f"first apply must append (legal_so_far=3 < expected=4) → "
+        f"got {sm.this_over}")
 
     sm._apply_event(
         {"this_over_token": "1", "legal": True,
          "type": "LEGAL", "runs": 1,
          "striker": "A", "bowler": "X"},
         prev, card, _fi())
-    assert sm.this_over == ['W', '.', '.', '1', '1'], (
-        f"redelivery of same token must dedup → got {sm.this_over}")
+    assert sm.this_over == ['W', '.', '.', '1'], (
+        f"redelivery of same token at same overs must dedup → "
+        f"got {sm.this_over}")
 
 
 def test_this_over_dedup_allows_different_token():
     sm = _make_warm_sm(score=10, overs=3.4)
-    sm.this_over = ['W', '.', '.', '1']
-    sm.this_over_src = ['obs', 'obs', 'obs', 'obs']
+    sm.this_over = ['W', '.', '.']
+    sm.this_over_src = ['obs', 'obs', 'obs']
     prev = {"overs": 3.4, "score": 10}
     card = {"overs": 3.4, "score": 11,
             "bat1_name": "A", "bat2_name": "B", "bowler_name": "X"}
