@@ -3726,7 +3726,16 @@ def apply_strip_overlay_prefilters(
         record_state_recovery_guard(
             "batter_row_rejected",
             proposed_reset=["bat:strip_wrong_team"])
-        extracted.pop("batters", None)
+        # Wrong team on strip → entire frame is from a recap/overlay,
+        # not the live match. Pop ALL state-bearing fields so score,
+        # overs, wickets, bowler stats etc. from the recap graphic
+        # don't pollute consensus.  (Was only popping batters; phantom
+        # MI 110-4 reads of past-match recap graphics were leaking
+        # score/overs through during PBKS vs DC on 2026-05-11.)
+        for _k in ("batters", "bowlers", "score", "wickets", "overs",
+                   "extras", "this_over", "target", "fall_of_wickets",
+                   "run_rate", "partnership"):
+            extracted.pop(_k, None)
         return True
     sentinel = _detect_overlay_strip_sentinels(
         scout_strip_text, current_match_number=current_match_number)
