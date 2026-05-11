@@ -3679,26 +3679,29 @@ def filter_strip_wrong_team(
         batting_team: str | None,
         innings: int,
         frame_count: int) -> bool:
-    if innings is None or innings < 1 or not batting_team:
+    if innings is None or innings < 1:
         return False
     # Permanent fix (2026-05-11, PBKS vs DC):
-    # If the cricbuzz-confirmed batting team is known but the extractor
-    # could not confirm a matching team on the strip (visible_team is
-    # null), the frame is NOT the live scoreboard — it's a recap/stat
-    # overlay showing a different match's score, or a degraded read.
-    # The live banner ALWAYS carries the batting-team abbreviation.
-    # Rejecting these frames stops foreign-match scores from polluting
-    # state.  Root cause: extractor (agent.py) follows the rule "team
-    # MUST be one of the two playing teams or null" so it correctly
-    # nulls visible_team for MI/RR/etc strips — but still extracts the
-    # foreign score into the main fields, which then flowed through
-    # monotonic-up guards because nothing downstream re-checks the team.
+    # Once innings is locked, the live scoreboard banner ALWAYS shows
+    # the batting-team abbreviation.  If the extractor returns
+    # visible_team=null, the frame is NOT the live scoreboard — it's a
+    # recap graphic, stats overlay, ad, or degraded read.  Rejecting
+    # these reads stops foreign-match scores (MI 110-4, RCB 34-0 etc.)
+    # from polluting consensus.  Root cause: extractor (agent.py)
+    # constrains visible_team to {team_a, team_b, null}, so non-match
+    # team abbreviations correctly resolve to null — but the rest of
+    # the strip (score, overs, wickets, batters) still gets emitted,
+    # and downstream monotonic-up guards accept them.
+    # Guarding here works even before batting_team is locked from toss
+    # data (cricbuzz scrape can race the first scoreboard read).
     if not visible_team:
         log.warn(
             f"  [STRIP-WRONG-TEAM] frame=F{frame_count} "
             f"visible=None batting={batting_team!r} "
             f"— strip read rejected (no team confirmation)")
         return True
+    if not batting_team:
+        return False
     if _team_names_match(visible_team, batting_team):
         return False
     log.warn(
