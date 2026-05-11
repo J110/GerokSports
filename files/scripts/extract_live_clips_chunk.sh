@@ -53,7 +53,7 @@ run_cycle() {
                | grep -v archive_run2); do
         sid=$(basename "${d%/}")
         [ -s "logs/openscout-${sid}.jsonl" ] || continue
-        compgen -G "${d}match_*.mp4" >/dev/null 2>&1 || continue
+        { compgen -G "${d}match_*.ts" || compgen -G "${d}match_*.mp4"; } >/dev/null 2>&1 || continue
         session_dir="$d"
         session_id="$sid"
         break
@@ -72,7 +72,7 @@ run_cycle() {
 
     # 2. Locate live mp4 (match_*.mp4 inside session dir).
     local mp4
-    mp4=$(ls -t "$session_dir"/match_*.mp4 2>/dev/null | head -1 || true)
+    mp4=$(ls -t "$session_dir"/match_*.ts "$session_dir"/match_*.mp4 2>/dev/null | head -1 || true)
     if [ -z "${mp4:-}" ]; then
         log "session=$session_id has no match_*.mp4 yet — clip extraction will be skipped this cycle"
     fi
