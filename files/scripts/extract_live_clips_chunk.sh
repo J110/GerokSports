@@ -132,7 +132,9 @@ for line_no, line in enumerate(src.read_text().splitlines()):
         first_ts = float(ts)
     rel_t = float(ts) - first_ts
 
-    fidx = rec.get("frame_idx", line_no)
+    fidx = rec.get("frame_idx")
+    if fidx is None:
+        fidx = line_no
     fname = f"f_{fidx:06d}_t={rel_t:06.1f}.txt"
     p = out_dir / fname
     if p.exists():
