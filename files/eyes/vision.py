@@ -215,10 +215,14 @@ emit ([overs]) as (null). Do NOT take a digit from the team score \
 (e.g. the 9 in 9-0), from strike rate, required rate, partnership \
 totals, speed kph, or any adjacent panel.
 
-Example (format + nulls only — do not copy numbers from this line; \
-they illustrate shape only): \
-STRIP: null 47-3 (null) | extras=2 | this_over=⊙⊙. | Striker 20(18) | \
-NonStriker 5(7) | BowlerName 1-15 (3.2)
+Format template (angle-bracket tokens are placeholders — NEVER emit them \
+literally; always substitute a pixel-read value or the literal word null): \
+STRIP: <team_or_null> <runs>-<wkts> (<overs>) | extras=<n_or_null> | \
+this_over=<symbols_or_null> | <striker> <r>(<b>) | <nonstriker> <r>(<b>) | \
+<bowler> <w>-<r> (<o>)
+If the scoreboard strip is not visible or unreadable, emit exactly: \
+STRIP: null null-null (null) | extras=null | this_over=null | null null(null) | \
+null null(null) | null null-null (null)
 
 STEP 3 — REPORT OVERLAYS (skip if nothing visible):
 INFO_PANEL: [career/tournament/head-to-head text]
