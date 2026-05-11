@@ -64,7 +64,7 @@ def test_this_over_dedup_skips_consecutive_redelivery_of_same_ball():
     sm.this_over = ['W', '.', '.', '1']
     sm.this_over_src = ['obs', 'obs', 'obs', 'obs']
     prev = {"overs": 3.4, "score": 10}
-    card = {"overs": "3.4", "score": 11,
+    card = {"overs": 3.4, "score": 11,
             "bat1_name": "A", "bat2_name": "B", "bowler_name": "X"}
 
     sm._apply_event(
@@ -89,7 +89,7 @@ def test_this_over_dedup_allows_different_token():
     sm.this_over = ['W', '.', '.', '1']
     sm.this_over_src = ['obs', 'obs', 'obs', 'obs']
     prev = {"overs": 3.4, "score": 10}
-    card = {"overs": "3.4", "score": 11,
+    card = {"overs": 3.4, "score": 11,
             "bat1_name": "A", "bat2_name": "B", "bowler_name": "X"}
 
     sm._apply_event(

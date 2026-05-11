@@ -1,4 +1,3 @@
-import os
 """Smoke tests for the fixes added during the GT vs KKR session.
 
 Every test corresponds to a specific fix the user asked for. The tests
@@ -26,13 +25,14 @@ if every test passes, 1 otherwise.
 """
 from __future__ import annotations
 
+import importlib.util
 import json
+import os
 import re
 import subprocess
 import sys
 import traceback
 import types
-import importlib.util
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 

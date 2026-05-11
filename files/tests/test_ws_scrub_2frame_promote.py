@@ -143,6 +143,10 @@ def test_does_not_promote_did_not_bat():
     assert bc["Reserve Player"]["status"] == "did_not_bat"
 
 
+@pytest.mark.skipif(
+    "GROQ_API_KEY" not in os.environ,
+    reason="test_pipeline.py reads GROQ_API_KEY at module import; "
+           "skip if absent")
 def test_module_dict_exists_in_test_pipeline():
     """Smoke check that the production module-level dict still exists
     at the documented name. Drift here means the inline production
