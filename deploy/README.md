@@ -31,12 +31,22 @@ sudo chmod 0600 /etc/sportscomm/secrets.env
 bash deploy/deploy.sh
 ```
 
-## GitHub Actions one-time setup
+## GitHub Actions one-time setup (Workload Identity Federation)
+
+Org policy blocks service-account JSON keys, so CI authenticates via WIF.
 
 1. GCP Console → IAM → Service Accounts → create `qrackpot-github-actions`
-2. Grant roles: `roles/compute.osAdminLogin`, `roles/iap.tunnelResourceAccessor`
-3. Generate JSON key, download
-4. GitHub repo → Settings → Secrets → Actions → add `GCP_SA_KEY` = paste JSON
+2. Grant SA roles: `roles/compute.osAdminLogin`, `roles/iap.tunnelResourceAccessor`
+3. Create a Workload Identity Pool (e.g. `github-actions-pool`) with an OIDC
+   provider (`github`) trusting `https://token.actions.githubusercontent.com`,
+   attribute condition restricting to this repo
+   (`assertion.repository == 'J110/GerokSports'`)
+4. Bind the GH identity to the SA:
+   `roles/iam.workloadIdentityUser` on the SA for
+   `principalSet://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/github-actions-pool/attribute.repository/J110/GerokSports`
+5. GitHub repo → Settings → Secrets → Actions → add:
+   - `WIF_PROVIDER` = `projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/github-actions-pool/providers/github`
+   - `GCP_SA_EMAIL` = `qrackpot-github-actions@qrackpot-prod.iam.gserviceaccount.com`
 
 ## Service controls (on VM, manual override only)
 
