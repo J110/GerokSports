@@ -3287,6 +3287,19 @@ class ScoreManager:
                     legal_so_far = sum(
                         1 for t in self.this_over
                         if t not in ("Wd", "Nb"))
+                    if legal_so_far >= expected_legal and self.this_over:
+                        _incoming = str(event.get("this_over_token", "?"))
+                        _last_legal = next(
+                            (t for t in reversed(self.this_over)
+                             if t not in ("Wd", "Nb")), None)
+                        if _last_legal == _incoming:
+                            log.info(
+                                f"[SM/THIS_OVER] dedup skip "
+                                f"token={_incoming!r} "
+                                f"legal_so_far={legal_so_far} "
+                                f"expected={expected_legal} "
+                                f"overs={new_overs}")
+                            return
                     while legal_so_far + 1 < expected_legal:
                         self.this_over.append("?")
                         self.this_over_src.append("infer")
