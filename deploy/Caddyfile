@@ -1,6 +1,24 @@
 qrackpot.com, www.qrackpot.com {
 	encode gzip zstd
-	reverse_proxy localhost:3000
+
+	handle_path /clips/* {
+		root * /mnt/data/sportscomm/files/logs/live_clips
+		file_server browse
+	}
+
+	handle_path /server-logs/* {
+		root * /var/log/sportscomm
+		file_server browse
+	}
+
+	handle_path /scout/* {
+		root * /mnt/data/sportscomm/files/logs/deliveries
+		file_server browse
+	}
+
+	handle {
+		reverse_proxy localhost:3000
+	}
 }
 
 api.qrackpot.com {

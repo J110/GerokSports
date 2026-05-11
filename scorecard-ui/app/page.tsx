@@ -579,6 +579,18 @@ export default function Home() {
             {t === "commentary" ? "Comm" : t}
           </button>
         ))}
+        <a
+          href="/deliveries"
+          className="flex-1 py-3 text-sm font-medium text-[#8B949E] hover:text-[#E6EDF3] text-center"
+        >
+          Clips
+        </a>
+        <a
+          href="/logs"
+          className="flex-1 py-3 text-sm font-medium text-[#8B949E] hover:text-[#E6EDF3] text-center"
+        >
+          Logs
+        </a>
       </div>
 
       <div className="max-w-lg mx-auto px-3 py-2 pb-8">
