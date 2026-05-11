@@ -63,8 +63,8 @@ jobs:
             --command="sudo tee /etc/sportscomm/pipeline.env > /dev/null <<'PIPENV'
           GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
-          CRICBUZZ_MATCH_ID=152097
-          CRICBUZZ_MATCH_SLUG=rcb-vs-mi-54th-match-indian-premier-league-2026
+          CRICBUZZ_MATCH_ID=152108
+          CRICBUZZ_MATCH_SLUG=pbks-vs-dc-55th-match-indian-premier-league-2026
           FRAME_SOURCE=file
           FRAME_SOURCE_FILE=$FRAME_PATH
           FRAME_SOURCE_FILE_OFFSET_S=0
