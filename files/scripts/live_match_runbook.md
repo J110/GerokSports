@@ -92,7 +92,9 @@ Start (Terminal 4):
 ```
 cd /Users/anmolmohan/Projects/SportsComm
 chmod +x files/scripts/extract_live_clips_chunk.sh
-./files/scripts/extract_live_clips_chunk.sh > files/logs/live_clips/.extractor.log 2>&1 &
+# SKIP_PREMATCH_S (default 400s): drop clusters whose anchor_t lands
+# in the pre-match window. Lower for short pre-match broadcasts.
+SKIP_PREMATCH_S=400 ./files/scripts/extract_live_clips_chunk.sh > files/logs/live_clips/.extractor.log 2>&1 &
 echo $! > files/logs/live_clips/.pid
 ```
 

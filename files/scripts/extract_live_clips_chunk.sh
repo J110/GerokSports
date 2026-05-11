@@ -151,7 +151,7 @@ PY
     # 4. Run cluster + boundary extraction directly (bypass the
     #    pipeline's hardcoded verify gate).
     python3 - "$sidecar_dir" "$pred_json" <<'PY'
-import json, sys, re
+import json, os, sys, re
 from pathlib import Path
 
 sidecar_dir = Path(sys.argv[1])
@@ -185,10 +185,14 @@ for f in frames:
     f.signals = extract_signals(f.text)
 annotate_all(frames)
 
+SKIP_PREMATCH_S = float(os.environ.get("SKIP_PREMATCH_S", "400"))
+
 clusters = build_clusters(frames, gap_max=3, min_run=2)
 detections = []
 for c in clusters:
     a = pick_anchor(c)
+    if a.t < SKIP_PREMATCH_S:
+        continue
     w = extract_window(c, a.t, frames)
     detections.append({
         "anchor_t": round(a.t, 2),
@@ -235,8 +239,11 @@ PY
               -of default=noprint_wrappers=1:nokey=1 "$mp4" 2>/dev/null \
               | awk '{printf "%.1f", $1}')
     if [ -z "$mp4_dur" ]; then
-        log "ffprobe failed on $mp4 — skip trim"
-        return 0
+        local last_t
+        last_t=$(ls -1 "$sidecar_dir"/f_*.txt 2>/dev/null \
+                 | sed -E 's/.*_t=([0-9.]+)\.txt$/\1/' | sort -n | tail -1)
+        mp4_dur="${last_t:-0}"
+        log "ffprobe failed on $mp4 — falling back to scout_t=$mp4_dur"
     fi
 
     local extracted

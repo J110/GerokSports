@@ -16,8 +16,8 @@ Encoder settings (vs the prior 4Mbps recording):
     - file size will be ~3x the prior 4Mbps recording but the
       cricket fast-pan artifacts go away.
 
-Stop the recording with Ctrl-C. ffmpeg writes MOOV atom on clean
-exit; if you kill -9 you'll lose the last segment.
+Stop the recording with Ctrl-C. ffmpeg writes fragmented mp4;
+moov+moofs available from t=0 so ffprobe works mid-stream.
 """
 from __future__ import annotations
 
@@ -147,7 +147,8 @@ def main() -> int:
         "-b:a", "192k",
         "-ac", "2",
         "-t", str(args.duration),
-        "-movflags", "+faststart+frag_keyframe+empty_moov",
+        "-movflags", "+frag_keyframe+empty_moov+default_base_moof",
+        "-frag_duration", "1000000",
         "-y",
         str(out_path),
     ]
