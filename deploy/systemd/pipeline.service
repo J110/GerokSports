@@ -1,12 +1,13 @@
 [Unit]
 Description=qrackpot cricket pipeline
-After=network.target
+After=network.target ui.service
+Wants=ui.service
 
 [Service]
 Type=simple
 User=anmolmohan_turingsdesign_com
 WorkingDirectory=/mnt/data/sportscomm
-EnvironmentFile=/etc/sportscomm/secrets.env
+EnvironmentFile=/etc/sportscomm/pipeline.env
 ExecStart=/mnt/data/sportscomm/.venv/bin/python files/test_pipeline.py
 Restart=on-failure
 RestartSec=15s

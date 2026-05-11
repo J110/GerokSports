@@ -68,3 +68,39 @@ ingest is wired (Phase 1):
 sudo systemctl enable pipeline.service
 sudo systemctl start pipeline.service
 ```
+
+## Replay a recorded match (validates the server stack)
+
+One-time setup:
+
+1. Copy a representative mp4 to the VM. From your Mac:
+```bash
+   gcloud compute scp \
+     --tunnel-through-iap \
+     --zone=asia-south1-a \
+     files/logs/deliveries/<sid>/match_<sid>.mp4 \
+     qrackpot-prod-1:/mnt/data/recordings/match_replay.mp4
+```
+   (For faster validation, trim to ~5 min first with ffmpeg locally.)
+
+2. Configure pipeline env via Cloud Console browser SSH on the VM:
+```bash
+   sudo cp deploy/pipeline.env.example /etc/sportscomm/pipeline.env
+   sudo chmod 0600 /etc/sportscomm/pipeline.env
+   sudo nano /etc/sportscomm/pipeline.env
+   # Fill in GROQ_API_KEY, GEMINI_API_KEY at minimum
+   # Set FRAME_FILE_PATH to the mp4 you uploaded
+```
+
+3. Trigger a redeploy from Cursor (any push to derive-not-detect re-runs the workflow)
+   OR manually:
+```bash
+   sudo systemctl start pipeline.service
+   sudo journalctl -u pipeline.service -f
+```
+
+4. Open https://qrackpot.com — should show the match state from the replay.
+
+For a fast smoke without Groq cost: also upload `scout_raw.jsonl` from the
+same session and set SCOUT_REPLAY_LOG to its path — pipeline replays
+cached Scout calls instead of hitting Groq.

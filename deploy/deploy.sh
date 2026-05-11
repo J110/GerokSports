@@ -89,6 +89,22 @@ LOG "enable UI END ($((SECONDS - step_start))s)"
 LOG "UI: $(sudo systemctl is-active ui.service)"
 LOG "Caddy: $(sudo systemctl is-active caddy)"
 
+LOG "pipeline.service"
+if [ ! -f /etc/sportscomm/pipeline.env ]; then
+    LOG "  /etc/sportscomm/pipeline.env missing — skipping pipeline.service start"
+    LOG "  (operator: copy from deploy/pipeline.env.example and fill in secrets)"
+else
+    sudo systemctl enable pipeline.service
+    sudo systemctl restart pipeline.service
+    sleep 3
+    if systemctl is-active --quiet pipeline.service; then
+        LOG "  pipeline.service active"
+    else
+        LOG "  pipeline.service failed — check journalctl -u pipeline"
+        sudo journalctl -u pipeline.service -n 30 --no-pager
+    fi
+fi
+
 LOG "health check"
 health_ok=0
 for i in 1 2 3; do
