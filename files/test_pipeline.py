@@ -3677,29 +3677,42 @@ def _team_names_match(a: str, b: str) -> bool:
 def filter_strip_wrong_team(
         visible_team: str | None,
         batting_team: str | None,
+        our_teams: list[str] | None,
         innings: int,
         frame_count: int) -> bool:
+    """Reject scoreboard reads that don't belong to our match.
+
+    Vision is the source of truth for live state (team/score/overs/etc.).
+    The only squad-side input we use is ``our_teams`` — the two team
+    names from the squad-data scrape (cricbuzz, replaceable) which
+    define the set of acceptable batting-team labels for this match.
+    Batting team is NOT pre-set from toss data; pipeline derives it
+    from consistent Vision reads instead.
+
+    Cases:
+      * innings not yet started → no guard (pre-match graphics expected).
+      * visible_team is null → reject (live scoreboard banner ALWAYS
+        carries a team token; null = recap / graphic / degraded read).
+      * visible_team is not one of ``our_teams`` (e.g. "MI" during a
+        PBKS vs DC match) → reject (foreign-match recap overlay).
+      * batting_team already locked from prior reads AND visible_team
+        doesn't match it → reject (cross-innings overlay).
+    """
     if innings is None or innings < 1:
         return False
-    # Permanent fix (2026-05-11, PBKS vs DC):
-    # Once innings is locked, the live scoreboard banner ALWAYS shows
-    # the batting-team abbreviation.  If the extractor returns
-    # visible_team=null, the frame is NOT the live scoreboard — it's a
-    # recap graphic, stats overlay, ad, or degraded read.  Rejecting
-    # these reads stops foreign-match scores (MI 110-4, RCB 34-0 etc.)
-    # from polluting consensus.  Root cause: extractor (agent.py)
-    # constrains visible_team to {team_a, team_b, null}, so non-match
-    # team abbreviations correctly resolve to null — but the rest of
-    # the strip (score, overs, wickets, batters) still gets emitted,
-    # and downstream monotonic-up guards accept them.
-    # Guarding here works even before batting_team is locked from toss
-    # data (cricbuzz scrape can race the first scoreboard read).
     if not visible_team:
         log.warn(
             f"  [STRIP-WRONG-TEAM] frame=F{frame_count} "
-            f"visible=None batting={batting_team!r} "
-            f"— strip read rejected (no team confirmation)")
+            f"visible=None — strip read rejected (no team confirmation)")
         return True
+    if our_teams:
+        in_match = any(_team_names_match(visible_team, t) for t in our_teams)
+        if not in_match:
+            log.warn(
+                f"  [STRIP-WRONG-TEAM] frame=F{frame_count} "
+                f"visible={visible_team!r} not in match teams {our_teams!r} "
+                f"— foreign-match recap rejected")
+            return True
     if not batting_team:
         return False
     if _team_names_match(visible_team, batting_team):
@@ -3722,6 +3735,7 @@ def apply_strip_overlay_prefilters(
         cam: str | None = None,
         frame_class: str | None = None,
         batting_team: str | None = None,
+        our_teams: list[str] | None = None,
 ) -> bool:
     """Stack of pre-filters that pop ``batters`` when the scout reading
     is an overlay graphic rather than the live strip.
@@ -3741,6 +3755,7 @@ def apply_strip_overlay_prefilters(
     if filter_strip_wrong_team(
             visible_team=extracted.get("batting_team_visible"),
             batting_team=batting_team,
+            our_teams=our_teams,
             innings=getattr(scoreboard, "current_innings", 0) or 0,
             frame_count=frame_count):
         record_state_recovery_guard(
@@ -9011,7 +9026,8 @@ async def run_test():
                     current_match_number=_parse_current_match_number(
                         _broadcast_cache.get("match_info")),
                     cam=_last_cam,
-                    batting_team=batting_team):
+                    batting_team=batting_team,
+                    our_teams=team_names):
                 _frame_poisoned_batters_only = True
             elif apply_comparison_strip_batter_row_delta_guard(
                     extracted, scoreboard, batting_team,
