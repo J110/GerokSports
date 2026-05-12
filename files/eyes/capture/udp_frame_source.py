@@ -1,0 +1,480 @@
+"""UDP MPEG-TS frame source via an ffmpeg subprocess pipe.
+
+DRAFT 2026-05-12 — design choices below need OK before wiring into
+``make_frame_source()``.  Replaces the production hack
+``FRAME_SOURCE=file`` + ``FRAME_SOURCE_FILE=udp://...`` →
+``cv2.VideoCapture(url)`` which loses SPS/PPS on UDP packet loss and
+silently buffers stale frames behind the latest-frame contract.
+
+Design choices (marked DC1..DC4 — flag for review)
+==================================================
+
+DC1. Decode path: ffmpeg subprocess → stdin pipe → rawvideo bytes.
+
+  Rejected alternatives:
+    * ``cv2.VideoCapture("udp://...")`` — what we have now.  Internal
+      buffering hides packet loss until decode catches up, then
+      delivers stale frames; SPS/PPS recovery is opaque.
+    * PyAV — clean API but adds a heavy C extension dep; ffmpeg is
+      already on the install path (recorder.service uses it).
+
+  Why ffmpeg subprocess:
+    * Same binary the recorder uses — proven on this exact UDP feed.
+    * Full CLI control over robustness flags (``-fflags +discardcorrupt``,
+      ``-err_detect ignore_err``, fifo / buffer / overrun nonfatal).
+    * Subprocess crash is observable and respawnable.
+
+  Probe before pipe: ffprobe the stream once at start() to discover
+  actual width/height (silent ``-vf scale=…`` would mask Mac-side
+  regressions and waste CPU).  Validate against
+  ``FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS`` (default
+  ``1920x1080,1280x720``); raise RuntimeError with the observed
+  dimensions if unexpected.  The read loop then chunks stdout in
+  ``W*H*3``-byte slices with W,H learned from the probe.
+
+DC2. Reconnect strategy: watchdog + exponential backoff.
+
+  * A watchdog thread tracks ``last_frame_wall``.  If
+    ``WATCHDOG_S`` seconds elapse without a fresh frame, kill the
+    ffmpeg subprocess and respawn.
+  * Backoff between respawns: 0.5s → 1s → 2s → 4s → 8s (cap).
+    Resets to 0.5s on first successful frame after a respawn.
+  * No max-retry — UDP ingest is supposed to be eternally available;
+    we log loudly but never give up.
+  * Cumulative ``frames_dropped`` (= bytes received but not delivered
+    cleanly) + ``reconnect_count`` exposed via ``stats()`` and
+    snapshotted in pipeline log every ``LOG_EVERY_N`` frames.
+
+DC3. SPS/PPS recovery: rely on Mac-side ``repeat-headers=1`` keyframes.
+
+  The Mac encoder is configured (per HANDOFF) to emit SPS/PPS on
+  every keyframe.  ffmpeg's H.264 decoder picks them up automatically;
+  we don't need a hand-rolled recovery loop.  What we DO need is to
+  notice when the *stream* stops producing decodable frames — DC2's
+  watchdog catches that.  ``-fflags +discardcorrupt`` drops
+  partial-frame corruption silently rather than blocking the decoder.
+
+DC4. Backpressure: latest-slot-only, drop intermediates.
+
+  Mirrors ``CaptureCardFrameSource`` exactly — daemon thread
+  continuously drains ffmpeg stdout, overwriting a single locked
+  slot.  Slow consumers see fresh frames; old frames are dropped at
+  the slot, not buffered in ffmpeg's stdout pipe.  Pipe pressure is
+  handled by reading as fast as bytes arrive; the read loop blocks
+  on the pipe only when ffmpeg itself is starved, in which case the
+  watchdog kicks in.
+
+  This is the critical real-time-first property.  cv2.VideoCapture
+  cannot deliver it — its internal buffer is invisible from Python
+  and grows under load.
+
+API
+===
+Mirrors ``CaptureCardFrameSource`` / ``FileFrameSource`` for drop-in
+compatibility with the existing ``make_frame_source()`` selector.
+``get_latest()`` honours the legacy RGB-as-bgr quirk (toggle with
+``FRAME_COLOR_TRUE_BGR``); ``get_latest_bgr()`` returns native BGR
+straight from ffmpeg's ``-pix_fmt bgr24`` output.
+
+Env vars
+========
+* ``FRAME_SOURCE=udp`` — selects this backend.
+* ``FRAME_SOURCE_UDP_URL`` — full ffmpeg input URL, e.g.
+  ``udp://0.0.0.0:9999?fifo_size=10000000&buffer_size=2097152&overrun_nonfatal=1``.
+* ``FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS`` — comma-separated
+  ``WxH`` allowlist for observed stream dimensions (default
+  ``1920x1080,1280x720``).  Probe-and-reject prevents silent
+  rescaling masking Mac-side resolution drift.
+* ``FRAME_SOURCE_UDP_PROBE_TIMEOUT_S`` — ffprobe timeout per try
+  (default 10.0); ffprobe is retried up to 3 times with 1s sleep.
+* ``FRAME_SOURCE_UDP_WATCHDOG_S`` — stall threshold (default 5.0).
+* ``FRAME_SOURCE_UDP_LOG_EVERY_N`` — periodic stats log cadence
+  (default 600 frames ≈ every 20s @ 30 fps).
+"""
+from __future__ import annotations
+
+import logging
+import os
+import shlex
+import subprocess
+import threading
+import time
+from typing import Optional
+
+import numpy as np
+
+log = logging.getLogger("udp_frame_source")
+
+FRAME_COLOR_TRUE_BGR = os.environ.get("FRAME_COLOR_TRUE_BGR", "0") == "1"
+
+DEFAULT_URL = (
+    "udp://0.0.0.0:9999"
+    "?fifo_size=10000000&buffer_size=2097152&overrun_nonfatal=1"
+)
+DEFAULT_ALLOWED_DIMENSIONS = ((1920, 1080), (1280, 720))
+DEFAULT_WATCHDOG_S = 5.0
+DEFAULT_PROBE_TIMEOUT_S = 10.0
+DEFAULT_PROBE_RETRIES = 3
+DEFAULT_LOG_EVERY_N = 600
+
+# Exponential backoff between ffmpeg respawns.
+_BACKOFF_START_S = 0.5
+_BACKOFF_MAX_S = 8.0
+
+
+def _parse_dimensions_allowlist(s: str) -> tuple[tuple[int, int], ...]:
+    out: list[tuple[int, int]] = []
+    for token in s.split(","):
+        token = token.strip().lower()
+        if not token:
+            continue
+        if "x" not in token:
+            raise ValueError(
+                f"invalid dimension token {token!r}; expected 'WxH'")
+        w_s, h_s = token.split("x", 1)
+        out.append((int(w_s), int(h_s)))
+    if not out:
+        raise ValueError("dimension allowlist is empty")
+    return tuple(out)
+
+
+class UDPFrameSource:
+    """UDP MPEG-TS ingest via an ffmpeg subprocess; latest-slot delivery."""
+
+    def __init__(
+        self,
+        url: str = DEFAULT_URL,
+        allowed_dimensions: tuple[tuple[int, int], ...] = DEFAULT_ALLOWED_DIMENSIONS,
+        watchdog_s: float = DEFAULT_WATCHDOG_S,
+        probe_timeout_s: float = DEFAULT_PROBE_TIMEOUT_S,
+        probe_retries: int = DEFAULT_PROBE_RETRIES,
+        log_every_n: int = DEFAULT_LOG_EVERY_N,
+        ffmpeg_bin: str = "ffmpeg",
+        ffprobe_bin: str = "ffprobe",
+    ) -> None:
+        self._url = url
+        self._allowed_dimensions = tuple(allowed_dimensions)
+        self._watchdog_s = float(watchdog_s)
+        self._probe_timeout_s = float(probe_timeout_s)
+        self._probe_retries = int(probe_retries)
+        self._log_every_n = int(log_every_n)
+        self._ffmpeg_bin = ffmpeg_bin
+        self._ffprobe_bin = ffprobe_bin
+
+        # Dimensions learned from ffprobe at start(); _frame_bytes
+        # set then too.  Until probe completes these are None.
+        self._width: Optional[int] = None
+        self._height: Optional[int] = None
+        self._frame_bytes: Optional[int] = None
+
+        self._latest_bgr: Optional[np.ndarray] = None
+        self._lock = threading.Lock()
+        self._running = False
+        self._frame_count = 0
+        self._last_capture_time = 0.0
+        self._last_frame_wall = 0.0
+        self._reconnect_count = 0
+        self._bytes_dropped = 0
+        self._proc: Optional[subprocess.Popen] = None
+        self._proc_lock = threading.Lock()
+        self._reader_thread: Optional[threading.Thread] = None
+        self._watchdog_thread: Optional[threading.Thread] = None
+
+    # ------- API parity with other FrameSource implementations -------
+
+    @property
+    def window_id(self) -> Optional[int]:
+        return None
+
+    @window_id.setter
+    def window_id(self, v) -> None:
+        pass  # no-op; API parity
+
+    def start(self) -> None:
+        if self._running:
+            return
+        # Probe dimensions BEFORE marking running so a refusal aborts
+        # start() cleanly without leaving zombie threads.
+        w, h = self._probe_dimensions()
+        if (w, h) not in self._allowed_dimensions:
+            allowed = ", ".join(
+                f"{aw}x{ah}" for aw, ah in self._allowed_dimensions)
+            raise RuntimeError(
+                f"UDP stream at {self._url} has dimensions {w}x{h}; "
+                f"not in FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS allowlist "
+                f"[{allowed}]. Refusing to start — silent rescaling "
+                f"would mask a Mac-side regression.")
+        self._width = w
+        self._height = h
+        self._frame_bytes = w * h * 3
+        log.info(
+            "[udp_frame_source] probed %dx%d (frame_bytes=%d)",
+            w, h, self._frame_bytes)
+        self._running = True
+        self._last_frame_wall = time.monotonic()
+        self._spawn_ffmpeg()
+        self._reader_thread = threading.Thread(
+            target=self._read_loop, daemon=True, name="udp-frame-reader")
+        self._watchdog_thread = threading.Thread(
+            target=self._watchdog_loop, daemon=True,
+            name="udp-frame-watchdog")
+        self._reader_thread.start()
+        self._watchdog_thread.start()
+
+    def stop(self) -> None:
+        self._running = False
+        self._kill_ffmpeg()
+        for t in (self._reader_thread, self._watchdog_thread):
+            if t is not None:
+                t.join(timeout=2.0)
+        self._reader_thread = None
+        self._watchdog_thread = None
+
+    def get_latest(self) -> Optional[np.ndarray]:
+        """Legacy RGB-as-bgr default for drop-in compat with the rest of
+        the FrameSource family.  With FRAME_COLOR_TRUE_BGR=1, returns
+        native BGR straight from ffmpeg.
+        """
+        bgr = self.get_latest_bgr()
+        if bgr is None:
+            return None
+        if FRAME_COLOR_TRUE_BGR:
+            return bgr.copy()
+        return bgr[:, :, ::-1].copy()
+
+    def get_latest_bgr(self) -> Optional[np.ndarray]:
+        with self._lock:
+            return self._latest_bgr
+
+    def get_latest_with_ts(self) -> Optional[tuple[float, np.ndarray]]:
+        with self._lock:
+            if self._latest_bgr is None:
+                return None
+            return (self._last_capture_time, self._latest_bgr)
+
+    def get_frame_count(self) -> int:
+        return self._frame_count
+
+    def stats(self) -> dict:
+        return {
+            "frames": self._frame_count,
+            "reconnects": self._reconnect_count,
+            "bytes_dropped": self._bytes_dropped,
+            "last_frame_age_s": (
+                time.monotonic() - self._last_frame_wall
+                if self._last_frame_wall else None),
+        }
+
+    @staticmethod
+    def list_windows() -> list[dict]:
+        return []
+
+    # ----------------- ffmpeg subprocess management -----------------
+
+    def _probe_dimensions(self) -> tuple[int, int]:
+        """Run ffprobe against the URL, return (width, height).
+
+        Retries up to ``self._probe_retries`` times with 1s sleeps —
+        a probe attempted before the sender is live will simply
+        timeout; the caller may want to retry the whole start().
+        """
+        argv = [
+            self._ffprobe_bin,
+            "-hide_banner",
+            "-v", "error",
+            "-select_streams", "v:0",
+            "-show_entries", "stream=width,height",
+            "-of", "csv=p=0:s=x",
+            # ffmpeg/ffprobe -timeout is in microseconds for UDP.
+            "-timeout", str(int(self._probe_timeout_s * 1_000_000)),
+            self._url,
+        ]
+        last_err: Optional[str] = None
+        for attempt in range(1, self._probe_retries + 1):
+            log.info(
+                "[udp_frame_source] ffprobe attempt %d/%d: %s",
+                attempt, self._probe_retries,
+                " ".join(shlex.quote(a) for a in argv))
+            try:
+                cp = subprocess.run(
+                    argv, capture_output=True,
+                    timeout=self._probe_timeout_s + 2.0)
+            except subprocess.TimeoutExpired:
+                last_err = (
+                    f"ffprobe timed out after "
+                    f"{self._probe_timeout_s:.1f}s")
+            except FileNotFoundError:
+                raise RuntimeError(
+                    f"ffprobe binary not found at "
+                    f"{self._ffprobe_bin!r}")
+            else:
+                if cp.returncode != 0:
+                    last_err = (
+                        f"ffprobe rc={cp.returncode}; "
+                        f"stderr={cp.stderr.decode(errors='replace').strip()[:200]}")
+                else:
+                    out = cp.stdout.decode(errors="replace").strip()
+                    # csv=p=0:s=x → "1920x1080"
+                    try:
+                        w_s, h_s = out.split("x")
+                        return (int(w_s), int(h_s))
+                    except Exception:
+                        last_err = (
+                            f"ffprobe stdout unparseable: {out!r}")
+            if attempt < self._probe_retries:
+                time.sleep(1.0)
+        raise RuntimeError(
+            f"ffprobe failed for {self._url} after "
+            f"{self._probe_retries} attempts: {last_err}")
+
+    def _ffmpeg_argv(self) -> list[str]:
+        return [
+            self._ffmpeg_bin,
+            "-hide_banner",
+            "-loglevel", "warning",
+            "-fflags", "+genpts+discardcorrupt",
+            "-err_detect", "ignore_err",
+            "-use_wallclock_as_timestamps", "1",
+            "-i", self._url,
+            "-f", "rawvideo",
+            "-pix_fmt", "bgr24",
+            "-an",
+            "-",
+        ]
+
+    def _spawn_ffmpeg(self) -> None:
+        with self._proc_lock:
+            argv = self._ffmpeg_argv()
+            log.info(
+                "[udp_frame_source] spawning ffmpeg: %s",
+                " ".join(shlex.quote(a) for a in argv))
+            self._proc = subprocess.Popen(
+                argv,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                bufsize=0,
+            )
+            # Drain stderr in a side thread so a noisy decoder can't
+            # block the process via pipe backpressure.
+            threading.Thread(
+                target=self._drain_stderr, args=(self._proc,),
+                daemon=True, name="udp-frame-stderr").start()
+
+    def _kill_ffmpeg(self) -> None:
+        with self._proc_lock:
+            proc = self._proc
+            self._proc = None
+        if proc is None:
+            return
+        try:
+            proc.kill()
+            proc.wait(timeout=2.0)
+        except Exception as e:  # noqa: BLE001
+            log.warning(
+                "[udp_frame_source] error killing ffmpeg pid=%s: %s",
+                getattr(proc, "pid", "?"), e)
+
+    def _drain_stderr(self, proc: subprocess.Popen) -> None:
+        if proc.stderr is None:
+            return
+        try:
+            for line in iter(proc.stderr.readline, b""):
+                if not line:
+                    break
+                msg = line.decode("utf-8", errors="replace").rstrip()
+                # ffmpeg warnings on transient packet loss are expected;
+                # log at debug to avoid drowning pipeline.log.  Real
+                # errors bubble up via subprocess exit.
+                log.debug("[udp_frame_source] ffmpeg: %s", msg)
+        except Exception:  # noqa: BLE001
+            pass
+
+    # --------------------- read + watchdog loops ---------------------
+
+    def _read_loop(self) -> None:
+        backoff = _BACKOFF_START_S
+        while self._running:
+            with self._proc_lock:
+                proc = self._proc
+                stdout = proc.stdout if proc is not None else None
+            if proc is None or stdout is None:
+                time.sleep(0.05)
+                continue
+            try:
+                buf = stdout.read(self._frame_bytes)
+            except Exception as e:  # noqa: BLE001
+                log.warning(
+                    "[udp_frame_source] stdout.read raised: %s", e)
+                buf = b""
+            if not buf:
+                # ffmpeg exited (EOF) — watchdog or this branch handles
+                # respawn.  Sleep briefly to avoid busy-looping while
+                # the watchdog kills + respawns.
+                time.sleep(0.1)
+                continue
+            if len(buf) < self._frame_bytes:
+                # Partial frame at process exit; discard.
+                self._bytes_dropped += len(buf)
+                continue
+            try:
+                frame = np.frombuffer(
+                    buf, dtype=np.uint8).reshape(
+                    (self._height, self._width, 3))
+            except Exception as e:  # noqa: BLE001
+                log.warning(
+                    "[udp_frame_source] reshape failed: %s", e)
+                self._bytes_dropped += len(buf)
+                continue
+            now = time.monotonic()
+            with self._lock:
+                self._latest_bgr = frame
+                self._frame_count += 1
+                self._last_capture_time = time.time()
+            self._last_frame_wall = now
+            backoff = _BACKOFF_START_S
+            if (self._log_every_n > 0
+                    and self._frame_count % self._log_every_n == 0):
+                log.info(
+                    "[udp_frame_source] frames=%d reconnects=%d "
+                    "bytes_dropped=%d",
+                    self._frame_count, self._reconnect_count,
+                    self._bytes_dropped)
+            # backoff variable retained for symmetry; respawn handled
+            # in watchdog so the read loop only consumes bytes.
+            _ = backoff
+
+    def _watchdog_loop(self) -> None:
+        backoff = _BACKOFF_START_S
+        while self._running:
+            time.sleep(0.5)
+            with self._proc_lock:
+                proc = self._proc
+            proc_alive = (proc is not None and proc.poll() is None)
+            stalled = (
+                time.monotonic() - self._last_frame_wall
+                > self._watchdog_s)
+            if proc_alive and not stalled:
+                backoff = _BACKOFF_START_S
+                continue
+            if not self._running:
+                return
+            reason = (
+                "ffmpeg exited" if not proc_alive
+                else f"no frames for >{self._watchdog_s:.1f}s")
+            log.warning(
+                "[udp_frame_source] %s — respawning ffmpeg "
+                "(reconnect #%d, backoff=%.1fs)",
+                reason, self._reconnect_count + 1, backoff)
+            self._kill_ffmpeg()
+            time.sleep(backoff)
+            if not self._running:
+                return
+            try:
+                self._spawn_ffmpeg()
+                self._reconnect_count += 1
+                self._last_frame_wall = time.monotonic()
+                backoff = min(_BACKOFF_MAX_S, backoff * 2.0)
+            except Exception as e:  # noqa: BLE001
+                log.error(
+                    "[udp_frame_source] ffmpeg respawn failed: %s", e)
+                backoff = min(_BACKOFF_MAX_S, backoff * 2.0)

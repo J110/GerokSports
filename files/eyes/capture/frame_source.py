@@ -1,6 +1,6 @@
 """Thread-safe latest-frame-only capture.
 
-Three backends:
+Four backends:
 
 * ``FrameSource`` — macOS Quartz ``CGWindowListCreateImage`` (browser
   window). Throttled by macOS when target window is occluded /
@@ -13,9 +13,16 @@ Three backends:
   paced to the file's native fps so wall-clock semantics match a
   live broadcast. Used for offline replay of recorded matches
   through the live pipeline (fix-verification at volume).
+* ``UDPFrameSource`` (``files/eyes/capture/udp_frame_source.py``) —
+  ffmpeg subprocess piping rawvideo from a UDP MPEG-TS source, with
+  ffprobe-based dimension validation, latest-slot delivery, and a
+  watchdog that respawns ffmpeg on stall.  Replaces the production
+  hack of ``FRAME_SOURCE=file FRAME_SOURCE_FILE=udp://...`` which
+  used cv2.VideoCapture and silently buffered stale frames.
 
 Pick at runtime with ``make_frame_source(...)`` which honours the
-``FRAME_SOURCE`` env var (``capture_card`` | ``window`` | ``file``).
+``FRAME_SOURCE`` env var (``capture_card`` | ``window`` | ``file``
+| ``udp``).
 """
 from __future__ import annotations
 
@@ -584,6 +591,11 @@ def make_frame_source(window_id: int | None = None,
       ``video_path`` arg or ``FRAME_SOURCE_FILE`` env;
       ``FRAME_SOURCE_FILE_LOOP=1`` enables looping;
       ``FRAME_SOURCE_FILE_OFFSET_S`` seeks past pre-match intro.
+    * ``udp`` → ``UDPFrameSource``. URL from ``FRAME_SOURCE_UDP_URL``
+      (default ``udp://0.0.0.0:9999?...``); dimensions validated by
+      ffprobe against ``FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS``
+      (default ``1920x1080,1280x720``); watchdog respawn on stall.
+      Replaces the cv2.VideoCapture(udp://) hack.
     """
     src = (source or os.environ.get("FRAME_SOURCE", "capture_card")).lower()
     if src == "capture_card":
@@ -605,6 +617,37 @@ def make_frame_source(window_id: int | None = None,
             fps=fps,
             start_offset_s=offset,
             loop=loop)
+    if src == "udp":
+        from eyes.capture.udp_frame_source import (
+            DEFAULT_ALLOWED_DIMENSIONS,
+            DEFAULT_LOG_EVERY_N,
+            DEFAULT_PROBE_RETRIES,
+            DEFAULT_PROBE_TIMEOUT_S,
+            DEFAULT_URL,
+            DEFAULT_WATCHDOG_S,
+            UDPFrameSource,
+            _parse_dimensions_allowlist,
+        )
+        url = os.environ.get("FRAME_SOURCE_UDP_URL", DEFAULT_URL)
+        allowed = (
+            _parse_dimensions_allowlist(
+                os.environ["FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS"])
+            if os.environ.get("FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS")
+            else DEFAULT_ALLOWED_DIMENSIONS)
+        return UDPFrameSource(
+            url=url,
+            allowed_dimensions=allowed,
+            watchdog_s=float(os.environ.get(
+                "FRAME_SOURCE_UDP_WATCHDOG_S", DEFAULT_WATCHDOG_S)),
+            probe_timeout_s=float(os.environ.get(
+                "FRAME_SOURCE_UDP_PROBE_TIMEOUT_S",
+                DEFAULT_PROBE_TIMEOUT_S)),
+            probe_retries=int(os.environ.get(
+                "FRAME_SOURCE_UDP_PROBE_RETRIES",
+                DEFAULT_PROBE_RETRIES)),
+            log_every_n=int(os.environ.get(
+                "FRAME_SOURCE_UDP_LOG_EVERY_N", DEFAULT_LOG_EVERY_N)),
+        )
     raise ValueError(
         f"Unknown FRAME_SOURCE={src!r}; expected "
-        "'capture_card', 'window', or 'file'")
+        "'capture_card', 'window', 'file', or 'udp'")
