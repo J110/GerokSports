@@ -113,6 +113,13 @@ DEFAULT_URL = (
 )
 DEFAULT_ALLOWED_DIMENSIONS = ((1920, 1080), (1280, 720))
 DEFAULT_WATCHDOG_S = 5.0
+# After respawning ffmpeg we wait longer for the first frame than for
+# steady-state stalls: a fresh decoder typically needs 3-6s to sync
+# on a mid-stream UDP join (PPS dropouts until the next keyframe).
+# Empirically ~6s in lab tests; default 15s leaves headroom for slow
+# networks. Steady-state ``watchdog_s`` kicks in once the first frame
+# has been delivered after a spawn.
+DEFAULT_STARTUP_GRACE_S = 15.0
 DEFAULT_PROBE_TIMEOUT_S = 10.0
 DEFAULT_PROBE_RETRIES = 3
 DEFAULT_LOG_EVERY_N = 600
@@ -146,6 +153,7 @@ class UDPFrameSource:
         url: str = DEFAULT_URL,
         allowed_dimensions: tuple[tuple[int, int], ...] = DEFAULT_ALLOWED_DIMENSIONS,
         watchdog_s: float = DEFAULT_WATCHDOG_S,
+        startup_grace_s: float = DEFAULT_STARTUP_GRACE_S,
         probe_timeout_s: float = DEFAULT_PROBE_TIMEOUT_S,
         probe_retries: int = DEFAULT_PROBE_RETRIES,
         log_every_n: int = DEFAULT_LOG_EVERY_N,
@@ -155,6 +163,7 @@ class UDPFrameSource:
         self._url = url
         self._allowed_dimensions = tuple(allowed_dimensions)
         self._watchdog_s = float(watchdog_s)
+        self._startup_grace_s = float(startup_grace_s)
         self._probe_timeout_s = float(probe_timeout_s)
         self._probe_retries = int(probe_retries)
         self._log_every_n = int(log_every_n)
@@ -179,6 +188,12 @@ class UDPFrameSource:
         self._proc_lock = threading.Lock()
         self._reader_thread: Optional[threading.Thread] = None
         self._watchdog_thread: Optional[threading.Thread] = None
+        # Watchdog state: distinguish "first frame not yet seen since
+        # last spawn" (use startup_grace_s) from "frames were flowing
+        # and stopped" (use watchdog_s). Set at spawn, cleared at
+        # first successful frame after the spawn.
+        self._spawn_wall = 0.0
+        self._got_frame_since_spawn = False
 
     # ------- API parity with other FrameSource implementations -------
 
@@ -314,9 +329,13 @@ class UDPFrameSource:
                         f"stderr={cp.stderr.decode(errors='replace').strip()[:200]}")
                 else:
                     out = cp.stdout.decode(errors="replace").strip()
-                    # csv=p=0:s=x → "1920x1080"
+                    # csv=p=0:s=x → first line is "WxH" (csv may add
+                    # a trailing 'x' field separator after the last
+                    # value, and multi-stream sources can emit one
+                    # record per stream — take the first parseable).
                     try:
-                        w_s, h_s = out.split("x")
+                        first_line = out.splitlines()[0].strip().rstrip("x")
+                        w_s, h_s = first_line.split("x", 1)
                         return (int(w_s), int(h_s))
                     except Exception:
                         last_err = (
@@ -352,8 +371,15 @@ class UDPFrameSource:
                 argv,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                bufsize=0,
+                # Default bufsize so stdout is a BufferedReader —
+                # ``read(N)`` then blocks until N bytes are available
+                # (raw pipe reads otherwise return whatever's in the
+                # OS buffer immediately, typically 32-64KB chunks).
+                # We additionally re-accumulate in the read loop to
+                # guard against partial frames on subprocess exit.
             )
+            self._spawn_wall = time.monotonic()
+            self._got_frame_since_spawn = False
             # Drain stderr in a side thread so a noisy decoder can't
             # block the process via pipe backpressure.
             threading.Thread(
@@ -400,25 +426,40 @@ class UDPFrameSource:
             if proc is None or stdout is None:
                 time.sleep(0.05)
                 continue
-            try:
-                buf = stdout.read(self._frame_bytes)
-            except Exception as e:  # noqa: BLE001
-                log.warning(
-                    "[udp_frame_source] stdout.read raised: %s", e)
-                buf = b""
-            if not buf:
-                # ffmpeg exited (EOF) — watchdog or this branch handles
-                # respawn.  Sleep briefly to avoid busy-looping while
-                # the watchdog kills + respawns.
-                time.sleep(0.1)
-                continue
-            if len(buf) < self._frame_bytes:
-                # Partial frame at process exit; discard.
+            # Accumulate until we have a full frame's worth of bytes
+            # or hit EOF. With the default BufferedReader, ``read(N)``
+            # usually fills N in one call; with raw pipes we may get
+            # short reads of 32-64KB. Loop is the safe shape.
+            buf = bytearray()
+            need = self._frame_bytes
+            eof = False
+            while len(buf) < need:
+                try:
+                    chunk = stdout.read(need - len(buf))
+                except Exception as e:  # noqa: BLE001
+                    log.warning(
+                        "[udp_frame_source] stdout.read raised: %s", e)
+                    chunk = b""
+                if not chunk:
+                    eof = True
+                    break
+                buf.extend(chunk)
+                # Bail out early if a respawn has killed the process
+                # mid-read so we don't sit forever on a dead pipe.
+                if not self._running:
+                    break
+                with self._proc_lock:
+                    if self._proc is not proc:
+                        break
+            if eof or len(buf) < self._frame_bytes:
+                # ffmpeg exited (EOF) or we were torn down mid-frame.
+                # Discard partial, let watchdog handle respawn.
                 self._bytes_dropped += len(buf)
+                time.sleep(0.05)
                 continue
             try:
                 frame = np.frombuffer(
-                    buf, dtype=np.uint8).reshape(
+                    bytes(buf), dtype=np.uint8).reshape(
                     (self._height, self._width, 3))
             except Exception as e:  # noqa: BLE001
                 log.warning(
@@ -431,6 +472,7 @@ class UDPFrameSource:
                 self._frame_count += 1
                 self._last_capture_time = time.time()
             self._last_frame_wall = now
+            self._got_frame_since_spawn = True
             backoff = _BACKOFF_START_S
             if (self._log_every_n > 0
                     and self._frame_count % self._log_every_n == 0):
@@ -450,9 +492,16 @@ class UDPFrameSource:
             with self._proc_lock:
                 proc = self._proc
             proc_alive = (proc is not None and proc.poll() is None)
-            stalled = (
-                time.monotonic() - self._last_frame_wall
-                > self._watchdog_s)
+            # Pre-first-frame: use startup grace (tolerates mid-stream
+            # UDP join sync time). Post-first-frame: use the steady-
+            # state watchdog (catches mid-stream stalls quickly).
+            if self._got_frame_since_spawn:
+                threshold = self._watchdog_s
+                age_anchor = self._last_frame_wall
+            else:
+                threshold = self._startup_grace_s
+                age_anchor = self._spawn_wall
+            stalled = (time.monotonic() - age_anchor) > threshold
             if proc_alive and not stalled:
                 backoff = _BACKOFF_START_S
                 continue
@@ -460,7 +509,7 @@ class UDPFrameSource:
                 return
             reason = (
                 "ffmpeg exited" if not proc_alive
-                else f"no frames for >{self._watchdog_s:.1f}s")
+                else f"no frames for >{threshold:.1f}s")
             log.warning(
                 "[udp_frame_source] %s — respawning ffmpeg "
                 "(reconnect #%d, backoff=%.1fs)",

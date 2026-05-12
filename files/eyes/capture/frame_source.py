@@ -634,11 +634,17 @@ def make_frame_source(window_id: int | None = None,
                 os.environ["FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS"])
             if os.environ.get("FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS")
             else DEFAULT_ALLOWED_DIMENSIONS)
+        from eyes.capture.udp_frame_source import (
+            DEFAULT_STARTUP_GRACE_S,
+        )
         return UDPFrameSource(
             url=url,
             allowed_dimensions=allowed,
             watchdog_s=float(os.environ.get(
                 "FRAME_SOURCE_UDP_WATCHDOG_S", DEFAULT_WATCHDOG_S)),
+            startup_grace_s=float(os.environ.get(
+                "FRAME_SOURCE_UDP_STARTUP_GRACE_S",
+                DEFAULT_STARTUP_GRACE_S)),
             probe_timeout_s=float(os.environ.get(
                 "FRAME_SOURCE_UDP_PROBE_TIMEOUT_S",
                 DEFAULT_PROBE_TIMEOUT_S)),
