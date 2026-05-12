@@ -16,6 +16,7 @@ from eyes.config import (
     GROQ_API_KEY, GROQ_PRIMARY_MODEL, GROQ_FALLBACK_MODEL, GROQ_TEXT_MODEL,
 )
 from eyes.cricket_logger import CricketLogger
+from eyes.extract_regex import parse_strip
 
 log = CricketLogger("EXTRACT")
 
@@ -331,6 +332,16 @@ class Extractor:
         if not description:
             return {}
 
+        t_regex0 = time.time()
+        regex_result = parse_strip(
+            description, team_a_name or None, team_b_name or None)
+        t_regex_ms = int((time.time() - t_regex0) * 1000)
+        if regex_result is not None:
+            log.info(
+                f"[EXTRACT-PATH] path={regex_result.get('_extract_path')} "
+                f"t_ms={t_regex_ms}")
+            return regex_result
+
         prompt = EXTRACTOR_PROMPT.format(
             frame_type=frame_type,
             team_a_name=team_a_name or "Unknown",
@@ -340,7 +351,12 @@ class Extractor:
 
         t0 = time.time()
         try:
-            return await self._call_model(PRIMARY_MODEL, prompt, t0)
+            result = await self._call_model(PRIMARY_MODEL, prompt, t0)
+            t_llm_ms = int((time.time() - t0) * 1000)
+            log.info(f"[EXTRACT-PATH] path=llm t_ms={t_llm_ms}")
+            if isinstance(result, dict):
+                result.setdefault("_extract_path", "llm")
+            return result
         except Exception as e:
             err = str(e).lower()
             if "rate_limit" in err or "429" in err:
