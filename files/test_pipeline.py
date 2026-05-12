@@ -162,6 +162,28 @@ OVERLAY_WINDOW_FRAMES: int = int(
 RECAP_INSET_SCORE_DELTA_THRESHOLD: int = int(
     os.environ.get("RECAP_INSET_SCORE_DELTA_THRESHOLD", "10"))
 _RECAP_FINGERPRINT_PATTERN = os.environ.get("RECAP_FINGERPRINT_REGEX") or None
+
+# === MANUAL OPENER / FIRST-BOWLER ANCHORS ===
+# Operator-supplied at match start: names of the striker, non-striker,
+# and opening bowler. These are resolved against the loaded squads
+# (fuzzy match via squads.resolve_name) and applied to scoreboard +
+# score_manager state ONCE — at the moment batting_team consensus
+# locks. Solves the "Vision SCOUT can't reliably read batter names
+# from a degraded WAN-UDP feed" problem by seeding ground truth
+# manually; state derivation owns striker-swap / score-progression
+# from there.
+#
+# Usage:
+#   export INITIAL_STRIKER='Naman Dhir'
+#   export INITIAL_NON_STRIKER='Tilak Varma'
+#   export INITIAL_BOWLER='Krunal Pandya'
+# Names are case-insensitive and resolve via the surname-prefix
+# heuristic in squads.resolve_name, so "NAMAN", "DHIR", or
+# "Naman Dhir" all resolve to the canonical squad entry.
+_INITIAL_STRIKER = (os.environ.get("INITIAL_STRIKER") or "").strip() or None
+_INITIAL_NON_STRIKER = (
+    os.environ.get("INITIAL_NON_STRIKER") or "").strip() or None
+_INITIAL_BOWLER = (os.environ.get("INITIAL_BOWLER") or "").strip() or None
 _RECAP_FINGERPRINT_RE = (
     re.compile(_RECAP_FINGERPRINT_PATTERN, re.IGNORECASE)
     if _RECAP_FINGERPRINT_PATTERN else None)
@@ -6570,6 +6592,111 @@ async def run_test():
     # `batting_card[i].is_striker = (name == striker)` comparison always
     # fails, and no batter is highlighted as striker.  Issue 1 fix.
     score_mgr.scoreboard = scoreboard
+
+    # === MANUAL ANCHOR — once-only application after team_locked ===
+    # Operator-supplied INITIAL_STRIKER / INITIAL_NON_STRIKER /
+    # INITIAL_BOWLER env vars are resolved against the loaded squads
+    # and stamped into batting_card / bowling_card / score_mgr.striker
+    # at the first per-frame iteration where state is ready.  Idempotent:
+    # the flag below ensures one-shot application.
+    _manual_anchor_applied = False
+
+    def _apply_manual_anchors_if_ready() -> bool:
+        """Apply INITIAL_* env-var anchors once team_locked + squads are
+        loaded.  Returns True if applied (or no anchors configured —
+        sticky True so we don't keep retrying); False if state isn't
+        ready yet (caller should retry on next frame)."""
+        nonlocal _manual_anchor_applied
+        if _manual_anchor_applied:
+            return True
+        if not (_INITIAL_STRIKER or _INITIAL_NON_STRIKER or _INITIAL_BOWLER):
+            _manual_anchor_applied = True
+            return True
+        if not batting_team or not batting_squad:
+            return False
+        from eyes.squads import build_name_lookup, resolve_name
+        bat_lookup = build_name_lookup(batting_squad)
+        bowl_lookup = build_name_lookup(bowling_squad)
+        striker = (resolve_name(_INITIAL_STRIKER, bat_lookup)
+                   if _INITIAL_STRIKER else None)
+        non_striker = (resolve_name(_INITIAL_NON_STRIKER, bat_lookup)
+                       if _INITIAL_NON_STRIKER else None)
+        bowler = (resolve_name(_INITIAL_BOWLER, bowl_lookup)
+                  if _INITIAL_BOWLER else None)
+        unresolved = []
+        if _INITIAL_STRIKER and not striker:
+            unresolved.append(f"striker={_INITIAL_STRIKER!r}")
+        if _INITIAL_NON_STRIKER and not non_striker:
+            unresolved.append(f"non_striker={_INITIAL_NON_STRIKER!r}")
+        if _INITIAL_BOWLER and not bowler:
+            unresolved.append(f"bowler={_INITIAL_BOWLER!r}")
+        if unresolved:
+            log.error(
+                f"[MANUAL-ANCHOR] could not resolve "
+                f"{', '.join(unresolved)} against squads.  "
+                f"Batting={batting_squad[:5]} bowling={bowling_squad[:5]}. "
+                f"Refusing to apply partial anchors (anchor disabled).")
+            _manual_anchor_applied = True
+            return True
+        # Use scoreboard.batting_card / bowling_card (the real
+        # Scoreboard class in eyes.scoreboard, not the LiveScorecard
+        # one in eyes.state.live_scorecard which has a different
+        # `_innings[...]["batting_card"]` shape).
+        card = scoreboard.batting_card
+        if striker and striker not in card:
+            card[striker] = {
+                "runs": 0, "balls": 0, "fours": 0, "sixes": 0,
+                "sr": None, "status": "batting", "dismissal": None,
+                "dismissal_source": None,
+                "position": 1, "is_playing_xi": True,
+                "batting_style": "unknown", "bowling_style": "unknown",
+                "source": "manual_anchor",
+            }
+        elif striker in card:
+            card[striker]["status"] = "batting"
+        if non_striker and non_striker not in card:
+            card[non_striker] = {
+                "runs": 0, "balls": 0, "fours": 0, "sixes": 0,
+                "sr": None, "status": "batting", "dismissal": None,
+                "dismissal_source": None,
+                "position": 2, "is_playing_xi": True,
+                "batting_style": "unknown", "bowling_style": "unknown",
+                "source": "manual_anchor",
+            }
+        elif non_striker in card:
+            card[non_striker]["status"] = "batting"
+        # Set striker/non/bowler on BOTH score_mgr AND scoreboard._inn
+        # (state-derivation reads from scoreboard._inn, score_mgr is a
+        # parallel canonical store). Setting only one leaves the other
+        # at None and the STATE: log line + WS broadcast shows blanks.
+        if striker:
+            score_mgr.striker = striker
+            scoreboard._inn["striker"] = striker
+        if non_striker:
+            score_mgr.non = non_striker
+            scoreboard._inn["non"] = non_striker
+        if bowler:
+            bowl_card = scoreboard.bowling_card
+            if bowler not in bowl_card:
+                bowl_card[bowler] = {
+                    "overs": None, "maidens": None,
+                    "runs": 0, "wickets": 0, "econ": None,
+                    "position": 1, "is_playing_xi": True,
+                    "batting_style": "unknown", "bowling_style": "unknown",
+                    "source": "manual_anchor",
+                }
+            score_mgr.bowler_name = bowler
+            try:
+                scoreboard._inn["bowler"] = bowler
+            except Exception:
+                pass
+        log.info(
+            f"[MANUAL-ANCHOR] applied: striker={striker!r} "
+            f"non_striker={non_striker!r} bowler={bowler!r} "
+            f"batting_team={batting_team!r}")
+        _manual_anchor_applied = True
+        return True
+
     current_action: str | None = None
     pending_action: str | None = None
 
@@ -7221,6 +7348,13 @@ async def run_test():
                 score_mgr.last_cold_start_verdict_implausible = False
             except Exception:
                 pass
+            # Once-only manual anchor application: fires the first
+            # frame after team_locked when INITIAL_STRIKER/etc are set.
+            try:
+                _apply_manual_anchors_if_ready()
+            except Exception as _anchor_err:
+                log.warn(
+                    f"[MANUAL-ANCHOR] apply raised: {_anchor_err}")
             set_global_frame(frame_count)
             try:
                 _TRACE_RECORDER.begin_frame(frame_count)
