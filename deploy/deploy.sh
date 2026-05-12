@@ -50,8 +50,15 @@ LOG "UI build END ($((SECONDS - step_start))s)"
 
 step_start=$SECONDS
 LOG "log/runtime dirs START"
-sudo mkdir -p /var/log/sportscomm /etc/sportscomm
-sudo chown -R $USER:$USER /var/log/sportscomm
+sudo mkdir -p /var/log/sportscomm /etc/sportscomm \
+              /mnt/data/sportscomm/files/logs/live_clips \
+              /mnt/data/sportscomm/files/logs/deliveries
+sudo chown -R $USER:$USER /var/log/sportscomm \
+                          /mnt/data/sportscomm/files/logs/live_clips \
+                          /mnt/data/sportscomm/files/logs/deliveries
+sudo chmod 0755 /mnt/data/sportscomm/files/logs \
+                /mnt/data/sportscomm/files/logs/live_clips \
+                /mnt/data/sportscomm/files/logs/deliveries
 LOG "log/runtime dirs END ($((SECONDS - step_start))s)"
 
 step_start=$SECONDS
