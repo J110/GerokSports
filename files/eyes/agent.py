@@ -12,12 +12,19 @@ import time
 
 from groq import AsyncGroq
 
-from eyes.config import GROQ_API_KEY, GROQ_PRIMARY_MODEL, GROQ_FALLBACK_MODEL
+from eyes.config import (
+    GROQ_API_KEY, GROQ_PRIMARY_MODEL, GROQ_FALLBACK_MODEL, GROQ_TEXT_MODEL,
+)
 from eyes.cricket_logger import CricketLogger
 
 log = CricketLogger("EXTRACT")
 
-PRIMARY_MODEL = GROQ_PRIMARY_MODEL
+# Text-only task — use the faster small model by default.  Set
+# GROQ_TEXT_MODEL=meta-llama/llama-4-scout-17b-16e-instruct to revert
+# to the multimodal scout-17b model (slower but matches pre-2026-05-12
+# behaviour).  Fallback retained at 8b-instant in case the configured
+# primary itself rate-limits.
+PRIMARY_MODEL = GROQ_TEXT_MODEL
 FALLBACK_MODEL = GROQ_FALLBACK_MODEL
 
 EXTRACTOR_PROMPT = """\

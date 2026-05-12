@@ -14,6 +14,16 @@ GROQ_API_KEY = os.environ.get(
 )
 GROQ_PRIMARY_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 GROQ_FALLBACK_MODEL = "llama-3.1-8b-instant"
+# Text-only model used by Extractor + Scorer (no image needed for
+# either — they just parse SCOUT's text output and reconcile state).
+# Defaults to llama-3.1-8b-instant which is ~3× faster than the
+# scout-17b multimodal model on Groq for text-only workloads.  Both
+# Extractor and Scorer are JSON-output structured-extraction tasks
+# that the smaller model handles well; their failure modes are now
+# guarded by regex-primary parsing (see eyes/extract_regex.py) and
+# score_manager.py's reconciliation logic.
+GROQ_TEXT_MODEL = os.environ.get(
+    "GROQ_TEXT_MODEL", "llama-3.1-8b-instant")
 
 # ── Backup: DashScope Qwen-VL (Alibaba Cloud intl) ──
 # Free quota valid 90 days. Keep as fallback if Groq has outages.
