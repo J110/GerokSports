@@ -194,56 +194,89 @@ Only set this for "release", "flight", or "shot" phases.  Otherwise \
 return null.  Do NOT guess — if the ball is not clearly visible as a \
 small object in flight, return null.
 
-STEP 2 — READ THE STRIP (skip if has_strip is false).
-Output the strip data in this exact format (use the literal token null \
-in place of any field you cannot read from pixels — never invent text):
-STRIP: [team] [score]-[wickets] ([overs]) | extras=[number_or_null] | \
-this_over=[ball-by-ball symbols or brief text] | \
-[BATTER1] [RUNS]([BALLS]) | [BATTER2] [RUNS]([BALLS]) | \
-[BOWLER] [W]-[R] ([OVERS])
+STEP 2 — TRANSCRIBE THE SCOREBOARD STRIP VERBATIM.
+On the next line, output:
+VISIBLE_TEXT: <the exact text rendered on the bottom-strip scoreboard, \
+character-by-character, left-to-right, top-to-bottom>
 
-Team token: If the batting side is shown only as a flag icon or logo \
-and there is NO team abbreviation text on the strip, emit team=null. \
-Do NOT guess from which teams might be playing. Common spurious \
-outputs to avoid: inferring KKR, RCB, MI, LSG, LIONS, Paarl, Blue \
-Waters, or any franchise abbreviation when the strip does not show \
-that text.
+Transcribe ONLY pixels you can actually read on THIS frame's strip. \
+Don't paraphrase, don't expand abbreviations, don't substitute names \
+from memory or from training data. Read what's there.
 
-Overs token: If the strip has no match-over counter in X.Y form (only \
-ball-by-ball dots such as THIS OVER ⊙⊙⊙ with no numeric over visible), \
-emit ([overs]) as (null). Do NOT take a digit from the team score \
-(e.g. the 9 in 9-0), from strike rate, required rate, partnership \
-totals, speed kph, or any adjacent panel.
+If the scoreboard strip is absent (replay, ad, full-screen graphic, \
+mid-cut, no strip rendered), emit exactly: \
+VISIBLE_TEXT: (none)
 
-Format template (angle-bracket tokens are placeholders — NEVER emit them \
-literally; always substitute a pixel-read value or the literal word null): \
+If the strip is partially visible or text is corrupted by decode \
+artifacts / motion blur / overlay occlusion: transcribe only the \
+parts you can clearly read, use ? for individual characters or words \
+you cannot resolve. Do NOT guess from team context.
+
+STEP 3 — PARSE THE STRIP FROM VISIBLE_TEXT.
+Every value in the STRIP line below MUST appear verbatim in your own \
+VISIBLE_TEXT output for this frame. If a field is not present in \
+VISIBLE_TEXT, use null. Don't fill from priors, hint, or training data.
+
+Output format (angle-bracket tokens are placeholders — NEVER emit \
+them literally; substitute the value you transcribed in VISIBLE_TEXT \
+or the literal word null):
 STRIP: <team_or_null> <runs>-<wkts> (<overs>) | extras=<n_or_null> | \
 this_over=<symbols_or_null> | <striker> <r>(<b>) | <nonstriker> <r>(<b>) | \
 <bowler> <w>-<r> (<o>)
-If the scoreboard strip is not visible or unreadable, emit exactly: \
+
+If VISIBLE_TEXT was (none), emit exactly:
 STRIP: null null-null (null) | extras=null | this_over=null | null null(null) | \
 null null(null) | null null-null (null)
 
-STEP 3 — REPORT OVERLAYS (skip if nothing visible):
+Team token: If VISIBLE_TEXT doesn't include a team abbreviation, emit \
+team=null. Do NOT guess from which teams might be playing. Common \
+spurious outputs to avoid: inferring KKR, RCB, MI, LSG, LIONS, Paarl, \
+Blue Waters, or any franchise abbreviation when not in VISIBLE_TEXT.
+
+Overs token: If VISIBLE_TEXT has no X.Y over counter (only ball-by-\
+ball dots such as THIS OVER ⊙⊙⊙ with no numeric over visible), emit \
+([overs]) as (null). Do NOT take a digit from the team score (e.g. \
+the 9 in 9-0), from strike rate, required rate, partnership totals, \
+speed kph, or any adjacent panel.
+
+CRITICAL — anti-priming rules (this is the regression that broke the \
+2026-05-11 and 2026-05-12 matches; read carefully):
+- Do NOT output player names that are not literally in VISIBLE_TEXT \
+for THIS frame. Even if you know who plays for this team, even if a \
+HINT below names someone, ONLY output names you transcribed in \
+VISIBLE_TEXT above.
+- The names "Rohit Sharma", "Suryakumar Yadav", "Harshal Patel", \
+"Ishan Kishan", "Yashasvi Jaiswal", "Jasprit Bumrah", "Jadeja", and \
+ALL other player names you might know from training data are \
+FORBIDDEN unless they appear in VISIBLE_TEXT for THIS specific frame. \
+If a batter/bowler row is unreadable, emit null for that slot.
+- The score, wickets, and overs MUST match digits actually present \
+in VISIBLE_TEXT. Do not echo the previous frame's score or any \
+score-shaped number from the hint. If you can't read the digits this \
+frame, emit null.
+
+STEP 4 — REPORT OVERLAYS (skip if nothing visible):
 INFO_PANEL: [career/tournament/head-to-head text]
 SPEED: [number] (bowling speed in kph)
 EXTRA: wide/no_ball/leg_bye/bye
 THIS OVER: [ball-by-ball results]
 FULL SCORECARD: [every batter/bowler row]
 
-STEP 4 — ACTION (1 sentence):
+STEP 5 — ACTION (1 sentence):
 What is happening? (delivery bowled, shot played, celebration, etc.)
 
 RULES:
-- JSON tag line MUST be first. Then strip. Then overlays. Then action.
-- Report exact numbers from the strip. Don't guess or infer — use \
-null tokens from STEP 2 when a field is absent on-screen rather than \
-filling from priors or neighbouring panels.
+- JSON tag line MUST be first. Then VISIBLE_TEXT line. Then STRIP. \
+Then overlays. Then action.
+- Every field in STRIP must come from your own VISIBLE_TEXT \
+transcription. If it's not in VISIBLE_TEXT, it MUST be null.
 - * or > prefix on batter name = striker.
 - If this is a pure ADVERTISEMENT with no strip: output the JSON with \
-all false, then say "ADVERTISEMENT" and stop.
+all false, then VISIBLE_TEXT: (none), then "ADVERTISEMENT" and stop.
 
-HINT FROM SCORER:
+HINT FROM SCORER (TIE-BREAKING ONLY — VISIBLE_TEXT always wins; if \
+the hint contradicts what you read in pixels, IGNORE the hint and \
+output what you actually see):
 {vision_hint}\
 """
 
