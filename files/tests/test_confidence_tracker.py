@@ -1,0 +1,279 @@
+"""ConfidenceTracker unit tests.
+
+Run from repo root:
+    pytest files/tests/test_confidence_tracker.py -q
+"""
+from __future__ import annotations
+
+import math
+import os
+import sys
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
+from confidence_tracker import (
+    ConfidenceTracker,
+    STATE_FIRM,
+    STATE_IMMUTABLE,
+    STATE_NONE,
+    STATE_PUBLISHABLE,
+    STATE_TENTATIVE,
+)
+
+
+class FakeClock:
+    """Manual wall-clock for deterministic decay tests."""
+
+    def __init__(self, t: float = 0.0) -> None:
+        self.t = t
+
+    def __call__(self) -> float:
+        return self.t
+
+    def advance(self, dt: float) -> None:
+        self.t += dt
+
+
+# ── state machine ───────────────────────────────────────────────────
+
+
+def test_initial_state_is_none() -> None:
+    bt = ConfidenceTracker("batting_team")
+    assert bt.leader is None
+    assert bt.state == STATE_NONE
+    assert bt.leader_score == 0.0
+
+
+def test_first_observation_is_tentative() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker("batting_team", clock=clk)
+    r = bt.observe("MI", weight=1.0)
+    assert r.leader == "MI"
+    assert r.state == STATE_TENTATIVE
+    assert math.isclose(r.leader_score, 1.0)
+    assert r.flipped is False
+
+
+def test_reaches_publishable_at_publish_threshold() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker("batting_team", clock=clk, publish=2.0)
+    bt.observe("MI", weight=1.0)
+    r = bt.observe("MI", weight=1.0)
+    assert r.state == STATE_PUBLISHABLE
+    assert math.isclose(r.leader_score, 2.0)
+
+
+def test_reaches_firm_at_firm_threshold() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, publish=2.0, firm=5.0)
+    for _ in range(5):
+        bt.observe("MI", weight=1.0)
+    assert bt.state == STATE_FIRM
+    assert math.isclose(bt.leader_score, 5.0)
+
+
+# ── flip logic ──────────────────────────────────────────────────────
+
+
+def test_flip_requires_margin_over_leader() -> None:
+    """The PBKS-DC bug: contender at equal score must NOT flip."""
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, flip_margin=1.0, half_life_s=1e9)
+    bt.observe("RCB", weight=2.0)
+    r = bt.observe("MI", weight=2.0)
+    # Equal scores → RCB stays leader.
+    assert r.leader == "RCB"
+    assert r.flipped is False
+
+
+def test_flip_fires_when_contender_beats_margin() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, flip_margin=1.0, half_life_s=1e9)
+    bt.observe("RCB", weight=2.0)
+    bt.observe("MI", weight=2.0)
+    r = bt.observe("MI", weight=1.5)
+    # MI=3.5 ≥ RCB=2.0 + 1.0 → flip.
+    assert r.leader == "MI"
+    assert r.flipped is True
+    assert r.old_leader == "RCB"
+
+
+def test_sustained_contradictory_evidence_flips_lock() -> None:
+    """Tonight's replay scenario: pre-match graphic locks RCB on
+    3 frames, then MI strip arrives for 5 consecutive frames."""
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, flip_margin=1.0,
+        publish=2.0, half_life_s=1e9)
+    # 3 RCB frames from pre-match graphic
+    for _ in range(3):
+        bt.observe("RCB", weight=1.0)
+        clk.advance(0.5)
+    assert bt.leader == "RCB"
+    assert bt.state == STATE_PUBLISHABLE
+    # 5 MI frames from live strip
+    flipped_at = -1
+    for i in range(5):
+        r = bt.observe("MI", weight=1.0)
+        clk.advance(0.5)
+        if r.flipped and flipped_at < 0:
+            flipped_at = i
+    assert bt.leader == "MI"
+    # Flipped on the 4th MI obs (MI=4.0 ≥ RCB=3.0 + 1.0).
+    assert flipped_at == 3
+
+
+# ── decay ───────────────────────────────────────────────────────────
+
+
+def test_decay_halves_score_at_half_life() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, half_life_s=60.0)
+    bt.observe("MI", weight=4.0)
+    snap0 = bt.snapshot()
+    assert math.isclose(snap0["leader_score"], 4.0)
+    clk.advance(60.0)
+    snap1 = bt.snapshot()
+    assert math.isclose(snap1["leader_score"], 2.0, rel_tol=1e-9)
+    clk.advance(60.0)
+    snap2 = bt.snapshot()
+    assert math.isclose(snap2["leader_score"], 1.0, rel_tol=1e-9)
+
+
+def test_decay_lets_contender_overtake_after_long_silence() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, flip_margin=1.0,
+        half_life_s=60.0)
+    # RCB locks in early
+    for _ in range(5):
+        bt.observe("RCB", weight=1.0)
+    assert bt.leader == "RCB"
+    # 2 minutes pass with no RCB evidence
+    clk.advance(120.0)
+    # RCB decays from 5.0 → 1.25
+    # Single MI observation at weight 1.0: MI=1.0 vs RCB=1.25 → no flip
+    r1 = bt.observe("MI", weight=1.0)
+    assert r1.leader == "RCB"
+    # Second MI observation: MI=2.0 vs RCB=1.25 → still < 1.25+1.0 → no flip
+    r2 = bt.observe("MI", weight=1.0)
+    assert r2.leader == "RCB"
+    # Third MI observation: MI=3.0 ≥ RCB=1.25 + 1.0 = 2.25 → flip
+    r3 = bt.observe("MI", weight=1.0)
+    assert r3.leader == "MI"
+    assert r3.flipped is True
+
+
+def test_state_drops_back_from_firm_on_decay() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, publish=2.0, firm=5.0,
+        half_life_s=60.0)
+    for _ in range(5):
+        bt.observe("MI", weight=1.0)
+    assert bt.state == STATE_FIRM
+    clk.advance(60.0)
+    assert bt.snapshot()["state"] == STATE_PUBLISHABLE  # 2.5
+    clk.advance(60.0)
+    assert bt.snapshot()["state"] == STATE_TENTATIVE  # 1.25
+
+
+# ── immutability ────────────────────────────────────────────────────
+
+
+def test_immutable_forbids_flips() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, flip_margin=1.0,
+        half_life_s=1e9)
+    bt.observe("MI", weight=5.0)
+    bt.set_immutable()
+    r = bt.observe("RCB", weight=99.0)
+    assert r.leader == "MI"
+    assert r.flipped is False
+    assert bt.state == STATE_IMMUTABLE
+
+
+def test_immutable_with_explicit_candidate_overrides_leader() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker("batting_team", clock=clk)
+    bt.observe("RCB", weight=2.0)
+    bt.set_immutable("MI")
+    assert bt.leader == "MI"
+    assert bt.state == STATE_IMMUTABLE
+
+
+def test_reset_clears_state_and_unlocks() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker("batting_team", clock=clk)
+    bt.observe("MI", weight=5.0)
+    bt.set_immutable()
+    bt.reset()
+    assert bt.leader is None
+    assert bt.state == STATE_NONE
+    r = bt.observe("RCB", weight=1.0)
+    assert r.leader == "RCB"
+
+
+# ── weights ─────────────────────────────────────────────────────────
+
+
+def test_strong_evidence_can_flip_in_one_observation() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, flip_margin=1.0,
+        half_life_s=1e9)
+    bt.observe("RCB", weight=1.0)
+    # Strong evidence (e.g. graphic_team confirmation) at weight 3.0
+    r = bt.observe("MI", weight=3.0)
+    assert r.leader == "MI"
+    assert r.flipped is True
+
+
+def test_observe_result_carries_telemetry_fields() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker("batting_team", clock=clk)
+    r = bt.observe("MI", weight=1.5)
+    assert r.candidate == "MI"
+    assert r.weight == 1.5
+    assert r.leader == "MI"
+    assert r.old_leader is None
+    assert r.scores == {"MI": 1.5}
+    assert r.state == STATE_TENTATIVE
+
+
+# ── edge cases ──────────────────────────────────────────────────────
+
+
+def test_zero_weight_observation_does_not_change_leader() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker("batting_team", clock=clk)
+    bt.observe("MI", weight=1.0)
+    r = bt.observe("RCB", weight=0.0)
+    assert r.leader == "MI"
+    assert r.flipped is False
+    # RCB entry exists with 0 score
+    assert r.scores.get("RCB") == 0.0
+
+
+def test_snapshot_does_not_double_decay() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", clock=clk, half_life_s=60.0)
+    bt.observe("MI", weight=4.0)
+    clk.advance(60.0)
+    s1 = bt.snapshot()
+    s2 = bt.snapshot()  # immediately after, no time advance
+    assert math.isclose(s1["leader_score"], s2["leader_score"])
+
+
+if __name__ == "__main__":  # pragma: no cover
+    import sys as _sys
+    import pytest
+    _sys.exit(pytest.main([__file__, "-v"]))
