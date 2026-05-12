@@ -293,6 +293,7 @@ class MatchStateAgent:
             model=model,
             temperature=0,
             max_tokens=600,
+            response_format={"type": "json_object"},
             messages=[{"role": "user", "content": prompt}],
         )
         elapsed = time.time() - t0
