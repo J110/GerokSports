@@ -89,7 +89,7 @@ _TEMPLATE_MARKERS = re.compile(
 # vision model, a post-hoc verification call, or temperature>0
 # ensembling.  See docs/scout_shadow_run_v1_analysis.md,
 # docs/scout_corpus_v1.json, docs/scout_labeling_rubric_v1.md.
-SCOUT_PROMPT = """\
+SCOUT_PROMPT_VERBOSE = """\
 You are reading a live IPL cricket broadcast frame.
 
 STEP 1 — CLASSIFY. Output one JSON object on the FIRST line, nothing \
@@ -279,6 +279,99 @@ the hint contradicts what you read in pixels, IGNORE the hint and \
 output what you actually see):
 {vision_hint}\
 """
+
+
+# 2026-05-12: Short prompt — targets ~1.5K input tokens (vs ~3.5K
+# for SCOUT_PROMPT_VERBOSE) so the 60 fpm Vision loop stays under
+# Groq's 300K TPM cap on scout-17b.  Drops STEP 4 overlays + STEP 5
+# action narrative (neither is consumed by the regex Extractor or
+# the Scorer's first-200-char tie-break context).  Keeps STEP 1 JSON
+# tag, STEP 2 VISIBLE_TEXT grounding (load-bearing for hallucination
+# defense), STEP 3 STRIP, plus an optional CHASE line for innings-2.
+# Anti-priming rules preserved verbatim — they were the post-mortem
+# fix for the 2026-05-11/12 hallucination regression.
+SCOUT_PROMPT_SHORT = """\
+You are reading a live IPL cricket broadcast frame.
+
+Output exactly the following lines, in this order. Do not output \
+anything else.
+
+LINE 1 — JSON classification tag (must be the very first line).
+{{"has_strip": <bool>, "has_overlay_stats": <bool>, "drs_review": \
+<bool>, "camera_view": "<enum>", "frame_phase": "<enum>", \
+"ball_position": null}}
+
+camera_view enum (pick one):
+  bowlers_end  — wide shot from behind bowler, pitch extends away
+  side_on      — square camera (third-man / fine-leg), pitch off-axis
+  closeup      — face/body fills frame
+  replay       — slow-motion / replay badge / spider-cam / hawkeye
+  graphic      — full-screen scorecard / partnership / sponsor card
+  ad           — commercial break
+  other        — presenter, drinks, anything else
+
+frame_phase enum (pick one): \
+runup | release | flight | shot | post_shot | fielder_reaction | \
+replay | between_play | graphic | advertisement | other
+
+LINE 2 — VISIBLE_TEXT. Transcribe ONLY the bottom-strip scoreboard \
+text, character-by-character, exactly as the pixels render. Use ? \
+for individual chars/words you cannot resolve. Do NOT paraphrase, \
+expand abbreviations, or fill from memory.
+VISIBLE_TEXT: <verbatim text, or (none) if no strip is rendered>
+
+LINE 3 — STRIP. Parse VISIBLE_TEXT into the structured format below. \
+Every value MUST appear verbatim in your own VISIBLE_TEXT for this \
+frame. If a field is not in VISIBLE_TEXT, emit the literal word null.
+STRIP: <team_or_null> <runs>-<wkts> (<overs>) | extras=<n_or_null> | \
+this_over=<symbols_or_null> | <striker> <r>(<b>) | <nonstriker> \
+<r>(<b>) | <bowler> <w>-<r> (<o>)
+
+If VISIBLE_TEXT was (none), emit exactly:
+STRIP: null null-null (null) | extras=null | this_over=null | null \
+null(null) | null null(null) | null null-null (null)
+
+LINE 4 (optional) — CHASE info, only if the frame literally shows a \
+target / required-rate / runs-needed phrase. Otherwise omit entirely. \
+Use these exact tokens so the downstream parser matches them:
+CHASE: TARGET <n> | REQUIRED RUN-RATE <f> | NEED <n> FROM <n> BALLS
+
+Omit any sub-token whose value isn't in pixels — e.g. if only target \
+is visible: "CHASE: TARGET 177".
+
+ANTI-PRIMING RULES (these closed the 2026-05-11/12 hallucination \
+regression — read carefully):
+- Output ONLY names you literally transcribed in VISIBLE_TEXT this \
+frame. NEVER from training data, NEVER from the hint, NEVER from a \
+previous frame.
+- Forbidden defaults (unless literally in VISIBLE_TEXT this frame): \
+Rohit Sharma, Suryakumar Yadav, Harshal Patel, Ishan Kishan, \
+Yashasvi Jaiswal, Jasprit Bumrah, Jadeja, and every other player \
+name from training data.
+- Score, wickets, overs MUST match digits actually rendered in \
+VISIBLE_TEXT. Do not echo the hint or the previous frame's score. \
+If unreadable, emit null.
+- Team token: emit null when only a flag/logo is shown — do NOT \
+infer MI, RCB, KKR, LSG, CSK, DC, PBKS, GT, RR, SRH from logo \
+geometry. Only emit a team abbreviation that is written in pixels.
+- Overs token: emit null if no X.Y over counter is visible — do NOT \
+steal a digit from score, run-rate, partnership, or speed.
+- * or > prefix on a batter name marks the striker.
+
+HINT FROM SCORER (TIE-BREAK ONLY — VISIBLE_TEXT always wins; if the \
+hint contradicts what you read in pixels, IGNORE the hint):
+{vision_hint}\
+"""
+
+
+# Module-level selector — defaults to short.  Set SCOUT_PROMPT_MODE=
+# verbose to revert to the pre-2026-05-12 prompt (slower, higher TPM,
+# carries STEP 4 overlays + STEP 5 action narrative).
+SCOUT_PROMPT = (
+    SCOUT_PROMPT_VERBOSE
+    if os.environ.get("SCOUT_PROMPT_MODE", "short").lower() == "verbose"
+    else SCOUT_PROMPT_SHORT
+)
 
 
 class Vision:
