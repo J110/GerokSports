@@ -1,165 +1,206 @@
-# Tonight's Match — Handoff (2026-05-11, PBKS vs DC, 7:30 PM IST)
+# Handoff — 2026-05-12 (post-PBKS-vs-DC postmortem)
 
-## What we're shipping tonight
+Last night's live match was a disaster — neither Track 1 (state) nor Track 2
+(clips/deliveries) produced usable output. Today's plan: **perfect the
+real-time system on local Mac first, then port to server**. No terminal
+work by the human today; all edits + git + tests + ssh through Cursor /
+Claude Code.
 
-End-to-end live cricket broadcast analysis pipeline running on a GCP server,
-fed by a Mac capture card streaming UDP MPEG-TS over the internet, with:
+## Postmortem — what broke
 
-1. **Track 1**: real-time scoreboard state derivation (score, wickets, overs,
-   batters, bowler, partnership, FOW) → UI at https://qrackpot.com
-2. **Track 2 (archive)**: per-delivery video clip extraction → UI at
-   https://qrackpot.com/deliveries
-3. **Track 2 (inference) — design locked, not yet built**: vision-model
-   attribute extraction + commentary generation per delivery. See
-   `files/docs/investigations/track2_realtime_inference_design.md`.
+### Track 1 (main pipeline)
 
-## Architecture
+1. **Vision prompt parroting** — `files/eyes/vision.py:218-221` example line
+   had literal numbers `null 47-3 (null) | Striker 20(18) | NonStriker 5(7)
+   | BowlerName 1-15 (3.2)`. Groq llama-4-scout copied them verbatim when
+   it couldn't read the actual scoreboard, substituting ROHIT/JADEJA/BUMRAH
+   from training data. Seeded state with phantom 47-3 on first read.
+   **Fixed `fed5b5a`** — replaced with `<angle_bracket>` placeholders +
+   null-emit fallback.
 
-```
-Mac (capture card + ffmpeg)
-    ├── udp://server:9999  → pipeline.service (cv2 + OpenScout → ws://8765, 8766)
-    └── udp://server:9998  → recorder.service (ffmpeg → fragmented mp4 archive)
+2. **Foreign-match recaps leaked into state** — extractor (`agent.py:27-29`)
+   correctly nulled `batting_team_visible` for non-match teams (MI/RCB),
+   but still extracted their score/wickets/overs into the main fields.
+   `filter_strip_wrong_team` had `if not visible_team: return False` so
+   null-team reads bypassed validation; monotonic-up guards then accepted
+   MI 110-4 as PBKS state. **Fixed `b289782`** — reject when visible_team
+   is null OR not in our_teams; **`562db58`** — pop ALL state fields on
+   team mismatch, not just batters.
 
-Server (qrackpot-prod-1, asia-south1-a, GCP):
-    pipeline.service       — Track 1 state derivation
-    recorder.service       — ffmpeg UDP listener, writes match_<sid>.mp4
-    live-clips.service     — 60s poll of scout_raw + cluster builder + ffmpeg trim
-    ui.service             — Next.js 16 (port 3000)
-    caddy                  — reverse proxy + static /clips, /server-logs, /scout
-```
+3. **No native UDP frame source** — `make_frame_source()` only supports
+   `capture_card`, `window`, `file`. UDP was hacked via
+   `FRAME_SOURCE_FILE=udp://0.0.0.0:9999` through `FileFrameSource →
+   cv2.VideoCapture(url)`. No reconnect logic. cv2 kept losing SPS/PPS and
+   overrunning the UDP recv buffer. **Worked around** with
+   `?fifo_size=10000000&buffer_size=2097152&overrun_nonfatal=1` + Mac-side
+   `-x264opts keyint=30:repeat-headers=1 -force_key_frames` so every
+   keyframe carries SPS/PPS. **Permanent fix pending**: dedicated
+   `UDPFrameSource` class.
 
-## Pipeline session id
+### Track 2 (OpenScout / clip extraction)
 
-Pipeline reads `BMF_SESSION_ID` from `/etc/sportscomm/pipeline.env`. CI sets
-it to `live_<UTC YYYYMMDD>` so all 3 services share one session dir:
-`/mnt/data/sportscomm/files/logs/deliveries/${BMF_SESSION_ID}/`.
+1. **Null `frame_idx` crashed sidecar materialization** — `rec.get(
+   "frame_idx", line_no)` returned `None` when key present-but-null, then
+   `f"{None:06d}"` raised TypeError. Every live-clips cycle logged
+   "sidecar materialization failed — skip cycle". **Fixed `3440673`**.
 
-Earlier today `test_pipeline.py` was overriding this with a fresh uuid every
-restart — patched in last commit so recorder.service mp4 and pipeline's
-scout_raw.jsonl + `logs/openscout-<sid>.jsonl` all land under the same id.
+2. **Cluster builder returned n=0 in real time** — OPEN. Algorithm works
+   offline against Scout output (verified in past runs), so this is a
+   wiring issue — likely time alignment, the sidecar/openscout pair we
+   feed it, or content density not crossing thresholds in real time. NOT
+   changing the algorithm. Needs design-level diagnosis with the post-
+   mortem session bundle.
 
-## State cache gotcha
+### Track 2 recorder
 
-`files/match_state_cache.json` is hot-resume cache. Identity gate
-(test_pipeline.py ~line 7053) requires `cached_match_id == current_match_id`
-AND `cached_session_id != current_session_id`. The cache without a `match_id`
-field has been observed to leak stale state. **Always delete the cache file
-when switching matches.**
+* `recorder.service` ExecStart had no `-y` → ffmpeg crash-looped on
+  file-overwrite prompt. Fragmented mp4 also produced no moov atom in
+  live conditions → ffprobe + clip trim both failed.
+  **Fixed `d1e64a7`** — `-y` + container `.ts` mpegts.
+  **`96f3182`** — live-clips glob now accepts `.ts`.
+  **`eb30eb4`** — `/deliveries` page + API route shipped (was untracked
+  in git, hence 404).
 
-## Pre-match checklist (run each item until green)
+## Today's local-first plan
 
-```bash
-# 1. CI deploy: GitHub Actions → "Deploy to qrackpot-prod-1" →
-#    workflow_dispatch → mode=live. Wait for green.
+**Phase 1**: Pull the post-mortem bundle from server to
+`~/qrackpot-postmortem/` (logs, scout sidecars, deliveries session dir
+with `.ts` recording, match_state_cache, live_clips outputs). This is the
+ground truth for "what real-time actually saw last night".
 
-# 2. Server: clear stale cache + restart services + verify sid
-gcloud compute ssh qrackpot-prod-1 --zone=asia-south1-a --tunnel-through-iap \
-  --command="sudo rm -f /mnt/data/sportscomm/files/match_state_cache.json; \
-             sudo rm -f /mnt/data/sportscomm/logs/openscout-*.jsonl; \
-             sudo truncate -s 0 /var/log/sportscomm/*.log; \
-             sudo systemctl restart pipeline.service recorder.service live-clips.service; \
-             sleep 20; \
-             for s in pipeline recorder live-clips; do echo \"\$s: \$(sudo systemctl is-active \$s.service)\"; done; \
-             sudo grep -E 'session_id=|Teams:|CACHE' /var/log/sportscomm/pipeline.log | head -10"
+**Phase 2**: Reproduce the failure locally — replay the `.ts` recording
+through the full pipeline + chunk extractor on Mac, confirm we see the
+same n=0 cluster output. This validates the bundle is sufficient.
 
-# Expected: all 3 active, session_id=live_<UTC date>, Teams: ['Punjab Kings', 'Delhi Capitals'],
-# [CACHE] No cached state found — starting fresh
+**Phase 3**: Diagnose cluster builder n=0. Compare:
+- Offline `extract_live_clips_chunk.sh` output against the same sidecar
+  produced from the live `.ts` (should produce >0 clusters).
+- Live sidecar files from last night vs. sidecar regenerated from the
+  scout_raw.jsonl now.
+Pinpoint where the wiring diverges. Likely candidates:
+- `f_{idx:06d}_t={t:06.1f}.txt` filename pattern — uses `rel_t` derived
+  from `ts - first_ts`. If `first_ts` was pulled from a frame mid-stream
+  (cv2 reconnect, recorder gap), all rel_t values shift and the cluster
+  builder's `gap_max=3` time-windowing fires wrong.
+- `frame_class != "action"` filter — null vs absent field handling.
+- Cluster builder gap thresholds vs. actual live frame cadence (Groq
+  inference latency may be > gap_max during heavy load).
 
-# 3. Open UI tabs:
-#    https://qrackpot.com/
-#    https://qrackpot.com/deliveries
-#    https://qrackpot.com/logs
-#    https://qrackpot.com/server-logs/   (raw log file browser)
+**Phase 4**: Implement `UDPFrameSource` class in `files/eyes/` —
+proper UDP MPEG-TS ingest with reconnect, SPS/PPS recovery, frame-drop
+metrics. Replaces the cv2.VideoCapture(url) hack. Add to
+`make_frame_source()` selector.
 
-# 4. End-to-end dry run with the 37-min recording (BEFORE the live match)
-cd ~/Projects/SportsComm
-bash scripts/stream_to_server_test.sh files/logs/deliveries/6ff41b76/match_6ff41b76.mp4
-# Run for 5 min, then Ctrl-C.
-# Expect: pipeline.log shows F1 F2 F3..., recorder.log shows mp4 growing,
-# /deliveries page shows playable clips within ~90s.
+**Phase 5**: Local end-to-end validation — Mac-side stream
+`scripts/stream_to_server_test.sh` modified to point at `localhost:9999`,
+run pipeline locally with the new UDPFrameSource, watch /deliveries
+populate within 90s.
 
-# 5. At 7:30 PM, capture card live stream
-bash scripts/stream_to_server.sh
-# Dual-output: UDP 9999 (pipeline) + UDP 9998 (recorder) + local archive.
-```
+**Phase 6**: Port to server. CI deploy. Validate one more time before
+next match.
 
-## What changed today (key commits)
+## What's deployed on server (as of 2026-05-12 morning)
 
-- 469f84c — `_handle_warm` defensive numeric coercion (TypeError fix)
-- 0474fb4 — Phase 1B SRT live ingest setup
-- (replaced) — SRT switched to UDP MPEG-TS (stock ffmpeg compat)
-- 23dd4c2 — `FRAME_SOURCE_FILE` env var name fix
-- 786ae32 — `scoreboard.update_bowler` str→int hotfix
-- 8adc04f — Caddyfile log blocks removed; `caddy validate` before reload
-- Track 2 server-side recording + live-clips service added
-- BMF_SESSION_ID honored in test_pipeline.py (latest)
+Last night's commits are live. Services running:
 
-## Files to know
-
-| Path | Purpose |
+| Service | Purpose |
 |---|---|
-| `files/test_pipeline.py` | Main pipeline entrypoint (~7000 lines) |
-| `files/score_manager.py` | Score state machine, `_handle_warm` etc. |
-| `files/scripts/extract_live_clips_chunk.sh` | Track 2 chunk extractor (60s loop) |
-| `files/scripts/stream_to_server.sh` | Mac UGREEN capture → dual UDP |
-| `files/scripts/stream_to_server_test.sh` | Mac mp4 replay → UDP |
-| `scripts/grab_logs.sh` | Mac-side one-shot log bundle to ~/qrackpot-snapshots/ |
-| `deploy/Caddyfile` | reverse proxy + /clips /server-logs /scout |
-| `deploy/deploy.sh` | Server-side deploy script (idempotent, self-healing) |
-| `deploy/systemd/*.service` | pipeline, recorder, live-clips, ui |
-| `deploy/pipeline.env.example` | Env template (real one at `/etc/sportscomm/pipeline.env`, 0600) |
-| `.github/workflows/deploy.yml` | CI: WIF auth → IAP SSH → git reset --hard origin → deploy.sh |
-| `scorecard-ui/app/page.tsx` | Main UI (live, scorecard, field, comm, clips, logs) |
-| `scorecard-ui/app/deliveries/page.tsx` | Track 2 clip verification UI |
-| `scorecard-ui/app/logs/page.tsx` | Live log tail UI with filter + copy |
-| `scorecard-ui/app/api/deliveries/route.ts` | Clips listing endpoint |
-| `scorecard-ui/app/api/logs/route.ts` | Log tail endpoint |
-| `files/docs/investigations/track2_realtime_inference_design.md` | Locked design for vision-attrs + commentary workers |
+| pipeline.service | Track 1 (cv2 UDP hack on port 9999) |
+| recorder.service | ffmpeg UDP→.ts mpegts on port 9998 (no -y bug fixed `d1e64a7`) |
+| live-clips.service | 60s poll, sidecar materialization (frame_idx null bug fixed `3440673`) |
+| ui.service | Next.js 16, /deliveries route now committed (`eb30eb4`) |
+| caddy | reverse proxy + static /clips /server-logs /scout |
 
-## Operations runbook (when something breaks during the match)
+## Post-mortem bundle layout (after Phase 1)
 
-1. **UI showing stale data** — delete cache file (`match_state_cache.json`),
-   restart pipeline.service. Confirm `[CACHE] No cached state found` in log.
+```
+~/qrackpot-postmortem/
+├── logs/                                  # /var/log/sportscomm/*
+│   ├── pipeline.log
+│   ├── pipeline-err.log
+│   ├── recorder.log
+│   ├── recorder-err.log
+│   ├── live-clips.log
+│   ├── live-clips-err.log
+│   ├── ui.log
+│   └── ui-err.log
+├── deliveries/<sid>/
+│   ├── scout_raw.jsonl
+│   ├── match_<sid>.ts                     # ← the recording (multi-GB)
+│   └── scout_chunk_*.jsonl (if any)
+├── clips/                                 # /mnt/data/sportscomm/files/logs/live_clips/
+│   ├── HHMM_detections.json
+│   └── clip_anchor*.mp4 + .json sidecars
+├── openscout-*.jsonl                      # /mnt/data/sportscomm/logs/openscout-*.jsonl
+├── match_state_cache.json
+└── pipeline.env.masked
+```
 
-2. **Pipeline crash-loops** — `sudo journalctl -u pipeline.service -n 80`,
-   look for traceback. Common past causes: TypeError float-vs-str
-   (already patched), missing env var, cricbuzz scrape failure, lxml missing.
+## Acceptance criteria — when "today's plan" is done
 
-3. **No clips on /deliveries** — check live-clips.log for "no session dir"
-   or "session=X has no openscout-X.jsonl yet". Means recorder mp4 dir and
-   pipeline session id are not the same — verify `BMF_SESSION_ID` matches
-   in `/etc/sportscomm/pipeline.env` and shows in `[SESSION-CONFIG]`
-   log line. After today's fix this should be stable.
+1. Replay `match_<sid>.ts` locally → pipeline derives PBKS vs DC state
+   that matches the actual broadcast timeline (spot-check at 3 random
+   over boundaries).
+2. Same replay → live-clips emits ≥1 clip per actual delivery in the
+   replay window.
+3. `UDPFrameSource` lands in `files/eyes/` and `make_frame_source()`,
+   replacing the cv2 hack. Pipeline boots with `FRAME_SOURCE=udp` and
+   reconnects across stream interruptions.
+4. End-to-end local: Mac ffmpeg → localhost UDP → pipeline → UI shows
+   state, /deliveries shows playable clips.
+5. Same code path running on server, validated with a short ffmpeg
+   replay test from Mac before next match.
 
-4. **UDP stream from Mac not landing** — check firewall rules
-   `qrackpot-udp-9999` and `qrackpot-udp-9998` exist + VM has tag
-   `qrackpot-prod`. `gcloud compute instances describe qrackpot-prod-1
-   --zone=asia-south1-a --format='value(tags.items)'`.
-
-5. **Caddy stuck reloading** — `sudo systemctl reset-failed caddy &&
-   sudo systemctl restart caddy`. Already self-healed in deploy.sh.
-
-6. **Pull logs offline** — `bash scripts/grab_logs.sh` writes tarball to
-   `~/qrackpot-snapshots/snapshot_<TS>.tar.gz`.
-
-## Pending after tonight
+## Pending after today (carried forward)
 
 - Cluster-close in-process event hook in pipeline.service (task #42)
-- delivery_attrs_worker — vision API per-delivery attributes (task #43)
-- commentary_worker — LLM commentary per delivery (task #44)
-- D8 wickets side-channel injection (task #11, latent)
-- Frame-level LLM zoom on borderline cases (task #14, future)
+- delivery_attrs_worker (task #43)
+- commentary_worker (task #44)
+- D8 wickets side-channel injection (task #11)
+- Frame-level LLM zoom on borderline cases (task #14)
+
+## Operations cheat sheet
+
+All `gcloud compute ssh qrackpot-prod-1 --zone=asia-south1-a
+--tunnel-through-iap --command="..."` — Cursor runs these directly.
+
+Pre-match reset:
+
+```bash
+sudo rm -f /mnt/data/sportscomm/files/match_state_cache.json
+sudo rm -f /mnt/data/sportscomm/logs/openscout-*.jsonl
+sudo truncate -s 0 /var/log/sportscomm/*.log
+sudo systemctl restart pipeline.service recorder.service live-clips.service
+```
+
+State check:
+
+```bash
+for s in pipeline recorder live-clips; do
+  echo "$s: $(sudo systemctl is-active $s.service)"
+done
+sudo grep -E 'session_id=|Teams:|CACHE' /var/log/sportscomm/pipeline.log | head
+```
+
+Pull bundle to local (used today, Phase 1):
+
+```bash
+mkdir -p ~/qrackpot-postmortem/{logs,deliveries,clips}
+gcloud compute scp --zone=asia-south1-a --tunnel-through-iap --recurse \
+  qrackpot-prod-1:/var/log/sportscomm/ ~/qrackpot-postmortem/logs/
+# session id from `ls /mnt/data/sportscomm/files/logs/deliveries/`
+SID=live_20260511
+gcloud compute scp --zone=asia-south1-a --tunnel-through-iap --recurse \
+  "qrackpot-prod-1:/mnt/data/sportscomm/files/logs/deliveries/${SID}" \
+  ~/qrackpot-postmortem/deliveries/
+gcloud compute scp --zone=asia-south1-a --tunnel-through-iap \
+  "qrackpot-prod-1:/mnt/data/sportscomm/logs/openscout-*.jsonl" \
+  ~/qrackpot-postmortem/
+gcloud compute scp --zone=asia-south1-a --tunnel-through-iap --recurse \
+  qrackpot-prod-1:/mnt/data/sportscomm/files/logs/live_clips/ \
+  ~/qrackpot-postmortem/clips/
+```
 
 ## Style
 
-See `CLAUDE.md` for response style rules (no preamble, diff-only code, etc).
-Treat me as a senior engineer. No basic explanations. Push back when wrong.
-
-## Sub-page entry points
-
-- /             main scorecard
-- /deliveries   Track 2 clip verification (auto-refresh 30s)
-- /logs         log tail viewer (auto-refresh 10s, with filter + copy)
-- /clips/*      raw clip mp4 files (Caddy file_server)
-- /server-logs/ raw server log files (Caddy file_server)
-- /scout/*      raw scout_raw.jsonl per session (Caddy file_server)
+See `CLAUDE.md`. No preamble, diff-only code, treat as senior engineer.
