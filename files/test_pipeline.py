@@ -26,6 +26,7 @@ import trace_emitter as _trace
 from eyes.capture.frame_source import FrameSource, make_frame_source
 from eyes.config import FRAME_SOURCE as _FRAME_SOURCE_MODE
 from eyes.capture.downscale import downscale
+from confidence_tracker import ConfidenceTracker
 from eyes.scoreboard import Scoreboard
 from eyes.vision import Vision
 from eyes.open_scout import OpenScout, OpenScoutRateGate
@@ -163,27 +164,6 @@ RECAP_INSET_SCORE_DELTA_THRESHOLD: int = int(
     os.environ.get("RECAP_INSET_SCORE_DELTA_THRESHOLD", "10"))
 _RECAP_FINGERPRINT_PATTERN = os.environ.get("RECAP_FINGERPRINT_REGEX") or None
 
-# === MANUAL OPENER / FIRST-BOWLER ANCHORS ===
-# Operator-supplied at match start: names of the striker, non-striker,
-# and opening bowler. These are resolved against the loaded squads
-# (fuzzy match via squads.resolve_name) and applied to scoreboard +
-# score_manager state ONCE — at the moment batting_team consensus
-# locks. Solves the "Vision SCOUT can't reliably read batter names
-# from a degraded WAN-UDP feed" problem by seeding ground truth
-# manually; state derivation owns striker-swap / score-progression
-# from there.
-#
-# Usage:
-#   export INITIAL_STRIKER='Naman Dhir'
-#   export INITIAL_NON_STRIKER='Tilak Varma'
-#   export INITIAL_BOWLER='Krunal Pandya'
-# Names are case-insensitive and resolve via the surname-prefix
-# heuristic in squads.resolve_name, so "NAMAN", "DHIR", or
-# "Naman Dhir" all resolve to the canonical squad entry.
-_INITIAL_STRIKER = (os.environ.get("INITIAL_STRIKER") or "").strip() or None
-_INITIAL_NON_STRIKER = (
-    os.environ.get("INITIAL_NON_STRIKER") or "").strip() or None
-_INITIAL_BOWLER = (os.environ.get("INITIAL_BOWLER") or "").strip() or None
 _RECAP_FINGERPRINT_RE = (
     re.compile(_RECAP_FINGERPRINT_PATTERN, re.IGNORECASE)
     if _RECAP_FINGERPRINT_PATTERN else None)
@@ -1107,6 +1087,8 @@ class AdaptiveSleep:
     BURST_DURATION = 8.0
 
     # Active-play cadences (seconds between Scout calls).
+    # Values can be CAPPED below at class-definition time via the
+    # ADAPTIVE_MAX_INTERVAL_S env var (see _AS_MAX_S below the class).
     ACTIVE_PLAY_INTERVAL = 0.5    # bowlers_end / side_on
     DEAD_TIME_INTERVAL = 2.5      # replay / graphic / ad / other
     DEFAULT_INTERVAL = 1.0        # closeup / unknown — middle ground
@@ -1267,6 +1249,29 @@ class AdaptiveSleep:
         if self.last_camera_view in self._DEAD_TIME_VIEWS:
             return self.DEAD_TIME_INTERVAL
         return self.DEFAULT_INTERVAL
+
+
+# Module-level post-hoc cap on AdaptiveSleep cadence.  Setting
+# ADAPTIVE_MAX_INTERVAL_S=1.5 (or any value) clamps all PHASE_FREQUENCY
+# entries + DEAD_TIME_INTERVAL at that ceiling.  Used to accelerate
+# cold-start convergence: instead of waiting 2-8s between frames during
+# dead-time/ad/graphic phases, poll every 1.5s so SCOUT lands clean
+# reads of the score strip faster.
+_AS_MAX_S_RAW = os.environ.get("ADAPTIVE_MAX_INTERVAL_S")
+if _AS_MAX_S_RAW:
+    try:
+        _AS_MAX_S = float(_AS_MAX_S_RAW)
+        AdaptiveSleep.DEAD_TIME_INTERVAL = min(
+            AdaptiveSleep.DEAD_TIME_INTERVAL, _AS_MAX_S)
+        AdaptiveSleep.PHASE_FREQUENCY = {
+            ph: min(s, _AS_MAX_S)
+            for ph, s in AdaptiveSleep.PHASE_FREQUENCY.items()
+        }
+        log.info(
+            f"[CONFIG] ADAPTIVE_MAX_INTERVAL_S={_AS_MAX_S} — capped "
+            f"DEAD_TIME_INTERVAL + PHASE_FREQUENCY entries")
+    except ValueError:
+        pass
 
 
 _PLACEHOLDER_EXACT = {
@@ -5753,6 +5758,18 @@ async def run_test():
     team_confirm_count = 0
     team_locked = False
     team_lock_frame = None
+    # 2026-05-12: replaces the prior one-way ratchet lock. PUBLISH=2.0
+    # (~2 strong evidence points), FIRM=5.0, FLIP_MARGIN=1.0, half-life
+    # 60 s wall-clock. Toss + post-innings transitions pin via
+    # set_immutable.  See files/confidence_tracker.py for the state
+    # machine; see assign_teams() below for the integration.
+    team_confidence = ConfidenceTracker(
+        "batting_team",
+        publish=2.0,
+        firm=5.0,
+        flip_margin=1.0,
+        half_life_s=60.0,
+    )
 
     scoreboard = Scoreboard()
 
@@ -6083,34 +6100,92 @@ async def run_test():
             log.error(f"[CACHE] Load failed: {e}")
             return None
 
-    def assign_teams(bat_name, bowl_name, innings=1):
+    def assign_teams(bat_name, bowl_name, innings=1,
+                     *, weight=1.0, source="unknown",
+                     force=False, immutable=False):
+        """Observe an evidence point that `bat_name` is the batting
+        side.  Drives `team_confidence` (ConfidenceTracker) and rebinds
+        squads / scoreboard only when the leader changes.
+
+        weight     — strength of this evidence (default 1.0).  Toss /
+                     unambiguous graphic readouts should pass higher.
+        source     — short telemetry tag (logged in BATTING_TEAM-* lines).
+        force      — bypass confidence; pump weight to 100.0 and rebind
+                     immediately.  Used by legacy swap-then-relock
+                     callers that already have strong external evidence.
+        immutable  — pin leader after this observation; no further
+                     flips until reset() is called.  Toss + innings
+                     transitions use this.
+        """
         nonlocal batting_team, bowling_team, batting_squad, bowling_squad
         nonlocal batting_squad_roles, bowling_squad_roles
         nonlocal team_confirm_count, team_locked, team_lock_frame
         nonlocal _squad_roles, _ball_events_for_current_team
-        nonlocal _bowling_team_strip_total
+        nonlocal _bowling_team_strip_total, _bowling_team_strip_count
 
-        if team_locked and bat_name == batting_team:
+        if force:
+            weight = max(weight, 100.0)
+        result = team_confidence.observe(bat_name, weight=weight)
+        if immutable:
+            team_confidence.set_immutable(bat_name)
+
+        leader = team_confidence.leader
+        old_bat = batting_team
+        should_rebind = (
+            force
+            or batting_team is None
+            or (leader is not None and leader != batting_team)
+        )
+        if not should_rebind:
+            # Same leader — log observation, sync facade, no rebind.
+            log.info(
+                f"  [BATTING_TEAM-OBSERVE] cand={bat_name!r} "
+                f"weight={weight} src={source} leader={leader!r} "
+                f"score={result.leader_score:.2f} state={result.state} "
+                f"flipped={result.flipped}")
             team_confirm_count += 1
-            return
-
-        if team_locked and bat_name != batting_team:
-            log.info(f"  [GUARD] Team flip rejected — locked "
-                     f"{batting_team} at F{team_lock_frame}")
-            return
-
-        if bat_name == batting_team:
-            team_confirm_count += 1
-            if team_confirm_count >= 3 and not team_locked:
+            if (not team_locked
+                    and result.state in ("FIRM", "IMMUTABLE")):
                 team_locked = True
                 team_lock_frame = frame_count if frame_count else 0
-                log.info(f"  [TEAM] Locked: {batting_team} batting, "
-                         f"{bowling_team} bowling (F{team_lock_frame})")
+                log.info(
+                    f"  [BATTING_TEAM-FIRM] {batting_team} batting, "
+                    f"{bowling_team} bowling "
+                    f"(F{team_lock_frame}, state={result.state})")
             return
 
+        # Rebind: leader changed or first commit.
+        new_bat = leader if leader is not None else bat_name
+        if new_bat == bat_name:
+            new_bowl = bowl_name
+        else:
+            new_bowl = next(
+                (t for t in team_names if t != new_bat), bowl_name)
+
+        if old_bat and old_bat != new_bat:
+            log.info(
+                f"[BATTING_TEAM-FLIP] from={old_bat!r} to={new_bat!r} "
+                f"src={source} state={result.state} "
+                f"scores={result.scores} force={force}")
+            # Reset dependent state that was bound to the previous
+            # team assignment.  Scoreboard.setup_innings() below
+            # rebuilds batting_card / bowling_card so no extra work
+            # needed there.  Partnership / strip counters must reset
+            # explicitly — they survive setup_innings.
+            _bowling_team_strip_count = 0
+            try:
+                score_mgr.partnership_runs = 0
+                score_mgr.partnership_balls = 0
+            except Exception:
+                pass
+        else:
+            log.info(
+                f"[BATTING_TEAM-COMMIT] {new_bat!r} batting (src={source}, "
+                f"state={result.state}, scores={result.scores})")
+
         team_confirm_count = 1
-        batting_team = bat_name
-        bowling_team = bowl_name
+        batting_team = new_bat
+        bowling_team = new_bowl
         batting_squad = squads.get(batting_team, [])
         bowling_squad = squads.get(bowling_team, [])
         roles_map: dict[str, str] = {}
@@ -6159,6 +6234,15 @@ async def run_test():
         _bowling_team_strip_total = 0
         log.info(f"=== TEAMS SET: {batting_team} batting (inn {innings}) "
                  f"vs {bowling_team} bowling ===")
+        # Sync legacy team_locked facade off ConfidenceTracker state so
+        # downstream readers (state cache, swap-then-relock paths) see
+        # the same lock semantics as before.
+        if team_confidence.state in ("FIRM", "IMMUTABLE"):
+            team_locked = True
+            team_lock_frame = frame_count if frame_count else 0
+        elif force or immutable:
+            team_locked = True
+            team_lock_frame = frame_count if frame_count else 0
 
     toss_captured = False
     toss_winner_name = None
@@ -6229,9 +6313,9 @@ async def run_test():
         toss_decision_str = decision.lower()
         log.info(f"[TOSS] {winner} won, chose to {toss_decision_str}. "
                  f"{bat} bats, {bowl} bowls — LOCKED")
-        assign_teams(bat, bowl, innings=1)
-        team_locked = True
-        team_lock_frame = frame_count if frame_count else 0
+        # Toss is ground truth — pin the leader and forbid further flips.
+        assign_teams(bat, bowl, innings=1,
+                     weight=10.0, source="toss", immutable=True)
         team_confirm_count = 99
 
     def detect_team_from_players(extracted: dict):
@@ -6593,136 +6677,24 @@ async def run_test():
     # fails, and no batter is highlighted as striker.  Issue 1 fix.
     score_mgr.scoreboard = scoreboard
 
-    # === COLD-START ANCHORS — manual (env-var, primary) + auto ===
-    # Two anchor paths, both stamp scoreboard._inn["striker"]/["non"]/
-    # ["bowler"] + score_mgr.striker/.non/.bowler_name and protect the
-    # values against null-reverts by subsequent SCOUT reads.
+    # === COLD-START ANCHORS — AUTO ONLY ===
+    # Watch SCOUT-committed batting_card after each frame; the first
+    # time TWO batters with status="batting" and both names resolved
+    # against the batting_squad are present, lock those as
+    # striker+non_striker.  Same for bowler against bowling_squad.
+    # Once locked, null SCOUT reads cannot revert the names — only a
+    # wicket event (wickets count increases) does.
     #
-    # MANUAL (env-var) — failsafe override.  If INITIAL_STRIKER /
-    # INITIAL_NON_STRIKER / INITIAL_BOWLER are set at boot, anchor at
-    # first frame after batting_team commits.  Used when broadcast
-    # graphics are degraded enough that auto-anchor never fires.
-    #
-    # AUTO — primary path.  Watch SCOUT-committed batting_card after
-    # each frame; the first time TWO batters with status="batting" and
-    # both names resolved against the batting_squad are present, lock
-    # those as striker+non_striker.  Same for bowler against
-    # bowling_squad.  Once locked, null SCOUT reads cannot revert the
-    # names — only a wicket event (wickets count increases) does.
-    #
-    # Lock cache + flags:
+    # The manual INITIAL_STRIKER / _NON_STRIKER / _BOWLER env vars and
+    # FORCE_BATTING_TEAM override were removed 2026-05-12 — the
+    # pipeline derives team + opener identities from accumulating
+    # broadcast evidence (see ConfidenceTracker on batting_team).
     _anchor_batters_locked = False
     _anchor_bowler_locked = False
     _anchor_cached_striker: str | None = None
     _anchor_cached_non: str | None = None
     _anchor_cached_bowler: str | None = None
     _anchor_last_wickets = 0
-    _manual_anchor_applied = False
-
-    def _apply_manual_anchors_if_ready() -> bool:
-        """Apply INITIAL_* env-var anchors once team_locked + squads are
-        loaded.  Returns True if applied (or no anchors configured —
-        sticky True so we don't keep retrying); False if state isn't
-        ready yet (caller should retry on next frame)."""
-        nonlocal _manual_anchor_applied
-        if _manual_anchor_applied:
-            return True
-        if not (_INITIAL_STRIKER or _INITIAL_NON_STRIKER or _INITIAL_BOWLER):
-            _manual_anchor_applied = True
-            return True
-        if not batting_team or not batting_squad:
-            return False
-        from eyes.squads import build_name_lookup, resolve_name
-        bat_lookup = build_name_lookup(batting_squad)
-        bowl_lookup = build_name_lookup(bowling_squad)
-        striker = (resolve_name(_INITIAL_STRIKER, bat_lookup)
-                   if _INITIAL_STRIKER else None)
-        non_striker = (resolve_name(_INITIAL_NON_STRIKER, bat_lookup)
-                       if _INITIAL_NON_STRIKER else None)
-        bowler = (resolve_name(_INITIAL_BOWLER, bowl_lookup)
-                  if _INITIAL_BOWLER else None)
-        unresolved = []
-        if _INITIAL_STRIKER and not striker:
-            unresolved.append(f"striker={_INITIAL_STRIKER!r}")
-        if _INITIAL_NON_STRIKER and not non_striker:
-            unresolved.append(f"non_striker={_INITIAL_NON_STRIKER!r}")
-        if _INITIAL_BOWLER and not bowler:
-            unresolved.append(f"bowler={_INITIAL_BOWLER!r}")
-        if unresolved:
-            log.error(
-                f"[MANUAL-ANCHOR] could not resolve "
-                f"{', '.join(unresolved)} against squads.  "
-                f"Batting={batting_squad[:5]} bowling={bowling_squad[:5]}. "
-                f"Refusing to apply partial anchors (anchor disabled).")
-            _manual_anchor_applied = True
-            return True
-        # Use scoreboard.batting_card / bowling_card (the real
-        # Scoreboard class in eyes.scoreboard, not the LiveScorecard
-        # one in eyes.state.live_scorecard which has a different
-        # `_innings[...]["batting_card"]` shape).
-        card = scoreboard.batting_card
-        if striker and striker not in card:
-            card[striker] = {
-                "runs": 0, "balls": 0, "fours": 0, "sixes": 0,
-                "sr": None, "status": "batting", "dismissal": None,
-                "dismissal_source": None,
-                "position": 1, "is_playing_xi": True,
-                "batting_style": "unknown", "bowling_style": "unknown",
-                "source": "manual_anchor",
-            }
-        elif striker in card:
-            card[striker]["status"] = "batting"
-        if non_striker and non_striker not in card:
-            card[non_striker] = {
-                "runs": 0, "balls": 0, "fours": 0, "sixes": 0,
-                "sr": None, "status": "batting", "dismissal": None,
-                "dismissal_source": None,
-                "position": 2, "is_playing_xi": True,
-                "batting_style": "unknown", "bowling_style": "unknown",
-                "source": "manual_anchor",
-            }
-        elif non_striker in card:
-            card[non_striker]["status"] = "batting"
-        # Set striker/non/bowler on BOTH score_mgr AND scoreboard._inn
-        # (state-derivation reads from scoreboard._inn, score_mgr is a
-        # parallel canonical store). Setting only one leaves the other
-        # at None and the STATE: log line + WS broadcast shows blanks.
-        nonlocal _anchor_batters_locked, _anchor_bowler_locked
-        nonlocal _anchor_cached_striker, _anchor_cached_non
-        nonlocal _anchor_cached_bowler
-        if striker:
-            score_mgr.striker = striker
-            scoreboard._inn["striker"] = striker
-            _anchor_cached_striker = striker
-        if non_striker:
-            score_mgr.non = non_striker
-            scoreboard._inn["non"] = non_striker
-            _anchor_cached_non = non_striker
-        if striker and non_striker:
-            _anchor_batters_locked = True
-        if bowler:
-            bowl_card = scoreboard.bowling_card
-            if bowler not in bowl_card:
-                bowl_card[bowler] = {
-                    "overs": None, "maidens": None,
-                    "runs": 0, "wickets": 0, "econ": None,
-                    "position": 1, "is_playing_xi": True,
-                    "batting_style": "unknown", "bowling_style": "unknown",
-                    "source": "manual_anchor",
-                }
-            score_mgr.bowler_name = bowler
-            _anchor_cached_bowler = bowler
-            _anchor_bowler_locked = True
-            try:
-                scoreboard._inn["bowler"] = bowler
-            except Exception:
-                pass
-        log.info(
-            f"[MANUAL-ANCHOR] applied: striker={striker!r} "
-            f"non_striker={non_striker!r} bowler={bowler!r} "
-            f"batting_team={batting_team!r}")
-        _manual_anchor_applied = True
-        return True
 
     def _auto_anchor_check() -> None:
         """Watch SCOUT-committed batting_card / bowling state and lock
@@ -6739,12 +6711,6 @@ async def run_test():
         nonlocal _anchor_cached_bowler, _anchor_last_wickets
         if not batting_team or not batting_squad:
             return
-        if _manual_anchor_applied and (
-                _INITIAL_STRIKER or _INITIAL_NON_STRIKER or _INITIAL_BOWLER):
-            # Manual mode has authority — auto does not re-lock fields
-            # the operator chose to fix.  But auto can still lock
-            # fields the operator left blank.
-            pass
         # === wicket-driven invalidation ===
         try:
             _cur_w = int(scoreboard._inn.get("wickets") or 0)
@@ -7397,30 +7363,6 @@ async def run_test():
     else:
         log.info("[CACHE] No cached state found — starting fresh")
 
-    # === HARD TEAM OVERRIDE (env var) ===
-    # Set FORCE_BATTING_TEAM=KKR (or full name) to lock the batting team
-    # before the pipeline starts. This bypasses Scout's team-from-strip
-    # heuristic, which can be fooled when Scout hallucinates the strip.
-    _force_bat = (os.environ.get("FORCE_BATTING_TEAM") or "").strip()
-    if _force_bat:
-        _force_resolved = _resolve_team_variant(_force_bat)
-        if _force_resolved and _force_resolved in team_names:
-            _force_bowl = next((t for t in team_names
-                                if t != _force_resolved), None)
-            if _force_bowl:
-                if batting_team and batting_team != _force_resolved:
-                    log.info(f"[FORCE] Override: was {batting_team} batting, "
-                             f"forcing {_force_resolved} batting")
-                else:
-                    log.info(f"[FORCE] Locking {_force_resolved} batting "
-                             f"vs {_force_bowl} bowling")
-                assign_teams(_force_resolved, _force_bowl, innings=1)
-                team_locked = True
-                team_lock_frame = 0
-        else:
-            log.error(f"[FORCE] FORCE_BATTING_TEAM={_force_bat!r} did not "
-                      f"resolve to a known team {team_names}")
-
     # === HARD INNINGS OVERRIDE (env var) ===
     # Set FORCE_INNINGS=2 when starting the pipeline mid-innings-2 from a
     # cleared cache. Without this override, the 20-over guard correctly
@@ -7465,17 +7407,11 @@ async def run_test():
                 score_mgr.last_cold_start_verdict_implausible = False
             except Exception:
                 pass
-            # Cold-start anchors: manual (env-var, primary) + auto
-            # (SCOUT-derived).  Manual runs once after team_locked if
-            # INITIAL_STRIKER/etc are set.  Auto watches batting_card
-            # each frame and locks striker/non/bowler the first time
-            # SCOUT commits names matching the squad; restores nulled
-            # values until a wicket invalidates the anchor.
-            try:
-                _apply_manual_anchors_if_ready()
-            except Exception as _anchor_err:
-                log.warn(
-                    f"[MANUAL-ANCHOR] apply raised: {_anchor_err}")
+            # Cold-start anchors: auto only (SCOUT-derived).  Watches
+            # batting_card each frame and locks striker/non/bowler the
+            # first time SCOUT commits names matching the squad;
+            # restores nulled values until a wicket invalidates the
+            # anchor.
             try:
                 _auto_anchor_check()
             except Exception as _auto_err:
@@ -9220,7 +9156,9 @@ async def run_test():
                             _state_recovery.reset("innings_transition")
                         assign_teams(
                             _old_bowl, _old_bat,
-                            innings=_new_innings)
+                            innings=_new_innings,
+                            source="auto-swap",
+                            force=True, immutable=True)
                         team_locked = True
                         _bowling_team_strip_count = 0
                         _frame_poisoned = False
@@ -10758,7 +10696,9 @@ async def run_test():
                         if batting_team and bowling_team:
                             team_locked = False
                             assign_teams(
-                                bowling_team, batting_team, innings=2)
+                                bowling_team, batting_team, innings=2,
+                                source="restart-innings-2",
+                                force=True, immutable=True)
                             team_locked = True
                             # P0-A / P0-B: first-frame innings-2 detect
                             # (restart / POISON-RECAL recovery) — align SM +
@@ -11096,7 +11036,9 @@ async def run_test():
                                     overs_reset_source="scorer_innings_change")
                                 assign_teams(
                                     bowling_team, batting_team,
-                                    innings=2)
+                                    innings=2,
+                                    source="scorer-innings-change",
+                                    force=True, immutable=True)
                                 team_locked = True
                             else:
                                 pending_innings_2 = True
@@ -11188,7 +11130,9 @@ async def run_test():
                                 2,
                                 overs_reset_source="scorer_innings_change")
                             assign_teams(
-                                bowling_team, batting_team, innings=2)
+                                bowling_team, batting_team, innings=2,
+                                source="scorer-innings-change",
+                                force=True, immutable=True)
                             team_locked = True
                         else:
                             pending_innings_2 = True
@@ -11608,7 +11552,9 @@ async def run_test():
                         new_bat = bowling_team
                         new_bowl = batting_team
                         assign_teams(
-                            new_bat, new_bowl, innings=2)
+                            new_bat, new_bowl, innings=2,
+                            source="code-confirmed-innings-2",
+                            force=True, immutable=True)
                         team_locked = True
                         log.info(
                             f"  [CODE] Target set to "
@@ -11623,7 +11569,9 @@ async def run_test():
                         scoreboard.set_innings_2(pending_target)
                         team_locked = False
                         assign_teams(
-                            batting_team, bowling_team, innings=2)
+                            batting_team, bowling_team, innings=2,
+                            source="code-confirmed-innings-2",
+                            force=True, immutable=True)
                         team_locked = True
                         log.info(
                             f"  [CODE] Target set to "
