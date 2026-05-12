@@ -6593,12 +6593,30 @@ async def run_test():
     # fails, and no batter is highlighted as striker.  Issue 1 fix.
     score_mgr.scoreboard = scoreboard
 
-    # === MANUAL ANCHOR — once-only application after team_locked ===
-    # Operator-supplied INITIAL_STRIKER / INITIAL_NON_STRIKER /
-    # INITIAL_BOWLER env vars are resolved against the loaded squads
-    # and stamped into batting_card / bowling_card / score_mgr.striker
-    # at the first per-frame iteration where state is ready.  Idempotent:
-    # the flag below ensures one-shot application.
+    # === COLD-START ANCHORS — manual (env-var, primary) + auto ===
+    # Two anchor paths, both stamp scoreboard._inn["striker"]/["non"]/
+    # ["bowler"] + score_mgr.striker/.non/.bowler_name and protect the
+    # values against null-reverts by subsequent SCOUT reads.
+    #
+    # MANUAL (env-var) — failsafe override.  If INITIAL_STRIKER /
+    # INITIAL_NON_STRIKER / INITIAL_BOWLER are set at boot, anchor at
+    # first frame after batting_team commits.  Used when broadcast
+    # graphics are degraded enough that auto-anchor never fires.
+    #
+    # AUTO — primary path.  Watch SCOUT-committed batting_card after
+    # each frame; the first time TWO batters with status="batting" and
+    # both names resolved against the batting_squad are present, lock
+    # those as striker+non_striker.  Same for bowler against
+    # bowling_squad.  Once locked, null SCOUT reads cannot revert the
+    # names — only a wicket event (wickets count increases) does.
+    #
+    # Lock cache + flags:
+    _anchor_batters_locked = False
+    _anchor_bowler_locked = False
+    _anchor_cached_striker: str | None = None
+    _anchor_cached_non: str | None = None
+    _anchor_cached_bowler: str | None = None
+    _anchor_last_wickets = 0
     _manual_anchor_applied = False
 
     def _apply_manual_anchors_if_ready() -> bool:
@@ -6669,12 +6687,19 @@ async def run_test():
         # (state-derivation reads from scoreboard._inn, score_mgr is a
         # parallel canonical store). Setting only one leaves the other
         # at None and the STATE: log line + WS broadcast shows blanks.
+        nonlocal _anchor_batters_locked, _anchor_bowler_locked
+        nonlocal _anchor_cached_striker, _anchor_cached_non
+        nonlocal _anchor_cached_bowler
         if striker:
             score_mgr.striker = striker
             scoreboard._inn["striker"] = striker
+            _anchor_cached_striker = striker
         if non_striker:
             score_mgr.non = non_striker
             scoreboard._inn["non"] = non_striker
+            _anchor_cached_non = non_striker
+        if striker and non_striker:
+            _anchor_batters_locked = True
         if bowler:
             bowl_card = scoreboard.bowling_card
             if bowler not in bowl_card:
@@ -6686,6 +6711,8 @@ async def run_test():
                     "source": "manual_anchor",
                 }
             score_mgr.bowler_name = bowler
+            _anchor_cached_bowler = bowler
+            _anchor_bowler_locked = True
             try:
                 scoreboard._inn["bowler"] = bowler
             except Exception:
@@ -6696,6 +6723,96 @@ async def run_test():
             f"batting_team={batting_team!r}")
         _manual_anchor_applied = True
         return True
+
+    def _auto_anchor_check() -> None:
+        """Watch SCOUT-committed batting_card / bowling state and lock
+        striker/non/bowler the first time clean values matching the
+        squad are present.  Idempotent: runs every frame, fires at
+        most once per (batters,bowler) slot.
+
+        Wicket detection: when ``scoreboard._inn["wickets"]`` increases
+        past the cached value, the batter anchor is INVALIDATED so the
+        next clean read (incoming batter) can re-anchor.
+        """
+        nonlocal _anchor_batters_locked, _anchor_bowler_locked
+        nonlocal _anchor_cached_striker, _anchor_cached_non
+        nonlocal _anchor_cached_bowler, _anchor_last_wickets
+        if not batting_team or not batting_squad:
+            return
+        if _manual_anchor_applied and (
+                _INITIAL_STRIKER or _INITIAL_NON_STRIKER or _INITIAL_BOWLER):
+            # Manual mode has authority — auto does not re-lock fields
+            # the operator chose to fix.  But auto can still lock
+            # fields the operator left blank.
+            pass
+        # === wicket-driven invalidation ===
+        try:
+            _cur_w = int(scoreboard._inn.get("wickets") or 0)
+        except Exception:
+            _cur_w = 0
+        if _cur_w > _anchor_last_wickets and _anchor_batters_locked:
+            log.info(
+                f"[AUTO-ANCHOR] wicket fell ({_anchor_last_wickets}→{_cur_w})"
+                f" — invalidating batter anchor, awaiting next clean read")
+            _anchor_batters_locked = False
+            _anchor_cached_striker = None
+            _anchor_cached_non = None
+        _anchor_last_wickets = _cur_w
+        # === auto-lock batters from batting_card ===
+        if not _anchor_batters_locked:
+            squad_set = set(batting_squad)
+            active = [
+                name for name, info in scoreboard.batting_card.items()
+                if info.get("status") == "batting" and name in squad_set
+            ]
+            if len(active) >= 2:
+                striker = (scoreboard._inn.get("striker")
+                           or score_mgr.striker)
+                if striker not in active:
+                    striker = active[0]
+                non = next((n for n in active if n != striker), None)
+                if non is None and len(active) >= 2:
+                    non = active[1] if active[0] == striker else active[0]
+                if striker and non:
+                    scoreboard._inn["striker"] = striker
+                    scoreboard._inn["non"] = non
+                    score_mgr.striker = striker
+                    score_mgr.non = non
+                    _anchor_cached_striker = striker
+                    _anchor_cached_non = non
+                    _anchor_batters_locked = True
+                    log.info(
+                        f"[AUTO-ANCHOR] batters locked: striker={striker!r}"
+                        f" non={non!r} (squad-validated)")
+        # === auto-lock bowler ===
+        if not _anchor_bowler_locked:
+            bowler_now = (scoreboard._inn.get("bowler")
+                          or score_mgr.bowler_name)
+            if bowler_now and bowler_now in bowling_squad:
+                _anchor_cached_bowler = bowler_now
+                _anchor_bowler_locked = True
+                log.info(
+                    f"[AUTO-ANCHOR] bowler locked: {bowler_now!r} "
+                    f"(squad-validated)")
+        # === repair: if locked field went null, restore from cache ===
+        if (_anchor_batters_locked
+                and scoreboard._inn.get("striker") is None
+                and _anchor_cached_striker):
+            scoreboard._inn["striker"] = _anchor_cached_striker
+            score_mgr.striker = _anchor_cached_striker
+        if (_anchor_batters_locked
+                and scoreboard._inn.get("non") is None
+                and _anchor_cached_non):
+            scoreboard._inn["non"] = _anchor_cached_non
+            score_mgr.non = _anchor_cached_non
+        if (_anchor_bowler_locked
+                and not scoreboard._inn.get("bowler")
+                and _anchor_cached_bowler):
+            try:
+                scoreboard._inn["bowler"] = _anchor_cached_bowler
+            except Exception:
+                pass
+            score_mgr.bowler_name = _anchor_cached_bowler
 
     current_action: str | None = None
     pending_action: str | None = None
@@ -7348,13 +7465,22 @@ async def run_test():
                 score_mgr.last_cold_start_verdict_implausible = False
             except Exception:
                 pass
-            # Once-only manual anchor application: fires the first
-            # frame after team_locked when INITIAL_STRIKER/etc are set.
+            # Cold-start anchors: manual (env-var, primary) + auto
+            # (SCOUT-derived).  Manual runs once after team_locked if
+            # INITIAL_STRIKER/etc are set.  Auto watches batting_card
+            # each frame and locks striker/non/bowler the first time
+            # SCOUT commits names matching the squad; restores nulled
+            # values until a wicket invalidates the anchor.
             try:
                 _apply_manual_anchors_if_ready()
             except Exception as _anchor_err:
                 log.warn(
                     f"[MANUAL-ANCHOR] apply raised: {_anchor_err}")
+            try:
+                _auto_anchor_check()
+            except Exception as _auto_err:
+                log.warn(
+                    f"[AUTO-ANCHOR] check raised: {_auto_err}")
             set_global_frame(frame_count)
             try:
                 _TRACE_RECORDER.begin_frame(frame_count)
