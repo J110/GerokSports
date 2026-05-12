@@ -6707,6 +6707,12 @@ async def run_test():
                  f"loop={os.environ.get('FRAME_SOURCE_FILE_LOOP','0')})")
         frames = make_frame_source(fps=CAPTURE_FPS, source="file",
                                    video_path=file_path)
+    elif _FRAME_SOURCE_MODE == "udp":
+        log.info("Frame source: udp "
+                 f"(url={os.environ.get('FRAME_SOURCE_UDP_URL', '<default>')}, "
+                 f"watchdog_s={os.environ.get('FRAME_SOURCE_UDP_WATCHDOG_S','5.0')}, "
+                 f"startup_grace_s={os.environ.get('FRAME_SOURCE_UDP_STARTUP_GRACE_S','15.0')})")
+        frames = make_frame_source(fps=CAPTURE_FPS, source="udp")
     else:
         for w in FrameSource.list_windows():
             if "firefox" in w["owner"].lower():
@@ -6751,13 +6757,17 @@ async def run_test():
     frames.start()
 
     ball_analyzer: BallAnalyzer | None = None
-    if firefox_wid or _FRAME_SOURCE_MODE in ("capture_card", "file"):
+    if firefox_wid or _FRAME_SOURCE_MODE in ("capture_card", "file", "udp"):
         # window_id is ignored when BallAnalyzer's own FRAME_SOURCE
         # resolves to capture_card; pass 0 as a harmless placeholder.
+        # UDPFrameSource has the same get_latest_with_ts/get_frame_count
+        # API as FileFrameSource — pass it through file_frame_source so
+        # BallAnalyzer uses the externally-managed instance instead of
+        # building its own internal source.
         ball_analyzer = BallAnalyzer(
             window_id=firefox_wid or 0,
             file_frame_source=(
-                frames if _FRAME_SOURCE_MODE == "file" else None),
+                frames if _FRAME_SOURCE_MODE in ("file", "udp") else None),
         )
         ball_analyzer.start()
         log.info("[BALL ANALYZER] Background capture started "
