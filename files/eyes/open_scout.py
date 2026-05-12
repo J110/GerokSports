@@ -26,7 +26,6 @@ from __future__ import annotations
 
 import asyncio
 import base64
-import os
 import time
 from typing import NamedTuple
 
@@ -48,70 +47,62 @@ from eyes.open_scout_classify import classify_full
 
 log = CricketLogger("OPEN-SCOUT")
 
-# Frozen prompt — IDENTICAL to run_scout_open.py:32-41 so the rule-v2
-# classifier behaves the same in production as it did in validation.
-# Any prompt drift invalidates the §11.4 P=0.77 / R=0.99 baseline.
+# Live prompt — rewritten 2026-05-12 after the PBKS-vs-DC postmortem.
+# Same parrot-anchor failure shape as fed5b5a (vision.py scoreboard
+# prompt): the prior v1 listed literal example tokens ("fielders
+# walking", "players talking", "bowler running") in its bullets, and
+# llama-4-scout mode-collapsed onto "a player walking on the field"
+# for 96.1% of frames in live_20260511 vs 1.1-3.6% baseline. The
+# rewrite (i) grounds the model in pixel content via a mandatory
+# VISIBLE_TEXT step before any descriptive prose, (ii) explicitly
+# forbids the observed canned phrases, and (iii) provides an
+# [UNREADABLE FRAME] exit so the model has somewhere to go besides
+# parroting when it cannot parse the image. Prior validation memo
+# §11.4 baseline (P=0.77 / R=0.99 on 247-frame corpus) was tied to
+# the parrot-prone wording and no longer applies; classify_full
+# rules in open_scout_classify.py are independent of this exact
+# phrasing.
 OPEN_PROMPT = (
     "This is a single frame from a professional cricket match "
     "broadcast on television.\n\n"
-    "Describe what you see in this frame in detail. Specifically "
-    "address:\n"
-    "- What is the camera showing? (e.g., wide field view, closeup "
-    "of a player, crowd shot, score graphic)\n"
-    "- What are the people in the frame doing? (e.g., bowler "
-    "running, batter standing, players talking, fielders walking)\n"
-    "- Are there any graphical overlays? (e.g., score graphics, "
-    "REPLAY tags, sponsor logos, player stats)\n"
-    "- What does the action level look like? (e.g., active play "
-    "happening, between deliveries, post-action moment, replay or "
-    "slow-motion)\n\n"
-    "Provide a 2-4 sentence description in plain language. Don't "
-    "classify the frame; just describe it.\n"
+    "STEP 1 — Read any visible scoreboard or graphic text in the "
+    "frame verbatim onto the FIRST line, prefixed with "
+    "\"VISIBLE_TEXT:\". Capture score, batter names, bowler name, "
+    "run-rate, over count, or whatever overlay text is actually "
+    "rendered in the pixels. If no scoreboard or graphic text is "
+    "visible, emit exactly: VISIBLE_TEXT: (none)\n\n"
+    "STEP 2 — On the next line(s), write a 2-4 sentence description "
+    "of what is actually happening in THIS specific frame. Cover:\n"
+    "  - Camera framing: how close and from what angle (wide field "
+    "view from the bowler's end, side-on, closeup, broadcast "
+    "graphic, crowd shot).\n"
+    "  - The exact pose and motion of any people visible: what "
+    "they are doing right now (mid-stride, mid-swing, mid-throw, "
+    "preparing to bowl, standing at the crease, walking back to a "
+    "mark, celebrating). Describe their actual posture, not a "
+    "generic activity label.\n"
+    "  - Any persistent on-screen graphics (score bars, sponsor "
+    "logos, view-count widgets) — note these are persistent UI, "
+    "NOT the live action.\n"
+    "  - Whether REPLAY / SLOW-MO / SPLIT-SCREEN / TELESTRATOR "
+    "indicators are visible.\n\n"
+    "CRITICAL — anti-parroting rules:\n"
+    "  - Do not copy phrases from THIS prompt verbatim. The "
+    "phrases above describe categories, not contents.\n"
+    "  - The descriptions \"a player walking on the field\", "
+    "\"a cricket player standing\", \"the camera shows a player "
+    "walking\" are FORBIDDEN as canned fallbacks. Use them only "
+    "if they are literally and specifically what is happening in "
+    "this exact frame.\n"
+    "  - Your description must be grounded in something you can "
+    "actually point to in the pixels — a number on the scoreboard, "
+    "a specific body pose, a graphic element, a colour, a "
+    "framing.\n\n"
+    "If the frame is blank, fully black, corrupted with decoder "
+    "artifacts, fully obscured, or you cannot identify any "
+    "cricket-broadcast content, write exactly ONE line and stop:\n"
+    "[UNREADABLE FRAME]\n"
 )
-
-# V2 prompt — Path A iteration (regression set: 105 manually labeled
-# delivery clips, see ``files/docs/investigations/scout_path_a_iteration
-# .md``).  Front-loads broadcast-mode probing so replay / slo-mo /
-# telestrator frames produce keyword-matchable prose.  v1 is preserved
-# verbatim above for byte-identical rollback (memo §11.4 baseline).
-#
-# Activate by setting OPEN_SCOUT_PROMPT_VERSION=v2 in the environment.
-OPEN_PROMPT_V2 = (
-    "This is a single frame from a professional cricket match "
-    "broadcast on television.\n\n"
-    "Begin your response with EXACTLY ONE of these tags on its "
-    "own first line, with no extra words on that line:\n"
-    "  [BROADCAST: REPLAY]  — a \"REPLAY\" text label, replay "
-    "watermark, or \"INSTANT REPLAY\" graphic is visible.\n"
-    "  [BROADCAST: SLO-MO]  — a \"SLOW MOTION\", \"SLO-MO\", or "
-    "\"SUPER SLO-MO\" tag is visible, OR motion is clearly slowed, "
-    "frozen, or stretched (slo-mo capture without a tag).\n"
-    "  [BROADCAST: TELESTRATOR]  — telestrator drawings, freeze-"
-    "frame analysis arrows or circles, or analyst diagrams are "
-    "drawn over players.\n"
-    "  [BROADCAST: SPLIT-SCREEN]  — the frame shows a split-screen "
-    "replay layout (two angles side by side).\n"
-    "  [BROADCAST: LIVE]  — none of the above markers are present.\n\n"
-    "After the tag line, write 2-3 sentences describing:\n"
-    "  - camera framing and what people are doing (wide field "
-    "view, closeup, mid-stride, mid-swing, walking between balls, "
-    "crowd shot, studio shot, etc.).\n"
-    "  - persistent on-screen graphics — score bar, sponsor logos, "
-    "view counts. These are NOT replay indicators.\n\n"
-    "Do not classify the frame beyond the tag; just describe.\n"
-)
-
-
-def _active_prompt() -> str:
-    """Return the prompt to use this call.
-
-    Resolved per-call (not at import) so a test harness can flip
-    ``OPEN_SCOUT_PROMPT_VERSION`` between sessions without
-    re-importing.  Default is v1 — production behavior unchanged.
-    """
-    return (OPEN_PROMPT_V2
-            if os.environ.get("OPEN_SCOUT_PROMPT_VERSION", "v1") == "v2"
-            else OPEN_PROMPT)
 
 
 VALID_CLASSES = ("action", "replay", "ad", "umpire", "other")
@@ -268,7 +259,7 @@ class OpenScout:
                                      "data:image/jpeg;base64,"
                                      f"{b64}")}},
                             {"type": "text",
-                             "text": _active_prompt()},
+                             "text": OPEN_PROMPT},
                         ],
                     }],
                 ),

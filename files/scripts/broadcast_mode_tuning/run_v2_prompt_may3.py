@@ -91,7 +91,7 @@ async def main_async() -> int:
     _ensure_path()
     from groq import AsyncGroq
     from eyes.config import GROQ_API_KEY, GROQ_PRIMARY_MODEL
-    from eyes.open_scout import OPEN_PROMPT_V2
+    from eyes.open_scout import OPEN_PROMPT
     from eyes.open_scout_classify import classify_full
 
     clip_dirs = sorted(p for p in CORPUS_DIR.glob("d*") if p.is_dir())
@@ -123,7 +123,7 @@ async def main_async() -> int:
         emit("")
 
         for t, jpg in sample_frames_1fps(mp4):
-            raw = await describe(client, GROQ_PRIMARY_MODEL, OPEN_PROMPT_V2, jpg)
+            raw = await describe(client, GROQ_PRIMARY_MODEL, OPEN_PROMPT, jpg)
             cls = classify_full(raw)
             totals[cls] += 1
             preview = " ".join(raw.split())[:200]

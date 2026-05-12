@@ -494,12 +494,12 @@ async def main_async() -> int:
     from groq import AsyncGroq
     from eyes.config import GROQ_API_KEY, GROQ_PRIMARY_MODEL
     from eyes.vision import SCOUT_PROMPT
-    from eyes.open_scout import OPEN_PROMPT, OPEN_PROMPT_V2
+    from eyes.open_scout import OPEN_PROMPT
     from eyes.open_scout_classify import classify_full
 
     MODEL = GROQ_PRIMARY_MODEL
     prod_prompt = SCOUT_PROMPT.format(vision_hint=VISION_HINT)
-    v2_prompt = OPEN_PROMPT_V2
+    v2_prompt = OPEN_PROMPT
     v1_prompt = OPEN_PROMPT
 
     label_map = _label_lookup()
