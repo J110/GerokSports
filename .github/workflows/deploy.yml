@@ -51,11 +51,26 @@ jobs:
         env:
           MODE: ${{ github.event.inputs.mode || 'fixture' }}
         run: |
+          # Live mode now goes through the native UDPFrameSource
+          # (files/eyes/capture/udp_frame_source.py) — ffmpeg
+          # subprocess → rawvideo pipe with ffprobe-validated
+          # dimensions and a watchdog respawn on stall. Replaces the
+          # cv2.VideoCapture("udp://...") hack that masked SPS/PPS
+          # loss during the 2026-05-11 match.
+          # Fixture mode is unchanged (CI replay of the 30s test mp4
+          # via FileFrameSource).
           if [ "$MODE" = "live" ]; then
-            FRAME_PATH='udp://0.0.0.0:9999?fifo_size=1000000&overrun_nonfatal=1'
-            echo "::notice ::Pipeline mode = LIVE (UDP MPEG-TS listener on 9999)"
+            FRAME_LINES='FRAME_SOURCE=udp
+          FRAME_SOURCE_UDP_URL=udp://0.0.0.0:9999?fifo_size=10000000&buffer_size=2097152&overrun_nonfatal=1
+          FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS=1920x1080,1280x720
+          FRAME_SOURCE_UDP_WATCHDOG_S=5.0
+          FRAME_SOURCE_UDP_STARTUP_GRACE_S=20.0'
+            echo "::notice ::Pipeline mode = LIVE (UDPFrameSource on udp://0.0.0.0:9999)"
           else
-            FRAME_PATH='/mnt/data/sportscomm/files/fixtures/cricket_test_30s.mp4'
+            FRAME_LINES='FRAME_SOURCE=file
+          FRAME_SOURCE_FILE=/mnt/data/sportscomm/files/fixtures/cricket_test_30s.mp4
+          FRAME_SOURCE_FILE_OFFSET_S=0
+          FRAME_SOURCE_FILE_LOOP=0'
             echo "::notice ::Pipeline mode = FIXTURE replay"
           fi
           SESSION_ID="live_$(date -u +%Y%m%d)"
@@ -67,10 +82,7 @@ jobs:
           GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
           CRICBUZZ_MATCH_ID=152108
           CRICBUZZ_MATCH_SLUG=pbks-vs-dc-55th-match-indian-premier-league-2026
-          FRAME_SOURCE=file
-          FRAME_SOURCE_FILE=$FRAME_PATH
-          FRAME_SOURCE_FILE_OFFSET_S=0
-          FRAME_SOURCE_FILE_LOOP=0
+          $FRAME_LINES
           BMF_SESSION_ID=$SESSION_ID
           USE_OPEN_SCOUT=1
           OPENSCOUT_DECOUPLED=1
