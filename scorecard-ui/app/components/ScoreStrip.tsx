@@ -113,9 +113,9 @@ export default function ScoreStrip({
         ) : (
           <span className="text-[#484F58]">— batter</span>
         )}
-        {scorecard?.non_striker &&
-          scorecard.non_striker !== scorecard.striker ? (
-            <span>{scorecard.non_striker.split(" ").pop()}</span>
+        {scorecard?.non &&
+          scorecard.non !== scorecard.striker ? (
+            <span>{scorecard.non.split(" ").pop()}</span>
           ) : (
             <span className="text-[#484F58]">—</span>
           )}

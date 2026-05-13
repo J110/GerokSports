@@ -35,7 +35,7 @@ export interface Scorecard {
   batting_team?: string;
   bowling_team?: string;
   striker?: string | null;
-  non_striker?: string | null;
+  non?: string | null;
   current_bowler?: string | null;
   last_bowler?: string | null;
   bowler_between_overs?: boolean;
