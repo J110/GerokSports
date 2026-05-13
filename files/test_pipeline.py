@@ -2665,6 +2665,139 @@ class ScoreJumpGuard:
         self._pending_count = 0
 
 
+def _monotonic_stats_guard(eb1, eb2, eb_bowl, scoreboard, log,
+                           frame_count):
+    """Bug #7 — detection vs derivation separation.
+
+    Strip-read batter/bowler stats can regress against persisted card
+    state under several conditions:
+      * Mid-delivery frame where Scout VLM hasn't yet refreshed runs/
+        balls (off-by-one timing) — UI shows last-frame stats which
+        match-or-lag the strip
+      * Strategic-timeout / H2H / preview graphic showing the same
+        names but ZERO stats ('Naman 0(0)')
+      * Recap of a previous over showing earlier counts
+
+    For LOCKED batter/bowler identities, runs/balls/wickets/overs are
+    accumulating quantities — they can never decrease within a single
+    innings.  When a strip read for SAME canonical name brings a value
+    strictly LESS than what's already on the card, suppress that
+    field (return None) and log [STAT-GUARD-...]. score_manager keeps
+    whatever it had.
+
+    Returns the kwargs dict for FrameInput construction.
+    """
+    def _safe_int_local(v):
+        if v is None:
+            return None
+        try:
+            return int(v)
+        except (TypeError, ValueError):
+            return None
+
+    def _safe_float_local(v):
+        if v is None:
+            return None
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return None
+
+    def _guard_batter(eb, slot_label):
+        if not eb:
+            return None, None, None
+        name = eb.get("name")
+        r_in = _safe_int_local(eb.get("runs"))
+        b_in = _safe_int_local(eb.get("balls"))
+        if not name:
+            return None, r_in, b_in
+        _bc = scoreboard.batting_card or {}
+        _resolved = (scoreboard.resolve_name(name) or name)
+        _c = _bc.get(_resolved) or _bc.get(name)
+        if not _c:
+            return name, r_in, b_in
+        _prev_r = _c.get("runs")
+        _prev_b = _c.get("balls")
+        r_out = r_in
+        b_out = b_in
+        if (r_in is not None and _prev_r is not None
+                and r_in < _prev_r):
+            log.info(
+                f"  [STAT-GUARD-{slot_label}] runs regress "
+                f"{_prev_r}→{r_in} for {_resolved!r} frame=F"
+                f"{frame_count} — suppressing")
+            r_out = None
+        if (b_in is not None and _prev_b is not None
+                and b_in < _prev_b):
+            log.info(
+                f"  [STAT-GUARD-{slot_label}] balls regress "
+                f"{_prev_b}→{b_in} for {_resolved!r} frame=F"
+                f"{frame_count} — suppressing")
+            b_out = None
+        return name, r_out, b_out
+
+    def _guard_bowler(eb):
+        if not eb:
+            return None, None, None, None
+        name = eb.get("name")
+        w_in = _safe_int_local(eb.get("wickets"))
+        r_in = _safe_int_local(eb.get("runs"))
+        o_in = _safe_float_local(eb.get("overs"))
+        if not name:
+            return None, w_in, r_in, o_in
+        _bowl_card = getattr(scoreboard, "bowling_card", {}) or {}
+        _resolved = (scoreboard.resolve_name(name) or name)
+        _c = _bowl_card.get(_resolved) or _bowl_card.get(name)
+        if not _c:
+            return name, w_in, r_in, o_in
+        _prev_w = _c.get("wickets")
+        _prev_r = _c.get("runs")
+        _prev_o = _c.get("overs")
+        try:
+            _prev_o_f = float(_prev_o) if _prev_o is not None else None
+        except (TypeError, ValueError):
+            _prev_o_f = None
+        w_out = w_in
+        r_out = r_in
+        o_out = o_in
+        if (w_in is not None and _prev_w is not None
+                and w_in < _prev_w):
+            log.info(
+                f"  [STAT-GUARD-BOWL] wickets regress {_prev_w}→{w_in} "
+                f"for {_resolved!r} F{frame_count} — suppressing")
+            w_out = None
+        if (r_in is not None and _prev_r is not None
+                and r_in < _prev_r):
+            log.info(
+                f"  [STAT-GUARD-BOWL] runs regress {_prev_r}→{r_in} "
+                f"for {_resolved!r} F{frame_count} — suppressing")
+            r_out = None
+        if (o_in is not None and _prev_o_f is not None
+                and o_in < _prev_o_f):
+            log.info(
+                f"  [STAT-GUARD-BOWL] overs regress "
+                f"{_prev_o_f}→{o_in} for {_resolved!r} F{frame_count} "
+                f"— suppressing")
+            o_out = None
+        return name, w_out, r_out, o_out
+
+    n1, r1, b1 = _guard_batter(eb1, "BAT1")
+    n2, r2, b2 = _guard_batter(eb2, "BAT2")
+    bn, bw, br, bo = _guard_bowler(eb_bowl)
+    return {
+        "ext_bat1_name": n1,
+        "ext_bat1_runs": r1,
+        "ext_bat1_balls": b1,
+        "ext_bat2_name": n2,
+        "ext_bat2_runs": r2,
+        "ext_bat2_balls": b2,
+        "ext_bowler_name": bn,
+        "ext_bowler_wickets": bw,
+        "ext_bowler_runs": br,
+        "ext_bowler_overs": bo,
+    }
+
+
 def _cap_at_crease_for_payload(scoreboard, state, log, frame_count):
     """Build the WS payload's batting_card list with a hard cap of 2
     entries at status='batting'.  Cricket invariant: never more than
@@ -12707,26 +12840,9 @@ async def run_test():
                     _safe_float(state.get("overs")),
                     _bcast.get("this_over_broadcast"),
                     confirmed_overs=_safe_float(score_mgr.overs)),
-                ext_bat1_name=(
-                    _eb1.get("name") if _eb1 else None),
-                ext_bat1_runs=(
-                    _safe_int(_eb1.get("runs")) if _eb1 else None),
-                ext_bat1_balls=(
-                    _safe_int(_eb1.get("balls")) if _eb1 else None),
-                ext_bat2_name=(
-                    _eb2.get("name") if _eb2 else None),
-                ext_bat2_runs=(
-                    _safe_int(_eb2.get("runs")) if _eb2 else None),
-                ext_bat2_balls=(
-                    _safe_int(_eb2.get("balls")) if _eb2 else None),
-                ext_bowler_name=(_ext_bowler_sm.get("name")
-                                 if _ext_bowler_sm else None),
-                ext_bowler_wickets=(_safe_int(_ext_bowler_sm.get("wickets"))
-                                    if _ext_bowler_sm else None),
-                ext_bowler_runs=(_safe_int(_ext_bowler_sm.get("runs"))
-                                 if _ext_bowler_sm else None),
-                ext_bowler_overs=(_safe_float(_ext_bowler_sm.get("overs"))
-                                  if _ext_bowler_sm else None),
+                **_monotonic_stats_guard(
+                    _eb1, _eb2, _ext_bowler_sm,
+                    scoreboard, log, frame_count),
                 scorer_changes=(changes if isinstance(changes, list)
                                 else []),
                 speed_kph=_frame_speed_kph,
