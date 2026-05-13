@@ -6761,6 +6761,20 @@ async def run_test():
         _inn1_batting_team_latched = _out["inn1_batting_team_latched"]
         _inn1_bowling_team_latched = _out["inn1_bowling_team_latched"]
         _inn1_completed_deterministic = _out["inn1_completed_deterministic"]
+        # 2026-05-13 (#63): innings-2 transition — release per-player
+        # trackers so the new innings's openers + new bowler can
+        # re-accumulate cleanly.  team_confidence is re-seeded inside
+        # `_execute_innings_change_from_state` via the assign_teams
+        # callback with immutable=True (which routes through
+        # ConfidenceTracker.set_immutable, overriding LOCKED on the
+        # prior team to IMMUTABLE on the new team).
+        striker_tracker.unlock_and_reset()
+        non_striker_tracker.unlock_and_reset()
+        bowler_tracker.unlock_and_reset()
+        log.info(
+            "  [INNINGS-2-TRACKERS-RESET] striker/non/bowler "
+            f"cleared; batting_team→{batting_team!r} "
+            f"(state={team_confidence.state})")
         return True
 
     # === SCORE MANAGER (live mode — events drive Wire commentary) ===

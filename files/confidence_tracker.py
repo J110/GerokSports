@@ -237,12 +237,17 @@ class ConfidenceTracker:
 
     def unlock_and_reset(self) -> None:
         """Combined release-and-clear for event-driven re-detection
-        (wicket, over end, innings transition)."""
+        (wicket, over end, innings transition).  No-op on IMMUTABLE
+        trackers — IMMUTABLE is the operator/innings-end commitment
+        and innings-3 is not a thing.  Returns True when state
+        actually cleared, False when it was a no-op (caller can log)."""
+        if self._immutable:
+            return False
         self._locked = False
-        self._immutable = False
         self._scores.clear()
         self._leader = None
         self._last_t = 0.0
+        return True
 
     def swap_with(self, other: "ConfidenceTracker") -> None:
         """Swap leader values with another tracker.  Both remain

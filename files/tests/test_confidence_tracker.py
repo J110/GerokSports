@@ -153,6 +153,73 @@ def test_swap_with_preserves_scores_under_new_slot() -> None:
     assert "TILAK" in striker.snapshot()["scores"]
 
 
+# ── IMMUTABLE (innings-2 / operator commit) ─────────────────────────
+
+
+def test_immutable_blocks_observe_even_at_high_weight() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    bt.set_immutable("MI")
+    assert bt.state == STATE_IMMUTABLE
+    assert bt.leader == "MI"
+    bt.observe("RCB", weight=10000.0)
+    assert bt.leader == "MI"
+    assert bt.state == STATE_IMMUTABLE
+
+
+def test_immutable_observe_of_same_value_still_immutable() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    bt.set_immutable("MI")
+    bt.observe("MI", weight=1.0)
+    assert bt.leader == "MI"
+    assert bt.state == STATE_IMMUTABLE
+
+
+def test_locked_unlock_and_reset_returns_to_none() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "striker", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    _drive_to_firm(bt, "NAMAN")
+    assert bt.state == STATE_LOCKED
+    did_clear = bt.unlock_and_reset()
+    assert did_clear is True
+    assert bt.state == STATE_NONE
+    assert bt.leader is None
+    assert bt.snapshot()["scores"] == {}
+
+
+def test_immutable_unlock_and_reset_is_noop() -> None:
+    """innings-3 isn't a thing — IMMUTABLE must not be cleared."""
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    bt.set_immutable("MI")
+    assert bt.state == STATE_IMMUTABLE
+    did_clear = bt.unlock_and_reset()
+    assert did_clear is False
+    assert bt.state == STATE_IMMUTABLE
+    assert bt.leader == "MI"
+
+
+def test_set_immutable_on_locked_tracker_takes_precedence() -> None:
+    """innings-2 path: tracker is LOCKED on innings-1 team, then
+    set_immutable seeds the new chasing team."""
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    _drive_to_firm(bt, "MI")
+    assert bt.state == STATE_LOCKED and bt.leader == "MI"
+    bt.set_immutable("RCB")
+    assert bt.state == STATE_IMMUTABLE
+    assert bt.leader == "RCB"
+    # Further observations of either side cannot move the leader.
+    bt.observe("MI", weight=10.0)
+    assert bt.leader == "RCB"
+
+
 class FakeClock:
     """Manual wall-clock for deterministic decay tests."""
 
