@@ -12770,6 +12770,19 @@ async def run_test():
                     f"  [TRACKER-SWAP] striker↔non; "
                     f"striker={striker_tracker.leader!r} "
                     f"non={non_striker_tracker.leader!r}")
+                _set_inn_slot_with_sm_mirror(
+                    score_mgr, scoreboard, "striker",
+                    striker_tracker.leader, "tracker-swap")
+                _set_inn_slot_with_sm_mirror(
+                    score_mgr, scoreboard, "non",
+                    non_striker_tracker.leader, "tracker-swap")
+                try:
+                    _TRACE_RECORDER.record(
+                        tag="TRACKER-SWAP-MIRRORED",
+                        striker=striker_tracker.leader,
+                        non=non_striker_tracker.leader)
+                except Exception:
+                    pass
             elif _wicket_signal:
                 if (striker_tracker.state == "LOCKED"
                         and _eb1_canon is not None
