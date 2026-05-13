@@ -10126,6 +10126,80 @@ async def run_test():
                         f"{_dismissal.get('type')}' rejected — "
                         f"wickets unchanged ({_cur_wkts_now})")
                     _dismissal = None
+            # Scorer-dismissal veto (Change B): if the claimed dismissed
+            # batter is still listed as a live batter in extracted.batters
+            # with non-zero stats, the scorer is internally contradictory.
+            # F378 case: scorer said "Pathum dismissed" but strip showed
+            # PATHUM 30(17) alive — scorer mis-inferred from the card-vs-
+            # strip ball-count drift. Drop the dismissal; BED's
+            # ball_event=WICKET (using SM.striker) commits later.
+            if _dismissal and isinstance(_dismissal, dict):
+                _scorer_claim = _dismissal.get("batter", "")
+                if _scorer_claim:
+                    _batters_now = extracted.get("batters") or []
+                    for _b_check in _batters_now:
+                        if not isinstance(_b_check, dict):
+                            continue
+                        _bn_check = _b_check.get("name") or ""
+                        if _bn_check != _scorer_claim:
+                            continue
+                        try:
+                            _br_check = int(_b_check.get("runs") or 0)
+                        except (ValueError, TypeError):
+                            _br_check = 0
+                        try:
+                            _bb_check = int(_b_check.get("balls") or 0)
+                        except (ValueError, TypeError):
+                            _bb_check = 0
+                        if _br_check > 0 or _bb_check > 0:
+                            log.warn(
+                                f"  [SCORER-DISMISSAL-VETOED-STILL-BATTING] "
+                                f"scorer_claim={_scorer_claim!r} but "
+                                f"present in extracted.batters as "
+                                f"{_br_check}({_bb_check}) — dropping "
+                                f"dismissal claim; awaiting BED ball_event")
+                            try:
+                                _TRACE_RECORDER.record(
+                                    tag="SCORER-DISMISSAL-VETOED-STILL-BATTING",
+                                    scorer_claim=_scorer_claim,
+                                    batter_runs=_br_check,
+                                    batter_balls=_bb_check,
+                                    frame_id=str(frame_count))
+                            except Exception:
+                                pass
+                            extracted.pop("dismissal", None)
+                            _dismissal = None
+                            break
+
+            # Scorer-dismissal veto (Change A): SM.striker is authoritative
+            # for the dismissed batter (cricket: a wicket falls on the
+            # striker). If scorer's claim disagrees with SM.striker, drop
+            # the scorer claim and let BED's ball_event=WICKET path fire
+            # downstream with WICKET-ATTRIB using SM-sourced striker.
+            # F378 case: scorer said Pathum, SM.striker said Rahul.
+            if _dismissal and isinstance(_dismissal, dict):
+                _scorer_claim = _dismissal.get("batter", "")
+                _sm_striker = (getattr(score_mgr, "striker", None)
+                               if score_mgr else None)
+                if (_scorer_claim and _sm_striker
+                        and _scorer_claim != _sm_striker):
+                    log.warn(
+                        f"  [SCORER-DISMISSAL-VETOED-SM-DISAGREE] "
+                        f"scorer_claim={_scorer_claim!r} != "
+                        f"sm_striker={_sm_striker!r} — dropping scorer "
+                        f"dismissal; SM.striker is authoritative for "
+                        f"on-strike dismissal attribution")
+                    try:
+                        _TRACE_RECORDER.record(
+                            tag="SCORER-DISMISSAL-VETOED-SM-DISAGREE",
+                            scorer_claim=_scorer_claim,
+                            sm_striker=_sm_striker,
+                            frame_id=str(frame_count))
+                    except Exception:
+                        pass
+                    extracted.pop("dismissal", None)
+                    _dismissal = None
+
             if _dismissal and isinstance(_dismissal, dict):
                 _d_name = _dismissal.get("batter", "")
                 if _d_name and scoreboard.batting_card:
