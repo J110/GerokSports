@@ -8397,6 +8397,15 @@ async def run_test():
             # Broadcast extras total (info panel)
             if _bcast.get("extras_total") is not None:
                 _be_total = _bcast["extras_total"]
+                # 2026-05-13 (anomaly 2): feed BED's extras_total
+                # tracker channel so the path-4 strip-field-lag gate
+                # can compute extras_delta vs prev frame.  See
+                # commentary.py:detect EXTRA-SUPPRESSED-STRIP-LAG.
+                try:
+                    scoreboard._tracker.update(
+                        "extras_total", int(_be_total), frame_count)
+                except (AttributeError, ValueError, TypeError):
+                    pass
                 _cur_extras_total = sum(scoreboard.extras.values())
                 if _be_total > _cur_extras_total:
                     scoreboard.extras["broadcast_total"] = _be_total

@@ -47,6 +47,12 @@ class BallEventDetector:
         # bowler_runs_delta == 0, every legal off-the-bat single during
         # that lag window would be mislabelled as a leg bye.
         self.prev_striker_runs: int | None = None
+        # 2026-05-13 (anomaly 2 — strip-lag fabricated wide): cumulative
+        # extras-total witness from the strip.  When path 4
+        # (bowler_runs_signal_ok) would classify a +1 score delta as a
+        # wide, this delta acts as a corroborator: extras_delta == 0
+        # means no new extra was on the strip → suppress.
+        self.prev_extras: int | None = None
         self.events: list[dict] = []
         self._possible_extra: dict | None = None
         self._broadcast_extra: str | None = None
@@ -88,6 +94,7 @@ class BallEventDetector:
         self._balls_owed_to_silence = 0
         self.prev_score = None
         self.prev_wickets = None
+        self.prev_extras = None
         self.prev_overs = None
         self.prev_bowler_runs = None
         self.prev_bowler = None
@@ -212,6 +219,25 @@ class BallEventDetector:
         balls_delta = new_b - old_b
         s_delta = (score or 0) - (self.prev_score or 0)
         w_delta = (wickets or 0) - (self.prev_wickets or 0)
+
+        # 2026-05-13 (anomaly 2 — strip-lag fabricated wide):
+        # extras_total cumulative witness from the strip.  Used by
+        # path 4 (bowler_runs_signal_ok) to require an actual extras-
+        # count increase before classifying score-advance-no-overs-
+        # advance as a wide.  None means scout hasn't reported
+        # extras for this frame; gate falls through to existing
+        # logic (defense-in-depth via freshness gate from 4c8c305).
+        _extras_now = tracker.get("extras_total")
+        try:
+            _extras_now_i = (int(_extras_now)
+                             if _extras_now is not None else None)
+        except (ValueError, TypeError):
+            _extras_now_i = None
+        extras_delta = (
+            _extras_now_i - self.prev_extras
+            if (_extras_now_i is not None
+                and self.prev_extras is not None)
+            else None)
 
         # Pending-jitter housekeeping: a deferred extra is only valid
         # if THIS frame is the exact "same +1, same score, no other
@@ -610,6 +636,31 @@ class BallEventDetector:
                         f"now={striker_balls}); a no-ball would have "
                         f"ticked striker balls")
             elif bowler_runs_signal_ok:
+                # 2026-05-13 (anomaly 2 — strip-field-lag wide): the
+                # bowler_runs_signal_ok branch fires when score and
+                # bowler_runs advance with no overs delta — historically
+                # interpreted as "wide off the bat side."  Scout's
+                # strip-field timing lag can produce the same shape on
+                # a real legal delivery (score+bowler_runs update one
+                # frame before overs).  Require an actual extras-count
+                # increase via extras_delta to fire.  None means no
+                # extras witness (fall through to existing classifier);
+                # > 0 means a new extra really happened; == 0 means
+                # the score advanced without any new extra → strip
+                # lag race, suppress this event entirely.
+                if extras_delta is not None and extras_delta == 0 and s_delta > 0:
+                    log.info(
+                        f"[EXTRA-SUPPRESSED-STRIP-LAG] "
+                        f"s_delta={s_delta} balls_delta={balls_delta} "
+                        f"extras_delta=0 bowler_runs_delta="
+                        f"{bowler_runs_delta} — score advanced without "
+                        f"overs advance AND no new extra; treating as "
+                        f"strip-field timing race, not firing wide.")
+                    self._save(score, wickets, overs, bowler_runs,
+                               cur_striker, striker_balls, striker_runs,
+                               bowler=cur_bowler, extras=_extras_now_i)
+                    self._possible_extra = None
+                    return None
                 extra_type = "wide" if s_delta <= 2 else "no_ball"
                 _method = "bowler_runs_delta"
                 _why = (f"bowler {cur_bowler} runs "
@@ -695,7 +746,7 @@ class BallEventDetector:
 
         self._save(score, wickets, overs, bowler_runs,
                    cur_striker, striker_balls, striker_runs,
-                   bowler=cur_bowler)
+                   bowler=cur_bowler, extras=_extras_now_i)
 
         if event:
             dedup_key = self._dedup_key(event, score)
@@ -713,7 +764,7 @@ class BallEventDetector:
 
     def _save(self, s, w, o, br=None,
               striker=None, striker_balls=None, striker_runs=None,
-              bowler=None):
+              bowler=None, extras=None):
         self.prev_score = s
         self.prev_wickets = w
         self.prev_overs = o
@@ -734,6 +785,9 @@ class BallEventDetector:
             self.prev_striker_balls = striker_balls
         if striker_runs is not None:
             self.prev_striker_runs = striker_runs
+        # 2026-05-13 (anomaly 2): extras_total cumulative witness.
+        if extras is not None:
+            self.prev_extras = extras
 
 
 class PartnershipTracker:
