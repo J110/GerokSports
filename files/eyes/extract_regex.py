@@ -120,6 +120,20 @@ _VT_BATTERS_NO_MARKER = re.compile(
     r"\s+(?P<sr>\d+)\s+(?P<sb>\d+)\s+(?P<nr>\d+)\s+(?P<nb>\d+)"
     r"\s+(?:RUN[-\s]?RATE|\bRR\b)",
 )
+# 2026-05-13 (bug #6): VISIBLE_TEXT bowler fallback.  The same
+# truncated-STRIP frames that lost batter rows ('MI 76-3 (9.1)' with
+# nothing else) also lose the bowler.  Bowler shows up in VT as
+# '<UPPER_NAME> <W>-<R> <O.B>' typically near the end of the line.
+# The W-R / R-W dash anchor is bowler-specific (batter stats are
+# space-separated without a dash) so name confusion with batters is
+# minimal.  Examples this matches:
+#   'KRUNAL 0-25 2.5'   → name=KRUNAL wkts=0 runs=25 overs=2.5
+#   'SHEPHERD 1-14 2.2' → name=SHEPHERD wkts=1 runs=14 overs=2.2
+_VT_BOWLER = re.compile(
+    r"(?P<name>[A-Z][A-Za-z']{2,})\s+"
+    r"(?P<wkts>\d+)-(?P<runs>\d+)\s+"
+    r"(?P<overs>\d+(?:\.\d+)?)\b",
+)
 
 # extras= and this_over= mid-strip tokens.
 _EXTRAS = re.compile(r"extras\s*=\s*(?P<v>\d+|null)", re.IGNORECASE)
@@ -315,6 +329,31 @@ def parse_strip(text: str,
                     "balls": _parse_num_or_null(_gd.get("nb")),
                     "striker": False,
                 })
+
+    # 2026-05-13 (bug #6): VISIBLE_TEXT bowler fallback.  Truncated
+    # STRIP frames also lose the bowler row.  Bowler shows up in VT
+    # as '<UPPER_NAME> <W>-<R> <O.B>' (e.g. 'KRUNAL 0-25 2.5').  The
+    # W-R dash anchor is bowler-specific — batter stats are
+    # space-separated, no dash — so name confusion with batters is
+    # minimal.  Skip matches whose name equals a just-extracted
+    # batter to be safe.
+    if not bowler:
+        vt_m = _VT_LINE.search(text)
+        if vt_m:
+            _vt_body_for_bowl = vt_m.group("body")
+            _batter_names_upper = {
+                (b.get("name") or "").upper() for b in batters}
+            for _bm in _VT_BOWLER.finditer(_vt_body_for_bowl):
+                _bname = _bm.group("name").strip()
+                if _bname.upper() in _batter_names_upper:
+                    continue
+                bowler = {
+                    "name": _bname,
+                    "wickets": _parse_num_or_null(_bm.group("wkts")),
+                    "runs": _parse_num_or_null(_bm.group("runs")),
+                    "overs": _bm.group("overs"),
+                }
+                break
 
     extras_m = _EXTRAS.search(strip_body)
     extras_runs = (
