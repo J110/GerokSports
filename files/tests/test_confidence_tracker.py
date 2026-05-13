@@ -108,6 +108,51 @@ def test_immutable_takes_precedence_over_locked() -> None:
     assert bt.leader == "RCB"
 
 
+def test_unlock_and_reset_clears_everything() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "striker", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    _drive_to_firm(bt, "NAMAN")
+    assert bt.state == STATE_LOCKED
+    bt.unlock_and_reset()
+    assert bt.state == STATE_NONE
+    assert bt.leader is None
+    bt.observe("SURYAKUMAR", weight=1.0)
+    assert bt.leader == "SURYAKUMAR"
+
+
+def test_swap_with_exchanges_locked_leaders() -> None:
+    """Striker rotation: both trackers stay LOCKED, leaders swap."""
+    clk = FakeClock()
+    striker = ConfidenceTracker(
+        "striker", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    non = ConfidenceTracker(
+        "non_striker", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    _drive_to_firm(striker, "NAMAN")
+    _drive_to_firm(non, "TILAK")
+    assert striker.leader == "NAMAN" and striker.state == STATE_LOCKED
+    assert non.leader == "TILAK" and non.state == STATE_LOCKED
+    striker.swap_with(non)
+    assert striker.leader == "TILAK" and striker.state == STATE_LOCKED
+    assert non.leader == "NAMAN" and non.state == STATE_LOCKED
+
+
+def test_swap_with_preserves_scores_under_new_slot() -> None:
+    """After swap, NAMAN's accumulated evidence is in non, not striker.
+    Subsequent same-name observations continue to weigh the right slot."""
+    clk = FakeClock()
+    striker = ConfidenceTracker(
+        "striker", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    non = ConfidenceTracker(
+        "non_striker", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    _drive_to_firm(striker, "NAMAN")
+    _drive_to_firm(non, "TILAK")
+    striker.swap_with(non)
+    # NAMAN's evidence dict should now live in `non`.
+    assert "NAMAN" in non.snapshot()["scores"]
+    assert "TILAK" in striker.snapshot()["scores"]
+
+
 class FakeClock:
     """Manual wall-clock for deterministic decay tests."""
 

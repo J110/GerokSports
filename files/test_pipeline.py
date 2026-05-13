@@ -5823,30 +5823,42 @@ async def run_test():
         half_life_s=60.0,
         auto_lock_on_firm=True,
     )
-    # 2026-05-13 (#61/#62): per-entity trackers for striker, non-striker,
-    # bowler.  Thresholds are lower than batting_team's because batters and
-    # bowlers change every over (half-life shorter) and the WS-PROMOTE
-    # replacement needs ~2 strip reads to cross PUBLISH.
+    # 2026-05-13 (#61/#62, follow-up #5): all four trackers are now
+    # locked-by-default-once-FIRM.  Different facts unlock on different
+    # events:
+    #   batting_team   → unlock on innings-2 transition (and reset)
+    #   striker        → unlock_and_reset on dismissal of the striker
+    #   non_striker    → unlock_and_reset on dismissal of the non-striker
+    #   bowler         → unlock_and_reset on over-end / bowler change
+    # Striker-non swap on odd runs is a value exchange (swap_with),
+    # NOT an unlock event — both stay LOCKED, leaders just trade slots.
+    # Thresholds: batting_team firm=10 (10s of sustained live evidence
+    # required), striker/non firm=5 (a settled-at-crease batter sustains
+    # ~5 strip reads before swap/dismissal), bowler firm=4 (over spans
+    # 6 balls, average ~4 strip reads per over per bowler).
     striker_tracker = ConfidenceTracker(
         "striker",
         publish=1.5,
-        firm=3.0,
+        firm=5.0,
         flip_margin=0.75,
         half_life_s=20.0,
+        auto_lock_on_firm=True,
     )
     non_striker_tracker = ConfidenceTracker(
         "non_striker",
         publish=1.5,
-        firm=3.0,
+        firm=5.0,
         flip_margin=0.75,
         half_life_s=20.0,
+        auto_lock_on_firm=True,
     )
     bowler_tracker = ConfidenceTracker(
         "bowler",
         publish=1.5,
-        firm=3.0,
+        firm=4.0,
         flip_margin=0.75,
         half_life_s=30.0,
+        auto_lock_on_firm=True,
     )
 
     scoreboard = Scoreboard()
@@ -12304,6 +12316,76 @@ async def run_test():
                 score_mgr=score_mgr,
                 log=log,
             )
+            # 2026-05-13 (#64 follow-up #5): tracker unlock/swap event
+            # detection from the aligned strip rows.  Each per-entity
+            # tracker is locked once FIRM; events that legitimately
+            # change the underlying fact must release the lock before
+            # the next observe takes effect.
+            #   * striker↔non swap: locked leaders trade slots (odd-run
+            #     rotation or end-of-over).  swap_with() keeps both
+            #     LOCKED, just exchanges values.  No re-detection.
+            #   * striker dismissal: new face in slot 1, neither equal
+            #     to current locked striker nor locked non — wicket
+            #     fell, fresh batter walked in.  unlock_and_reset() so
+            #     the new name re-accumulates.
+            #   * non-striker dismissal: same as above but slot 2
+            #     (rarer; run-out at non-striker end).
+            #   * bowler change: new bowler at over end (or operator
+            #     change).  unlock_and_reset() so the new bowler
+            #     re-accumulates from a clean slate.
+            def _tk_canon(_n):
+                if not _n:
+                    return None
+                return scoreboard.resolve_name(_n) or _n
+
+            _eb1_canon = _tk_canon(_eb1.get("name")) if _eb1 else None
+            _eb2_canon = _tk_canon(_eb2.get("name")) if _eb2 else None
+            _bowl_canon_for_tracker = (
+                _tk_canon(_ext_bowler_sm.get("name"))
+                if _ext_bowler_sm else None)
+            _str_lead_canon = _tk_canon(striker_tracker.leader)
+            _non_lead_canon = _tk_canon(non_striker_tracker.leader)
+            _bowl_lead_canon = _tk_canon(bowler_tracker.leader)
+
+            if (striker_tracker.state == "LOCKED"
+                    and non_striker_tracker.state == "LOCKED"
+                    and _eb1_canon is not None
+                    and _eb2_canon is not None
+                    and _eb1_canon == _non_lead_canon
+                    and _eb2_canon == _str_lead_canon):
+                striker_tracker.swap_with(non_striker_tracker)
+                log.info(
+                    f"  [TRACKER-SWAP] striker↔non; "
+                    f"striker={striker_tracker.leader!r} "
+                    f"non={non_striker_tracker.leader!r}")
+            else:
+                if (striker_tracker.state == "LOCKED"
+                        and _eb1_canon is not None
+                        and _eb1_canon != _str_lead_canon
+                        and _eb1_canon != _non_lead_canon):
+                    log.info(
+                        f"  [TRACKER-UNLOCK] striker={striker_tracker.leader!r} "
+                        f"→ new batter observed={_eb1_canon!r}")
+                    striker_tracker.unlock_and_reset()
+                if (non_striker_tracker.state == "LOCKED"
+                        and _eb2_canon is not None
+                        and _eb2_canon != _non_lead_canon
+                        and _eb2_canon != _str_lead_canon):
+                    log.info(
+                        f"  [TRACKER-UNLOCK] non_striker="
+                        f"{non_striker_tracker.leader!r} "
+                        f"→ new batter observed={_eb2_canon!r}")
+                    non_striker_tracker.unlock_and_reset()
+
+            if (bowler_tracker.state == "LOCKED"
+                    and _bowl_canon_for_tracker is not None
+                    and _bowl_canon_for_tracker != _bowl_lead_canon):
+                log.info(
+                    f"  [TRACKER-UNLOCK] bowler={bowler_tracker.leader!r} "
+                    f"→ new bowler observed="
+                    f"{_bowl_canon_for_tracker!r}")
+                bowler_tracker.unlock_and_reset()
+
             # 2026-05-13 (#61/#62): feed per-entity ConfidenceTrackers from
             # the aligned strip rows.  When a tracker reaches PUBLISHABLE
             # the leader is promoted to status="batting" — replaces the

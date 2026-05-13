@@ -235,6 +235,25 @@ class ConfidenceTracker:
         known (e.g. innings-2 batting-team transition)."""
         self._locked = False
 
+    def unlock_and_reset(self) -> None:
+        """Combined release-and-clear for event-driven re-detection
+        (wicket, over end, innings transition)."""
+        self._locked = False
+        self._immutable = False
+        self._scores.clear()
+        self._leader = None
+        self._last_t = 0.0
+
+    def swap_with(self, other: "ConfidenceTracker") -> None:
+        """Swap leader values with another tracker.  Both remain
+        LOCKED; only the named candidates exchange.  Used by the
+        striker/non_striker odd-run / over-end rotation where the
+        identities are already firm but the slot ordering inverts.
+        Score dicts swap too so subsequent observations keep weighing
+        the right candidate per slot."""
+        self._leader, other._leader = other._leader, self._leader
+        self._scores, other._scores = other._scores, self._scores
+
     # ── internal ──────────────────────────────────────────────────
     def _apply_decay(self, now: float) -> None:
         dt = now - self._last_t
