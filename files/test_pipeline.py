@@ -1711,12 +1711,24 @@ _MATCH_INFO_PATTERNS = [
 ]
 
 
-def extract_broadcast_data(scout_text: str, cache: dict) -> dict:
+def extract_broadcast_data(
+        scout_text: str,
+        cache: dict,
+        *,
+        batting_team_committed: bool = True) -> dict:
     """Extract all deterministic data from Scout's raw text in one pass.
 
     Per-frame values are always returned. Session-level values (venue,
     match_info, team_abbr) are set in ``cache`` once and reused.
     Returns a dict of per-frame extracted values.
+
+    2026-05-13 (#64 follow-up #2): ``batting_team_committed`` gates the
+    ``team_abbr`` cache write.  Recap/highlight frames at cold start
+    have legitimate-looking strips ("RCB 47-0 (5.3) | Faf du Plessis")
+    whose team abbreviation poisons the cache and keeps feeding stale
+    observations after the visible-team off-roster gate commits the
+    correct live team.  Once ``batting_team`` is committed, this gate
+    opens — subsequent live frames populate the cache normally.
     """
     result: dict = {}
     if not scout_text:
@@ -1826,7 +1838,7 @@ def extract_broadcast_data(scout_text: str, cache: dict) -> dict:
                 break
 
     # ── Cache-once: team abbreviation ───────────────────────────────
-    if not cache.get("team_abbr"):
+    if not cache.get("team_abbr") and batting_team_committed:
         m = _RE_TEAM_ABBR.search(scout_text)
         if m:
             cache["team_abbr"] = m.group(1)
@@ -7854,7 +7866,15 @@ async def run_test():
             adaptive.on_frame_phase(_last_phase)
 
             # === BROADCAST DATA EXTRACTION (all regex, before LLM) ===
-            _bcast = extract_broadcast_data(description, _broadcast_cache)
+            # 2026-05-13 (#64 follow-up #2): defer team_abbr caching
+            # until batting_team is committed via the off-roster-gated
+            # visible_team path.  Closes the F12 'src=unknown' FLIP
+            # where a recap frame's team_abbr was cached pre-commit and
+            # kept flipping the leader post-commit.
+            _bcast = extract_broadcast_data(
+                description,
+                _broadcast_cache,
+                batting_team_committed=bool(batting_team))
             _frame_speed_kph = _bcast.get("speed_kph")
 
             # Striker from broadcast indicator (* or >).
