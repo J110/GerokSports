@@ -2665,6 +2665,67 @@ class ScoreJumpGuard:
         self._pending_count = 0
 
 
+def _cap_at_crease_for_payload(scoreboard, state, log, frame_count):
+    """Build the WS payload's batting_card list with a hard cap of 2
+    entries at status='batting'.  Cricket invariant: never more than
+    2 batters at the crease at any time.
+
+    When scoreboard.batting_card has >2 status='batting' entries
+    (typically from a strategic-timeout / H2H / comparison graphic
+    that leaked names through the upstream write paths), keep the 2
+    with the highest balls-faced count (most-observed = most
+    likely-live) and demote the rest to 'yet_to_bat' for the payload
+    only.  scoreboard state is NOT mutated — the cap is purely a
+    broadcast-layer defense.
+
+    Logs [BATTER-CAP-REJECTED] with the rejected names so the
+    upstream write path can be audited post-match.
+    """
+    _bc = scoreboard.batting_card or {}
+    _at_crease = [n for n, c in _bc.items()
+                  if (c or {}).get("status") == "batting"]
+    _demoted: set = set()
+    if len(_at_crease) > 2:
+        _ranked = sorted(
+            _at_crease,
+            key=lambda n: (
+                -(int(_bc[n].get("balls") or 0)),
+                int(_bc[n].get("position") or 99),
+            ))
+        _keep = set(_ranked[:2])
+        _demoted = {n for n in _at_crease if n not in _keep}
+        log.warn(
+            f"  [BATTER-CAP-REJECTED] frame=F{frame_count} "
+            f"at_crease={_at_crease} keep={sorted(_keep)} "
+            f"reject={sorted(_demoted)} — cricket invariant")
+    out = []
+    for n, c in _bc.items():
+        _status = c.get("status")
+        if n in _demoted:
+            _status = "yet_to_bat"
+        if not (_status in ("batting", "out")
+                or (c.get("runs") is not None
+                    and (c.get("runs") or 0) > 0)):
+            continue
+        out.append({
+            "name": n,
+            "status": _status,
+            "runs": c.get("runs"),
+            "balls": c.get("balls"),
+            "fours": c.get("fours") or 0,
+            "sixes": c.get("sixes") or 0,
+            "sr": (round((c["runs"] / c["balls"]) * 100, 1)
+                   if c.get("balls") and c.get("runs") is not None
+                   else 0),
+            "dismissal": c.get("dismissal"),
+            "is_striker": n == state.get("striker"),
+            "position": c.get("position"),
+            "batting_style": c.get("batting_style", "unknown"),
+            "bowling_style": c.get("bowling_style", "unknown"),
+        })
+    return out
+
+
 def _project_active_batters(state: dict,
                             score_mgr,
                             scoreboard,
@@ -5424,28 +5485,17 @@ def _build_full_payload_from_state(
             "non": state.get("non"),
             "current_bowler": state.get("current_bowler"),
         },
-        "batting_card": [
-            {
-                "name": n,
-                "status": c.get("status"),
-                "runs": c.get("runs"),
-                "balls": c.get("balls"),
-                "fours": c.get("fours") or 0,
-                "sixes": c.get("sixes") or 0,
-                "sr": (round((c["runs"] / c["balls"]) * 100, 1)
-                       if c.get("balls") and c.get("runs") is not None
-                       else 0),
-                "dismissal": c.get("dismissal"),
-                "is_striker": n == state.get("striker"),
-                "position": c.get("position"),
-                "batting_style": c.get("batting_style", "unknown"),
-                "bowling_style": c.get("bowling_style", "unknown"),
-            }
-            for n, c in scoreboard.batting_card.items()
-            if c.get("status") in ("batting", "out")
-            or (c.get("runs") is not None
-                and (c.get("runs") or 0) > 0)
-        ],
+        # 2026-05-13 (#66 follow-up #4): hard UI cap at-the-crease.
+        # Cricket invariant: never more than 2 batters with status=
+        # "batting" at any time.  Strategic-timeout / recap graphics
+        # tried to add Suryakumar Yadav as a third active batter
+        # alongside Naman/Tilak in run be9gmin3f.  Cap defensively at
+        # broadcast time: if scoreboard.batting_card has >2 status=
+        # "batting" entries, demote the lowest-balls entries before
+        # building the payload.  Telemetry tags the rejected names so
+        # post-match audit can find the upstream write path.
+        "batting_card": _cap_at_crease_for_payload(
+            scoreboard, state, log, frame_count),
         "bowling_card": _reconcile_bowler_overs(
             [
                 {
