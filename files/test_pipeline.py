@@ -12170,10 +12170,29 @@ async def run_test():
             # already appended it above.  We snapshot here rather
             # than after check_over_change because the archive call
             # mutates over_mgr.this_over to [].
-            _completed_over = list(over_mgr.this_over)
-            _completed_over_runs = sum(
-                int(x) for x in _completed_over
-                if isinstance(x, str) and x.isdigit())
+            # 2026-05-13 (#4): filter '?' cold-start placeholders out of
+            # completed_over before broadcasting.  initialize_mid_over
+            # pre-fills this_over with '?' tokens at cold-start join
+            # (see eyes/this_over.py:1195); if the FIRST over after
+            # cold-start rolls over before real ball-events have
+            # replaced the placeholders, the user sees "? ? ?" in the
+            # recent-overs ribbon for one frame until the next real
+            # over publishes.  Cleaner UX: never publish a partial-
+            # placeholder over — let the recent-overs slot stay empty
+            # until a fully-observed over completes.
+            _completed_over_raw = list(over_mgr.this_over)
+            if any(str(x) == "?" for x in _completed_over_raw):
+                log.info(
+                    f"  [COMPLETED-OVER-SUPPRESSED] frame=F{frame_count} "
+                    f"raw={_completed_over_raw} reason=cold_start_"
+                    f"placeholder; emitting empty recent-overs")
+                _completed_over = []
+                _completed_over_runs = 0
+            else:
+                _completed_over = _completed_over_raw
+                _completed_over_runs = sum(
+                    int(x) for x in _completed_over
+                    if isinstance(x, str) and x.isdigit())
 
             if over_mgr.check_over_change(_cur_overs_str, _cur_bowler_name, _cur_score_int):
                 # Use synthesized last-ball event if the boundary was
