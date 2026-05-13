@@ -12784,25 +12784,45 @@ async def run_test():
                 except Exception:
                     pass
             elif _wicket_signal:
-                if (striker_tracker.state == "LOCKED"
-                        and _eb1_canon is not None
-                        and _eb1_canon != _str_lead_canon
-                        and _eb1_canon != _non_lead_canon):
-                    log.info(
-                        f"  [TRACKER-UNLOCK] striker={striker_tracker.leader!r} "
-                        f"→ new batter observed={_eb1_canon!r} "
-                        f"(wicket signal present)")
-                    striker_tracker.unlock_and_reset()
-                if (non_striker_tracker.state == "LOCKED"
-                        and _eb2_canon is not None
-                        and _eb2_canon != _non_lead_canon
-                        and _eb2_canon != _str_lead_canon):
-                    log.info(
-                        f"  [TRACKER-UNLOCK] non_striker="
-                        f"{non_striker_tracker.leader!r} "
-                        f"→ new batter observed={_eb2_canon!r} "
-                        f"(wicket signal present)")
-                    non_striker_tracker.unlock_and_reset()
+                _dismissed_name = None
+                if ball_event:
+                    _dismissed_name = ball_event.get("dismissed")
+                if not _dismissed_name:
+                    _dismissed_name = (
+                        extracted.get("dismissal")
+                        if isinstance(extracted, dict) else None)
+                if not _dismissed_name:
+                    _dismissed_name = _striker_this_ball
+                _dismissed_canon = (
+                    _tk_canon(_dismissed_name)
+                    if _dismissed_name else None)
+                if _dismissed_canon is not None:
+                    if _dismissed_canon == _str_lead_canon:
+                        log.info(
+                            f"  [STRIKER-TRACKER-UNLOCK-ON-DISMISSAL] "
+                            f"dismissed={_dismissed_name!r} == "
+                            f"striker_tracker.leader; unlock_and_reset")
+                        striker_tracker.unlock_and_reset()
+                        try:
+                            _TRACE_RECORDER.record(
+                                tag="STRIKER-TRACKER-UNLOCK-ON-DISMISSAL",
+                                dismissed=_dismissed_name,
+                                frame_id=str(frame_count))
+                        except Exception:
+                            pass
+                    elif _dismissed_canon == _non_lead_canon:
+                        log.info(
+                            f"  [NON-STRIKER-TRACKER-UNLOCK-ON-DISMISSAL] "
+                            f"dismissed={_dismissed_name!r} == "
+                            f"non_striker_tracker.leader; unlock_and_reset")
+                        non_striker_tracker.unlock_and_reset()
+                        try:
+                            _TRACE_RECORDER.record(
+                                tag="NON-STRIKER-TRACKER-UNLOCK-ON-DISMISSAL",
+                                dismissed=_dismissed_name,
+                                frame_id=str(frame_count))
+                        except Exception:
+                            pass
             else:
                 # Name mismatch without wicket signal — strategic
                 # timeout / stat graphic / H2H recap.  Log for telemetry
@@ -12900,27 +12920,58 @@ async def run_test():
                         f"(tier={_tracker.state}, "
                         f"score={_tracker.leader_score:.2f})")
 
+            def _is_card_dismissed(_nm: str | None) -> bool:
+                if not _nm:
+                    return False
+                _resolved = scoreboard.resolve_name(_nm) or _nm
+                _c = scoreboard.batting_card.get(_resolved)
+                return bool(_c and _c.get("status") == "out")
+
             if _eb1 and _eb1.get("name"):
-                _r_str = striker_tracker.observe(
-                    _eb1["name"], weight=1.0)
-                log.info(
-                    f"  [STRIKER-OBSERVE] cand={_r_str.candidate!r} "
-                    f"leader={_r_str.leader!r} "
-                    f"score={_r_str.leader_score:.2f} "
-                    f"state={_r_str.state} "
-                    f"flipped={_r_str.flipped}")
-                _promote_via_tracker(striker_tracker, "striker")
+                if _is_card_dismissed(_eb1["name"]):
+                    log.info(
+                        f"  [TRACKER-UPDATE-SUPPRESSED-DISMISSED] "
+                        f"name={_eb1['name']!r} slot=striker "
+                        f"(batting_card.status=out)")
+                    try:
+                        _TRACE_RECORDER.record(
+                            tag="TRACKER-UPDATE-SUPPRESSED-DISMISSED",
+                            name=_eb1["name"], slot="striker")
+                    except Exception:
+                        pass
+                else:
+                    _r_str = striker_tracker.observe(
+                        _eb1["name"], weight=1.0)
+                    log.info(
+                        f"  [STRIKER-OBSERVE] cand={_r_str.candidate!r} "
+                        f"leader={_r_str.leader!r} "
+                        f"score={_r_str.leader_score:.2f} "
+                        f"state={_r_str.state} "
+                        f"flipped={_r_str.flipped}")
+                    _promote_via_tracker(striker_tracker, "striker")
             if _eb2 and _eb2.get("name"):
-                _r_non = non_striker_tracker.observe(
-                    _eb2["name"], weight=1.0)
-                log.info(
-                    f"  [NON-STRIKER-OBSERVE] "
-                    f"cand={_r_non.candidate!r} "
-                    f"leader={_r_non.leader!r} "
-                    f"score={_r_non.leader_score:.2f} "
-                    f"state={_r_non.state} "
-                    f"flipped={_r_non.flipped}")
-                _promote_via_tracker(non_striker_tracker, "non_striker")
+                if _is_card_dismissed(_eb2["name"]):
+                    log.info(
+                        f"  [TRACKER-UPDATE-SUPPRESSED-DISMISSED] "
+                        f"name={_eb2['name']!r} slot=non_striker "
+                        f"(batting_card.status=out)")
+                    try:
+                        _TRACE_RECORDER.record(
+                            tag="TRACKER-UPDATE-SUPPRESSED-DISMISSED",
+                            name=_eb2["name"], slot="non_striker")
+                    except Exception:
+                        pass
+                else:
+                    _r_non = non_striker_tracker.observe(
+                        _eb2["name"], weight=1.0)
+                    log.info(
+                        f"  [NON-STRIKER-OBSERVE] "
+                        f"cand={_r_non.candidate!r} "
+                        f"leader={_r_non.leader!r} "
+                        f"score={_r_non.leader_score:.2f} "
+                        f"state={_r_non.state} "
+                        f"flipped={_r_non.flipped}")
+                    _promote_via_tracker(non_striker_tracker, "non_striker")
             if _ext_bowler_sm and _ext_bowler_sm.get("name"):
                 _r_bow = bowler_tracker.observe(
                     _ext_bowler_sm["name"], weight=1.0)
