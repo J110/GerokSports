@@ -98,13 +98,27 @@ _BOWLER_ROW = re.compile(
 # runs/balls authority when STRIP itself parses cleanly.
 _VT_LINE = re.compile(r"VISIBLE_TEXT\s*:\s*(?P<body>.+?)$",
                       re.MULTILINE | re.IGNORECASE)
+# Stats convention (verified across F100-3→F101-3 and F75-3→F76-3
+# transitions where the runs delta exactly matches a single+swap):
+#   Stats are first-name-first regardless of striker marker.
+#   In PREFIX_GT (> A B r1 b1 r2 b2): A is striker → r1/b1 = striker's
+#   In INFIX_GT  (A > B r1 b1 r2 b2): B is striker → r2/b2 = striker's
+#   In NO_MARKER (A B r1 b1 r2 b2):   A is striker (first-name) → r1/b1 = striker's
 _VT_BATTERS_PREFIX_GT = re.compile(
     r">\s+(?P<striker>[A-Z][A-Za-z']{2,})\s+(?P<non>[A-Z][A-Za-z']{2,})"
     r"(?:\s+(?P<sr>\d+)\s+(?P<sb>\d+)\s+(?P<nr>\d+)\s+(?P<nb>\d+))?",
 )
 _VT_BATTERS_INFIX_GT = re.compile(
     r"(?P<non>[A-Z][A-Za-z']{2,})\s+>\s+(?P<striker>[A-Z][A-Za-z']{2,})"
-    r"(?:\s+(?P<sr>\d+)\s+(?P<sb>\d+)\s+(?P<nr>\d+)\s+(?P<nb>\d+))?",
+    r"(?:\s+(?P<nr>\d+)\s+(?P<nb>\d+)\s+(?P<sr>\d+)\s+(?P<sb>\d+))?",
+)
+# Marker-less variant.  RUN-RATE (or RR) acts as an anchor on the
+# right so generic "NAME NAME NUM NUM NUM NUM" sequences elsewhere
+# in the prose don't false-match.
+_VT_BATTERS_NO_MARKER = re.compile(
+    r"(?P<striker>[A-Z][A-Za-z']{2,})\s+(?P<non>[A-Z][A-Za-z']{2,})"
+    r"\s+(?P<sr>\d+)\s+(?P<sb>\d+)\s+(?P<nr>\d+)\s+(?P<nb>\d+)"
+    r"\s+(?:RUN[-\s]?RATE|\bRR\b)",
 )
 
 # extras= and this_over= mid-strip tokens.
@@ -263,11 +277,19 @@ def parse_strip(text: str,
 
     # 2026-05-13 (#66): VISIBLE_TEXT fallback for the alternate Scout
     # layout where STRIP is truncated to the score header and batter
-    # data is space-separated on the VISIBLE_TEXT line.  Only runs
-    # when the STRIP-body scan above found nothing.  Stats are
-    # ambiguous in this layout (PREFIX vs INFIX disagree on which
-    # number pair belongs to which batter) so we surface names only
-    # and let ScoreManager keep its STRIP-driven runs/balls authority.
+    # data is space-separated on the VISIBLE_TEXT line.  Three
+    # patterns covered, tried in order:
+    #   1. "> A B r b r b"  — PREFIX_GT  (striker = A, stats A-first)
+    #   2. "A > B r b r b"  — INFIX_GT   (striker = B, stats A-first)
+    #   3. "A B r b r b RUN-RATE" — NO_MARKER (striker = A, stats
+    #      A-first; RUN-RATE anchor prevents false matches on
+    #      generic name-pair-plus-digits sequences elsewhere in the
+    #      prose, e.g. tournament-standings panels).
+    # Stats convention (validated on real F75-3→F76-3 and
+    # F100-3→F101-3 transitions): first-name-first regardless of
+    # marker.  The regex groups (sr/sb/nr/nb) are already named per
+    # the striker/non assignment for each layout, so a uniform
+    # downstream assignment works.
     if not batters:
         vt_m = _VT_LINE.search(text)
         if vt_m:
@@ -275,19 +297,22 @@ def parse_strip(text: str,
             alt_m = _VT_BATTERS_PREFIX_GT.search(vt_body)
             if not alt_m:
                 alt_m = _VT_BATTERS_INFIX_GT.search(vt_body)
+            if not alt_m:
+                alt_m = _VT_BATTERS_NO_MARKER.search(vt_body)
             if alt_m:
                 _str_name = alt_m.group("striker").strip()
                 _non_name = alt_m.group("non").strip()
+                _gd = alt_m.groupdict()
                 batters.append({
                     "name": _str_name,
-                    "runs": None,
-                    "balls": None,
+                    "runs": _parse_num_or_null(_gd.get("sr")),
+                    "balls": _parse_num_or_null(_gd.get("sb")),
                     "striker": True,
                 })
                 batters.append({
                     "name": _non_name,
-                    "runs": None,
-                    "balls": None,
+                    "runs": _parse_num_or_null(_gd.get("nr")),
+                    "balls": _parse_num_or_null(_gd.get("nb")),
                     "striker": False,
                 })
 
