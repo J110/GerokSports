@@ -3838,15 +3838,46 @@ def apply_strip_overlay_prefilters(
     sentinel = _detect_overlay_strip_sentinels(
         scout_strip_text, current_match_number=current_match_number)
     if sentinel:
-        record_state_recovery_guard(
-            "batter_row_rejected",
-            proposed_reset=["bat:overlay_sentinel"])
-        log.warn(
-            f"  [STRIP-OVERLAY-DETECTED] frame=F{frame_count} "
-            f"reason=sentinel sentinel={sentinel!r} "
-            f"popped=batters")
-        extracted.pop("batters", None)
-        return True
+        # 2026-05-13 (#66 follow-up #2): the legacy sentinels (' > ',
+        # 'RUN-RATE', 'SPEED kph') were defined when Scout emitted
+        # them only on comparison/career overlays.  Current Scout
+        # output uses ' > ' as a striker marker and 'RUN-RATE' as an
+        # anchor in LIVE scoreboard frames (e.g.
+        # "> NAMAN TILAK 25 19 21 20 RUN-RATE 8.33 KRUNAL 0-8").
+        # Batter-roster confirmation distinguishes the two cases:
+        # if every extracted batter resolves into the current
+        # batting_team's XI, the frame is live and we keep the rows.
+        # Past-match recap overlays (Faf du Plessis era, Inglis on
+        # MI, etc.) will not resolve into the current XI, so the
+        # original guard intent is preserved.
+        _all_in_xi = False
+        if extracted.get("batters") and batting_team:
+            try:
+                _bc = scoreboard.batting_card or {}
+                _bts = [b.get("name") for b in extracted["batters"]
+                        if isinstance(b, dict)]
+                _bts_resolved = [
+                    scoreboard.resolve_name(n) for n in _bts if n]
+                _all_in_xi = (
+                    len(_bts_resolved) > 0
+                    and all(r and r in _bc for r in _bts_resolved))
+            except Exception:
+                _all_in_xi = False
+        if _all_in_xi:
+            log.info(
+                f"  [STRIP-OVERLAY-SENTINEL-OK] frame=F{frame_count} "
+                f"sentinel={sentinel!r} but all batters resolve into "
+                f"{batting_team!r} XI — keeping batters")
+        else:
+            record_state_recovery_guard(
+                "batter_row_rejected",
+                proposed_reset=["bat:overlay_sentinel"])
+            log.warn(
+                f"  [STRIP-OVERLAY-DETECTED] frame=F{frame_count} "
+                f"reason=sentinel sentinel={sentinel!r} "
+                f"popped=batters")
+            extracted.pop("batters", None)
+            return True
     if _detect_overlay_via_active_batting(
             extracted.get("batters"), scoreboard,
             cam=cam, frame_class=frame_class):
