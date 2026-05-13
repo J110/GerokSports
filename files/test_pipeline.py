@@ -8267,10 +8267,46 @@ async def run_test():
             # into the broadcast parser which then poison this_over.
             if (_bcast.get("this_over_broadcast")
                     and frame_type == "SCOREBOARD"):
-                _cur_score = scoreboard._inn.get("score")
-                over_mgr.on_broadcast_override(
-                    _bcast["this_over_broadcast"],
-                    score=int(_cur_score) if _cur_score else None)
+                # Team-match veto (Bug 1 root, F54 LSG cross-match recap):
+                # broadcast parser also captures THIS OVER tokens from
+                # cross-match recap overlays (e.g. LSG vs X showing
+                # 'THIS OVER 1 W 1 W' on screen while DC is batting).
+                # Mode-C inset detection fires LATER and poisons score,
+                # but the this_over override has already landed.  Skip
+                # the override when the strip's visible team doesn't
+                # match the batting team.  None visible_team passes
+                # through (don't over-suppress legitimate frames).
+                _bo_vis = (
+                    extracted.get("batting_team_visible")
+                    or _bcast.get("team_abbr"))
+                _bo_vetoed = False
+                if _bo_vis and batting_team is not None:
+                    _bo_resolved = _resolve_team_variant(_bo_vis)
+                    if (_bo_resolved
+                            and _bo_resolved != batting_team):
+                        _bo_vetoed = True
+                        log.warn(
+                            f"  [BROADCAST-OVERRIDE-VETOED-TEAM-MISMATCH] "
+                            f"visible_team={_bo_vis!r} "
+                            f"(resolved={_bo_resolved!r}) ≠ "
+                            f"batting_team={batting_team!r} — "
+                            f"skipping this_over override "
+                            f"{_bcast['this_over_broadcast']}")
+                        try:
+                            _TRACE_RECORDER.record(
+                                tag="BROADCAST-OVERRIDE-VETOED-TEAM-MISMATCH",
+                                visible_team=_bo_vis,
+                                resolved=_bo_resolved,
+                                batting_team=batting_team,
+                                attempted=_bcast["this_over_broadcast"],
+                                frame_id=str(frame_count))
+                        except Exception:
+                            pass
+                if not _bo_vetoed:
+                    _cur_score = scoreboard._inn.get("score")
+                    over_mgr.on_broadcast_override(
+                        _bcast["this_over_broadcast"],
+                        score=int(_cur_score) if _cur_score else None)
             elif (_bcast.get("this_over_broadcast")
                     and frame_type != "SCOREBOARD"):
                 log.info(
@@ -11189,6 +11225,28 @@ async def run_test():
                                     f"{_jp_cur_overs}→{_ext_overs_pre}")
                         except (ValueError, TypeError, AttributeError):
                             pass
+                    # Overs regression at any granularity (Bug 2 root,
+                    # F86: strip `DC 7-0 B 1` parsed as overs=0.1 while
+                    # tracker at 0.5; the OCR misread `(1)` as `0.1` and
+                    # the multi-over-jump check missed it because both
+                    # had whole=0).  Use balls-count compare so 0.5→0.1
+                    # (5→1 balls), 1.0→0.5 (6→5 balls), etc all catch.
+                    if (_jp_reason is None
+                            and _ext_overs_pre is not None
+                            and _jp_cur_overs is not None):
+                        try:
+                            _jp_ext_balls = overs_to_balls(
+                                str(_ext_overs_pre).split("/")[0])
+                            _jp_cur_balls = overs_to_balls(
+                                str(_jp_cur_overs))
+                            if (_jp_ext_balls is not None
+                                    and _jp_cur_balls is not None
+                                    and _jp_ext_balls < _jp_cur_balls):
+                                _jp_reason = (
+                                    f"overs_regression:"
+                                    f"{_jp_cur_overs}→{_ext_overs_pre}")
+                        except (ValueError, TypeError, AttributeError):
+                            pass
                     # Score regression / +100 jump (scoreboard.py:1175,1181)
                     if (_jp_reason is None
                             and _ext_score_pre is not None
@@ -12064,16 +12122,49 @@ async def run_test():
                     _tokens = re.findall(
                         r"[0-7]|W|WD|NB|\.", _raw.replace(",", " "))
                     if 1 <= len(_tokens) <= 8:
-                        try:
-                            _bcs = scoreboard._inn.get("score")
-                            over_mgr.on_broadcast_override(
-                                _tokens,
-                                score=int(_bcs) if _bcs is not None
-                                else None)
-                        except Exception as _e:
-                            log.warn(
-                                f"  [THIS-OVER-BCAST] override "
-                                f"failed: {_e}")
+                        # Team-match veto (Bug 1 root, F54 LSG cross-
+                        # match recap): description-side THIS OVER scan
+                        # also picks up cross-match overlays.  Skip the
+                        # override when strip's visible team mismatches
+                        # batting_team.
+                        _to_vis = (
+                            extracted.get("batting_team_visible")
+                            if isinstance(extracted, dict) else None)
+                        _to_vetoed = False
+                        if _to_vis and batting_team is not None:
+                            _to_resolved = _resolve_team_variant(_to_vis)
+                            if (_to_resolved
+                                    and _to_resolved != batting_team):
+                                _to_vetoed = True
+                                log.warn(
+                                    f"  [BROADCAST-OVERRIDE-VETOED-TEAM-MISMATCH] "
+                                    f"visible_team={_to_vis!r} "
+                                    f"(resolved={_to_resolved!r}) ≠ "
+                                    f"batting_team={batting_team!r} — "
+                                    f"skipping description-side "
+                                    f"this_over override {_tokens}")
+                                try:
+                                    _TRACE_RECORDER.record(
+                                        tag="BROADCAST-OVERRIDE-VETOED-TEAM-MISMATCH",
+                                        visible_team=_to_vis,
+                                        resolved=_to_resolved,
+                                        batting_team=batting_team,
+                                        attempted=_tokens,
+                                        source="description_regex",
+                                        frame_id=str(frame_count))
+                                except Exception:
+                                    pass
+                        if not _to_vetoed:
+                            try:
+                                _bcs = scoreboard._inn.get("score")
+                                over_mgr.on_broadcast_override(
+                                    _tokens,
+                                    score=int(_bcs) if _bcs is not None
+                                    else None)
+                            except Exception as _e:
+                                log.warn(
+                                    f"  [THIS-OVER-BCAST] override "
+                                    f"failed: {_e}")
 
             # Hard code check: detect innings 2 from vision / extractor
             _ext_target = extracted.get("target") if extracted else None
