@@ -769,42 +769,89 @@ class Vision:
             cached = self._replay_cache.get(fid)
             if cached is not None:
                 return cached
-        try:
-            resp = await self._groq.chat.completions.create(
-                model=GROQ_PRIMARY_MODEL,
-                temperature=0,
-                max_tokens=600,
-                messages=[{
-                    "role": "user",
-                    "content": [
-                        {"type": "image_url",
-                         "image_url": {
-                             "url": f"data:image/jpeg;base64,{image_b64}"}},
-                        {"type": "text", "text": prompt},
-                    ],
-                }],
-            )
-            content = resp.choices[0].message.content.strip()
-            finish = resp.choices[0].finish_reason
-            usage = resp.usage
-            tokens = usage.completion_tokens if usage else "?"
-            if finish != "stop":
-                log.info(f"[SCOUT] finish={finish} tokens={tokens}")
-            if self._raw_dump_fp is not None:
-                try:
-                    self._raw_dump_fp.write(json.dumps({
-                        "ts": time.time(),
-                        "frame_id": fid,
-                        "raw_response": content,
-                        "finish_reason": finish,
-                        "tokens": tokens if isinstance(tokens, int) else None,
-                    }) + "\n")
-                except Exception:
-                    pass
-            return content
-        except Exception as e:
-            log.error(f"[SCOUT] Error: {e}")
-            return None
+        # F130-class fix: 429 retry once with parsed backoff. Without
+        # this, a single 429 returns None → ("UNKNOWN","",None) at the
+        # describe() boundary → frame discarded by test_pipeline.py with
+        # no replay path on the producer side.
+        from eyes.openscout_loop import (
+            _DEFAULT_429_BACKOFF_S, _is_rate_limit, _parse_reset_seconds,
+        )
+        retry_t0: float | None = None
+        for attempt in range(2):
+            try:
+                resp = await self._groq.chat.completions.create(
+                    model=GROQ_PRIMARY_MODEL,
+                    temperature=0,
+                    max_tokens=600,
+                    messages=[{
+                        "role": "user",
+                        "content": [
+                            {"type": "image_url",
+                             "image_url": {
+                                 "url": f"data:image/jpeg;base64,{image_b64}"}},
+                            {"type": "text", "text": prompt},
+                        ],
+                    }],
+                )
+                content = resp.choices[0].message.content.strip()
+                finish = resp.choices[0].finish_reason
+                usage = resp.usage
+                tokens = usage.completion_tokens if usage else "?"
+                if finish != "stop":
+                    log.info(f"[SCOUT] finish={finish} tokens={tokens}")
+                if self._raw_dump_fp is not None:
+                    try:
+                        self._raw_dump_fp.write(json.dumps({
+                            "ts": time.time(),
+                            "frame_id": fid,
+                            "raw_response": content,
+                            "finish_reason": finish,
+                            "tokens": tokens if isinstance(tokens, int) else None,
+                        }) + "\n")
+                    except Exception:
+                        pass
+                if attempt > 0 and retry_t0 is not None:
+                    try:
+                        from trace_emitter import get_recorder as _get_rec
+                        _get_rec().record(
+                            tag="SCOUT-RETRY-IN-CALL-SUCCESS",
+                            frame_id=fid,
+                            retry_latency_ms=int(
+                                (time.time() - retry_t0) * 1000))
+                    except Exception:
+                        pass
+                return content
+            except Exception as e:
+                if attempt == 0 and _is_rate_limit(e):
+                    sleep_for = (_parse_reset_seconds(str(e))
+                                 or _DEFAULT_429_BACKOFF_S)
+                    try:
+                        from trace_emitter import get_recorder as _get_rec
+                        _get_rec().record(
+                            tag="SCOUT-RETRY-IN-CALL-QUEUED",
+                            frame_id=fid,
+                            error=str(e)[:200])
+                    except Exception:
+                        pass
+                    log.warn(
+                        f"[SCOUT] 429 rate-limit, retrying after "
+                        f"{sleep_for:.2f}s ({e!r})")
+                    retry_t0 = time.time()
+                    await asyncio.sleep(sleep_for)
+                    continue
+                if attempt > 0:
+                    try:
+                        from trace_emitter import get_recorder as _get_rec
+                        _get_rec().record(
+                            tag="SCOUT-RETRY-IN-CALL-EXHAUSTED",
+                            frame_id=fid,
+                            retries=1,
+                            error=str(e)[:200])
+                    except Exception:
+                        pass
+                log.error(f"[SCOUT] Error: {e}")
+                return None
+        return None
 
     # ------------------------------------------------------------------
     # Parse the JSON tag line from Scout output

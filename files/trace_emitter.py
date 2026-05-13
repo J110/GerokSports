@@ -243,6 +243,9 @@ KNOWN_TAGS: set[str] = {
     "SCOUT-RETRY-SUCCESS",
     "SCOUT-RETRY-EXHAUSTED",
     "SCOUT-RETRY-BUFFER-OVERFLOW",
+    "SCOUT-RETRY-IN-CALL-QUEUED",
+    "SCOUT-RETRY-IN-CALL-SUCCESS",
+    "SCOUT-RETRY-IN-CALL-EXHAUSTED",
 }
 
 # Regex matches the leading ``[TAG]`` token in any log message. Captures
