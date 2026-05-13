@@ -8978,9 +8978,29 @@ async def run_test():
             # poison the frame if score matches tracker (avoids
             # unnecessary consensus cycles).
             if frame_type == "GRAPHIC":
+                # 2026-05-13 (#66 follow-up #4): broaden GRAPHIC-FILTER
+                # to suppress ALL state-derivation signals, not just
+                # batters/bowler/speed.  Strategic-timeout / H2H /
+                # comparison / preview graphics also leak:
+                #   * target → triggered false innings-2 transition
+                #     (F413→F449, b1tjeu0sr) — see commit 6d3bf2a's
+                #     chase-signature gate, this is a second line of
+                #     defense at the source
+                #   * dismissal / dismissal_mode → triggers tracker
+                #     unlock (commit 397a07c gates on wicket signal,
+                #     this prevents the signal from being lit at all)
+                #   * this_over_broadcast → strategic-timeout ribbons
+                #     show multi-over recap that can poison this_over
                 extracted.pop("batters", None)
                 extracted.pop("bowler", None)
                 extracted.pop("speed_kph", None)
+                extracted.pop("target", None)
+                extracted.pop("runs_needed", None)
+                extracted.pop("balls_remaining_chase", None)
+                extracted.pop("dismissal", None)
+                extracted.pop("dismissal_mode", None)
+                extracted.pop("this_over_broadcast", None)
+                extracted.pop("batting_team_visible", None)
                 _gfx_score = extracted.get("score")
                 _gfx_wkts = extracted.get("wickets")
                 _gfx_overs = extracted.get("match_overs")
