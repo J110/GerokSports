@@ -5836,20 +5836,28 @@ async def run_test():
     # required), striker/non firm=5 (a settled-at-crease batter sustains
     # ~5 strip reads before swap/dismissal), bowler firm=4 (over spans
     # 6 balls, average ~4 strip reads per over per bowler).
+    # 2026-05-13 (#66 follow-up): striker/non tuning after the first
+    # validation showed 8 striker observations across 29 min — too
+    # sparse to cross firm=5.0 at half_life=20s.  Bump half_life to
+    # 60s (matches batting_team) so accumulated evidence doesn't decay
+    # between sparse strip reads; drop firm to 3.0 so two sustained
+    # observations within the half-life window are enough to LOCK.
+    # Off-roster filter already gates names before observe(), so 3.0
+    # is not a noise risk.
     striker_tracker = ConfidenceTracker(
         "striker",
         publish=1.5,
-        firm=5.0,
+        firm=3.0,
         flip_margin=0.75,
-        half_life_s=20.0,
+        half_life_s=60.0,
         auto_lock_on_firm=True,
     )
     non_striker_tracker = ConfidenceTracker(
         "non_striker",
         publish=1.5,
-        firm=5.0,
+        firm=3.0,
         flip_margin=0.75,
-        half_life_s=20.0,
+        half_life_s=60.0,
         auto_lock_on_firm=True,
     )
     bowler_tracker = ConfidenceTracker(
