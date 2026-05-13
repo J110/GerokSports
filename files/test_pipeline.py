@@ -12447,7 +12447,14 @@ async def run_test():
                     int(x) for x in _completed_over
                     if isinstance(x, str) and x.isdigit())
 
+            # 2026-05-13 (bug #6 follow-up): frame-scoped over-change
+            # signal that survives the in-frame clear at :10090.  The
+            # tracker-unlock check downstream needs to know the over
+            # changed in THIS frame even after the bowler-consensus
+            # path has cleared _bowler_must_change.
+            _over_changed_this_frame = False
             if over_mgr.check_over_change(_cur_overs_str, _cur_bowler_name, _cur_score_int):
+                _over_changed_this_frame = True
                 # Use synthesized last-ball event if the boundary was
                 # missed by the normal detector (absorbed into over change)
                 if over_mgr._last_ball_event and not ball_event:
@@ -12692,9 +12699,13 @@ async def run_test():
             # Bowler change is independently event-driven: it happens
             # at over-end, not via dismissal.  Reuse over-change signal
             # (the over_mgr just registered a roll-over) OR the
-            # explicit current_bowler-changed signal.
+            # explicit current_bowler-changed signal OR the frame-
+            # scoped _over_changed_this_frame flag (which survives the
+            # in-frame clear at :10090 when the bowler-consensus path
+            # confirms the new bowler).
             _bowler_change_signal = bool(
-                getattr(scoreboard, "_bowler_must_change", False)
+                _over_changed_this_frame
+                or getattr(scoreboard, "_bowler_must_change", False)
                 or getattr(scoreboard, "bowler_between_overs", False))
 
             if (striker_tracker.state == "LOCKED"
