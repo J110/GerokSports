@@ -229,6 +229,7 @@ def _cam_graphic_fast_path(
         cooldown: deque,
         resolve_team_variant,
         frame_count: int,
+        drs_state: str | None = None,
 ) -> tuple[dict | None, str | None]:
     """Eight-clause AND guard — §15 readiness checklist.
 
@@ -290,6 +291,38 @@ def _cam_graphic_fast_path(
     # G8
     if (score_i, overs_str) in cooldown:
         return _rej("G8_cooldown_dup")
+
+    # G9 — defer during DRS review. The regular tracker path is held by
+    # [DRS FREEZE]; the fast-path must mirror that or it will commit
+    # phantom scores from review-overlay graphics (Anomaly 3 root cause
+    # at F396: a DRS-IN-PROGRESS graphic strip parsed as MI 129-4 14.1
+    # while real state was 125-4 14.1; +4 jump fabricated downstream
+    # EXTRA-IMMEDIATE Wd+3 to "explain" the commit).
+    if drs_state in ("IN_PROGRESS", "DETECTING"):
+        try:
+            _TRACE_RECORDER.record(
+                tag="CAM-GRAPHIC-FAST-PATH-DEFER-DRS",
+                score_i=score_i, overs_str=overs_str,
+                drs_state=drs_state)
+        except Exception:
+            pass
+        return _rej(f"G9_drs_{drs_state.lower()}")
+
+    # G10 — require a ball-event signal for score commits. score moves
+    # only on a delivery; if delta_balls == 0 and delta_score > 0, this
+    # is a strip-field-lag race (or a graphic showing a different
+    # match's score). Pure overs-only ticks (delta_balls > 0,
+    # delta_score == 0) remain allowed (dot/rotation balls).
+    _delta_score = score_i - current_score
+    if _delta_score > 0 and delta_balls == 0:
+        try:
+            _TRACE_RECORDER.record(
+                tag="CAM-GRAPHIC-FAST-PATH-DEFER-NO-BALL-EVENT",
+                current_score=current_score, score_i=score_i,
+                current_balls=balls_cur, balls_i=balls_new)
+        except Exception:
+            pass
+        return _rej("G10_score_without_ball_event")
 
     cooldown.append((score_i, overs_str))
     # Parsed wickets ignored — architectural safety thesis §3.3.
@@ -8847,6 +8880,7 @@ async def run_test():
                         cooldown=_cam_graphic_fp_cooldown,
                         resolve_team_variant=_resolve_team_variant,
                         frame_count=frame_count,
+                        drs_state=_drs_state,
                     )
                     if _fp_commit is not None:
                         try:
