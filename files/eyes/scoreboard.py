@@ -3729,6 +3729,38 @@ class Scoreboard:
         """
         if not dismissed:
             return
+        # Idempotency: if FOW entry for this wicket index already
+        # exists, a prior writer this frame (typically the auto-
+        # striker-dismiss path at test_pipeline.py:4683 calling
+        # dismiss_batter, which writes FOW immutably) has already
+        # recorded the wicket.  Calling _add_fow again would be
+        # refused as a rewrite, but the side effects above (status
+        # flip to "out", _post_witnessed_dismissal_slot_rotation,
+        # incoming-batter promote) would still fire — silently
+        # marking the wrong batter dismissed because WICKET-ATTRIB
+        # at test_pipeline.py:12181 read the post-rotation
+        # SM.striker (already the non-dismissed partner).  F407
+        # case: W1=KL Rahul written by the first path; this fn
+        # called with dismissed=Pathum Nissanka set Pathum.status
+        # =out before FOW immutability gate rejected the duplicate
+        # entry.  Pre-check the FOW list and no-op when the wicket
+        # is already recorded.
+        try:
+            _cur_wkts_for_idem = int(self._inn.get("wickets") or 0)
+        except (TypeError, ValueError):
+            _cur_wkts_for_idem = 0
+        if _cur_wkts_for_idem > 0 and len(self.fall_of_wickets) >= _cur_wkts_for_idem:
+            _existing = self.fall_of_wickets[_cur_wkts_for_idem - 1]
+            _existing_batter = (
+                _existing.get("batter") if isinstance(_existing, dict)
+                else None)
+            log.info(
+                f"[APPLY-KNOWN-WICKET-IDEMPOTENT-NO-OP] "
+                f"FOW W{_cur_wkts_for_idem} already recorded as "
+                f"{_existing_batter!r} — skipping duplicate write "
+                f"for {dismissed!r} (no status flip, no rotation, "
+                f"no incoming-batter promote)")
+            return
         resolved = self.resolve_name(dismissed) or dismissed
         card_key = self._find_card_key(resolved, self.batting_card)
         if card_key is None:
