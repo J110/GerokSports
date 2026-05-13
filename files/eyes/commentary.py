@@ -674,6 +674,34 @@ class BallEventDetector:
                 # delta persists, fire; if the score regresses, the
                 # steady-state path above will clear the pending
                 # marker and we never fire.
+                #
+                # 2026-05-13 (Anomaly 2 — Wd+3 fabrication): the
+                # no_signal_default sub-branch below fires on
+                # s_delta in [2..7] with overs unchanged and no
+                # signal — F400 case where _cam_graphic_fast_path
+                # had already phantom-committed score 125→129 at
+                # F396 during DRS, and BED saw +4 with overs
+                # unchanged → fabricated Wd+3.  Even with G9/G10
+                # blocking the fast-path commit, defense in depth:
+                # a real wide MUST increment broadcast extras.
+                # Suppress when extras_delta == 0; fall through
+                # when extras_delta is None (no witness) or > 0.
+                if (extras_delta is not None
+                        and extras_delta == 0
+                        and s_delta > 0):
+                    log.info(
+                        f"[EXTRA-IMMEDIATE-SUPPRESSED-NO-EXTRAS-WITNESS] "
+                        f"s_delta={s_delta} balls_delta={balls_delta} "
+                        f"extras_delta=0 — score advanced with overs "
+                        f"unchanged but extras counter did not increment; "
+                        f"not fabricating no-signal-default wide.")
+                    self._save(score, wickets, overs, bowler_runs,
+                               cur_striker, striker_balls, striker_runs,
+                               bowler=cur_bowler, extras=_extras_now_i)
+                    self._extra_jitter_pending = None
+                    self._possible_extra = None
+                    return None
+
                 if (s_delta == 1
                         and self._extra_jitter_pending is None):
                     self._extra_jitter_pending = {
