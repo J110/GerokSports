@@ -180,6 +180,7 @@ export BMF_SESSION_ID="local_$(date +%Y%m%d_%H%M%S)"
 export USE_OPEN_SCOUT=0    # Track 2 disabled — only enable AFTER Track 1 validated
 export SCOUT_PROMPT_MODE=verbose
 export SCOUT_RAW_DUMP=1
+export SCOUT_DEDUP_SHADOW=1   # Shadow-mode phash dedup logging — log-only, no behavior change. Audit `SCOUT-DEDUP-SHADOW` trace tags post-match.
 export PYTHONUNBUFFERED=1
 export SKIP_PREMATCH_S=0
 /Users/anmolmohan/opt/anaconda3/bin/python files/test_pipeline.py

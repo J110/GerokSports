@@ -30,6 +30,29 @@ VALID_FRAME_TYPES = {
 
 _SCOUT_TIMEOUT = 5.0
 
+# Shadow-mode perceptual-hash dedup instrumentation (env-gated via
+# SCOUT_DEDUP_SHADOW=1). Log-only; never alters scout call path.
+# ROI fractions calibrated against the IPL-2026 4621b9f8 broadcast
+# graphics package — a broadcaster lookup table is future work.
+_SCOUT_DEDUP_CACHE_MAX_SIZE = 30
+_SCOUT_DEDUP_TTL_SECONDS = 10.0
+_SCOUT_DEDUP_THRESHOLD = 6
+_SCOUT_DEDUP_ROI_RATIO = (80 / 1661, 895 / 940, 360 / 1661, 938 / 940)
+_scout_dedup_cache: list[tuple] = []
+
+
+def _scout_dedup_score_block_phash(frame):
+    import imagehash
+    from PIL import Image
+    h, w = frame.shape[:2]
+    rx1, ry1, rx2, ry2 = _SCOUT_DEDUP_ROI_RATIO
+    x1, y1 = int(w * rx1), int(h * ry1)
+    x2, y2 = int(w * rx2), int(h * ry2)
+    crop = frame[y1:y2, x1:x2]
+    rgb = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
+    return imagehash.phash(Image.fromarray(rgb))
+
+
 # Fix #4 (2026-04-23): template-placeholder guard.
 # Scout's vision endpoint occasionally regurgitates the prompt
 # template verbatim — returning literal bracketed tokens like
@@ -500,9 +523,88 @@ class Vision:
         hint = vision_hint or "None — first frame or no issues."
         prompt = SCOUT_PROMPT.format(vision_hint=hint)
 
+        # Shadow-mode dedup precomputation (env-gated, log-only).
+        _dedup_shadow_ctx = None
+        if os.environ.get("SCOUT_DEDUP_SHADOW") == "1":
+            try:
+                _now = time.time()
+                _live_phash = _scout_dedup_score_block_phash(frame)
+                _scout_dedup_cache[:] = [
+                    e for e in _scout_dedup_cache
+                    if _now - e[2] <= _SCOUT_DEDUP_TTL_SECONDS
+                ]
+                _best_dist = None
+                _best_entry = None
+                for _entry in _scout_dedup_cache:
+                    _d = _live_phash - _entry[0]
+                    if _best_dist is None or _d < _best_dist:
+                        _best_dist = _d
+                        _best_entry = _entry
+                _dedup_shadow_ctx = (_live_phash, _best_dist, _best_entry, _now)
+            except Exception as _exc:
+                log.warn(f"[SCOUT-DEDUP-SHADOW] precompute failed: {_exc!r}")
+                _dedup_shadow_ctx = None
+
         t0 = time.time()
         raw = await self._scout_call(image_b64, prompt)
         ms = (time.time() - t0) * 1000
+
+        if _dedup_shadow_ctx is not None:
+            try:
+                _live_phash, _best_dist, _best_entry, _now = _dedup_shadow_ctx
+                _would_skip = (
+                    _best_dist is not None
+                    and _best_dist <= _SCOUT_DEDUP_THRESHOLD
+                )
+
+                def _extract_fields(text):
+                    if not text:
+                        return (None, None, None)
+                    _score = _wkts = _overs = None
+                    _m = re.search(r"(\d{1,3})[/-](\d{1,2})", text)
+                    if _m:
+                        _score = int(_m.group(1))
+                        _wkts = int(_m.group(2))
+                    _m2 = re.search(r"\(?(\d{1,2}\.\d)\)?", text)
+                    if _m2:
+                        try:
+                            _overs = float(_m2.group(1))
+                        except ValueError:
+                            _overs = None
+                    return (_score, _wkts, _overs)
+
+                _live_s, _live_w, _live_o = _extract_fields(raw)
+                if _would_skip and _best_entry is not None:
+                    _cached_s, _cached_w, _cached_o = _extract_fields(
+                        _best_entry[1])
+                else:
+                    _cached_s = _cached_w = _cached_o = None
+
+                try:
+                    from trace_emitter import get_recorder as _get_rec
+                    _get_rec().record(
+                        tag="SCOUT-DEDUP-SHADOW",
+                        would_skip=_would_skip,
+                        best_dist=(int(_best_dist)
+                                   if _best_dist is not None else None),
+                        cached_score=_cached_s,
+                        live_score=_live_s,
+                        cached_wkts=_cached_w,
+                        live_wkts=_live_w,
+                        cached_overs=_cached_o,
+                        live_overs=_live_o,
+                        score_match=((_cached_s == _live_s)
+                                     if _would_skip else None),
+                    )
+                except Exception as _exc:
+                    log.warn(
+                        f"[SCOUT-DEDUP-SHADOW] trace emit failed: {_exc!r}")
+
+                _scout_dedup_cache.append((_live_phash, raw or "", _now))
+                while len(_scout_dedup_cache) > _SCOUT_DEDUP_CACHE_MAX_SIZE:
+                    _scout_dedup_cache.pop(0)
+            except Exception as _exc:
+                log.warn(f"[SCOUT-DEDUP-SHADOW] postprocess failed: {_exc!r}")
 
         if not raw:
             log.info(f"[SCOUT] Empty response {ms:.0f}ms")
