@@ -8753,17 +8753,23 @@ async def run_test():
                         # Flush entity suspicion after all updates
                         scoreboard._tracker._flush_entity_suspicion()
 
-                        # Over change / ball event for hybrid frames
-                        _cu_overs_str = scoreboard._inn.get("overs")
-                        _cu_bowler_n = scoreboard._inn.get("current_bowler")
-                        _cu_score_int = int(scoreboard._inn.get("score") or 0)
-                        _pre_ball = ball_detector.detect(scoreboard._tracker)
-                        if _pre_ball:
-                            over_mgr.on_ball_event(_pre_ball,
-                                                   score=_cu_score_int)
-                        if over_mgr.check_over_change(
-                                _cu_overs_str, _cu_bowler_n, _cu_score_int):
-                            adaptive.on_over_change()
+                        # Over change / ball event for hybrid frames.
+                        # 2026-05-13 (bug #5 root): skip over_mgr
+                        # inference when frame is classified as GRAPHIC
+                        # — strategic timeout / H2H / preview graphics
+                        # leak team-overs progressions that pad '?'
+                        # placeholders into this_over.
+                        if frame_type != "GRAPHIC":
+                            _cu_overs_str = scoreboard._inn.get("overs")
+                            _cu_bowler_n = scoreboard._inn.get("current_bowler")
+                            _cu_score_int = int(scoreboard._inn.get("score") or 0)
+                            _pre_ball = ball_detector.detect(scoreboard._tracker)
+                            if _pre_ball:
+                                over_mgr.on_ball_event(_pre_ball,
+                                                       score=_cu_score_int)
+                            if over_mgr.check_over_change(
+                                    _cu_overs_str, _cu_bowler_n, _cu_score_int):
+                                adaptive.on_over_change()
 
                         state = scoreboard.get_live_state()
                         ws_payload = build_full_payload()
@@ -12460,7 +12466,12 @@ async def run_test():
             # changed in THIS frame even after the bowler-consensus
             # path has cleared _bowler_must_change.
             _over_changed_this_frame = False
-            if over_mgr.check_over_change(_cur_overs_str, _cur_bowler_name, _cur_score_int):
+            # 2026-05-13 (bug #5 root): skip over_mgr inference on
+            # GRAPHIC frames so strategic-timeout / H2H / preview
+            # frames cannot push '?' placeholders into this_over.
+            if frame_type == "GRAPHIC":
+                pass  # skip — let next SCOREBOARD frame drive over_mgr
+            elif over_mgr.check_over_change(_cur_overs_str, _cur_bowler_name, _cur_score_int):
                 _over_changed_this_frame = True
                 # Use synthesized last-ball event if the boundary was
                 # missed by the normal detector (absorbed into over change)
@@ -12568,10 +12579,17 @@ async def run_test():
             except (TypeError, ValueError):
                 _as = None
             try:
+                # 2026-05-13 (bug #5 root): suppress strip-coverage-gap
+                # inference on GRAPHIC frames.  fill_strip_coverage_gap
+                # uses the score-delta vs overs-jump heuristic to pad
+                # '?' placeholders into this_over; on a strategic-
+                # timeout / preview frame the team-overs jump is
+                # spurious (graphic-driven, not a real delivery gap).
                 over_mgr.fill_strip_coverage_gap(
                     _before_state.get("overs"),
                     scoreboard._inn.get("overs") if scoreboard._inn else None,
-                    _bs, _as, frame_count)
+                    _bs, _as, frame_count,
+                    frame_classified_as_graphic=(frame_type == "GRAPHIC"))
             except (TypeError, ValueError, AttributeError):
                 pass
 

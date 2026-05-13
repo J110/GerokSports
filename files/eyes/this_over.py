@@ -177,8 +177,18 @@ class ThisOverManager:
             new_overs: str | float | None,
             old_score: int | None,
             new_score: int | None,
-            frame_count: int = 0) -> None:
-        """P10: infer missing this_over tokens after broadcast resumption."""
+            frame_count: int = 0,
+            *,
+            frame_classified_as_graphic: bool = False) -> None:
+        """P10: infer missing this_over tokens after broadcast resumption.
+
+        2026-05-13 (bug #5 root): early-return when the caller flags
+        this frame as graphic (strategic timeout, H2H card, preview).
+        Otherwise the team-overs jump heuristic appends '?' tokens
+        for a non-existent ball-event gap.
+        """
+        if frame_classified_as_graphic:
+            return
         if new_overs is None:
             return
         try:
