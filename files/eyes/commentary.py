@@ -112,11 +112,20 @@ class BallEventDetector:
         self._prev_broadcast_extra = self._broadcast_extra
         self._broadcast_extra = extra_type
 
-    def _broadcast_extra_is_fresh(self, within_calls: int = 5) -> bool:
+    def _broadcast_extra_is_fresh(self, within_calls: int = 1) -> bool:
         """True if _broadcast_extra changed value recently.
 
         Avoids treating stale broadcast display (e.g. "EXTRA: WD" left
         visible for multiple deliveries within an over) as a fresh signal.
+
+        2026-05-13 (bug #5 — wide fabrication): tightened default
+        within_calls from 5 to 1.  Previous 5-frame window let a single
+        broadcast 'EXTRA: WD' reading flag fresh for ~5 subsequent
+        balls_delta=1 frames, fabricating wides on legal deliveries.
+        Now only the FIRST frame after the broadcast_extra changes is
+        considered fresh — matches the cricket reality that a wide is
+        an instantaneous event signalled by the broadcast at exactly
+        one moment.
         """
         return (self._broadcast_extra is not None
                 and self._detect_count - self._broadcast_extra_changed_at

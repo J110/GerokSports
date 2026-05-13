@@ -5701,16 +5701,23 @@ def _build_full_payload_from_state(
         # broadcast.  Prefer it here, and only fall back to SM state when
         # over_mgr hasn't started populating the new over yet (which is
         # when SM's sticky completed_over bridges the rollover gap).
-        "this_over": (
-            list(over_mgr.get_display(
+        # 2026-05-13 (bug #4 — '?' placeholder polish): swap '?'
+        # tokens (cold-start mid-over + timeout-gap-infer placeholders)
+        # for '·' so the UI ribbon renders less alarmingly while the
+        # next strip refresh fills in real data.  Internal state
+        # keeps '?' for the gap-infer code's own consensus checks;
+        # this is purely a broadcast-layer rendering swap.
+        "this_over": [
+            ("·" if t == "?" else t)
+            for t in (list(over_mgr.get_display(
                 scoreboard._inn.get("overs")
                 if scoreboard._inn else None))
-            if (over_mgr.get_display(
-                scoreboard._inn.get("overs")
-                if scoreboard._inn else None))
-            else (list(score_mgr.completed_over)
-                  if score_mgr and score_mgr.completed_over
-                  else [])),
+                if (over_mgr.get_display(
+                    scoreboard._inn.get("overs")
+                    if scoreboard._inn else None))
+                else (list(score_mgr.completed_over)
+                      if score_mgr and score_mgr.completed_over
+                      else []))],
         # `completed_over` is the most-recently completed over,
         # held STICKILY in SM — set when an over rolls over,
         # never unset until the next over completes.  Without
