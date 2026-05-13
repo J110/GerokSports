@@ -11650,6 +11650,56 @@ async def run_test():
                             pass
 
                     if detected_target and batting_team:
+                        # 2026-05-13 (#63 follow-up): chase-signature
+                        # gate.  detected_target fires when Scout reads
+                        # "TARGET 177" / "TO WIN N OFF M" / "CHASING N"
+                        # tokens — but those tokens also appear on
+                        # comparison / H2H / preview graphics shown
+                        # DURING innings 1 (e.g. a card showing "MI
+                        # chased 177 in last match").  Without this
+                        # gate, a sustained-N-frame graphic transitions
+                        # the pipeline to innings 2 mid-innings-1 (run
+                        # bzxz4qs2d F413→F449: stat graphic with target=
+                        # 177 fired set_innings_2 at MI 132/4 (15.1)).
+                        # Accept the target only when:
+                        #   - current_innings == 2 already (chase
+                        #     already underway, target overwrite OK)
+                        #   - OR pipeline state matches chase-start
+                        #     signature: score < 30 AND overs < 5.0
+                        #     (covers cold-start innings-2 join before
+                        #     the innings flag has flipped)
+                        _cur_inn = (
+                            getattr(scoreboard, "current_innings", 1)
+                            or 1)
+                        try:
+                            _cur_score_chk = int(
+                                scoreboard._inn.get("score") or 0
+                            ) if scoreboard._inn else 0
+                        except (ValueError, TypeError):
+                            _cur_score_chk = 0
+                        try:
+                            _cur_overs_chk = float(
+                                scoreboard._inn.get("overs") or 0
+                            ) if scoreboard._inn else 0.0
+                        except (ValueError, TypeError):
+                            _cur_overs_chk = 0.0
+                        _chase_sig_ok = (
+                            _cur_inn == 2
+                            or (_cur_score_chk < 30
+                                and _cur_overs_chk < 5.0))
+                        if not _chase_sig_ok:
+                            log.warn(
+                                f"  [PENDING-TARGET-REJECT] "
+                                f"target={detected_target} "
+                                f"current_inn={_cur_inn} "
+                                f"current_score={_cur_score_chk} "
+                                f"current_overs={_cur_overs_chk:.1f} "
+                                f"— mid-innings-1 graphic, not a "
+                                f"chase signature")
+                            detected_target = None
+                            _inn2_consecutive = max(
+                                0, _inn2_consecutive - 1)
+                    if detected_target and batting_team:
                         _inn2_signal = True
                         _inn2_consecutive += 1
                         # High-confidence "TO WIN N OFF M" — 4 tokens
