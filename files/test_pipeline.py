@@ -5806,12 +5806,22 @@ async def run_test():
     # 60 s wall-clock. Toss + post-innings transitions pin via
     # set_immutable.  See files/confidence_tracker.py for the state
     # machine; see assign_teams() below for the integration.
+    # 2026-05-13 (#64 follow-up #4): batting_team is a one-way fact per
+    # innings — once the live signal sustains, the team doesn't oscillate
+    # back.  ``auto_lock_on_firm=True`` makes FIRM a terminal state for
+    # this tracker; subsequent observations are recorded for telemetry
+    # but cannot move the leader.  FIRM threshold raised to 10.0 (from
+    # 5.0) so two recap-frame observations cannot reach lock — the live
+    # signal must sustain for ~10 sustained-weight observations.
+    # Innings-2 transition is the only path to ``unlock()`` (handled
+    # downstream in the auto-swap / set_innings_2 code).
     team_confidence = ConfidenceTracker(
         "batting_team",
         publish=2.0,
-        firm=5.0,
+        firm=10.0,
         flip_margin=1.0,
         half_life_s=60.0,
+        auto_lock_on_firm=True,
     )
     # 2026-05-13 (#61/#62): per-entity trackers for striker, non-striker,
     # bowler.  Thresholds are lower than batting_team's because batters and
@@ -6213,7 +6223,7 @@ async def run_test():
                 f"flipped={result.flipped}")
             team_confirm_count += 1
             if (not team_locked
-                    and result.state in ("FIRM", "IMMUTABLE")):
+                    and result.state in ("FIRM", "LOCKED", "IMMUTABLE")):
                 team_locked = True
                 team_lock_frame = frame_count if frame_count else 0
                 log.info(

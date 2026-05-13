@@ -17,10 +17,95 @@ from confidence_tracker import (
     ConfidenceTracker,
     STATE_FIRM,
     STATE_IMMUTABLE,
+    STATE_LOCKED,
     STATE_NONE,
     STATE_PUBLISHABLE,
     STATE_TENTATIVE,
 )
+
+
+def _drive_to_firm(tracker: ConfidenceTracker, name: str, *,
+                   weight: float = 1.0) -> int:
+    """Observe `name` at `weight` until tracker reaches FIRM/LOCKED."""
+    count = 0
+    while tracker.state not in (STATE_FIRM, STATE_LOCKED, STATE_IMMUTABLE):
+        tracker.observe(name, weight=weight)
+        count += 1
+        if count > 1000:
+            raise RuntimeError("loop guard")
+    return count
+
+
+# ── LOCKED (auto-lock on FIRM) ──────────────────────────────────────
+
+
+def test_auto_lock_default_off() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker("batting_team", clock=clk)
+    _drive_to_firm(bt, "MI")
+    assert bt.state == STATE_FIRM
+    bt.observe("RCB", weight=100.0)
+    assert bt.leader == "RCB", "default tracker should flip on big evidence"
+
+
+def test_auto_lock_holds_leader_after_firm() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    bt.observe("MI", weight=1.0)
+    bt.observe("MI", weight=1.0)
+    bt.observe("MI", weight=1.0)
+    assert bt.state == STATE_LOCKED
+    assert bt.leader == "MI"
+    bt.observe("RCB", weight=100.0)
+    assert bt.leader == "MI", "LOCKED tracker must not flip"
+    assert bt.state == STATE_LOCKED
+
+
+def test_locked_state_records_evidence_for_telemetry() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    _drive_to_firm(bt, "MI")
+    r = bt.observe("RCB", weight=2.0)
+    assert "RCB" in r.scores, "LOCKED state should still record evidence"
+    assert r.leader == "MI", "LOCKED state should not move the leader"
+    assert r.state == STATE_LOCKED
+
+
+def test_unlock_releases_for_innings_2() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    _drive_to_firm(bt, "MI")
+    assert bt.state == STATE_LOCKED
+    bt.unlock()
+    bt.reset()
+    assert bt.state == STATE_NONE
+    bt.observe("RCB", weight=1.0)
+    assert bt.leader == "RCB"
+
+
+def test_locked_below_firm_threshold_is_unreachable() -> None:
+    """Threshold raise to 10.0 means 2 weight-1 observations cannot
+    reach LOCKED — recap-frame poisoning protection."""
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", firm=10.0, auto_lock_on_firm=True, clock=clk)
+    bt.observe("RCB", weight=1.0)
+    bt.observe("RCB", weight=1.0)
+    assert bt.state != STATE_LOCKED
+
+
+def test_immutable_takes_precedence_over_locked() -> None:
+    clk = FakeClock()
+    bt = ConfidenceTracker(
+        "batting_team", firm=3.0, auto_lock_on_firm=True, clock=clk)
+    _drive_to_firm(bt, "MI")
+    assert bt.state == STATE_LOCKED
+    bt.set_immutable("RCB")
+    assert bt.state == STATE_IMMUTABLE
+    assert bt.leader == "RCB"
 
 
 class FakeClock:

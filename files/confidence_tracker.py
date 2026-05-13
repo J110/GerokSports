@@ -67,6 +67,7 @@ STATE_NONE = "NONE"
 STATE_TENTATIVE = "TENTATIVE"
 STATE_PUBLISHABLE = "PUBLISHABLE"
 STATE_FIRM = "FIRM"
+STATE_LOCKED = "LOCKED"
 STATE_IMMUTABLE = "IMMUTABLE"
 
 
@@ -95,18 +96,30 @@ class ConfidenceTracker:
         firm: float = DEFAULT_FIRM,
         flip_margin: float = DEFAULT_FLIP_MARGIN,
         half_life_s: float = DEFAULT_HALF_LIFE_S,
+        auto_lock_on_firm: bool = False,
         clock: Any = None,
     ) -> None:
+        """``auto_lock_on_firm``: when True, the leader is one-way
+        committed the moment its score crosses ``firm``.  Subsequent
+        observations are still recorded in ``_scores`` for telemetry
+        but do not move the leader.  ``unlock()`` releases the lock —
+        for batting_team, that is the innings-2 transition path.
+        Trackers whose fact legitimately changes during the match
+        (striker, non_striker, bowler) leave this False so over-end
+        and odd-run swaps still flip naturally.
+        """
         self.name = name
         self._publish = publish
         self._firm = firm
         self._flip_margin = flip_margin
         self._half_life = half_life_s
+        self._auto_lock_on_firm = auto_lock_on_firm
         self._clock = clock or time.time
         self._scores: dict[str, float] = {}
         self._last_t: float = 0.0
         self._leader: str | None = None
         self._immutable: bool = False
+        self._locked: bool = False
 
     # ── public observe ────────────────────────────────────────────
     def observe(
@@ -126,7 +139,7 @@ class ConfidenceTracker:
             self._scores.get(candidate, 0.0) + weight)
         old_leader = self._leader
         flipped = False
-        if not self._immutable:
+        if not self._immutable and not self._locked:
             new_leader, new_score = max(
                 self._scores.items(), key=lambda kv: kv[1])
             if self._leader is None:
@@ -136,6 +149,14 @@ class ConfidenceTracker:
                 if new_score >= leader_score + self._flip_margin:
                     self._leader = new_leader
                     flipped = True
+            # Auto-lock on FIRM: one-way commit for facts that don't
+            # change during an innings (batting_team).  After lock the
+            # leader is fixed until unlock() — typically called by the
+            # innings-2 detection path with a reset() + reseed.
+            if (self._auto_lock_on_firm
+                    and self._leader is not None
+                    and self._scores.get(self._leader, 0.0) >= self._firm):
+                self._locked = True
         return ObserveResult(
             candidate=candidate,
             weight=weight,
@@ -177,6 +198,8 @@ class ConfidenceTracker:
     def state(self) -> str:
         if self._immutable:
             return STATE_IMMUTABLE
+        if self._locked:
+            return STATE_LOCKED
         if self._leader is None:
             return STATE_NONE
         s = self.leader_score
@@ -203,7 +226,14 @@ class ConfidenceTracker:
         self._scores.clear()
         self._leader = None
         self._immutable = False
+        self._locked = False
         self._last_t = 0.0
+
+    def unlock(self) -> None:
+        """Release the auto-lock without dropping evidence.  Caller is
+        expected to ``reset()`` and re-seed when the new leader is
+        known (e.g. innings-2 batting-team transition)."""
+        self._locked = False
 
     # ── internal ──────────────────────────────────────────────────
     def _apply_decay(self, now: float) -> None:
