@@ -54,36 +54,15 @@ def _reconcile_bowler_overs(
     snap a non-current bowler (their spell already ended; their card
     figure is final).
     """
+    # 2026-05-13 (bug #5/#6/#7 — derivation vs detection): the snap-
+    # forward heuristic was racing AHEAD of broadcast strip and
+    # painting wrong overs into the UI (Shepherd 2.0 in UI while
+    # strip still showed SHEPHERD 0-12 (1.5)).  Per the architectural
+    # decision, STRIP is the only authoritative source for
+    # bowler.overs.  No internal +1/+0.1 derivation.  When the
+    # next legal delivery happens, the strip will reflect the new
+    # overs and the strip-source write path commits it.
     if not bowling_card or not current_bowler or team_overs is None:
-        return bowling_card
-    try:
-        team_balls = overs_to_balls(str(team_overs))
-    except (ValueError, TypeError, AttributeError):
-        return bowling_card
-    if team_balls <= 0 or team_balls % 6 != 0:
-        return bowling_card
-
-    for entry in bowling_card:
-        if entry.get("name") != current_bowler:
-            continue
-        try:
-            bow_balls = overs_to_balls(str(entry.get("overs") or "0"))
-        except (ValueError, TypeError, AttributeError):
-            return bowling_card
-        if bow_balls % 6 == 0:
-            return bowling_card
-        snapped_balls = ((bow_balls // 6) + 1) * 6
-        if snapped_balls > team_balls:
-            return bowling_card
-        snapped_overs = _balls_to_overs_str(snapped_balls)
-        log.info(
-            f"  [CONSISTENCY] {current_bowler} overs "
-            f"{entry.get('overs')} → {snapped_overs} "
-            f"(team @ {team_overs}, bowler must finish over)")
-        entry["overs"] = snapped_overs
-        if entry.get("runs") is not None and snapped_balls > 0:
-            entry["economy"] = round(
-                entry["runs"] / (snapped_balls / 6), 1)
         return bowling_card
     return bowling_card
 

@@ -2615,8 +2615,14 @@ class Scoreboard:
         new_balls = cur_balls + balls_delta
         entry["runs"] = cur_runs + runs_delta
         entry["wickets"] = cur_wkts + wickets_delta
-        if balls_delta != 0:
-            entry["overs"] = f"{new_balls // 6}.{new_balls % 6}"
+        # 2026-05-13 (bug #5/#6/#7 — derivation vs detection): STRIP is
+        # the only authoritative source for bowler.overs.  Removing
+        # the balls_delta-driven overs derivation here — when the
+        # next legal delivery happens, strip will reflect the new
+        # overs value and the strip-source write path commits it.
+        # Runs/wickets remain delta-driven because the ball-event
+        # detector is the cleaner signal for those than the strip
+        # (strip lags 1-2 frames after a boundary).
         if new_balls > 0:
             entry["econ"] = round(entry["runs"] / new_balls * 6, 2)
         log.info(
