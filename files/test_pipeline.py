@@ -12728,10 +12728,27 @@ async def run_test():
             # scoped _over_changed_this_frame flag (which survives the
             # in-frame clear at :10090 when the bowler-consensus path
             # confirms the new bowler).
+            #
+            # 2026-05-13 (over-13 regression fix): bowler_between_overs
+            # lives in scoreboard._inn dict, NOT as a top-level attr.
+            # Prior getattr-based read always returned False, which
+            # broke the multi-frame retention of the over-change
+            # signal — the new bowler was observed N frames after the
+            # rollover (scout takes time to read the new bowler's box),
+            # and by then _over_changed_this_frame was already False
+            # for the current frame.  Read _inn directly so the signal
+            # persists across the rollover→first-strip-read window.
+            _bbo = False
+            try:
+                _bbo = bool(
+                    (scoreboard._inn or {}).get("bowler_between_overs")
+                    if scoreboard._inn else False)
+            except (AttributeError, TypeError):
+                _bbo = False
             _bowler_change_signal = bool(
                 _over_changed_this_frame
                 or getattr(scoreboard, "_bowler_must_change", False)
-                or getattr(scoreboard, "bowler_between_overs", False))
+                or _bbo)
 
             if (striker_tracker.state == "LOCKED"
                     and non_striker_tracker.state == "LOCKED"
