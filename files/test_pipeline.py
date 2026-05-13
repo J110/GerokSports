@@ -8056,9 +8056,25 @@ async def run_test():
                     _other = [t for t in team_names
                               if t != _abbr_resolved]
                     _bowl = _other[0] if _other else "?"
-                    log.info(f"  [TEAM] From broadcast abbr: "
-                             f"{_abbr} → {_abbr_resolved}")
-                    assign_teams(_abbr_resolved, _bowl)
+                    # 2026-05-13 (#64 follow-up #3): broadcast_abbr is a
+                    # corroboration-only signal post-commit.  It cannot
+                    # access extracted batters (computed later) so it
+                    # cannot off-roster-gate; allowing it to FLIP the
+                    # leader via accumulation lets a recap frame's
+                    # team_abbr override the off-roster-gated visible_team
+                    # commit (validated F3 flip in MI-vs-RCB rerun).
+                    # visible_team remains the only path that can flip.
+                    if _abbr_resolved != batting_team:
+                        log.info(
+                            f"  [TEAM-ABBR-CONFLICT] cached_abbr="
+                            f"{_abbr!r} resolves={_abbr_resolved!r} "
+                            f"≠ batting_team={batting_team!r} — "
+                            f"invalidating cache, not observing")
+                        _broadcast_cache.pop("team_abbr", None)
+                    else:
+                        log.info(f"  [TEAM] From broadcast abbr: "
+                                 f"{_abbr} → {_abbr_resolved}")
+                        assign_teams(_abbr_resolved, _bowl)
 
             # Broadcast extra type signal (e.g. "EXTRA: WD")
             _bcast_extra = _bcast.get("broadcast_extra")
