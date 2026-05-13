@@ -217,6 +217,54 @@ class ThisOverManager:
             f"score {old_score}→{new_score} +{pad} inferred tokens "
             f"→ {self.this_over}")
 
+    def _force_rollover(self, expected: int, observed: int,
+                        reason: str = "forced") -> None:
+        """Synchronous archive + reset, bypassing the _pending_clear
+        deferral.  Used by on_ball_event when team_overs has crossed
+        past the over we're currently filling but check_over_change
+        deferred (waiting for missing balls).  Mirrors the archival
+        path in check_over_change at line 1118.
+
+        2026-05-13 (anomaly 1 — late-rollover token bleed): without
+        this gate, ball events from the new over get appended to the
+        OLD over's this_over and end up archived under the wrong
+        over_history key.
+        """
+        if self._last_over_int is None:
+            return
+        archive_payload = {
+            "balls": self.this_over.copy(),
+            "bowler": self._current_over_bowler,
+            "runs": sum(int(x) for x in self.this_over
+                        if isinstance(x, str) and x.isdigit()),
+            "wickets": sum(1 for x in self.this_over if x == "W"),
+        }
+        if self._last_over_int not in self.over_history:
+            self.over_history[self._last_over_int] = archive_payload
+            log.info(
+                f"[OVER-ROLLOVER-FORCED] Over "
+                f"{self._last_over_int}: {self.this_over} -> "
+                f"archived (reason={reason}, expected={expected}, "
+                f"observed={observed}, "
+                f"this_over_len={len(self.this_over)})")
+        else:
+            log.info(
+                f"[OVER-ROLLOVER-FORCED] Over "
+                f"{self._last_over_int} already archived; "
+                f"resetting this_over (reason={reason}, "
+                f"expected={expected}, observed={observed})")
+        self.this_over = []
+        self.this_over_sources = []
+        self._pending_clear = False
+        self._pending_clear_at = None
+        self._pending_clear_over_int = None
+        self._held_over_bowler = None
+        self._current_over_bowler = None
+        self._over_start_score = None
+        self._last_over_int = self._last_over_int + 1
+        self._last_ball_event = None
+        self._rollover_defer_count = 0
+
     def _consume_pending_clear(self, reason: str) -> None:
         """Reset display to start of the new over.
 
@@ -248,6 +296,39 @@ class ThisOverManager:
         if score is not None:
             try:
                 self._last_mutation_score = int(score)
+            except (ValueError, TypeError):
+                pass
+
+        # 2026-05-13 (anomaly 1 — late-rollover token bleed):
+        # check_over_change can defer the rollover (SHORT-OVER guard
+        # waits for the closing-ball event to land).  During that
+        # defer, the broadcast strip can advance team_overs into the
+        # NEW over.  Without this gate, ball events from the new over
+        # get appended to the OLD over's self.this_over and the
+        # eventual archive misattributes them.
+        #
+        # Trigger: event's `over` field has Y > 0 in "X.Y" AND
+        # int(event.over) + 1 > self._last_over_int + 1 (i.e., we're
+        # inside a later over than expected).  Suppress the gate at
+        # X.0 boundary because the held-over routing below covers
+        # late balls of the just-archived over.
+        _state_var_for_commit_msg = "self._last_over_int"  # noqa: F841
+        ev_over_for_gate = (
+            event.get("over") if isinstance(event, dict) else None)
+        if (ev_over_for_gate is not None
+                and self._last_over_int is not None):
+            try:
+                _ev_v_gate = float(ev_over_for_gate)
+                _ev_int_gate = int(_ev_v_gate)
+                _ev_frac_gate = round((_ev_v_gate % 1) * 10)
+                if _ev_frac_gate > 0:
+                    _observed = _ev_int_gate + 1
+                    _expected = self._last_over_int + 1
+                    if _observed > _expected:
+                        self._force_rollover(
+                            expected=_expected,
+                            observed=_observed,
+                            reason="ball_event_past_boundary")
             except (ValueError, TypeError):
                 pass
 
