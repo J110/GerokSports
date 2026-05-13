@@ -7898,9 +7898,14 @@ async def run_test():
                     f"{_bcast['this_over_broadcast']} from "
                     f"{frame_type} frame (only SCOREBOARD honoured)")
 
-            # Team abbreviation for early team detection
-            if (_broadcast_cache.get("team_abbr")
-                    and not batting_team):
+            # Team abbreviation for early team detection.
+            # 2026-05-13 (#64): dropped `not batting_team` gate so every
+            # visible-team observation feeds ConfidenceTracker.observe().
+            # assign_teams() short-circuits when the leader is unchanged
+            # (files/test_pipeline.py:6139-6155); the inner Fix-17 Path A
+            # pre-match-graphic guard still keys off batting_team via
+            # _path_a_eligible below.
+            if _broadcast_cache.get("team_abbr"):
                 _abbr = _broadcast_cache["team_abbr"]
                 _abbr_resolved = _resolve_team_variant(_abbr)
                 # Fix 17 Path A (cold-start pre-match graphic gate,
@@ -9478,8 +9483,11 @@ async def run_test():
             if not batting_team:
                 detect_team_from_players(extracted)
 
-            # Fallback: use visible_team directly from extractor
-            if not batting_team and extracted:
+            # Fallback: use visible_team directly from extractor.
+            # 2026-05-13 (#64): dropped `not batting_team` gate so every
+            # visible_team observation feeds ConfidenceTracker.observe().
+            # assign_teams() short-circuits when the leader is unchanged.
+            if extracted:
                 _vis = extracted.get("batting_team_visible")
                 if _vis:
                     _vis_resolved = _resolve_team_variant(_vis)
