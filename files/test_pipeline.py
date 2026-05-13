@@ -5136,16 +5136,23 @@ def _build_full_payload_from_state(
                 _ws_scrub_consec[_consec_key] = (
                     _ws_scrub_consec.get(_consec_key, 0) + 1)
 
-                if (_c is not None
-                        and _c.get("status") in ("yet_to_bat", None)
-                        and _ws_scrub_consec[_consec_key] >= 2):
-                    _old_status = _c.get("status")
-                    _c["status"] = "batting"
-                    _ws_scrub_consec.pop(_consec_key, None)
-                    log.info(
-                        f"  [WS-PROMOTE] {_slot}='{_nm}' auto-promoted "
-                        f"via 2-frame consensus (was={_old_status})")
-                    continue
+                # 2026-05-13 (#61/#62): REPLACED-BY-CONFIDENCE-TRACKER.
+                # Per-entity striker/non_striker_tracker now writes
+                # batting_card[leader].status = "batting" the moment it
+                # reaches PUBLISHABLE (~2 strip reads with weight 1.0),
+                # so this 2-frame consensus counter is redundant. Block
+                # kept commented for one match-validation cycle; the
+                # physical delete is queued behind parity soak.
+                # if (_c is not None
+                #         and _c.get("status") in ("yet_to_bat", None)
+                #         and _ws_scrub_consec[_consec_key] >= 2):
+                #     _old_status = _c.get("status")
+                #     _c["status"] = "batting"
+                #     _ws_scrub_consec.pop(_consec_key, None)
+                #     log.info(
+                #         f"  [WS-PROMOTE] {_slot}='{_nm}' auto-promoted "
+                #         f"via 2-frame consensus (was={_old_status})")
+                #     continue
 
                 if _slot == "striker":
                     _fallback = _active[0] if _active else None
@@ -5793,6 +5800,31 @@ async def run_test():
         firm=5.0,
         flip_margin=1.0,
         half_life_s=60.0,
+    )
+    # 2026-05-13 (#61/#62): per-entity trackers for striker, non-striker,
+    # bowler.  Thresholds are lower than batting_team's because batters and
+    # bowlers change every over (half-life shorter) and the WS-PROMOTE
+    # replacement needs ~2 strip reads to cross PUBLISH.
+    striker_tracker = ConfidenceTracker(
+        "striker",
+        publish=1.5,
+        firm=3.0,
+        flip_margin=0.75,
+        half_life_s=20.0,
+    )
+    non_striker_tracker = ConfidenceTracker(
+        "non_striker",
+        publish=1.5,
+        firm=3.0,
+        flip_margin=0.75,
+        half_life_s=20.0,
+    )
+    bowler_tracker = ConfidenceTracker(
+        "bowler",
+        publish=1.5,
+        firm=3.0,
+        flip_margin=0.75,
+        half_life_s=30.0,
     )
 
     scoreboard = Scoreboard()
@@ -6636,6 +6668,12 @@ async def run_test():
                     "  [OVERS-TRACKER-RESET] "
                     f"source={overs_reset_source} "
                     f"innings={new_innings}")
+        # 2026-05-13 (#61/#62): wipe per-entity trackers on innings
+        # transition so innings-2's first strip reads do not flip to a
+        # decayed innings-1 leader.
+        striker_tracker.reset()
+        non_striker_tracker.reset()
+        bowler_tracker.reset()
         log.info(f"  [INNINGS] Trackers reset for innings {new_innings}")
 
     # Centralised innings-change execution (Rule 2). Triggered by the
@@ -12220,6 +12258,63 @@ async def run_test():
                 score_mgr=score_mgr,
                 log=log,
             )
+            # 2026-05-13 (#61/#62): feed per-entity ConfidenceTrackers from
+            # the aligned strip rows.  When a tracker reaches PUBLISHABLE
+            # the leader is promoted to status="batting" — replaces the
+            # WS-PROMOTE 2-frame consensus counter (commented out at the
+            # WS scrub site).  Names are passed raw; resolve_name happens
+            # inside the promote helper so off-roster reads decay rather
+            # than poison batting_card.
+            def _promote_via_tracker(_tracker, _slot_label: str) -> None:
+                if _tracker.state not in (
+                        "PUBLISHABLE", "FIRM", "IMMUTABLE"):
+                    return
+                _ldr = _tracker.leader
+                if not _ldr:
+                    return
+                _resolved_ldr = scoreboard.resolve_name(_ldr) or _ldr
+                _c = scoreboard.batting_card.get(_resolved_ldr)
+                if _c is None:
+                    return
+                if _c.get("status") in ("yet_to_bat", None):
+                    _old = _c.get("status")
+                    _c["status"] = "batting"
+                    log.info(
+                        f"  [PROMOTE-TRACKER] {_slot_label}="
+                        f"{_resolved_ldr!r} {_old}→batting "
+                        f"(tier={_tracker.state}, "
+                        f"score={_tracker.leader_score:.2f})")
+
+            if _eb1 and _eb1.get("name"):
+                _r_str = striker_tracker.observe(
+                    _eb1["name"], weight=1.0)
+                log.info(
+                    f"  [STRIKER-OBSERVE] cand={_r_str.candidate!r} "
+                    f"leader={_r_str.leader!r} "
+                    f"score={_r_str.leader_score:.2f} "
+                    f"state={_r_str.state} "
+                    f"flipped={_r_str.flipped}")
+                _promote_via_tracker(striker_tracker, "striker")
+            if _eb2 and _eb2.get("name"):
+                _r_non = non_striker_tracker.observe(
+                    _eb2["name"], weight=1.0)
+                log.info(
+                    f"  [NON-STRIKER-OBSERVE] "
+                    f"cand={_r_non.candidate!r} "
+                    f"leader={_r_non.leader!r} "
+                    f"score={_r_non.leader_score:.2f} "
+                    f"state={_r_non.state} "
+                    f"flipped={_r_non.flipped}")
+                _promote_via_tracker(non_striker_tracker, "non_striker")
+            if _ext_bowler_sm and _ext_bowler_sm.get("name"):
+                _r_bow = bowler_tracker.observe(
+                    _ext_bowler_sm["name"], weight=1.0)
+                log.info(
+                    f"  [BOWLER-OBSERVE] cand={_r_bow.candidate!r} "
+                    f"leader={_r_bow.leader!r} "
+                    f"score={_r_bow.leader_score:.2f} "
+                    f"state={_r_bow.state} "
+                    f"flipped={_r_bow.flipped}")
             _sm_frame = FrameInput(
                 frame_id=str(frame_count),
                 timestamp=time.time(),
