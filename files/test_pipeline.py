@@ -12469,6 +12469,31 @@ async def run_test():
             _non_lead_canon = _tk_canon(non_striker_tracker.leader)
             _bowl_lead_canon = _tk_canon(bowler_tracker.leader)
 
+            # 2026-05-13 (#66 follow-up #3 — strategic-timeout regression):
+            # Locked-tracker unlocks must require an actual event, not a
+            # name-mismatch heuristic.  F93 of run be9gmin3f showed a
+            # strategic-timeout recap graphic ("MI 34-0 (3.2) | *Rohit
+            # Sharma 14(9) | Suryakumar Yadav 16(10) | Arshdeep Singh
+            # 0-34 (4)") which is from a previous MI match.  The new
+            # face names made the previous heuristic unlock both batter
+            # trackers and re-lock on the recap names, corrupting state
+            # for the rest of the run.  ball_event was '—', dismissal_
+            # mode was '—' — no real wicket.  Cricket invariant: a
+            # batter at the crease changes ONLY on a dismissal event
+            # (or innings transition, handled separately).  Gate the
+            # unlock on an actual wicket signal in the current frame.
+            _wicket_signal = bool(
+                (ball_event and ball_event.get("type") == "WICKET")
+                or extracted.get("dismissal")
+                or extracted.get("dismissal_mode"))
+            # Bowler change is independently event-driven: it happens
+            # at over-end, not via dismissal.  Reuse over-change signal
+            # (the over_mgr just registered a roll-over) OR the
+            # explicit current_bowler-changed signal.
+            _bowler_change_signal = bool(
+                getattr(scoreboard, "_bowler_must_change", False)
+                or getattr(scoreboard, "bowler_between_overs", False))
+
             if (striker_tracker.state == "LOCKED"
                     and non_striker_tracker.state == "LOCKED"
                     and _eb1_canon is not None
@@ -12480,14 +12505,15 @@ async def run_test():
                     f"  [TRACKER-SWAP] striker↔non; "
                     f"striker={striker_tracker.leader!r} "
                     f"non={non_striker_tracker.leader!r}")
-            else:
+            elif _wicket_signal:
                 if (striker_tracker.state == "LOCKED"
                         and _eb1_canon is not None
                         and _eb1_canon != _str_lead_canon
                         and _eb1_canon != _non_lead_canon):
                     log.info(
                         f"  [TRACKER-UNLOCK] striker={striker_tracker.leader!r} "
-                        f"→ new batter observed={_eb1_canon!r}")
+                        f"→ new batter observed={_eb1_canon!r} "
+                        f"(wicket signal present)")
                     striker_tracker.unlock_and_reset()
                 if (non_striker_tracker.state == "LOCKED"
                         and _eb2_canon is not None
@@ -12496,17 +12522,49 @@ async def run_test():
                     log.info(
                         f"  [TRACKER-UNLOCK] non_striker="
                         f"{non_striker_tracker.leader!r} "
-                        f"→ new batter observed={_eb2_canon!r}")
+                        f"→ new batter observed={_eb2_canon!r} "
+                        f"(wicket signal present)")
                     non_striker_tracker.unlock_and_reset()
+            else:
+                # Name mismatch without wicket signal — strategic
+                # timeout / stat graphic / H2H recap.  Log for telemetry
+                # and IGNORE the contradictory observation.
+                _contra = []
+                if (striker_tracker.state == "LOCKED"
+                        and _eb1_canon is not None
+                        and _eb1_canon != _str_lead_canon
+                        and _eb1_canon != _non_lead_canon):
+                    _contra.append(
+                        f"striker={striker_tracker.leader!r}≠{_eb1_canon!r}")
+                if (non_striker_tracker.state == "LOCKED"
+                        and _eb2_canon is not None
+                        and _eb2_canon != _non_lead_canon
+                        and _eb2_canon != _str_lead_canon):
+                    _contra.append(
+                        f"non={non_striker_tracker.leader!r}≠{_eb2_canon!r}")
+                if _contra:
+                    log.info(
+                        f"  [TRACKER-CONTRADICTION-IGNORED] "
+                        f"{', '.join(_contra)} no_wicket_signal — "
+                        f"likely graphic/timeout, keeping locked")
 
             if (bowler_tracker.state == "LOCKED"
                     and _bowl_canon_for_tracker is not None
                     and _bowl_canon_for_tracker != _bowl_lead_canon):
-                log.info(
-                    f"  [TRACKER-UNLOCK] bowler={bowler_tracker.leader!r} "
-                    f"→ new bowler observed="
-                    f"{_bowl_canon_for_tracker!r}")
-                bowler_tracker.unlock_and_reset()
+                if _bowler_change_signal:
+                    log.info(
+                        f"  [TRACKER-UNLOCK] bowler="
+                        f"{bowler_tracker.leader!r} → new bowler "
+                        f"observed={_bowl_canon_for_tracker!r} "
+                        f"(over-change signal)")
+                    bowler_tracker.unlock_and_reset()
+                else:
+                    log.info(
+                        f"  [TRACKER-CONTRADICTION-IGNORED] "
+                        f"bowler={bowler_tracker.leader!r}≠"
+                        f"{_bowl_canon_for_tracker!r} "
+                        f"no_over_change_signal — likely graphic, "
+                        f"keeping locked")
 
             # 2026-05-13 (#61/#62): feed per-entity ConfidenceTrackers from
             # the aligned strip rows.  When a tracker reaches PUBLISHABLE
