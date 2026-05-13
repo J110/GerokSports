@@ -82,6 +82,31 @@ _BOWLER_ROW = re.compile(
     re.VERBOSE,
 )
 
+# 2026-05-13 (#66): VISIBLE_TEXT alternate-format batter rows.  Some
+# Scout outputs in the same session emit pipe-delimited STRIP rows
+# ('| NAMAN 26(20) | TILAK 21(20) |') while others truncate STRIP to
+# just the score header and put the batter data into VISIBLE_TEXT
+# with a '>' striker marker and space-separated stats:
+#   VISIBLE_TEXT: MI 101-3 11.5 > NAMAN TILAK 38 28 34 28 RUN-RATE ...
+# or with the marker between the two names:
+#   VISIBLE_TEXT: ... NAMAN > TILAK 38 28 33 27 RUN-RATE ...
+# Both layouts are scanned only when the STRIP-body batter scan
+# returned zero rows, so the standard pipe-delimited path stays
+# primary.  Stats may be present (two number pairs after the names)
+# but are optional — names alone are enough for the per-entity
+# ConfidenceTracker observe() calls; ScoreManager keeps the strip's
+# runs/balls authority when STRIP itself parses cleanly.
+_VT_LINE = re.compile(r"VISIBLE_TEXT\s*:\s*(?P<body>.+?)$",
+                      re.MULTILINE | re.IGNORECASE)
+_VT_BATTERS_PREFIX_GT = re.compile(
+    r">\s+(?P<striker>[A-Z][A-Za-z']{2,})\s+(?P<non>[A-Z][A-Za-z']{2,})"
+    r"(?:\s+(?P<sr>\d+)\s+(?P<sb>\d+)\s+(?P<nr>\d+)\s+(?P<nb>\d+))?",
+)
+_VT_BATTERS_INFIX_GT = re.compile(
+    r"(?P<non>[A-Z][A-Za-z']{2,})\s+>\s+(?P<striker>[A-Z][A-Za-z']{2,})"
+    r"(?:\s+(?P<sr>\d+)\s+(?P<sb>\d+)\s+(?P<nr>\d+)\s+(?P<nb>\d+))?",
+)
+
 # extras= and this_over= mid-strip tokens.
 _EXTRAS = re.compile(r"extras\s*=\s*(?P<v>\d+|null)", re.IGNORECASE)
 _THIS_OVER = re.compile(r"this_over\s*=\s*(?P<v>\S+)", re.IGNORECASE)
@@ -235,6 +260,36 @@ def parse_strip(text: str,
             "balls": _parse_num_or_null(bm.group("balls")),
             "striker": bm.group("striker") in ("*", ">"),
         })
+
+    # 2026-05-13 (#66): VISIBLE_TEXT fallback for the alternate Scout
+    # layout where STRIP is truncated to the score header and batter
+    # data is space-separated on the VISIBLE_TEXT line.  Only runs
+    # when the STRIP-body scan above found nothing.  Stats are
+    # ambiguous in this layout (PREFIX vs INFIX disagree on which
+    # number pair belongs to which batter) so we surface names only
+    # and let ScoreManager keep its STRIP-driven runs/balls authority.
+    if not batters:
+        vt_m = _VT_LINE.search(text)
+        if vt_m:
+            vt_body = vt_m.group("body")
+            alt_m = _VT_BATTERS_PREFIX_GT.search(vt_body)
+            if not alt_m:
+                alt_m = _VT_BATTERS_INFIX_GT.search(vt_body)
+            if alt_m:
+                _str_name = alt_m.group("striker").strip()
+                _non_name = alt_m.group("non").strip()
+                batters.append({
+                    "name": _str_name,
+                    "runs": None,
+                    "balls": None,
+                    "striker": True,
+                })
+                batters.append({
+                    "name": _non_name,
+                    "runs": None,
+                    "balls": None,
+                    "striker": False,
+                })
 
     extras_m = _EXTRAS.search(strip_body)
     extras_runs = (
