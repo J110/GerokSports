@@ -9223,16 +9223,118 @@ async def run_test():
                     prev_vision_frame_type=_prev_ft_poison,
                     frame_type=frame_type,
                     already_poisoned=_frame_poisoned):
-                _frame_poisoned = True
-                log.info(
-                    "  [GRAPHIC-FILTER] GRAPHIC→SCOREBOARD transition — "
-                    "poisoning strip read (lever-2 partial fade guard)")
-                extracted.pop("score", None)
-                extracted.pop("wickets", None)
-                extracted.pop("match_overs", None)
-                # P3 — Mode B also arms the debounce window.
-                _overlay_window_remaining = OVERLAY_WINDOW_FRAMES
-                _overlay_window_active_frame = True
+                # Audit of 10 firings in /tmp/pipeline.log showed 4-5
+                # FALSE-POSITIVES (real over-progression blocked) vs
+                # 2 TRUE-POSITIVES (score regression ghosts) plus 3
+                # AMBIGUOUS (strip-parse failed). The unconditional
+                # pop was over-aggressive — replace with a plausibility
+                # gate: strip-score plausible vs tracker → pass; else
+                # poison. Threshold ceiling: Δscore in [0,6] AND
+                # Δballs in [0,1] AND team matches batting_team.
+                _gf_strip_score_raw = extracted.get("score")
+                _gf_strip_overs_raw = extracted.get("match_overs")
+                _gf_strip_vis_team = extracted.get(
+                    "batting_team_visible")
+                _gf_tracker_score = (
+                    scoreboard._inn.get("score")
+                    if scoreboard._inn else None)
+                _gf_tracker_overs = (
+                    scoreboard._inn.get("overs")
+                    if scoreboard._inn else None)
+                _gf_poison_reason = None
+                _gf_delta_score = None
+                _gf_delta_balls = None
+                try:
+                    _gf_strip_score = (int(_gf_strip_score_raw)
+                                       if _gf_strip_score_raw is not None
+                                       else None)
+                except (ValueError, TypeError):
+                    _gf_strip_score = None
+                if _gf_strip_score is None:
+                    _gf_poison_reason = "no_strip_score"
+                else:
+                    # Team mismatch — strip is for the other team
+                    if (_gf_strip_vis_team
+                            and batting_team is not None):
+                        _gf_vis_resolved = _resolve_team_variant(
+                            _gf_strip_vis_team)
+                        if (_gf_vis_resolved
+                                and _gf_vis_resolved != batting_team):
+                            _gf_poison_reason = "team_mismatch"
+                    # Score / balls plausibility
+                    if (_gf_poison_reason is None
+                            and _gf_tracker_score is not None):
+                        try:
+                            _gf_delta_score = (
+                                _gf_strip_score
+                                - int(_gf_tracker_score))
+                        except (ValueError, TypeError):
+                            _gf_delta_score = None
+                    if (_gf_poison_reason is None
+                            and _gf_strip_overs_raw is not None
+                            and _gf_tracker_overs is not None):
+                        try:
+                            _gf_delta_balls = (
+                                overs_to_balls(_gf_strip_overs_raw)
+                                - overs_to_balls(_gf_tracker_overs))
+                        except (ValueError, TypeError, AttributeError):
+                            _gf_delta_balls = None
+                    if _gf_poison_reason is None:
+                        if (_gf_delta_score is not None
+                                and _gf_delta_score < 0):
+                            _gf_poison_reason = "score_regression"
+                        elif (_gf_delta_score is not None
+                                and _gf_delta_score > 6):
+                            _gf_poison_reason = "score_jump_too_large"
+                        elif (_gf_delta_balls is not None
+                                and _gf_delta_balls > 1):
+                            _gf_poison_reason = "balls_jump_too_large"
+                if _gf_poison_reason is not None:
+                    _frame_poisoned = True
+                    log.info(
+                        f"  [GRAPHIC-FILTER-POISON] reason="
+                        f"{_gf_poison_reason} strip_score="
+                        f"{_gf_strip_score_raw} tracker_score="
+                        f"{_gf_tracker_score} strip_overs="
+                        f"{_gf_strip_overs_raw} "
+                        f"tracker_overs={_gf_tracker_overs} "
+                        f"Δscore={_gf_delta_score} "
+                        f"Δballs={_gf_delta_balls}")
+                    extracted.pop("score", None)
+                    extracted.pop("wickets", None)
+                    extracted.pop("match_overs", None)
+                    # P3 — Mode B also arms the debounce window.
+                    _overlay_window_remaining = OVERLAY_WINDOW_FRAMES
+                    _overlay_window_active_frame = True
+                    try:
+                        _TRACE_RECORDER.record(
+                            tag="GRAPHIC-FILTER-POISON",
+                            reason=_gf_poison_reason,
+                            strip_score=_gf_strip_score_raw,
+                            tracker_score=_gf_tracker_score,
+                            strip_overs=_gf_strip_overs_raw,
+                            tracker_overs=_gf_tracker_overs,
+                            delta_score=_gf_delta_score,
+                            delta_balls=_gf_delta_balls,
+                            frame_id=str(frame_count))
+                    except Exception:
+                        pass
+                else:
+                    log.info(
+                        f"  [GRAPHIC-FILTER-PASS] "
+                        f"strip_score={_gf_strip_score_raw} "
+                        f"Δscore={_gf_delta_score} "
+                        f"Δballs={_gf_delta_balls} — "
+                        f"real over-progress, committing")
+                    try:
+                        _TRACE_RECORDER.record(
+                            tag="GRAPHIC-FILTER-PASS",
+                            strip_score=_gf_strip_score_raw,
+                            delta_score=_gf_delta_score,
+                            delta_balls=_gf_delta_balls,
+                            frame_id=str(frame_count))
+                    except Exception:
+                        pass
 
             # P12 — innings-2 cold-start transition gates.  Reject
             # phantom recap/projection strips with bogus numeric
