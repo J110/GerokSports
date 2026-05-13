@@ -255,6 +255,115 @@ async def test_latest_frame_slot_pull_mode():
     assert calls["n"] == 1
 
 
+def _retry_tags(records: list[dict]) -> list[str]:
+    return [r["tag"] for r in records if r["tag"].startswith("SCOUT-RETRY-")]
+
+
+@pytest.mark.asyncio
+async def test_429_buffer_queued_then_success(monkeypatch):
+    """One 429 then success: SCOUT-RETRY-QUEUED on the failure,
+    SCOUT-RETRY-SUCCESS on the retry of the SAME frame (not the
+    overwriting next-tick frame)."""
+    from trace_emitter import get_recorder
+    rec = get_recorder()
+    rec.begin_frame(0)
+    slot = _Slot()
+    scout = _StubScout(latency_s=0.005, raise_429_for_n_calls=1)
+    budget = TPMBudget(cap=1_000_000)
+    task = asyncio.create_task(openscout_loop(
+        slot=slot, open_scout=scout, gate=None, tpm_budget=budget,
+        target_interval_s=0.05))
+    await asyncio.sleep(0.4)
+    task.cancel()
+    try:
+        await task
+    except asyncio.CancelledError:
+        pass
+    tags = _retry_tags(rec.drain())
+    assert "SCOUT-RETRY-QUEUED" in tags, tags
+    assert "SCOUT-RETRY-SUCCESS" in tags, tags
+    # Order: QUEUED must precede SUCCESS for the same frame_id.
+    assert tags.index("SCOUT-RETRY-QUEUED") < tags.index("SCOUT-RETRY-SUCCESS")
+
+
+@pytest.mark.asyncio
+async def test_429_buffer_exhausted_after_max_retries():
+    """A frame that keeps 429-ing must eventually drop with
+    SCOUT-RETRY-EXHAUSTED. With _RETRY_MAX_ATTEMPTS=2 the retry_count
+    reaches 2 after the second queue, so the third 429 on that same
+    frame trips the exhaust path."""
+    from trace_emitter import get_recorder
+    rec = get_recorder()
+    rec.begin_frame(0)
+    slot = _Slot()
+    scout = _StubScout(latency_s=0.005, raise_429_for_n_calls=3)
+    budget = TPMBudget(cap=1_000_000)
+    import eyes.openscout_loop as loop_mod
+    orig = loop_mod._DEFAULT_429_BACKOFF_S
+    loop_mod._DEFAULT_429_BACKOFF_S = 0.02
+    try:
+        task = asyncio.create_task(openscout_loop(
+            slot=slot, open_scout=scout, gate=None, tpm_budget=budget,
+            target_interval_s=0.05))
+        await asyncio.sleep(0.4)
+        task.cancel()
+        try:
+            await task
+        except asyncio.CancelledError:
+            pass
+    finally:
+        loop_mod._DEFAULT_429_BACKOFF_S = orig
+    tags = _retry_tags(rec.drain())
+    assert "SCOUT-RETRY-QUEUED" in tags, tags
+    assert "SCOUT-RETRY-EXHAUSTED" in tags, tags
+
+
+@pytest.mark.asyncio
+async def test_clean_run_emits_no_retry_tags():
+    """No 429s, no SCOUT-RETRY-* tags. The buffer must stay empty
+    on the happy path."""
+    from trace_emitter import get_recorder
+    rec = get_recorder()
+    rec.begin_frame(0)
+    slot = _Slot()
+    scout = _StubScout(latency_s=0.005)
+    budget = TPMBudget(cap=1_000_000)
+    task = asyncio.create_task(openscout_loop(
+        slot=slot, open_scout=scout, gate=None, tpm_budget=budget,
+        target_interval_s=0.05))
+    await asyncio.sleep(0.3)
+    task.cancel()
+    try:
+        await task
+    except asyncio.CancelledError:
+        pass
+    tags = _retry_tags(rec.drain())
+    assert tags == [], f"unexpected retry tags on clean run: {tags}"
+
+
+def test_retry_buffer_unit():
+    """Direct unit test of the buffer ring semantics."""
+    from eyes.openscout_loop import _ScoutRetryBuffer
+    buf = _ScoutRetryBuffer(capacity=3, staleness_s=0.5)
+    a, b, c, d = object(), object(), object(), object()
+    assert buf.is_empty()
+    e1, drop1 = buf.push(a, ts=1.0, retry_count=0)
+    e2, drop2 = buf.push(b, ts=2.0, retry_count=0)
+    e3, drop3 = buf.push(c, ts=3.0, retry_count=0)
+    assert drop1 is drop2 is drop3 is None
+    assert len(buf) == 3
+    # 4th push must evict the oldest (a)
+    e4, drop4 = buf.push(d, ts=4.0, retry_count=0)
+    assert drop4 == id(a)
+    assert len(buf) == 3
+    # peek+pop ordering: b is now oldest
+    assert buf.peek_oldest().frame is b
+    assert buf.pop_oldest().frame is b
+    assert buf.pop_oldest().frame is c
+    assert buf.pop_oldest().frame is d
+    assert buf.is_empty()
+
+
 def test_tpm_budget_basic():
     b = TPMBudget(cap=1000, window_s=60.0)
     assert not b.exhausted()

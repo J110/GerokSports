@@ -37,6 +37,7 @@ import collections
 import logging
 import re
 import time
+from dataclasses import dataclass
 from typing import Awaitable, Callable, Deque, Optional
 
 from eyes.cricket_logger import CricketLogger
@@ -55,6 +56,70 @@ _DERATE_RESTORE_AFTER_S = 300.0
 _LOG_INTERVAL_S = 30.0
 _STALE_FRAME_SLEEP_S = 0.10
 _THROTTLED_SLEEP_S = 0.05
+
+_RETRY_BUFFER_CAPACITY = 3
+_RETRY_BUFFER_STALENESS_S = 5.0
+_RETRY_MAX_ATTEMPTS = 2
+
+
+@dataclass
+class _RetryEntry:
+    frame: object
+    ts: float
+    retry_count: int
+    queued_monotonic: float
+    frame_id: int
+
+
+class _ScoutRetryBuffer:
+    """Bounded ring of frames awaiting scout retry after a 429.
+
+    Replaces the latest_frame_slot single-slot overwrite during
+    Groq backoff: the un-scouted frame is held here instead of being
+    clobbered by the next captured frame on the producer side.
+
+    Capacity is intentionally tiny (3): bigger buffers add staleness
+    without adding live-commentary value — a frame older than the
+    backoff window is no longer worth scouting.
+    """
+
+    def __init__(self, capacity: int = _RETRY_BUFFER_CAPACITY,
+                 staleness_s: float = _RETRY_BUFFER_STALENESS_S):
+        self._capacity = capacity
+        self._staleness_s = staleness_s
+        self._q: Deque[_RetryEntry] = collections.deque()
+
+    def __len__(self) -> int:
+        return len(self._q)
+
+    def is_empty(self) -> bool:
+        return not self._q
+
+    def push(self, frame, ts: float, *,
+             retry_count: int) -> tuple[_RetryEntry, Optional[int]]:
+        """Append a frame for retry. If full, evicts oldest and returns
+        its frame_id for SCOUT-RETRY-BUFFER-OVERFLOW telemetry."""
+        dropped_fid: Optional[int] = None
+        if len(self._q) >= self._capacity:
+            dropped_fid = self._q.popleft().frame_id
+        entry = _RetryEntry(
+            frame=frame, ts=ts, retry_count=retry_count,
+            queued_monotonic=time.monotonic(), frame_id=id(frame))
+        self._q.append(entry)
+        return entry, dropped_fid
+
+    def peek_oldest(self) -> Optional[_RetryEntry]:
+        return self._q[0] if self._q else None
+
+    def pop_oldest(self) -> Optional[_RetryEntry]:
+        return self._q.popleft() if self._q else None
+
+    def drop_stale(self, now_monotonic: float) -> list[_RetryEntry]:
+        out: list[_RetryEntry] = []
+        while self._q and (now_monotonic - self._q[0].queued_monotonic
+                           ) > self._staleness_s:
+            out.append(self._q.popleft())
+        return out
 
 
 # Type aliases for the optional sinks the caller may inject.
@@ -194,6 +259,11 @@ async def openscout_loop(
     last_log_monotonic: float = time.monotonic()
     last_frame_id: Optional[int] = None
     tracker = _CadenceTracker()
+    retry_buf = _ScoutRetryBuffer()
+    try:
+        from trace_emitter import get_recorder as _get_rec
+    except Exception:  # noqa: BLE001
+        _get_rec = None  # type: ignore[assignment]
     # Expose for match-end summary roll-up.
     try:
         open_scout._loop_tracker = tracker  # noqa: SLF001
@@ -217,19 +287,47 @@ async def openscout_loop(
                 break
             iter_t0 = time.monotonic()
 
-            latest = await slot.get_latest()
-            if latest is None:
-                tracker.note_slot_miss()
-                window_stats.note_slot_miss()
-                await asyncio.sleep(_STALE_FRAME_SLEEP_S)
-                continue
-            frame, ts, _set_t = latest
-            frame_id = id(frame)
-            if frame_id == last_frame_id:
-                tracker.note_slot_miss()
-                window_stats.note_slot_miss()
-                await asyncio.sleep(_STALE_FRAME_SLEEP_S)
-                continue
+            # Drain any retry entries that aged past the staleness window
+            # during backoff. Emit EXHAUSTED so the analyzer can correlate.
+            for stale in retry_buf.drop_stale(iter_t0):
+                if _get_rec is not None:
+                    try:
+                        _get_rec().record(
+                            tag="SCOUT-RETRY-EXHAUSTED",
+                            frame_id=stale.frame_id,
+                            retry_count=stale.retry_count,
+                            reason="stale")
+                    except Exception:  # noqa: BLE001
+                        pass
+
+            # Prefer a buffered (previously 429-throttled) frame over the
+            # live slot. Backoff timing is unchanged; this only buys
+            # survival of the un-scouted frame across the sleep. The
+            # entry is peeked here and popped only at the classify
+            # point — so a tpm-budget or rate-gate block on this iter
+            # leaves the buffered frame intact for the next tick.
+            buffered = retry_buf.peek_oldest()
+            is_retry = buffered is not None
+            if is_retry:
+                frame = buffered.frame
+                ts = buffered.ts
+                frame_id = buffered.frame_id
+                retry_count_in = buffered.retry_count
+            else:
+                latest = await slot.get_latest()
+                if latest is None:
+                    tracker.note_slot_miss()
+                    window_stats.note_slot_miss()
+                    await asyncio.sleep(_STALE_FRAME_SLEEP_S)
+                    continue
+                frame, ts, _set_t = latest
+                frame_id = id(frame)
+                if frame_id == last_frame_id:
+                    tracker.note_slot_miss()
+                    window_stats.note_slot_miss()
+                    await asyncio.sleep(_STALE_FRAME_SLEEP_S)
+                    continue
+                retry_count_in = 0
 
             if gate is not None:
                 cap_alive = True
@@ -265,6 +363,10 @@ async def openscout_loop(
                 await asyncio.sleep(min(wait_s, 5.0))
                 continue
 
+            # Consume the buffered entry now (after all gates passed).
+            if is_retry:
+                retry_buf.pop_oldest()
+            t_call0 = time.monotonic()
             try:
                 res = await open_scout.classify(frame, ts)
             except asyncio.CancelledError:
@@ -278,12 +380,48 @@ async def openscout_loop(
                     log.warn(
                         f"[OPEN-SCOUT-LOOP] 429 rate-limit, sleeping "
                         f"{sleep_for:.2f}s ({exc!r})")
+                    new_retry = retry_count_in + 1 if is_retry else 0
+                    if new_retry >= _RETRY_MAX_ATTEMPTS:
+                        if _get_rec is not None:
+                            try:
+                                _get_rec().record(
+                                    tag="SCOUT-RETRY-EXHAUSTED",
+                                    frame_id=frame_id,
+                                    retry_count=new_retry,
+                                    reason="max_retries")
+                            except Exception:  # noqa: BLE001
+                                pass
+                    else:
+                        _, dropped_fid = retry_buf.push(
+                            frame, ts, retry_count=new_retry)
+                        if _get_rec is not None:
+                            try:
+                                if dropped_fid is not None:
+                                    _get_rec().record(
+                                        tag="SCOUT-RETRY-BUFFER-OVERFLOW",
+                                        dropped_frame_id=dropped_fid,
+                                        current_size=len(retry_buf))
+                                _get_rec().record(
+                                    tag="SCOUT-RETRY-QUEUED",
+                                    frame_id=frame_id,
+                                    retry_count=new_retry)
+                            except Exception:  # noqa: BLE001
+                                pass
                     await asyncio.sleep(sleep_for)
                     continue
                 tracker.note_fail()
                 _log_std.exception("openscout loop classify error")
                 await asyncio.sleep(0.5)
                 continue
+            if is_retry and _get_rec is not None:
+                try:
+                    _get_rec().record(
+                        tag="SCOUT-RETRY-SUCCESS",
+                        frame_id=frame_id,
+                        retry_count=retry_count_in,
+                        latency_ms=int((time.monotonic() - t_call0) * 1000))
+                except Exception:  # noqa: BLE001
+                    pass
 
             last_frame_id = frame_id
             if res is not None:
