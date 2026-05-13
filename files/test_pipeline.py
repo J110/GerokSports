@@ -12394,8 +12394,13 @@ async def run_test():
             # inside the promote helper so off-roster reads decay rather
             # than poison batting_card.
             def _promote_via_tracker(_tracker, _slot_label: str) -> None:
+                # 2026-05-13 (#64 follow-up #5 hotfix): LOCKED is the
+                # terminal state for auto_lock trackers — they go
+                # TENTATIVE → PUBLISHABLE → LOCKED without ever passing
+                # through observable FIRM.  Include LOCKED here so the
+                # batting_card status promotion still fires.
                 if _tracker.state not in (
-                        "PUBLISHABLE", "FIRM", "IMMUTABLE"):
+                        "PUBLISHABLE", "FIRM", "LOCKED", "IMMUTABLE"):
                     return
                 _ldr = _tracker.leader
                 if not _ldr:
