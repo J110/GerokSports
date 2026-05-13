@@ -3115,20 +3115,63 @@ class Scoreboard:
             new_w = None
 
         if new_r is not None:
-            eff_r = self._tracker.update(
-                f"bowl:{name}:runs", new_r, frame)
-            if eff_r is not None:
-                entry["runs"] = int(eff_r)
+            # 2026-05-13 (bowler-spell seed): same as overs — a fresh
+            # bowler entry sitting at runs=0 (initial) gets the first
+            # strip-read directly, then normal consensus from there.
+            _card_runs = int(entry.get("runs") or 0)
+            if _card_runs == 0 and new_r > 0:
+                entry["runs"] = new_r
+                self._tracker.force_set(f"bowl:{name}:runs", new_r)
+                log.info(
+                    f"  [BOWLER-SPELL-SEED] '{name}' runs "
+                    f"0 → {new_r} (first non-zero strip read; "
+                    f"bypassing consensus)")
+            else:
+                eff_r = self._tracker.update(
+                    f"bowl:{name}:runs", new_r, frame)
+                if eff_r is not None:
+                    entry["runs"] = int(eff_r)
         if new_w is not None:
-            eff_w = self._tracker.update(
-                f"bowl:{name}:wickets", new_w, frame)
-            if eff_w is not None:
-                entry["wickets"] = int(eff_w)
+            _card_wkts = int(entry.get("wickets") or 0)
+            if _card_wkts == 0 and new_w > 0:
+                entry["wickets"] = new_w
+                self._tracker.force_set(f"bowl:{name}:wickets", new_w)
+                log.info(
+                    f"  [BOWLER-SPELL-SEED] '{name}' wickets "
+                    f"0 → {new_w} (first non-zero strip read; "
+                    f"bypassing consensus)")
+            else:
+                eff_w = self._tracker.update(
+                    f"bowl:{name}:wickets", new_w, frame)
+                if eff_w is not None:
+                    entry["wickets"] = int(eff_w)
         if overs is not None:
-            eff_ov = self._tracker.update(
-                f"bowl:{name}:overs", str(overs), frame)
-            if eff_ov is not None:
-                entry["overs"] = str(eff_ov)
+            # 2026-05-13 (bowler-spell seed): when a bowler's card is
+            # at the fresh-entry baseline (overs=0.0 / 0 / None), accept
+            # the first non-zero strip-read directly.  The consensus
+            # tracker rejects jumps from 0.0 → 2.x as implausible spike,
+            # leaving Hazlewood-class fresh-spell bowlers stuck at 0-0
+            # for their entire spell.  After the seed, normal consensus
+            # resumes (the next read of e.g. 2.3 advances cleanly from
+            # the 2.2 seed).
+            _card_balls = self._overs_to_balls(entry.get("overs"))
+            _ovs_str = str(overs).strip()
+            _seeded = False
+            if (_card_balls == 0
+                    and _ovs_str not in ("0.0", "0", "None", "")):
+                entry["overs"] = _ovs_str
+                self._tracker.force_set(
+                    f"bowl:{name}:overs", _ovs_str)
+                log.info(
+                    f"  [BOWLER-SPELL-SEED] '{name}' overs "
+                    f"0.0 → {_ovs_str} (first non-zero strip read; "
+                    f"bypassing consensus)")
+                _seeded = True
+            if not _seeded:
+                eff_ov = self._tracker.update(
+                    f"bowl:{name}:overs", str(overs), frame)
+                if eff_ov is not None:
+                    entry["overs"] = str(eff_ov)
 
         if maidens is not None:
             try:
