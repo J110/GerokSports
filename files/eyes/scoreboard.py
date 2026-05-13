@@ -3349,13 +3349,24 @@ class Scoreboard:
                 seed_r, seed_w = _r, _w
                 seed_o = str(overs)
                 from_scout = True
+            _carryover_balls = self._overs_to_balls(entry.get("overs"))
+            _has_carryover_overs = (
+                not from_scout
+                and entry.get("overs") is not None
+                and _carryover_balls > 0)
             entry["runs"] = seed_r
             entry["wickets"] = seed_w
             if entry.get("overs") is None or from_scout:
                 entry["overs"] = seed_o
             self._tracker.force_set(f"bowl:{name}:runs", seed_r)
             self._tracker.force_set(f"bowl:{name}:wickets", seed_w)
-            self._tracker.force_set(f"bowl:{name}:overs", seed_o)
+            if _has_carryover_overs:
+                log.info(
+                    f"  [BOWLER-RESET-SKIPPED-CARRYOVER] '{name}' "
+                    f"preserved_overs={entry.get('overs')!r} "
+                    f"(prior-spell figures, not zeroing tracker)")
+            else:
+                self._tracker.force_set(f"bowl:{name}:overs", seed_o)
             if from_scout:
                 log.info(
                     f"[BOWLER SEED] {name} figures seeded from scout "

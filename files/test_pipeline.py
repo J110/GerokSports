@@ -12831,6 +12831,30 @@ async def run_test():
                         f"no_over_change_signal — likely graphic, "
                         f"keeping locked")
 
+            _sb_current_bowler = (
+                (scoreboard._inn or {}).get("current_bowler")
+                if scoreboard._inn else None)
+            _sb_cur_canon = (
+                _tk_canon(_sb_current_bowler)
+                if _sb_current_bowler else None)
+            if (_sb_cur_canon is not None
+                    and _sb_cur_canon != _bowl_lead_canon):
+                _old_leader = bowler_tracker.leader
+                bowler_tracker.unlock_and_reset()
+                bowler_tracker.observe(_sb_current_bowler, weight=5.0)
+                log.info(
+                    f"  [BOWLER-TRACKER-RESEED] {_old_leader!r} → "
+                    f"{_sb_current_bowler!r} weight=5.0 "
+                    f"(scoreboard override / current_bowler diverges from tracker leader)")
+                try:
+                    _TRACE_RECORDER.record(
+                        tag="BOWLER-TRACKER-RESEED",
+                        old=_old_leader,
+                        new=_sb_current_bowler,
+                        weight=5.0)
+                except Exception:
+                    pass
+
             # 2026-05-13 (#61/#62): feed per-entity ConfidenceTrackers from
             # the aligned strip rows.  When a tracker reaches PUBLISHABLE
             # the leader is promoted to status="batting" — replaces the
