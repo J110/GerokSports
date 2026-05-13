@@ -10973,6 +10973,102 @@ async def run_test():
                     log.debug(
                         f"  [DIRECT-SM-REJECT] pre-check skipped: "
                         f"{_e_pre}")
+
+                # Atomic strip-head joint-pop. score/wkts/overs come from
+                # the same parsed strip-head ("DC 54-0 (7.2)") — they are
+                # one observation, not three.  Scoreboard.set internally
+                # rejects per-field on plausibility (score regression /
+                # +100 jump; overs > cur_overs+2; wickets > 10 / < 0)
+                # but returns False silently — letting score commit
+                # while overs is rejected creates phantom "score advance
+                # without ball" states that BED then has to "explain"
+                # by fabricating Wd/Nb tokens (Anomaly: F322 — strip
+                # `54-0 (7.2)` while tracker was `49-0 (4.5)`; overs
+                # jump rejected, score committed, BED fabricated Nb+4).
+                # Pre-validate all three against the same rules and pop
+                # all three when any one would fail.
+                if not _direct_block_all:
+                    _jp_reason = None
+                    _jp_cur_score = (
+                        scoreboard._inn.get("score")
+                        if scoreboard._inn else None)
+                    _jp_cur_overs = (
+                        scoreboard._inn.get("overs")
+                        if scoreboard._inn else None)
+                    _jp_cur_wkts = (
+                        scoreboard._inn.get("wickets")
+                        if scoreboard._inn else None)
+                    # Overs jump > +2 (mirrors scoreboard.py:1368)
+                    if (_ext_overs_pre is not None
+                            and _jp_cur_overs is not None):
+                        try:
+                            _jp_new_w = int(
+                                str(_ext_overs_pre).split("/")[0]
+                                .split(".")[0])
+                            _jp_cur_w = int(
+                                str(_jp_cur_overs).split(".")[0])
+                            if _jp_new_w > _jp_cur_w + 2:
+                                _jp_reason = (
+                                    f"overs_jump:"
+                                    f"{_jp_cur_overs}→{_ext_overs_pre}")
+                        except (ValueError, TypeError, AttributeError):
+                            pass
+                    # Score regression / +100 jump (scoreboard.py:1175,1181)
+                    if (_jp_reason is None
+                            and _ext_score_pre is not None
+                            and _jp_cur_score is not None):
+                        try:
+                            _jp_es = int(_ext_score_pre)
+                            _jp_cs = int(_jp_cur_score)
+                            if _jp_es < _jp_cs:
+                                _jp_reason = (
+                                    f"score_regression:"
+                                    f"{_jp_cs}→{_jp_es}")
+                            elif _jp_es - _jp_cs > 100:
+                                _jp_reason = (
+                                    f"score_jump:"
+                                    f"{_jp_cs}→{_jp_es}")
+                        except (ValueError, TypeError):
+                            pass
+                    # Wickets regression / out-of-window
+                    if (_jp_reason is None
+                            and _ext_wkts_pre is not None
+                            and _jp_cur_wkts is not None):
+                        try:
+                            _jp_ew = int(_ext_wkts_pre)
+                            _jp_cw = int(_jp_cur_wkts)
+                            if _jp_ew < _jp_cw or _jp_ew < 0 or _jp_ew > 10:
+                                _jp_reason = (
+                                    f"wkts_invalid:"
+                                    f"{_jp_cw}→{_jp_ew}")
+                        except (ValueError, TypeError):
+                            pass
+                    if _jp_reason is not None:
+                        _direct_block_all = True
+                        _orig_score = extracted.get("score")
+                        _orig_wkts = extracted.get("wickets")
+                        _orig_overs = extracted.get("match_overs")
+                        extracted.pop("score", None)
+                        extracted.pop("wickets", None)
+                        extracted.pop("match_overs", None)
+                        log.warn(
+                            f"  [STRIP-HEAD-JOINT-POP] "
+                            f"reason={_jp_reason} dropped "
+                            f"score={_orig_score} wkts={_orig_wkts} "
+                            f"overs={_orig_overs} — atomic strip-head "
+                            f"observation rejected; all three fields "
+                            f"popped to prevent split-commit phantom")
+                        try:
+                            _TRACE_RECORDER.record(
+                                tag="STRIP-HEAD-JOINT-POP",
+                                reason=_jp_reason,
+                                dropped_score=_orig_score,
+                                dropped_wkts=_orig_wkts,
+                                dropped_overs=_orig_overs,
+                                frame_id=str(frame_count))
+                        except Exception:
+                            pass
+
                 _ext_score = extracted.get("score")
                 if not _direct_block_all and _ext_score is not None:
                     try:
