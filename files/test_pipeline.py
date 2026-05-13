@@ -3624,6 +3624,30 @@ def filter_off_roster_batter_rows(
     return True
 
 
+def cold_start_off_roster_batters(extracted: dict, scoreboard) -> list[str]:
+    """Cold-start companion to ``filter_off_roster_batter_rows``: returns
+    the list of extracted batter names that do not resolve to ANY current
+    team's roster.  Used to defer the initial batting-team commit when
+    a frame appears to show a recap/highlight (e.g. F4 with Faf du Plessis
+    on RCB 2026 — Faf was on the 2024 squad, not 2026).  The standard
+    filter requires ``batting_team`` to already be set; this helper works
+    before any commit has happened by leaning on ``scoreboard.resolve_name``
+    which searches across all loaded squads.
+    """
+    if not extracted.get("batters"):
+        return []
+    off: list[str] = []
+    for row in extracted["batters"]:
+        if not isinstance(row, dict):
+            continue
+        name = (row.get("name") or "").strip()
+        if not name:
+            continue
+        if scoreboard.resolve_name(name) is None:
+            off.append(name)
+    return off
+
+
 def filter_strip_stale_dismissed(
         extracted: dict,
         scoreboard,
@@ -7899,13 +7923,14 @@ async def run_test():
                     f"{frame_type} frame (only SCOREBOARD honoured)")
 
             # Team abbreviation for early team detection.
-            # 2026-05-13 (#64): dropped `not batting_team` gate so every
-            # visible-team observation feeds ConfidenceTracker.observe().
-            # assign_teams() short-circuits when the leader is unchanged
-            # (files/test_pipeline.py:6139-6155); the inner Fix-17 Path A
-            # pre-match-graphic guard still keys off batting_team via
-            # _path_a_eligible below.
-            if _broadcast_cache.get("team_abbr"):
+            # 2026-05-13 (#64 follow-up, off-roster recap incident):
+            # broadcast_abbr fires BEFORE `extracted` is computed (line
+            # 8587), so we cannot cold-start-gate it on an off-roster
+            # signal here.  Restrict this site to post-commit observations
+            # (`batting_team` already set); the visible_team fallback
+            # below performs the cold-start commit with an off-roster
+            # check via `cold_start_off_roster_batters`.
+            if _broadcast_cache.get("team_abbr") and batting_team:
                 _abbr = _broadcast_cache["team_abbr"]
                 _abbr_resolved = _resolve_team_variant(_abbr)
                 # Fix 17 Path A (cold-start pre-match graphic gate,
@@ -9534,11 +9559,25 @@ async def run_test():
                             _other = [t for t in team_names
                                       if t != _vis_resolved]
                             _bowl_t = _other[0] if _other else "?"
-                            log.info(
-                                f"  [TEAM] Detected from "
-                                f"visible_team: {_vis} → "
-                                f"{_vis_resolved} batting")
-                            assign_teams(_vis_resolved, _bowl_t)
+                            _defer_commit = False
+                            if batting_team is None:
+                                _off = cold_start_off_roster_batters(
+                                    extracted, scoreboard)
+                                if _off:
+                                    log.warn(
+                                        f"  [BATTING_TEAM-COMMIT-"
+                                        f"DEFERRED] frame=F"
+                                        f"{frame_count} "
+                                        f"reason=off_roster_present "
+                                        f"dropped={_off} "
+                                        f"vis={_vis_resolved}")
+                                    _defer_commit = True
+                            if not _defer_commit:
+                                log.info(
+                                    f"  [TEAM] Detected from "
+                                    f"visible_team: {_vis} → "
+                                    f"{_vis_resolved} batting")
+                                assign_teams(_vis_resolved, _bowl_t)
 
             # Dismissal detection: extractor or backup from vision text.
             # Batch N: also gate on `_frame_poisoned_batters_only` —
