@@ -4018,6 +4018,33 @@ class Scoreboard:
                        bowler: str | None = None, fielder: str | None = None,
                        frame: int = 0,
                        extracted_batters: list[dict] | None = None) -> bool:
+        # Idempotency: same race as apply_known_wicket_increment.
+        # The existing `entry["status"] != "batting"` check below
+        # protects against the SAME batter being dismissed twice, but
+        # NOT against a DIFFERENT batter being dismissed for the SAME
+        # wicket-counter (e.g. auto-striker-dismiss writes FOW W1
+        # =Rahul; then the scorer-decision path at test_pipeline.py:
+        # 4725 calls dismiss_batter("Pathum") for the same wicket.
+        # Pathum.status is still "batting", check passes, function
+        # corrupts Pathum.status to "out" before _add_fow's
+        # immutability gate rejects the duplicate entry).  Pre-check
+        # FOW length against current wickets counter.
+        try:
+            _cur_wkts_for_idem = int(self._inn.get("wickets") or 0)
+        except (TypeError, ValueError):
+            _cur_wkts_for_idem = 0
+        if _cur_wkts_for_idem > 0 and len(self.fall_of_wickets) >= _cur_wkts_for_idem:
+            _existing = self.fall_of_wickets[_cur_wkts_for_idem - 1]
+            _existing_batter = (
+                _existing.get("batter") if isinstance(_existing, dict)
+                else None)
+            if _existing_batter != name:
+                log.info(
+                    f"[DISMISS-BATTER-IDEMPOTENT-NO-OP] "
+                    f"FOW W{_cur_wkts_for_idem} already recorded as "
+                    f"{_existing_batter!r} — skipping duplicate write "
+                    f"for {name!r} (no status flip, no rotation)")
+                return False
         resolved = self.resolve_name(name)
         if resolved is None:
             log.warn(f"Dismiss: '{name}' not in any squad")
