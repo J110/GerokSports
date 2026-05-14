@@ -2010,9 +2010,43 @@ class ScoreManager:
         except (TypeError, ValueError): _self_score = 0
         try: _self_wickets = int(_self_wickets)
         except (TypeError, ValueError): _self_wickets = 0
-        d_score = c_score - _self_score
+        # A1 prerequisite (2026-05-14): persistent baseline across
+        # _handle_warm calls.  Trace evidence (F19 in DC-vs-KKR
+        # 2026-05-14 16:12 watch) showed d_score computing as 0 even
+        # though scoreboard.score advanced 0→4 in the same frame —
+        # SM=DOT BED=FOUR MISMATCH.  Audit (see commit message) ruled
+        # out direct scoreboard writes outside SM, so the failure mode
+        # is subtler than "scoreboard pre-advanced", but the symptom
+        # is consistent: c_score - _self_score returns 0.  Defending
+        # by anchoring d_score to the score recorded at the *last
+        # successful event commit* (``_event_baseline_score``) makes
+        # the delta correct regardless of when scoreboard.score gets
+        # written within the frame.  Lazy-init via getattr so old SM
+        # init sites and replay harnesses don't need to be touched.
+        _ev_baseline = getattr(self, "_event_baseline_score", None)
+        if _ev_baseline is None:
+            _baseline_score = _self_score
+            _baseline_source = "self_score"
+        else:
+            _baseline_score = int(_ev_baseline)
+            _baseline_source = "prev_event"
+        d_score = c_score - _baseline_score
         d_wickets = c_wickets - _self_wickets
         d_overs = round(new_overs - old_overs, 2)
+        if (_trace is not None
+                and _baseline_source == "prev_event"
+                and d_score != c_score - _self_score):
+            try:
+                _trace.get_recorder().record(
+                    tag="SM-EVENT-DELTA-FROM-PREV",
+                    prev_event_score=int(_baseline_score),
+                    self_score=int(_self_score),
+                    card_score=int(c_score),
+                    d_score=int(d_score),
+                    d_score_naive=int(c_score - _self_score),
+                    frame_id=str(self._current_frame))
+            except Exception:
+                pass
 
         # DC-vs-CSK Fix 4: 2-frame consensus gate for ambiguous score
         # commits. Predictable monotonic ball-event increments
@@ -2269,6 +2303,12 @@ class ScoreManager:
         if events:
             self.last_event = events[-1]
             self.frames_since_event = 0
+            # A1 prerequisite: capture the score at successful event
+            # commit as the baseline for the next frame's d_score.
+            try:
+                self._event_baseline_score = int(c_score)
+            except (TypeError, ValueError):
+                self._event_baseline_score = None
             for evt in events:
                 log.info(f"[SM] {evt['type']}  "
                          f"{self.score}/{self.wickets} ({self.overs})  "
