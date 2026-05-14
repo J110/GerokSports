@@ -2039,7 +2039,25 @@ class Scoreboard:
                 int(runs_delta or 0), int(balls_delta or 0),
                 int(fours_delta or 0), int(sixes_delta or 0),
                 frame=frame)
-        resolved = self.resolve_name(name)
+        # A2 part 1 (2026-05-14): derivation-only batter stats.
+        # Strip-driven stat fields (runs/balls/fours/sixes) no longer
+        # write to batting_card[X].  The identity-resolution + status-
+        # gate + XI + opposition-reject path below still runs on every
+        # call so striker_tracker / non_striker_tracker keep getting
+        # name observations.  The event-driven _apply_batter_delta path
+        # remains the sole writer to entry.runs/.balls/.fours/.sixes.
+        # See files/docs/investigations/derivation_only_stats_design.md.
+        # This also makes the f043c5d "strip wins if monotonic >=
+        # derived" runs-monotonic guard at L2296+ dead code — the
+        # `new_r is not None` precondition fails for every entry.  Code
+        # left in place for the same blast-radius reason as A1 part 1's
+        # corresponding bowler-stale gates: removing the dead branches
+        # requires bisection-friendly follow-up commits, and they don't
+        # cost runtime once the kwargs are None.
+        runs = None
+        balls = None
+        fours = None
+        sixes = None
         if resolved is None:
             log.warn(f"Batter '{name}' not in any squad")
             return False
@@ -2773,6 +2791,38 @@ class Scoreboard:
             return False
         if entry["status"] == "yet_to_bat":
             entry["status"] = "batting"
+        # A2 part 1: BATTING-CARD-CREATED / -RESUMED on first event-
+        # delta for this batter.  Distinguished by whether the entry
+        # already carries non-zero stats (RESUMED) — e.g. cache-resume
+        # or innings re-init populated the slot — vs a fresh first
+        # delivery (CREATED).  Mirrors A1 part 1's bowler hook
+        # semantics; lazy-init via getattr so SB __init__ doesn't need
+        # to be touched.
+        if name not in getattr(
+                self, "_batting_card_first_event_seen", set()):
+            if not hasattr(self, "_batting_card_first_event_seen"):
+                self._batting_card_first_event_seen = set()
+            self._batting_card_first_event_seen.add(name)
+            try:
+                _ent_runs = int(entry.get("runs") or 0)
+                _ent_balls = int(entry.get("balls") or 0)
+                _ent_fours = int(entry.get("fours") or 0)
+                _ent_sixes = int(entry.get("sixes") or 0)
+                _resumed = (
+                    _ent_runs > 0 or _ent_balls > 0
+                    or _ent_fours > 0 or _ent_sixes > 0)
+                if _trace is not None:
+                    _trace.get_recorder().record(
+                        tag=("BATTING-CARD-RESUMED" if _resumed
+                             else "BATTING-CARD-CREATED"),
+                        batter=name,
+                        frame_id=str(frame),
+                        existing_runs=_ent_runs,
+                        existing_balls=_ent_balls,
+                        existing_fours=_ent_fours,
+                        existing_sixes=_ent_sixes)
+            except Exception:
+                pass
         cur_runs = int(entry.get("runs") or 0)
         cur_balls = int(entry.get("balls") or 0)
         cur_fours = int(entry.get("fours") or 0)
