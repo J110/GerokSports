@@ -1446,6 +1446,24 @@ class ScoreManager:
                             frame=self._current_frame)
                     except Exception:
                         pass
+                # Issue 1 follow-up (2026-05-14): partnership credit
+                # per legal delivery.  Mirrors the bowler/batter walk
+                # so over-end partnership totals match team totals.
+                # Wickets in the gap don't update partnership_runs
+                # here (the WICKET flow handles partnership closure
+                # separately); they DO consume a ball.
+                try:
+                    if not self.partnership_known:
+                        self.partnership_runs = 0
+                        self.partnership_balls = 0
+                        self.partnership_known = True
+                    self.partnership_balls = int(
+                        self.partnership_balls or 0) + 1
+                    if _tok not in (".", "W", "?"):
+                        self.partnership_runs = int(
+                            self.partnership_runs or 0) + single_runs
+                except Exception:
+                    pass
                 if _trace is not None:
                     try:
                         _trace.get_recorder().record(
@@ -1458,6 +1476,10 @@ class ScoreManager:
                             striker=_cur_str,
                             wicket_credited=bool(_wkt_delta),
                             fallback_used=bool(_fallback_used),
+                            partnership_balls_after=int(
+                                self.partnership_balls or 0),
+                            partnership_runs_after=int(
+                                self.partnership_runs or 0),
                             frame_id=str(self._current_frame))
                     except Exception:
                         pass
