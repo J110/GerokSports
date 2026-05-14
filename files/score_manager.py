@@ -200,7 +200,7 @@ class FrameInput:
 # ScoreManager
 # ---------------------------------------------------------------------------
 
-COLD_CONSENSUS = 2
+COLD_CONSENSUS = int(os.environ.get("COLD_CONSENSUS_FRAMES", "2"))
 COLD_MAX_FRAMES = 10
 COLD_MAX_FRAMES_WITH_REF = 25  # extended limit when validating against ref
 
@@ -300,7 +300,18 @@ class ScoreManager:
         # warm-mode diff guards cannot catch because there is no
         # prior state to compare against.)
         self.cold_candidate_streak: int = 0
-        self.COLD_START_CONSENSUS_FRAMES: int = 3
+        # Cold-start consensus: dropped from 3 → 2 in 2026-05-14 paired
+        # with `consistent_tracker.INITIAL_CONSENSUS_FRAMES` 3 → 2.  The
+        # 3-frame floor existed to defend against single-frame Scout
+        # hallucinations of cold-start scorecards (e.g. "GT 112-3 (12.5)"
+        # on a frame where the real match is 0-0); commit d935966 moved
+        # that defence to the skeleton-strip + pre-match-cue gates which
+        # filter bad reads before they reach the consensus accumulator,
+        # so the 3rd matching frame is no longer load-bearing.  Halves
+        # the wall-clock to first WARM anchor (~6 Scout cadences instead
+        # of ~10).  Env-overridable for paranoid revert.
+        self.COLD_START_CONSENSUS_FRAMES: int = int(
+            os.environ.get("COLD_START_CONSENSUS_FRAMES", "2"))
         self._cold_pipeline_frames: int = 0
         self._cold_last_viable: dict | None = None
         self._cold_pipeline_fallback_after: int = COLD_START_PIPELINE_FALLBACK_AFTER

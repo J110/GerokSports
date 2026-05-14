@@ -21,10 +21,12 @@ class ConsistentReadTracker:
     # ("GT 112-3 (12.5)" appearing on a frame where the actual match
     # is 0-0 — a coherent, physics-valid scorecard that no warm-mode
     # diff guard can catch because there's no prior state to compare
-    # against). 3 frames is the sweet spot: catches one-frame
-    # hallucinations cheaply (~1.5s of pipeline latency at 2fps), but
-    # not so high that we lag the real first ball of an innings.
-    INITIAL_CONSENSUS_FRAMES = 3
+    # against). Dropped from 3 → 2 in 2026-05-14 after the
+    # skeleton-strip + pre-match-cue gates (commit d935966) moved the
+    # hallucination filter upstream of consensus accumulation; the
+    # 3rd frame of agreement is no longer load-bearing for the cases
+    # that motivated 3.
+    INITIAL_CONSENSUS_FRAMES = 2
 
     # Fields exempt from cold-start consensus — these are inherently
     # initial-only or self-validating elsewhere. Adding everything to
