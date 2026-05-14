@@ -8,6 +8,11 @@ from __future__ import annotations
 
 from eyes.cricket_logger import CricketLogger
 
+try:
+    import trace_emitter as _trace
+except ImportError:
+    _trace = None
+
 log = CricketLogger("TRACK")
 
 
@@ -253,6 +258,34 @@ class ConsistentReadTracker:
             self._reject_streak.pop(field, None)
             log.info(f"{field}: {old} → {value} (fast-confirm, "
                      f"natural bowler increment F{frame_count})")
+            return value
+
+        # Fast-path: match-level overs natural increment (within-over
+        # +0.1 or over-rollover X.5 → (X+1).0).  Same rationale as the
+        # bowler fast-path above — base-6 cricket arithmetic has no OCR
+        # collisions for the +1-legal-ball shape.  Without this, an
+        # over-rollover read falls into the 2-frame pending defer
+        # (lines below) and is dropped on first sight, while the score
+        # post-event-grace bypass commits the same frame's score
+        # update — resulting in d_score>0 / d_overs=0 and downstream
+        # extras-inference fabricating a phantom Wd.  Investigation
+        # 2 (2026-05-14) reference.
+        if current is not None and self._is_natural_overs_increment(
+                field, current, value):
+            old = current
+            self.confirmed[field] = value
+            self.pending.pop(field, None)
+            self.pending_counts.pop(field, None)
+            self._reject_streak.pop(field, None)
+            log.info(f"{field}: {old} → {value} (fast-confirm, "
+                     f"natural overs increment F{frame_count})")
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="OVERS-NATURAL-INCREMENT-FAST-CONFIRM",
+                        old=old, new=value, frame_id=frame_count)
+                except Exception:
+                    pass
             return value
 
         # Post-ball-event grace: accept non-suspicious changes on first read.
@@ -679,6 +712,37 @@ class ConsistentReadTracker:
         if field.startswith("bowl:") and field.endswith(":overs"):
             delta = new_f - old_f
             return 0.09 <= delta <= 0.11
+        return False
+
+    @staticmethod
+    def _is_natural_overs_increment(field: str, old, new) -> bool:
+        """Match-level `overs` advanced by exactly one legal ball in
+        base-6 cricket arithmetic.  Two shapes are valid:
+          - within-over: ``X.Y → X.(Y+1)`` for ``Y < 5``
+          - over rollover: ``X.5 → (X+1).0``
+        Either delta is unambiguous (no OCR misread can produce them
+        by accident); safe to fast-confirm without 2-frame pending
+        consensus, which is what was previously dropping legitimate
+        over-rollover reads onto the floor and causing the extras-
+        inference gate downstream to fabricate a phantom Wd."""
+        if field != "overs":
+            return False
+        try:
+            old_f, new_f = float(old), float(new)
+        except (ValueError, TypeError):
+            return False
+        old_whole = int(old_f)
+        old_ball = round((old_f - old_whole) * 10)
+        new_whole = int(new_f)
+        new_ball = round((new_f - new_whole) * 10)
+        if (new_whole == old_whole
+                and new_ball == old_ball + 1
+                and 0 <= old_ball <= 4):
+            return True
+        if (new_whole == old_whole + 1
+                and new_ball == 0
+                and old_ball == 5):
+            return True
         return False
 
     @staticmethod

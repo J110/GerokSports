@@ -8840,8 +8840,31 @@ async def run_test():
                 await asyncio.sleep(adaptive.get_sleep_time())
                 continue
 
-            if frame_type in ("CLOSEUP", "PREMATCH"):
+            # Hybrid extraction eligibility — CLOSEUP / PREMATCH always
+            # qualify (the bottom strip is almost always visible on those
+            # frames).  GRAPHIC frames qualify when Scout reported
+            # `has_strip:true`: a stat-overlay frame covering most of the
+            # screen often still has the live broadcast strip readable at
+            # the bottom (investigation 4, 2026-05-14 — F105 dropped a
+            # correct `DC 9-0 (1.3)` read because cam=graphic forced
+            # dead-time-skip, missing delivery 1.3 entirely).  The
+            # physics-aware GRAPHIC-FILTER thresholds + the existing
+            # skeleton-strip / team-match / overlay-sentinel gates filter
+            # any overlay hallucinations that slip through this route.
+            _hybrid_graphic_with_strip = (
+                frame_type == "GRAPHIC"
+                and getattr(vision, "last_strip_flag", False))
+            if frame_type in ("CLOSEUP", "PREMATCH") or _hybrid_graphic_with_strip:
                 skipped_context += 1
+                if _hybrid_graphic_with_strip:
+                    try:
+                        _TRACE_RECORDER.record(
+                            tag="GRAPHIC-HAS-STRIP-ROUTED-HYBRID",
+                            frame_id=str(frame_count),
+                            has_overlay=getattr(
+                                vision, "last_overlay_flag", False))
+                    except Exception:
+                        pass
                 if frame_type == "CLOSEUP":
                     cv2.imwrite(
                         f"debug_frames/f{frame_count}_closeup.jpg", frame)
@@ -9433,15 +9456,29 @@ async def run_test():
                         except (ValueError, TypeError, AttributeError):
                             _gf_delta_balls = None
                     if _gf_poison_reason is None:
+                        # Physics-aware bounds (investigation 3, 2026-05-14):
+                        # The previous flat thresholds (Δscore > 6, Δballs > 1)
+                        # falsely-rejected legitimate multi-ball catch-up reads
+                        # whose totals were physically valid.  Mirror
+                        # cricket_rules._check_invariants instead: max 7 runs
+                        # per ball (+5 stacked-extras buffer) and the same
+                        # 12-ball multi-ball ceiling.  Regression / no-strip
+                        # / team-mismatch clauses are unchanged.
+                        try:
+                            from cricket_rules import MULTI_BALL_MAX_BALLS
+                        except ImportError:
+                            MULTI_BALL_MAX_BALLS = 12
                         if (_gf_delta_score is not None
                                 and _gf_delta_score < 0):
                             _gf_poison_reason = "score_regression"
-                        elif (_gf_delta_score is not None
-                                and _gf_delta_score > 6):
-                            _gf_poison_reason = "score_jump_too_large"
                         elif (_gf_delta_balls is not None
-                                and _gf_delta_balls > 1):
+                                and _gf_delta_balls > MULTI_BALL_MAX_BALLS):
                             _gf_poison_reason = "balls_jump_too_large"
+                        elif (_gf_delta_score is not None
+                                and _gf_delta_balls is not None):
+                            _gf_max_runs = 7 * max(1, _gf_delta_balls) + 5
+                            if _gf_delta_score > _gf_max_runs:
+                                _gf_poison_reason = "score_jump_too_large"
                 if _gf_poison_reason is not None:
                     _frame_poisoned = True
                     log.info(
