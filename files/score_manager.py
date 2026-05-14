@@ -1389,9 +1389,30 @@ class ScoreManager:
         # (mirrors self.striker / self.non); committed via
         # _set_slot_pair at the end if odd-run count flipped the
         # striker.
+        # Issue 1 follow-up (2026-05-14): fallback through scoreboard
+        # accessors when SM-side slots haven't propagated yet.  The
+        # cold-start window has a known propagation gap — at the moment
+        # _synthesize_cold_start_ball_events runs, _accept_initial may
+        # not have committed self.striker / self.bowler_name yet (the
+        # card's bat1_name / bowler_name fields can arrive None when
+        # upstream strip reads were dropped by the digits-false veto).
+        # Fall back to the scoreboard's current_bowler + SM's bat1_name
+        # so synth credits don't silently skip.
         bowler_name = self.bowler_name
+        if not bowler_name and self.scoreboard is not None:
+            try:
+                bowler_name = (
+                    self.scoreboard._inn or {}).get("current_bowler")
+            except Exception:
+                bowler_name = None
         striker_name = self.striker
-        non_name = self.non
+        if not striker_name:
+            striker_name = self.bat1_name or getattr(
+                self, "_pending_striker", None)
+        non_name = self.non or self.bat2_name
+        _fallback_used = (
+            bowler_name != self.bowler_name
+            or striker_name != self.striker)
         if (bowler_name and striker_name and self.scoreboard is not None
                 and implied_balls > 0):
             _cur_str = striker_name
@@ -1436,6 +1457,7 @@ class ScoreManager:
                             bowler=bowler_name,
                             striker=_cur_str,
                             wicket_credited=bool(_wkt_delta),
+                            fallback_used=bool(_fallback_used),
                             frame_id=str(self._current_frame))
                     except Exception:
                         pass

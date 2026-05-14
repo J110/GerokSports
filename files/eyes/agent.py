@@ -20,6 +20,7 @@ from eyes.extract_regex import parse_strip
 from eyes.extract_regex import (
     _parse_tag_line,
     _STRIP_LINE as _STRIP_LINE_RE,
+    _STRIP_HEAD as _STRIP_HEAD_RE,
 )
 import re as _re_agent
 
@@ -438,7 +439,40 @@ class Extractor:
         strip_body = (strip_m.group("body") or "").strip()
         if not any(ch.isdigit() for ch in strip_body):
             return
-        # Veto: digits in STRIP that classifier didn't see.
+        # Issues 2/3/4 (2026-05-14): tighten the veto to a multi-digit
+        # score signature.  Single-digit STRIPs like "DC 8-0 (1.2)" are
+        # the common legitimate cold-start pattern — every cricket
+        # innings starts with single-digit scores and overs decimals;
+        # vetoing them dropped the entire low-score window into
+        # MULTI_BALL gap territory (post-full-stack validation Issue 2).
+        # Hallucinations historically fabricate >=10 scores
+        # ("54-0 (7.2)", "129-4 (14.1)"); below that threshold the
+        # team-token gate (8cb9465) + joint-pop gates remain as
+        # downstream defenses.
+        _strip_score = None
+        _head_m = (_STRIP_HEAD_RE.match(strip_body)
+                   if _STRIP_HEAD_RE else None)
+        if _head_m:
+            try:
+                _runs_tok = _head_m.group("runs")
+                if _runs_tok and _runs_tok.lower() != "null":
+                    _strip_score = int(_runs_tok)
+            except (TypeError, ValueError, IndexError):
+                _strip_score = None
+        if _strip_score is None or _strip_score < 10:
+            if _trace_agent is not None:
+                try:
+                    _trace_agent.get_recorder().record(
+                        tag="DIGITS-VETO-SKIPPED-LOW-SCORE",
+                        strip_preview=strip_body[:120],
+                        parsed_score=_strip_score,
+                        has_strip_flag=(
+                            tag.get("has_strip") if tag else None),
+                        extract_path=result.get("_extract_path"))
+                except Exception:
+                    pass
+            return
+        # Veto: multi-digit score in STRIP that classifier didn't see.
         if _trace_agent is not None:
             try:
                 _trace_agent.get_recorder().record(
