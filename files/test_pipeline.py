@@ -11200,6 +11200,22 @@ async def run_test():
                             f"  [STRIKER] Broadcast indicator: "
                             f"{_pending_bcast_striker_key} "
                             f"(was {_cur_striker})")
+                        # Option 1 audit trace: counts how often the
+                        # cricket-rules rotation disagrees with the
+                        # broadcast `>` indicator.  High firing rate
+                        # post-fix would justify the Option 2
+                        # architectural cleanup (eliminating dual
+                        # source-of-truth between SM and pipeline).
+                        try:
+                            _TRACE_RECORDER.record(
+                                tag="STRIKER-BROADCAST-CORRECTION",
+                                **{
+                                    "from": _cur_striker,
+                                    "to": _pending_bcast_striker_key,
+                                    "frame_id": str(frame_count),
+                                })
+                        except Exception:
+                            pass
                 elif (_pending_bcast_striker_key
                         and getattr(
                             scoreboard,
@@ -13136,15 +13152,67 @@ async def run_test():
                 _s = _canonical_active_slot(score_mgr, scoreboard, "striker")
                 _ns = _canonical_active_slot(
                     score_mgr, scoreboard, "non")
+                # Option 1 fix (2026-05-14, post-A2 striker desync):
+                # when the LAST ball of the just-completed over carried
+                # odd runs, cricket says the batters first swap ends
+                # via the odd-run rotation (mid-over) AND then the
+                # bowler's end switches via the over-end rotation —
+                # net effect on physical striker position is zero.  SM
+                # already applies both swaps internally; the pipeline
+                # tracker side previously fired only the over-end
+                # swap, producing a one-rotation desync at every
+                # over-end-with-odd-last-ball boundary (visible at
+                # 1.1 in DC-vs-KKR 2026-05-14 watch session — SM
+                # credited Pathum, pipeline displayed Rahul).  Detect
+                # odd-run last ball and skip the over-end swap (the
+                # two implicit rotations cancel).
+                _last_ball_runs = 0
+                try:
+                    if ball_event:
+                        _last_ball_runs = int(ball_event.get("runs") or 0)
+                except (TypeError, ValueError):
+                    _last_ball_runs = 0
+                _last_ball_odd = (_last_ball_runs % 2) == 1
                 if _s and _ns:
-                    _set_legacy_active_slot(
-                        score_mgr, scoreboard, "striker", _ns,
-                        "over-end")
-                    _set_legacy_active_slot(
-                        score_mgr, scoreboard, "non", _s,
-                        "over-end")
-                    log.info(f"  [STRIKER] Over change rotation: "
-                             f"{_ns} ← {_s}")
+                    if _last_ball_odd:
+                        log.info(
+                            f"  [STRIKER] Over change rotation "
+                            f"SKIPPED (last ball runs="
+                            f"{_last_ball_runs}, odd-run + over-end "
+                            f"net cancel): striker stays {_s}")
+                        try:
+                            _TRACE_RECORDER.record(
+                                tag=(
+                                    "STRIKER-OVER-END-"
+                                    "DOUBLE-ROTATION-APPLIED"),
+                                last_ball_runs=_last_ball_runs,
+                                current_striker_pre=_s,
+                                current_striker_post=_s,
+                                rotation_net="cancel",
+                                frame_id=str(frame_count))
+                        except Exception:
+                            pass
+                    else:
+                        _set_legacy_active_slot(
+                            score_mgr, scoreboard, "striker", _ns,
+                            "over-end")
+                        _set_legacy_active_slot(
+                            score_mgr, scoreboard, "non", _s,
+                            "over-end")
+                        log.info(f"  [STRIKER] Over change rotation: "
+                                 f"{_ns} ← {_s}")
+                        try:
+                            _TRACE_RECORDER.record(
+                                tag=(
+                                    "STRIKER-OVER-END-"
+                                    "DOUBLE-ROTATION-APPLIED"),
+                                last_ball_runs=_last_ball_runs,
+                                current_striker_pre=_s,
+                                current_striker_post=_ns,
+                                rotation_net="single_swap",
+                                frame_id=str(frame_count))
+                        except Exception:
+                            pass
                 _ov_f = float(_cur_overs_str or "0")
                 _bt_ov = get_bowler_type(
                     _cur_bowler_name, _squad_roles) if _cur_bowler_name else None
