@@ -1312,9 +1312,16 @@ class ScoreManager:
         Events are written to ``self._cold_start_synthesized_events`` and
         the inferred tokens overwrite the "?" placeholders in
         ``self.this_over`` so the UI reflects the synthesised over.
-        Downstream side-effects (extras detection, bowler stats, batter
-        runs) are deliberately NOT triggered — those require real frame
-        observations the gap by definition lacks.
+
+        Bowler / striker credit (Issue 1 fix, 2026-05-14): when BOTH
+        ``self.bowler_name`` and ``self.striker`` are populated (the
+        LOCKED proxy from within score_manager), the synth walks the
+        tokens and credits bowling_card / batting_card via the existing
+        delta APIs with the same per-token distribution + odd-run
+        striker rotation pattern used by the MULTI_BALL decomposition
+        (A2 part 2 / 32a2207).  When either slot is None, falls back
+        to the legacy no-credit behavior — the gap by definition lacks
+        the name observation needed to attribute credit safely.
         """
         if implied_balls <= 0:
             return []
@@ -1370,6 +1377,77 @@ class ScoreManager:
             self.this_over_src = ["synth"] * len(tokens)
         except AttributeError:
             pass
+
+        # Issue 1 (2026-05-14): credit synthesized balls to bowler /
+        # striker when BOTH name slots are populated.  `self.bowler_name`
+        # and `self.striker` are non-None only after their respective
+        # ConfidenceTrackers have committed (LOCKED) and the SM-side
+        # setter has propagated the name — so non-None acts as the
+        # LOCKED proxy from within score_manager.  When either slot is
+        # None, fall back to legacy no-credit behavior (the original
+        # "no observation basis" caveat).  Strike rotation is local
+        # (mirrors self.striker / self.non); committed via
+        # _set_slot_pair at the end if odd-run count flipped the
+        # striker.
+        bowler_name = self.bowler_name
+        striker_name = self.striker
+        non_name = self.non
+        if (bowler_name and striker_name and self.scoreboard is not None
+                and implied_balls > 0):
+            _cur_str = striker_name
+            _cur_non = non_name
+            for i, _tok in enumerate(tokens):
+                if _tok in (".", "W", "?"):
+                    single_runs = 0
+                else:
+                    try:
+                        single_runs = int(_tok)
+                    except (TypeError, ValueError):
+                        single_runs = 0
+                _wkt_delta = 1 if _tok == "W" else 0
+                try:
+                    self.scoreboard.update_bowler(
+                        bowler_name,
+                        runs_delta=single_runs,
+                        balls_delta=1,
+                        wickets_delta=_wkt_delta,
+                        frame=self._current_frame)
+                except Exception:
+                    pass
+                if _cur_str and _tok != "W":
+                    try:
+                        self.scoreboard.update_batter(
+                            _cur_str,
+                            runs_delta=single_runs,
+                            balls_delta=1,
+                            fours_delta=1 if _tok == "4" else 0,
+                            sixes_delta=1 if _tok == "6" else 0,
+                            frame=self._current_frame)
+                    except Exception:
+                        pass
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="COLD-START-SYNTH-CREDITED",
+                            token=_tok,
+                            ball_index=i,
+                            total_balls=implied_balls,
+                            single_ball_runs=single_runs,
+                            bowler=bowler_name,
+                            striker=_cur_str,
+                            wicket_credited=bool(_wkt_delta),
+                            frame_id=str(self._current_frame))
+                    except Exception:
+                        pass
+                if single_runs % 2 == 1 and _cur_non:
+                    _cur_str, _cur_non = _cur_non, _cur_str
+            if (_cur_str and _cur_str != striker_name and _cur_non):
+                try:
+                    self._set_slot_pair(
+                        _cur_str, _cur_non,
+                        source="cold_start_synth")
+                except Exception:
+                    pass
         return events
 
     def _maybe_synthesize_cold_start_gap(self) -> None:

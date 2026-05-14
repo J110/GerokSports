@@ -11373,6 +11373,78 @@ async def run_test():
                     _jp_cur_wkts = (
                         scoreboard._inn.get("wickets")
                         if scoreboard._inn else None)
+                    # Issue 2 primary (2026-05-14):
+                    # STRIP-HEAD-TEAM-TOKEN-MISMATCH.  When the strip
+                    # head's leading team token doesn't match the
+                    # locked batting team, the read is a cross-match
+                    # graphic flash regardless of visible_team field
+                    # state — pop atomically (score / overs / wickets
+                    # share one observation).  Defensive lookups on
+                    # both `batting_team_visible` (parse_strip return
+                    # shape) and the legacy `visible_team` field.
+                    _strip_team_token = (
+                        extracted.get("batting_team_visible")
+                        or extracted.get("visible_team"))
+                    _locked_batting = (
+                        scoreboard._inn.get("batting_team")
+                        if scoreboard._inn else None) or batting_team
+                    if (_strip_team_token and _locked_batting
+                            and not _team_names_match(
+                                _strip_team_token, _locked_batting)):
+                        _jp_reason = (
+                            f"team_token_mismatch:"
+                            f"{_strip_team_token}!={_locked_batting}")
+                        try:
+                            _TRACE_RECORDER.record(
+                                tag=(
+                                    "STRIP-HEAD-TEAM-TOKEN-MISMATCH"),
+                                strip_team=_strip_team_token,
+                                batting=_locked_batting,
+                                ext_score=_ext_score_pre,
+                                ext_overs=_ext_overs_pre,
+                                ext_wkts=_ext_wkts_pre,
+                                frame_id=str(frame_count))
+                        except Exception:
+                            pass
+                    # Issue 2 defense-in-depth (2026-05-14):
+                    # STRIP-HEAD-FORWARD-BALLS-NO-SCORE-POP.  Forward
+                    # balls jump (>1 ball ahead) with NO corroborating
+                    # score in the same read is implausible — a
+                    # legitimate MULTI_BALL catchup would carry a
+                    # score delta.  Joint-pop before the existing
+                    # regression / overs-jump gates so we don't waste
+                    # a downstream cricket_rules.validate_diff round.
+                    if (_jp_reason is None
+                            and _ext_overs_pre is not None
+                            and _jp_cur_overs is not None
+                            and _ext_score_pre is None):
+                        try:
+                            _fb_ext_balls = overs_to_balls(
+                                str(_ext_overs_pre).split("/")[0])
+                            _fb_cur_balls = overs_to_balls(
+                                str(_jp_cur_overs))
+                            if (_fb_ext_balls is not None
+                                    and _fb_cur_balls is not None
+                                    and _fb_ext_balls
+                                    > _fb_cur_balls + 1):
+                                _jp_reason = (
+                                    f"forward_balls_no_score:"
+                                    f"{_jp_cur_overs}→"
+                                    f"{_ext_overs_pre}")
+                                try:
+                                    _TRACE_RECORDER.record(
+                                        tag=(
+                                            "STRIP-HEAD-FORWARD-"
+                                            "BALLS-NO-SCORE-POP"),
+                                        ext_balls=_fb_ext_balls,
+                                        cur_balls=_fb_cur_balls,
+                                        cur_overs=_jp_cur_overs,
+                                        ext_overs=_ext_overs_pre,
+                                        frame_id=str(frame_count))
+                                except Exception:
+                                    pass
+                        except (ValueError, TypeError, AttributeError):
+                            pass
                     # Overs jump > +2 (mirrors scoreboard.py:1368)
                     if (_ext_overs_pre is not None
                             and _jp_cur_overs is not None):
