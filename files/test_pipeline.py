@@ -5302,6 +5302,81 @@ def _enforce_archive_retention(
     return removed
 
 
+def _empty_cold_start_payload(
+    *,
+    scoreboard,
+    team_names: list[str],
+    batting_team: str | None,
+    bowling_team: str | None,
+    toss_winner_name: str | None,
+    toss_decision_str: str | None,
+    frame_count: int,
+) -> dict:
+    """Pre-anchor WS payload — UI's "awaiting first delivery" shape.
+
+    Returned while ScoreManager is in COLD_START (live mode) so that
+    pre-lock raw VLM reads accreted into ``scoreboard._inn`` /
+    ``scoreboard.batting_card`` / ``scoreboard.bowling_card`` do not
+    leak onto the UI as a fake live scoreline.
+    """
+    _ui_session = f"{SESSION_ID}_inn{scoreboard.current_innings}"
+    return {
+        "type": "state_update",
+        "session_id": _ui_session,
+        "timestamp": time.time(),
+        "frame": frame_count,
+        "match": {
+            "team_a": team_names[0] if team_names else "",
+            "team_b": team_names[1] if len(team_names) > 1 else "",
+            "innings": scoreboard.current_innings,
+            "target": None,
+            "toss": {
+                "winner": toss_winner_name,
+                "decision": toss_decision_str,
+            },
+            "phase": "pre_match",
+            "match_phase": None,
+        },
+        "innings_history": [],
+        "scorecard": {
+            "score": None,
+            "wickets": None,
+            "overs": None,
+            "run_rate": None,
+            "batting_team": batting_team or "",
+            "bowling_team": bowling_team or "",
+            "striker": None,
+            "non": None,
+            "current_bowler": None,
+        },
+        "batting_card": [],
+        "bowling_card": [],
+        "extras": {},
+        "partnerships": {"current": None},
+        "this_over": [],
+        "completed_over": None,
+        "completed_over_runs": None,
+        "match_situation": {},
+        "over_history": {},
+        "field": {
+            "positions": [],
+            "formation": None,
+            "inside_count": 0,
+            "outside_count": 0,
+            "phase": None,
+            "confidence": None,
+        },
+        "speed_kph": None,
+        "delivery_info": None,
+        "venue": None,
+        "match_info": None,
+        "fall_of_wickets": [],
+        "fall_of_wickets_internal_count": 0,
+        "full_batting_squad": [],
+        "full_bowling_squad": [],
+    }
+
+
 def _build_full_payload_from_state(
     *,
     scoreboard,
@@ -5324,6 +5399,48 @@ def _build_full_payload_from_state(
 ) -> dict:
     """Build the SINGLE canonical WS payload (extracted from run_test)."""
     _ = assert_payload_invariants  # API compatibility; not used in-body.
+
+    # Pre-lock cold-start suppression.  When SM is in COLD_START (live
+    # mode), `scoreboard._inn` / `scoreboard.batting_card` /
+    # `scoreboard.bowling_card` may still carry raw VLM reads from
+    # pre-match coverage that the score_manager skeleton-strip /
+    # narrative-cue gate (commit d935966) rejected at the consensus
+    # boundary.  Those rows are written by paths upstream of
+    # ScoreManager and would otherwise reach the UI as a fake live
+    # scoreline.  Publish an "awaiting first delivery" payload until
+    # SM transitions to WARM.  Shadow mode keeps the legacy behaviour
+    # so observational runs continue to surface scoreboard's view.
+    if (score_mgr is not None
+            and getattr(score_mgr, "mode", None) == "COLD_START"
+            and not getattr(score_mgr, "shadow", False)):
+        try:
+            _trace.get_recorder().record(
+                tag="WS-PAYLOAD-COLD-START-SUPPRESS",
+                frame_id=frame_count,
+                had_score=bool(
+                    (scoreboard._inn or {}).get("score")),
+                had_striker=bool(
+                    (scoreboard._inn or {}).get("striker")),
+                had_bowler=bool(
+                    (scoreboard._inn or {}).get("current_bowler")),
+            )
+        except Exception:
+            pass
+        log.info(
+            f"  [WS-PAYLOAD-COLD-START-SUPPRESS] frame={frame_count} "
+            f"score_mgr.mode=COLD_START "
+            f"had_score={bool((scoreboard._inn or {}).get('score'))} "
+            f"had_striker={bool((scoreboard._inn or {}).get('striker'))}")
+        return _empty_cold_start_payload(
+            scoreboard=scoreboard,
+            team_names=team_names,
+            batting_team=batting_team,
+            bowling_team=bowling_team,
+            toss_winner_name=toss_winner_name,
+            toss_decision_str=toss_decision_str,
+            frame_count=frame_count,
+        )
+
     state = scoreboard.get_live_state() if scoreboard._inn else {}
     # === S1 fix: complete the SM cutover ===
     # ScoreManager is the sole authority for striker / non /
