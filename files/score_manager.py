@@ -3712,6 +3712,56 @@ class ScoreManager:
                             frame_id=str(self._current_frame))
                     except Exception:
                         pass
+                # A2 part 2: batter credit per absorbed ball.  Tracks
+                # current striker across the gap via gap_meta so
+                # rotation persists between calls.  Wicket token does
+                # not credit the batter (separate WICKET path handles
+                # dismissed-batter accounting).
+                if "_current_striker" not in gap_meta:
+                    gap_meta["_current_striker"] = (
+                        evt.get("striker") or self.striker)
+                    gap_meta["_current_non"] = self.non
+                    gap_meta["_orig_striker"] = (
+                        evt.get("striker") or self.striker)
+                _cur_str = gap_meta["_current_striker"]
+                _cur_non = gap_meta["_current_non"]
+                if _cur_str and _tok != "W" and self.scoreboard is not None:
+                    self.scoreboard.update_batter(
+                        _cur_str,
+                        runs_delta=single_runs,
+                        balls_delta=1,
+                        fours_delta=1 if _tok == "4" else 0,
+                        sixes_delta=1 if _tok == "6" else 0,
+                        frame=self._current_frame)
+                    if _trace is not None:
+                        try:
+                            _trace.get_recorder().record(
+                                tag=("MULTI-BALL-BATTER-"
+                                     "DERIVATION-EXPANDED"),
+                                batter=_cur_str,
+                                ball_index=idx,
+                                total_balls=nballs,
+                                single_ball_runs=single_runs,
+                                token=_tok,
+                                source="absorbed_legal",
+                                frame_id=str(self._current_frame))
+                        except Exception:
+                            pass
+                if single_runs % 2 == 1 and _cur_non:
+                    gap_meta["_current_striker"] = _cur_non
+                    gap_meta["_current_non"] = _cur_str
+                if is_last:
+                    _final_str = gap_meta.get("_current_striker")
+                    _orig_str = gap_meta.get("_orig_striker")
+                    _final_non = gap_meta.get("_current_non")
+                    if (_final_str and _final_non
+                            and _final_str != _orig_str):
+                        try:
+                            self._set_slot_pair(
+                                _final_str, _final_non,
+                                source="absorbed_legal_decomp")
+                        except Exception:
+                            pass
 
         if evt.get("gap_finalize_wicket"):
             w_ev = {
@@ -3774,6 +3824,12 @@ class ScoreManager:
                         n_balls, total_runs, wkts_in_gap)
                 else:
                     _tokens = ["?"] * n_balls
+                # A2 part 2: per-token striker rotation for batter
+                # credit during the gap.  Local mirror of self.striker
+                # / self.non; committed back via _set_slot_pair if the
+                # rotation count is odd at end of the gap.
+                _cur_str = striker_name
+                _cur_non = self.non
                 for i, _tok in enumerate(_tokens):
                     if _tok in (".", "W", "?"):
                         single_runs = 0
@@ -3801,6 +3857,42 @@ class ScoreManager:
                                 frame_id=str(self._current_frame))
                         except Exception:
                             pass
+                    # A2 part 2: batter credit for this gap ball.
+                    # Wicket token (W) does NOT credit the batter (the
+                    # WICKET event flow handles dismissed batter
+                    # separately); other tokens credit the current
+                    # striker with runs + 1 ball faced.
+                    if _cur_str and _tok != "W":
+                        self.scoreboard.update_batter(
+                            _cur_str,
+                            runs_delta=single_runs,
+                            balls_delta=1,
+                            fours_delta=1 if _tok == "4" else 0,
+                            sixes_delta=1 if _tok == "6" else 0,
+                            frame=self._current_frame)
+                        if _trace is not None:
+                            try:
+                                _trace.get_recorder().record(
+                                    tag=("MULTI-BALL-BATTER-"
+                                         "DERIVATION-EXPANDED"),
+                                    batter=_cur_str,
+                                    ball_index=i,
+                                    total_balls=n_balls,
+                                    single_ball_runs=single_runs,
+                                    token=_tok,
+                                    frame_id=str(self._current_frame))
+                            except Exception:
+                                pass
+                    if single_runs % 2 == 1 and _cur_non:
+                        _cur_str, _cur_non = _cur_non, _cur_str
+                # Commit final rotation if it shifted.
+                if _cur_str and _cur_str != striker_name and _cur_non:
+                    try:
+                        self._set_slot_pair(
+                            _cur_str, _cur_non,
+                            source="multi_ball_decomp")
+                    except Exception:
+                        pass
             return
 
         if etype == "WICKET":
@@ -3837,10 +3929,40 @@ class ScoreManager:
         elif etype == "SIX":
             runs_off_bat, runs_total, legal = 6, 6, True
         elif etype == "RUNS":
-            runs_off_bat = int(
-                event.get("batter_runs", event.get("runs", 0)) or 0)
-            runs_total = int(event.get("runs", 0) or 0)
-            legal = True
+            # A2 part 2: extras-attribution refinement.  Bye / leg-bye
+            # runs DO NOT credit the bowler and DO NOT credit the
+            # batter's runs column (they're team extras), but the ball
+            # IS legal and counts in the striker's balls_faced and the
+            # bowler's balls.  Bowler's economy is preserved by NOT
+            # incrementing runs_this_over for byes/lb; track the
+            # subtotal separately on bowling_card[X].byes_lb_this_over
+            # so audit can reconstruct the over composition.
+            _extras_subtype = event.get("extras_type")
+            if _extras_subtype in (
+                    "leg_bye_or_bye", "bye", "leg_bye"):
+                runs_off_bat = 0
+                runs_total = 0
+                legal = True
+                # Track byes/lb on bowler's transient over-state for
+                # observability (maiden check uses runs_this_over
+                # which already excludes byes via this branch).
+                _byes_lb_runs = int(
+                    event.get("extras_runs",
+                              event.get("runs", 0)) or 0)
+                if (bowler_name and _byes_lb_runs > 0
+                        and self.scoreboard is not None):
+                    _bc = (self.scoreboard.bowling_card or {}).get(
+                        bowler_name)
+                    if _bc is not None:
+                        _bc["byes_lb_this_over"] = (
+                            int(_bc.get("byes_lb_this_over") or 0)
+                            + _byes_lb_runs)
+            else:
+                runs_off_bat = int(
+                    event.get("batter_runs",
+                              event.get("runs", 0)) or 0)
+                runs_total = int(event.get("runs", 0) or 0)
+                legal = True
         elif etype == "WIDE":
             runs_off_bat = 0
             runs_total = int(event.get("runs", 0) or 0)
@@ -4058,7 +4180,17 @@ class ScoreManager:
             if _bc is not None:
                 _bto = int(_bc.get("balls_this_over") or 0)
                 _rto = int(_bc.get("runs_this_over") or 0)
-                if _bto >= 6 and _rto == 0:
+                _byes_lb = int(_bc.get("byes_lb_this_over") or 0)
+                # A2 part 2: bowler-runs-only maiden check.
+                # runs_this_over is already excluded byes/lb (those
+                # don't increment bowler.runs via _apply_bowler_delta),
+                # so the subtraction here is documentation-only when
+                # the byes/lb path is the canonical RUNS-extras
+                # branch.  If the value isn't already exclusive
+                # (e.g. a future change includes byes in
+                # runs_this_over), the subtraction stays correct.
+                _bowler_runs_this_over = max(0, _rto - _byes_lb)
+                if _bto >= 6 and _bowler_runs_this_over == 0:
                     _bc["maidens"] = int(_bc.get("maidens") or 0) + 1
                     if _trace is not None:
                         try:
@@ -4066,11 +4198,15 @@ class ScoreManager:
                                 tag="BOWLER-MAIDEN-CREDITED",
                                 bowler=self.bowler_name,
                                 over_index=int(prev.get("overs", 0) or 0),
+                                bowler_runs_this_over=(
+                                    _bowler_runs_this_over),
+                                byes_lb_this_over=_byes_lb,
                                 frame_id=str(self._current_frame))
                         except Exception:
                             pass
                 _bc["balls_this_over"] = 0
                 _bc["runs_this_over"] = 0
+                _bc["byes_lb_this_over"] = 0
         self.completed_over = list(self.this_over)
         self.completed_over_runs = sum(
             int(t) for t in self.this_over if t.isdigit())

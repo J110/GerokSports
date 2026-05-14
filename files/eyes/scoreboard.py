@@ -818,6 +818,7 @@ class Scoreboard:
                 "balls": 0,
                 "balls_this_over": 0,
                 "runs_this_over": 0,
+                "byes_lb_this_over": 0,
                 "position": len(self.bowling_card) + 1,
                 "is_playing_xi": name in _bowl_xi_set if _bowl_xi_set else True,
                 "batting_style": st.get("batting_style", "unknown"),
@@ -2039,6 +2040,50 @@ class Scoreboard:
                 int(runs_delta or 0), int(balls_delta or 0),
                 int(fours_delta or 0), int(sixes_delta or 0),
                 frame=frame)
+        # A2 part 2 (2026-05-14): DERIVATION-STRIP-DIVERGENCE-BATTER.
+        # Audit-only comparison of the incoming strip read against the
+        # derived batting_card[X] before the strip kwargs are coerced
+        # to None below.  Strip never overrides; this fires when the
+        # event-derivation path and the strip view drift apart, which
+        # signals an under-firing event detector or a strip OCR
+        # mis-attribution (F438-class row scramble).
+        if _trace is not None and name in self.batting_card:
+            try:
+                _d = self.batting_card[name]
+                _d_runs = int(_d.get("runs") or 0)
+                _d_balls = int(_d.get("balls") or 0)
+                _d_fours = int(_d.get("fours") or 0)
+                _d_sixes = int(_d.get("sixes") or 0)
+                _s_runs = int(runs) if runs is not None else None
+                _s_balls = int(balls) if balls is not None else None
+                _s_fours = int(fours) if fours is not None else None
+                _s_sixes = int(sixes) if sixes is not None else None
+                _div = False
+                if (_s_runs is not None
+                        and abs(_s_runs - _d_runs)
+                        / max(1, _d_runs) > 0.10):
+                    _div = True
+                if _s_balls is not None and abs(_s_balls - _d_balls) > 1:
+                    _div = True
+                if _s_fours is not None and _s_fours != _d_fours:
+                    _div = True
+                if _s_sixes is not None and _s_sixes != _d_sixes:
+                    _div = True
+                if _div:
+                    _trace.get_recorder().record(
+                        tag="DERIVATION-STRIP-DIVERGENCE-BATTER",
+                        batter=name,
+                        derived={
+                            "runs": _d_runs, "balls": _d_balls,
+                            "fours": _d_fours, "sixes": _d_sixes,
+                        },
+                        strip_observed={
+                            "runs": _s_runs, "balls": _s_balls,
+                            "fours": _s_fours, "sixes": _s_sixes,
+                        },
+                        frame_id=str(frame))
+            except Exception:
+                pass
         # A2 part 1 (2026-05-14): derivation-only batter stats.
         # Strip-driven stat fields (runs/balls/fours/sixes) no longer
         # write to batting_card[X].  The identity-resolution + status-
@@ -4630,6 +4675,7 @@ class Scoreboard:
                 "balls": 0,
                 "balls_this_over": 0,
                 "runs_this_over": 0,
+                "byes_lb_this_over": 0,
                 "position": len(self.bowling_card) + 1,
                 "batting_style": st.get("batting_style", "unknown"),
                 "bowling_style": st.get("bowling_style", "unknown"),
