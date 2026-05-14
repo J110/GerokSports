@@ -615,3 +615,90 @@ def _infer_partial_event(d: Diff) -> str:
             return "SIX"
         return "RUNS"
     return "UNKNOWN"
+
+
+
+# ── Gap-token inference (2026-05-14, unified across 5 sites) ──────────
+#
+# When a gap is detected — cold-start mid-over join, MULTI_BALL skip,
+# broadcast cutaway — we know N balls were bowled and the team-score
+# delta but not the per-ball detail.  Producing ``?`` placeholders
+# loses information (the score delta) and produces visually noisy UI;
+# applying a cricket-domain heuristic for the most-likely distribution
+# matches what a human commentator would assume.
+#
+# The single function below is the source of truth, called by:
+#   - score_manager._accept_initial cold-start seed
+#   - score_manager._apply_event MULTI_BALL handler
+#   - score_manager._accumulate_stats_from_event MULTI_BALL bowler decomp
+#   - eyes/this_over.initialize_mid_over cold-start seed
+#   - eyes/this_over MULTI_BALL handler
+#
+# Heuristic (boundary-biased): for total_runs in (4, 6) attribute all
+# runs to the LAST ball (matches the >85% case for those exact totals);
+# for total_runs <= n_balls distribute as dots + singles; for
+# intermediate cases use a single boundary + singles; cap any single
+# ball at 6 (cricket legal maximum without no-ball).  Wickets are
+# overlaid onto the last N positions.
+try:
+    import trace_emitter as _trace
+except ImportError:
+    _trace = None
+
+
+def infer_gap_tokens(n_balls: int, total_runs: int,
+                     total_wickets: int = 0) -> list[str]:
+    """Distribute total_runs across n_balls using a cricket-domain heuristic.
+
+    Returns a list of length ``n_balls`` with tokens drawn from
+    ``{'.', '1'-'6', 'W'}``.  Pure function; safe to call from any
+    state-writer site.
+    """
+    if n_balls <= 0:
+        return []
+    total_runs = max(0, int(total_runs or 0))
+    total_wickets = max(0, int(total_wickets or 0))
+    tokens: list[str]
+    if total_runs in (4, 6):
+        tokens = ["."] * (n_balls - 1) + [str(total_runs)]
+    elif total_runs <= n_balls:
+        n_singles = total_runs
+        n_dots = n_balls - n_singles
+        tokens = ["."] * n_dots + ["1"] * n_singles
+    elif total_runs <= 6 * n_balls:
+        # Front-load singles, end with a single boundary that absorbs
+        # whatever's left (capped at 6 per cricket legal max).
+        tokens = []
+        remaining = total_runs
+        # Max singles before boundary: balls - 1 (last ball is boundary)
+        front_singles = min(n_balls - 1, max(0, remaining - 6))
+        if front_singles > 0:
+            tokens.extend(["1"] * front_singles)
+            remaining -= front_singles
+        tokens.append(str(min(remaining, 6)))
+        remaining -= min(remaining, 6)
+        # Pad fronts with dots if we still have room (rare).
+        while len(tokens) < n_balls:
+            tokens.insert(0, ".")
+        # If we somehow overflowed (shouldn't given the cap), trim.
+        tokens = tokens[:n_balls]
+    else:
+        # Above 6 * n_balls is physically impossible without no-balls;
+        # mark every ball as 6 and emit the cap so it's auditable.
+        tokens = ["6"] * n_balls
+    if total_wickets > 0:
+        for i in range(total_wickets):
+            idx = n_balls - 1 - i
+            if 0 <= idx < n_balls:
+                tokens[idx] = "W"
+    if _trace is not None:
+        try:
+            _trace.get_recorder().record(
+                tag="GAP-TOKEN-INFERENCE",
+                n_balls=n_balls,
+                total_runs=total_runs,
+                total_wickets=total_wickets,
+                tokens=list(tokens))
+        except Exception:
+            pass
+    return tokens

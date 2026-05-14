@@ -594,16 +594,28 @@ class ThisOverManager:
             total_r = event.get("total_runs")
             if total_r is None:
                 total_r = event.get("runs") or 0
+            wkts_gap = int(event.get("wickets_in_gap")
+                           or event.get("wickets") or 0)
             # Cap at 6 — we can only have 6 legal deliveries in
             # the current over; anything beyond means overs were
             # skipped and check_over_change will handle the reset.
             capped = min(missed, 6 - len(self.this_over))
             capped = max(capped, 0)
-            for _ in range(capped):
-                self.this_over.append("?")
-                self.this_over_sources.append("obs")
-            log.info(f"Missed {missed} balls (+{total_r} runs) — "
-                     f"added {capped} placeholders (capped from {missed})")
+            if capped > 0:
+                from cricket_rules import infer_gap_tokens
+                tokens = infer_gap_tokens(
+                    capped, int(total_r or 0), wkts_gap)
+                self.this_over.extend(tokens)
+                self.this_over_sources.extend(
+                    ["multi_ball_synth"] * len(tokens))
+                log.info(
+                    f"Missed {missed} balls (+{total_r} runs, "
+                    f"+{wkts_gap} wkts) — inferred {capped} tokens "
+                    f"{tokens} (capped from {missed})")
+            else:
+                log.info(
+                    f"Missed {missed} balls (+{total_r} runs) — "
+                    f"no room in current over for placeholders")
 
     def pop_last_extra(self, reason: str = "") -> bool:
         """Remove the trailing token if it's an EXTRA (Wd/Nb/+N).
@@ -1269,23 +1281,45 @@ class ThisOverManager:
             self._over_start_score = score
         return False
 
-    def initialize_mid_over(self, overs: str | None) -> None:
-        """Pre-fill `?` placeholders for cold-start mid-over joins.
+    def initialize_mid_over(self, overs: str | None,
+                            score_so_far: int | None = None,
+                            wickets_so_far: int | None = None) -> None:
+        """Pre-fill placeholders for cold-start mid-over joins.
+
+        When ``score_so_far`` is provided, the helper applies a
+        cricket-domain heuristic to infer per-ball tokens from the
+        score delta (see ``cricket_rules.infer_gap_tokens``).  Without
+        a score context, falls back to ``"?"`` placeholders for
+        backward compatibility.
 
         ONLY runs when we're truly cold (no `_last_over_int` recorded
         yet). After the first over transition, this is a no-op —
-        otherwise it would re-inject phantom `?` placeholders into a
+        otherwise it would re-inject phantom placeholders into a
         freshly-cleared `this_over` (post over-transition), and then
         the next `on_ball_event.append(...)` would slot the real ball
-        AFTER the phantoms, downgrading observed positions to `?`.
+        AFTER the phantoms, downgrading observed positions.
         """
         if self._last_over_int is not None:
             return
         balls = round((float(overs or "0") % 1) * 10)
         if balls > 0 and not self.this_over:
-            self.this_over = ["?"] * balls
-            self.this_over_sources = ["bcast"] * balls
-            log.info(f"Joined at {overs}, pre-filled {balls} balls as '?'")
+            if score_so_far is not None:
+                from cricket_rules import infer_gap_tokens
+                self.this_over = list(
+                    infer_gap_tokens(
+                        balls, int(score_so_far or 0),
+                        int(wickets_so_far or 0)))
+                self.this_over_sources = ["bcast_synth"] * balls
+                log.info(
+                    f"Joined at {overs}, pre-filled {balls} balls "
+                    f"via infer_gap_tokens(score={score_so_far}, "
+                    f"wkts={wickets_so_far}): {self.this_over}")
+            else:
+                self.this_over = ["?"] * balls
+                self.this_over_sources = ["bcast"] * balls
+                log.info(
+                    f"Joined at {overs}, pre-filled {balls} "
+                    f"balls as '?'")
 
     def get_display(self, overs: str | None) -> list[str]:
         # Time-based fallback for the held completed over — clear if

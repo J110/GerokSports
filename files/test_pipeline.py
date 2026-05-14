@@ -12649,11 +12649,21 @@ async def run_test():
             # already calls on_broadcast_override once per frame.
             # A second call risks re-injecting stale/hallucinated data.
 
-            # Pre-fill this-over when joining mid-over
+            # Pre-fill this-over when joining mid-over.  Pass the
+            # current scoreboard score/wickets so initialize_mid_over
+            # can call cricket_rules.infer_gap_tokens for a
+            # better-than-'?' distribution.
             if not over_mgr.this_over:
                 _join_overs = scoreboard._inn.get("overs")
                 if _join_overs:
-                    over_mgr.initialize_mid_over(_join_overs)
+                    _join_score = (scoreboard._inn.get("score")
+                                   if scoreboard._inn else None)
+                    _join_wkts = (scoreboard._inn.get("wickets")
+                                  if scoreboard._inn else None)
+                    over_mgr.initialize_mid_over(
+                        _join_overs,
+                        score_so_far=_join_score,
+                        wickets_so_far=_join_wkts)
 
             if over_mgr.this_over:
                 over_runs = sum(int(x) for x in over_mgr.this_over

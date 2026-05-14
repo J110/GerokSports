@@ -24,6 +24,10 @@ from eyes.cricket_logger import CricketLogger
 from eyes.this_over import ThisOverManager as _TOM
 
 try:
+    from cricket_rules import infer_gap_tokens as _infer_gap_tokens
+except ImportError:
+    _infer_gap_tokens = None
+try:
     import trace_emitter as _trace
 except ImportError:
     _trace = None
@@ -1970,8 +1974,15 @@ class ScoreManager:
             if self.overs and not mid_innings_boot:
                 balls = round((self.overs % 1) * 10)
                 if balls > 0:
-                    self.this_over = ["?"] * balls
-                    self.this_over_src = ["bcast"] * balls
+                    if _infer_gap_tokens is not None:
+                        self.this_over = list(
+                            _infer_gap_tokens(
+                                balls,
+                                int(self.score or 0),
+                                int(self.wickets or 0)))
+                    else:
+                        self.this_over = ["?"] * balls
+                    self.this_over_src = ["bcast_synth"] * balls
         else:
             # Re-entry: keep observed balls (`obs` source) intact.
             # Pad with placeholders only if the new ball count exceeds
@@ -3597,12 +3608,25 @@ class ScoreManager:
         if etype == "MULTI_BALL":
             n_balls = int(event.get("balls_missed") or 0)
             total_runs = int(event.get("total_runs") or 0)
+            wkts_in_gap = int(event.get("wickets_in_gap") or 0)
             if bowler_name and n_balls > 0:
-                runs_per_ball = total_runs // n_balls
-                remainder = total_runs % n_balls
-                for i in range(n_balls):
-                    single_runs = (
-                        runs_per_ball + (1 if i < remainder else 0))
+                # Cricket-realistic per-ball distribution via the
+                # unified helper.  Replaces the prior even-split
+                # heuristic which would credit 1/1/1/1 for a 4-run
+                # gap that's almost always a single boundary.
+                if _infer_gap_tokens is not None:
+                    _tokens = _infer_gap_tokens(
+                        n_balls, total_runs, wkts_in_gap)
+                else:
+                    _tokens = ["?"] * n_balls
+                for i, _tok in enumerate(_tokens):
+                    if _tok in (".", "W", "?"):
+                        single_runs = 0
+                    else:
+                        try:
+                            single_runs = int(_tok)
+                        except (TypeError, ValueError):
+                            single_runs = 0
                     self.scoreboard.update_bowler(
                         bowler_name,
                         runs_delta=single_runs,
@@ -3617,6 +3641,7 @@ class ScoreManager:
                                 ball_index=i,
                                 total_balls=n_balls,
                                 single_ball_runs=single_runs,
+                                token=_tok,
                                 total_runs=total_runs,
                                 frame_id=str(self._current_frame))
                         except Exception:
@@ -3722,8 +3747,17 @@ class ScoreManager:
         if event["type"] == "MULTI_BALL":
             if is_over_change:
                 self._complete_over(prev)
-            self.this_over = []
-            self.this_over_src = []
+                self.this_over = []
+                self.this_over_src = []
+            _mb_balls = int(event.get("balls_missed") or 0)
+            _mb_runs = int(event.get("total_runs") or 0)
+            _mb_wkts = int(event.get("wickets_in_gap") or 0)
+            if _mb_balls > 0 and _infer_gap_tokens is not None:
+                _mb_tokens = list(
+                    _infer_gap_tokens(_mb_balls, _mb_runs, _mb_wkts))
+                self.this_over.extend(_mb_tokens)
+                self.this_over_src.extend(
+                    ["multi_ball_synth"] * len(_mb_tokens))
         elif is_over_change:
             # The ball that triggered the over rollover IS the 6th
             # legal ball of the previous over (the team-overs counter
