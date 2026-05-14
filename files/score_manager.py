@@ -1757,6 +1757,26 @@ class ScoreManager:
         self.score = cached.get("score")
         self.wickets = cached.get("wickets")
         self.overs = cached.get("overs")
+        # A1 prerequisite (2026-05-14): seed _event_baseline_score so the
+        # first post-resume event has a non-stale anchor (parity with
+        # _accept_initial seed and the caedd4c innings-2 reset).  Without
+        # this, the first innings event after a cache resume computes
+        # d_score against scoreboard.score = cached_score (DIRECT path
+        # may have pre-advanced before _handle_warm runs) and emits the
+        # wrong type.
+        try:
+            self._event_baseline_score = (
+                int(self.score) if self.score is not None else 0)
+        except (TypeError, ValueError):
+            self._event_baseline_score = 0
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="EVENT-BASELINE-SEEDED-HOT-RESUME",
+                    score=self._event_baseline_score,
+                    frame_id=str(frame))
+            except Exception:
+                pass
         if cached.get("target") is not None:
             self.target = cached.get("target")
             self._innings_fallback = 2
@@ -1817,6 +1837,31 @@ class ScoreManager:
         self.score = card.get("score")
         self.wickets = card.get("wickets")
         self.overs = card.get("overs")
+        # A1 prerequisite (2026-05-14): seed _event_baseline_score at
+        # COLD_START → WARM exit.  Trace evidence (F27 in DC-vs-KKR
+        # 2026-05-14 16:48 watch) showed the very first WARM event after
+        # cold-start computing d_score=0 for a real FOUR — root cause
+        # was _event_baseline_score being None at that point, so the
+        # 4dbd0e3 fix fell back to _self_score which had already been
+        # advanced to 4 by the DIRECT path before _handle_warm ran.
+        # Seeding here anchors the first delta to the cold-start
+        # accepted score (0 for fresh innings, accumulated for
+        # mid-innings recovery).  Symmetric with caedd4c (innings-2)
+        # and the hot_resume_from_cache seed above.
+        try:
+            self._event_baseline_score = (
+                int(self.score) if self.score is not None else 0)
+        except (TypeError, ValueError):
+            self._event_baseline_score = 0
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="EVENT-BASELINE-SEEDED-WARM-INITIAL",
+                    score=self._event_baseline_score,
+                    is_reentry=bool(is_reentry),
+                    frame_id=str(self._current_frame))
+            except Exception:
+                pass
 
         # Dismissed-batter resurrection guard (2026-04-23, WS-PROJECTION
         # investigation).  The same scrub already runs in
