@@ -813,8 +813,11 @@ class Scoreboard:
         for name in bowling_squad:
             st = self._player_styles.get(name) or {}
             self.bowling_card[name] = {
-                "overs": None, "maidens": None,
+                "overs": None, "maidens": 0,
                 "runs": None, "wickets": None, "econ": None,
+                "balls": 0,
+                "balls_this_over": 0,
+                "runs_this_over": 0,
                 "position": len(self.bowling_card) + 1,
                 "is_playing_xi": name in _bowl_xi_set if _bowl_xi_set else True,
                 "batting_style": st.get("batting_style", "unknown"),
@@ -1625,6 +1628,12 @@ class Scoreboard:
         Skipping the mirror in that case prevents poisoning the
         outgoing bowler's figures with the new bowler's deliveries.
         """
+        # A1 part 1 (2026-05-14): derivation-only — this team-delta
+        # mirror path is superseded by event-driven _apply_bowler_delta
+        # invoked from score_manager._accumulate_stats_from_event.
+        # Disabled to remove the competing write path.  See
+        # files/docs/investigations/derivation_only_stats_design.md.
+        return
         cb_name = self._inn.get("current_bowler") if self._inn else None
         if not cb_name or cb_name not in self.bowling_card:
             return
@@ -2900,6 +2909,18 @@ class Scoreboard:
                 name,
                 int(runs_delta or 0), int(balls_delta or 0),
                 int(wickets_delta or 0), frame=frame)
+        # A1 part 1 (2026-05-14): derivation-only bowler stats.
+        # Strip-driven stat fields (overs/runs/wickets/maidens) no
+        # longer write to bowling_card[X].  The identity-resolution +
+        # consensus + override + bootstrap path below still runs on
+        # every call (name observation feeds bowler_tracker).  The
+        # event-driven _apply_bowler_delta path remains the sole writer
+        # to entry.runs/.wickets/.overs/.balls.  See
+        # files/docs/investigations/derivation_only_stats_design.md.
+        overs = None
+        runs = None
+        wickets = None
+        maidens = None
         # Fix #2 (2026-04-23): record frame of this Scout bowler read
         # before any early-exit.  BOWLER-AUTO uses this to detect
         # "Scout is actively reading the bowler strip right now" and
@@ -3637,6 +3658,23 @@ class Scoreboard:
         # Safe because we only seed when the card's figures are still
         # unset (a returning 2nd-spell bowler keeps their accumulated
         # figures — those entries are non-None).
+        if _bowler_changed or _bootstrapped:
+            try:
+                _bc_runs = int(entry.get("runs") or 0)
+                _bc_wkts = int(entry.get("wickets") or 0)
+                _bc_balls = int(entry.get("balls") or 0)
+                _resumed = (_bc_runs > 0 or _bc_wkts > 0 or _bc_balls > 0)
+                if _trace is not None:
+                    _trace.get_recorder().record(
+                        tag=("BOWLING-CARD-RESUMED" if _resumed
+                             else "BOWLING-CARD-CREATED"),
+                        bowler=name,
+                        frame_id=str(frame),
+                        existing_runs=_bc_runs,
+                        existing_wickets=_bc_wkts,
+                        existing_balls=_bc_balls)
+            except Exception:
+                pass
         if (_bowler_changed or _bootstrapped) and entry.get("runs") is None:
             # Issue B fix (2026-04-21): prefer scout-text figures over
             # hard-coded zeros when the bowler is entering with an
@@ -4477,8 +4515,11 @@ class Scoreboard:
         for name in bowling_squad:
             st = self._player_styles.get(name) or {}
             self.bowling_card[name] = {
-                "overs": None, "maidens": None,
+                "overs": None, "maidens": 0,
                 "runs": None, "wickets": None, "econ": None,
+                "balls": 0,
+                "balls_this_over": 0,
+                "runs_this_over": 0,
                 "position": len(self.bowling_card) + 1,
                 "batting_style": st.get("batting_style", "unknown"),
                 "bowling_style": st.get("bowling_style", "unknown"),
