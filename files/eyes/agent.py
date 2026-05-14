@@ -17,6 +17,19 @@ from eyes.config import (
 )
 from eyes.cricket_logger import CricketLogger
 from eyes.extract_regex import parse_strip
+from eyes.extract_regex import (
+    _parse_tag_line,
+    _STRIP_LINE as _STRIP_LINE_RE,
+)
+import re as _re_agent
+
+_DIGITS_2_3_RE = _re_agent.compile(r"\d{2,3}")
+
+try:
+    import trace_emitter as _trace_agent
+except ImportError:
+    _trace_agent = None
+
 
 log = CricketLogger("EXTRACT")
 
@@ -340,6 +353,7 @@ class Extractor:
             log.info(
                 f"[EXTRACT-PATH] path={regex_result.get('_extract_path')} "
                 f"t_ms={t_regex_ms}")
+            self._apply_digits_false_veto(regex_result, description)
             return regex_result
 
         prompt = EXTRACTOR_PROMPT.format(
@@ -356,6 +370,7 @@ class Extractor:
             log.info(f"[EXTRACT-PATH] path=llm t_ms={t_llm_ms}")
             if isinstance(result, dict):
                 result.setdefault("_extract_path", "llm")
+                self._apply_digits_false_veto(result, description)
             return result
         except Exception as e:
             err = str(e).lower()
@@ -384,6 +399,71 @@ class Extractor:
         raw = resp.choices[0].message.content
         log.info(f"Extracted in {elapsed:.1f}s ({model.split('/')[-1]})")
         return self._parse_json(raw)
+
+    def _apply_digits_false_veto(self, result: dict,
+                                 description: str) -> None:
+        """Anti-hallucination veto: when the Scout response's digits
+        classifier reports no digits but the STRIP block contains
+        digits, drop the digit-bearing fields from ``result``.
+
+        Canonical VLM hallucination signature for cross-match graphic
+        flashes that the team-token gate (8cb9465) doesn't catch when
+        the team token is missing or itself hallucinated.
+
+        Classifier source order:
+          1. Explicit ``digits`` field in the JSON tag header
+             (future-proof when Scout exposes a pixel-level digit
+             classifier).
+          2. Fallback: ``\d{2,3}`` regex over the full response,
+             matching Vision's existing ``has_digits`` heuristic at
+             vision.py:644.  Single-digit STRIPs like
+             "DC 0-0 (0.0)" produce classifier=False even though the
+             STRIP contains digits — that's the hallucination this
+             veto targets.
+        """
+        if not isinstance(result, dict) or not description:
+            return
+        # Classifier verdict.
+        tag = _parse_tag_line(description) if _parse_tag_line else {}
+        classifier_digits = tag.get("digits") if tag else None
+        if classifier_digits is None:
+            classifier_digits = bool(
+                _DIGITS_2_3_RE.search(description))
+        if classifier_digits:
+            return
+        # STRIP block content.
+        strip_m = _STRIP_LINE_RE.search(description) if _STRIP_LINE_RE else None
+        if not strip_m:
+            return
+        strip_body = (strip_m.group("body") or "").strip()
+        if not any(ch.isdigit() for ch in strip_body):
+            return
+        # Veto: digits in STRIP that classifier didn't see.
+        if _trace_agent is not None:
+            try:
+                _trace_agent.get_recorder().record(
+                    tag="SCOUT-DIGITS-FALSE-STRIP-VETOED",
+                    strip_preview=strip_body[:120],
+                    has_strip_flag=(tag.get("has_strip")
+                                    if tag else None),
+                    extract_path=result.get("_extract_path"))
+            except Exception:
+                pass
+        log.warn(
+            f"[SCOUT-DIGITS-FALSE-STRIP-VETOED] classifier reports "
+            f"no digits but STRIP contains digits: "
+            f"{strip_body[:120]!r} — vetoing digit-bearing fields.")
+        # Drop digit-bearing fields.  Keep team identification
+        # (batting_team_visible) since team-token hallucination has a
+        # separate defense (the 8cb9465 prefix gate).
+        for _k in ("score", "wickets", "match_overs",
+                   "this_over_broadcast", "extras",
+                   "run_rate", "target", "projected_score",
+                   "required_rate", "runs_needed", "balls_remaining"):
+            if _k in result:
+                result[_k] = None
+        result["bowler"] = {}
+        result["batters"] = []
 
     @staticmethod
     def _parse_json(raw: str) -> dict:
