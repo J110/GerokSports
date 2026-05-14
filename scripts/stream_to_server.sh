@@ -37,6 +37,8 @@ ffmpeg \
     -pixel_format uyvy422 \
     -i "$DEVICE_INDEX:0" \
     -c:v libx264 -preset veryfast -tune zerolatency -b:v 6M -maxrate 6M -bufsize 12M \
+    -bsf:v dump_extra \
+    -force_key_frames "expr:gte(t,n_forced*2)" \
     -c:a aac -b:a 128k -ac 2 \
     -map 0 -f mpegts "udp://${SERVER_IP}:${SERVER_PORT}?pkt_size=1316" \
     -map 0 -f mpegts "udp://${SERVER_IP}:${RECORDER_PORT}?pkt_size=1316" \

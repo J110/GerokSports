@@ -93,17 +93,50 @@ Env vars
 """
 from __future__ import annotations
 
+import hashlib
 import logging
 import os
 import shlex
 import subprocess
+import sys
 import threading
 import time
 from typing import Optional
 
 import numpy as np
 
+try:
+    import trace_emitter as _trace
+except ImportError:
+    _trace = None
+
 log = logging.getLogger("udp_frame_source")
+
+# H.264 / decoder failure signatures worth surfacing from the ffmpeg
+# subprocess stderr — the rest stays at DEBUG.  ``_drain_stderr``
+# greps for these substrings (case-insensitive) and emits the matching
+# lines via WARN-level print so they reach the captured pipeline log
+# regardless of how the Python logging module is configured.
+_FFMPEG_STDERR_WARN_HINTS: tuple[str, ...] = (
+    "error",
+    "non-existing pps",
+    "non-existing sps",
+    "decode_slice_header",
+    "reference picture missing",
+    "invalid nal",
+    "concealing",
+    "no frame!",
+)
+
+# Frozen-stream detection — how many consecutive consumer reads must
+# return byte-identical content before we trip ``UDP-STREAM-FROZEN``.
+_FROZEN_STREAM_THRESHOLD: int = 5
+
+# Hash sample stride — every Nth byte of the 6.22 MB raw frame.  Spreads
+# the ~65 KB sample evenly across the whole frame so identical letterbox
+# borders at the top/bottom can't produce false-positive freeze
+# detections.  Validated 2026-05-14 against the 4621b9f8 recording.
+_HASH_SAMPLE_STRIDE: int = 95
 
 FRAME_COLOR_TRUE_BGR = os.environ.get("FRAME_COLOR_TRUE_BGR", "0") == "1"
 
@@ -177,6 +210,7 @@ class UDPFrameSource:
         self._frame_bytes: Optional[int] = None
 
         self._latest_bgr: Optional[np.ndarray] = None
+        self._latest_md5: Optional[str] = None
         self._lock = threading.Lock()
         self._running = False
         self._frame_count = 0
@@ -194,6 +228,15 @@ class UDPFrameSource:
         # first successful frame after the spawn.
         self._spawn_wall = 0.0
         self._got_frame_since_spawn = False
+        # Frozen-stream detection state — owned by get_latest_bgr.
+        # Tracks the streak of consecutive byte-identical reads to
+        # surface a decoder-stuck symptom that all other instrumentation
+        # in this module misses (frame-age stays near 0 even when the
+        # underlying pixel content is frozen).
+        self._consumer_last_md5: Optional[str] = None
+        self._consumer_md5_streak: int = 0
+        self._frozen_alerted: bool = False
+        self._first_seen_frozen_age_ms: int = -1
 
     # ------- API parity with other FrameSource implementations -------
 
@@ -259,7 +302,65 @@ class UDPFrameSource:
 
     def get_latest_bgr(self) -> Optional[np.ndarray]:
         with self._lock:
-            return self._latest_bgr
+            frame = self._latest_bgr
+            cap_ts = self._last_capture_time
+            seq = self._frame_count
+            md5_now = self._latest_md5
+        if frame is None:
+            return None
+        age_ms = int((time.time() - cap_ts) * 1000) if cap_ts > 0 else -1
+        if os.environ.get("UDP_FRAME_AGE_DEBUG", "0") == "1":
+            print(
+                f"[FRAME-AGE] consumer_get seq={seq} age_ms={age_ms} "
+                f"cap_ts={cap_ts:.3f} md5={md5_now}",
+                flush=True)
+        # Frozen-stream detection.  When N consecutive consumer reads
+        # return byte-identical content, surface a single
+        # UDP-STREAM-FROZEN tag so a stuck-decoder symptom is visible
+        # without waiting for VLM hallucinations downstream.
+        if md5_now is not None:
+            if md5_now == self._consumer_last_md5:
+                self._consumer_md5_streak += 1
+            else:
+                self._consumer_md5_streak = 1
+                self._consumer_last_md5 = md5_now
+                self._frozen_alerted = False
+                self._first_seen_frozen_age_ms = age_ms
+            if (self._consumer_md5_streak >= _FROZEN_STREAM_THRESHOLD
+                    and not self._frozen_alerted):
+                self._frozen_alerted = True
+                print(
+                    f"[UDP-STREAM-FROZEN] md5={md5_now} "
+                    f"frozen_for_reads={self._consumer_md5_streak} "
+                    f"first_seen_age_ms={self._first_seen_frozen_age_ms} "
+                    f"producer_seq={seq}",
+                    flush=True)
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="UDP-STREAM-FROZEN",
+                            md5=md5_now,
+                            frozen_for_reads=self._consumer_md5_streak,
+                            first_seen_age_ms=self._first_seen_frozen_age_ms,
+                            producer_seq=seq,
+                        )
+                    except Exception:
+                        pass
+        # Dump every Nth delivered frame for visual audit.
+        _dump_every = int(os.environ.get("UDP_FRAME_DUMP_EVERY", "0"))
+        if _dump_every > 0 and (seq % _dump_every == 0):
+            try:
+                import cv2 as _cv2
+                _dump_path = os.path.join(
+                    "/tmp", "frame_dump",
+                    f"seq_{seq:06d}_ts_{int(cap_ts)}.jpg")
+                os.makedirs(os.path.dirname(_dump_path), exist_ok=True)
+                _cv2.imwrite(_dump_path, frame,
+                             [_cv2.IMWRITE_JPEG_QUALITY, 70])
+                print(f"[FRAME-DUMP] wrote {_dump_path}", flush=True)
+            except Exception as _exc:
+                print(f"[FRAME-DUMP] error: {_exc!r}", flush=True)
+        return frame
 
     def get_latest_with_ts(self) -> Optional[tuple[float, np.ndarray]]:
         with self._lock:
@@ -336,10 +437,23 @@ class UDPFrameSource:
                     try:
                         first_line = out.splitlines()[0].strip().rstrip("x")
                         w_s, h_s = first_line.split("x", 1)
-                        return (int(w_s), int(h_s))
+                        w_i, h_i = int(w_s), int(h_s)
                     except Exception:
                         last_err = (
                             f"ffprobe stdout unparseable: {out!r}")
+                    else:
+                        # ffprobe can return 0x0 when it sees packets
+                        # but cannot identify stream params (e.g. the
+                        # sender did `-c copy` from an mp4 without
+                        # `-bsf:v dump_extra` so in-stream SPS/PPS
+                        # never arrived). Treat as a failed probe and
+                        # retry rather than handing 0x0 downstream.
+                        if w_i > 0 and h_i > 0:
+                            return (w_i, h_i)
+                        last_err = (
+                            f"ffprobe reported zero dimensions {w_i}x{h_i} "
+                            f"(stream params not yet decodable; sender may "
+                            f"need `-bsf:v dump_extra`)")
             if attempt < self._probe_retries:
                 time.sleep(1.0)
         raise RuntimeError(
@@ -347,6 +461,12 @@ class UDPFrameSource:
             f"{self._probe_retries} attempts: {last_err}")
 
     def _ffmpeg_argv(self) -> list[str]:
+        # ``-vsync cfr -r 30`` pins decoder output to source frame rate
+        # (verified 30/1 fps on the 4621b9f8 recording, also matches
+        # capture-card output of ``scripts/stream_to_server.sh``).  Without
+        # it, the decoder emits dup frames at unbounded rate when input
+        # gaps occur (observed 376 fps writes against a 30 fps source —
+        # see ``files/scripts/vlm_diag/udp_frame_age_report.md``).
         return [
             self._ffmpeg_bin,
             "-hide_banner",
@@ -355,6 +475,8 @@ class UDPFrameSource:
             "-err_detect", "ignore_err",
             "-use_wallclock_as_timestamps", "1",
             "-i", self._url,
+            "-vsync", "cfr",
+            "-r", "30",
             "-f", "rawvideo",
             "-pix_fmt", "bgr24",
             "-an",
@@ -408,10 +530,16 @@ class UDPFrameSource:
                 if not line:
                     break
                 msg = line.decode("utf-8", errors="replace").rstrip()
-                # ffmpeg warnings on transient packet loss are expected;
-                # log at debug to avoid drowning pipeline.log.  Real
-                # errors bubble up via subprocess exit.
-                log.debug("[udp_frame_source] ffmpeg: %s", msg)
+                low = msg.lower()
+                if any(h in low for h in _FFMPEG_STDERR_WARN_HINTS):
+                    # Surface decoder failure signatures via stderr-print
+                    # so they reach the captured pipeline log regardless
+                    # of how ``logging`` is configured for this module.
+                    print(
+                        f"[udp_frame_source] ffmpeg WARN: {msg}",
+                        file=sys.stderr, flush=True)
+                else:
+                    log.debug("[udp_frame_source] ffmpeg: %s", msg)
         except Exception:  # noqa: BLE001
             pass
 
@@ -467,13 +595,24 @@ class UDPFrameSource:
                 self._bytes_dropped += len(buf)
                 continue
             now = time.monotonic()
+            _new_md5 = hashlib.md5(
+                frame.ravel()[::_HASH_SAMPLE_STRIDE].tobytes()).hexdigest()
             with self._lock:
                 self._latest_bgr = frame
+                self._latest_md5 = _new_md5
                 self._frame_count += 1
                 self._last_capture_time = time.time()
+                _seq = self._frame_count
+                _cap_ts = self._last_capture_time
             self._last_frame_wall = now
             self._got_frame_since_spawn = True
             backoff = _BACKOFF_START_S
+            if (os.environ.get("UDP_FRAME_AGE_DEBUG", "0") == "1"
+                    and (_seq <= 5 or _seq % 25 == 0)):
+                print(
+                    f"[FRAME-AGE] producer_write seq={_seq} "
+                    f"cap_ts={_cap_ts:.3f} wall_mono={now:.3f}",
+                    flush=True)
             if (self._log_every_n > 0
                     and self._frame_count % self._log_every_n == 0):
                 log.info(
