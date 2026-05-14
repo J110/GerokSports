@@ -284,13 +284,22 @@ class Scoreboard:
         self._BOWLER_OVERRIDE_HIGH_WEIGHT_BALL_THRESHOLD = 3  # 3 legal balls
         # BOWLER-AUTO attribution freeze (investigation 5 companion).
         # When an override is pending (a candidate is accumulating reads
-        # but consensus hasn't yet fired), buffer team-score deltas
-        # instead of crediting the now-uncertain current bowler.  On
-        # resolution (consensus fires or dissipates) the buffer is
-        # flushed to the resolved bowler.  Prevents the boundary at
-        # F201 (+4 runs) from being credited to Anukul Roy while the
-        # override to Anukul was still 1-of-2-frames pending.
+        # but consensus hasn't fired), buffer team-score deltas instead
+        # of crediting the now-uncertain current bowler.  On resolution
+        # (consensus fires or dissipates) the buffer is flushed to the
+        # resolved bowler.  Prevents the boundary at F201 (+4 runs)
+        # from being credited to Anukul Roy while the override to
+        # Anukul was still 1-of-2-frames pending.
         self._bowler_attribution_freeze_runs: int = 0
+        # Batter-balls per-frame tracking (investigation 8, 2026-05-14).
+        # The striker tracker can oscillate within a single frame,
+        # incrementing both batters' balls counts and inflating one
+        # batter's total far above their broadcast count.  Track which
+        # batters had their balls field bumped this frame and suppress
+        # any subsequent bump beyond the first (cricket physics: one
+        # delivery, one ball, one striker).
+        self._batter_balls_frame: int = -1
+        self._batter_balls_incremented_this_frame: set[str] = set()
         # Frame of the most recent whole-row rejection (CLONE-REJECT or
         # balls-regression-too-deep).  The main loop reads this to
         # suppress broadcast-indicator striker updates on the same
@@ -1553,6 +1562,19 @@ class Scoreboard:
         except (TypeError, ValueError):
             return 0
 
+    def _bowler_has_fow_credit(self, name: str) -> bool:
+        """True if any fall_of_wickets entry attributes a wicket to this
+        bowler.  Used by `update_bowler` to gate strip-delta wicket
+        increments behind a real dismissal-event commit (investigation
+        7B, 2026-05-14).
+        """
+        if not name:
+            return False
+        for fow in self.fall_of_wickets:
+            if fow.get("bowler") == name:
+                return True
+        return False
+
     def _flush_bowler_attribution_freeze(self, frame: int,
                                          *, reason: str) -> None:
         """Apply any buffered team-score delta to the current bowler.
@@ -2431,11 +2453,86 @@ class Scoreboard:
                     f"bat:{name}:runs", new_r, frame)
                 if eff_r is not None:
                     entry["runs"] = eff_r
+            # Investigation 8 (2026-05-14): batter-balls invariant gates.
+            # Two physical impossibilities guarded here:
+            #   (I)  Same frame increments two different batters' balls
+            #        — cricket has one striker per delivery.
+            #   (H)  Sum of all batters' balls exceeds team legal balls
+            #        — striker-tracker oscillation can inflate one
+            #        batter's count well above broadcast ground truth.
+            # When either fires, suppress the balls update for this
+            # call (commit runs as usual; balls will converge on the
+            # next consensus-clean read).
+            if new_b is not None:
+                # Reset per-frame state on frame boundary
+                if frame != self._batter_balls_frame:
+                    self._batter_balls_frame = frame
+                    self._batter_balls_incremented_this_frame = set()
+                _ob = int(old_b) if old_b is not None else 0
+                _nb = int(new_b)
+                _bumping = (_nb > _ob)
+                # (I) Double-increment guard
+                if (_bumping
+                        and self._batter_balls_incremented_this_frame
+                        and name not in (
+                            self._batter_balls_incremented_this_frame)):
+                    log.warn(
+                        f"  [BATTER-BALLS-DOUBLE-INCREMENT-FRAME] "
+                        f"frame={frame} '{name}' balls {_ob}→{_nb} "
+                        f"suppressed — already incremented "
+                        f"{sorted(self._batter_balls_incremented_this_frame)} "
+                        f"this frame (one striker per delivery)")
+                    if _trace is not None:
+                        try:
+                            _trace.get_recorder().record(
+                                tag="BATTER-BALLS-DOUBLE-INCREMENT-FRAME",
+                                frame_id=str(frame),
+                                batters=sorted(
+                                    self._batter_balls_incremented_this_frame
+                                    | {name}),
+                                suppressed=name)
+                        except Exception:
+                            pass
+                    new_b = None  # skip balls update; runs already committed
+                # (H) Sum-invariant guard
+                elif _bumping:
+                    _team_legal = self._team_balls_seen()
+                    _sum_balls = sum(
+                        int(c.get("balls") or 0)
+                        for c in self.batting_card.values())
+                    _delta = _nb - _ob
+                    if (_team_legal > 0
+                            and _sum_balls + _delta > _team_legal + 1):
+                        log.warn(
+                            f"  [BATTER-BALLS-INVARIANT-FREEZE] "
+                            f"sum_balls={_sum_balls} + "
+                            f"Δ({name}={_delta}) > team_legal_balls="
+                            f"{_team_legal}+1 — striker-tracker "
+                            f"oscillation suspected; freezing balls "
+                            f"update")
+                        if _trace is not None:
+                            try:
+                                _trace.get_recorder().record(
+                                    tag="BATTER-BALLS-INVARIANT-FREEZE",
+                                    frame_id=str(frame),
+                                    sum_current=_sum_balls,
+                                    team_balls=_team_legal,
+                                    attempted_update=name,
+                                    attempted_delta=_delta)
+                            except Exception:
+                                pass
+                        new_b = None
             if new_b is not None:
                 eff_b = self._tracker.update(
                     f"bat:{name}:balls", new_b, frame)
                 if eff_b is not None:
                     entry["balls"] = eff_b
+                    # Mark this batter as having incremented this frame
+                    # so subsequent calls in the same frame trip (I).
+                    if int(eff_b) > (int(old_b) if old_b is not None
+                                     else 0):
+                        self._batter_balls_incremented_this_frame.add(
+                            name)
             # Fix 18 (Layer 3, 2026-04-26): track most-recent runs
             # advance for the cap-reset Path C hybrid.  The frame
             # when each batter's runs last increased is the
@@ -2840,6 +2937,65 @@ class Scoreboard:
                 f"{_card_wickets}, accepting other fields "
                 f"(likely cross-match overlay; per-field guard)")
             wickets = _card_wickets
+
+        # Investigation 7A (2026-05-14): bowler-row physics sanity.
+        # A column-scrambled VLM read like `VAIBHAV 4-1 (1.2)` (where
+        # 4/1 are actually FOURS/SIXES from the adjacent stats panel,
+        # not wickets/runs) yields a +N>1 wickets delta that no
+        # cricket physics can produce — a bowler takes at most ONE
+        # wicket on a single delivery.  Suppress the wicket update
+        # field-by-field and continue accepting runs/overs.
+        _prev_wkts_for_junk = int(_card_wickets or 0)
+        if (wickets is not None
+                and int(wickets) - _prev_wkts_for_junk > 1):
+            log.warn(
+                f"  [BOWLER-ROW-JUNK-REJECT] '{name}' wickets "
+                f"{_prev_wkts_for_junk}→{wickets} jumps >1 in one "
+                f"observation; column-scrambled OCR. Suppressing "
+                f"wickets update; runs={runs} overs={overs} still "
+                f"considered.")
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="BOWLER-ROW-JUNK-REJECT",
+                        bowler=name,
+                        parsed_wickets=int(wickets),
+                        prev_wickets=_prev_wkts_for_junk,
+                        parsed_overs=str(overs) if overs is not None else None,
+                        parsed_runs=int(runs) if runs is not None else None,
+                        frame_id=str(frame))
+                except Exception:
+                    pass
+            wickets = _prev_wkts_for_junk
+
+        # Investigation 7B (2026-05-14): wicket credit derivation
+        # invariant.  A bowler's wicket count must be DERIVED from
+        # dismissal events (fall_of_wickets entries with bowler=name),
+        # not invented from a strip delta.  If the strip claims this
+        # bowler has wickets > 0 but no FOW entry credits them yet,
+        # the claim is either a misread or a backfill from an earlier
+        # unattributed wicket (between-overs gap when current_bowler
+        # was None).  Suppress the increment; the dismissal-event
+        # path will credit correctly when a real wicket fires.
+        if (wickets is not None
+                and int(wickets) > _prev_wkts_for_junk
+                and not self._bowler_has_fow_credit(name)):
+            log.warn(
+                f"  [BOWLER-WICKET-DELTA-SUPPRESSED-NO-EVENT] '{name}' "
+                f"wickets {_prev_wkts_for_junk}→{wickets} suppressed — "
+                f"no FOW entry credits this bowler yet; strip is "
+                f"either misread or unattributed-wicket backfill")
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="BOWLER-WICKET-DELTA-SUPPRESSED-NO-EVENT",
+                        bowler=name,
+                        prev=_prev_wkts_for_junk,
+                        attempted=int(wickets),
+                        frame_id=str(frame))
+                except Exception:
+                    pass
+            wickets = _prev_wkts_for_junk
 
         # === Bowler stats graphic gate (2026-04-28) ===
         # OR semantics: reject on career/phase overlay keywords in
