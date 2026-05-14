@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import copy
 import os
+import re
 import time
 from dataclasses import dataclass, field
 from typing import Any
@@ -21,6 +22,11 @@ from cricket_rules import (
 )
 from eyes.cricket_logger import CricketLogger
 from eyes.this_over import ThisOverManager as _TOM
+
+try:
+    import trace_emitter as _trace
+except ImportError:
+    _trace = None
 
 log = CricketLogger("SCORE_MGR")
 
@@ -197,6 +203,58 @@ class FrameInput:
 COLD_CONSENSUS = 2
 COLD_MAX_FRAMES = 10
 COLD_MAX_FRAMES_WITH_REF = 25  # extended limit when validating against ref
+
+# Pre-match VLM-hallucination gate (cold-start only).  Investigation in
+# `scout_raw.jsonl` from the 2026-05-14 watch session: the Scout VLM
+# fabricates plausible "TEAM N-W (O.B)" strips over walk-out / toss
+# coverage where no scoreboard graphic exists.  Two cheap signals catch
+# nearly all such frames before they feed cold-start consensus:
+#   1. skeleton strip — score/overs present, all named-player slots null;
+#   2. pre-match narrative cue inside the raw VLM transcript.
+_COLD_START_PREMATCH_CUE = re.compile(
+    r"\b("
+    r"won the toss"
+    r"|chos(en|e) to (bat|bowl)"
+    r"|walking (onto|out|back|off)"
+    r"|after the toss"
+    r"|warm-?up"
+    r"|pre-?match"
+    r"|lineup"
+    r"|preview"
+    r")\b",
+    re.IGNORECASE,
+)
+
+
+def _is_skeleton_strip(frame: "FrameInput") -> bool:
+    score_present = frame.ext_score is not None
+    overs_present = frame.ext_overs is not None
+    bat1_null = frame.ext_bat1_name in (None, "", "null")
+    bat2_null = frame.ext_bat2_name in (None, "", "null")
+    bowler_null = frame.ext_bowler_name in (None, "", "null")
+    return (
+        (score_present or overs_present)
+        and bat1_null and bat2_null and bowler_null
+    )
+
+
+def _record_cold_start_reject(tag: str, frame: "FrameInput", card: dict) -> None:
+    log.info(
+        f"[{tag}] frame={frame.frame_id} "
+        f"score={card.get('score')} wickets={card.get('wickets')} "
+        f"overs={card.get('overs')}")
+    if _trace is None:
+        return
+    try:
+        _trace.get_recorder().record(
+            tag=tag,
+            frame_id=frame.frame_id,
+            score=card.get("score"),
+            wickets=card.get("wickets"),
+            overs=card.get("overs"),
+        )
+    except Exception:
+        pass
 
 # POISON-/carousel-heavy cold exits: anchored in `cold_start_recovery_analysis.md`.
 # ─ Pair A: enough SM cold iterations *and* enough pipeline frames → adopt the
@@ -1193,6 +1251,22 @@ class ScoreManager:
         if (card.get("score") is None
                 or card.get("wickets") is None
                 or card.get("overs") is None):
+            return None
+
+        # Pre-match VLM-hallucination gate.  Rejected frames roll back the
+        # `cold_frames` increment so the give-up budget is not consumed
+        # by frames that never reach the accumulator.  See the
+        # `_COLD_START_PREMATCH_CUE` / `_is_skeleton_strip` block at the
+        # top of this module for the investigation reference.
+        if _is_skeleton_strip(frame):
+            self.cold_frames -= 1
+            _record_cold_start_reject(
+                "COLD-START-SKELETON-STRIP-REJECT", frame, card)
+            return None
+        if _COLD_START_PREMATCH_CUE.search(frame.scout_text or ""):
+            self.cold_frames -= 1
+            _record_cold_start_reject(
+                "COLD-START-PREMATCH-CUE-REJECT", frame, card)
             return None
 
         if self._false_zero_cold_start(card, frame):
