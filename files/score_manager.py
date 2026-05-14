@@ -2620,6 +2620,12 @@ class ScoreManager:
                 f"(archive already performed by caller).  "
                 f"target={target} new_batting_team="
                 f"{batting_team}.")
+        # A2 prerequisite (2026-05-14): capture innings-1's final
+        # _event_baseline_score before __init__ wipes other state, so
+        # the EVENT-BASELINE-RESET-INNINGS-2 trace records the value
+        # that would have leaked into innings-2's first d_score.
+        _prev_event_baseline = getattr(
+            self, "_event_baseline_score", None)
         shadow = self.shadow
         history = self.innings_history
         reset_frame = self._current_frame
@@ -2634,6 +2640,23 @@ class ScoreManager:
         self._inn2_reset_frame = reset_frame
         self._inn2_reset_wall = time.time()
         self._inn2_first_commit_seen = bool(warm_restart)
+        # A2 prerequisite: explicit reset of the event-baseline anchor.
+        # self.__init__() runs the __init__ body but doesn't delete
+        # instance attributes set after init, so _event_baseline_score
+        # would otherwise survive carrying innings-1's final score —
+        # producing a negative d_score on innings-2's first card and
+        # dropping the event at the L2058 regression check.
+        self._event_baseline_score = 0
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="EVENT-BASELINE-RESET-INNINGS-2",
+                    prev_baseline=(
+                        int(_prev_event_baseline)
+                        if _prev_event_baseline is not None else None),
+                    frame_id=str(reset_frame))
+            except Exception:
+                pass
 
     def in_inn2_transition(
             self,
