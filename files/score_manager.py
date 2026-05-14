@@ -317,6 +317,16 @@ class ScoreManager:
         self._cold_pipeline_fallback_after: int = COLD_START_PIPELINE_FALLBACK_AFTER
         self._cold_pipeline_fallback_starvation: int = (
             COLD_START_PIPELINE_FALLBACK_STARVATION)
+        # State snapshot at COLD_START entry — used at WARM transition
+        # to synthesize ball events for the deliveries that flew past
+        # during consensus convergence. Defaults to a fresh-boot anchor
+        # (0/0/0.0); mid-match re-entries update this in the COLD_START
+        # entry paths.
+        self._cold_start_entry: dict = {
+            "score": 0, "wickets": 0, "overs": 0.0}
+        # Most recent synthesis output, surfaced for downstream
+        # consumers (over_mgr, trace replay).
+        self._cold_start_synthesized_events: list[dict] = []
 
         # Accepted UI state (score / wickets / run_rate / target /
         # batting_team → Path B properties; see class body below.)
@@ -1247,6 +1257,108 @@ class ScoreManager:
     # Cold start
     # ------------------------------------------------------------------
 
+    def _synthesize_cold_start_ball_events(
+        self,
+        implied_balls: int,
+        implied_runs: int,
+        implied_wickets: int,
+    ) -> list[dict]:
+        """Generate synthetic ball events for the cold-start convergence gap.
+
+        Distribution heuristic (see commit message):
+          - If ``implied_runs in (4, 6)``: boundary signature — all runs to
+            the last ball, dots for the rest.
+          - Else if ``implied_runs <= implied_balls``: dots first, then ones
+            until reaching the total.
+          - Else: ones across all-but-last; remainder attributed to last.
+
+        Wickets are not distributed (no observation basis for which ball
+        carried the wicket); their count is recorded in the trace tag so
+        post-match audit can flag the gap.
+
+        Events are written to ``self._cold_start_synthesized_events`` and
+        the inferred tokens overwrite the "?" placeholders in
+        ``self.this_over`` so the UI reflects the synthesised over.
+        Downstream side-effects (extras detection, bowler stats, batter
+        runs) are deliberately NOT triggered — those require real frame
+        observations the gap by definition lacks.
+        """
+        if implied_balls <= 0:
+            return []
+
+        if implied_runs in (4, 6):
+            tokens = ["."] * (implied_balls - 1) + [str(implied_runs)]
+        elif implied_runs <= implied_balls:
+            n_singles = implied_runs
+            n_dots = implied_balls - n_singles
+            tokens = ["."] * n_dots + ["1"] * n_singles
+        else:
+            excess = implied_runs - (implied_balls - 1)
+            tokens = ["1"] * (implied_balls - 1) + [str(excess)]
+
+        events: list[dict] = []
+        for i, tok in enumerate(tokens):
+            try:
+                runs = 0 if tok == "." else int(tok)
+            except ValueError:
+                runs = 0
+            ev = {
+                "type": "SYNTHESIZED",
+                "ball_index": i,
+                "runs": runs,
+                "token": tok,
+                "synthesized": True,
+                "striker": None,
+                "bowler": None,
+            }
+            events.append(ev)
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="COLD-START-SYNTHESIZED-EVENT",
+                        ball_index=i,
+                        runs=runs,
+                        token=tok,
+                        implied_balls=implied_balls,
+                        implied_runs=implied_runs,
+                        implied_wickets=implied_wickets,
+                    )
+                except Exception:
+                    pass
+
+        log.info(
+            f"[COLD-START-SYNTHESIZE] balls={implied_balls} "
+            f"runs={implied_runs} wickets={implied_wickets} "
+            f"tokens={tokens}")
+
+        self._cold_start_synthesized_events = list(events)
+        self.this_over = list(tokens)
+        try:
+            self.this_over_src = ["synth"] * len(tokens)
+        except AttributeError:
+            pass
+        return events
+
+    def _maybe_synthesize_cold_start_gap(self) -> None:
+        """Compute deltas from cold-start entry → WARM anchor and dispatch
+        to ``_synthesize_cold_start_ball_events`` if any balls passed.
+        Called from every COLD_START → WARM transition site.
+        """
+        entry = self._cold_start_entry or {
+            "score": 0, "wickets": 0, "overs": 0.0}
+        try:
+            anchor_balls = self._overs_to_balls(self.overs or 0.0)
+            entry_balls = self._overs_to_balls(entry.get("overs") or 0.0)
+        except (TypeError, ValueError):
+            return
+        implied_balls = max(0, anchor_balls - entry_balls)
+        implied_runs = max(0, (self.score or 0) - (entry.get("score") or 0))
+        implied_wickets = max(
+            0, (self.wickets or 0) - (entry.get("wickets") or 0))
+        if implied_balls > 0:
+            self._synthesize_cold_start_ball_events(
+                implied_balls, implied_runs, implied_wickets)
+
     def _handle_cold_start(self, card: dict, frame: FrameInput) -> dict | None:
         self.cold_frames += 1
 
@@ -1382,6 +1494,7 @@ class ScoreManager:
                 self.mode = "WARM"
                 log.info(f"[SM] COLD_START → WARM (max frames, ref cleared)  "
                          f"{self.score}/{self.wickets} ({self.overs})")
+                self._maybe_synthesize_cold_start_gap()
                 return self._build_payload()
             return None
 
@@ -1417,6 +1530,7 @@ class ScoreManager:
                 self.mode = "WARM"
                 log.info(f"[SM] COLD_START → WARM (max frames, ref cleared)  "
                          f"{self.score}/{self.wickets} ({self.overs})")
+                self._maybe_synthesize_cold_start_gap()
                 return self._build_payload()
             return None
 
@@ -1428,6 +1542,7 @@ class ScoreManager:
             f"{self.cold_candidate_streak}/"
             f"{self.COLD_START_CONSENSUS_FRAMES})  "
             f"{self.score}/{self.wickets} ({self.overs})")
+        self._maybe_synthesize_cold_start_gap()
         return self._build_payload()
 
     def _cold_start_maybe_pipeline_fallback(
@@ -1468,6 +1583,7 @@ class ScoreManager:
         log.info(
             f"[SM] COLD_START → WARM (pipeline watchdog)  "
             f"{self.score}/{self.wickets} ({self.overs})")
+        self._maybe_synthesize_cold_start_gap()
         return self._build_payload()
 
     def _cold_start_plausible(self, card: dict) -> bool:
