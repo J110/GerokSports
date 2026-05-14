@@ -5,6 +5,11 @@ vision calls — purely from frame-to-frame state changes.
 """
 from __future__ import annotations
 
+try:
+    import trace_emitter as _trace_co
+except ImportError:
+    _trace_co = None
+
 from copy import deepcopy
 
 from eyes.cricket_logger import CricketLogger
@@ -695,6 +700,41 @@ class BallEventDetector:
                         f"extras_delta=0 — score advanced with overs "
                         f"unchanged but extras counter did not increment; "
                         f"not fabricating no-signal-default wide.")
+                    self._save(score, wickets, overs, bowler_runs,
+                               cur_striker, striker_balls, striker_runs,
+                               bowler=cur_bowler, extras=_extras_now_i)
+                    self._extra_jitter_pending = None
+                    self._possible_extra = None
+                    return None
+
+                # Change D (2026-05-14): positive-witness requirement
+                # for multi-run no-signal fabrications.  When
+                # s_delta >= 2 with overs unchanged AND no broadcast
+                # WD/NB signal AND no extras-counter witness
+                # (extras_delta is None), reject the fabrication.
+                # Burden-of-proof on multi-run extras shifts to
+                # requiring an extras-counter delta or a broadcast
+                # signal.  Single-run (s_delta == 1) keeps the
+                # fail-open path (the common legitimate wide).
+                if (s_delta >= 2
+                        and extras_delta is None):
+                    log.info(
+                        f"[EXTRA-FABRICATION-REJECTED-NO-WITNESS] "
+                        f"s_delta={s_delta} balls_delta={balls_delta} "
+                        f"extras_delta=None — refusing to fabricate "
+                        f"multi-run wide without positive extras "
+                        f"witness; deferring to next frame.")
+                    if _trace_co is not None:
+                        try:
+                            _trace_co.get_recorder().record(
+                                tag=("EXTRA-FABRICATION-REJECTED-"
+                                     "NO-WITNESS"),
+                                s_delta=s_delta,
+                                balls_delta=balls_delta,
+                                overs=overs,
+                                bowler=cur_bowler)
+                        except Exception:
+                            pass
                     self._save(score, wickets, overs, bowler_runs,
                                cur_striker, striker_balls, striker_runs,
                                bowler=cur_bowler, extras=_extras_now_i)

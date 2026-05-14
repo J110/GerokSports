@@ -201,6 +201,17 @@ def _camera_view_to_frame_type(cam: str | None,
     return "closeup"
 
 
+try:
+    import trace_emitter as _trace_er
+except ImportError:
+    _trace_er = None
+
+# 2026-05-14 (Change A): hyphenated digit pattern (e.g. ``0-0`` from
+# bowler wickets-runs columns).  Used to reject all-zeros bowler rows
+# that otherwise alias to the batter-row template's lazy NAME match.
+_HYPHEN_DIGITS = re.compile(r"\d+\s*-\s*\d+")
+
+
 def parse_strip(text: str,
                 team_a: str | None = None,
                 team_b: str | None = None) -> dict[str, Any] | None:
@@ -281,6 +292,23 @@ def parse_strip(text: str,
         # match precedes the first pipe so batter regex should never
         # match it, but guard anyway.
         if any(nm == b["name"] for b in batters):
+            continue
+        # Change A (2026-05-14): hyphen-digit guard.  A row span
+        # containing ``\d+-\d+`` is a bowler row (W-R column), not a
+        # batter row.  Reject + emit EXTRACTOR-ROW-RECLASSIFIED.  The
+        # downstream bowler-row fallback below picks the row up.
+        _row_span = strip_for_batters[bm.start():bm.end()]
+        if _HYPHEN_DIGITS.search(_row_span):
+            if _trace_er is not None:
+                try:
+                    _trace_er.get_recorder().record(
+                        tag="EXTRACTOR-ROW-RECLASSIFIED",
+                        name=nm,
+                        original_bucket="batter",
+                        new_bucket="bowler",
+                        row_span=_row_span.strip()[:80])
+                except Exception:
+                    pass
             continue
         batters.append({
             "name": nm,

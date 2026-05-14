@@ -11353,7 +11353,16 @@ async def run_test():
                 # jump rejected, score committed, BED fabricated Nb+4).
                 # Pre-validate all three against the same rules and pop
                 # all three when any one would fail.
-                if not _direct_block_all:
+                # Change C (2026-05-14): joint-pop runs UNCONDITIONALLY.
+                # The previous `if not _direct_block_all:` gate skipped
+                # the joint-pop whenever the DIRECT path's separate
+                # rejection had already fired — but the joint-pop's
+                # purpose is to scrub `extracted` for downstream BOARD
+                # consensus consumers, which is orthogonal to the
+                # DIRECT commit path.  Running both gates additively
+                # closes the Wd+5 fabrication route observed in the
+                # F322-class anomaly.
+                if True:
                     _jp_reason = None
                     _jp_cur_score = (
                         scoreboard._inn.get("score")

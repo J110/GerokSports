@@ -3653,6 +3653,8 @@ class ScoreManager:
         """
         gap_meta = evt.get("_gap_meta") or {}
         nballs = int(gap_meta.get("balls_skipped") or 0)
+        runs_in_gap = int(gap_meta.get("runs") or 0)
+        wkts_in_gap = int(gap_meta.get("wickets_in_gap") or 0)
         idx = int(evt.get("ball_index") or 0)
         is_last = nballs > 0 and idx >= nballs - 1
 
@@ -3662,12 +3664,59 @@ class ScoreManager:
             self.partnership_known = True
         self.partnership_balls += 1
         if is_last:
-            self.partnership_runs += int(gap_meta.get("runs") or 0)
+            self.partnership_runs += runs_in_gap
+
+        # Change B (2026-05-14): ABSORBED_LEGAL bowler per-ball credit.
+        # The MULTI_BALL gap decomposition produces N ABSORBED_LEGAL
+        # events (one per ball).  Per A1 part 2's MULTI_BALL hook,
+        # bowler.runs/balls should accumulate via the unified
+        # infer_gap_tokens distribution.  Cache the token list on
+        # gap_meta on the first call (idx==0), then per-call apply
+        # one token's worth of runs to bowler.  Wicket credit lands
+        # on the last ball only (when gap_finalize_wicket is set).
+        bowler_name = self.bowler_name
+        if (bowler_name and self.scoreboard is not None
+                and _infer_gap_tokens is not None and nballs > 0):
+            _tokens = gap_meta.get("_tokens")
+            if _tokens is None:
+                _tokens = list(_infer_gap_tokens(
+                    nballs, runs_in_gap, wkts_in_gap))
+                gap_meta["_tokens"] = _tokens
+            if 0 <= idx < len(_tokens):
+                _tok = _tokens[idx]
+                if _tok in (".", "W", "?"):
+                    single_runs = 0
+                else:
+                    try:
+                        single_runs = int(_tok)
+                    except (TypeError, ValueError):
+                        single_runs = 0
+                _wkt_delta = 1 if (is_last and evt.get(
+                    "gap_finalize_wicket")) else 0
+                self.scoreboard.update_bowler(
+                    bowler_name,
+                    runs_delta=single_runs,
+                    balls_delta=1,
+                    wickets_delta=_wkt_delta,
+                    frame=self._current_frame)
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="ABSORBED-LEGAL-BOWLER-CREDITED",
+                            bowler=bowler_name,
+                            ball_index=idx,
+                            total_balls=nballs,
+                            token=_tok,
+                            single_ball_runs=single_runs,
+                            wicket_credited=bool(_wkt_delta),
+                            frame_id=str(self._current_frame))
+                    except Exception:
+                        pass
 
         if evt.get("gap_finalize_wicket"):
             w_ev = {
                 "type": "WICKET",
-                "runs": int(gap_meta.get("runs") or 0),
+                "runs": runs_in_gap,
                 "dismissed": evt.get("dismissed"),
                 "new_batter": evt.get("new_batter"),
                 "wicket_type": evt.get("wicket_type") or "unknown",
