@@ -229,6 +229,13 @@ class FrameInput:
 COLD_CONSENSUS = int(os.environ.get("COLD_CONSENSUS_FRAMES", "2"))
 COLD_MAX_FRAMES = 10
 COLD_MAX_FRAMES_WITH_REF = 25  # extended limit when validating against ref
+# Option E (2026-05-14): in COLD_START, accept a non-identical candidate
+# → card transition as a legal MULTI_BALL gap if the diff passes
+# cricket-rules and the ball-count delta is small.  Tighter than WARM's
+# MULTI_BALL_MAX_BALLS=12 because cold-start has no anchored state to
+# corroborate larger gaps; >3 balls without anchored history is almost
+# always corrupted OCR.
+COLD_START_MULTI_BALL_MAX_BALLS = 3
 
 # Pre-match VLM-hallucination gate (cold-start only).  Investigation in
 # `scout_raw.jsonl` from the 2026-05-14 watch session: the Scout VLM
@@ -1483,6 +1490,102 @@ class ScoreManager:
         )
 
         if not consensus:
+            # Option E (2026-05-14): physics-linked promotion.  Before
+            # flipping the candidate and resetting the streak, check
+            # whether the candidate → card transition is a legal
+            # forward step (cricket_rules validate_diff passes AND
+            # the ball-count delta is within the cold-start cap).  If
+            # so, treat as a MULTI_BALL gap: seed WARM at the
+            # candidate, then commit the card as a synthetic
+            # MULTI_BALL event so bowler / batter / this_over all
+            # accumulate via the existing event derivation path.
+            try:
+                _cand_overs = float(
+                    self.cold_candidate.get("overs") or 0.0)
+                _card_overs = float(card.get("overs") or 0.0)
+                _cand_score = int(self.cold_candidate.get("score") or 0)
+                _card_score = int(card.get("score") or 0)
+                _cand_wkts = int(self.cold_candidate.get("wickets") or 0)
+                _card_wkts = int(card.get("wickets") or 0)
+                _d_balls = (self._overs_to_balls(_card_overs)
+                            - self._overs_to_balls(_cand_overs))
+                _d_score = _card_score - _cand_score
+                _d_wkt = _card_wkts - _cand_wkts
+            except (TypeError, ValueError):
+                _d_balls = -1
+                _d_score = 0
+                _d_wkt = 0
+            _promote = False
+            if 0 < _d_balls <= COLD_START_MULTI_BALL_MAX_BALLS:
+                _diff = Diff(
+                    d_score=_d_score, d_balts=_d_balls, d_wkt=_d_wkt)
+                _diff_check = validate_diff(
+                    _diff,
+                    new_score=_card_score,
+                    new_wickets=_card_wkts,
+                    new_overs=_card_overs,
+                    target=self.target,
+                    innings=self.innings)
+                _promote = bool(_diff_check.ok)
+            if _promote:
+                log.info(
+                    f"[SM] COLD-START-PHYSICS-PROMOTE: candidate "
+                    f"{_cand_score}/{_cand_wkts} ({_cand_overs}) → "
+                    f"card {_card_score}/{_card_wkts} ({_card_overs}) "
+                    f"accepted as legal forward step "
+                    f"(d_balls={_d_balls}, d_score={_d_score}, "
+                    f"d_wkt={_d_wkt}); seeding WARM at candidate and "
+                    f"committing card as MULTI_BALL gap")
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="COLD-START-PHYSICS-PROMOTE",
+                            candidate_score=_cand_score,
+                            candidate_overs=_cand_overs,
+                            candidate_wickets=_cand_wkts,
+                            card_score=_card_score,
+                            card_overs=_card_overs,
+                            card_wickets=_card_wkts,
+                            d_balls=_d_balls,
+                            d_score=_d_score,
+                            d_wkt=_d_wkt,
+                            frame_id=str(self._current_frame))
+                    except Exception:
+                        pass
+                # 1. Seed WARM at the candidate.  _accept_initial
+                #    handles the COLD→WARM bookkeeping and seeds
+                #    _event_baseline_score (per 44f2510).
+                _candidate_for_seed = dict(self.cold_candidate)
+                self._last_warm_state = None
+                self._accept_initial(_candidate_for_seed, frame)
+                self.mode = "WARM"
+                # 2. Snapshot the just-seeded state as `prev` for the
+                #    gap event.
+                _prev_snap = self._snapshot()
+                # 3. Advance SM state to the card (so bowler/striker
+                #    name resolution + downstream consumers see the
+                #    new score/overs/wickets).
+                self._accept_update(card, self._current_frame)
+                # 4. Construct + apply the synthetic MULTI_BALL event.
+                #    A1 part 2's MULTI_BALL decomp in
+                #    _accumulate_stats_from_event credits bowler.runs
+                #    + balls; the unified gap-token helper (86e9aa4)
+                #    populates this_over from the same distribution.
+                _mb_event = {
+                    "type": "MULTI_BALL",
+                    "balls_missed": _d_balls,
+                    "total_runs": _d_score,
+                    "wickets_in_gap": _d_wkt,
+                    "certain": False,
+                    "striker": self.striker,
+                    "this_over_token": "?",
+                }
+                self._apply_event(_mb_event, _prev_snap, card, frame)
+                self.last_event = _mb_event
+                self.frames_since_event = 0
+                self._recompute()
+                return self._build_payload(
+                    _mb_event, ball_events=[_mb_event])
             log.info(
                 f"[SM] cold-start candidate flipped "
                 f"{self.cold_candidate.get('score')}/"
@@ -1490,7 +1593,10 @@ class ScoreManager:
                 f"({self.cold_candidate.get('overs')}) → "
                 f"{card.get('score')}/{card.get('wickets')} "
                 f"({card.get('overs')}) — streak reset to 1/"
-                f"{self.COLD_START_CONSENSUS_FRAMES}")
+                f"{self.COLD_START_CONSENSUS_FRAMES} "
+                f"(physics-promote not eligible: "
+                f"d_balls={_d_balls}, cap="
+                f"{COLD_START_MULTI_BALL_MAX_BALLS})")
             self.cold_candidate = card
             self.cold_candidate_streak = 1
             max_f = (COLD_MAX_FRAMES_WITH_REF if self._last_warm_state
