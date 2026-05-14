@@ -16,6 +16,11 @@ from difflib import SequenceMatcher
 from eyes.consistent_tracker import ConsistentReadTracker
 from eyes.cricket_logger import CricketLogger
 
+try:
+    import trace_emitter as _trace
+except ImportError:
+    _trace = None
+
 log = CricketLogger("BOARD")
 
 T20_MAX_OVERS = 20
@@ -265,6 +270,27 @@ class Scoreboard:
         # with the team strip (stale cumulative / wrong-bowler graphic).
         self._bowler_consensus_inconsistent_streak: dict[str, int] = {}
         self._BOWLER_CONSENSUS_OVERS_OVERRIDE_N = 3
+        # BOWLER-OVERRIDE consensus floor (investigation 5, 2026-05-14).
+        # Even with must_change=True (over-rollover), require ≥2 reads of
+        # the candidate name before flipping current_bowler — a single VLM
+        # read of a prior-over bowler's name (e.g. mid-cycle stats panel
+        # showing his over-1 figures) was enough to falsely flip and
+        # cascade into BOWLER-AUTO mis-attribution.  When the leader is
+        # well-established (≥0.3 overs of accumulated stats), require 3
+        # reads.  must_change=True provides a 1-frame credit, but the
+        # floor of 2 always holds — single-read flips never fire.
+        self._BOWLER_OVERRIDE_CONSENSUS_FRAMES = 2
+        self._BOWLER_OVERRIDE_CONSENSUS_FRAMES_HIGH_WEIGHT = 3
+        self._BOWLER_OVERRIDE_HIGH_WEIGHT_BALL_THRESHOLD = 3  # 3 legal balls
+        # BOWLER-AUTO attribution freeze (investigation 5 companion).
+        # When an override is pending (a candidate is accumulating reads
+        # but consensus hasn't yet fired), buffer team-score deltas
+        # instead of crediting the now-uncertain current bowler.  On
+        # resolution (consensus fires or dissipates) the buffer is
+        # flushed to the resolved bowler.  Prevents the boundary at
+        # F201 (+4 runs) from being credited to Anukul Roy while the
+        # override to Anukul was still 1-of-2-frames pending.
+        self._bowler_attribution_freeze_runs: int = 0
         # Frame of the most recent whole-row rejection (CLONE-REJECT or
         # balls-regression-too-deep).  The main loop reads this to
         # suppress broadcast-indicator striker updates on the same
@@ -1527,6 +1553,37 @@ class Scoreboard:
         except (TypeError, ValueError):
             return 0
 
+    def _flush_bowler_attribution_freeze(self, frame: int,
+                                         *, reason: str) -> None:
+        """Apply any buffered team-score delta to the current bowler.
+
+        Called at the two transition sites where a pending BOWLER-OVERRIDE
+        resolves: ``fired`` (consensus reached, new bowler installed) or
+        ``dissipated`` (incoming read matched current bowler, pending
+        cleared).  In both cases the bowler now sitting on
+        ``self._inn["current_bowler"]`` is the resolved attribution
+        target.
+        """
+        runs = self._bowler_attribution_freeze_runs
+        if runs <= 0:
+            self._bowler_attribution_freeze_runs = 0
+            return
+        cb_name = self._inn.get("current_bowler") if self._inn else None
+        if cb_name and cb_name in self.bowling_card:
+            entry = self.bowling_card[cb_name]
+            cur_r = int(entry.get("runs") or 0)
+            entry["runs"] = cur_r + runs
+            self._tracker.force_set(
+                f"bowl:{cb_name}:runs", entry["runs"])
+            log.info(
+                f"[BOWLER-ATTRIBUTION-FLUSH] {cb_name}: +{runs} runs "
+                f"({cur_r} → {entry['runs']}) reason={reason}")
+        else:
+            log.info(
+                f"[BOWLER-ATTRIBUTION-FLUSH-NO-TARGET] dropping {runs} "
+                f"buffered runs reason={reason} (no current_bowler)")
+        self._bowler_attribution_freeze_runs = 0
+
     def _mirror_team_delta_to_bowler(self, field, old_v, new_v,
                                      frame: int) -> None:
         """Apply a team score/overs delta to the current bowler.
@@ -1563,6 +1620,43 @@ class Scoreboard:
         # of auto-incrementing, which otherwise races ahead (bumping
         # recorded overs 0.4 → 0.5) and then causes Scout's 0.4 read
         # to be rejected as stale on the same frame.
+        # BOWLER-AUTO attribution freeze (investigation 5, 2026-05-14).
+        # If a BOWLER-OVERRIDE is currently building consensus toward a
+        # different bowler, buffer the team-score delta instead of
+        # crediting the now-uncertain current bowler.  The buffer is
+        # flushed in `_flush_bowler_attribution_freeze` at the two
+        # resolution sites (override fires OR pending dissipates).
+        # Placed BEFORE the scout-gap deferral so a pending override
+        # captures every team-score delta during the consensus window
+        # rather than letting some land as scout-gap drops.
+        if (self._pending_bowler_name is not None
+                and field == "score"):
+            try:
+                _delta = int(new_v) - int(old_v or 0)
+            except (ValueError, TypeError):
+                _delta = 0
+            if 0 < _delta <= 6:
+                self._bowler_attribution_freeze_runs += _delta
+                log.info(
+                    f"[BOWLER-ATTRIBUTION-FROZEN] +{_delta} runs "
+                    f"buffered (pending={self._pending_bowler_name!r} "
+                    f"streak={self._pending_bowler_count}, "
+                    f"leader={cb_name!r}, "
+                    f"buffered_total="
+                    f"{self._bowler_attribution_freeze_runs})")
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="BOWLER-ATTRIBUTION-FROZEN",
+                            pending_candidate=self._pending_bowler_name,
+                            pending_streak=self._pending_bowler_count,
+                            leader=cb_name,
+                            delta_runs=_delta,
+                            buffered_total=(
+                                self._bowler_attribution_freeze_runs))
+                    except Exception:
+                        pass
+            return
         _scout_gap = frame - self._last_bowler_scout_frame
         if 0 <= _scout_gap < 2:
             log.info(
@@ -3209,9 +3303,16 @@ class Scoreboard:
         _cur_bowler = self._inn.get("current_bowler")
         _prev_over_bowler = self._prev_over_bowler
         _bowler_changed = False
+        # Track whether the override was already pending at entry — used
+        # to flush the BOWLER-AUTO attribution-freeze buffer on the
+        # transition where pending dissipates (read matches current
+        # bowler) or fires (override accepted).
+        _pending_at_entry = self._pending_bowler_name is not None
         if name == _cur_bowler:
             self._pending_bowler_name = None
             self._pending_bowler_count = 0
+            if _pending_at_entry:
+                self._flush_bowler_attribution_freeze(frame, reason="dissipated")
         else:
             if name == self._pending_bowler_name:
                 self._pending_bowler_count += 1
@@ -3223,16 +3324,58 @@ class Scoreboard:
                 self._pending_bowler_count = 1
             # Two paths to flip:
             #   (a) over just rolled and we expect a new bowler
-            #       (_bowler_must_change) — accept on 1st sighting
+            #       (_bowler_must_change) — accept after consensus
+            #       (≥2 reads, ≥3 if leader is well-established)
             #       provided the new name != previous over's bowler.
             #   (b) normal play — require N consecutive reads.
             _accept = False
             _ov_for_flip = overs if overs is not None else entry.get("overs")
-            if (self._bowler_must_change
+            # Investigation 5 (2026-05-14): must_change=True formerly
+            # accepted on 1st sighting; a single VLM read of a prior-
+            # over bowler's name was enough to flip current_bowler and
+            # poison subsequent BOWLER-AUTO attribution.  Require
+            # consensus regardless of must_change.
+            _override_required = self._BOWLER_OVERRIDE_CONSENSUS_FRAMES
+            if (_cur_bowler is not None
+                    and self.bowling_card.get(_cur_bowler)
+                    and self._overs_to_balls(
+                        str(self.bowling_card[_cur_bowler].get("overs")
+                            or "0.0"))
+                    >= self._BOWLER_OVERRIDE_HIGH_WEIGHT_BALL_THRESHOLD):
+                _override_required = (
+                    self._BOWLER_OVERRIDE_CONSENSUS_FRAMES_HIGH_WEIGHT)
+            if self._bowler_must_change:
+                _override_required = max(
+                    self._BOWLER_OVERRIDE_CONSENSUS_FRAMES,
+                    _override_required - 1)
+
+            _must_change_path = (
+                self._bowler_must_change
+                and (not _prev_over_bowler
+                     or name != _prev_over_bowler)
+                and self._pending_bowler_count >= _override_required)
+            if _must_change_path:
+                _accept = True
+            elif (self._bowler_must_change
                     and (not _prev_over_bowler
                          or name != _prev_over_bowler)):
-                _accept = True
-            elif self._bowler_team_over_consensus(
+                log.info(
+                    f"  [BOWLER-OVERRIDE-PENDING] candidate={name!r} "
+                    f"streak={self._pending_bowler_count}/"
+                    f"{_override_required} leader={_cur_bowler!r} "
+                    f"must_change=True")
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="BOWLER-OVERRIDE-PENDING",
+                            candidate=name,
+                            streak=self._pending_bowler_count,
+                            required=_override_required,
+                            leader=_cur_bowler,
+                            must_change=True)
+                    except Exception:
+                        pass
+            if not _accept and self._bowler_team_over_consensus(
                     _cur_bowler, name, overs, self._pending_bowler_count):
                 log.warn(
                     f"  [BOWLER-TEAM-OVER-CONSENSUS] accepting {name!r} "
@@ -3267,10 +3410,23 @@ class Scoreboard:
                         self._bowler_consensus_inconsistent_streak.pop(name, None)
                         _accept = True
             if _accept:
+                _fire_reads = self._pending_bowler_count
+                _fire_must_change = self._bowler_must_change
                 log.info(
                     f"[BOWLER-OVERRIDE] {_cur_bowler} → {name} "
-                    f"(reads={self._pending_bowler_count}, "
-                    f"must_change={self._bowler_must_change})")
+                    f"(reads={_fire_reads}, "
+                    f"must_change={_fire_must_change})")
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="BOWLER-OVERRIDE-FIRED",
+                            old=_cur_bowler,
+                            new=name,
+                            consensus_frames=_fire_reads,
+                            required=_override_required,
+                            must_change=_fire_must_change)
+                    except Exception:
+                        pass
                 self._inn["current_bowler"] = name
                 self._inn["bowler_between_overs"] = False
                 self._tracker.force_set("current_bowler", name)
@@ -3278,6 +3434,10 @@ class Scoreboard:
                 self._pending_bowler_count = 0
                 self._bowler_must_change = False
                 _bowler_changed = True
+                # Flush any buffered team-score deltas to the newly-
+                # confirmed bowler.  These were accumulated while the
+                # override was pending — see _mirror_team_delta_to_bowler.
+                self._flush_bowler_attribution_freeze(frame, reason="fired")
         # First-bowler bootstrap: if no current_bowler is set at all,
         # accept this read immediately so cold-start populates the
         # bowling card on frame 1.
