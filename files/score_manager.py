@@ -36,6 +36,28 @@ _merge_broadcast = _TOM._merge_broadcast
 # Policy U — absorbed legal-ball gap fill (Issue 3 Direction B).
 ABSORBED_LEGAL = "ABSORBED_LEGAL"
 
+# A1 part 2 (2026-05-14): bowler-credited dismissal taxonomy.  Only
+# these wicket types credit the bowler's wickets column.  Run-outs,
+# retired-hurt, obstructing-the-field, hit-the-ball-twice, timed-out,
+# and unknowns do not.  ``bowler_wicket`` is the generic placeholder
+# emitted by _infer_wicket before broadcast specifics arrive.
+_BOWLER_CREDITED_DISMISSALS = frozenset({
+    "bowled", "caught", "lbw", "stumped",
+    "hit-wicket", "hit_wicket",
+    "caught-and-bowled", "caught_and_bowled",
+    "bowler_wicket",
+})
+_PENDING_WICKET_MAX_FRAME_LAG = 10
+
+
+def _is_bowler_credited_dismissal(dtype) -> bool:
+    if not dtype:
+        return False
+    norm = str(dtype).lower()
+    if norm in _BOWLER_CREDITED_DISMISSALS:
+        return True
+    return norm.replace("_", "-") in _BOWLER_CREDITED_DISMISSALS
+
 # P12 — innings-2 cold-start hardening thresholds (2026-05-03).
 # Hybrid window: primary = (frames<F AND wall<S); safety net = wall<C.
 # Defaults from diagnosis §4.  Set any to 0 to disable that clause.
@@ -3446,16 +3468,59 @@ class ScoreManager:
         if self.scoreboard is None:
             return
         etype = event.get("type")
-        if etype in (None, "MULTI_BALL", ABSORBED_LEGAL):
+        if etype in (None, ABSORBED_LEGAL):
             return
 
         striker_name = event.get("striker") or self.striker
         bowler_name = self.bowler_name
 
+        # A1 part 2: drain pending F381 wickets whenever a known bowler
+        # is in context.  In-window pending wickets credit ``bowler_name``;
+        # past-window entries are orphaned.
+        if bowler_name and getattr(self, "_pending_bowler_wickets", None):
+            self._drain_pending_bowler_wickets(bowler_name)
+
+        # A1 part 2: MULTI_BALL decomposition.  The synth event from
+        # cold-start / broadcast-cutaway carries N balls + M runs in a
+        # single record (commentary.py:500); expand into N
+        # _apply_bowler_delta calls with even distribution (remainder
+        # front-loaded).  Batter not credited — per-ball striker is
+        # unknown across the gap.  Skips silently if no bowler locked.
+        if etype == "MULTI_BALL":
+            n_balls = int(event.get("balls_missed") or 0)
+            total_runs = int(event.get("total_runs") or 0)
+            if bowler_name and n_balls > 0:
+                runs_per_ball = total_runs // n_balls
+                remainder = total_runs % n_balls
+                for i in range(n_balls):
+                    single_runs = (
+                        runs_per_ball + (1 if i < remainder else 0))
+                    self.scoreboard.update_bowler(
+                        bowler_name,
+                        runs_delta=single_runs,
+                        balls_delta=1,
+                        wickets_delta=0,
+                        frame=self._current_frame)
+                    if _trace is not None:
+                        try:
+                            _trace.get_recorder().record(
+                                tag="MULTI-BALL-DERIVATION-EXPANDED",
+                                bowler=bowler_name,
+                                ball_index=i,
+                                total_balls=n_balls,
+                                single_ball_runs=single_runs,
+                                total_runs=total_runs,
+                                frame_id=str(self._current_frame))
+                        except Exception:
+                            pass
+            return
+
         if etype == "WICKET":
             legal = bool(event.get("legal", True))
             wkt_kind = event.get("wicket_type") or "unknown"
-            bowler_attributable = wkt_kind not in ("run_out", "unknown")
+            # A1 part 2: bowler-credited dismissal filter (exclude
+            # run_out / retired-hurt / obstructing-field / unknown).
+            bowler_attributable = _is_bowler_credited_dismissal(wkt_kind)
             runs_this_ball = int(event.get("runs", 0) or 0)
             if striker_name:
                 self.scoreboard.update_batter(
@@ -3471,6 +3536,10 @@ class ScoreManager:
                     balls_delta=1 if legal else 0,
                     wickets_delta=1 if bowler_attributable else 0,
                     frame=self._current_frame)
+            elif bowler_attributable:
+                # F381 backfill: queue for credit when next bowler locks.
+                self._queue_pending_bowler_wicket(
+                    wkt_kind, event.get("dismissed"))
             return
 
         if etype == "DOT":
@@ -3680,6 +3749,31 @@ class ScoreManager:
 
     def _complete_over(self, prev: dict) -> None:
         """Archive current over when an over change is detected."""
+        # A1 part 2: maiden detection + transient over-state reset.
+        # Fires BEFORE archiving so the bowling_card transient counters
+        # still reflect this over's deliveries.  A maiden is credited
+        # only if the over completed (>= 6 legal balls) with zero
+        # bowler-attributable runs (byes/leg-byes don't disqualify, but
+        # they also aren't tracked here yet — out of scope this round).
+        if self.scoreboard is not None and self.bowler_name:
+            _bc = (self.scoreboard.bowling_card or {}).get(
+                self.bowler_name)
+            if _bc is not None:
+                _bto = int(_bc.get("balls_this_over") or 0)
+                _rto = int(_bc.get("runs_this_over") or 0)
+                if _bto >= 6 and _rto == 0:
+                    _bc["maidens"] = int(_bc.get("maidens") or 0) + 1
+                    if _trace is not None:
+                        try:
+                            _trace.get_recorder().record(
+                                tag="BOWLER-MAIDEN-CREDITED",
+                                bowler=self.bowler_name,
+                                over_index=int(prev.get("overs", 0) or 0),
+                                frame_id=str(self._current_frame))
+                        except Exception:
+                            pass
+                _bc["balls_this_over"] = 0
+                _bc["runs_this_over"] = 0
         self.completed_over = list(self.this_over)
         self.completed_over_runs = sum(
             int(t) for t in self.this_over if t.isdigit())
@@ -3692,6 +3786,66 @@ class ScoreManager:
                      f"with {self.this_over_extras} extra(s) — "
                      f"resetting per-over counter")
         self.this_over_extras = 0
+
+    # A1 part 2: F381 backfill queue.  Wickets that fire with
+    # ``bowler_name`` unset (between-overs gap) are buffered here and
+    # credited to the next bowler that locks within
+    # ``_PENDING_WICKET_MAX_FRAME_LAG`` frames.  Out-of-window entries
+    # are dropped with a WICKET-ATTRIBUTION-ORPHANED trace.
+    def _queue_pending_bowler_wicket(
+            self, wkt_kind, dismissed) -> None:
+        if not hasattr(self, "_pending_bowler_wickets"):
+            self._pending_bowler_wickets = []
+        entry = {
+            "frame_id": int(self._current_frame or 0),
+            "dismissal_type": wkt_kind,
+            "dismissed_batter": dismissed,
+        }
+        self._pending_bowler_wickets.append(entry)
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="WICKET-PENDING-BOWLER-ATTRIBUTION",
+                    frame_id=str(self._current_frame),
+                    dismissal_type=wkt_kind,
+                    dismissed_batter=dismissed)
+            except Exception:
+                pass
+
+    def _drain_pending_bowler_wickets(self, bowler_name: str) -> None:
+        cur_frame = int(self._current_frame or 0)
+        for e in list(self._pending_bowler_wickets):
+            lag = cur_frame - int(e.get("frame_id") or 0)
+            if lag <= _PENDING_WICKET_MAX_FRAME_LAG:
+                if self.scoreboard is not None:
+                    self.scoreboard.update_bowler(
+                        bowler_name,
+                        runs_delta=0,
+                        balls_delta=0,
+                        wickets_delta=1,
+                        frame=cur_frame)
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="WICKET-BACKFILLED-TO-BOWLER",
+                            bowler=bowler_name,
+                            dismissal_type=e.get("dismissal_type"),
+                            dismissed_batter=e.get("dismissed_batter"),
+                            frame_lag=lag,
+                            frame_id=str(cur_frame))
+                    except Exception:
+                        pass
+            else:
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="WICKET-ATTRIBUTION-ORPHANED",
+                            frame_id=str(e.get("frame_id")),
+                            original_lag=lag,
+                            dismissal_type=e.get("dismissal_type"))
+                    except Exception:
+                        pass
+            self._pending_bowler_wickets.remove(e)
 
     # ------------------------------------------------------------------
     # Resolve pending ambiguities

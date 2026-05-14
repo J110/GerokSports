@@ -2811,18 +2811,24 @@ class Scoreboard:
             return False
         cur_runs = int(entry.get("runs") or 0)
         cur_wkts = int(entry.get("wickets") or 0)
-        cur_balls = self._overs_to_balls(entry.get("overs"))
+        cur_balls = int(entry.get("balls") or 0)
         new_balls = cur_balls + balls_delta
+        entry["balls"] = new_balls
         entry["runs"] = cur_runs + runs_delta
         entry["wickets"] = cur_wkts + wickets_delta
-        # 2026-05-13 (bug #5/#6/#7 — derivation vs detection): STRIP is
-        # the only authoritative source for bowler.overs.  Removing
-        # the balls_delta-driven overs derivation here — when the
-        # next legal delivery happens, strip will reflect the new
-        # overs value and the strip-source write path commits it.
-        # Runs/wickets remain delta-driven because the ball-event
-        # detector is the cleaner signal for those than the strip
-        # (strip lags 1-2 frames after a boundary).
+        # A1 part 2 (2026-05-14): overs now DERIVED from accumulated
+        # legal balls.  Strip-driven overs writes were neutralized in
+        # part 1; ball-event accumulation is the sole source.
+        entry["overs"] = f"{new_balls // 6}.{new_balls % 6}"
+        # Transient per-over counters (reset by
+        # score_manager._complete_over at over-end after maiden
+        # detection).  Drive the BOWLER-MAIDEN-CREDITED trace.
+        if balls_delta > 0:
+            entry["balls_this_over"] = (
+                int(entry.get("balls_this_over") or 0) + balls_delta)
+        if runs_delta > 0:
+            entry["runs_this_over"] = (
+                int(entry.get("runs_this_over") or 0) + runs_delta)
         if new_balls > 0:
             entry["econ"] = round(entry["runs"] / new_balls * 6, 2)
         log.info(
@@ -2909,6 +2915,50 @@ class Scoreboard:
                 name,
                 int(runs_delta or 0), int(balls_delta or 0),
                 int(wickets_delta or 0), frame=frame)
+        # A1 part 2 (2026-05-14): DERIVATION-STRIP-DIVERGENCE-BOWLER.
+        # Audit-only comparison of the incoming strip read against the
+        # derived bowling_card[X] before the strip kwargs are coerced
+        # to None below.  Strip never overrides; this fires when the
+        # event-derivation path and the strip view drift apart, which
+        # signals an under-firing event detector or a strip read of a
+        # different bowler (e.g. info-pane cycling).
+        if _trace is not None and name in self.bowling_card:
+            try:
+                _d = self.bowling_card[name]
+                _d_runs = int(_d.get("runs") or 0)
+                _d_balls = int(_d.get("balls") or 0)
+                _d_wkts = int(_d.get("wickets") or 0)
+                _s_runs = int(runs) if runs is not None else None
+                _s_balls = (
+                    self._overs_to_balls(overs)
+                    if overs is not None else None)
+                _s_wkts = int(wickets) if wickets is not None else None
+                _div = False
+                if (_s_runs is not None
+                        and abs(_s_runs - _d_runs)
+                        / max(1, _d_runs) > 0.10):
+                    _div = True
+                if _s_balls is not None and abs(_s_balls - _d_balls) > 1:
+                    _div = True
+                if _s_wkts is not None and _s_wkts != _d_wkts:
+                    _div = True
+                if _div:
+                    _trace.get_recorder().record(
+                        tag="DERIVATION-STRIP-DIVERGENCE-BOWLER",
+                        bowler=name,
+                        derived={
+                            "runs": _d_runs,
+                            "balls": _d_balls,
+                            "wickets": _d_wkts,
+                        },
+                        strip_observed={
+                            "runs": _s_runs,
+                            "balls": _s_balls,
+                            "wickets": _s_wkts,
+                        },
+                        frame_id=str(frame))
+            except Exception:
+                pass
         # A1 part 1 (2026-05-14): derivation-only bowler stats.
         # Strip-driven stat fields (overs/runs/wickets/maidens) no
         # longer write to bowling_card[X].  The identity-resolution +
@@ -3170,6 +3220,16 @@ class Scoreboard:
                     f"{count}/{self._ROTATION_OVERRIDE_N}). "
                     f"current_bowler stays '{_cur_now}'"
                 )
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="CONSECUTIVE-OVER-BOWLER-REJECTED",
+                            bowler=name,
+                            prev_over_bowler=self._prev_over_bowler,
+                            rejection_count=count,
+                            frame_id=str(frame))
+                    except Exception:
+                        pass
                 return False
         elif name != self._prev_over_bowler:
             # Different bowler accepted — clear any stale counter for
