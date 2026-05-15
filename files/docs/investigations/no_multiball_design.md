@@ -203,17 +203,21 @@ tracker — verify before STEP 3.
 From Investigation #2 Q3. Exact file:line list of code to delete or
 replace:
 
-**Delete (gap-synthesis path):**
+**Delete / rename (gap-synthesis path):**
 
-| File | Lines | Symbol |
-|------|-------|--------|
-| `files/cricket_rules.py` | 37–38 | `MULTI_BALL_MAX_BALLS`, `MULTI_BALL_MAX_WKT` constants |
-| `files/cricket_rules.py` | 372 | `ValidationResult(event_type="MULTI_BALL")` — change to `"DEFERRED_MULTI"` |
-| `files/cricket_rules.py` | 649–704 | `infer_gap_tokens()` heuristic core |
-| `files/score_manager.py` | 18 | import of MULTI_BALL_MAX_* constants |
-| `files/score_manager.py` | 80–85 | `_warn_multi_ball_cap_if_cricket_reject` |
-| `files/score_manager.py` | 3410 | `[MULTI_BALL_DECOMPOSED]` log tag |
-| `files/score_manager.py` | 3441 | comment referencing MULTI_BALL synthesis |
+| File | Lines | Symbol | Action |
+|------|-------|--------|--------|
+| `files/cricket_rules.py` | 37–38 | `MULTI_BALL_MAX_BALLS`, `MULTI_BALL_MAX_WKT` constants | Delete |
+| `files/cricket_rules.py` | 372 | `ValidationResult(event_type="MULTI_BALL")` | Change to `"DEFERRED_MULTI"` |
+| `files/cricket_rules.py` | 649–704 | `infer_gap_tokens()` | **Rename → `_cold_start_infer_gap_tokens`**; scope to cold-start callers only (not deleted — still load-bearing for retained cold-start paths per §6.2) |
+| `files/score_manager.py` | 18 | import of MULTI_BALL_MAX_* constants | Delete |
+| `files/score_manager.py` | 28–30 | conditional import `from cricket_rules import infer_gap_tokens as _infer_gap_tokens` | Update import name to `_cold_start_infer_gap_tokens`; keep local alias `_infer_gap_tokens` to minimize churn at site 1 |
+| `files/score_manager.py` | 80–85 | `_warn_multi_ball_cap_if_cricket_reject` | Delete |
+| `files/score_manager.py` | 3410 | `[MULTI_BALL_DECOMPOSED]` log tag | Delete |
+| `files/score_manager.py` | 3441 | comment referencing MULTI_BALL synthesis | Delete |
+| `files/score_manager.py` | 3961–3966 | warm-path caller inside `_apply_absorbed_event` (per-ball bowler stats via gap-token distribution) | Delete — pending queue's `runs_delta` replaces |
+| `files/score_manager.py` | 4089–4128 | warm-path MULTI_BALL fan-out in `_apply_absorbed_event` (line 4104 call) | Delete entire MULTI_BALL block — replaced by N ABSORBED_LEGAL events into pending queue |
+| `files/score_manager.py` | 4306–4319 | warm-path UI token expansion in `_apply_event` (line 4314 call) | Delete entire `if event["type"] == "MULTI_BALL"` block — replaced by per-ball `"?"` placeholder appends |
 
 **Replace with per-ball pending queue:**
 
@@ -225,9 +229,12 @@ replace:
 
 | File | Lines | Symbol |
 |------|-------|--------|
+| `files/cricket_rules.py` | 649–704 | `_cold_start_infer_gap_tokens` (renamed from `infer_gap_tokens`) |
 | `files/score_manager.py` | 238 | `COLD_START_MULTI_BALL_MAX_BALLS = 3` |
-| `files/score_manager.py` | 1641–1722 | `_synthesize_cold_start_ball_events` |
-| `files/eyes/this_over.py` | 1307–1316 | `fill_strip_coverage_gap` cold-start prefill |
+| `files/score_manager.py` | 1453–~1654 | `_synthesize_cold_start_ball_events` (actual location; spec said 1641–1722 was approximate) |
+| `files/score_manager.py` | 1657+ | `_maybe_synthesize_cold_start_gap` |
+| `files/score_manager.py` | 2365–2370 | `_accept_initial` init-time `this_over` seeding (cold-start adjacent — calls renamed helper) |
+| `files/eyes/this_over.py` | 1307–1316 | `fill_strip_coverage_gap` cold-start prefill (call site updates to renamed helper) |
 
 Cold-start synthesis is the only allowed heuristic site. It addresses a
 different problem (pipeline join mid-innings with non-zero scoreboard) and
