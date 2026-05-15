@@ -10,8 +10,9 @@ import copy
 import os
 import re
 import time
+from collections import deque
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Optional
 
 from card_helpers import _reconcile_bowler_overs
 from cricket_rules import (
@@ -223,6 +224,32 @@ class FrameInput:
 
 
 # ---------------------------------------------------------------------------
+# PendingBall — queue entry for deferred attribution during overlay windows
+# ---------------------------------------------------------------------------
+
+@dataclass
+class PendingBall:
+    """Single deferred-ball record awaiting bowler/striker attribution.
+
+    Enqueued when SM observes a runs/balls delta but tracker state is
+    unresolved (overlay window, PENDING_OVERRIDE). Drained FIFO when
+    both attribution fields fill via tracker on_lock callbacks or at
+    the force-flush deadline. See no_multiball_design.md §2.1.
+    """
+
+    frame_id: int
+    runs_delta: int
+    balls_delta: int = 1
+    wickets_delta: int = 0
+    observed_strip_tokens: list[str] = field(default_factory=list)
+    bowler: Optional[str] = None
+    striker: Optional[str] = None
+    placeholder_token: str = "?"
+    committed: bool = False
+    slot_idx: Optional[int] = None
+
+
+# ---------------------------------------------------------------------------
 # ScoreManager
 # ---------------------------------------------------------------------------
 
@@ -361,6 +388,14 @@ class ScoreManager:
         # consumers (over_mgr, trace replay).
         self._cold_start_synthesized_events: list[dict] = []
 
+        # Pending-ball queue (no-MULTI_BALL architecture, Issue 1 fix).
+        # FIFO of deferred ball deltas observed during overlay windows
+        # or bowler PENDING_OVERRIDE. Drained when tracker on_lock
+        # callbacks fire (wired in B1.3). Designed depth <=3 per
+        # overlay window per Investigation #2 Q2; maxlen=6 gives
+        # headroom + overflow signal. See no_multiball_design.md.
+        self._pending_ball_queue: deque[PendingBall] = deque(maxlen=6)
+
         # Accepted UI state (score / wickets / run_rate / target /
         # batting_team → Path B properties; see class body below.)
         self.overs: float | None = None
@@ -495,6 +530,131 @@ class ScoreManager:
         self._sm_feeder_sb_missing_logged: bool = False
 
         self._inn2_bootstrap_attempted: bool = False
+
+    # -----------------------------------------------------------------
+    # Pending-ball queue methods (no-MULTI_BALL architecture, B1.1).
+    # See files/docs/investigations/no_multiball_design.md.
+    # -----------------------------------------------------------------
+
+    def _enqueue_pending_ball(
+        self,
+        *,
+        runs_delta: int,
+        wickets_delta: int = 0,
+        frame_id: int,
+        strip_tokens: Optional[list[str]] = None,
+        slot_idx: Optional[int] = None,
+    ) -> PendingBall:
+        if (self._pending_ball_queue.maxlen is not None
+                and len(self._pending_ball_queue) >= self._pending_ball_queue.maxlen):
+            self._emit_pending_trace(
+                "PENDING-BALL-QUEUE-OVERFLOW",
+                queue_depth=len(self._pending_ball_queue),
+                dropping_oldest_frame_id=self._pending_ball_queue[0].frame_id,
+                incoming_frame_id=frame_id,
+            )
+
+        entry = PendingBall(
+            frame_id=frame_id,
+            runs_delta=runs_delta,
+            wickets_delta=wickets_delta,
+            observed_strip_tokens=list(strip_tokens or []),
+            slot_idx=slot_idx,
+        )
+        self._pending_ball_queue.append(entry)
+        self._emit_pending_trace(
+            "PENDING-BALL-ENQUEUED",
+            frame_id=frame_id,
+            runs_delta=runs_delta,
+            wickets_delta=wickets_delta,
+            queue_depth=len(self._pending_ball_queue),
+            slot_idx=slot_idx,
+        )
+        return entry
+
+    def _resweep_pending_attribution(self, name: str, role: str) -> int:
+        """Fill `role` on uncommitted queue entries where it is None.
+
+        `role` in {"bowler", "striker"}. Returns count of entries
+        updated. Does NOT drain; caller must drain afterward.
+        """
+        if role not in ("bowler", "striker"):
+            raise ValueError(f"unknown role {role!r}")
+        tag = ("PENDING-BALL-BOWLER-ATTRIBUTED"
+               if role == "bowler" else "PENDING-BALL-STRIKER-ATTRIBUTED")
+        updated = 0
+        for entry in self._pending_ball_queue:
+            if entry.committed:
+                continue
+            current = entry.bowler if role == "bowler" else entry.striker
+            if current is not None:
+                continue
+            if role == "bowler":
+                entry.bowler = name
+            else:
+                entry.striker = name
+            updated += 1
+            self._emit_pending_trace(
+                tag,
+                frame_id=entry.frame_id,
+                name=name,
+                slot_idx=entry.slot_idx,
+            )
+        return updated
+
+    def _drain_pending_queue(self, reason: str) -> int:
+        """FIFO-drain entries with both bowler+striker known.
+
+        Halts at the first uncommitted entry (FIFO order preserved).
+        Rewrites placeholder token in over_mgr.this_over via
+        rewrite_token() when available (wired fully in B1.2).
+        """
+        drained = 0
+        for entry in list(self._pending_ball_queue):
+            if entry.committed:
+                continue
+            if entry.bowler is None or entry.striker is None:
+                break
+            entry.committed = True
+            derived = self._derive_pending_token(entry)
+            over_mgr = getattr(self, "over_mgr", None)
+            rewrite = getattr(over_mgr, "rewrite_token", None)
+            if rewrite is not None and entry.slot_idx is not None:
+                try:
+                    rewrite(entry.slot_idx, derived)
+                except Exception:
+                    pass
+            self._emit_pending_trace(
+                "PENDING-BALL-DRAINED",
+                frame_id=entry.frame_id,
+                reason=reason,
+                bowler=entry.bowler,
+                striker=entry.striker,
+                runs_delta=entry.runs_delta,
+                wickets_delta=entry.wickets_delta,
+                token=derived,
+                slot_idx=entry.slot_idx,
+            )
+            drained += 1
+        while self._pending_ball_queue and self._pending_ball_queue[0].committed:
+            self._pending_ball_queue.popleft()
+        return drained
+
+    @staticmethod
+    def _derive_pending_token(entry: PendingBall) -> str:
+        if entry.wickets_delta > 0:
+            return "W"
+        if entry.runs_delta == 0:
+            return "."
+        return str(entry.runs_delta)
+
+    def _emit_pending_trace(self, tag: str, **payload: Any) -> None:
+        if _trace is None:
+            return
+        try:
+            _trace.get_recorder().record(tag=tag, **payload)
+        except Exception:
+            pass
 
     def _fow_writable(self) -> list[dict]:
         if self.scoreboard is not None:
