@@ -5857,11 +5857,19 @@ def _build_full_payload_from_state(
         # next strip refresh fills in real data.  Internal state
         # keeps '?' for the gap-infer code's own consensus checks;
         # this is purely a broadcast-layer rendering swap.
+        #
+        # B1.2d (no-MULTI_BALL architecture): attribution-pending '?'
+        # tokens — those whose slot index is in `over_mgr._pending_slots`
+        # — render as '?' to the user per memo §2.5 ("ball bowled,
+        # attribution pending"), distinct from the legacy
+        # not-yet-bowled '·' semantics.
         "this_over": [
-            ("·" if t == "?" else t)
-            for t in (list(over_mgr.get_display(
-                scoreboard._inn.get("overs")
-                if scoreboard._inn else None))
+            (t if (t == "?" and i in over_mgr._pending_slots)
+             else ("·" if t == "?" else t))
+            for i, t in enumerate(
+                list(over_mgr.get_display(
+                    scoreboard._inn.get("overs")
+                    if scoreboard._inn else None))
                 if (over_mgr.get_display(
                     scoreboard._inn.get("overs")
                     if scoreboard._inn else None))
