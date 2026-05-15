@@ -502,8 +502,29 @@ class BallEventDetector:
                              f"leg-bye")
 
         elif balls_delta > 1:
-            event = {"type": "MULTI_BALL", "balls_missed": balls_delta,
-                     "total_runs": s_delta, "certain": False}
+            # No-MULTI_BALL architecture (B1.2c Option C): emit N per-ball
+            # ABSORBED_LEGAL events instead of one MULTI_BALL gap event.
+            # Push N-1 into _event_queue; caller's while-loop drains.
+            # `bed_total_runs` lets B1.3's drain distribute the gap-runs
+            # to the right ball post-attribution.
+            events = []
+            last_i = balls_delta - 1
+            for i in range(balls_delta):
+                ev = {
+                    "type": "ABSORBED_LEGAL",
+                    "absorbed": True,
+                    "certain": False,
+                    "runs": None,
+                    "legal": True,
+                    "ball_index": i,
+                    "source": "bed_multi_ball",
+                    "bed_total_runs": s_delta,
+                }
+                if i == last_i and w_delta > 0:
+                    ev["gap_finalize_wicket"] = True
+                events.append(ev)
+            event = events[0]
+            self._event_queue.extend(events[1:])
 
         # WICKET-WITHOUT-OVERS-TICK: wicket fell but the broadcast
         # team-overs strip hasn't ticked yet (very common — the

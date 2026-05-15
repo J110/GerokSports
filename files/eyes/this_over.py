@@ -89,6 +89,10 @@ class ThisOverManager:
         # → metadata for "?" placeholders awaiting attribution drain
         # by SM's pending-ball queue (B1.3). See no_multiball_design.md.
         self._pending_slots: dict[int, dict] = {}
+        # Back-reference to ScoreManager for the slot-binding callback
+        # (B1.2c). Set via attach_score_manager() once both managers
+        # are constructed (test_pipeline.py wires this).
+        self._score_manager = None
         self.over_history: dict[int, dict] = {}
         self._last_over_int: int | None = None
         self._over_start_score: int | None = None
@@ -582,6 +586,13 @@ class ThisOverManager:
                     "source": "absorbed_legal",
                     "ball_index": event.get("ball_index"),
                 }
+                # B1.2c slot-binding callback: link this "?" slot back
+                # to the corresponding SM PendingBall. The producer
+                # (SM._decompose_multi_ball OR test_pipeline.py for BED
+                # events) enqueued a PendingBall with slot_idx=None;
+                # we bind it to this slot_idx in FIFO order.
+                if self._score_manager is not None:
+                    self._score_manager.bind_pending_slot(slot_idx)
         elif event.get("certain"):
             t = _ev_type
             if t == "WICKET":
@@ -628,6 +639,15 @@ class ThisOverManager:
                 log.info(
                     f"Missed {missed} balls (+{total_r} runs) — "
                     f"no room in current over for placeholders")
+
+    def attach_score_manager(self, score_manager) -> None:
+        """Wire the back-reference for the slot-binding callback (B1.2c).
+
+        Once both managers are constructed, the pipeline calls this so
+        the ABSORBED_LEGAL handler can call sm.bind_pending_slot(slot_idx)
+        immediately after appending a "?" placeholder.
+        """
+        self._score_manager = score_manager
 
     def rewrite_token(self, slot_idx: int, token: str) -> None:
         """Rewrite a pending '?' slot to a real token (B1.2b).

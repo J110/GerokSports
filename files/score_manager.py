@@ -625,6 +625,34 @@ class ScoreManager:
             self._pending_ball_queue.popleft()
         return drained
 
+    def bind_pending_slot(self, slot_idx: int) -> bool:
+        """Bind a this_over slot_idx to the head unbound PendingBall (B1.2c).
+
+        Called by ThisOverManager after it appends a "?" placeholder. Walks
+        the pending queue head→tail; the first uncommitted entry with
+        slot_idx=None gets bound to this slot. FIFO order matches event
+        emission order — producer (SM._decompose_multi_ball or BED via
+        test_pipeline.py) enqueues N PendingBalls, then over_mgr fields
+        N ABSORBED_LEGAL events and binds each in order.
+
+        Returns True on successful bind, False if no unbound entry exists
+        (orphan — likely a "?" emitted without prior SM enqueue).
+        """
+        for entry in self._pending_ball_queue:
+            if not entry.committed and entry.slot_idx is None:
+                entry.slot_idx = slot_idx
+                self._emit_pending_trace(
+                    "PENDING-BALL-SLOT-BOUND",
+                    slot_idx=slot_idx,
+                    frame_id=entry.frame_id,
+                )
+                return True
+        self._emit_pending_trace(
+            "PENDING-BALL-SLOT-BOUND-ORPHAN",
+            slot_idx=slot_idx,
+        )
+        return False
+
     @staticmethod
     def _derive_pending_token(entry: PendingBall) -> str:
         if entry.wickets_delta > 0:
@@ -3568,6 +3596,16 @@ class ScoreManager:
             log.debug(
                 f"[ABSORBED_LEGAL] ball_index={i}/{last_i} "
                 f"finalize_wkt={ev.get('gap_finalize_wicket', False)}")
+            # B1.2c: enqueue a PendingBall per emitted event. over_mgr's
+            # ABSORBED_LEGAL handler will bind each slot back via
+            # bind_pending_slot() in FIFO order. Per-ball runs_delta is
+            # 0 here; B1.3's drain distributes from gap_meta.runs.
+            self._enqueue_pending_ball(
+                runs_delta=0,
+                wickets_delta=1 if ev.get("gap_finalize_wicket") else 0,
+                frame_id=self._current_frame,
+                slot_idx=None,
+            )
             out.append(ev)
         return out
 

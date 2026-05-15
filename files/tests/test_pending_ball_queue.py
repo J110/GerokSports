@@ -106,6 +106,54 @@ def test_overflow_emits_trace_warning(monkeypatch, sm: ScoreManager):
     assert overflow_payload["incoming_frame_id"] == 406
 
 
+def test_bind_pending_slot_assigns_to_head_unbound_entry(sm: ScoreManager):
+    e1 = _enqueue(sm, runs=0, frame_id=600, slot_idx=None)
+    e2 = _enqueue(sm, runs=0, frame_id=601, slot_idx=None)
+    e3 = _enqueue(sm, runs=0, frame_id=602, slot_idx=None)
+
+    assert sm.bind_pending_slot(7) is True
+    assert e1.slot_idx == 7
+    assert e2.slot_idx is None
+    assert e3.slot_idx is None
+
+    assert sm.bind_pending_slot(8) is True
+    assert e2.slot_idx == 8
+    assert e3.slot_idx is None
+
+    assert sm.bind_pending_slot(9) is True
+    assert e3.slot_idx == 9
+
+
+def test_bind_pending_slot_skips_already_bound_entries(sm: ScoreManager):
+    e1 = _enqueue(sm, runs=0, frame_id=700, slot_idx=3)  # pre-bound
+    e2 = _enqueue(sm, runs=0, frame_id=701, slot_idx=None)
+
+    assert sm.bind_pending_slot(99) is True
+    # First unbound is e2, so e2 gets the new slot.
+    assert e1.slot_idx == 3
+    assert e2.slot_idx == 99
+
+
+def test_bind_pending_slot_orphan_returns_false(sm: ScoreManager):
+    # No pending entries.
+    assert sm.bind_pending_slot(5) is False
+    assert len(sm._pending_ball_queue) == 0
+
+
+def test_bind_pending_slot_skips_committed_entries(sm: ScoreManager):
+    e1 = _enqueue(sm, runs=0, frame_id=800, slot_idx=None)
+    e2 = _enqueue(sm, runs=0, frame_id=801, slot_idx=None)
+    # Manually mark e1 committed (simulating prior drain).
+    e1.committed = True
+    e1.slot_idx = 0
+    e1.bowler = "Roy"
+    e1.striker = "Pathum"
+
+    assert sm.bind_pending_slot(42) is True
+    assert e2.slot_idx == 42
+    assert e1.slot_idx == 0  # unchanged
+
+
 def test_drain_rewrites_placeholder_in_over_mgr(sm: ScoreManager):
     rewrites: list[tuple[int, str]] = []
 

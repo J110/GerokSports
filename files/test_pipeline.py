@@ -7165,6 +7165,10 @@ async def run_test():
     # `batting_card[i].is_striker = (name == striker)` comparison always
     # fails, and no batter is highlighted as striker.  Issue 1 fix.
     score_mgr.scoreboard = scoreboard
+    # B1.2c: wire the slot-binding back-ref so over_mgr's ABSORBED_LEGAL
+    # handler can call sm.bind_pending_slot(slot_idx) after appending "?"
+    # placeholders. See no_multiball_design.md.
+    over_mgr.attach_score_manager(score_mgr)
 
     # === COLD-START ANCHORS — AUTO ONLY ===
     # Watch SCOUT-committed batting_card after each frame; the first
@@ -8981,8 +8985,25 @@ async def run_test():
                             _cu_overs_str = scoreboard._inn.get("overs")
                             _cu_bowler_n = scoreboard._inn.get("current_bowler")
                             _cu_score_int = int(scoreboard._inn.get("score") or 0)
-                            _pre_ball = ball_detector.detect(scoreboard._tracker)
-                            if _pre_ball:
+                            # B1.2c: drain BED's _event_queue — multi-ball
+                            # gaps now emit N ABSORBED_LEGAL events via
+                            # the queue. Each "bed_multi_ball" event
+                            # needs an SM-side PendingBall enqueued before
+                            # forwarding to over_mgr so its bind callback
+                            # finds a head entry.
+                            while True:
+                                _pre_ball = ball_detector.detect(scoreboard._tracker)
+                                if not _pre_ball:
+                                    break
+                                if _pre_ball.get("source") == "bed_multi_ball":
+                                    score_mgr._enqueue_pending_ball(
+                                        runs_delta=0,
+                                        wickets_delta=(
+                                            1 if _pre_ball.get("gap_finalize_wicket")
+                                            else 0),
+                                        frame_id=frame_count,
+                                        slot_idx=None,
+                                    )
                                 over_mgr.on_ball_event(_pre_ball,
                                                        score=_cu_score_int)
                             if over_mgr.check_over_change(
@@ -12805,8 +12826,21 @@ async def run_test():
             except (ValueError, TypeError):
                 pass
 
-            # Ball detection: detect first, then decide where to append
+            # Ball detection: detect first, then decide where to append.
+            # B1.2c: BED multi-ball gaps emit N ABSORBED_LEGAL events via
+            # _event_queue. We drain the queue inside the existing
+            # `if ball_event:` body via the queue-drain semantics of
+            # detect(). For the first call we set ball_event normally;
+            # the drain loop is below (after the main body runs once).
             ball_event = ball_detector.detect(scoreboard._tracker)
+            if ball_event and ball_event.get("source") == "bed_multi_ball":
+                score_mgr._enqueue_pending_ball(
+                    runs_delta=0,
+                    wickets_delta=(
+                        1 if ball_event.get("gap_finalize_wicket") else 0),
+                    frame_id=frame_count,
+                    slot_idx=None,
+                )
             _over_changed = False
             _new_over_int = int(float(_cur_overs_str or "0"))
 
