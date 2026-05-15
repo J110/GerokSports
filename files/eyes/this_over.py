@@ -85,6 +85,10 @@ class ThisOverManager:
     def __init__(self):
         self.this_over: list[str] = []
         self.this_over_sources: list[str] = []  # "obs" or "bcast" per ball
+        # Pending-slot tracking (no-MULTI_BALL B1.2b). Maps slot index
+        # → metadata for "?" placeholders awaiting attribution drain
+        # by SM's pending-ball queue (B1.3). See no_multiball_design.md.
+        self._pending_slots: dict[int, dict] = {}
         self.over_history: dict[int, dict] = {}
         self._last_over_int: int | None = None
         self._over_start_score: int | None = None
@@ -567,11 +571,17 @@ class ThisOverManager:
         elif _ev_type == "DRS_NOT_OUT":
             log.info("DRS not-out — no this-over change")
         elif _ev_type == "ABSORBED_LEGAL":
+            slot_idx = len(self.this_over)
             if event.get("gap_finalize_wicket"):
                 self.this_over.append("W")
+                self.this_over_sources.append("obs")
             else:
                 self.this_over.append("?")
-            self.this_over_sources.append("obs")
+                self.this_over_sources.append("obs_pending")
+                self._pending_slots[slot_idx] = {
+                    "source": "absorbed_legal",
+                    "ball_index": event.get("ball_index"),
+                }
         elif event.get("certain"):
             t = _ev_type
             if t == "WICKET":
@@ -590,32 +600,55 @@ class ThisOverManager:
                     self.this_over.append(str(r) if r > 0 else ".")
             self.this_over_sources.append("obs")
         elif event.get("type") == "MULTI_BALL":
+            # No-MULTI_BALL architecture (B1.2b): append N "?"
+            # placeholders instead of synthesizing tokens via
+            # infer_gap_tokens. Pending-queue drain (B1.3) rewrites
+            # each "?" with the observed runs/wickets token once
+            # bowler+striker attribution resolves. See
+            # files/docs/investigations/no_multiball_design.md.
             missed = event.get("balls_missed") or event.get("balls_skipped") or 0
             total_r = event.get("total_runs")
-            if total_r is None:
-                total_r = event.get("runs") or 0
-            wkts_gap = int(event.get("wickets_in_gap")
-                           or event.get("wickets") or 0)
-            # Cap at 6 — we can only have 6 legal deliveries in
-            # the current over; anything beyond means overs were
-            # skipped and check_over_change will handle the reset.
+            # Cap at 6 — we can only have 6 legal deliveries in the
+            # current over.
             capped = min(missed, 6 - len(self.this_over))
             capped = max(capped, 0)
+            for _ in range(capped):
+                slot_idx = len(self.this_over)
+                self.this_over.append("?")
+                self.this_over_sources.append("multi_ball_pending")
+                self._pending_slots[slot_idx] = {
+                    "source": "multi_ball",
+                }
             if capped > 0:
-                from cricket_rules import infer_gap_tokens
-                tokens = infer_gap_tokens(
-                    capped, int(total_r or 0), wkts_gap)
-                self.this_over.extend(tokens)
-                self.this_over_sources.extend(
-                    ["multi_ball_synth"] * len(tokens))
                 log.info(
-                    f"Missed {missed} balls (+{total_r} runs, "
-                    f"+{wkts_gap} wkts) — inferred {capped} tokens "
-                    f"{tokens} (capped from {missed})")
+                    f"Missed {missed} balls (+{total_r} runs) — "
+                    f"appended {capped} '?' placeholders (pending "
+                    f"attribution drain, was: synthesized tokens)")
             else:
                 log.info(
                     f"Missed {missed} balls (+{total_r} runs) — "
                     f"no room in current over for placeholders")
+
+    def rewrite_token(self, slot_idx: int, token: str) -> None:
+        """Rewrite a pending '?' slot to a real token (B1.2b).
+
+        Called by ScoreManager's pending-ball-queue drain (B1.3) after
+        bowler+striker attribution resolves for a previously-deferred
+        ball. Pops the entry from `_pending_slots` so a second drain
+        attempt is a no-op.
+        """
+        if not (0 <= slot_idx < len(self.this_over)):
+            log.warn(
+                f"[rewrite_token] slot_idx={slot_idx} out of range "
+                f"(this_over len={len(self.this_over)})")
+            return
+        old = self.this_over[slot_idx]
+        self.this_over[slot_idx] = token
+        if slot_idx < len(self.this_over_sources):
+            self.this_over_sources[slot_idx] = "obs"
+        self._pending_slots.pop(slot_idx, None)
+        log.info(
+            f"[rewrite_token] slot {slot_idx}: '{old}' → '{token}'")
 
     def pop_last_extra(self, reason: str = "") -> bool:
         """Remove the trailing token if it's an EXTRA (Wd/Nb/+N).
@@ -1304,9 +1337,9 @@ class ThisOverManager:
         balls = round((float(overs or "0") % 1) * 10)
         if balls > 0 and not self.this_over:
             if score_so_far is not None:
-                from cricket_rules import infer_gap_tokens
+                from cricket_rules import _cold_start_infer_gap_tokens
                 self.this_over = list(
-                    infer_gap_tokens(
+                    _cold_start_infer_gap_tokens(
                         balls, int(score_so_far or 0),
                         int(wickets_so_far or 0)))
                 self.this_over_sources = ["bcast_synth"] * balls

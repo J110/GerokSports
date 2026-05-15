@@ -9464,16 +9464,14 @@ async def run_test():
                         # per ball (+5 stacked-extras buffer) and the same
                         # 12-ball multi-ball ceiling.  Regression / no-strip
                         # / team-mismatch clauses are unchanged.
-                        try:
-                            from cricket_rules import MULTI_BALL_MAX_BALLS
-                        except ImportError:
-                            MULTI_BALL_MAX_BALLS = 12
+                        # No-MULTI_BALL architecture: the
+                        # MULTI_BALL_MAX_BALLS cap is no longer enforced
+                        # at the cricket_rules level — see
+                        # no_multiball_design.md. Score regression
+                        # remains a poison signal.
                         if (_gf_delta_score is not None
                                 and _gf_delta_score < 0):
                             _gf_poison_reason = "score_regression"
-                        elif (_gf_delta_balls is not None
-                                and _gf_delta_balls > MULTI_BALL_MAX_BALLS):
-                            _gf_poison_reason = "balls_jump_too_large"
                         elif (_gf_delta_score is not None
                                 and _gf_delta_balls is not None):
                             _gf_max_runs = 7 * max(1, _gf_delta_balls) + 5

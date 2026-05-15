@@ -34,7 +34,7 @@ CHASE_CEILING_BUFFER = 4   # 2nd innings: score <= target + 4 (OCR jitter)
 # ── Per-event ceilings (apply in WARM only) ──────────────────────────
 SINGLE_BALL_MAX_SCORE = 10  # 6 + 4 overthrow extras (extreme upper bound)
 NO_LEGAL_BALL_MAX_SCORE = 7  # NB + 6 off the bat
-MULTI_BALL_MAX_BALLS = 12   # max legal-ball Δ between reads (F3293-class ~9)
+MULTI_BALL_MAX_BALLS = 12   # cricket-rules internal cap on Δballs between consecutive reads
 MULTI_BALL_MAX_WKT = 2      # max wickets between consecutive reads
 
 
@@ -704,7 +704,3 @@ def _cold_start_infer_gap_tokens(n_balls: int, total_runs: int,
     return tokens
 
 
-# Backward-compat alias — removed in B1.2b once the warm-path consumer
-# (this_over.py:592-619 MULTI_BALL handler) and BED producer
-# (commentary.py:505) are migrated to the pending-ball queue.
-infer_gap_tokens = _cold_start_infer_gap_tokens

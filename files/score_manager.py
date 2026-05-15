@@ -16,7 +16,6 @@ from typing import Any, Optional
 
 from card_helpers import _reconcile_bowler_overs
 from cricket_rules import (
-    MULTI_BALL_MAX_BALLS,
     Diff,
     validate_absolute,
     validate_diff,
@@ -25,7 +24,7 @@ from eyes.cricket_logger import CricketLogger
 from eyes.this_over import ThisOverManager as _TOM
 
 try:
-    from cricket_rules import infer_gap_tokens as _infer_gap_tokens
+    from cricket_rules import _cold_start_infer_gap_tokens as _infer_gap_tokens
 except ImportError:
     _infer_gap_tokens = None
 try:
@@ -72,20 +71,6 @@ INN2_TRANSITION_SECONDS = int(os.environ.get(
     "INN2_TRANSITION_SECONDS", "900"))
 INN2_TRANSITION_CEILING_SECONDS = int(os.environ.get(
     "INN2_TRANSITION_CEILING_SECONDS", "1200"))
-
-
-def _warn_multi_ball_cap_if_cricket_reject(
-        d_balls: int, reject_reason: str | None, *, context: str) -> None:
-    """Emit ``[MULTI_BALL_CAP_EXCEEDED]`` when ``validate_diff`` rejects Δballs."""
-    _reason = reject_reason or ""
-    if (d_balls > MULTI_BALL_MAX_BALLS
-            and "_>_multi_max_" in _reason
-            and _reason.startswith("d_balts_")):
-        log.warn(
-            "[MULTI_BALL_CAP_EXCEEDED] "
-            f"d_balls={d_balls} cap={MULTI_BALL_MAX_BALLS} "
-            f"emitted_count=0 reason=reject context={context} "
-            f"cricket_reject={_reason}")
 
 
 # Strict umpire-signal patterns for inferring WIDE / NO_BALL from scout
@@ -2097,9 +2082,6 @@ class ScoreManager:
             new_score=cs_v, new_wickets=cw_v, new_overs=co_v,
             target=self.target, innings=self.innings)
         if not result.ok:
-            _warn_multi_ball_cap_if_cricket_reject(
-                d_balls, result.reject_reason,
-                context="cold_start_stale_recovery")
             log.info(
                 f"[SM] cold-start reject ({result.reject_reason})  "
                 f"ref={rs}/{rw}({ro}) → cand={cs_v}/{cw_v}({co_v})")
@@ -2643,8 +2625,6 @@ class ScoreManager:
             new_score=c_score, new_wickets=c_wickets, new_overs=new_overs,
             target=self.target, innings=self.innings)
         if not cr_result.ok:
-            _warn_multi_ball_cap_if_cricket_reject(
-                d_balls, cr_result.reject_reason, context="warm_on_frame")
             log.warn(
                 f"[SM] REJECT (cricket_rules: {cr_result.reject_reason})  "
                 f"prev={self.score}/{self.wickets} ({old_overs}) → "
@@ -4092,7 +4072,7 @@ class ScoreManager:
         # _apply_bowler_delta calls with even distribution (remainder
         # front-loaded).  Batter not credited — per-ball striker is
         # unknown across the gap.  Skips silently if no bowler locked.
-        if etype in ("MULTI_BALL", "COLD_START_SYNTH"):
+        if etype == "COLD_START_SYNTH":
             n_balls = int(event.get("balls_missed") or 0)
             total_runs = int(event.get("total_runs") or 0)
             wkts_in_gap = int(event.get("wickets_in_gap") or 0)
@@ -4303,7 +4283,7 @@ class ScoreManager:
                           and (card.get("overs", 0) or 0)
                           > (prev.get("overs", 0) or 0))
 
-        if event["type"] in ("MULTI_BALL", "COLD_START_SYNTH"):
+        if event["type"] == "COLD_START_SYNTH":
             if is_over_change:
                 self._complete_over(prev)
                 self.this_over = []
