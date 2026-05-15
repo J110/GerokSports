@@ -137,10 +137,26 @@ On subsequent frames, the top of `check_over_change()` checks
 `_over_archive_pending`; if set, attempt drain, archive if queue empty,
 clear flag.
 
-### 2.7 Force-flush deadline
+### 2.7 Force-flush deadline (tracker-state-aware)
 
-Hard deadline: `ts_match.overs >= float(N + 1) + 0.3` — i.e. 0.3 overs (≈2
-balls) into the *following* over. If pending queue still non-empty:
+Two-stage deadline.
+
+**Soft deadline:** `ts_match.overs >= float(N + 1) + 0.3` (~2 balls into
+the *following* over).
+
+At the soft deadline, inspect `bowler_tracker.state`:
+
+- If `state == PENDING_OVERRIDE` (an override candidate is accumulating
+  streak but has not yet won the lock): emit
+  `PENDING-BALL-FLUSH-EXTENDED-OVERRIDE-ACTIVE` with candidate name +
+  current streak count; defer flush, extend deadline to the hard cap.
+- Otherwise: proceed to force-flush.
+
+**Hard cap:** `ts_match.overs >= float(N + 1) + 1.0` (one full over past
+the deferred archive). At this point, force-flush regardless of tracker
+state — absolute backstop, no further extensions.
+
+Force-flush procedure (at whichever deadline fires):
 
 - For each remaining entry, emit `PENDING-BALL-FORCED-FLUSH-UNRESOLVED` with
   the entry's known/unknown attribution fields.
@@ -150,10 +166,12 @@ balls) into the *following* over. If pending queue still non-empty:
   `"?"` — we do not fabricate the displayed token.
 - Archive `over_history[N]` with mixed real/`?` tokens; clear deferral flag.
 
-Rationale: 0.3 overs is enough wall-clock time (~20s) for any legitimate
-post-overlay bowler resolution to fire, but short enough that the UI never
-shows a stale prior-over token sequence for more than 2 balls into the next
-over.
+Rationale: the soft deadline catches the common case (overlay clears, both
+trackers lock within ~14s wall). The PENDING_OVERRIDE extension addresses
+the §6.1 timing contradiction — typical override resolution takes 5–8
+frames (~35–56s wall at observed 7s/frame cadence), which exceeds the soft
+deadline. The hard cap (one full following over) backstops pathological
+multi-over stalls without permitting unbounded queue growth.
 
 ### 2.8 Tracker hooks
 
@@ -238,10 +256,13 @@ Four commits on `derive-not-detect`, no batching.
 
 **B1.3 — `feat(no-multi-ball): write-deferred over_history archive + force-flush`**
 - `_over_archive_pending` state + check_over_change deferral
-- Force-flush deadline (`overs >= N+1.3`)
+- Two-stage force-flush deadline: soft (`overs >= N+1.3`) with
+  tracker-state extension on PENDING_OVERRIDE, hard cap (`overs >= N+2.0`)
+- 7th trace tag `PENDING-BALL-FLUSH-EXTENDED-OVERRIDE-ACTIVE` registered
 - `confidence_tracker.py` gains `on_lock` callback hook
 - SM init wires bowler/striker `on_lock`
-- New `files/tests/test_over_archive_deferral.py` (3 cases)
+- New `files/tests/test_over_archive_deferral.py` (4 cases — adds
+  extension-active scenario)
 
 **B1.4 — `chore(no-multi-ball): cleanup remaining refs + docs`**
 - Grep MULTI_BALL across repo; clean non-test refs
@@ -263,6 +284,7 @@ Replay `match_4621b9f8.mp4` from 10:40 timestamp through over 6.
 | `PENDING-BALL-DRAINED` | == `PENDING-BALL-ENQUEUED` minus force-flush count |
 | `PENDING-BALL-FORCED-FLUSH-UNRESOLVED` | **0** (ideal) |
 | `OVER-ARCHIVE-DEFERRED-QUEUE-NONEMPTY` | ≥1 (over 4 archive deferred) |
+| `PENDING-BALL-FLUSH-EXTENDED-OVERRIDE-ACTIVE` | 0–2 (acceptable; safety-valve fires when PENDING_OVERRIDE outlasts soft deadline) |
 
 **UI acceptance:**
 
@@ -285,9 +307,13 @@ get credited to the wrong card, but better in two ways: (a) the UI shows
 `"?"` so the user knows something is unresolved; (b) it does not fabricate
 fake ball tokens like `. . 5`.
 
-**Mitigation:** the 0.3-over window (~20s of broadcast time) is empirically
-sufficient for bowler resolution per Investigation #2 Q4 trace evidence
-(BOWLER-OVERRIDE-PENDING typically resolves within 5–8 frames).
+**Mitigation:** the soft deadline at `(N+1)+0.3` (~14s wall) catches the
+common case where the overlay clears quickly. For the §2.4 scenario where
+`bowler_tracker.state == PENDING_OVERRIDE` is still accumulating at the
+soft deadline, §2.7 extends to the hard cap `(N+1)+1.0` — this covers the
+empirical 5–8 frame (~35–56s wall at 7s/frame cadence) override resolution
+window observed in Investigation #2 Q4. Hard cap guarantees forward
+progress without permitting unbounded queue growth.
 
 ### 6.2 Cold-start synth path interaction
 
@@ -318,9 +344,20 @@ indicates a much larger anomaly (multi-over overlay, network frame stall).
 
 ### 6.5 Rollback plan
 
-Each STEP is one commit on `derive-not-detect`. To roll back: `git revert
-<hashes>` in reverse order (B1.4 → B1.3 → B1.2 → B1.1). Cold-start synth
-path is untouched, so cold-start validation does not need re-running on
-rollback. Tracker hook in B1.3 is the riskiest change; if behaviour
-regresses, revert B1.3 first — B1.1/B1.2 are inert without it (queue
-enqueues but never drains, force-flushing after 0.3 overs).
+**The 4 commits are not independently revertable.** B1.2 enqueues into a
+queue whose only drain triggers are the `on_lock` callback hooks installed
+in B1.3. Reverting B1.3 alone leaves B1.2's enqueues accumulating with no
+drain path — every `over_history` archive blocks indefinitely (the
+force-flush deadline also lives in B1.3). Similarly, B1.1 alone is inert
+(infrastructure with no caller), but B1.2 without B1.1 has no queue to
+push into.
+
+**Correct procedure:** revert all four (B1.4 → B1.3 → B1.2 → B1.1) as an
+atomic unit, in reverse order. Cold-start synth path is untouched, so
+cold-start validation does not need re-running on rollback.
+
+**Partial revert (debug only):** if isolating B1.1 + B1.2's enqueue path
+is required for debugging, pair the partial revert with a temporary
+`self._pending_ball_queue.clear()` shim in SM init or per-frame to prevent
+unbounded accumulation. Treat this as a debug-only state, not a shippable
+configuration.
