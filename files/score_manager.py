@@ -1854,7 +1854,7 @@ class ScoreManager:
                 #    + balls; the unified gap-token helper (86e9aa4)
                 #    populates this_over from the same distribution.
                 _mb_event = {
-                    "type": "MULTI_BALL",
+                    "type": "COLD_START_SYNTH",
                     "balls_missed": _d_balls,
                     "total_runs": _d_score,
                     "wickets_in_gap": _d_wkt,
@@ -4092,7 +4092,7 @@ class ScoreManager:
         # _apply_bowler_delta calls with even distribution (remainder
         # front-loaded).  Batter not credited — per-ball striker is
         # unknown across the gap.  Skips silently if no bowler locked.
-        if etype == "MULTI_BALL":
+        if etype in ("MULTI_BALL", "COLD_START_SYNTH"):
             n_balls = int(event.get("balls_missed") or 0)
             total_runs = int(event.get("total_runs") or 0)
             wkts_in_gap = int(event.get("wickets_in_gap") or 0)
@@ -4303,7 +4303,7 @@ class ScoreManager:
                           and (card.get("overs", 0) or 0)
                           > (prev.get("overs", 0) or 0))
 
-        if event["type"] == "MULTI_BALL":
+        if event["type"] in ("MULTI_BALL", "COLD_START_SYNTH"):
             if is_over_change:
                 self._complete_over(prev)
                 self.this_over = []

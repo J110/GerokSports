@@ -217,7 +217,7 @@ def test_multi_ball_gap_two_balls():
     r = V(D(d_score=4, d_balts=2,
             d_str_runs=4, d_str_balls=1,
             d_bwl_runs=4, d_bwl_balls=2))
-    assert r.ok and r.event_type == "MULTI_BALL", r
+    assert r.ok and r.event_type == "DEFERRED_MULTI", r
 
 
 def test_multi_ball_gap_six_balls_over_change():
@@ -226,7 +226,7 @@ def test_multi_ball_gap_six_balls_over_change():
             d_str_runs=2, d_str_balls=2,
             d_bwl_runs=0, d_bwl_balls=1),
           new_overs=11.1)
-    assert r.ok and r.event_type == "MULTI_BALL", r
+    assert r.ok and r.event_type == "DEFERRED_MULTI", r
 
 
 def test_multi_ball_gap_too_many_balls():

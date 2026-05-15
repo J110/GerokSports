@@ -369,7 +369,7 @@ def validate_diff(diff: Diff, *,
     # of unknown events; the gate is the multi-ball ceilings already
     # enforced in _check_invariants.
     if diff.d_balts > 1:
-        return ValidationResult(ok=True, event_type="MULTI_BALL")
+        return ValidationResult(ok=True, event_type="DEFERRED_MULTI")
 
     # Partial data: template match is a best-effort bonus, not a gate.
     if not diff.is_complete():
@@ -601,7 +601,7 @@ def _infer_partial_event(d: Diff) -> str:
     stays the single source of truth for event names.
     """
     if d.d_balts > 1:
-        return "MULTI_BALL"
+        return "DEFERRED_MULTI"
     if d.d_wkt >= 1:
         return "WICKET"
     if d.d_balts == 0 and d.d_score > 0:
@@ -646,8 +646,8 @@ except ImportError:
     _trace = None
 
 
-def infer_gap_tokens(n_balls: int, total_runs: int,
-                     total_wickets: int = 0) -> list[str]:
+def _cold_start_infer_gap_tokens(n_balls: int, total_runs: int,
+                                 total_wickets: int = 0) -> list[str]:
     """Distribute total_runs across n_balls using a cricket-domain heuristic.
 
     Returns a list of length ``n_balls`` with tokens drawn from
@@ -702,3 +702,9 @@ def infer_gap_tokens(n_balls: int, total_runs: int,
         except Exception:
             pass
     return tokens
+
+
+# Backward-compat alias — removed in B1.2b once the warm-path consumer
+# (this_over.py:592-619 MULTI_BALL handler) and BED producer
+# (commentary.py:505) are migrated to the pending-ball queue.
+infer_gap_tokens = _cold_start_infer_gap_tokens
