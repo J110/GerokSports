@@ -215,9 +215,14 @@ replace:
 | `files/score_manager.py` | 80–85 | `_warn_multi_ball_cap_if_cricket_reject` | Delete |
 | `files/score_manager.py` | 3410 | `[MULTI_BALL_DECOMPOSED]` log tag | Delete |
 | `files/score_manager.py` | 3441 | comment referencing MULTI_BALL synthesis | Delete |
-| `files/score_manager.py` | 3961–3966 | warm-path caller inside `_apply_absorbed_event` (per-ball bowler stats via gap-token distribution) | Delete — pending queue's `runs_delta` replaces |
-| `files/score_manager.py` | 4089–4128 | warm-path MULTI_BALL fan-out in `_apply_absorbed_event` (line 4104 call) | Delete entire MULTI_BALL block — replaced by N ABSORBED_LEGAL events into pending queue |
-| `files/score_manager.py` | 4306–4319 | warm-path UI token expansion in `_apply_event` (line 4314 call) | Delete entire `if event["type"] == "MULTI_BALL"` block — replaced by per-ball `"?"` placeholder appends |
+| `files/score_manager.py` | 3961–3966 | warm-path gap-token lookup inside `_apply_absorbed_event` (per-ball bowler stats via distribution) | Delete — pending queue's per-entry `runs_delta` replaces this; cold-start path does not reach `_apply_absorbed_event` |
+| `files/score_manager.py` | 4089–4128 | MULTI_BALL handler block inside `_accumulate_stats_from_event` (line 4095 guard, 4104 call) — reachable from cold-start producer at sm.py:1857 via `_apply_event` → `_accumulate_stats_from_event` chain | **Rename guard** `if etype == "MULTI_BALL":` → `if etype == "COLD_START_SYNTH":`; **KEEP body** intact. Warm-path no longer produces MULTI_BALL events (rewired through pending queue) so handler scopes naturally to cold-start. |
+| `files/score_manager.py` | 4306–4319 | MULTI_BALL handler block inside `_apply_event` (line 4306 guard, 4314 call) — reachable from cold-start producer at sm.py:1857 via direct `_apply_event` call | **Rename guard** `if event["type"] == "MULTI_BALL":` → `if event["type"] == "COLD_START_SYNTH":`; **KEEP body** intact. Same reachability + scoping argument as 4089–4128. |
+| `files/score_manager.py` | 1857 | cold-start producer `_handle_cold_start` event dict | **Rename type** `"MULTI_BALL"` → `"COLD_START_SYNTH"` so warm-path producers no longer share the label |
+| `files/cricket_rules.py` | 372 | `validate_diff` full-data return | Change `event_type="MULTI_BALL"` → `event_type="DEFERRED_MULTI"` (signals SM to fan out into pending queue) |
+| `files/cricket_rules.py` | 604 | `_infer_partial_event` partial-data return | Change `return "MULTI_BALL"` → `return "DEFERRED_MULTI"` (same downstream consumer; label consistency) |
+| `files/eyes/this_over.py` | 592–619 | warm-path MULTI_BALL handler in `on_ball_event_token_dispatch` | **Delete entire block** — verified unreachable from cold-start (sm.py:1857's event never forwarded to `over_mgr.on_ball_event` per test_pipeline.py:13737 ABSORBED_LEGAL-only gate). After BED rewire (sub-item D), no production code constructs a MULTI_BALL event reaching this handler. |
+| `files/eyes/commentary.py` | 505 | BED warm-path MULTI_BALL producer (`elif balls_delta > 1`) | **Replace with N per-ball `ABSORBED_LEGAL` events** with `bowler=None, striker=None`; SM consumer enqueues each into pending queue |
 
 **Replace with per-ball pending queue:**
 
