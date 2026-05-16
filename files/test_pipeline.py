@@ -7177,6 +7177,29 @@ async def run_test():
     # handler can call sm.bind_pending_slot(slot_idx) after appending "?"
     # placeholders. See no_multiball_design.md.
     over_mgr.attach_score_manager(score_mgr)
+    # B1.3 §2.8: wire bowler / striker tracker on_lock callbacks. The
+    # callback fires on the False→True _locked transition inside
+    # observe() (confidence_tracker.py); it triggers a resweep that
+    # fills any null attribution on uncommitted PendingBall entries
+    # plus an immediate drain. Re-entrancy verified pre-B1.3 §6.3:
+    # _apply_*_delta does not invoke the trackers, so the drain path
+    # cannot recursively call observe().
+    def _on_bowler_lock(_name: str) -> None:
+        try:
+            score_mgr._resweep_pending_attribution(_name, "bowler")
+            score_mgr._drain_pending_queue("bowler_lock")
+        except Exception:
+            pass
+
+    def _on_striker_lock(_name: str) -> None:
+        try:
+            score_mgr._resweep_pending_attribution(_name, "striker")
+            score_mgr._drain_pending_queue("striker_lock")
+        except Exception:
+            pass
+
+    bowler_tracker.on_lock = _on_bowler_lock
+    striker_tracker.on_lock = _on_striker_lock
 
     # === COLD-START ANCHORS — AUTO ONLY ===
     # Watch SCOUT-committed batting_card after each frame; the first
@@ -9003,15 +9026,19 @@ async def run_test():
                                 _pre_ball = ball_detector.detect(scoreboard._tracker)
                                 if not _pre_ball:
                                     break
-                                if _pre_ball.get("source") == "bed_multi_ball":
-                                    score_mgr._enqueue_pending_ball(
-                                        runs_delta=0,
-                                        wickets_delta=(
-                                            1 if _pre_ball.get("gap_finalize_wicket")
-                                            else 0),
-                                        frame_id=frame_count,
-                                        slot_idx=None,
-                                    )
+                                # B1.3 exclusive-producer invariant:
+                                # SM._decompose_multi_ball is the sole
+                                # canonical producer of PendingBall
+                                # enqueues. The prior test_pipeline.py
+                                # enqueue here was a duplicate
+                                # (Investigation #3): SM-emitted
+                                # ABSORBED_LEGAL events from
+                                # _decompose_multi_ball already enqueued
+                                # via sm.py:3617, and an N-ball gap
+                                # produced 2× the entries. Removed; the
+                                # bed_multi_ball event is still
+                                # forwarded to over_mgr below for
+                                # this_over "?" slot append + bind.
                                 over_mgr.on_ball_event(_pre_ball,
                                                        score=_cu_score_int)
                             if over_mgr.check_over_change(
@@ -12841,14 +12868,10 @@ async def run_test():
             # detect(). For the first call we set ball_event normally;
             # the drain loop is below (after the main body runs once).
             ball_event = ball_detector.detect(scoreboard._tracker)
-            if ball_event and ball_event.get("source") == "bed_multi_ball":
-                score_mgr._enqueue_pending_ball(
-                    runs_delta=0,
-                    wickets_delta=(
-                        1 if ball_event.get("gap_finalize_wicket") else 0),
-                    frame_id=frame_count,
-                    slot_idx=None,
-                )
+            # B1.3 exclusive-producer invariant: duplicate enqueue
+            # removed. SM._decompose_multi_ball (sm.py:3617) is the
+            # sole canonical PendingBall producer. The duplicate here
+            # was the second of the three Investigation #3 sites.
             _over_changed = False
             _new_over_int = int(float(_cur_overs_str or "0"))
 

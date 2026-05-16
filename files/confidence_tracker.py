@@ -120,6 +120,13 @@ class ConfidenceTracker:
         self._leader: str | None = None
         self._immutable: bool = False
         self._locked: bool = False
+        # B1.3 (no_multiball_design.md §2.8): single optional callback
+        # fired on the state transition into LOCKED. SM wires this to
+        # drive _resweep_pending_attribution + _drain_pending_queue.
+        # Re-entrancy: callback runs synchronously in observe(); the
+        # drain path calls _apply_bowler_delta / _apply_batter_delta
+        # which do NOT invoke the tracker (verified pre-B1.3 per §6.3).
+        self.on_lock: Any = None
 
     # ── public observe ────────────────────────────────────────────
     def observe(
@@ -153,10 +160,18 @@ class ConfidenceTracker:
             # change during an innings (batting_team).  After lock the
             # leader is fixed until unlock() — typically called by the
             # innings-2 detection path with a reset() + reseed.
+            _pre_locked = self._locked
             if (self._auto_lock_on_firm
                     and self._leader is not None
                     and self._scores.get(self._leader, 0.0) >= self._firm):
                 self._locked = True
+            # B1.3 §2.8: fire on_lock on False→True transition of _locked.
+            if (self.on_lock is not None and not _pre_locked
+                    and self._locked and self._leader is not None):
+                try:
+                    self.on_lock(self._leader)
+                except Exception:
+                    pass
         return ObserveResult(
             candidate=candidate,
             weight=weight,

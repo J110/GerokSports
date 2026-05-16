@@ -380,6 +380,12 @@ class ScoreManager:
         # overlay window per Investigation #2 Q2; maxlen=6 gives
         # headroom + overflow signal. See no_multiball_design.md.
         self._pending_ball_queue: deque[PendingBall] = deque(maxlen=6)
+        # B1.3 §2.6: over_history archive deferral. When an over rolls
+        # over with the pending queue non-empty, archive is skipped
+        # this frame and the over_n is parked here. Subsequent frames
+        # attempt drain; archive proceeds when queue empties or at the
+        # §2.7 force-flush deadline.
+        self._over_archive_pending: int | None = None
 
         # Accepted UI state (score / wickets / run_rate / target /
         # batting_team → Path B properties; see class body below.)
@@ -529,7 +535,24 @@ class ScoreManager:
         frame_id: int,
         strip_tokens: Optional[list[str]] = None,
         slot_idx: Optional[int] = None,
-    ) -> PendingBall:
+    ) -> Optional[PendingBall]:
+        # B1.3 prereq (exclusive-producer invariant): the canonical
+        # producer is SM._decompose_multi_ball. The two test_pipeline.py
+        # producers are disabled in B1.3 but defense-in-depth: reject
+        # duplicates with same (frame_id, slot_idx) so future drift
+        # surfaces immediately rather than silently double-crediting.
+        for _existing in self._pending_ball_queue:
+            if (_existing.frame_id == frame_id
+                    and _existing.slot_idx == slot_idx
+                    and not _existing.committed):
+                self._emit_pending_trace(
+                    "PENDING-BALL-ENQUEUE-DUPLICATE-REJECTED",
+                    frame_id=frame_id,
+                    slot_idx=slot_idx,
+                    runs_delta=runs_delta,
+                    queue_depth=len(self._pending_ball_queue),
+                )
+                return None
         if (self._pending_ball_queue.maxlen is not None
                 and len(self._pending_ball_queue) >= self._pending_ball_queue.maxlen):
             self._emit_pending_trace(
@@ -624,6 +647,143 @@ class ScoreManager:
         while self._pending_ball_queue and self._pending_ball_queue[0].committed:
             self._pending_ball_queue.popleft()
         return drained
+
+    def _bowler_pending_override_active(self) -> tuple[bool, str | None, int]:
+        """B1.3 §2.7: detect bowler PENDING_OVERRIDE proxy.
+
+        ConfidenceTracker doesn't define a PENDING_OVERRIDE state per se;
+        the equivalent live signal is scoreboard's
+        `_pending_bowler_name is not None` with streak count > 0 —
+        an override candidate accumulating but not yet won the lock.
+        Returns (active, candidate_name, streak).
+        """
+        if self.scoreboard is None:
+            return (False, None, 0)
+        try:
+            cand = getattr(self.scoreboard, "_pending_bowler_name", None)
+            streak = int(getattr(
+                self.scoreboard, "_pending_bowler_count", 0) or 0)
+        except Exception:
+            return (False, None, 0)
+        return (cand is not None and streak > 0, cand, streak)
+
+    def _attempt_pending_archive_drain(
+            self, current_overs: float | None) -> None:
+        """B1.3 §2.6/§2.7: pre-archive retry + force-flush deadlines.
+
+        Called from `_handle_warm` at the top of every frame when
+        `_over_archive_pending` is set. Tries drain first; if queue
+        empties, the archive happens naturally on the next over-end
+        path (caller clears the deferral flag). If still non-empty,
+        evaluates the two-stage deadline.
+        """
+        if self._over_archive_pending is None:
+            return
+        if current_overs is None:
+            return
+        deferred_n = int(self._over_archive_pending)
+        # Attempt drain (no-op if attribution still missing).
+        self._drain_pending_queue("pre_archive_retry")
+        if not self._pending_ball_queue:
+            # Queue empty — archive completed_over now.
+            self._commit_deferred_archive(
+                deferred_n, source="pre_archive_drain_success")
+            return
+        try:
+            _ov_f = float(current_overs)
+        except (TypeError, ValueError):
+            return
+        soft_deadline = float(deferred_n + 1) + 0.3
+        hard_cap = float(deferred_n + 1) + 1.0
+        if _ov_f < soft_deadline:
+            return
+        if _ov_f < hard_cap:
+            # Soft deadline reached: check PENDING_OVERRIDE extension.
+            active, cand, streak = self._bowler_pending_override_active()
+            if active:
+                self._emit_pending_trace(
+                    "PENDING-BALL-FLUSH-EXTENDED-OVERRIDE-ACTIVE",
+                    deferred_over=deferred_n,
+                    current_overs=_ov_f,
+                    soft_deadline=soft_deadline,
+                    pending_candidate=cand,
+                    pending_streak=streak,
+                )
+                return
+        # Force-flush: commit each remaining entry to current leader
+        # / first non-None / fallback to self.striker / self.bowler_name.
+        fallback_bowler = (
+            self.bowler_name
+            or (self.scoreboard._inn or {}).get("current_bowler")
+            if self.scoreboard is not None else self.bowler_name)
+        fallback_striker = self.striker
+        for entry in list(self._pending_ball_queue):
+            if entry.committed:
+                continue
+            if entry.bowler is None:
+                entry.bowler = fallback_bowler
+            if entry.striker is None:
+                entry.striker = fallback_striker
+            self._emit_pending_trace(
+                "PENDING-BALL-FORCED-FLUSH-UNRESOLVED",
+                frame_id=entry.frame_id,
+                slot_idx=entry.slot_idx,
+                bowler_used=entry.bowler,
+                striker_used=entry.striker,
+                runs_delta=entry.runs_delta,
+                wickets_delta=entry.wickets_delta,
+                deferred_over=deferred_n,
+                current_overs=_ov_f,
+                hard_cap_reached=(_ov_f >= hard_cap),
+            )
+        # Now run a normal drain — entries with non-None attribution
+        # commit through the standard path (delta apply + token rewrite
+        # to "?"). Token in over_history will remain "?" for forced
+        # entries since rewrite_token is called with derived token; we
+        # do NOT fabricate displayed tokens per §2.7.
+        self._drain_pending_queue("force_flush")
+        # Archive over_history[N] with mixed real/"?" tokens per §2.7.
+        self._commit_deferred_archive(
+            deferred_n,
+            source=("force_flush_hard_cap" if _ov_f >= hard_cap
+                    else "force_flush_soft"))
+
+    def _commit_deferred_archive(self, over_n: int, *, source: str) -> None:
+        """B1.3 §2.6/§2.7: write deferred over_history entry + clear flag.
+
+        Source = `self.completed_over` (captured at the deferral moment
+        before this_over was reset). Emits OVER-ARCHIVE-WRITE +
+        OVER-ARCHIVE-INVALID-TOKEN-COUNT mirroring the inline-rollover
+        archive instrumentation in `_apply_event`.
+        """
+        tokens = list(self.completed_over or [])
+        existing = self.over_history.get(over_n)
+        self.over_history[over_n] = list(tokens)
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="OVER-ARCHIVE-WRITE",
+                    over_n=int(over_n),
+                    tokens=list(tokens),
+                    token_count=len(tokens),
+                    source=f"deferred_{source}")
+                if (existing is not None
+                        and list(existing) != list(tokens)):
+                    _trace.get_recorder().record(
+                        tag="OVER-ARCHIVE-DOUBLE-WRITE",
+                        over_n=int(over_n),
+                        existing_tokens=list(existing),
+                        attempted_tokens=list(tokens),
+                        source=f"deferred_{source}")
+                if len(tokens) != 6:
+                    _trace.get_recorder().record(
+                        tag="OVER-ARCHIVE-INVALID-TOKEN-COUNT",
+                        over_n=int(over_n),
+                        token_count=len(tokens),
+                        tokens=list(tokens))
+            except Exception:
+                pass
+        self._over_archive_pending = None
 
     def bind_pending_slot(self, slot_idx: int) -> bool:
         """Bind a this_over slot_idx to the head unbound PendingBall (B1.2c).
@@ -2426,6 +2586,13 @@ class ScoreManager:
     # ------------------------------------------------------------------
 
     def _handle_warm(self, card: dict, frame: FrameInput) -> dict | None:
+        # B1.3 §2.6/§2.7: pre-archive retry + deadline evaluation.
+        # Runs every frame when an over-archive is deferred. Drains if
+        # attribution arrived; force-flushes at the §2.7 soft/hard
+        # deadlines (with PENDING_OVERRIDE extension between them).
+        if self._over_archive_pending is not None:
+            self._attempt_pending_archive_drain(
+                card.get("overs") if isinstance(card, dict) else None)
         self._try_resolve_pending(frame)
 
         if card.get("score") is not None:
@@ -4430,6 +4597,23 @@ class ScoreManager:
             self.completed_over_runs = sum(
                 int(t) for t in self.this_over if t.isdigit())
             _archive_over_n = int(prev.get("overs", 0) or 0)
+            # B1.3 §2.6: defer archive if pending queue has unresolved
+            # entries. The §2.7 force-flush deadline (evaluated each
+            # frame in _handle_warm) backstops this so the archive
+            # eventually proceeds even if attribution never resolves.
+            if self._pending_ball_queue:
+                self._emit_pending_trace(
+                    "OVER-ARCHIVE-DEFERRED-QUEUE-NONEMPTY",
+                    over_n=_archive_over_n,
+                    queue_depth=len(self._pending_ball_queue),
+                    source="sm_apply_event_inline_rollover",
+                )
+                self._over_archive_pending = _archive_over_n
+                # Skip the rest of the archive block on this frame.
+                self.this_over_extras = 0
+                self.this_over = []
+                self.this_over_src = []
+                return
             _existing_archive = self.over_history.get(_archive_over_n)
             self.over_history[_archive_over_n] = list(
                 self.this_over)
@@ -4630,6 +4814,17 @@ class ScoreManager:
         self.completed_over_runs = sum(
             int(t) for t in self.this_over if t.isdigit())
         _archive_over_n = int(prev.get("overs", 0) or 0)
+        # B1.3 §2.6: defer archive if pending queue non-empty.
+        if self._pending_ball_queue:
+            self._emit_pending_trace(
+                "OVER-ARCHIVE-DEFERRED-QUEUE-NONEMPTY",
+                over_n=_archive_over_n,
+                queue_depth=len(self._pending_ball_queue),
+                source="sm_complete_over",
+            )
+            self._over_archive_pending = _archive_over_n
+            self.this_over_extras = 0
+            return
         _existing_archive = self.over_history.get(_archive_over_n)
         self.over_history[_archive_over_n] = list(
             self.this_over)
