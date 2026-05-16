@@ -4429,8 +4429,34 @@ class ScoreManager:
             self.completed_over = list(self.this_over)
             self.completed_over_runs = sum(
                 int(t) for t in self.this_over if t.isdigit())
-            self.over_history[int(prev.get("overs", 0) or 0)] = list(
+            _archive_over_n = int(prev.get("overs", 0) or 0)
+            _existing_archive = self.over_history.get(_archive_over_n)
+            self.over_history[_archive_over_n] = list(
                 self.this_over)
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="OVER-ARCHIVE-WRITE",
+                        over_n=_archive_over_n,
+                        tokens=list(self.this_over),
+                        token_count=len(self.this_over),
+                        source="sm_apply_event_inline_rollover")
+                    if (_existing_archive is not None
+                            and list(_existing_archive) != list(self.this_over)):
+                        _trace.get_recorder().record(
+                            tag="OVER-ARCHIVE-DOUBLE-WRITE",
+                            over_n=_archive_over_n,
+                            existing_tokens=list(_existing_archive),
+                            attempted_tokens=list(self.this_over),
+                            source="sm_apply_event_inline_rollover")
+                    if len(self.this_over) != 6:
+                        _trace.get_recorder().record(
+                            tag="OVER-ARCHIVE-INVALID-TOKEN-COUNT",
+                            over_n=_archive_over_n,
+                            token_count=len(self.this_over),
+                            tokens=list(self.this_over))
+                except Exception:
+                    pass
             if self.this_over_extras:
                 log.info(f"[SM/EXTRAS] over {prev.get('overs','?')} "
                          f"closed (inline rollover) with "
@@ -4603,8 +4629,34 @@ class ScoreManager:
         self.completed_over = list(self.this_over)
         self.completed_over_runs = sum(
             int(t) for t in self.this_over if t.isdigit())
-        self.over_history[int(prev.get("overs", 0) or 0)] = list(
+        _archive_over_n = int(prev.get("overs", 0) or 0)
+        _existing_archive = self.over_history.get(_archive_over_n)
+        self.over_history[_archive_over_n] = list(
             self.this_over)
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="OVER-ARCHIVE-WRITE",
+                    over_n=_archive_over_n,
+                    tokens=list(self.this_over),
+                    token_count=len(self.this_over),
+                    source="sm_complete_over")
+                if (_existing_archive is not None
+                        and list(_existing_archive) != list(self.this_over)):
+                    _trace.get_recorder().record(
+                        tag="OVER-ARCHIVE-DOUBLE-WRITE",
+                        over_n=_archive_over_n,
+                        existing_tokens=list(_existing_archive),
+                        attempted_tokens=list(self.this_over),
+                        source="sm_complete_over")
+                if len(self.this_over) != 6:
+                    _trace.get_recorder().record(
+                        tag="OVER-ARCHIVE-INVALID-TOKEN-COUNT",
+                        over_n=_archive_over_n,
+                        token_count=len(self.this_over),
+                        tokens=list(self.this_over))
+            except Exception:
+                pass
         # Reset per-over extras counter at over boundary (innings total
         # is preserved).  Logged so we can see the over close cleanly.
         if self.this_over_extras:

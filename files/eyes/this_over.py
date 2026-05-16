@@ -573,11 +573,37 @@ class ThisOverManager:
                             if isinstance(x, str) and x.isdigit()),
                 "wickets": sum(1 for x in self.this_over if x == "W"),
             }
+            _existing_balls = list((existing or {}).get("balls", []))
             self.over_history[held_int] = archive_payload
             log.info(
                 f"Late ball appended to held over {held_int}: "
                 f"{before} → {self.this_over} (event over="
                 f"{event.get('over') if isinstance(event, dict) else '?'})")
+            try:
+                from trace_emitter import get_recorder as _hovget
+                _hovrec = _hovget()
+                _hovrec.record(
+                    tag="OVER-ARCHIVE-WRITE",
+                    over_n=int(held_int),
+                    tokens=list(self.this_over),
+                    token_count=len(self.this_over),
+                    source="held_over_late_append",
+                    sanctioned_rewrite=bool(existing))
+                if existing and _existing_balls != list(self.this_over):
+                    _hovrec.record(
+                        tag="OVER-ARCHIVE-DOUBLE-WRITE",
+                        over_n=int(held_int),
+                        existing_tokens=_existing_balls,
+                        attempted_tokens=list(self.this_over),
+                        source="held_over_late_append_sanctioned")
+                if len(self.this_over) != 6:
+                    _hovrec.record(
+                        tag="OVER-ARCHIVE-INVALID-TOKEN-COUNT",
+                        over_n=int(held_int),
+                        token_count=len(self.this_over),
+                        tokens=list(self.this_over))
+            except Exception:
+                pass
         else:
             log.info(
                 f"Late ball appended to held over (no over_int): "
@@ -876,11 +902,20 @@ class ThisOverManager:
         if not self.this_over:
             cold = self._last_over_int is None
             if cold:
+                _bcast_before = list(self.this_over)
                 self.this_over = broadcast
                 self.this_over_sources = ["bcast"] * len(broadcast)
                 log.info(
                     f"Broadcast fill (cold-start, empty local): "
                     f"{self.this_over}")
+                try:
+                    from trace_emitter import get_recorder as _brget
+                    _brget().record(
+                        tag="THIS-OVER-BROADCAST-REPLACE",
+                        before=_bcast_before, after=list(self.this_over),
+                        source="cold_start_empty_local")
+                except Exception:
+                    pass
                 return
             # Warm-mode wholesale accept: only if the broadcast has
             # zero '?' tokens (otherwise wait for real ball events).
@@ -890,11 +925,20 @@ class ThisOverManager:
                     f"(warm-mode, empty local) — ignoring, will "
                     f"wait for ball events")
                 return
+            _bcast_before = list(self.this_over)
             self.this_over = broadcast
             self.this_over_sources = ["bcast"] * len(broadcast)
             log.info(
                 f"Broadcast fill (warm, empty local, "
                 f"clean tokens): {self.this_over}")
+            try:
+                from trace_emitter import get_recorder as _brget
+                _brget().record(
+                    tag="THIS-OVER-BROADCAST-REPLACE",
+                    before=_bcast_before, after=list(self.this_over),
+                    source="warm_empty_local_clean")
+            except Exception:
+                pass
             return
 
         # If broadcast is shorter but local has ? slots, still fill them
@@ -912,10 +956,19 @@ class ThisOverManager:
 
         if obs_count == 0:
             # All local is placeholder/bcast → safe to replace
+            _bcast_before = list(self.this_over)
             self.this_over = broadcast
             self.this_over_sources = ["bcast"] * len(broadcast)
             log.info(f"Broadcast replaces all-placeholder local: "
                      f"{self.this_over}")
+            try:
+                from trace_emitter import get_recorder as _brget
+                _brget().record(
+                    tag="THIS-OVER-BROADCAST-REPLACE",
+                    before=_bcast_before, after=list(self.this_over),
+                    source="warm_all_placeholder")
+            except Exception:
+                pass
             return
 
         # Only fill ? positions within the existing range —
@@ -935,8 +988,18 @@ class ThisOverManager:
 
         if filled > 0:
             log.info(f"Broadcast filled {filled} gaps: {old} → {merged}")
+            _bcast_before = list(self.this_over)
             self.this_over = merged
             self.this_over_sources = merged_src
+            try:
+                from trace_emitter import get_recorder as _brget
+                _brget().record(
+                    tag="THIS-OVER-BROADCAST-REPLACE",
+                    before=_bcast_before, after=list(self.this_over),
+                    source="gap_merge",
+                    gaps_filled=int(filled))
+            except Exception:
+                pass
         else:
             log.info(f"Broadcast {broadcast} — no gaps to fill in "
                      f"local {self.this_over}")
