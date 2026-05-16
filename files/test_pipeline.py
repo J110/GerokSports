@@ -13272,7 +13272,21 @@ async def run_test():
                 # the previous-over bowler. ===
                 scoreboard._inn["last_bowler"] = (
                     scoreboard._inn.get("current_bowler"))
-                scoreboard._inn["current_bowler"] = None
+                # B1.2e structural fix (2026-05-16): preserve
+                # _inn["current_bowler"] through the over-end window
+                # so the 6th-ball BOWL-DELTA credit lands on the
+                # just-completed bowler. Trace evidence: F43 NO-BOWLER
+                # skip on the over-rollover frame (watch_20260516_195551).
+                # The "must change" / "between overs" semantics are
+                # carried by _bowler_must_change + bowler_between_overs;
+                # the new-bowler acceptance path at the GUARD checks
+                # _prev_over_bowler against the new candidate, not the
+                # None-ness of current_bowler. The original "clear to
+                # avoid wicket-attribution leak" rationale (S16 fix) is
+                # already covered: run_out / retired-hurt / etc. are
+                # filtered by _is_bowler_credited_dismissal in
+                # _accumulate_stats_from_event regardless of
+                # current_bowler identity.
                 scoreboard._inn["bowler_between_overs"] = True
                 scoreboard._pending_bowler_name = None
                 scoreboard._pending_bowler_count = 0
