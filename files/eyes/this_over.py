@@ -247,6 +247,11 @@ class ThisOverManager:
                         if isinstance(x, str) and x.isdigit()),
             "wickets": sum(1 for x in self.this_over if x == "W"),
         }
+        try:
+            from trace_emitter import get_recorder as _ovget
+            _ovrec = _ovget()
+        except Exception:
+            _ovrec = None
         if self._last_over_int not in self.over_history:
             self.over_history[self._last_over_int] = archive_payload
             log.info(
@@ -255,12 +260,40 @@ class ThisOverManager:
                 f"archived (reason={reason}, expected={expected}, "
                 f"observed={observed}, "
                 f"this_over_len={len(self.this_over)})")
+            if _ovrec is not None:
+                try:
+                    _ovrec.record(
+                        tag="OVER-ARCHIVE-WRITE",
+                        over_n=int(self._last_over_int),
+                        tokens=list(self.this_over),
+                        token_count=len(self.this_over),
+                        source="force_rollover")
+                    if len(self.this_over) != 6:
+                        _ovrec.record(
+                            tag="OVER-ARCHIVE-INVALID-TOKEN-COUNT",
+                            over_n=int(self._last_over_int),
+                            token_count=len(self.this_over),
+                            tokens=list(self.this_over))
+                except Exception:
+                    pass
         else:
             log.info(
                 f"[OVER-ROLLOVER-FORCED] Over "
                 f"{self._last_over_int} already archived; "
                 f"resetting this_over (reason={reason}, "
                 f"expected={expected}, observed={observed})")
+            if _ovrec is not None:
+                try:
+                    _ovrec.record(
+                        tag="OVER-ARCHIVE-DOUBLE-WRITE",
+                        over_n=int(self._last_over_int),
+                        existing_tokens=list(
+                            (self.over_history[self._last_over_int] or {})
+                            .get("balls", [])),
+                        attempted_tokens=list(self.this_over),
+                        source="force_rollover")
+                except Exception:
+                    pass
         self.this_over = []
         self.this_over_sources = []
         self._pending_clear = False
@@ -296,6 +329,8 @@ class ThisOverManager:
                       score: int | None = None) -> None:
         if event is None:
             return
+        # B1.2e diagnostic: capture pre-state for THIS-OVER-APPEND trace.
+        _b1_pre_len = len(self.this_over)
         # Score-gated mutation marker: every ball event was triggered
         # by a score (or overs) state change upstream, so any append
         # below MUST advance `_last_mutation_score` to the new score.
@@ -306,6 +341,31 @@ class ThisOverManager:
                 self._last_mutation_score = int(score)
             except (ValueError, TypeError):
                 pass
+        # Process event (body unchanged below); emit per-append trace at end.
+        try:
+            self._on_ball_event_inner(event, score)
+        finally:
+            if len(self.this_over) > _b1_pre_len:
+                try:
+                    from trace_emitter import get_recorder as _toget
+                    _torec = _toget()
+                    for _i in range(_b1_pre_len, len(self.this_over)):
+                        _src = (self.this_over_sources[_i]
+                                if _i < len(self.this_over_sources)
+                                else "unknown")
+                        _torec.record(
+                            tag="THIS-OVER-APPEND",
+                            slot_idx=_i,
+                            token=str(self.this_over[_i]),
+                            source=str(_src),
+                            event_type=str(event.get("type")))
+                except Exception:
+                    pass
+
+    def _on_ball_event_inner(self, event: dict | None,
+                             score: int | None = None) -> None:
+        if event is None:
+            return
 
         # 2026-05-13 (anomaly 1 — late-rollover token bleed):
         # check_over_change can defer the rollover (SHORT-OVER guard

@@ -809,7 +809,17 @@ class Scoreboard:
                 "bowling_style": st.get("bowling_style", "unknown"),
             }
 
+        _bc_prev_size = len(getattr(self, "bowling_card", {}) or {})
         self.bowling_card = {}
+        try:
+            from trace_emitter import get_recorder as _bcget
+            _bcget().record(
+                tag="BOWLING-CARD-CLEARED",
+                reason="innings1_init",
+                prev_size=int(_bc_prev_size),
+                squad_size=len(bowling_squad))
+        except Exception:
+            pass
         for name in bowling_squad:
             st = self._player_styles.get(name) or {}
             self.bowling_card[name] = {
@@ -4667,7 +4677,17 @@ class Scoreboard:
                 "bowling_style": st.get("bowling_style", "unknown"),
             }
 
+        _bc_prev_size = len(getattr(self, "bowling_card", {}) or {})
         self.bowling_card = {}
+        try:
+            from trace_emitter import get_recorder as _bcget
+            _bcget().record(
+                tag="BOWLING-CARD-CLEARED",
+                reason="innings2_init",
+                prev_size=int(_bc_prev_size),
+                squad_size=len(bowling_squad))
+        except Exception:
+            pass
         for name in bowling_squad:
             st = self._player_styles.get(name) or {}
             self.bowling_card[name] = {

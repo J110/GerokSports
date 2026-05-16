@@ -1630,11 +1630,25 @@ class ScoreManager:
                         self.partnership_runs = 0
                         self.partnership_balls = 0
                         self.partnership_known = True
+                    _pship_runs_before = int(self.partnership_runs or 0)
+                    _pship_balls_before = int(self.partnership_balls or 0)
                     self.partnership_balls = int(
                         self.partnership_balls or 0) + 1
                     if _tok not in (".", "W", "?"):
                         self.partnership_runs = int(
                             self.partnership_runs or 0) + single_runs
+                    if _trace is not None:
+                        try:
+                            _trace.get_recorder().record(
+                                tag="PARTNERSHIP-WRITE",
+                                runs_before=_pship_runs_before,
+                                balls_before=_pship_balls_before,
+                                runs_after=int(self.partnership_runs or 0),
+                                balls_after=int(self.partnership_balls or 0),
+                                source="synth_cold_start",
+                                frame_id=str(self._current_frame))
+                        except Exception:
+                            pass
                 except Exception:
                     pass
                 if _trace is not None:
@@ -3962,9 +3976,23 @@ class ScoreManager:
             self.partnership_runs = 0
             self.partnership_balls = 0
             self.partnership_known = True
+        _pship_runs_before = int(self.partnership_runs or 0)
+        _pship_balls_before = int(self.partnership_balls or 0)
         self.partnership_balls += 1
         if is_last:
             self.partnership_runs += runs_in_gap
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="PARTNERSHIP-WRITE",
+                    runs_before=_pship_runs_before,
+                    balls_before=_pship_balls_before,
+                    runs_after=int(self.partnership_runs or 0),
+                    balls_after=int(self.partnership_balls or 0),
+                    source="apply_absorbed_event",
+                    frame_id=str(self._current_frame))
+            except Exception:
+                pass
 
         # Change B (2026-05-14): ABSORBED_LEGAL bowler per-ball credit.
         # The MULTI_BALL gap decomposition produces N ABSORBED_LEGAL
@@ -4079,6 +4107,25 @@ class ScoreManager:
         if frame.delivery_info:
             evt["delivery"] = frame.delivery_info
 
+    def _emit_credit_skipped(self, reason: str, event: dict,
+                              striker_name=None, bowler_name=None) -> None:
+        """B1.2e diagnostic: emit CREDIT-SKIPPED-WITH-REASON trace."""
+        if _trace is None:
+            return
+        try:
+            _trace.get_recorder().record(
+                tag="CREDIT-SKIPPED-WITH-REASON",
+                event_type=str(event.get("type")),
+                reason=reason,
+                striker_name=str(striker_name) if striker_name else None,
+                bowler_name=str(bowler_name) if bowler_name else None,
+                score=int(self.score or 0),
+                overs=str(self.overs) if self.overs is not None else None,
+                frame_id=str(self._current_frame),
+            )
+        except Exception:
+            pass
+
     def _accumulate_stats_from_event(self, event: dict) -> None:
         """Single-writer derivation: post one ball event's contribution
         to scoreboard.batting_card / bowling_card via the *_delta API.
@@ -4090,9 +4137,14 @@ class ScoreManager:
         (ambiguous distribution).
         """
         if self.scoreboard is None:
+            self._emit_credit_skipped("NO-SCOREBOARD", event)
             return
         etype = event.get("type")
         if etype in (None, ABSORBED_LEGAL):
+            self._emit_credit_skipped(
+                "NO-EVENT-TYPE" if etype is None
+                else "ABSORBED-FORWARDED-ELSEWHERE",
+                event)
             return
 
         striker_name = event.get("striker") or self.striker
@@ -4221,6 +4273,10 @@ class ScoreManager:
                     balls_delta=1 if legal else 0,
                     fours_delta=0, sixes_delta=0,
                     frame=self._current_frame)
+            else:
+                self._emit_credit_skipped(
+                    "WICKET-NO-STRIKER", event,
+                    striker_name=striker_name, bowler_name=bowler_name)
             if bowler_name:
                 self.scoreboard.update_bowler(
                     bowler_name,
@@ -4290,6 +4346,9 @@ class ScoreManager:
             runs_total = int(event.get("runs", 0) or 0)
             legal = False
         else:
+            self._emit_credit_skipped(
+                "FALLTHROUGH-NO-BRANCH", event,
+                striker_name=striker_name, bowler_name=bowler_name)
             return
 
         if striker_name and (runs_off_bat != 0 or legal):
@@ -4300,6 +4359,10 @@ class ScoreManager:
                 fours_delta=1 if etype == "FOUR" else 0,
                 sixes_delta=1 if etype == "SIX" else 0,
                 frame=self._current_frame)
+        else:
+            self._emit_credit_skipped(
+                "NO-STRIKER" if not striker_name else "BATTER-GATE-REJECTED",
+                event, striker_name=striker_name, bowler_name=bowler_name)
         if bowler_name and (runs_total != 0 or legal):
             self.scoreboard.update_bowler(
                 bowler_name,
@@ -4307,6 +4370,10 @@ class ScoreManager:
                 balls_delta=1 if legal else 0,
                 wickets_delta=0,
                 frame=self._current_frame)
+        else:
+            self._emit_credit_skipped(
+                "NO-BOWLER" if not bowler_name else "BOWLER-GATE-REJECTED",
+                event, striker_name=striker_name, bowler_name=bowler_name)
             if (legal and self.last_speed is not None
                     and self.last_speed_at_over != self.overs):
                 self.last_speed = None
@@ -4471,8 +4538,22 @@ class ScoreManager:
                 self.partnership_runs = 0
                 self.partnership_balls = 0
                 self.partnership_known = True
+            _pship_runs_before = int(self.partnership_runs or 0)
+            _pship_balls_before = int(self.partnership_balls or 0)
             self.partnership_runs += event.get("runs", 0)
             self.partnership_balls += 1 if event.get("legal", True) else 0
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="PARTNERSHIP-WRITE",
+                        runs_before=_pship_runs_before,
+                        balls_before=_pship_balls_before,
+                        runs_after=int(self.partnership_runs or 0),
+                        balls_after=int(self.partnership_balls or 0),
+                        source="apply_event_normal",
+                        frame_id=str(self._current_frame))
+                except Exception:
+                    pass
 
         # --- Delivery enrichment ---
         if frame.delivery_info:

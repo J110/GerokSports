@@ -92,6 +92,19 @@ KNOWN_TAGS: set[str] = {
     "MULTI-BALL-BATTER-DERIVATION-EXPANDED",
     "DERIVATION-STRIP-DIVERGENCE-BATTER",
     "COLD-START-SYNTH-CREDITED",
+    # B1.2e diagnostic instrumentation (2026-05-16) — surface every
+    # silent skip in the post-cold-start dispatch so credit / partnership
+    # / this_over / bowling_card gaps are visible in trace, not inferred
+    # by structural symmetry. Pure observability; no behavior change.
+    "CREDIT-SKIPPED-WITH-REASON",
+    "PARTNERSHIP-WRITE",
+    "PARTNERSHIP-SKIPPED-WITH-REASON",
+    "THIS-OVER-APPEND",
+    "THIS-OVER-BROADCAST-REPLACE",
+    "OVER-ARCHIVE-WRITE",
+    "OVER-ARCHIVE-INVALID-TOKEN-COUNT",
+    "OVER-ARCHIVE-DOUBLE-WRITE",
+    "BOWLING-CARD-CLEARED",
     "STRIP-HEAD-TEAM-TOKEN-MISMATCH",
     "STRIP-HEAD-FORWARD-BALLS-NO-SCORE-POP",
     "SCOUT-DIGITS-FALSE-STRIP-VETOED",
