@@ -4096,6 +4096,12 @@ class ScoreManager:
             return
 
         striker_name = event.get("striker") or self.striker
+        if not striker_name and self.scoreboard is not None:
+            try:
+                striker_name = (
+                    self.scoreboard._inn or {}).get("striker")
+            except Exception:
+                striker_name = None
         bowler_name = self.bowler_name
         if not bowler_name and self.scoreboard is not None:
             try:
