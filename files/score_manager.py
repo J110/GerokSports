@@ -4097,6 +4097,12 @@ class ScoreManager:
 
         striker_name = event.get("striker") or self.striker
         bowler_name = self.bowler_name
+        if not bowler_name and self.scoreboard is not None:
+            try:
+                bowler_name = (
+                    self.scoreboard._inn or {}).get("current_bowler")
+            except Exception:
+                bowler_name = None
 
         # A1 part 2: drain pending F381 wickets whenever a known bowler
         # is in context.  In-window pending wickets credit ``bowler_name``;
