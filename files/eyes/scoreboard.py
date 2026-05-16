@@ -2103,6 +2103,7 @@ class Scoreboard:
         balls = None
         fours = None
         sixes = None
+        resolved = self.resolve_name(name)
         if resolved is None:
             log.warn(f"Batter '{name}' not in any squad")
             return False
