@@ -5410,17 +5410,18 @@ def _build_full_payload_from_state(
     # scoreline.  Publish an "awaiting first delivery" payload until
     # SM transitions to WARM.  Shadow mode keeps the legacy behaviour
     # so observational runs continue to surface scoreboard's view.
+    _sb_had_score = bool((scoreboard._inn or {}).get("score"))
+    _sb_had_striker = bool((scoreboard._inn or {}).get("striker"))
     if (score_mgr is not None
             and getattr(score_mgr, "mode", None) == "COLD_START"
-            and not getattr(score_mgr, "shadow", False)):
+            and not getattr(score_mgr, "shadow", False)
+            and not (_sb_had_score and _sb_had_striker)):
         try:
             _trace.get_recorder().record(
                 tag="WS-PAYLOAD-COLD-START-SUPPRESS",
                 frame_id=frame_count,
-                had_score=bool(
-                    (scoreboard._inn or {}).get("score")),
-                had_striker=bool(
-                    (scoreboard._inn or {}).get("striker")),
+                had_score=_sb_had_score,
+                had_striker=_sb_had_striker,
                 had_bowler=bool(
                     (scoreboard._inn or {}).get("current_bowler")),
             )
@@ -5429,8 +5430,8 @@ def _build_full_payload_from_state(
         log.info(
             f"  [WS-PAYLOAD-COLD-START-SUPPRESS] frame={frame_count} "
             f"score_mgr.mode=COLD_START "
-            f"had_score={bool((scoreboard._inn or {}).get('score'))} "
-            f"had_striker={bool((scoreboard._inn or {}).get('striker'))}")
+            f"had_score={_sb_had_score} "
+            f"had_striker={_sb_had_striker}")
         return _empty_cold_start_payload(
             scoreboard=scoreboard,
             team_names=team_names,
