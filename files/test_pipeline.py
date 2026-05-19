@@ -11244,34 +11244,32 @@ async def run_test():
                             f" — {_reason}. current_striker stays "
                             f"'{_cur_striker}'")
                     elif _cur_striker != _pending_bcast_striker_key:
-                        _old_ns = _canonical_active_slot(
-                            score_mgr, scoreboard, "non")
-                        _set_legacy_active_slot(
-                            score_mgr, scoreboard, "striker",
-                            _pending_bcast_striker_key,
-                            "broadcast-indicator")
-                        if _old_ns == _pending_bcast_striker_key:
-                            _set_legacy_active_slot(
-                                score_mgr, scoreboard, "non",
-                                _cur_striker, "broadcast-indicator-swap")
+                        # Deterministic striker rotation (2026-05-19):
+                        # broadcast `>` indicator no longer overrides
+                        # SM's deterministic per-ball rotation. SM is
+                        # the sole authority on striker identity from
+                        # innings-start init through to the next
+                        # wicket. The disagreement is audited so the
+                        # analyzer can surface the vision-vs-rules
+                        # delta rate, but no write-side-effect fires.
+                        # See deterministic_striker_rotation_design.md
+                        # §3 and Issue 3 (2.2 ov, Nissanka credited
+                        # for Rahul's four in trace
+                        # watch_20260519_082523.jsonl).
                         log.info(
-                            f"  [STRIKER] Broadcast indicator: "
-                            f"{_pending_bcast_striker_key} "
-                            f"(was {_cur_striker})")
-                        # Option 1 audit trace: counts how often the
-                        # cricket-rules rotation disagrees with the
-                        # broadcast `>` indicator.  High firing rate
-                        # post-fix would justify the Option 2
-                        # architectural cleanup (eliminating dual
-                        # source-of-truth between SM and pipeline).
+                            f"  [STRIKER-BROADCAST-DISAGREES-"
+                            f"DETERMINISTIC] broadcast={_pending_bcast_striker_key!r}"
+                            f" deterministic={_cur_striker!r} — "
+                            f"keeping deterministic")
                         try:
                             _TRACE_RECORDER.record(
-                                tag="STRIKER-BROADCAST-CORRECTION",
-                                **{
-                                    "from": _cur_striker,
-                                    "to": _pending_bcast_striker_key,
-                                    "frame_id": str(frame_count),
-                                })
+                                tag="STRIKER-BROADCAST-DISAGREES-"
+                                    "DETERMINISTIC",
+                                broadcast_striker=(
+                                    _pending_bcast_striker_key),
+                                deterministic_striker=_cur_striker,
+                                frame_id=str(frame_count),
+                                source="broadcast_indicator")
                         except Exception:
                             pass
                 elif (_pending_bcast_striker_key
@@ -13556,22 +13554,33 @@ async def run_test():
                     and _eb2_canon is not None
                     and _eb1_canon == _non_lead_canon
                     and _eb2_canon == _str_lead_canon):
-                striker_tracker.swap_with(non_striker_tracker)
+                # Deterministic striker rotation (2026-05-19):
+                # mid-over tracker swap_with no longer mirrors into
+                # SM. The tracker's view of striker/non slot ordering
+                # is vision-derived (`*`/`>` reads, batter-row
+                # order) and contradicts SM's deterministic per-ball
+                # rotation. Suppress the SM mirror; audit-only.
+                # See deterministic_striker_rotation_design.md §3.
                 log.info(
-                    f"  [TRACKER-SWAP] striker↔non; "
-                    f"striker={striker_tracker.leader!r} "
-                    f"non={non_striker_tracker.leader!r}")
-                _set_inn_slot_with_sm_mirror(
-                    score_mgr, scoreboard, "striker",
-                    striker_tracker.leader, "tracker-swap")
-                _set_inn_slot_with_sm_mirror(
-                    score_mgr, scoreboard, "non",
-                    non_striker_tracker.leader, "tracker-swap")
+                    f"  [STRIKER-LOCK-MID-OVER-SUPPRESSED] "
+                    f"tracker-swap would have flipped to "
+                    f"striker={non_striker_tracker.leader!r} "
+                    f"non={striker_tracker.leader!r}; "
+                    f"keeping deterministic")
                 try:
                     _TRACE_RECORDER.record(
-                        tag="TRACKER-SWAP-MIRRORED",
-                        striker=striker_tracker.leader,
-                        non=non_striker_tracker.leader)
+                        tag="STRIKER-LOCK-MID-OVER-SUPPRESSED",
+                        candidate_striker=(
+                            non_striker_tracker.leader),
+                        candidate_non=striker_tracker.leader,
+                        deterministic_striker=(
+                            _canonical_active_slot(
+                                score_mgr, scoreboard, "striker")),
+                        deterministic_non=(
+                            _canonical_active_slot(
+                                score_mgr, scoreboard, "non")),
+                        source="tracker_swap",
+                        frame_id=str(frame_count))
                 except Exception:
                     pass
             elif _wicket_signal:
