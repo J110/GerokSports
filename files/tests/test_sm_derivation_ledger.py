@@ -99,6 +99,19 @@ def synthesize_frame_input(ball: dict, ts: float) -> FrameInput:
     striker_card = exp["batting_card"].get(striker, {})
     non_card = exp["batting_card"].get(non, {})
 
+    # broadcast_striker matches live-broadcast behavior at the moment
+    # the frame is captured. For non-wicket balls, the indicator has
+    # already advanced to the post-rotation striker. For wicket balls,
+    # the indicator typically still shows the dismissed batter
+    # mid-walk-off — and SM's wicket-attribution logic at
+    # score_manager.py:4115-4120 depends on this to identify who got
+    # dismissed. Sending the post-rotation new striker here causes SM
+    # to mis-attribute the dismissal to the surviving batter.
+    if ball.get("event_type") == "WICKET":
+        broadcast_striker = ball["striker_name"]
+    else:
+        broadcast_striker = striker
+
     return FrameInput(
         frame_id=ball["ball_id"],
         timestamp=ts,
@@ -115,7 +128,7 @@ def synthesize_frame_input(ball: dict, ts: float) -> FrameInput:
         ext_bowler_wickets=bowling["wickets"],
         ext_bowler_runs=bowling["runs"],
         ext_bowler_overs=_overs_to_float(bowling["overs"]),
-        broadcast_striker=striker,
+        broadcast_striker=broadcast_striker,
         broadcast_this_over=list(exp["this_over"]),
         broadcast_team=BATTING_TEAM,
         scout_text=(
@@ -241,6 +254,53 @@ def diff(expected, actual, path: str = "") -> list[tuple[str, object, object]]:
     return divs
 
 
+def _apply_post_wicket_pipeline_sim(
+    ball: dict, sb: Scoreboard, sm: ScoreManager,
+) -> None:
+    """Apply the pipeline-managed post-wicket transitions that SM
+    itself doesn't own: mark dismissed batter status='out' with
+    dismissal_* fields, promote the incoming batter to status='batting'
+    at zero, and wire sm.non to the new batter (sm.striker was already
+    set by `_apply_wicket_fall_only` via the survivor + EOO swap)."""
+    wicket = ball["wicket"]
+    dismissed = wicket["dismissed_name"]
+    new_batter = wicket["new_batter_name"]
+    bowler = ball["bowler_name"]
+    fielder = wicket.get("fielder_name")
+    dismissal_type = wicket["dismissal_type"]
+    overs = ball["ball_id"]
+
+    dismissed_card = sb.batting_card.get(dismissed)
+    if dismissed_card is not None:
+        dismissed_card["status"] = "out"
+        dismissed_card["dismissal_type"] = dismissal_type
+        dismissed_card["dismissal_bowler"] = bowler
+        if fielder:
+            dismissed_card["dismissal_fielder"] = fielder
+        dismissed_card["dismissal_overs"] = overs
+        dismissed_card["dismissal_runs"] = (
+            dismissed_card.get("runs") or 0)
+        dismissed_card["dismissal_balls"] = (
+            dismissed_card.get("balls") or 0)
+
+    new_card = sb.batting_card.get(new_batter)
+    if new_card is not None:
+        new_card["status"] = "batting"
+        new_card["runs"] = 0
+        new_card["balls"] = 0
+        new_card["fours"] = 0
+        new_card["sixes"] = 0
+
+    # sm.non is None after _apply_wicket_fall_only + EOO swap leaves
+    # only the survivor on strike. Set non to the new batter directly
+    # (pipeline does this via the auto-anchor recheck on subsequent
+    # frames). Also mirror into sb._inn so SM's Path-B reads agree.
+    if sm.non is None:
+        sm.non = new_batter
+    if sb._inn is not None and not sb._inn.get("non"):
+        sb._inn["non"] = new_batter
+
+
 def run_harness(
     ledger_path: Path,
     start_at_ball: str | None = None,
@@ -290,6 +350,16 @@ def run_harness(
             import traceback
             traceback.print_exc()
             return 1
+
+        # Simulate the pipeline's post-wicket handler: SM's
+        # _apply_wicket_fall_only records FOW and zeros the dismissed
+        # slot but does NOT mark batting_card status="out" / populate
+        # dismissal_* fields, nor promote the incoming batter. Those
+        # transitions live in test_pipeline.py (~line 10470 +
+        # batter-replacement block ~11302+). Apply them here for the
+        # wicket ball so subsequent balls have the correct active pair.
+        if ball.get("wicket"):
+            _apply_post_wicket_pipeline_sim(ball, sb, sm)
 
         if not asserting:
             print(f"SKIP {ball_id} (warmup, --start-at-ball="
