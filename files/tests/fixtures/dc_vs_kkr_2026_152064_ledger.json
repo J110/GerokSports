@@ -1,0 +1,1282 @@
+{
+  "_metadata": {
+    "description": "DC vs KKR IPL 2026 match 152064, DC innings, overs 1-6 (balls 0.1-5.6). Per-ball ground truth ledger derived from Cricbuzz commentary. Used by files/tests/test_sm_derivation_ledger.py.",
+    "source": "files/tests/fixtures/dc_vs_kkr_2026_152064_overs_1_6_ground_truth.md",
+    "conventions": {
+      "ball_id": "Cricket overs notation: 'O.B' where O is completed overs (0-indexed in SM terms) and B is balls-into-current-over (1-6 for legal balls).",
+      "overs_field": "SM's overs string, post-ball state. After the 6th ball of over O, overs becomes 'O+1.0' (rollover).",
+      "over_history_keys": "0-indexed integer keys matching SM internals (over 1 → '0', over 2 → '1', etc.). Ground truth markdown uses 1-indexed for human readability; this ledger re-maps to SM-internal.",
+      "this_over_post_rollover": "After the 6th-ball commit of an over, this_over resets to [] in the same SM commit cycle. expected_state_after.this_over for ball X.6 is therefore [].",
+      "bowler_overs": "Standard 'O.B' notation. balls field included separately for unambiguous comparison.",
+      "partnership_after_wicket": "Per-ball expected_state_after.partnership reflects the ACTIVE partnership at that moment. For the wicket ball itself, partnership shape is the just-ended pair (since the dismissed batter faced the ball); the new partnership starts at the NEXT ball at 0/0.",
+      "cold_start_window": "Pipeline cold-start synthesis covers balls 0.1-0.2 (initial 4/0 read backfilled to Nissanka 4(2), Roy 0.2/4). Harness implementers may choose to seed SM at the cold-start exit state and start replay at ball 0.3, or drive every ball through SM and validate cold-start path separately."
+    },
+    "totals_in_window": {
+      "balls_count": 36,
+      "wickets": 1,
+      "bowlers": ["Anukul Roy", "Vaibhav Arora", "Sunil Narine", "Kartik Tyagi"],
+      "multi_spell_bowlers": ["Anukul Roy (overs 1,3)", "Vaibhav Arora (overs 2,6)"]
+    }
+  },
+  "balls": [
+    {
+      "ball_id": "0.1",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Anukul Roy",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 0,
+        "wickets": 0,
+        "overs": "0.1",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 0, "balls": 1, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "0.1", "balls": 1, "runs": 0, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 0, "balls_faced": 1, "fours": 0, "sixes": 0, "status": "batting"},
+          "KL Rahul": {"runs": 0, "balls_faced": 0, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["."],
+        "over_history": {}
+      }
+    },
+    {
+      "ball_id": "0.2",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Anukul Roy",
+      "event_type": "FOUR",
+      "runs_off_bat": 4,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 4,
+        "wickets": 0,
+        "overs": "0.2",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 4, "balls": 2, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "0.2", "balls": 2, "runs": 4, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 4, "balls_faced": 2, "fours": 1, "sixes": 0, "status": "batting"},
+          "KL Rahul": {"runs": 0, "balls_faced": 0, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "4"],
+        "over_history": {}
+      }
+    },
+    {
+      "ball_id": "0.3",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Anukul Roy",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 5,
+        "wickets": 0,
+        "overs": "0.3",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 5, "balls": 3, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "0.3", "balls": 3, "runs": 5, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 5, "balls_faced": 3, "fours": 1, "sixes": 0, "status": "batting"},
+          "KL Rahul": {"runs": 0, "balls_faced": 0, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "4", "1"],
+        "over_history": {}
+      }
+    },
+    {
+      "ball_id": "0.4",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Anukul Roy",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 5,
+        "wickets": 0,
+        "overs": "0.4",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 5, "balls": 4, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "0.4", "balls": 4, "runs": 5, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 5, "balls_faced": 3, "fours": 1, "sixes": 0, "status": "batting"},
+          "KL Rahul": {"runs": 0, "balls_faced": 1, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "4", "1", "."],
+        "over_history": {}
+      }
+    },
+    {
+      "ball_id": "0.5",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Anukul Roy",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 6,
+        "wickets": 0,
+        "overs": "0.5",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 6, "balls": 5, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "0.5", "balls": 5, "runs": 6, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 5, "balls_faced": 3, "fours": 1, "sixes": 0, "status": "batting"},
+          "KL Rahul": {"runs": 1, "balls_faced": 2, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "4", "1", ".", "1"],
+        "over_history": {}
+      }
+    },
+    {
+      "ball_id": "0.6",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Anukul Roy",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 7,
+        "wickets": 0,
+        "overs": "1.0",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 7, "balls": 6, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.0", "balls": 6, "runs": 7, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 6, "balls_faced": 4, "fours": 1, "sixes": 0, "status": "batting"},
+          "KL Rahul": {"runs": 1, "balls_faced": 2, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [],
+        "over_history": {"0": [".", "4", "1", ".", "1", "1"]}
+      }
+    },
+    {
+      "ball_id": "1.1",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 7,
+        "wickets": 0,
+        "overs": "1.1",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 7, "balls": 7, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.0", "balls": 6, "runs": 7, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "0.1", "balls": 1, "runs": 0, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 6, "balls_faced": 5, "fours": 1, "sixes": 0, "status": "batting"},
+          "KL Rahul": {"runs": 1, "balls_faced": 2, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["."],
+        "over_history": {"0": [".", "4", "1", ".", "1", "1"]}
+      }
+    },
+    {
+      "ball_id": "1.2",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 8,
+        "wickets": 0,
+        "overs": "1.2",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 8, "balls": 8, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.0", "balls": 6, "runs": 7, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "0.2", "balls": 2, "runs": 1, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 7, "balls_faced": 6, "fours": 1, "sixes": 0, "status": "batting"},
+          "KL Rahul": {"runs": 1, "balls_faced": 2, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "1"],
+        "over_history": {"0": [".", "4", "1", ".", "1", "1"]}
+      }
+    },
+    {
+      "ball_id": "1.3",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 9,
+        "wickets": 0,
+        "overs": "1.3",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 9, "balls": 9, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.0", "balls": 6, "runs": 7, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "0.3", "balls": 3, "runs": 2, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 7, "balls_faced": 6, "fours": 1, "sixes": 0, "status": "batting"},
+          "KL Rahul": {"runs": 2, "balls_faced": 3, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "1", "1"],
+        "over_history": {"0": [".", "4", "1", ".", "1", "1"]}
+      }
+    },
+    {
+      "ball_id": "1.4",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "SIX",
+      "runs_off_bat": 6,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 15,
+        "wickets": 0,
+        "overs": "1.4",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 15, "balls": 10, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.0", "balls": 6, "runs": 7, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "0.4", "balls": 4, "runs": 8, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 13, "balls_faced": 7, "fours": 1, "sixes": 1, "status": "batting"},
+          "KL Rahul": {"runs": 2, "balls_faced": 3, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "1", "1", "6"],
+        "over_history": {"0": [".", "4", "1", ".", "1", "1"]}
+      }
+    },
+    {
+      "ball_id": "1.5",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 16,
+        "wickets": 0,
+        "overs": "1.5",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 16, "balls": 11, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.0", "balls": 6, "runs": 7, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "0.5", "balls": 5, "runs": 9, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 14, "balls_faced": 8, "fours": 1, "sixes": 1, "status": "batting"},
+          "KL Rahul": {"runs": 2, "balls_faced": 3, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "1", "1", "6", "1"],
+        "over_history": {"0": [".", "4", "1", ".", "1", "1"]}
+      }
+    },
+    {
+      "ball_id": "1.6",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 17,
+        "wickets": 0,
+        "overs": "2.0",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 17, "balls": 12, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.0", "balls": 6, "runs": 7, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 14, "balls_faced": 8, "fours": 1, "sixes": 1, "status": "batting"},
+          "KL Rahul": {"runs": 3, "balls_faced": 4, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "2.1",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Anukul Roy",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 17,
+        "wickets": 0,
+        "overs": "2.1",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 17, "balls": 13, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.1", "balls": 7, "runs": 7, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 14, "balls_faced": 8, "fours": 1, "sixes": 1, "status": "batting"},
+          "KL Rahul": {"runs": 3, "balls_faced": 5, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["."],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "2.2",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Anukul Roy",
+      "event_type": "FOUR",
+      "runs_off_bat": 4,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 21,
+        "wickets": 0,
+        "overs": "2.2",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 21, "balls": 14, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.2", "balls": 8, "runs": 11, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 14, "balls_faced": 8, "fours": 1, "sixes": 1, "status": "batting"},
+          "KL Rahul": {"runs": 7, "balls_faced": 6, "fours": 1, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "4"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "2.3",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Anukul Roy",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 22,
+        "wickets": 0,
+        "overs": "2.3",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 22, "balls": 15, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.3", "balls": 9, "runs": 12, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 14, "balls_faced": 8, "fours": 1, "sixes": 1, "status": "batting"},
+          "KL Rahul": {"runs": 8, "balls_faced": 7, "fours": 1, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "4", "1"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "2.4",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Anukul Roy",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 22,
+        "wickets": 0,
+        "overs": "2.4",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 22, "balls": 16, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.4", "balls": 10, "runs": 12, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 14, "balls_faced": 9, "fours": 1, "sixes": 1, "status": "batting"},
+          "KL Rahul": {"runs": 8, "balls_faced": 7, "fours": 1, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "4", "1", "."],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "2.5",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Anukul Roy",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 22,
+        "wickets": 0,
+        "overs": "2.5",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 22, "balls": 17, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "1.5", "balls": 11, "runs": 12, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 14, "balls_faced": 10, "fours": 1, "sixes": 1, "status": "batting"},
+          "KL Rahul": {"runs": 8, "balls_faced": 7, "fours": 1, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [".", "4", "1", ".", "."],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "2.6",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Anukul Roy",
+      "event_type": "SIX",
+      "runs_off_bat": 6,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 28,
+        "wickets": 0,
+        "overs": "3.0",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 28, "balls": 18, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 20, "balls_faced": 11, "fours": 1, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 8, "balls_faced": 7, "fours": 1, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"]
+        }
+      }
+    },
+    {
+      "ball_id": "3.1",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Sunil Narine",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 29,
+        "wickets": 0,
+        "overs": "3.1",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 29, "balls": 19, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "0.1", "balls": 1, "runs": 1, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 20, "balls_faced": 11, "fours": 1, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 9, "balls_faced": 8, "fours": 1, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["1"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"]
+        }
+      }
+    },
+    {
+      "ball_id": "3.2",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Sunil Narine",
+      "event_type": "FOUR",
+      "runs_off_bat": 4,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 33,
+        "wickets": 0,
+        "overs": "3.2",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 33, "balls": 20, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "0.2", "balls": 2, "runs": 5, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 24, "balls_faced": 12, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 9, "balls_faced": 8, "fours": 1, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["1", "4"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"]
+        }
+      }
+    },
+    {
+      "ball_id": "3.3",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Sunil Narine",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 33,
+        "wickets": 0,
+        "overs": "3.3",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 33, "balls": 21, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "0.3", "balls": 3, "runs": 5, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 24, "balls_faced": 13, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 9, "balls_faced": 8, "fours": 1, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["1", "4", "."],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"]
+        }
+      }
+    },
+    {
+      "ball_id": "3.4",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Sunil Narine",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 34,
+        "wickets": 0,
+        "overs": "3.4",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 34, "balls": 22, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "0.4", "balls": 4, "runs": 6, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 25, "balls_faced": 14, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 9, "balls_faced": 8, "fours": 1, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["1", "4", ".", "1"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"]
+        }
+      }
+    },
+    {
+      "ball_id": "3.5",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Sunil Narine",
+      "event_type": "FOUR",
+      "runs_off_bat": 4,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 38,
+        "wickets": 0,
+        "overs": "3.5",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 38, "balls": 23, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "0.5", "balls": 5, "runs": 10, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 25, "balls_faced": 14, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 13, "balls_faced": 9, "fours": 2, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["1", "4", ".", "1", "4"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"]
+        }
+      }
+    },
+    {
+      "ball_id": "3.6",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Sunil Narine",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 39,
+        "wickets": 0,
+        "overs": "4.0",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 39, "balls": 24, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 25, "balls_faced": 14, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 14, "balls_faced": 10, "fours": 2, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "4.1",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Kartik Tyagi",
+      "event_type": "FOUR",
+      "runs_off_bat": 4,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 43,
+        "wickets": 0,
+        "overs": "4.1",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 43, "balls": 25, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "0.1", "balls": 1, "runs": 4, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 25, "balls_faced": 14, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 18, "balls_faced": 11, "fours": 3, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "4.2",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Kartik Tyagi",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 44,
+        "wickets": 0,
+        "overs": "4.2",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 44, "balls": 26, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "0.2", "balls": 2, "runs": 5, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 25, "balls_faced": 14, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 19, "balls_faced": 12, "fours": 3, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4", "1"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "4.3",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Kartik Tyagi",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 44,
+        "wickets": 0,
+        "overs": "4.3",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "KL Rahul",
+        "partnership": {"runs": 44, "balls": 27, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "0.3", "balls": 3, "runs": 5, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 25, "balls_faced": 15, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 19, "balls_faced": 12, "fours": 3, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4", "1", "."],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "4.4",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "KL Rahul",
+      "bowler_name": "Kartik Tyagi",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 45,
+        "wickets": 0,
+        "overs": "4.4",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 45, "balls": 28, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "0.4", "balls": 4, "runs": 6, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 26, "balls_faced": 16, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 19, "balls_faced": 12, "fours": 3, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4", "1", ".", "1"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "4.5",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Kartik Tyagi",
+      "event_type": "FOUR",
+      "runs_off_bat": 4,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 49,
+        "wickets": 0,
+        "overs": "4.5",
+        "striker_after_rotation": "KL Rahul",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 49, "balls": 29, "batters": ["Pathum Nissanka", "KL Rahul"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "0.5", "balls": 5, "runs": 10, "wickets": 0, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 26, "balls_faced": 16, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {"runs": 23, "balls_faced": 13, "fours": 4, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4", "1", ".", "1", "4"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"]
+        }
+      }
+    },
+    {
+      "ball_id": "4.6",
+      "striker_name": "KL Rahul",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Kartik Tyagi",
+      "event_type": "WICKET",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": {
+        "dismissed_name": "KL Rahul",
+        "dismissal_type": "caught",
+        "fielder_name": "Cameron Green",
+        "new_batter_name": "Nitish Rana",
+        "new_batter_end": "striker"
+      },
+      "expected_state_after": {
+        "score": 49,
+        "wickets": 1,
+        "overs": "5.0",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "Nitish Rana",
+        "partnership": {"runs": 0, "balls": 0, "batters": ["Pathum Nissanka", "Nitish Rana"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 1, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 26, "balls_faced": 16, "fours": 2, "sixes": 2, "status": "batting"},
+          "KL Rahul": {
+            "runs": 23, "balls_faced": 14, "fours": 4, "sixes": 0,
+            "status": "out",
+            "dismissal_overs": "4.6",
+            "dismissal_runs": 23,
+            "dismissal_balls_faced": 14,
+            "dismissal_type": "caught",
+            "dismissal_by": "Kartik Tyagi",
+            "dismissal_fielder": "Cameron Green"
+          },
+          "Nitish Rana": {"runs": 0, "balls_faced": 0, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"],
+          "4": ["4", "1", ".", "1", "4", "W"]
+        }
+      }
+    },
+    {
+      "ball_id": "5.1",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "Nitish Rana",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "FOUR",
+      "runs_off_bat": 4,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 53,
+        "wickets": 1,
+        "overs": "5.1",
+        "striker_after_rotation": "Pathum Nissanka",
+        "non_striker_after_rotation": "Nitish Rana",
+        "partnership": {"runs": 4, "balls": 1, "batters": ["Pathum Nissanka", "Nitish Rana"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.1", "balls": 7, "runs": 14, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 1, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 30, "balls_faced": 17, "fours": 3, "sixes": 2, "status": "batting"},
+          "KL Rahul": {
+            "runs": 23, "balls_faced": 14, "fours": 4, "sixes": 0,
+            "status": "out",
+            "dismissal_overs": "4.6",
+            "dismissal_runs": 23,
+            "dismissal_balls_faced": 14,
+            "dismissal_type": "caught",
+            "dismissal_by": "Kartik Tyagi",
+            "dismissal_fielder": "Cameron Green"
+          },
+          "Nitish Rana": {"runs": 0, "balls_faced": 0, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"],
+          "4": ["4", "1", ".", "1", "4", "W"]
+        }
+      }
+    },
+    {
+      "ball_id": "5.2",
+      "striker_name": "Pathum Nissanka",
+      "non_striker_name": "Nitish Rana",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 54,
+        "wickets": 1,
+        "overs": "5.2",
+        "striker_after_rotation": "Nitish Rana",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 5, "balls": 2, "batters": ["Pathum Nissanka", "Nitish Rana"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.2", "balls": 8, "runs": 15, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 1, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 31, "balls_faced": 18, "fours": 3, "sixes": 2, "status": "batting"},
+          "KL Rahul": {
+            "runs": 23, "balls_faced": 14, "fours": 4, "sixes": 0,
+            "status": "out",
+            "dismissal_overs": "4.6",
+            "dismissal_runs": 23,
+            "dismissal_balls_faced": 14,
+            "dismissal_type": "caught",
+            "dismissal_by": "Kartik Tyagi",
+            "dismissal_fielder": "Cameron Green"
+          },
+          "Nitish Rana": {"runs": 0, "balls_faced": 0, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4", "1"],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"],
+          "4": ["4", "1", ".", "1", "4", "W"]
+        }
+      }
+    },
+    {
+      "ball_id": "5.3",
+      "striker_name": "Nitish Rana",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 54,
+        "wickets": 1,
+        "overs": "5.3",
+        "striker_after_rotation": "Nitish Rana",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 5, "balls": 3, "batters": ["Pathum Nissanka", "Nitish Rana"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.3", "balls": 9, "runs": 15, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 1, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 31, "balls_faced": 18, "fours": 3, "sixes": 2, "status": "batting"},
+          "KL Rahul": {
+            "runs": 23, "balls_faced": 14, "fours": 4, "sixes": 0,
+            "status": "out",
+            "dismissal_overs": "4.6",
+            "dismissal_runs": 23,
+            "dismissal_balls_faced": 14,
+            "dismissal_type": "caught",
+            "dismissal_by": "Kartik Tyagi",
+            "dismissal_fielder": "Cameron Green"
+          },
+          "Nitish Rana": {"runs": 0, "balls_faced": 1, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4", "1", "."],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"],
+          "4": ["4", "1", ".", "1", "4", "W"]
+        }
+      }
+    },
+    {
+      "ball_id": "5.4",
+      "striker_name": "Nitish Rana",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 54,
+        "wickets": 1,
+        "overs": "5.4",
+        "striker_after_rotation": "Nitish Rana",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 5, "balls": 4, "batters": ["Pathum Nissanka", "Nitish Rana"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.4", "balls": 10, "runs": 15, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 1, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 31, "balls_faced": 18, "fours": 3, "sixes": 2, "status": "batting"},
+          "KL Rahul": {
+            "runs": 23, "balls_faced": 14, "fours": 4, "sixes": 0,
+            "status": "out",
+            "dismissal_overs": "4.6",
+            "dismissal_runs": 23,
+            "dismissal_balls_faced": 14,
+            "dismissal_type": "caught",
+            "dismissal_by": "Kartik Tyagi",
+            "dismissal_fielder": "Cameron Green"
+          },
+          "Nitish Rana": {"runs": 0, "balls_faced": 2, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4", "1", ".", "."],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"],
+          "4": ["4", "1", ".", "1", "4", "W"]
+        }
+      }
+    },
+    {
+      "ball_id": "5.5",
+      "striker_name": "Nitish Rana",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "DOT",
+      "runs_off_bat": 0,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 54,
+        "wickets": 1,
+        "overs": "5.5",
+        "striker_after_rotation": "Nitish Rana",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 5, "balls": 5, "batters": ["Pathum Nissanka", "Nitish Rana"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "1.5", "balls": 11, "runs": 15, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 1, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 31, "balls_faced": 18, "fours": 3, "sixes": 2, "status": "batting"},
+          "KL Rahul": {
+            "runs": 23, "balls_faced": 14, "fours": 4, "sixes": 0,
+            "status": "out",
+            "dismissal_overs": "4.6",
+            "dismissal_runs": 23,
+            "dismissal_balls_faced": 14,
+            "dismissal_type": "caught",
+            "dismissal_by": "Kartik Tyagi",
+            "dismissal_fielder": "Cameron Green"
+          },
+          "Nitish Rana": {"runs": 0, "balls_faced": 3, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": ["4", "1", ".", ".", "."],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"],
+          "4": ["4", "1", ".", "1", "4", "W"]
+        }
+      }
+    },
+    {
+      "ball_id": "5.6",
+      "striker_name": "Nitish Rana",
+      "non_striker_name": "Pathum Nissanka",
+      "bowler_name": "Vaibhav Arora",
+      "event_type": "RUNS_1",
+      "runs_off_bat": 1,
+      "extras": 0,
+      "extras_type": null,
+      "wicket": null,
+      "expected_state_after": {
+        "score": 55,
+        "wickets": 1,
+        "overs": "6.0",
+        "striker_after_rotation": "Nitish Rana",
+        "non_striker_after_rotation": "Pathum Nissanka",
+        "partnership": {"runs": 6, "balls": 6, "batters": ["Pathum Nissanka", "Nitish Rana"]},
+        "bowling_card": {
+          "Anukul Roy": {"overs": "2.0", "balls": 12, "runs": 18, "wickets": 0, "maidens": 0},
+          "Vaibhav Arora": {"overs": "2.0", "balls": 12, "runs": 16, "wickets": 0, "maidens": 0},
+          "Sunil Narine": {"overs": "1.0", "balls": 6, "runs": 11, "wickets": 0, "maidens": 0},
+          "Kartik Tyagi": {"overs": "1.0", "balls": 6, "runs": 10, "wickets": 1, "maidens": 0}
+        },
+        "batting_card": {
+          "Pathum Nissanka": {"runs": 31, "balls_faced": 18, "fours": 3, "sixes": 2, "status": "batting"},
+          "KL Rahul": {
+            "runs": 23, "balls_faced": 14, "fours": 4, "sixes": 0,
+            "status": "out",
+            "dismissal_overs": "4.6",
+            "dismissal_runs": 23,
+            "dismissal_balls_faced": 14,
+            "dismissal_type": "caught",
+            "dismissal_by": "Kartik Tyagi",
+            "dismissal_fielder": "Cameron Green"
+          },
+          "Nitish Rana": {"runs": 1, "balls_faced": 4, "fours": 0, "sixes": 0, "status": "batting"}
+        },
+        "this_over": [],
+        "over_history": {
+          "0": [".", "4", "1", ".", "1", "1"],
+          "1": [".", "1", "1", "6", "1", "1"],
+          "2": [".", "4", "1", ".", ".", "6"],
+          "3": ["1", "4", ".", "1", "4", "1"],
+          "4": ["4", "1", ".", "1", "4", "W"],
+          "5": ["4", "1", ".", ".", ".", "1"]
+        }
+      }
+    }
+  ]
+}
