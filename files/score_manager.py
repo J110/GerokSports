@@ -4941,6 +4941,38 @@ class ScoreManager:
             self.this_over_extras = 0
             self.this_over = []
             self.this_over_src = []
+            # Clear bowler attribution for the next over. d0df7b4
+            # preserves `bowler_name` through the 6th-ball credit
+            # (just completed via `_accumulate_stats_from_event`
+            # above), but after that credit lands the attribution
+            # must expire so the next over's first ball doesn't
+            # silently inherit the previous spell's bowler from
+            # stale state. Surfaced by L2-Slim frame 205 of the
+            # watch_20260519_121701 captured-Scout replay: Narine's
+            # 1st ball (3.1) was miscredited to Anukul Roy because
+            # `self.bowler_name='Anukul Roy'` persisted from over 3
+            # while Scout's frame 205 read had `bowler=None` (only
+            # batter rows visible). With the clear, the next frame's
+            # `_accumulate_stats_from_event` finds no current bowler
+            # and emits `CREDIT-SKIPPED-WITH-REASON: NO-BOWLER`;
+            # the ball routes through the B1.x pending queue and
+            # drains when the tracker LOCKs the new bowler (Narine
+            # at frame 213 in this fixture).
+            _prev_bowler_at_clear = self.bowler_name
+            self.bowler_name = None
+            if (self.scoreboard is not None
+                    and self.scoreboard._inn is not None):
+                self.scoreboard._inn["current_bowler"] = None
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="BOWLER-LOCK-RELEASED",
+                        reason="over_end_credit_complete",
+                        prev_bowler=_prev_bowler_at_clear,
+                        over_n=_archive_over_n,
+                        frame_id=str(self._current_frame))
+                except Exception:
+                    pass
         else:
             # DC-vs-CSK Fix 6: pad with "?" for any missed deliveries
             # so a first-ball read failure followed by a clean second-
