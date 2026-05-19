@@ -1,23 +1,25 @@
-# SM-as-Orchestrator + Secondary Text LLM — Design Memo
+# SM-as-Orchestrator + Frame Fate Ledger — Design Memo
 
-**Status:** Proposal. Pre-implementation.
+**Status:** Stage 1 + 2a + 2a' shipped. Stage 2b (Secondary LLM resolution) reverted 2026-05-19 — multi-ball gap resolution is the wrong abstraction; gaps are bugs to diagnose and fix at root cause, not classes the architecture must accommodate. Frame Fate Ledger (§4) and root-cause investigation drive the remaining work.
 **Date:** 2026-05-19
 **Author:** J110
-**Supersedes:** the corpus + adversarial mutator foundation work paused as of this memo.
+**Supersedes:** the corpus + adversarial mutator foundation work paused as of this memo. Also supersedes the Secondary LLM design (former §4) and its eval-corpus / heuristic-fallback content.
 **Related:** `files/docs/investigations/trace_and_detect_system_design.md` (trace schema), audit chat preceding this memo (5-primitive contract).
 
 ## 1. Problem
 
-The current pipeline is *passive* relative to Scout: SM accepts whatever delta Scout reports per frame and back-fills missing structure via a pending-ball queue plus `?` placeholders that wait for `broadcast_this_over` to fill them in later. This produces three failure modes that are structural, not tunable:
+The current pipeline is *passive* relative to Scout: SM accepts whatever delta Scout reports per frame and back-fills missing structure via a pending-ball queue plus `?` placeholders that wait for `broadcast_this_over` to fill them in later. Three failure modes drove this proposal — all are now classified as **bugs to diagnose and fix at root cause**, not load-bearing conditions the architecture must accommodate:
 
-1. **Multi-ball compression.** Camera-cut / overlay gaps cause Scout to skip from `(N.M)` to `(N.M+2)` in one frame. Today the queue enqueues `(Δruns, Δballs=2)` and defers; if Δruns is ambiguous (e.g., 6 = 4+2 vs 6+0 vs 2+4), the queue eventually force-flushes at the 40-frame deadline with the wrong attribution or with `?` placeholders that never resolve.
-2. **Deferred attribution drift.** Pending balls live across over boundaries; archive is parked in `_over_archive_pending` (`score_manager.py:5048, 5296`), and bowler/striker locks acquired late can credit the wrong over.
-3. **Broadcast wholesale-accept hazards.** `on_broadcast_override` (`this_over.py:797-920`) trusts `this_over_broadcast` to fill gaps but the broadcast strip itself is flaky during ribbon overlays; we have a `MAX_THIS_OVER_LEN=9` guard and a `_merge_broadcast` normalizer specifically to defend against this — the existence of those guards is the symptom.
+1. **Multi-ball compression.** Camera-cut / overlay gaps cause Scout to skip from `(N.M)` to `(N.M+2)` in one frame. The Stage 1 retrospective showed every Δ≥2 commit decomposes into one of: (a) Scout cadence drop (rate-limit / latency / retry), (b) Scout response classified as non-SCOREBOARD (graphic / replay / overlay), (c) SCOREBOARD frame rejected by an SM/SB guard despite readable strip, (d) genuine OCR miss, (e) measurement artifact (no actual gap). Each category is a fix, not an accommodation.
+2. **Deferred attribution drift.** Pending balls live across over boundaries; archive is parked in `_over_archive_pending` (`score_manager.py:5048, 5296`), and bowler/striker locks acquired late can credit the wrong over. Same treatment: fix the bowler-lock latency root cause, not the queue.
+3. **Broadcast wholesale-accept hazards.** `on_broadcast_override` (`this_over.py:797-920`) trusts `this_over_broadcast` to fill gaps but the broadcast strip itself is flaky during ribbon overlays; the `MAX_THIS_OVER_LEN=9` guard and `_merge_broadcast` normalizer exist specifically to defend against this — the guards are the symptom. **Treatment:** ship the 5-primitive contract; derive `this_over` from per-frame deltas; delete the wholesale-accept path entirely.
 
-Two architectural shifts close all three:
+The architectural shift:
 
-- **SM becomes active.** SM holds `expected_next_ball` and refuses frames that imply a skipped ball.
-- **Synchronous gap resolution via secondary LLM.** When SM detects a gap, it invokes a cheap text-only LLM (Haiku or similar) with Scout's raw context to resolve ball N.M before the new frame's state is committed.
+- **SM becomes active.** SM holds `expected_next_ball` (shipped stage 1, `a57cdbd`) and emits diagnostic `[GAP-DETECTED]` whenever a Δ≥2 commit occurs. Stage 2a (`185bc39`) added `[GAP-AT-REJECTION]` at the three pre-`_accept_update` rejection sites. Stage 2a' (`ca85dd9`) closed the instrumentation hole at hot-resume + cold-exit. **All additive; no behavior change.**
+- **Frame Fate Ledger** (§4) becomes the diagnostic surface that explains WHY each frame failed to commit. Every multi-ball-gap event is traced to its rejection class so root-cause fixes can target the dominant source.
+
+A previously-proposed synchronous gap-resolution path (Secondary LLM via Groq llama-3.1-8b-instant) was implemented in stage 2b (`5fe6768`, `97671cc`) and evaluated against hand-labeled ground truth in `310bfe8`. **Both 8B and 70B failed the ≥80% case-level / ≥90% consistency gate** — root cause is data-bound, not prompt-bound: Scout's `THIS OVER` field is null at gap frames, so the LLM has start/end state but no per-ball sequence signal. Reverted 2026-05-19. The gaps shouldn't exist in the first place; resolving them after the fact is the wrong shape.
 
 ## 2. Architecture
 
@@ -25,22 +27,20 @@ Two architectural shifts close all three:
 Frame in → on_frame(FrameInput)
               │
               ├─ compute implied_ball from FrameInput.overs
-              ├─ if implied_ball == expected_next_ball: accept (common case, no LLM call)
-              ├─ if implied_ball < expected_next_ball: reject (regression — drift guard)
-              └─ if implied_ball > expected_next_ball: GAP DETECTED
+              ├─ if implied_ball == expected_next_ball: accept (canonical path)
+              ├─ if implied_ball < expected_next_ball: existing drift guards
+              └─ if implied_ball > expected_next_ball: emit [GAP-DETECTED]
                      │
-                     └─ _resolve_gap(prev_state, FrameInput, gap_size)
-                            │
-                            ├─ for each missing ball B in [expected_next_ball .. implied_ball-1]:
-                            │     ├─ call secondary LLM with Scout context + B
-                            │     ├─ receive {event_type, runs_off_bat, wicket, confidence}
-                            │     ├─ if confidence >= τ: commit synthetic ball B, advance expected_next_ball
-                            │     └─ else: emit BALL-UNRESOLVED, apply deterministic last-resort, advance
-                            │
-                            └─ now expected_next_ball == implied_ball: re-enter _accept_update with original frame
+                     └─ (future) consult Frame Fate Ledger: emit
+                        [GAP-EXPLAINED-BY-*] with the rejection class
+                        (cold_exit / warm_consensus / scoreboard_jump_limit /
+                        scout_failure / extractor_filter / etc.)
+                     │
+                     └─ accept the new state as before (instrumentation is
+                        additive until root-cause fixes drive Δ≥2 to ~0)
 ```
 
-Everything synchronous. No queue, no deferred archive, no `?` placeholders.
+No synchronous resolution. No deferred queue, no `?` placeholders, no secondary LLM, no deterministic heuristic. The architecture is to **diagnose** gaps (Stage 1 telemetry + Stage 2c ledger), **investigate** root causes per-class, and **fix** them at source until Δ≥2 rate falls to ~0. Any residual gap class that proves structurally unfixable (e.g., strip-not-visible during DRS pauses at <1% steady-state rate) is flagged explicitly and re-evaluated.
 
 ## 3. `expected_next_ball` state machine
 
@@ -60,137 +60,41 @@ class ExpectedBall:
 
 | Event | Effect | Site |
 |---|---|---|
-| `__init__()` | `expected_next_ball = ExpectedBall(over=0, ball=1, legal_ball_count=0)` if known cold-start, else `None` | `score_manager.py:337-465` |
-| First legal ball of innings observed | `expected_next_ball = ExpectedBall(0, 1, 0)` | new branch in `on_frame` |
-| `set_innings_2()` | reset to `ExpectedBall(0, 1, 0)` | `score_manager.py:3546` |
-| `_accept_update()` commits ball | advance: `legal_ball_count += 1`; if extras, `ball += 1` without `legal_ball_count++`; if end-of-over, `over += 1, ball = 1` | new method `_advance_expected()` |
+| `__init__()` | `expected_next_ball = None` initially; advances on first overs commit | `score_manager.py:337-465` |
+| First legal ball of innings observed | Initialize from observed overs | `_track_overs_advance` |
+| `set_innings_2()` | Reset via `self.__init__(shadow=self.shadow)` | `score_manager.py:3546` |
+| `_accept_update()` commits ball | Advance `legal_ball_count` to match new committed overs | `_track_overs_advance` |
+| `hot_resume_from_cache()` | Same advance call | stage 2a' wiring |
+| `_accept_initial()` (cold-start exit) | Same advance call | stage 2a' wiring |
 
 ### 3.3 Advance rules
 
 ```
-on commit of ball (event_type, runs, is_legal):
-    if is_legal:
-        legal_ball_count += 1
-        if (legal_ball_count % 6) == 0:
-            over += 1
-            ball = 1
-        else:
-            ball += 1
-    else:
-        ball += 1  # extras advance the ball-in-over counter but not legal count
+on each _accept_update / hot_resume / cold-exit commit of overs:
+    prev_legal = legal_balls(prev_overs)
+    new_legal  = legal_balls(new_overs)
+    delta = new_legal - prev_legal
+    if delta >= 2:
+        log.info("[GAP-DETECTED] Δballs={delta} ...")  # diagnostic only
+    if delta != 0:
+        expected_next_ball.legal_ball_count = new_legal
+        expected_next_ball.over = new_legal // 6
+        expected_next_ball.ball = (new_legal % 6) + 1
 ```
 
 Wicket commits **do not** reset `expected_next_ball` — the next ball is still expected, with a new striker. The "new batter to crease" delay is observable via Scout but doesn't change the ball-number expectation.
 
-### 3.4 Gap detection
+### 3.4 Gap detection (current, observation-only)
 
-```python
-implied = ExpectedBall.from_overs(frame.overs)  # 4.2 → over=4, ball=3, legal_ball_count=24+2
-if implied == expected_next_ball:
-    accept()
-elif implied < expected_next_ball:
-    reject("REGRESSION")  # SM-DRIFT-GUARD; existing pattern at score_manager.py:3669
-elif gap := implied - expected_next_ball:
-    _resolve_gap(gap)
-```
+Today the state machine is purely additive: any Δ≥2 commit fires `[GAP-DETECTED]` (auto-promoted to `decisions[]`) and SM accepts the new state unchanged. The detection is a diagnostic surface, not a gate. Once root-cause fixes drive the Δ≥2 rate to ~0, the question of "should SM refuse Δ≥2 frames" can be revisited — but in the bug-fix framing, the goal is to never see them, not to handle them.
 
-Conversion `from_overs`: `overs=4.2` → `over=4, ball=3, legal_ball_count=4*6+2=26`. T20=6 legal balls per over; extras don't appear in `overs` so the conversion is unambiguous from the float.
+## 4. Frame fate ledger
 
-## 4. Secondary LLM interface
+(Originally framed as "Frame accounting queue" — a Scout response tracker. Stage 1 retrospective on the DC-vs-KKR Tier 1 corpus reframed the role: existing SM/SB rejection guards silently drop ~6.3% of frames (66 SM-level + 45 SB-level vs 5 surfaced gaps in the same corpus), an order of magnitude more than the visible commit-side gaps. The ledger's primary job is therefore tracking every frame's **fate across all rejection paths** — Scout-level, SM-level, SB-level — not just Scout response/timeout. Without that ledger, root-cause investigation can't attribute Δ≥2 gaps to their actual source.)
 
-### 4.1 Contract
+Every frame dispatched to Scout, AND every Scout response processed by SM, gets a tracked fate. Root-cause investigation queries the ledger to attribute each `[GAP-DETECTED]` to one of: (a) ball was skipped on a frame we accepted (commit-side gap — investigate extractor reject or measurement artifact), (b) ball happened during a frame whose Scout response was lost/late (`TIMEOUT`/`ERROR` — investigate Scout cadence/retry), (c) ball happened during a frame whose response SM/SB rejected (`REJECTED_BY_*` — investigate the guard threshold), (d) frame was normal between-balls observation (`ACCEPTED_NOOP`).
 
-**Inputs** (assembled by `_resolve_gap` per missing ball):
-
-```json
-{
-  "expected_ball": {"over": 4, "ball": 3, "legal_ball_count": 26},
-  "scout_context": {
-    "visible_text": "<from Scout VLM>",
-    "info_panel":   "<from Scout VLM>",
-    "strip":        "<from Scout VLM>",
-    "frame_type":   "SCOREBOARD",
-    "camera_view":  "...",
-    "frame_phase":  "..."
-  },
-  "match_state": {
-    "innings": 2,
-    "score_before": 47, "wickets_before": 1, "overs_before": 4.2,
-    "score_after":  53, "wickets_after":  1, "overs_after":  4.4,
-    "striker":   "Kohli",
-    "non_striker":"Gill",
-    "bowler":    "Bumrah"
-  },
-  "delta_observed": {
-    "runs": 6,
-    "wickets": 0,
-    "balls": 2
-  }
-}
-```
-
-**Output**:
-
-```json
-{
-  "event_type": "FOUR" | "SIX" | "ZERO" | "ONE" | "TWO" | "THREE" |
-                "FIVE" | "WIDE" | "NO_BALL" | "BYE" | "LEG_BYE" |
-                "WICKET" | "UNRESOLVED",
-  "runs_off_bat": 0..6,
-  "extras": {"type": "wd"|"nb"|"b"|"lb"|null, "runs": 0..6},
-  "wicket": {
-    "dismissed": "Kohli" | null,
-    "type": "bowled" | "caught" | "lbw" | "runout" | "stumped" | null,
-    "fielder": "..." | null
-  } | null,
-  "confidence": 0.0..1.0,
-  "rationale": "<one sentence, for trace>"
-}
-```
-
-### 4.2 Model & cost
-
-**Stage 2b implementation (shipped):** Groq `llama-3.1-8b-instant` via the existing Groq client. Single-provider with Scout (`AsyncGroq` at `files/eyes/vision.py:450`); reuses `GROQ_API_KEY` env var. Sync `Groq()` client instantiated lazily inside the resolver to avoid async-context juggling in SM.
-
-Model configurable via `GAP_RESOLVER_MODEL` env var (default `llama-3.1-8b-instant`). Escalation path: `llama-3.3-70b-versatile` if 8B eval accuracy is insufficient. Haiku 4.5 (`claude-haiku-4-5`) remains a fallback option if both Groq models fail accuracy gates.
-
-Typical input ~600-800 tokens, output ~50 tokens. ~$0.0005/match at 8B vs ~3¢ at Haiku — 60× cheaper. Eval-corpus iteration is essentially free at 8B cost.
-
-Cost telemetry: `GAP-RESOLVER-LLM-CALL` trace tag includes `model`, `input_tokens`, `output_tokens`, `latency_ms`. Enables A/B comparison of 8B vs 70B from production traces without trace-schema changes.
-
-### 4.3 Confidence handling
-
-- `confidence >= 0.7`: commit the LLM's resolution.
-- `0.4 <= confidence < 0.7`: commit but emit `BALL-RESOLVED-LOW-CONFIDENCE` trace tag for review.
-- `confidence < 0.4` **or** `event_type == "UNRESOLVED"`: fall through to deterministic heuristic (§4.4), emit `BALL-UNRESOLVED-LLM`.
-
-### 4.4 Deterministic heuristic (last resort)
-
-When the LLM can't resolve, distribute the multi-ball delta with these rules:
-
-1. Place wickets (from `Δwickets`) on the last ball of the gap unless context (e.g., VISIBLE_TEXT contains "OUT" before a "FOUR") suggests otherwise.
-2. Distribute `Δruns` across remaining balls: prefer one-boundary-plus-dots over even split (broadcast-strip behavior pattern from corpus analysis — boundaries are over-represented in gap frames because they coincide with replay cuts).
-3. Tag every synthesized ball with `derivation_source = "heuristic"` and per-ball `confidence = 0.0`.
-
-### 4.5 Cross-check guard
-
-Before committing the LLM's resolution, sanity-check:
-
-```
-if claimed_event == "FOUR" and Δscore != 4: reject as BALL-UNRESOLVED-LLM-INCONSISTENT
-if claimed_event == "WICKET" and Δwickets != 1: reject
-if claimed_event in {ZERO, DOT} and runs_off_bat != 0: reject
-```
-
-This is what catches "secondary LLM returns wrong answer" (item 10 of the audit).
-
-## 5. Frame fate ledger
-
-(Originally framed as "Frame accounting queue" — a Scout response tracker. Stage 1 retrospective on the DC-vs-KKR Tier 1 corpus reframed the role: existing SM/SB rejection guards silently drop ~6.3% of frames (66 SM-level + 45 SB-level vs 5 surfaced gaps in the same corpus), an order of magnitude more than the visible commit-side gaps. The ledger's primary job is therefore tracking every frame's **fate across all rejection paths** — Scout-level, SM-level, SB-level — not just Scout response/timeout. Without that ledger, Mode 1 silent drops stay invisible.)
-
-Every frame dispatched to Scout, AND every Scout response processed by SM, gets a tracked fate. SM's gap detection plus the secondary-LLM cost gate consult the ledger to distinguish among: (a) ball was skipped on a frame we accepted (commit-side gap, fires `[GAP-DETECTED]`), (b) ball happened during a frame whose Scout response was lost/late (`TIMEOUT`/`ERROR`), (c) ball happened during a frame whose response SM/SB rejected (`REJECTED_BY_*`), (d) frame was a normal between-balls observation (`ACCEPTED_NOOP`).
-
-### 5.1 Schema
+### 4.1 Schema
 
 ```python
 @dataclass
@@ -212,9 +116,9 @@ class FrameLedgerEntry:
     resolved_at: float | None
 ```
 
-Two-dimensional fate: `scout_status` × `sm_outcome`. A frame can be `RESPONDED` + `REJECTED_WARM_CONSENSUS` (Scout came back fine; SM rejected the jump). A frame can be `TIMEOUT` + `NOT_YET_SEEN` (no response, SM never got to evaluate). All combinations are first-class.
+Two-dimensional fate: `scout_status` × `sm_outcome`. A frame can be `RESPONDED` + `REJECTED_WARM_CONSENSUS` (Scout came back fine; SM rejected the jump). A frame can be `TIMEOUT` + `NOT_YET_SEEN` (no response, SM never got to evaluate).
 
-### 5.2 Lifecycle
+### 4.2 Lifecycle
 
 | Event | Effect on entry |
 |---|---|
@@ -226,47 +130,47 @@ Two-dimensional fate: `scout_status` × `sm_outcome`. A frame can be `RESPONDED`
 | Retry budget exhausted | `scout_status=RETRY-EXHAUSTED`; emit `FRAME-ACCOUNTING-UNRESOLVED` |
 | SM commits the frame (`_accept_update` advances state) | `sm_outcome=ACCEPTED_COMMIT` |
 | SM accepts but no state advance (between-balls observation) | `sm_outcome=ACCEPTED_NOOP` |
-| SM cold-start-exit rejects (`OVERS-JUMP-IMPLAUSIBLE-REJECTED source=cold_start_exit_vs_last_warm`) | `sm_outcome=REJECTED_COLD_EXIT`; store `[GAP-AT-REJECTION]` payload (added in stage 2a) |
+| SM cold-start-exit rejects (`OVERS-JUMP-IMPLAUSIBLE-REJECTED source=cold_start_exit_vs_last_warm`) | `sm_outcome=REJECTED_COLD_EXIT`; store `[GAP-AT-REJECTION]` payload (shipped stage 2a) |
 | SM warm-consensus rejects (`source=warm_consensus`) | `sm_outcome=REJECTED_WARM_CONSENSUS`; store `[GAP-AT-REJECTION]` payload |
 | SB jump-limit rejects (`source=scoreboard_jump_limit`) | `sm_outcome=REJECTED_SB_JUMP_LIMIT`; store `[GAP-AT-REJECTION]` payload |
 | Other SM rejects (dismissed-batter, strip-row mismatch) | `sm_outcome=REJECTED_*` with specific tag |
 
 Capacity bounded; oldest entries beyond N (default ~200, ~10 min of frames) evicted with `FRAME-ACCOUNTING-EVICTED`.
 
-### 5.2.1 Stage 2a foundation
+### 4.3 Stage 2a foundation
 
-The `[GAP-AT-REJECTION]` trace tag (shipped in stage 2a) is the ledger's down-payment: it surfaces SM-level + SB-level rejections with a uniform structured payload (`delta_balls`, `proposed_overs`, `current_overs`, `proposed_score`, `current_score`, `source`) without yet building the full ledger data structure. Three emission sites: `score_manager.py` cold-start-exit (`source=cold_start_exit_vs_last_warm`), `score_manager.py` warm-consensus (`source=warm_consensus`), `eyes/scoreboard.py` jump-limit (`source=scoreboard_jump_limit`). Future stages turn these emissions into ledger entries; until then they accumulate in trace records for post-hoc analysis.
+The `[GAP-AT-REJECTION]` trace tag (shipped in stage 2a, `185bc39`) is the ledger's down-payment: surfaces SM-level + SB-level rejections with a uniform structured payload (`delta_balls`, `proposed_overs`, `current_overs`, `proposed_score`, `current_score`, `source`) without yet building the full ledger data structure. Three emission sites: `score_manager.py` cold-start-exit (`source=cold_start_exit_vs_last_warm`), `score_manager.py` warm-consensus (`source=warm_consensus`), `eyes/scoreboard.py` jump-limit (`source=scoreboard_jump_limit`). Stage 2c turns these emissions into ledger entries.
 
-### 5.3 Integration with existing retry infrastructure
+### 4.4 Integration with existing retry infrastructure
 
-Both existing retry paths fold into this queue, not the other way around:
+Both existing retry paths fold into the ledger, not the other way around:
 
-- **Track 1 — in-call retry** (commit `5e4ff8a`, single retry on Groq 429 inside `Vision.describe`, `files/eyes/vision.py:512`). Today invisible to SM. After this change, both attempts are recorded so retry rate is observable.
-- **Track 2 — `_ScoutRetryBuffer`** (`files/eyes/openscout_loop.py:74`; capacity 3, staleness 5s, max attempts 2; constants at `:60-62`; instantiated at `:262`). Becomes a *view over* the accounting queue (`status == "TIMEOUT" AND retry_count < N AND now - dispatched_at < staleness_s`), not a separate data structure. Existing tests at `files/tests/test_openscout_loop.py:346` port to queue-status assertions.
+- **Track 1 — in-call retry** (commit `5e4ff8a`, single retry on Groq 429 inside `Vision.describe`, `files/eyes/vision.py:512`). Today invisible to SM. After ledger lands, both attempts are recorded so retry rate is observable.
+- **Track 2 — `_ScoutRetryBuffer`** (`files/eyes/openscout_loop.py:74`; capacity 3, staleness 5s, max attempts 2; constants at `:60-62`; instantiated at `:262`). Recommendation: delete after ledger lands — ledger subsumes the buffer's role; one source of truth. Existing tests at `files/tests/test_openscout_loop.py:346` port to ledger-status assertions.
 
-### 5.4 SM consultation pattern
+### 4.5 Diagnostic consultation pattern
 
-When `on_frame` detects `implied_ball > expected_next_ball`, before invoking `_resolve_gap()`:
+When `[GAP-DETECTED]` fires, the ledger is consulted to attribute the gap:
 
 ```python
-gap_window = accounting.entries_between(
+gap_window = ledger.entries_between(
     expected_next_ball.legal_ball_count,
     implied_ball.legal_ball_count,
 )
-unresolved = [e for e in gap_window
-              if e.status in {"TIMEOUT", "ERROR", "CORRUPT", "RETRY-EXHAUSTED"}]
-if unresolved:
-    trace.emit("GAP-EXPLAINED-BY-SCOUT-FAILURE",
-               unresolved_count=len(unresolved),
-               statuses=[e.status for e in unresolved])
+scout_failures = [e for e in gap_window
+                  if e.scout_status in {"TIMEOUT", "ERROR",
+                                        "CORRUPT", "RETRY-EXHAUSTED"}]
+sm_rejections = [e for e in gap_window
+                 if e.sm_outcome.startswith("REJECTED_")]
+emit("GAP-EXPLAINED",
+     scout_failure_count=len(scout_failures),
+     sm_rejection_count=len(sm_rejections),
+     rejection_classes=[e.sm_outcome for e in sm_rejections])
 ```
 
-Two benefits:
+This is diagnostic-only — feeds the root-cause investigation. No resolution, no remediation at runtime.
 
-1. **Diagnosability.** Today a multi-ball gap is silent — the trace records the effect but not the cause. After this, gaps caused by Scout failures (3 consecutive timeouts around 4.2-4.4) are distinguishable from gaps caused by camera-cut compression (Scout returned cleanly but jumped 4.2 → 4.4 in one read).
-2. **Secondary-LLM cost gate.** If the gap is fully explained by Scout failures, we have no source text to feed to the LLM — skip the LLM call and route directly to the deterministic heuristic with `derivation_source = "scout-blackout"`. Saves cost and avoids hallucinated LLM output on blank input.
-
-### 5.5 Trace tags (added)
+### 4.6 Trace tags
 
 | Tag | When emitted |
 |---|---|
@@ -275,59 +179,33 @@ Two benefits:
 | `FRAME-ACCOUNTING-TIMEOUT` | On timeout, with retry_count |
 | `FRAME-ACCOUNTING-UNRESOLVED` | On retry exhaustion |
 | `FRAME-ACCOUNTING-EVICTED` | On capacity eviction |
-| `GAP-EXPLAINED-BY-SCOUT-FAILURE` | SM consultation found unresolved entries in gap window |
+| `GAP-EXPLAINED` | Diagnostic consultation result |
 
-### 5.6 Sequencing
-
-- **Not blocking for orchestrator stage 1.** Stage 1 (additive `expected_next_ball`) doesn't depend on knowing *why* a gap exists.
-- **Build alongside orchestrator stage 2 or stage 3.** Pure infrastructure with no derivation-logic dependency. Equally compatible with the 5-primitive contract's stage 2/3 (striker derivation, overs scalar guard) — the queue is upstream of both refactors.
-- **Layer 1.5 unchanged.** Surfaces data; ledger comparison is unaffected.
-- **Layer 2 needs an explicit test pattern.** Captured fixtures are by definition `RESPONDED`. A new fixture shape — `frame_id` with `status=TIMEOUT, scout_response=None` — is needed to exercise the consultation path. Add to `files/tests/fixtures/scout_blackout/`.
-
-### 5.7 Open question
-
-Should `_ScoutRetryBuffer` be deleted once this lands, or kept as the thin view described in §5.3? Recommend delete: queue subsumes it, one source of truth is easier to reason about.
-
-## 6. Integration points
+## 5. Integration points
 
 | Site | Change | File:line (today) |
 |---|---|---|
-| `ScoreManager.__init__` | add `self.expected_next_ball: ExpectedBall \| None = None` | `score_manager.py:337-465` |
-| `set_innings_2` | reset `expected_next_ball = ExpectedBall(0, 1, 0)` | `:3546` |
-| `on_frame` | insert gap-detection branch before warm-mode dispatch | `:1417, 1450, 1452` |
-| new `_resolve_gap(gap_size, frame)` method | calls secondary LLM, synthesizes balls, advances state | new |
-| new `_advance_expected(committed_event)` method | applies advance rules from §3.3 | new |
-| `_accept_update` | append `_advance_expected(...)` after the three mutations | `:3655-3659` |
-| new `secondary_llm.py` module | `class SecondaryResolver: def resolve(req) -> Response`; replay-aware via `TEST_SECONDARY_LLM_REPLAY` | new under `files/eyes/` |
-| `trace_emitter.py` | add tags: `GAP-DETECTED`, `BALL-RESOLVED-LLM`, `BALL-RESOLVED-LOW-CONFIDENCE`, `BALL-UNRESOLVED-LLM`, `BALL-UNRESOLVED-HEURISTIC`, `BALL-UNRESOLVED-LLM-INCONSISTENT` | `:54-106` |
+| `ScoreManager.__init__` | `self._expected_next_ball: ExpectedBall \| None = None` (shipped) | `score_manager.py:415` area |
+| `set_innings_2` | Auto-resets via `self.__init__()` (shipped) | `score_manager.py:3546` |
+| `_accept_update` | Calls `_track_overs_advance` after overs mutation (shipped) | `score_manager.py:3686` area |
+| `hot_resume_from_cache` | Same advance call (shipped stage 2a') | `score_manager.py:2455` area |
+| `_accept_initial` | Same advance call (shipped stage 2a') | `score_manager.py:2535` area |
+| Rejection sites (×3) | Emit `[GAP-AT-REJECTION]` (shipped stage 2a) | `score_manager.py:2376, 2863`; `eyes/scoreboard.py:1418` |
+| **Stage 2c**: new `frame_ledger.py` module | `class FrameLedger` with dispatch/response/reject hooks | new under `files/eyes/` |
+| **Stage 2c**: dispatch wrap | `Vision.describe` opens a ledger entry; response closes it | `files/eyes/vision.py:512` |
+| **Stage 2c**: SM consultation | `[GAP-DETECTED]` triggers `ledger.explain_window(...)` | `score_manager.py:_track_overs_advance` |
+| `trace_emitter.py` | Tags listed in §4.6 | `:54-106` |
 
-## 7. Mocking pattern for tests
+## 6. Harness implications
 
-Same env-gated replay as Scout:
-
-```bash
-TEST_SECONDARY_LLM_REPLAY=files/tests/fixtures/secondary_llm_<session>.jsonl
-```
-
-JSONL shape:
-
-```json
-{"frame_id": "...", "expected_ball": {...}, "response": {...}}
-```
-
-`SecondaryResolver.resolve()` keys on `frame_id + expected_ball.legal_ball_count`; falls back to live call if env var is unset and `--allow-live` flag passed. Layer 1.5 always uses replay (deterministic). Layer 2 uses replay by default; live-call mode is for capturing new fixtures only.
-
-## 8. Harness implications
-
-| Layer | Today | After refactor |
+| Layer | Today | After Stage 2c |
 |---|---|---|
-| Layer 1 (unit) | per-method tests, mostly unchanged | unchanged |
-| Layer 1.5 (derivation ledger) | ledger ↔ SM committed-state parity | + `expected_next_ball` monotonicity assertion; + per-ball `derivation_source ∈ {scout, llm, heuristic}` tagged in ledger |
-| Layer 2 (captured-replay) | Scout JSONL replay + WS assertion | + secondary-LLM JSONL replay; + ledger annotates which balls were LLM-resolved |
-| Adversarial mutators (paused) | broadcast-strip mutations, ribbon overlays | new "ambiguous Scout text" category; new "secondary LLM lies" category — most prior mutator work *becomes unnecessary* because the surface mutated against (this_over_broadcast, broadcast_striker) is being deleted |
-| New: secondary-LLM evaluation | n/a | offline corpus of "real gap → ground-truth ball" pairs, used to tune confidence threshold τ; lives at `files/tests/secondary_llm_eval/` |
+| Layer 1 (unit) | per-method tests | + `FrameLedger` unit tests |
+| Layer 1.5 (derivation ledger) | ledger ↔ SM committed-state parity | unchanged; ledger consultation is observation-only |
+| Layer 2 (captured-replay) | Scout JSONL replay + WS assertion | + ledger consistency assertion (every frame has an entry; no orphan rejections) |
+| Adversarial mutators (paused) | broadcast-strip mutations, ribbon overlays | scope shrinks — many mutator targets (`this_over_broadcast`, `broadcast_striker`) deleted by the 5-primitive contract pass; remaining mutators focus on rejection-class triggers |
 
-## 9. Scar tissue obsolescence (revised from prior audit)
+## 7. Scar tissue obsolescence (revised from prior audit)
 
 **Delete:**
 
@@ -343,51 +221,50 @@ JSONL shape:
 - P1 striker-indicator matcher (`score_manager.py:4368, 4484`)
 - `[SM-W8-DISMISSED-GUARD]` re-introduction suppression (`:3870`)
 - `broadcast_this_over`, `broadcast_striker`, `broadcast_extra` fields from Scout output (`extract_regex.py:390-392, 317, 386-388`)
+- `_ScoutRetryBuffer` (`files/eyes/openscout_loop.py:74`) — subsumed by Frame Fate Ledger
 
 **Keep:**
 
-- `_PENDING_WICKET_MAX_FRAME_LAG=40` (`:65, 5363`) — orthogonal to Scout schema; bowler-lock latency from tracker is independent of this refactor. Recent tuning commits (5638eb4, 5b25e59, 31dc8b9) stand.
+- `_PENDING_WICKET_MAX_FRAME_LAG=40` (`:65, 5363`) — orthogonal to Scout schema; bowler-lock latency from tracker is independent. Recent tuning commits (5638eb4, 5b25e59, 31dc8b9) stand.
 - `broadcast_team`, `broadcast_target`, `broadcast_venue`, `broadcast_match_info` — cold-start metadata, not frame-by-frame; out of scope.
 - `extras_type` (renamed from wholesale `broadcast_extra`) — promoted to sub-primitive per the 5-primitive contract audit; needed because wide/no-ball/bye is not derivable from deltas alone.
 
-## 10. Risks and edge cases
+## 8. Risks and edge cases
 
-1. **Secondary-LLM cost explosion.** If gap rate is higher than expected, cost grows linearly. Mitigation: rate-limit at 1 call per 3 frames; if exceeded, fall through to heuristic and tag `LLM-RATE-LIMITED`. Audit the rate weekly via trace analysis.
-2. **Innings-1 to innings-2 transition.** The first frame of innings 2 looks like a massive regression (`expected_next_ball` was 19.6, frame says 0.1). `set_innings_2()` reset must precede gap detection; the transition is gated by `broadcast_target` change + `wickets→0` + `score→0` (existing detection at `score_manager.py:3335-3486`).
-3. **Free-hit balls.** A free-hit can produce 6 runs without a legal ball counting. Sub-primitive `is_free_hit: bool` may need promotion, or the secondary LLM handles it via `extras` typing. Defer to a follow-up; not blocking.
-4. **DRS reviews and TV-umpire pauses.** Scout pauses emitting STRIP for 10-30 seconds. No new balls during pause, no gap detection fires. Resume frame has same `overs` as pause-entry; common-case acceptance.
-5. **Bowler-change-mid-over edge cases** (injury, mankad, suspended over): treat as normal; bowler-lock latency handled by the preserved `_PENDING_WICKET_MAX_FRAME_LAG` path. The 40-frame constant is tunable independently of this refactor.
-6. **Heuristic-resolved balls in commentary.** A ball with `derivation_source=heuristic` and `confidence=0` should be flagged downstream; commentary should hedge ("appears to have been a boundary"). Out of scope for this memo but coordinate with commentary team before stage 4 ships.
+1. **Innings-1 to innings-2 transition.** The first frame of innings 2 looks like a massive regression (`expected_next_ball` was 19.6, frame says 0.1). `set_innings_2()` reset must precede gap detection; existing detection at `score_manager.py:3335-3486` handles this.
+2. **Free-hit balls.** A free-hit can produce 6 runs without a legal ball counting. Sub-primitive `is_free_hit: bool` may need promotion. Not blocking for diagnostic infrastructure; relevant for the eventual root-cause fixes.
+3. **DRS reviews and TV-umpire pauses.** Scout pauses emitting STRIP for 10-30 seconds. No new balls during pause, no Δ≥2 at resume (same overs). Common-case acceptance.
+4. **Bowler-change-mid-over edge cases** (injury, mankad, suspended over): bowler-lock latency handled by the preserved `_PENDING_WICKET_MAX_FRAME_LAG` path. Tunable independently.
+5. **Rejection-source distribution varies across broadcasts (observed 2026-05-19).** DC-vs-KKR Tier 1 ~60/40 `warm_consensus` / `scoreboard_jump_limit`; GT-vs-RR 8a0c6c14 was 97/3. Dominant rejection source (`warm_consensus`) generalizes; broadcast-style variance affects only the SB hard-guard tail. Root-cause investigation should sample both broadcasts to avoid bias toward one rejection class.
+6. **Structurally unfixable Δ≥2 residual.** If after root-cause fixes a small residual remains (e.g., DRS pause-resume frames where Scout legitimately couldn't read scoreboard for 10+ seconds), flag explicitly. Until proven unfixable, treat every Δ≥2 as a bug.
 
-7. **Rejection-source distribution varies across broadcasts (observed 2026-05-19).** DC-vs-KKR Tier 1 ~60/40 `warm_consensus` / `scoreboard_jump_limit`; GT-vs-RR 8a0c6c14 was 97/3. Dominant rejection source (`warm_consensus`) generalizes; broadcast-style variance affects only the SB hard-guard tail. SecondaryResolver consumes from `warm_consensus` regardless, so this doesn't change wiring — recorded for future telemetry comparison. **Δ=0 score-only rejections** (~13% of rejection events in GT-vs-RR) are filtered as a precondition in the resolver (`SecondaryResolver.resolve` returns `UNRESOLVED source=precondition` when `delta_observed.balls < 2`), never reach the LLM call site or eval corpus.
+## 9. Phased rollout
 
-## 11. Phased rollout
-
-Each stage gated by Layer 1.5 (ledger parity) and Layer 2 (captured replay) staying green. Each stage is its own commit.
-
-| Stage | Scope | Gate |
+| Stage | Scope | Status |
 |---|---|---|
-| **1** | Add `expected_next_ball` state + `_advance_expected()` purely additive (track but don't gate). Trace `GAP-DETECTED` events from existing fixture corpus; quantify gap rate. | Layer 1.5 + Layer 2 green; new trace tag visible; **no behavior change yet** |
-| **2** | Build `SecondaryResolver` + replay infra. Hand-author replay JSONL for the gap frames found in stage 1. Wire `_resolve_gap()` but keep behind feature flag `SM_ORCHESTRATOR=0`. Build frame-accounting queue (§5) in parallel; fold Track 1 + Track 2 retry paths into it. | Unit tests for resolver mock; offline eval against hand-labeled corpus; queue test pattern with `TIMEOUT` fixture |
-| **3** | Flip `SM_ORCHESTRATOR=1` in test harness. Run full Layer 2 corpus; compare ledger parity vs the legacy pending-queue path. Tune confidence threshold τ. SM consults accounting queue (§5.4) to short-circuit LLM call on scout-blackout gaps. | Layer 2 must match or exceed legacy parity on all fixtures |
-| **4** | Production cutover. Delete pending-queue, `?` placeholder, wholesale-accept paths, MULTI_BALL infrastructure listed in §8. | Layer 2 green; staged rollout via existing pipeline feature-flag pattern (see `USE_OPEN_SCOUT` precedent in `CLAUDE.md`) |
-| **5** | Shrink Scout output to primitives only (per prior 5-primitive contract memo). Promote `extras_type` to sub-primitive. Shrink Layer 2 fixture corpus. Retire most adversarial mutators. | Layer 1.5 ledger parity must hold |
+| **1** | `expected_next_ball` state + `[GAP-DETECTED]` trace tag (additive, no behavior change) | **shipped** `a57cdbd` |
+| **2a** | `[GAP-AT-REJECTION]` tag at the three pre-`_accept_update` rejection sites | **shipped** `185bc39` |
+| **2a'** | Route hot-resume + cold-exit commits through `_track_overs_advance` (close Stage 1 instrumentation hole) | **shipped** `ca85dd9` |
+| **2b** | Secondary LLM resolution via Groq llama-3.1-8b-instant | **reverted** `5fe6768` / `97671cc` / `310bfe8` — failed eval gate (8B 33% / 70B 17% case-level vs 80% target). Root cause data-bound: Scout's `THIS OVER` null at gap frames. |
+| **2c** | Build Frame Fate Ledger (§4). Dispatch wrap in `Vision.describe`; entry per frame; SM consultation pattern; delete `_ScoutRetryBuffer` (subsumed). | next |
+| **3** | Steady-state Δ≥2 root-cause investigation: sample 20-30 events from the audit's 114, group by rejection class, propose per-class fix. | concurrent with stage 2c |
+| **4** | Implement per-class root-cause fixes. Re-run audit; goal is steady-state Δ≥2 rate at ~0. | follows stage 3 |
+| **5** | 5-primitive contract cutover. Delete pending-queue, `?` placeholder, wholesale-accept paths, MULTI_BALL infrastructure listed in §7. | follows stage 4 |
 
-## 12. Open questions for review
+## 10. Open questions for review
 
-1. **Confidence threshold τ.** Should this be a single global threshold or per-event-type (e.g., higher bar for WICKET than for DOT)? Recommend per-event; finalize in stage 3.
-2. **Secondary LLM provider.** Haiku is the obvious default but Groq's `llama-3.1-8b-instant` is faster and likely sufficient for text-only structured output. A/B in stage 2.
-3. **Free-hit support.** Phase-2 follow-up or baked into stage 4?
-4. **Commentary hedging for heuristic balls.** Coordinate before stage 4 — needs a `derivation_source` field on the WS payload and a commentary-side branch.
-5. **Live-call fallback policy.** When replay misses (new frame, no fixture), should Layer 2 fail-loud or silently fall through to live Haiku? Recommend fail-loud — forces fixture coverage discipline.
+1. **Structurally unfixable residual policy.** If a Δ≥2 class proves unfixable (e.g., DRS pauses), what's the SLA? Tag-and-accept, or fail-loud?
+2. **Ledger persistence.** Per-session in-memory only, or written alongside trace records for post-hoc analysis? Recommend in-memory + dump-on-session-end for trace correlation.
+3. **Root-cause investigation sample size.** 20-30 events is the minimum signal; more if any one class dominates. Should we also sample DC-vs-KKR rejection events (~111) since they're 3× the volume of GT-vs-RR rejection events (~38)?
 
-## 13. Out of scope
+## 11. Out of scope
 
 - Crossed-batters-on-catch detection (rare; tag `STRIKER-DERIVATION-AMBIGUOUS` and accept).
 - Retired-hurt / retired-out (low frequency; existing logic suffices).
 - Innings-2 super-over / DLS recalculation (separate subsystem).
 - Player-style commentary data flow.
+- Synchronous gap resolution (deleted — see Stage 2b revert).
 
 ---
 
-**Decision sought:** approval to proceed with stage 1 (additive `expected_next_ball` tracking + `GAP-DETECTED` trace tagging). Stages 2-5 contingent on stage 1 findings.
+**Decision sought:** approval to proceed with stage 2c (Frame Fate Ledger build) and concurrent stage 3 (root-cause investigation of the audit's 114 steady-state Δ≥2 events).
