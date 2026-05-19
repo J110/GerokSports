@@ -3295,8 +3295,10 @@ class ScoreManager:
         shadow = self.shadow
         history = self.innings_history
         reset_frame = self._current_frame
+        scoreboard_ref = self.scoreboard
         self.__init__(shadow=shadow)
         self.innings_history = history
+        self.scoreboard = scoreboard_ref
         self.innings = 2
         if target is not None:
             self.target = target
