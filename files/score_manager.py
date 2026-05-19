@@ -2305,6 +2305,44 @@ class ScoreManager:
         d_balls = self._overs_to_balls(co_v) - self._overs_to_balls(ro)
         d_wickets = cw_v - rw
 
+        # Cold-start exit-from-stale-recovery ceiling (2026-05-19).
+        # The existing validate_diff below enforces cricket-physics
+        # consistency but doesn't cap absolute jump magnitude — a
+        # 34-ball jump with +15 runs passes its rules even though
+        # at 1Hz scout cadence that's only possible from a graphic
+        # overlay misread (frame 276 of watch_20260519_121701:
+        # STRIP "(8.4)" glued from VISIBLE_TEXT "8 4.1"). Reject
+        # exits where the balls jump exceeds 15 (≈2.3 overs)
+        # combined with any meaningful score delta. Pure cold-start
+        # entry (ref is None) is exempt via the early return at the
+        # start of this method; we only reach here when there IS a
+        # prior warm state to compare against.
+        _COLD_EXIT_BALLS_CEILING = 15
+        _COLD_EXIT_SCORE_FLOOR = 6
+        if (d_balls > _COLD_EXIT_BALLS_CEILING
+                and d_score > _COLD_EXIT_SCORE_FLOOR):
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="OVERS-JUMP-IMPLAUSIBLE-REJECTED",
+                        proposed_overs=float(co_v),
+                        current_overs=float(ro),
+                        delta_balls=int(d_balls),
+                        proposed_score=int(cs_v),
+                        current_score=int(rs),
+                        delta_score=int(d_score),
+                        source="cold_start_exit_vs_last_warm")
+                except Exception:
+                    pass
+            log.info(
+                f"  [OVERS-JUMP-IMPLAUSIBLE-REJECTED] cold_start_exit "
+                f"proposed={cs_v}/{cw_v} ({co_v}) "
+                f"last_warm={rs}/{rw} ({ro}) "
+                f"d_balls={d_balls} d_score={d_score} — "
+                f"rejecting cold-exit (graphic-overlay misread class)")
+            self.last_cold_start_verdict_implausible = True
+            return False
+
         # Stale-recovery diff must be a legal cricket transition.
         # Striker / bowler deltas unavailable across a re-entry — pass
         # None and rely on team-level invariants.
@@ -2701,6 +2739,115 @@ class ScoreManager:
         d_score = c_score - _baseline_score
         d_wickets = c_wickets - _self_wickets
         d_overs = round(new_overs - old_overs, 2)
+
+        # Overs-jump implausibility guard (2026-05-19).
+        # Live broadcasts intermittently overlay graphics (sponsor
+        # banners, standings ribbons, post-over stats, tournament
+        # totals) that corrupt single STRIP fields. parse_strip then
+        # emits a structurally-valid-but-wrong overs value: e.g.
+        # frame 276 of watch_20260519_121701 had VISIBLE_TEXT
+        # "DC 43-0 8 4.1 ..." (where the "8" is a separate stat)
+        # but the STRIP regex glued "8" + "4.1" → "(8.4)". SM with
+        # no upstream guard accepted overs=8.4 as a legitimate
+        # progression from 3.2 (Δ=5.2 overs = 32 legal balls in one
+        # frame) and fabricated a multi-ball gap to fill it,
+        # corrupting downstream bowling/batting credit and the
+        # over_history archive. Bisect against the L2-Slim
+        # captured-Scout-replay harness against 16 commits back to
+        # the effective branch root all showed the ORPHAN at
+        # (43, 0, 8.4) — this is structural, not a regression.
+        #
+        # Guard: reject the frame when both dimensions of progress
+        # are simultaneously implausible AND we don't have 3-frame
+        # consensus on the new value. Cold-start exempt — legitimate
+        # cold-start exits jump from 0.0 → wherever the broadcast
+        # is showing.
+        # Threshold in LEGAL BALLS (semantic), not raw float overs:
+        # X.5 → X+1.0 looks like a 0.5 float jump but is only 1
+        # legal ball. Converting overs (O.B notation) to integer
+        # ball counts before differencing gives a meaningful delta.
+        _BALLS_JUMP_TOLERANCE = 3   # ~3 legal balls between scout frames
+        _OVERS_JUMP_CONSENSUS_FRAMES = 3
+        _SCORE_JUMP_THRESHOLD = 20
+
+        def _overs_to_balls(o: float) -> int:
+            try:
+                fo = float(o)
+            except (TypeError, ValueError):
+                return 0
+            whole = int(fo)
+            frac = int(round((fo - whole) * 10))
+            return whole * 6 + frac
+
+        _new_balls_total = _overs_to_balls(new_overs)
+        _old_balls_total = _overs_to_balls(old_overs)
+        _d_balls = _new_balls_total - _old_balls_total
+
+        # Two-dimension OR check: either an implausible ball jump
+        # OR an implausible score jump triggers the guard. The
+        # consensus accumulator handles transient false positives —
+        # legitimate progressions confirmed by 3 frames at the same
+        # value pass through. Trace evidence: frame 276 of the
+        # captured-Scout replay shows _d_balls=32 with d_score=10,
+        # so a strict AND would have missed it (d_score below 20).
+        # OR with consensus is robust to both signatures of the
+        # graphic-overlay misread class.
+        if (self.mode == "WARM"
+                and self.overs is not None
+                and (_d_balls > _BALLS_JUMP_TOLERANCE
+                     or d_score > _SCORE_JUMP_THRESHOLD)):
+            proposed = (new_overs, c_score)
+            cur_candidate = getattr(
+                self, "_overs_jump_candidate", None)
+            cur_streak = getattr(self, "_overs_jump_streak", 0)
+            if cur_candidate == proposed:
+                cur_streak += 1
+            else:
+                cur_streak = 1
+            self._overs_jump_candidate = proposed
+            self._overs_jump_streak = cur_streak
+            if cur_streak < _OVERS_JUMP_CONSENSUS_FRAMES:
+                _delta_balls = _d_balls
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="OVERS-JUMP-IMPLAUSIBLE-REJECTED",
+                            proposed_overs=float(new_overs),
+                            current_overs=float(old_overs),
+                            delta_overs=float(d_overs),
+                            delta_balls=_delta_balls,
+                            proposed_score=int(c_score),
+                            current_score=int(_self_score),
+                            delta_score=int(d_score),
+                            streak=cur_streak,
+                            consensus_required=(
+                                _OVERS_JUMP_CONSENSUS_FRAMES),
+                            source_frame_id=getattr(
+                                frame, "frame_id", None))
+                    except Exception:
+                        pass
+                log.info(
+                    f"  [OVERS-JUMP-IMPLAUSIBLE-REJECTED] "
+                    f"proposed_overs={new_overs} "
+                    f"current_overs={old_overs} "
+                    f"d_overs={d_overs} "
+                    f"delta_balls={_delta_balls} "
+                    f"proposed_score={c_score} "
+                    f"current_score={_self_score} "
+                    f"d_score={d_score} "
+                    f"streak={cur_streak}/"
+                    f"{_OVERS_JUMP_CONSENSUS_FRAMES} — "
+                    f"keeping prior state")
+                self._update_supplements(card, frame)
+                self.frames_since_event += 1
+                return None
+            self._overs_jump_candidate = None
+            self._overs_jump_streak = 0
+        elif getattr(self, "_overs_jump_candidate", None) is not None:
+            self._overs_jump_candidate = None
+            self._overs_jump_streak = 0
+
+
         if (_trace is not None
                 and _baseline_source == "prev_event"
                 and d_score != c_score - _self_score):

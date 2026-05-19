@@ -174,6 +174,13 @@ KNOWN_TAGS: set[str] = {
     # P16 (2026-05-03) — DIRECT score/overs proposal rejected on RR
     # plausibility.
     "SCORE-OVERS-RR-REJECT",
+    # 2026-05-19 — overs-jump implausibility guard at
+    # `_handle_warm` (score_manager.py). Fires when both d_overs and
+    # d_score exceed thresholds in WARM mode without 3-frame
+    # consensus. Closes the gap-token-fabrication class surfaced by
+    # the L2-Slim captured-Scout replay (frame 276
+    # "DC 43-0 8 4.1" → STRIP "(8.4)" graphic-overlay misread).
+    "OVERS-JUMP-IMPLAUSIBLE-REJECTED",
     # P20 (2026-05-03) — bowler stale latency telemetry. HARDCAP fires
     # when the 20-frame timeout clears the bowler; STUCK is the
     # advisory shoulder (>8 frames stuck, not yet hardcap).
