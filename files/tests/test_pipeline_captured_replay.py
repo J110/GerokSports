@@ -49,6 +49,7 @@ sys.path.insert(0, str(FILES_DIR / "tests"))
 from test_sm_derivation_ledger import (  # noqa: E402
     BATTING_SQUAD, BOWLING_SQUAD, BATTING_TEAM, BOWLING_TEAM,
     snapshot_state, snapshot_ws_payload, diff,
+    _apply_post_wicket_pipeline_sim,
 )
 
 DEFAULT_DUMP = (
@@ -286,6 +287,23 @@ def run_harness(
                     try:
                         sm._drain_pending_bowler_ball_credits(
                             _ledger_bowler)
+                    except Exception:
+                        pass
+                # Pipeline-level post-wicket transitions (status='out',
+                # dismissal_*, new-batter promotion) — same shim as
+                # the L1.5 harness uses. SM's _apply_wicket_fall_only
+                # records FOW + zeros the dismissed slot but does NOT
+                # mark batting_card status='out' / populate
+                # dismissal_* fields / promote the incoming batter.
+                # Those transitions live in the pipeline
+                # (test_pipeline.py:10470 + batter-replacement block
+                # ~11302+). Apply them here for the wicket ball so
+                # the harness's ledger comparison matches the
+                # production WS-payload-shaped expected state.
+                if matched_ball.get("wicket"):
+                    try:
+                        _apply_post_wicket_pipeline_sim(
+                            matched_ball, sb, sm)
                     except Exception:
                         pass
                 actual = snapshot_state(sm, sb)

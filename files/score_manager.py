@@ -4271,8 +4271,26 @@ class ScoreManager:
         departed = prev_batters - curr_batters
         arrived = curr_batters - prev_batters
 
-        dismissed = departed.pop() if len(departed) == 1 else None
-        new_batter = arrived.pop() if len(arrived) == 1 else None
+        # Slot-diff reliability gate (2026-05-19). A real post-wicket
+        # strip frame shows BOTH batters: the survivor + the new
+        # incomer. When curr_batters has fewer than 2 names, the
+        # strip is either a graphic overlay (camera_view='graphic')
+        # OR a transient camera angle focused on one player. The
+        # "departed" set in those cases is misleading — names
+        # absent from a partial view aren't dismissed, just
+        # off-screen for this frame. Trace evidence: frame 245 of
+        # watch_20260519_121701 had curr_b=('Pathum Nissanka', None)
+        # from a stats-overlay graphic — naive slot-diff resolved
+        # dismissed=KL Rahul even though Rahul was still at the
+        # crease. Defer to pending_wicket and let `_try_resolve_
+        # pending` retry on subsequent frames when both batter
+        # slots are observable.
+        if len(curr_batters) < 2:
+            dismissed = None
+            new_batter = None
+        else:
+            dismissed = departed.pop() if len(departed) == 1 else None
+            new_batter = arrived.pop() if len(arrived) == 1 else None
 
         d_bowler_w = 0
         if (card.get("bowler_wickets") is not None
@@ -4301,9 +4319,80 @@ class ScoreManager:
         }
 
         if dismissed is None:
+            # Fallback path for legitimate single-wicket case:
+            # d_wickets==1 with reliable deterministic striker.
+            # Use self.striker (the deterministic-rotation-tracked
+            # on-strike batter) as the dismissed batter. This
+            # commits the wicket at the same frame as the wickets-
+            # counter advance, so downstream consumers (FOW record,
+            # partnership reset, harness checkpoint) see consistent
+            # state immediately. The d_wickets==1 + striker-known
+            # combination is the structurally reliable signature
+            # for a real wicket: scoreboard's "max +1/frame" gate
+            # only allows single-wicket increments, and the
+            # deterministic-striker rotation has authoritative
+            # batter identity.
+            if d_wickets == 1 and self.striker:
+                dismissed = self.striker
+                event["dismissed"] = dismissed
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag=("WICKET-RESOLVED-FROM-"
+                                 "DETERMINISTIC-STRIKER"),
+                            dismissed=dismissed,
+                            d_wickets=int(d_wickets),
+                            frame_id=str(
+                                getattr(frame, "frame_id", None)))
+                    except Exception:
+                        pass
+                return event
+            # Genuinely indeterminate (d_wickets > 1 or no striker
+            # locked). Per derive-not-detect: a wicket can't commit
+            # without a deterministically-resolved dismissed name.
+            # Store as pending_wicket for `_try_resolve_pending` to
+            # retry on subsequent frames; do NOT return the event
+            # for immediate processing. The downstream
+            # `_apply_wicket_fall_only` has a P1 fallback via
+            # frame.broadcast_striker against bat1/bat2 — that
+            # path is semantically backwards: an indicator pointing
+            # at a batter means they're STILL at the crease, not
+            # that they were dismissed.
+            #
+            # Trace evidence: phantom wicket at frame 245 of
+            # watch_20260519_121701 — Scout misread wickets 0→2,
+            # scoreboard correctly deferred the +2 delta (consensus
+            # 2/3), but card.wickets=2 still drove _infer_wicket here.
+            # Slot-diff returned dismissed=None (batter slots
+            # unchanged), event was returned anyway, P1 fallback
+            # matched broadcast_striker='PATHUM' against bat1='Pathum
+            # Nissanka' → falsely recorded Pathum as dismissed at
+            # score=38/overs=3.5. FOW immutability guard then blocked
+            # the REAL wicket at frame 361 (KL Rahul caught Green
+            # bowled Tyagi at 49/5.0) from rewriting that slot.
+            #
+            # Structural parallel to F381's wicket-attribution-
+            # requires-bowler pattern (this commit's wicket-commit-
+            # requires-dismissed-identity). 10-frame pending window
+            # calibrated against the same broadcast cadence that
+            # justified the 5b25e59 bowler-credit threshold tune.
             event["needs_resolution"] = True
             self.pending_wicket = event
             self.pending_wicket_frames = 0
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="WICKET-DEFERRED-NO-DISMISSED-IDENTITY",
+                        d_score=int(d_score),
+                        d_wickets=int(d_wickets),
+                        d_overs=float(d_overs),
+                        prev_batters=sorted(prev_batters),
+                        curr_batters=sorted(curr_batters),
+                        frame_id=str(
+                            getattr(frame, "frame_id", None)))
+                except Exception:
+                    pass
+            return None
 
         return event
 
@@ -4341,31 +4430,41 @@ class ScoreManager:
         mechanics from :meth:`_apply_event`.
         """
         # --- Fall of Wicket ---
-        if frame.broadcast_striker:
-            ind = frame.broadcast_striker.strip().lower()
-        else:
-            ind = ""
-        best_dismissed = None
-        _resolution_src = None
-        if ind:
-            for nm in (self.bat1_name, self.bat2_name):
-                if nm and ind in nm.lower():
-                    best_dismissed = nm
-                    _resolution_src = (
-                        f"P1:frame.broadcast_striker"
-                        f"={frame.broadcast_striker!r}")
-                    break
-        if not best_dismissed:
-            _explicit = event.get("dismissed")
-            if _explicit:
-                best_dismissed = _explicit
-                _resolution_src = "P2:event.dismissed (scoreboard)"
+        # Resolution priority (2026-05-19 — derive-not-detect):
+        #   P2: event.dismissed (authoritative, set by `_infer_wicket`
+        #       via card slot-diff OR the deterministic-striker
+        #       fallback for d_wickets==1 cases).
+        #   P3: SM.self.striker (deterministic-rotation last resort).
+        #
+        # P1 (frame.broadcast_striker matched against bat1/bat2) was
+        # REMOVED 2026-05-19. The semantic was backwards: a
+        # broadcast indicator points at a batter who is CURRENTLY at
+        # the crease — meaning they're STILL batting, not that they
+        # were dismissed. P1's bat1/bat2 match-against-current-pair
+        # logic confused presence with departure.
+        #
+        # Trace evidence (frame 245 of watch_20260519_121701, after
+        # _infer_wicket's slot-diff gate blocked the phantom): P1
+        # still fired here on a phantom wicket attempt and matched
+        # broadcast_striker='PATHUM' against bat1='Pathum Nissanka',
+        # overriding the (correct) None / deferred outcome.
+        # Trace evidence (frame 361 real wicket, with this commit's
+        # _infer_wicket deterministic-striker fallback): event came
+        # in with dismissed='KL Rahul' (the actual on-strike dismissed
+        # batter), but P1 then matched broadcast_striker='PATHUM'
+        # against bat1='Pathum Nissanka' and overrode to dismissed=
+        # 'Pathum Nissanka' — wrong batter zeroed, wrong partnership
+        # reset shape.
+        best_dismissed = event.get("dismissed")
+        _resolution_src = (
+            "P2:event.dismissed (slot_diff or deterministic_striker)"
+            if best_dismissed else None)
         if not best_dismissed:
             best_dismissed = (event.get("striker")
                               or self.striker
                               or "unknown")
             _resolution_src = (
-                "P3:SM.self.striker (inferred — last resort)")
+                "P3:SM.self.striker (deterministic-rotation fallback)")
         event["dismissed"] = best_dismissed
         log.info(
             f"[SM] WICKET dismissed={best_dismissed} "
@@ -5421,14 +5520,81 @@ class ScoreManager:
                                     card.get("bat2_name")] if n}
                 prev_names = {n for n in [self.bat1_name, self.bat2_name] if n}
                 departed = prev_names - curr
+                # Same slot-diff reliability gate as `_infer_wicket`
+                # (2026-05-19): require BOTH curr batter slots
+                # filled before trusting departure inference. A
+                # one-batter-visible frame is typically a graphic
+                # overlay or transient camera angle, not a real
+                # post-wicket strip.
+                if len(curr) < 2:
+                    departed = set()
                 if departed:
-                    self.pending_wicket["dismissed"] = departed.pop()
+                    _resolved_dismissed = departed.pop()
+                    self.pending_wicket["dismissed"] = _resolved_dismissed
                     self.pending_wicket["needs_resolution"] = False
                     resolved_event = self.pending_wicket
+                    if _trace is not None:
+                        try:
+                            _trace.get_recorder().record(
+                                tag="WICKET-RESOLVED-FROM-PENDING",
+                                dismissed=_resolved_dismissed,
+                                pending_frames=int(
+                                    self.pending_wicket_frames),
+                                frame_id=str(
+                                    getattr(frame, "frame_id", None)))
+                        except Exception:
+                            pass
+                    # Commit the resolved wicket. Two commits needed:
+                    # (1) _accumulate_stats_from_event handles the
+                    #     stat-side updates — striker +1 ball faced,
+                    #     bowler +1 ball + bowler-credited wicket
+                    #     (line 4719+ WICKET branch).
+                    # (2) _apply_wicket_fall_only handles the FOW
+                    #     record + slot zeroing.
+                    # The wickets COUNTER (self.wickets) was already
+                    # mirrored from card.wickets via _accept_update
+                    # at the original frame, so we don't double-
+                    # increment. Without these commits, the
+                    # resolved_event is returned to the caller but
+                    # the on_frame path (line ~1430) only invokes
+                    # `_build_payload` — never `_apply_event` — so
+                    # the stat deltas + FOW + dismissed batter
+                    # status all stay uncommitted.
+                    try:
+                        self._accumulate_stats_from_event(
+                            resolved_event)
+                    except Exception:
+                        pass
+                    try:
+                        self._apply_wicket_fall_only(
+                            resolved_event, frame)
+                    except Exception:
+                        pass
                     self.pending_wicket = None
                 else:
                     self.pending_wicket_frames += 1
-                    if self.pending_wicket_frames >= 3:
+                    # 10-frame window — symmetric with the F381
+                    # wicket-attribution lag (`_PENDING_WICKET_MAX_
+                    # FRAME_LAG=10`) and calibrated against the same
+                    # broadcast cadence that justified 5b25e59's
+                    # bowler-credit threshold tune. Observed real
+                    # wicket at 4.6 needed ~6 frames (frame 361 →
+                    # 367) for dismissal text to appear cleanly in
+                    # Scout; 10 frames covers that with margin.
+                    if self.pending_wicket_frames >= 10:
+                        if _trace is not None:
+                            try:
+                                _trace.get_recorder().record(
+                                    tag="WICKET-PENDING-ABANDONED",
+                                    pending_frames=int(
+                                        self.pending_wicket_frames),
+                                    pending_event=dict(
+                                        self.pending_wicket),
+                                    frame_id=str(
+                                        getattr(
+                                            frame, "frame_id", None)))
+                            except Exception:
+                                pass
                         self.pending_wicket = None
 
         return resolved_event

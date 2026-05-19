@@ -198,6 +198,19 @@ KNOWN_TAGS: set[str] = {
     "PENDING-BOWLER-BALL-CREDIT-QUEUED",
     "PENDING-BOWLER-BALL-CREDIT-BACKFILLED",
     "PENDING-BOWLER-BALL-CREDIT-ORPHANED",
+    # 2026-05-19 — wicket-commit-requires-dismissed-identity guard
+    # in `_infer_wicket`. Structural parallel to F381's wicket-
+    # attribution-requires-bowler. WICKET event no longer commits
+    # when slot-diff can't deterministically identify the dismissed
+    # batter (e.g. Scout-misread wickets jump with unchanged batter
+    # slots). Stored as pending_wicket; `_try_resolve_pending`
+    # retries each frame within a 10-frame window. Closes the
+    # phantom wicket at frame 245 of watch_20260519_121701 that
+    # contaminated FOW[0] and blocked the real wicket at frame 361.
+    "WICKET-DEFERRED-NO-DISMISSED-IDENTITY",
+    "WICKET-RESOLVED-FROM-PENDING",
+    "WICKET-PENDING-ABANDONED",
+    "WICKET-RESOLVED-FROM-DETERMINISTIC-STRIKER",
     # P20 (2026-05-03) — bowler stale latency telemetry. HARDCAP fires
     # when the 20-frame timeout clears the bowler; STUCK is the
     # advisory shoulder (>8 frames stuck, not yet hardcap).
