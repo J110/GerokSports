@@ -52,6 +52,7 @@ _BOWLER_CREDITED_DISMISSALS = frozenset({
     "bowler_wicket",
 })
 _PENDING_WICKET_MAX_FRAME_LAG = 10
+_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 10
 
 
 def _is_bowler_credited_dismissal(dtype) -> bool:
@@ -4624,6 +4625,11 @@ class ScoreManager:
         # past-window entries are orphaned.
         if bowler_name and getattr(self, "_pending_bowler_wickets", None):
             self._drain_pending_bowler_wickets(bowler_name)
+        # Symmetric: drain pending runs/balls backfill entries when a
+        # bowler resolves. Mirrors the F381 wicket-drain semantics.
+        if (bowler_name
+                and getattr(self, "_pending_bowler_ball_credits", None)):
+            self._drain_pending_bowler_ball_credits(bowler_name)
 
         # A1 part 2: MULTI_BALL decomposition.  The synth event from
         # cold-start / broadcast-cutaway carries N balls + M runs in a
@@ -4831,6 +4837,24 @@ class ScoreManager:
             self._emit_credit_skipped(
                 "NO-BOWLER" if not bowler_name else "BOWLER-GATE-REJECTED",
                 event, striker_name=striker_name, bowler_name=bowler_name)
+            # Symmetric runs/balls backfill — analog to F381 wicket
+            # backfill above. When bowler_name is None at commit
+            # time (typical at over-handoff before Scout sees the
+            # new bowler in a clean strip read), enqueue the
+            # runs/balls credit for retroactive backfill. Drained
+            # by `_drain_pending_bowler_ball_credits` either inline
+            # on the next ball commit with a known bowler, or via
+            # the on_lock tracker callback at test_pipeline.py:
+            # 7198-7206. Without this, the bowler-card credit for
+            # every first-ball-after-handoff is silently lost.
+            if (not bowler_name and legal):
+                self._queue_pending_bowler_ball_credit(
+                    runs_delta=runs_total,
+                    wickets_delta=0,
+                    event_overs=(
+                        str(self.overs)
+                        if self.overs is not None else None),
+                    frame_id=self._current_frame)
             if (legal and self.last_speed is not None
                     and self.last_speed_at_over != self.overs):
                 self.last_speed = None
@@ -5245,6 +5269,91 @@ class ScoreManager:
                     except Exception:
                         pass
             self._pending_bowler_wickets.remove(e)
+
+    # Symmetric runs/balls backfill queue (2026-05-19).
+    # Structural analog to the F381 wicket-backfill pair above. When
+    # `_accumulate_stats_from_event` skips a non-wicket bowler credit
+    # because `bowler_name` is None (typical at over-handoff before
+    # the new bowler appears in Scout reads), enqueue the runs/balls
+    # delta here. When the bowler tracker LOCKs (`on_lock` callback
+    # at test_pipeline.py:7198-7206 fires
+    # `_drain_pending_bowler_ball_credits`) OR when the next ball
+    # commit observes a fresh bowler (inline drain inside
+    # `_accumulate_stats_from_event`), retroactively credit. Out-of-
+    # window entries (>_PENDING_BOWLER_BALL_CREDIT_MAX_LAG frames)
+    # are dropped with a PENDING-BOWLER-BALL-CREDIT-ORPHANED trace.
+    #
+    # Surfaced by L2-Slim captured-Scout replay frame 205 of
+    # watch_20260519_121701: Sunil Narine's first ball of over 4
+    # (the 3.1 ball event) committed with bowler_name=None
+    # (parse_strip's bowler=None at that frame, Scout's strip had
+    # only batter rows). The existing path silently emitted
+    # CREDIT-SKIPPED-WITH-REASON: NO-BOWLER and walked away —
+    # Narine's first-ball credit was permanently lost, leaving him
+    # with 5 balls at over-end instead of 6.
+    def _queue_pending_bowler_ball_credit(
+            self, *,
+            runs_delta: int, wickets_delta: int,
+            event_overs: str | None, frame_id: int) -> None:
+        if not hasattr(self, "_pending_bowler_ball_credits"):
+            self._pending_bowler_ball_credits = []
+        entry = {
+            "frame_id": int(frame_id or 0),
+            "runs_delta": int(runs_delta),
+            "balls_delta": 1,
+            "wickets_delta": int(wickets_delta),
+            "event_overs": event_overs,
+        }
+        self._pending_bowler_ball_credits.append(entry)
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="PENDING-BOWLER-BALL-CREDIT-QUEUED",
+                    **entry)
+            except Exception:
+                pass
+
+    def _drain_pending_bowler_ball_credits(
+            self, bowler_name: str) -> None:
+        if not getattr(self, "_pending_bowler_ball_credits", None):
+            return
+        cur_frame = int(self._current_frame or 0)
+        for e in list(self._pending_bowler_ball_credits):
+            lag = cur_frame - int(e.get("frame_id") or 0)
+            if lag <= _PENDING_BOWLER_BALL_CREDIT_MAX_LAG:
+                if self.scoreboard is not None:
+                    self.scoreboard.update_bowler(
+                        bowler_name,
+                        runs_delta=e["runs_delta"],
+                        balls_delta=e["balls_delta"],
+                        wickets_delta=e["wickets_delta"],
+                        frame=cur_frame)
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="PENDING-BOWLER-BALL-CREDIT-BACKFILLED",
+                            bowler=bowler_name,
+                            runs_delta=e["runs_delta"],
+                            balls_delta=e["balls_delta"],
+                            wickets_delta=e["wickets_delta"],
+                            event_overs=e.get("event_overs"),
+                            frame_lag=lag,
+                            frame_id=str(cur_frame))
+                    except Exception:
+                        pass
+            else:
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="PENDING-BOWLER-BALL-CREDIT-ORPHANED",
+                            original_frame_id=str(e.get("frame_id")),
+                            runs_delta=e["runs_delta"],
+                            balls_delta=e["balls_delta"],
+                            event_overs=e.get("event_overs"),
+                            original_lag=lag)
+                    except Exception:
+                        pass
+            self._pending_bowler_ball_credits.remove(e)
 
     # ------------------------------------------------------------------
     # Resolve pending ambiguities

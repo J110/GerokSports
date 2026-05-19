@@ -189,6 +189,15 @@ KNOWN_TAGS: set[str] = {
     # parity with 98a53cc's playing-teams guard on the
     # batting_team_changed branch.
     "INN2-SCORE-RESET-TEAM-CHANGE-REQUIRED-REJECTED",
+    # 2026-05-19 — symmetric runs/balls bowler-credit backfill queue
+    # in score_manager.py. Structural analog to the F381 wicket
+    # backfill pair (WICKET-PENDING-BOWLER-ATTRIBUTION /
+    # WICKET-BACKFILLED-TO-BOWLER / WICKET-ATTRIBUTION-ORPHANED).
+    # Surfaced by L2-Slim frame 205: ball 3.1 committed with
+    # bowler=None, runs+balls credit silently dropped pre-fix.
+    "PENDING-BOWLER-BALL-CREDIT-QUEUED",
+    "PENDING-BOWLER-BALL-CREDIT-BACKFILLED",
+    "PENDING-BOWLER-BALL-CREDIT-ORPHANED",
     # P20 (2026-05-03) — bowler stale latency telemetry. HARDCAP fires
     # when the 20-frame timeout clears the bowler; STUCK is the
     # advisory shoulder (>8 frames stuck, not yet hardcap).

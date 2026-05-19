@@ -7192,6 +7192,15 @@ async def run_test():
         try:
             score_mgr._resweep_pending_attribution(_name, "bowler")
             score_mgr._drain_pending_queue("bowler_lock")
+            # Symmetric to F381's wicket backfill drain pattern —
+            # also drain runs/balls credits that were queued at
+            # over-handoff when the new bowler wasn't yet visible
+            # in Scout reads. Same redundancy as F381: the inline
+            # drain in _accumulate_stats_from_event handles the
+            # case where a ball commits with the bowler now known,
+            # this on_lock drain handles the case where the
+            # tracker locks before any intervening ball commit.
+            score_mgr._drain_pending_bowler_ball_credits(_name)
         except Exception:
             pass
 
