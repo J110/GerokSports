@@ -257,6 +257,29 @@ class PendingBall:
     slot_idx: Optional[int] = None
 
 
+@dataclass
+class ExpectedBall:
+    over: int = 0
+    ball: int = 1
+    legal_ball_count: int = 0
+
+
+def _legal_balls_from_overs(overs):
+    if overs is None:
+        return None
+    try:
+        f = float(overs)
+    except (TypeError, ValueError):
+        return None
+    if f < 0:
+        return None
+    whole = int(f)
+    frac = round((f - whole) * 10)
+    if frac < 0 or frac > 9:
+        return None
+    return whole * 6 + frac
+
+
 # ---------------------------------------------------------------------------
 # ScoreManager
 # ---------------------------------------------------------------------------
@@ -413,6 +436,9 @@ class ScoreManager:
         # Accepted UI state (score / wickets / run_rate / target /
         # batting_team → Path B properties; see class body below.)
         self.overs: float | None = None
+        # Stage 1 (additive, see sm_as_orchestrator_design.md §3): tracked,
+        # not gated. None until first overs commit establishes baseline.
+        self._expected_next_ball: ExpectedBall | None = None
 
         self.bat1_name: str | None = None
         self.bat2_name: str | None = None
@@ -3656,7 +3682,10 @@ class ScoreManager:
         if card.get("wickets") is not None:
             self.wickets = card["wickets"]
         if card.get("overs") is not None:
+            _prior_overs_for_gap = self.overs
             self.overs = card["overs"]
+            self._track_overs_advance(
+                _prior_overs_for_gap, self.overs, frame)
 
         self._update_batters(card)
 
@@ -3678,6 +3707,30 @@ class ScoreManager:
             self.set_innings_2(target=card["broadcast_target"],
                                batting_team=self.batting_team,
                                reason="_update_misc.target_arrival")
+
+    def _track_overs_advance(self, prev_overs, new_overs, frame) -> None:
+        new_legal = _legal_balls_from_overs(new_overs)
+        if new_legal is None:
+            return
+        prev_legal = _legal_balls_from_overs(prev_overs)
+        if self._expected_next_ball is None or prev_legal is None:
+            self._expected_next_ball = ExpectedBall(
+                over=new_legal // 6,
+                ball=(new_legal % 6) + 1,
+                legal_ball_count=new_legal,
+            )
+            return
+        delta = new_legal - prev_legal
+        if delta >= 2:
+            log.info(
+                f"[GAP-DETECTED] Δballs={delta} "
+                f"prev_legal={prev_legal} new_legal={new_legal} "
+                f"prev_overs={prev_overs} new_overs={new_overs} "
+                f"frame={frame} innings={self.innings}")
+        if delta != 0:
+            self._expected_next_ball.legal_ball_count = new_legal
+            self._expected_next_ball.over = new_legal // 6
+            self._expected_next_ball.ball = (new_legal % 6) + 1
 
     def _update_batters(self, card: dict) -> None:
         card_b1 = card.get("bat1_name")
