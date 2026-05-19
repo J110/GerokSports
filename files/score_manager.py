@@ -51,7 +51,18 @@ _BOWLER_CREDITED_DISMISSALS = frozenset({
     "caught-and-bowled", "caught_and_bowled",
     "bowler_wicket",
 })
-_PENDING_WICKET_MAX_FRAME_LAG = 10
+# F381 wicket-attribution lag — raised 2026-05-19 from 10 to 40 in
+# symmetry with `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG` below. Same
+# broadcast-cadence justification: at ~1Hz scout cadence the
+# between-overs window where bowler attribution lags (camera on
+# walking-back bowler, sponsor banners, standings ribbons) commonly
+# exceeds 10 frames. The Tyagi handoff at the over-3-to-4 boundary
+# in watch_20260519_121701 showed 31 frames of "bowler invisible";
+# wicket attribution shares the same broadcast-coverage window, so
+# the 10-frame threshold here was structurally guaranteed to orphan
+# F381-class wickets too. 40 frames at 1Hz covers ≈6-7 balls of
+# broadcast outage with margin.
+_PENDING_WICKET_MAX_FRAME_LAG = 40
 # Empirically tuned from L2-Slim captured-Scout replay (2026-05-19):
 # Tyagi handoff at the over-3-to-4 boundary saw 31 frames of "bowler
 # invisible to Scout" before SM resolved the new bowler — frames
