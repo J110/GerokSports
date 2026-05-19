@@ -2457,7 +2457,10 @@ class ScoreManager:
         """
         self.score = cached.get("score")
         self.wickets = cached.get("wickets")
+        _prior_overs_for_gap = self.overs
         self.overs = cached.get("overs")
+        self._track_overs_advance(
+            _prior_overs_for_gap, self.overs, frame)
         # A1 prerequisite (2026-05-14): seed _event_baseline_score so the
         # first post-resume event has a non-stale anchor (parity with
         # _accept_initial seed and the caedd4c innings-2 reset).  Without
@@ -2535,9 +2538,13 @@ class ScoreManager:
 
         is_reentry = self.score is not None
 
+        _prior_overs_for_gap = self.overs
         self.score = card.get("score")
         self.wickets = card.get("wickets")
         self.overs = card.get("overs")
+        self._track_overs_advance(
+            _prior_overs_for_gap, self.overs,
+            getattr(frame, "frame_id", 0))
         # A1 prerequisite (2026-05-14): seed _event_baseline_score at
         # COLD_START → WARM exit.  Trace evidence (F27 in DC-vs-KKR
         # 2026-05-14 16:48 watch) showed the very first WARM event after
