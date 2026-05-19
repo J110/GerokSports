@@ -3169,8 +3169,32 @@ class ScoreManager:
         # Batting team changed — require N-frame consensus to prevent
         # single-frame pre-match-graphic flips from triggering spurious
         # inn-2 transitions (D7 fix).
+        #
+        # Playing-teams sanity check (2026-05-19): only accept a
+        # team-change signal if the proposed new team is one of the
+        # two teams actually playing this match. Scout VLM can
+        # hallucinate any 3-letter token as a team code (e.g. "LSG"
+        # picked up from on-screen standings/sponsor in a DC vs KKR
+        # broadcast), and the scoreboard's own team-lock already
+        # rejects such writes — but this path read broadcast_team
+        # directly, bypassing that rejection. Without the guard, three
+        # consecutive misreads of any wrong team committed a spurious
+        # team-change that triggered _reset_for_innings_2, which in
+        # turn caused the NO-SCOREBOARD credit-skip cascade fixed at
+        # 6881476 AND the SM-mode-revert latency that motivated the
+        # reverted 48798b2 WS-gate workaround. Root cause closed here.
+        _playing_teams: set[str] = set()
+        if self.scoreboard is not None:
+            _bt = getattr(self.scoreboard, "batting_team", None)
+            _bowl = getattr(self.scoreboard, "bowling_team", None)
+            if _bt:
+                _playing_teams.add(_bt.upper())
+            if _bowl:
+                _playing_teams.add(_bowl.upper())
         if (frame.broadcast_team and self.batting_team
-                and frame.broadcast_team.upper() != self.batting_team.upper()):
+                and frame.broadcast_team.upper() != self.batting_team.upper()
+                and (len(_playing_teams) < 2
+                     or frame.broadcast_team.upper() in _playing_teams)):
             if frame.broadcast_team.upper() == (
                     self._team_change_candidate or "").upper():
                 self._team_change_streak += 1
