@@ -1,0 +1,61 @@
+#!/bin/sh
+# SM derivation ledger harness — pre-commit gate.
+#
+# Every commit on derive-not-detect must pass:
+#   Layer 1.5: files/tests/test_sm_derivation_ledger.py (36-ball
+#     ledger, hand-derived FrameInputs, fast SM-derivation check)
+#   Layer 2:   files/tests/test_pipeline_captured_replay.py (29-ball
+#     ledger-matched commits, real captured Scout dump driving
+#     SM + scoreboard end-to-end)
+#
+# If either harness fails, block the commit.
+# Bypass (rare, justified): git commit --no-verify
+#
+# Install (one-time per checkout):
+#   git config core.hooksPath .githooks
+# OR
+#   ln -s ../../.githooks/pre-commit .git/hooks/pre-commit
+
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+HARNESS_L15="$REPO_ROOT/files/tests/test_sm_derivation_ledger.py"
+HARNESS_L2="$REPO_ROOT/files/tests/test_pipeline_captured_replay.py"
+
+if [ ! -f "$HARNESS_L15" ]; then
+    echo "pre-commit: Layer 1.5 harness not found — skipping all gates"
+    exit 0
+fi
+
+cd "$REPO_ROOT"
+
+if python3 "$HARNESS_L15" > /tmp/harness_l15_pre_commit.log 2>&1; then
+    echo "pre-commit: Layer 1.5 PASS (36/36)"
+else
+    echo "pre-commit: Layer 1.5 FAILED — commit blocked"
+    echo "--- last 30 lines of Layer 1.5 output ---"
+    tail -30 /tmp/harness_l15_pre_commit.log
+    echo "---"
+    echo "Full log: /tmp/harness_l15_pre_commit.log"
+    echo "Bypass (use sparingly): git commit --no-verify"
+    exit 1
+fi
+
+if [ ! -f "$HARNESS_L2" ]; then
+    echo "pre-commit: Layer 2 harness not found — skipping L2 gate"
+    exit 0
+fi
+
+if python3 "$HARNESS_L2" > /tmp/harness_l2_pre_commit.log 2>&1; then
+    L2_PASS=$(grep -c "^PASS " /tmp/harness_l2_pre_commit.log || echo "?")
+    echo "pre-commit: Layer 2 PASS ($L2_PASS balls)"
+    exit 0
+else
+    echo "pre-commit: Layer 2 FAILED — commit blocked"
+    echo "--- last 30 lines of Layer 2 output ---"
+    tail -30 /tmp/harness_l2_pre_commit.log
+    echo "---"
+    echo "Full log: /tmp/harness_l2_pre_commit.log"
+    echo "Bypass (use sparingly): git commit --no-verify"
+    exit 1
+fi
