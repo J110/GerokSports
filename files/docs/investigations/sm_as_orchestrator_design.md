@@ -353,6 +353,8 @@ JSONL shape:
 5. **Bowler-change-mid-over edge cases** (injury, mankad, suspended over): treat as normal; bowler-lock latency handled by the preserved `_PENDING_WICKET_MAX_FRAME_LAG` path. The 40-frame constant is tunable independently of this refactor.
 6. **Heuristic-resolved balls in commentary.** A ball with `derivation_source=heuristic` and `confidence=0` should be flagged downstream; commentary should hedge ("appears to have been a boundary"). Out of scope for this memo but coordinate with commentary team before stage 4 ships.
 
+7. **Rejection-source distribution varies across broadcasts (observed 2026-05-19).** DC-vs-KKR Tier 1 ~60/40 `warm_consensus` / `scoreboard_jump_limit`; GT-vs-RR 8a0c6c14 was 97/3. Dominant rejection source (`warm_consensus`) generalizes; broadcast-style variance affects only the SB hard-guard tail. SecondaryResolver consumes from `warm_consensus` regardless, so this doesn't change wiring — recorded for future telemetry comparison. **Δ=0 score-only rejections** (~13% of rejection events in GT-vs-RR) are filtered as a precondition in the resolver (`SecondaryResolver.resolve` returns `UNRESOLVED source=precondition` when `delta_observed.balls < 2`), never reach the LLM call site or eval corpus.
+
 ## 11. Phased rollout
 
 Each stage gated by Layer 1.5 (ledger parity) and Layer 2 (captured replay) staying green. Each stage is its own commit.

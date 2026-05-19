@@ -31,6 +31,22 @@ try:
     import trace_emitter as _trace
 except ImportError:
     _trace = None
+try:
+    from eyes.secondary_resolver import (
+        get_resolver as _get_secondary_resolver,
+        SecondaryResolveRequest as _SecondaryResolveRequest,
+        ExpectedBallContext as _ExpectedBallContext,
+        ScoutContext as _ScoutContext,
+        MatchState as _MatchState,
+        DeltaObserved as _DeltaObserved,
+    )
+except ImportError:
+    _get_secondary_resolver = None
+    _SecondaryResolveRequest = None
+    _ExpectedBallContext = None
+    _ScoutContext = None
+    _MatchState = None
+    _DeltaObserved = None
 
 log = CricketLogger("SCORE_MGR")
 
@@ -3748,10 +3764,52 @@ class ScoreManager:
                 f"prev_legal={prev_legal} new_legal={new_legal} "
                 f"prev_overs={prev_overs} new_overs={new_overs} "
                 f"frame={frame} innings={self.innings}")
+            self._maybe_invoke_resolver(
+                prev_overs, new_overs, prev_legal, frame, delta)
         if delta != 0:
             self._expected_next_ball.legal_ball_count = new_legal
             self._expected_next_ball.over = new_legal // 6
             self._expected_next_ball.ball = (new_legal % 6) + 1
+
+    def _maybe_invoke_resolver(
+        self, prev_overs, new_overs, prev_legal, frame, delta,
+    ) -> None:
+        if os.environ.get("SM_ORCHESTRATOR_RESOLVER", "0") != "1":
+            return
+        if _get_secondary_resolver is None:
+            return
+        try:
+            resolver = _get_secondary_resolver()
+            first_missing = prev_legal + 1
+            req = _SecondaryResolveRequest(
+                frame_id=int(frame) if frame is not None else 0,
+                expected_ball=_ExpectedBallContext(
+                    over=first_missing // 6,
+                    ball=(first_missing % 6) + 1,
+                    legal_ball_count=first_missing,
+                ),
+                scout_context=_ScoutContext(),
+                match_state=_MatchState(
+                    innings=self.innings,
+                    overs_before=prev_overs,
+                    overs_after=new_overs,
+                    score_after=self.score,
+                    wickets_after=self.wickets,
+                    striker=self.striker,
+                    non_striker=self.non,
+                    bowler=self.bowler_name,
+                ),
+                delta_observed=_DeltaObserved(balls=int(delta)),
+            )
+            resp = resolver.resolve(req)
+            log.info(
+                f"[GAP-RESOLVER-CALLED] frame={frame} "
+                f"Δballs={delta} event={resp.event_type} "
+                f"confidence={resp.confidence:.2f} "
+                f"source={resp.source}")
+        except Exception as e:
+            log.warn(
+                f"[GAP-RESOLVER-ERROR] {type(e).__name__}: {e}")
 
     def _update_batters(self, card: dict) -> None:
         card_b1 = card.get("bat1_name")
