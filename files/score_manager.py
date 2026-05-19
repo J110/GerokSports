@@ -52,7 +52,18 @@ _BOWLER_CREDITED_DISMISSALS = frozenset({
     "bowler_wicket",
 })
 _PENDING_WICKET_MAX_FRAME_LAG = 10
-_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 10
+# Empirically tuned from L2-Slim captured-Scout replay (2026-05-19):
+# Tyagi handoff at the over-3-to-4 boundary saw 31 frames of "bowler
+# invisible to Scout" before SM resolved the new bowler — frames
+# 288/290/303 queued, frame 319 first BOWL-DELTA Kartik Tyagi.
+# 40 frames at ~1Hz scout cadence covers ≈6-7 balls of broadcast
+# outage with margin, beyond which the attribution is genuinely
+# indeterminate (orphan-class behavior is correct). Same structural
+# argument as the original B1.3 force-flush deadline — observable
+# lag drives the constant. F381's _PENDING_WICKET_MAX_FRAME_LAG
+# above is a parallel target for tuning; deferred until L2 hits
+# all green.
+_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40
 
 
 def _is_bowler_credited_dismissal(dtype) -> bool:
