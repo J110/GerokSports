@@ -610,6 +610,39 @@ class ScoreManager:
             )
         return updated
 
+    def _rewrite_eyes_this_over_from_event(
+            self, card: dict, token: str) -> None:
+        """Fix A: SM-authoritative rewrite of eyes-side ``over_mgr.this_over``.
+
+        Broadcast wholesale-accept and other non-queue-routed paths emit
+        ``?`` placeholders into ``over_mgr.this_over`` that bypass the SM
+        pending queue, so the queue-drain rewrite at ``_drain_pending_queue``
+        never fires for them. SM is the authoritative source on every
+        ball commit — propagate the resolved token to eyes immediately,
+        closing the orphan-``?`` class observed in
+        ``logs/trace/watch_20260519_082523.jsonl`` frames 4-45 (over 0).
+
+        Slot derives from ``card["overs"]``: ``N.M`` → slot ``M-1``,
+        with ``M=0`` (over-end frame) mapping to slot 5 (the
+        just-completed 6th ball of the previous over).
+        Out-of-range slots are silently no-ops in
+        ``ThisOverManager.rewrite_token``.
+        """
+        over_mgr = getattr(self, "over_mgr", None)
+        rewrite = getattr(over_mgr, "rewrite_token", None)
+        if rewrite is None:
+            return
+        try:
+            _ov_f = float(card.get("overs") or self.overs or 0)
+        except (TypeError, ValueError):
+            return
+        _legal = round((_ov_f % 1) * 10)
+        slot_idx = 5 if _legal == 0 else _legal - 1
+        try:
+            rewrite(slot_idx, token)
+        except Exception:
+            pass
+
     def _drain_pending_queue(self, reason: str) -> int:
         """FIFO-drain entries with both bowler+striker known.
 
@@ -4593,6 +4626,8 @@ class ScoreManager:
             # arrives on the next frame's event.
             self.this_over.append(event.get("this_over_token", "?"))
             self.this_over_src.append("obs")
+            self._rewrite_eyes_this_over_from_event(
+                card, event.get("this_over_token", "?"))
             self.completed_over = list(self.this_over)
             self.completed_over_runs = sum(
                 int(t) for t in self.this_over if t.isdigit())
@@ -4684,6 +4719,8 @@ class ScoreManager:
                     pass
             self.this_over.append(event.get("this_over_token", "?"))
             self.this_over_src.append("obs")
+            self._rewrite_eyes_this_over_from_event(
+                card, event.get("this_over_token", "?"))
 
         # --- Free Hit ---
         if self.free_hit_next and event.get("legal", True):

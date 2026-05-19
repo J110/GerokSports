@@ -5898,7 +5898,11 @@ def _build_full_payload_from_state(
             else None),
         "match_situation": _situation,
         "over_history": {
-            str(k): v for k, v in over_mgr.over_history.items()
+            str(k): v
+            for k, v in (
+                score_mgr.over_history.items()
+                if score_mgr is not None
+                else over_mgr.over_history.items())
         },
         "field": {
             "positions": cricket_field.get_display_positions(),
