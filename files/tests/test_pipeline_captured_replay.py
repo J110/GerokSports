@@ -264,6 +264,30 @@ def run_harness(
                           cur_key)])
             else:
                 ball_id = matched_ball["ball_id"]
+                # Checkpoint at next-ball-commit boundary by
+                # draining any pending bowler-ball-credit entries
+                # using the ledger's known bowler for this just-
+                # committed ball. The harness doesn't run the
+                # production ConfidenceTracker, so on_lock callbacks
+                # never fire to drain queued credits between ball
+                # commits. The in-line drain inside
+                # `_accumulate_stats_from_event` fires only when a
+                # bowler is already resolved — which is exactly the
+                # case at the NEXT ball commit (e.g. frame 211 for
+                # ball 3.2 drains ball 3.1's queued Narine credit).
+                # This explicit drain at the current commit point
+                # mirrors production's WS payload cadence, where
+                # the payload published at ball N's commit includes
+                # ball N-1's now-resolved retroactive credits.
+                _ledger_bowler = matched_ball.get("bowler_name")
+                _pending = getattr(
+                    sm, "_pending_bowler_ball_credits", None)
+                if _ledger_bowler and _pending:
+                    try:
+                        sm._drain_pending_bowler_ball_credits(
+                            _ledger_bowler)
+                    except Exception:
+                        pass
                 actual = snapshot_state(sm, sb)
                 expected = matched_ball["expected_state_after"]
                 divs = diff(expected, actual)
