@@ -2389,6 +2389,11 @@ class ScoreManager:
                 f"last_warm={rs}/{rw} ({ro}) "
                 f"d_balls={d_balls} d_score={d_score} — "
                 f"rejecting cold-exit (graphic-overlay misread class)")
+            log.info(
+                f"[GAP-AT-REJECTION] Δballs={d_balls} "
+                f"proposed_overs={co_v} current_overs={ro} "
+                f"proposed_score={cs_v} current_score={rs} "
+                f"d_score={d_score} source=cold_start_exit_vs_last_warm")
             self.last_cold_start_verdict_implausible = True
             return False
 
@@ -2887,6 +2892,15 @@ class ScoreManager:
                     f"streak={cur_streak}/"
                     f"{_OVERS_JUMP_CONSENSUS_FRAMES} — "
                     f"keeping prior state")
+                log.info(
+                    f"[GAP-AT-REJECTION] Δballs={_delta_balls} "
+                    f"proposed_overs={new_overs} "
+                    f"current_overs={old_overs} "
+                    f"proposed_score={c_score} "
+                    f"current_score={_self_score} "
+                    f"d_score={d_score} streak={cur_streak}/"
+                    f"{_OVERS_JUMP_CONSENSUS_FRAMES} "
+                    f"source=warm_consensus")
                 self._update_supplements(card, frame)
                 self.frames_since_event += 1
                 return None

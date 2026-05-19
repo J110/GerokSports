@@ -1418,6 +1418,18 @@ class Scoreboard:
                         log.warn(f"Overs rejected: jump {cur_overs} → "
                                  f"{overs_str} (+{whole - cur_w_int} overs) "
                                  f"too large for a single update")
+                        try:
+                            _cur_b = int(str(cur_overs).split(".")[1])
+                            _delta_balls = (
+                                whole * 6 + ball
+                                - (cur_w_int * 6 + _cur_b))
+                            log.info(
+                                f"[GAP-AT-REJECTION] Δballs={_delta_balls} "
+                                f"proposed_overs={overs_str} "
+                                f"current_overs={cur_overs} "
+                                f"source=scoreboard_jump_limit")
+                        except (ValueError, IndexError):
+                            pass
                         return False
                 except (ValueError, AttributeError):
                     pass

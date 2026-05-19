@@ -178,36 +178,58 @@ if claimed_event in {ZERO, DOT} and runs_off_bat != 0: reject
 
 This is what catches "secondary LLM returns wrong answer" (item 10 of the audit).
 
-## 5. Frame accounting queue
+## 5. Frame fate ledger
 
-Parallel infrastructure piece, separable from the LLM-resolution path: every frame dispatched to Scout gets a tracked fate, so SM's gap detection can distinguish "ball was skipped on a frame we saw" from "ball happened during frames Scout failed on." Today both look identical to SM.
+(Originally framed as "Frame accounting queue" — a Scout response tracker. Stage 1 retrospective on the DC-vs-KKR Tier 1 corpus reframed the role: existing SM/SB rejection guards silently drop ~6.3% of frames (66 SM-level + 45 SB-level vs 5 surfaced gaps in the same corpus), an order of magnitude more than the visible commit-side gaps. The ledger's primary job is therefore tracking every frame's **fate across all rejection paths** — Scout-level, SM-level, SB-level — not just Scout response/timeout. Without that ledger, Mode 1 silent drops stay invisible.)
+
+Every frame dispatched to Scout, AND every Scout response processed by SM, gets a tracked fate. SM's gap detection plus the secondary-LLM cost gate consult the ledger to distinguish among: (a) ball was skipped on a frame we accepted (commit-side gap, fires `[GAP-DETECTED]`), (b) ball happened during a frame whose Scout response was lost/late (`TIMEOUT`/`ERROR`), (c) ball happened during a frame whose response SM/SB rejected (`REJECTED_BY_*`), (d) frame was a normal between-balls observation (`ACCEPTED_NOOP`).
 
 ### 5.1 Schema
 
 ```python
 @dataclass
-class FrameAccountingEntry:
+class FrameLedgerEntry:
     frame_id: int
     dispatched_at: float                # wall time
     scout_response: dict | None
-    status: Literal["PENDING", "RESPONDED", "TIMEOUT",
-                    "ERROR", "CORRUPT", "RETRY-EXHAUSTED"]
+    scout_status: Literal["PENDING", "RESPONDED", "TIMEOUT",
+                          "ERROR", "CORRUPT", "RETRY-EXHAUSTED"]
+    sm_outcome: Literal["NOT_YET_SEEN", "ACCEPTED_COMMIT",
+                        "ACCEPTED_NOOP", "REJECTED_COLD_EXIT",
+                        "REJECTED_WARM_CONSENSUS",
+                        "REJECTED_SB_JUMP_LIMIT",
+                        "REJECTED_DISMISSED_GUARD",
+                        "REJECTED_STRIP_ROW_MISMATCH",
+                        "REJECTED_OTHER"]
+    rejection_payload: dict | None      # proposed/current overs+score, delta_balls
     retry_count: int
     resolved_at: float | None
 ```
 
+Two-dimensional fate: `scout_status` × `sm_outcome`. A frame can be `RESPONDED` + `REJECTED_WARM_CONSENSUS` (Scout came back fine; SM rejected the jump). A frame can be `TIMEOUT` + `NOT_YET_SEEN` (no response, SM never got to evaluate). All combinations are first-class.
+
 ### 5.2 Lifecycle
 
-| Event | Effect |
+| Event | Effect on entry |
 |---|---|
-| Scout dispatch | Enqueue `PENDING` with `dispatched_at = now()` |
-| Scout response (200, valid JSON) | Match by `frame_id`; mark `RESPONDED`; store response; set `resolved_at` |
-| Timeout (default 5s — matches `_SCOUT_TIMEOUT` at `files/eyes/vision.py:31`) | Mark `TIMEOUT`; if `retry_count < N`, re-dispatch with backoff |
-| Non-recoverable error (5xx, network) | Mark `ERROR`; same retry policy |
-| Response present but unparseable | Mark `CORRUPT`; same retry policy |
-| Retry budget exhausted | Mark `RETRY-EXHAUSTED`; emit `FRAME-ACCOUNTING-UNRESOLVED` trace tag |
+| Scout dispatch | Create entry; `scout_status=PENDING`, `sm_outcome=NOT_YET_SEEN`, `dispatched_at=now()` |
+| Scout response (200, valid JSON) | `scout_status=RESPONDED`; store response; set `resolved_at` |
+| Timeout (default 5s — `_SCOUT_TIMEOUT` at `files/eyes/vision.py:31`) | `scout_status=TIMEOUT`; if `retry_count < N`, re-dispatch with backoff |
+| Non-recoverable error (5xx, network) | `scout_status=ERROR`; same retry policy |
+| Response unparseable | `scout_status=CORRUPT`; same retry policy |
+| Retry budget exhausted | `scout_status=RETRY-EXHAUSTED`; emit `FRAME-ACCOUNTING-UNRESOLVED` |
+| SM commits the frame (`_accept_update` advances state) | `sm_outcome=ACCEPTED_COMMIT` |
+| SM accepts but no state advance (between-balls observation) | `sm_outcome=ACCEPTED_NOOP` |
+| SM cold-start-exit rejects (`OVERS-JUMP-IMPLAUSIBLE-REJECTED source=cold_start_exit_vs_last_warm`) | `sm_outcome=REJECTED_COLD_EXIT`; store `[GAP-AT-REJECTION]` payload (added in stage 2a) |
+| SM warm-consensus rejects (`source=warm_consensus`) | `sm_outcome=REJECTED_WARM_CONSENSUS`; store `[GAP-AT-REJECTION]` payload |
+| SB jump-limit rejects (`source=scoreboard_jump_limit`) | `sm_outcome=REJECTED_SB_JUMP_LIMIT`; store `[GAP-AT-REJECTION]` payload |
+| Other SM rejects (dismissed-batter, strip-row mismatch) | `sm_outcome=REJECTED_*` with specific tag |
 
 Capacity bounded; oldest entries beyond N (default ~200, ~10 min of frames) evicted with `FRAME-ACCOUNTING-EVICTED`.
+
+### 5.2.1 Stage 2a foundation
+
+The `[GAP-AT-REJECTION]` trace tag (shipped in stage 2a) is the ledger's down-payment: it surfaces SM-level + SB-level rejections with a uniform structured payload (`delta_balls`, `proposed_overs`, `current_overs`, `proposed_score`, `current_score`, `source`) without yet building the full ledger data structure. Three emission sites: `score_manager.py` cold-start-exit (`source=cold_start_exit_vs_last_warm`), `score_manager.py` warm-consensus (`source=warm_consensus`), `eyes/scoreboard.py` jump-limit (`source=scoreboard_jump_limit`). Future stages turn these emissions into ledger entries; until then they accumulate in trace records for post-hoc analysis.
 
 ### 5.3 Integration with existing retry infrastructure
 
