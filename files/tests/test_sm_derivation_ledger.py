@@ -178,6 +178,27 @@ def _batting_card_entry(c: dict) -> dict:
     return entry
 
 
+def snapshot_ws_payload(sb: Scoreboard) -> dict:
+    """Snapshot the WS-payload-shaped fields that aren't derivable from
+    SM state alone — currently the extras subdict. Compared against
+    ledger.balls[i].expected_ws_payload_after.
+
+    Catches the regression class that the reverted 48798b2 commit
+    introduced (this_over / wide / attribution drift when pre-SM raw
+    VLM reads leaked through the WS gate) — those would surface here
+    as extras-count divergence on balls where the ledger expects 0."""
+    extras = sb.extras or {}
+    return {
+        "extras": {
+            "wides": int(extras.get("wides") or 0),
+            "no_balls": int(extras.get("no_balls") or 0),
+            "byes": int(extras.get("byes") or 0),
+            "leg_byes": int(extras.get("leg_byes") or 0),
+            "total": int(extras.get("total") or 0),
+        },
+    }
+
+
 def snapshot_state(sm: ScoreManager, sb: Scoreboard) -> dict:
     """Pull SM/SB state into a dict matching the ledger's
     expected_state_after schema."""
@@ -369,6 +390,13 @@ def run_harness(
         actual = snapshot_state(sm, sb)
         expected = ball["expected_state_after"]
         divergences = diff(expected, actual)
+        # Also assert the WS-payload-shaped snapshot (extras subdict)
+        # against expected_ws_payload_after. Catches regressions that
+        # don't surface in SM-state comparison alone.
+        ws_actual = snapshot_ws_payload(sb)
+        ws_expected = ball.get("expected_ws_payload_after") or {}
+        if ws_expected:
+            divergences.extend(diff(ws_expected, ws_actual, "ws_payload"))
         if divergences:
             first = divergences[0]
             print(f"FAIL at ball {ball_id} ({ball['event_type']}): "
