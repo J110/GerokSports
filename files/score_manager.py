@@ -3372,11 +3372,64 @@ class ScoreManager:
         # Score dropping to 0 with wickets 0 while we had significant progress
         s = card.get("score", 0)
         w = card.get("wickets", 0)
+        # Team-change corroboration required (2026-05-19). A 0/0
+        # score read without a corresponding batting-team flip is
+        # structurally indistinguishable from a sponsor-graphic /
+        # skeleton-strip misread, not a real innings transition.
+        # Surfaced by L2-Slim captured-Scout replay frame 215 of
+        # watch_20260519_121701: STRIP "null 0-0 (3.2) | *NISSANKA
+        # 0(2) | RAHUL 0(1) | NARINE 0-0 (1.2)" — a stats-overlay
+        # whose null team prefix and fake per-batter stats hint
+        # the row isn't a live scorecard read at all. Pre-fix, the
+        # score_reset_from_progress branch accepted s=0, w=0 with
+        # prior self.score > 20 regardless of team — triggering
+        # _reset_for_innings_2 → full state wipe → cold-start
+        # exit accepted next graphic misread as fresh anchor
+        # (frame 276 ORPHAN at (43, 0, 8.4)).
+        #
+        # Architectural parity with 98a53cc, which gated the
+        # batting_team_changed branch on playing-teams membership.
+        # Real T20 innings-2 always flips batting team, so a
+        # genuine score-reset transition is corroborated by the
+        # already-gated team-change branch above; this branch
+        # firing without that corroboration is the misread signal.
+        _bcast_team = (
+            (frame.broadcast_team or "").upper()
+            if frame.broadcast_team else None)
+        _cur_team = (
+            (self.batting_team or "").upper()
+            if self.batting_team else None)
+        _team_changed = bool(
+            _bcast_team and _cur_team
+            and _bcast_team != _cur_team)
         if (s == 0 and w == 0
                 and self.score is not None and self.score > 20
                 and self.wickets is not None):
-            changed = True
-            reason = reason or "score_reset_from_progress"
+            if _team_changed:
+                changed = True
+                reason = reason or "score_reset_from_progress"
+            else:
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag=("INN2-SCORE-RESET-TEAM-CHANGE-"
+                                 "REQUIRED-REJECTED"),
+                            prev_score=int(self.score),
+                            cand_score=int(s),
+                            prev_team=self.batting_team,
+                            cand_team=frame.broadcast_team,
+                            frame_id=getattr(
+                                frame, "frame_id", None))
+                    except Exception:
+                        pass
+                log.info(
+                    f"  [INN2-SCORE-RESET-TEAM-CHANGE-"
+                    f"REQUIRED-REJECTED] prev={self.score}/"
+                    f"{self.wickets} prev_team={self.batting_team} "
+                    f"cand=0/0 cand_team="
+                    f"{frame.broadcast_team!r} — score reset "
+                    f"without team change is skeleton/graphic "
+                    f"misread, not innings transition")
 
         # Wickets regression: wickets only go up within an innings, so
         # any strict regression by >1 is structurally impossible without

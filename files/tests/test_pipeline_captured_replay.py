@@ -133,8 +133,15 @@ def extracted_to_frame_input(
         ext_bowler_overs=bowler_overs_f,
         broadcast_striker=broadcast_striker,
         broadcast_this_over=extracted.get("this_over_broadcast"),
-        broadcast_team=(extracted.get("batting_team_visible")
-                        or BATTING_TEAM),
+        # Pass extracted batting_team_visible THROUGH (None when
+        # parse_strip didn't see a team prefix — e.g. skeleton/
+        # sponsor-graphic frames with STRIP "null 0-0 (...)").
+        # No BATTING_TEAM fallback: production's frame.broadcast_team
+        # is None on null-team frames, and the team-change-required
+        # guard at score_manager.py's score_reset_from_progress
+        # path depends on that input shape. Falling back here would
+        # mask the same bug class the guard is designed to catch.
+        broadcast_team=extracted.get("batting_team_visible"),
         scout_text="",
     )
 

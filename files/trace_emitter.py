@@ -181,6 +181,14 @@ KNOWN_TAGS: set[str] = {
     # the L2-Slim captured-Scout replay (frame 276
     # "DC 43-0 8 4.1" → STRIP "(8.4)" graphic-overlay misread).
     "OVERS-JUMP-IMPLAUSIBLE-REJECTED",
+    # 2026-05-19 — team-change corroboration guard on
+    # score_reset_from_progress in `_detect_innings_change`. Fires
+    # when SM suppresses a 0/0 score reset that isn't accompanied
+    # by a batting-team flip (skeleton-strip / sponsor-graphic
+    # misread, not a real innings transition). Architectural
+    # parity with 98a53cc's playing-teams guard on the
+    # batting_team_changed branch.
+    "INN2-SCORE-RESET-TEAM-CHANGE-REQUIRED-REJECTED",
     # P20 (2026-05-03) — bowler stale latency telemetry. HARDCAP fires
     # when the 20-frame timeout clears the bowler; STUCK is the
     # advisory shoulder (>8 frames stuck, not yet hardcap).
