@@ -3744,11 +3744,42 @@ class ScoreManager:
                     method = "broadcast_first_name"
 
         if new and new != self.striker:
-            log.info(f"[STRIKER] method={method} striker={new} "
-                     f"(was={self.striker})")
-            _ns = self._w8_non_for_identified(new)
-            self._set_slot_pair(
-                new, _ns, source=f"identify_and_set.{method}")
+            if self.striker is not None:
+                # Deterministic striker rotation (2026-05-19) — SM-internal
+                # parity with 2105463. Once an initial striker is locked
+                # (innings-start init or post-wicket new-batter), the
+                # broadcast/strip-derived striker indicator no longer
+                # overrides self.striker mid-over. SM's per-ball rotation
+                # in `_apply_event` is the sole authority through to the
+                # next wicket.
+                #
+                # Surfaced by files/tests/test_sm_derivation_ledger.py
+                # at ball 4.6 of the DC vs KKR fixture: the broadcast
+                # indicator advanced to the post-wicket-and-EOO-swap
+                # striker (Nissanka) mid-frame, flipping `self.striker`
+                # before the wicket-attribution logic could identify
+                # Rahul as dismissed.
+                log.info(
+                    f"  [STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC]"
+                    f" method={method} broadcast={new!r} "
+                    f"deterministic={self.striker!r} — "
+                    f"keeping deterministic")
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag=("STRIKER-SM-BROADCAST-DISAGREES-"
+                                 "DETERMINISTIC"),
+                            method=method,
+                            broadcast_striker=new,
+                            deterministic_striker=self.striker)
+                    except Exception:
+                        pass
+            else:
+                log.info(f"[STRIKER] method={method} striker={new} "
+                         f"(was={self.striker})")
+                _ns = self._w8_non_for_identified(new)
+                self._set_slot_pair(
+                    new, _ns, source=f"identify_and_set.{method}")
 
 
     # ------------------------------------------------------------------
