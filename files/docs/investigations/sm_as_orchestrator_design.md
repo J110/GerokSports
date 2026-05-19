@@ -150,7 +150,13 @@ Conversion `from_overs`: `overs=4.2` → `over=4, ball=3, legal_ball_count=4*6+2
 
 ### 4.2 Model & cost
 
-Haiku 4.5 (`claude-haiku-4-5-20251001`). Text-only, no image — Scout already extracted text. Typical input ~600-800 tokens, output ~50 tokens. Expected call rate: ≤2% of frames in a well-behaved match (gap detection threshold), bounding per-match cost to single-digit cents.
+**Stage 2b implementation (shipped):** Groq `llama-3.1-8b-instant` via the existing Groq client. Single-provider with Scout (`AsyncGroq` at `files/eyes/vision.py:450`); reuses `GROQ_API_KEY` env var. Sync `Groq()` client instantiated lazily inside the resolver to avoid async-context juggling in SM.
+
+Model configurable via `GAP_RESOLVER_MODEL` env var (default `llama-3.1-8b-instant`). Escalation path: `llama-3.3-70b-versatile` if 8B eval accuracy is insufficient. Haiku 4.5 (`claude-haiku-4-5`) remains a fallback option if both Groq models fail accuracy gates.
+
+Typical input ~600-800 tokens, output ~50 tokens. ~$0.0005/match at 8B vs ~3¢ at Haiku — 60× cheaper. Eval-corpus iteration is essentially free at 8B cost.
+
+Cost telemetry: `GAP-RESOLVER-LLM-CALL` trace tag includes `model`, `input_tokens`, `output_tokens`, `latency_ms`. Enables A/B comparison of 8B vs 70B from production traces without trace-schema changes.
 
 ### 4.3 Confidence handling
 

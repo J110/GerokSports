@@ -3720,9 +3720,12 @@ class ScoreManager:
             self.wickets = card["wickets"]
         if card.get("overs") is not None:
             _prior_overs_for_gap = self.overs
+            _prev_score_for_gap = _prior_score if card.get(
+                "score") is not None else self.score
             self.overs = card["overs"]
             self._track_overs_advance(
-                _prior_overs_for_gap, self.overs, frame)
+                _prior_overs_for_gap, self.overs, frame,
+                prev_score=_prev_score_for_gap, new_score=self.score)
 
         self._update_batters(card)
 
@@ -3745,7 +3748,10 @@ class ScoreManager:
                                batting_team=self.batting_team,
                                reason="_update_misc.target_arrival")
 
-    def _track_overs_advance(self, prev_overs, new_overs, frame) -> None:
+    def _track_overs_advance(
+        self, prev_overs, new_overs, frame,
+        prev_score=None, new_score=None,
+    ) -> None:
         new_legal = _legal_balls_from_overs(new_overs)
         if new_legal is None:
             return
@@ -3765,20 +3771,44 @@ class ScoreManager:
                 f"prev_overs={prev_overs} new_overs={new_overs} "
                 f"frame={frame} innings={self.innings}")
             self._maybe_invoke_resolver(
-                prev_overs, new_overs, prev_legal, frame, delta)
+                prev_overs, new_overs, prev_legal, frame, delta,
+                prev_score=prev_score, new_score=new_score)
         if delta != 0:
             self._expected_next_ball.legal_ball_count = new_legal
             self._expected_next_ball.over = new_legal // 6
             self._expected_next_ball.ball = (new_legal % 6) + 1
 
+    def _gather_scout_contexts(self):
+        """Return (gap_frame_scout, prior_scout_texts) from recent_frames."""
+        gap_scout_text = ""
+        prior_texts: list[str] = []
+        try:
+            frames = list(self.recent_frames or [])
+            if frames:
+                last = frames[-1]
+                gap_scout_text = getattr(last, "scout_text", "") or ""
+                for f in frames[:-1]:
+                    t = getattr(f, "scout_text", "") or ""
+                    if t:
+                        prior_texts.append(t)
+        except Exception:
+            pass
+        return gap_scout_text, prior_texts
+
     def _maybe_invoke_resolver(
         self, prev_overs, new_overs, prev_legal, frame, delta,
+        prev_score=None, new_score=None,
     ) -> None:
         if os.environ.get("SM_ORCHESTRATOR_RESOLVER", "0") != "1":
             return
         if _get_secondary_resolver is None:
             return
         try:
+            if prev_score is not None and new_score is not None:
+                delta_score = int(new_score) - int(prev_score)
+            else:
+                delta_score = 0
+            gap_scout_text, prior_texts = self._gather_scout_contexts()
             resolver = _get_secondary_resolver()
             first_missing = prev_legal + 1
             req = _SecondaryResolveRequest(
@@ -3788,23 +3818,30 @@ class ScoreManager:
                     ball=(first_missing % 6) + 1,
                     legal_ball_count=first_missing,
                 ),
-                scout_context=_ScoutContext(),
+                scout_context=_ScoutContext(
+                    strip=gap_scout_text or None,
+                ),
                 match_state=_MatchState(
                     innings=self.innings,
+                    score_before=prev_score,
                     overs_before=prev_overs,
                     overs_after=new_overs,
-                    score_after=self.score,
+                    score_after=new_score
+                    if new_score is not None else self.score,
                     wickets_after=self.wickets,
                     striker=self.striker,
                     non_striker=self.non,
                     bowler=self.bowler_name,
                 ),
                 delta_observed=_DeltaObserved(balls=int(delta)),
+                delta_score=int(delta_score),
+                prior_scout_texts=prior_texts,
             )
             resp = resolver.resolve(req)
             log.info(
                 f"[GAP-RESOLVER-CALLED] frame={frame} "
-                f"Δballs={delta} event={resp.event_type} "
+                f"Δballs={delta} Δscore={delta_score} "
+                f"event={resp.event_type} "
                 f"confidence={resp.confidence:.2f} "
                 f"source={resp.source}")
         except Exception as e:
