@@ -1694,6 +1694,32 @@ class ScoreManager:
         except Exception:
             return None
 
+    def _same_player_canon(self, a: str | None,
+                            b: str | None) -> bool:
+        """Class 9b helper (2026-05-20): canonical-aware identity
+        comparison for the wicket slot-clearing path.
+
+        Returns True when a and b refer to the same squad player.
+        First tries strict equality (fast path, common case). On
+        miss, canonicalizes both via Scoreboard.resolve_name (the
+        same resolver enforced at SM commit gates) and compares
+        canonicals. Different identity-source canonicalization paths
+        (event/broadcast vs slot-state) can produce non-equal strings
+        that resolve to the same canonical squad name.
+        """
+        if not a or not b:
+            return False
+        if a == b:
+            return True
+        if not self.scoreboard:
+            return False
+        try:
+            canon_a = self.scoreboard.resolve_name(a) or a
+            canon_b = self.scoreboard.resolve_name(b) or b
+            return canon_a == canon_b
+        except Exception:
+            return False
+
     def _squad_canonical_or_reject(self, raw: str | None,
                                    slot: str = "") -> str | None:
         """Class-9 gate (2026-05-20): canonicalize a raw Scout name
@@ -4708,20 +4734,27 @@ class ScoreManager:
             "wicket_type": event.get("wicket_type"),
         }
 
+        # Class 9b fix (2026-05-20): strict == compared slot identity
+        # (canonicalized via _build_scorecard gate) against
+        # best_dismissed (sourced from event/broadcast and not always
+        # canonicalized). Mismatch silently skipped slot-clearing,
+        # leaving the dismissed batter on crease — propagated through
+        # subsequent balls in over_5+ (watch_20260515_161437 ball 4.6).
+        # Use canonical comparison so different identity sources match.
         survivor = None
         for nm in (self.bat1_name, self.bat2_name):
-            if nm and nm != best_dismissed:
+            if nm and not self._same_player_canon(nm, best_dismissed):
                 survivor = nm
                 break
-        if self.bat1_name == best_dismissed:
+        if self._same_player_canon(self.bat1_name, best_dismissed):
             self.bat1_name = None
-        if self.bat2_name == best_dismissed:
+        if self._same_player_canon(self.bat2_name, best_dismissed):
             self.bat2_name = None
-        if best_dismissed == self.striker:
+        if self._same_player_canon(best_dismissed, self.striker):
             self._set_slot_pair(
                 None, survivor,
                 source="apply_event.wicket_striker_out")
-        elif best_dismissed == self.non:
+        elif self._same_player_canon(best_dismissed, self.non):
             self._set_slot_pair(
                 survivor, None,
                 source="apply_event.wicket_non_striker_out")
