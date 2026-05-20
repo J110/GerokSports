@@ -100,6 +100,8 @@ _PENDING_WICKET_MAX_FRAME_LAG = 40
 _PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40
 
 SM_INLINE_MULTI_BALL = os.environ.get("SM_INLINE_MULTI_BALL", "0") == "1"
+SM_POST_WICKET_SLOT_DIFF = (
+    os.environ.get("SM_POST_WICKET_SLOT_DIFF", "0") == "1")
 
 
 def _is_bowler_credited_dismissal(dtype) -> bool:
@@ -481,6 +483,12 @@ class ScoreManager:
         self.last_cold_start_verdict_implausible: bool = False
         # Lever 1 PR3: dedupe [SM-W8-DISMISSED-GUARD] telemetry (§14.8).
         self._w8_guard_fired: set[str] = set()
+        # S5b-3a (2026-05-20): post-wicket striker slot-diff derivation
+        # state. Set in _apply_wicket_fall_only at wicket commit if the
+        # dismissed batter was on strike; cleared in _identify_and_set
+        # once self.striker becomes non-None again. See
+        # cold_start_initial_striker_design.md.
+        self._post_wicket_slot_to_diff: str | None = None
 
         # Match context (innings / batting_team / target → Path B properties)
         self.venue: str | None = None
@@ -4292,6 +4300,46 @@ class ScoreManager:
                     new = b2_internal
                     method = "broadcast_first_name"
 
+        # Priority 3' (S5b-3a, 2026-05-20, feature-gated): post-wicket
+        # new-batter detection via slot-diff. Computes the slot-diff
+        # answer in shadow regardless of flag state so trace data
+        # accumulates; only overrides `new` when SM_POST_WICKET_SLOT_DIFF
+        # is on AND the broadcast paths above didn't already resolve.
+        # See cold_start_initial_striker_design.md §3.1.
+        _slot_diff_result: str | None = None
+        _slot_diff_method: str | None = None
+        if self.striker is None and self._post_wicket_slot_to_diff:
+            _slot_key = self._post_wicket_slot_to_diff
+            _new_in_slot = card.get(_slot_key)
+            if _new_in_slot and _new_in_slot != self.non:
+                _slot_diff_result = _new_in_slot
+                _slot_diff_method = "post_wicket_slot_diff"
+        if (_trace is not None and self._post_wicket_slot_to_diff
+                and (_slot_diff_result or new)):
+            try:
+                _trace.get_recorder().record(
+                    tag="STRIKER-POST-WICKET-DERIVATION",
+                    broadcast_path_result=new,
+                    broadcast_method=method,
+                    slot_diff_result=_slot_diff_result,
+                    slot_diff_method=_slot_diff_method,
+                    cleared_slot=self._post_wicket_slot_to_diff,
+                    self_striker=self.striker,
+                    self_non=self.non,
+                    bat1_name=self.bat1_name,
+                    bat2_name=self.bat2_name,
+                    divergence_fields=(
+                        ["striker"]
+                        if (_slot_diff_result and _slot_diff_result != new)
+                        else []),
+                    flag_on=SM_POST_WICKET_SLOT_DIFF,
+                    frame_id=str(getattr(frame, "frame_id", None)))
+            except Exception:
+                pass
+        if (SM_POST_WICKET_SLOT_DIFF and _slot_diff_result and not new):
+            new = _slot_diff_result
+            method = _slot_diff_method
+
         if new and new != self.striker:
             if self.striker is not None:
                 # Deterministic striker rotation (2026-05-19) — SM-internal
@@ -4329,6 +4377,11 @@ class ScoreManager:
                 _ns = self._w8_non_for_identified(new)
                 self._set_slot_pair(
                     new, _ns, source=f"identify_and_set.{method}")
+
+        # S5b-3a: once striker is non-None again, the post-wicket gap
+        # is closed; clear the slot-diff anchor.
+        if self.striker is not None and self._post_wicket_slot_to_diff:
+            self._post_wicket_slot_to_diff = None
 
 
     # ------------------------------------------------------------------
@@ -5045,6 +5098,16 @@ class ScoreManager:
             if nm and not self._same_player_canon(nm, best_dismissed):
                 survivor = nm
                 break
+        # S5b-3a (2026-05-20): capture the slot key of the dismissed
+        # striker BEFORE the slot is wiped, so _identify_and_set's
+        # Priority 3' slot-diff path can detect the new batter once
+        # Scout reads the updated strip. See
+        # cold_start_initial_striker_design.md §3.1.
+        if self._same_player_canon(best_dismissed, self.striker):
+            if self._same_player_canon(self.bat1_name, best_dismissed):
+                self._post_wicket_slot_to_diff = "bat1_name"
+            elif self._same_player_canon(self.bat2_name, best_dismissed):
+                self._post_wicket_slot_to_diff = "bat2_name"
         if self._same_player_canon(self.bat1_name, best_dismissed):
             self.bat1_name = None
         if self._same_player_canon(self.bat2_name, best_dismissed):

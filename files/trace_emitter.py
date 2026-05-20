@@ -126,6 +126,13 @@ KNOWN_TAGS: set[str] = {
     # which fallback branch fires (broadcast / state) and the relevant
     # state at the call site. See §7.6 of sm_as_orchestrator_design.md.
     "STRIKER-IDENTIFY-FALLBACK-INVOKED",
+    # S5b-3a (2026-05-20) — shadow comparison for post-wicket
+    # new-batter striker derivation. Emits when self._post_wicket_
+    # slot_to_diff is set; payload pairs broadcast Priority 3's
+    # answer with the slot-diff derivation's answer + divergence
+    # fields. See files/docs/investigations/
+    # cold_start_initial_striker_design.md.
+    "STRIKER-POST-WICKET-DERIVATION",
     "BOWLING-CARD-CLEARED",
     "STRIP-HEAD-TEAM-TOKEN-MISMATCH",
     "STRIP-HEAD-FORWARD-BALLS-NO-SCORE-POP",
