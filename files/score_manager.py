@@ -2238,6 +2238,22 @@ class ScoreManager:
                     f"(d_balls={_d_balls}, d_score={_d_score}, "
                     f"d_wkt={_d_wkt}); seeding WARM at candidate and "
                     f"committing card as MULTI_BALL gap")
+                # S4a step (i) instrumentation (2026-05-20): this Path B
+                # branch (COLD_START_PHYSICS_PROMOTE) was empirically dead
+                # across the 9-fixture L2 corpus (0 fires). Adding a
+                # high-visibility WARN log to surface any production
+                # firing before S4a step (ii) deletes the branch. Run
+                # for at least one production session; if PATH-B-FIRED
+                # never appears, S4a step (ii) deletes Path B.
+                log.warn(
+                    f"[PATH-B-FIRED] COLD_START_PHYSICS_PROMOTE "
+                    f"frame={self._current_frame} "
+                    f"candidate_score={_cand_score} "
+                    f"candidate_overs={_cand_overs} "
+                    f"card_score={_card_score} card_overs={_card_overs} "
+                    f"d_balls={_d_balls} d_score={_d_score} "
+                    f"— Path B fired in production; see scoping doc "
+                    f"before S4a step (ii) deletion ships")
                 if _trace is not None:
                     try:
                         _trace.get_recorder().record(

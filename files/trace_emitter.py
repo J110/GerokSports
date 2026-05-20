@@ -111,6 +111,9 @@ KNOWN_TAGS: set[str] = {
     # class-9b diagnostics (2026-05-20) — wicket slot-clearing path
     "WICKET-FALL-ONLY-CALLED",
     "WICKET-SLOT-CLEAR-ENTRY",
+    # S4a step (i) (2026-05-20) — Path B (COLD_START_PHYSICS_PROMOTE)
+    # production-firing observability before deletion in step (ii).
+    "PATH-B-FIRED",
     "BOWLING-CARD-CLEARED",
     "STRIP-HEAD-TEAM-TOKEN-MISMATCH",
     "STRIP-HEAD-FORWARD-BALLS-NO-SCORE-POP",
