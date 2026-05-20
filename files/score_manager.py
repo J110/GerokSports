@@ -5307,6 +5307,55 @@ class ScoreManager:
                                 source="absorbed_legal_decomp")
                         except Exception:
                             pass
+        elif (not bowler_name and self.scoreboard is not None
+                and _infer_gap_tokens is not None and nballs > 0):
+            # F-α-queue (2026-05-20): when bowler_name is None at
+            # ABSORBED_LEGAL commit, queue the per-ball runs/balls
+            # credit into Queue B for later backfill by the same
+            # drain triggers (D1 inline next-commit, D2 on_lock
+            # callback) that serve regular ball events. Mirrors the
+            # structural intent of _accumulate_stats_from_event's
+            # queue path at :5283-5290 — Queue B is the canonical
+            # 3-way-race resolver per memo §7.1; previously
+            # ABSORBED_LEGAL had no safety net for the bowler=None
+            # case and credit was lost permanently (frame 522 of
+            # validate_gtrr_20260520_180715 is the surfaced
+            # instance). Striker rotation when bowler=None is a
+            # separate defect (F-α-rotation, deferred) — same
+            # architectural gate, different fix scope.
+            _tokens = gap_meta.get("_tokens")
+            if _tokens is None:
+                _tokens = list(_infer_gap_tokens(
+                    nballs, runs_in_gap, wkts_in_gap))
+                gap_meta["_tokens"] = _tokens
+            if 0 <= idx < len(_tokens):
+                _tok = _tokens[idx]
+                if _tok in (".", "W", "?"):
+                    single_runs = 0
+                else:
+                    try:
+                        single_runs = int(_tok)
+                    except (TypeError, ValueError):
+                        single_runs = 0
+                _wkt_delta = 1 if (is_last and evt.get(
+                    "gap_finalize_wicket")) else 0
+                self._queue_pending_bowler_ball_credit(
+                    runs_delta=single_runs,
+                    wickets_delta=_wkt_delta,
+                    event_overs=evt.get("over"),
+                    frame_id=self._current_frame)
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="ABSORBED-LEGAL-BOWLER-QUEUED",
+                            ball_index=idx,
+                            total_balls=nballs,
+                            token=_tok,
+                            single_ball_runs=single_runs,
+                            wicket_credited=bool(_wkt_delta),
+                            frame_id=str(self._current_frame))
+                    except Exception:
+                        pass
 
         if evt.get("gap_finalize_wicket"):
             w_ev = {

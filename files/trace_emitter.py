@@ -133,6 +133,12 @@ KNOWN_TAGS: set[str] = {
     # fields. See files/docs/investigations/
     # cold_start_initial_striker_design.md.
     "STRIKER-POST-WICKET-DERIVATION",
+    # F-α-queue (2026-05-20) — emitted when ABSORBED_LEGAL fires
+    # with bowler_name=None at gap commit and the per-ball runs/
+    # balls credit is queued into Queue B for later backfill.
+    # Sister to ABSORBED-LEGAL-BOWLER-CREDITED. See
+    # files/docs/investigations/multi_ball_gap_bowler_credit_design.md.
+    "ABSORBED-LEGAL-BOWLER-QUEUED",
     "BOWLING-CARD-CLEARED",
     "STRIP-HEAD-TEAM-TOKEN-MISMATCH",
     "STRIP-HEAD-FORWARD-BALLS-NO-SCORE-POP",
