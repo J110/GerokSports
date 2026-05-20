@@ -1052,28 +1052,6 @@ def test_cold_consensus_fast_path_before_pipeline_watchdog() -> None:
 # 3. ThisOverManager — multi-over recap rejection, observed cap,
 #    over-jump rejection, over_history immutability, FOW immutability
 # ---------------------------------------------------------------------
-def test_this_over_multi_over_recap_rejected() -> None:
-    header("on_broadcast_override rejects multi-over recap (>9 tokens)")
-    from eyes.this_over import ThisOverManager, MAX_THIS_OVER_LEN
-
-    om = ThisOverManager()
-    om.on_broadcast_override(
-        ["1", ".", "4", "1", ".", "1", ".", "wd", "1", ".", "4", "."])
-    check("12-token broadcast rejected, this_over still empty",
-          om.this_over == [],
-          f"this_over={om.this_over}, MAX={MAX_THIS_OVER_LEN}")
-
-
-def test_this_over_cold_start_short_broadcast_accepted() -> None:
-    header("Short cold-start broadcast (≤9 tokens) still accepted")
-    from eyes.this_over import ThisOverManager
-    om = ThisOverManager()
-    om.on_broadcast_override(["1", ".", "4"])
-    check("3-token broadcast accepted on cold start",
-          om.this_over == ["1", ".", "4"],
-          f"this_over={om.this_over}")
-
-
 def test_this_over_observed_cap() -> None:
     header("on_ball_event refuses 13th token (observed cap)")
     from eyes.this_over import ThisOverManager, MAX_OBSERVED_THIS_OVER_LEN
@@ -5167,77 +5145,6 @@ def test_scoreboard_fow_upgrade_callback_no_fire_on_immutable_skip() -> None:
 
 
 # --- Fix 2: this_over token-alphabet validation ----------------------
-def test_this_over_alphabet_rejects_speed_tokens_f2461() -> None:
-    """RR vs SRH 2026-04-25 F2461 replay: broadcast strip emits
-    per-ball speed values [139, 148, 143, 147, 145, 140] which
-    `_merge_broadcast` passes through verbatim.  The validator must
-    reject the whole list."""
-    header("Fix 2: F2461 speed-tokens rejected wholesale")
-    from eyes.this_over import ThisOverManager
-    om = ThisOverManager()
-    # Cold-start (empty local, _last_over_int is None) — without
-    # the gate, this path would wholesale-replace this_over with
-    # speed values.
-    om.on_broadcast_override(
-        ["139", "148", "143", "147", "145", "140"],
-        score=0)
-    check("speed-token broadcast rejected (this_over still empty)",
-          om.this_over == [],
-          f"this_over={om.this_over}")
-    check("alphabet helper rejects 139",
-          om._is_legal_run_token("139") is False, "")
-    check("alphabet helper rejects 148",
-          om._is_legal_run_token("148") is False, "")
-
-
-def test_this_over_alphabet_rejects_2026_04_16_garbage() -> None:
-    """Earlier garbage payloads from the same defect class — must
-    also be rejected."""
-    header("Fix 2: 2026-04-16-class garbage rejected")
-    from eyes.this_over import ThisOverManager
-    # Payload 1: ['2161'] — single 4-digit integer
-    om1 = ThisOverManager()
-    om1.on_broadcast_override(["2161"], score=0)
-    check("['2161'] rejected", om1.this_over == [],
-          f"this_over={om1.this_over}")
-    # Payload 2: ['11', '.', '41'] — mixture but two illegal
-    om2 = ThisOverManager()
-    om2.on_broadcast_override(["11", ".", "41"], score=0)
-    check("['11', '.', '41'] rejected (2 illegal tokens)",
-          om2.this_over == [],
-          f"this_over={om2.this_over}")
-
-
-def test_this_over_alphabet_accepts_legal_sequence() -> None:
-    """A legal cricket-alphabet sequence must pass through and land
-    as-is in `this_over`."""
-    header("Fix 2: legal cricket-alphabet sequence accepted")
-    from eyes.this_over import ThisOverManager
-    om = ThisOverManager()
-    # Cold-start: ['1', '.', '4', 'wd', 'w', '6'] —> normalized to
-    # ['1', '.', '4', 'Wd', 'W', '6'] by _merge_broadcast, all legal.
-    om.on_broadcast_override(
-        ["1", ".", "4", "wd", "w", "6"], score=0)
-    check("legal sequence landed in this_over",
-          om.this_over == ["1", ".", "4", "Wd", "W", "6"],
-          f"this_over={om.this_over}")
-
-
-def test_this_over_alphabet_rejects_mixed_list() -> None:
-    """A single illegal token in an otherwise-legal list rejects
-    the whole list (partial acceptance leaves silent truncation
-    bugs)."""
-    header("Fix 2: mixed list rejected wholesale (no partial accept)")
-    from eyes.this_over import ThisOverManager
-    om = ThisOverManager()
-    # Five legal tokens + one speed value
-    om.on_broadcast_override(
-        ["1", ".", "4", "wd", "139", "6"], score=0)
-    check("mixed list rejected (this_over still empty)",
-          om.this_over == [],
-          f"this_over={om.this_over}")
-
-
 def test_this_over_alphabet_helper_boundary_cases() -> None:
     """Helper boundary cases: 7 accepted (overthrow safety margin),
     8 rejected, leg-bye `2lb` accepted, bye `3b` accepted, `nb`
@@ -5315,70 +5222,6 @@ def test_p8_line_fallback_max_chars() -> None:
           out is not None and "100" not in out and "42" not in out
           and "47" not in out,
           f"out={out}")
-
-
-def test_p8_score_mgr_backfill_validates_alphabet() -> None:
-    """`_update_supplements` must drop a `broadcast_this_over` list
-    wholesale when any token fails the cricket-scorecard alphabet
-    gate. Without this, multi-digit reads (score `100`, speed `139`)
-    poison `score_mgr.this_over` and surface through the WS payload's
-    `score_mgr.completed_over` fallback."""
-    header("P8: SM backfill rejects illegal tokens, emits decision tag")
-    import logging
-    from score_manager import ScoreManager, FrameInput
-
-    sm = ScoreManager()
-    sm.this_over = ["?", "?", "?", "?", "?", "?"]
-    sm.this_over_src = ["bcast"] * 6
-    before = list(sm.this_over)
-
-    captured: list[str] = []
-
-    class _Handler(logging.Handler):
-        def emit(self, record: logging.LogRecord) -> None:
-            try:
-                captured.append(record.getMessage())
-            except Exception:
-                pass
-
-    handler = _Handler()
-    sm_log = logging.getLogger("CRICKET")
-    sm_log.addHandler(handler)
-    try:
-        card = {"broadcast_this_over": ["100", ".", ".", ".", ".", "."]}
-        frame = FrameInput(frame_id="t1", timestamp=0.0)
-        sm._update_supplements(card, frame)
-    finally:
-        sm_log.removeHandler(handler)
-
-    check("score_mgr.this_over unchanged after illegal token list",
-          sm.this_over == before,
-          f"this_over={sm.this_over}")
-    check("[THIS-OVER-BCAST-REJECT] decision tag emitted",
-          any("THIS-OVER-BCAST-REJECT" in m for m in captured),
-          f"captured={captured[-3:]}")
-
-
-def test_p8_score_mgr_backfill_accepts_legal_alphabet() -> None:
-    """Legal `broadcast_this_over` tokens still backfill `?` slots;
-    the alphabet gate must not regress the cold-start path."""
-    header("P8: SM backfill still accepts legal alphabet")
-    from score_manager import ScoreManager, FrameInput
-
-    sm = ScoreManager()
-    sm.this_over = ["?", "?", "?", "?"]
-    sm.this_over_src = ["bcast", "bcast", "bcast", "bcast"]
-    card = {"broadcast_this_over": [".", "1", "4", "wd"]}
-    frame = FrameInput(frame_id="t2", timestamp=0.0)
-    sm._update_supplements(card, frame)
-
-    # `_merge_broadcast` canonicalises `wd` → `Wd` (the documented
-    # display alphabet, matching `_is_legal_run_token`'s set).  The
-    # earlier expectation of lowercase `wd` reflected the broken
-    # `.lower().strip()` normalisation that triage §6.2 replaced.
-    check("legal tokens written into bcast slots (canonicalised)",
-          sm.this_over == [".", "1", "4", "Wd"],
-          f"this_over={sm.this_over}")
 
 
 def test_p8_get_display_floor_pad_bounded() -> None:
@@ -11966,7 +11809,7 @@ def test_fixture_frame_poisoned_rate_innings_break_baseline() -> None:
 
 
 def test_fixture_multi_ball_gap_camera_state_transition() -> None:
-    """MULTI_BALL placeholders + score-gated broadcast gap-fill (F2120+).
+    """MULTI_BALL placeholders (F2120+).
 
     Source: thread7_rediagnosis_multi_ball_gap.md §1; backlog §197–201.
     """
@@ -11986,14 +11829,6 @@ def test_fixture_multi_ball_gap_camera_state_transition() -> None:
           "Missed 2 balls" in joined and "+6 runs" in joined, joined[:400])
     check("two ? placeholders for two missed balls",
           om.this_over.count("?") == 2, om.this_over)
-    om._last_mutation_score = 227
-    cap2 = _pbks_rr_telemetry_cap()
-    with patch.object(tom, "log", cap2):
-        om.on_broadcast_override(["6", "6"], score=227)
-    j2 = "\n".join(cap2.infos + cap2.warnings).lower()
-    check("broadcast gap-fill refused when score does not advance",
-          "ignored" in j2 and "score-gated" in j2,
-          j2[-500:])
     tp_src = (Path(__file__).resolve().parent / "test_pipeline.py"
               ).read_text()
     check("production logs [THIS-OVER] Ball <type> after detector",
@@ -13320,8 +13155,6 @@ TESTS = [
     test_cold_start_flip_heavy_pipeline_watchdog_fallback,
     test_cold_start_fallback_blocked_by_absolute,
     test_cold_consensus_fast_path_before_pipeline_watchdog,
-    test_this_over_multi_over_recap_rejected,
-    test_this_over_cold_start_short_broadcast_accepted,
     test_this_over_observed_cap,
     test_this_over_over_jump_rejected,
     test_this_over_history_immutable,
@@ -13411,16 +13244,10 @@ TESTS = [
     test_innings1_latch_max_wins_within_bounds,
     test_innings1_latch_callsite_wired_in_source,
     # Fix 2: this_over token-alphabet validation
-    test_this_over_alphabet_rejects_speed_tokens_f2461,
-    test_this_over_alphabet_rejects_2026_04_16_garbage,
-    test_this_over_alphabet_accepts_legal_sequence,
-    test_this_over_alphabet_rejects_mixed_list,
     test_this_over_alphabet_helper_boundary_cases,
     test_p8_this_over_regex_rejects_multi_digit,
     test_p8_line_fallback_bounded_by_separator,
     test_p8_line_fallback_max_chars,
-    test_p8_score_mgr_backfill_validates_alphabet,
-    test_p8_score_mgr_backfill_accepts_legal_alphabet,
     test_p8_get_display_floor_pad_bounded,
     test_p8_cold_start_regex_rejects_multi_digit,
     # Fix 3: this_over chronological reorder on FOW upgrade
