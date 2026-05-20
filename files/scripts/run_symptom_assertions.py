@@ -197,9 +197,15 @@ def run_fixture(session: str, ledger: dict) -> dict:
                     matched.get("expected_state_after") or {}).get(
                     "score") or last_wicket_score
 
-    # Aggregate by class
+    # Aggregate by assertion-name AND by divergence class_name. The
+    # latter lets a single assertion split its failures into multiple
+    # symptom buckets (e.g., class_1 failing with
+    # divergence class_name='multi_ball_gap_residual' surfaces under
+    # the gap-residual bucket, separate from class_1 itself).
     by_class = collections.defaultdict(
         lambda: {"pass": 0, "fail": 0, "fails": []})
+    by_divergence = collections.defaultdict(
+        lambda: {"count": 0, "fails": []})
     for ball_id, results in ball_results.items():
         for name, ok, div in results:
             if ok:
@@ -209,10 +215,18 @@ def run_fixture(session: str, ledger: dict) -> dict:
                 by_class[name]["fails"].append({
                     "ball_id": ball_id, "div": div,
                 })
+                div_class = (div or {}).get(
+                    "class_name", "unspecified")
+                by_divergence[div_class]["count"] += 1
+                by_divergence[div_class]["fails"].append({
+                    "ball_id": ball_id, "div": div,
+                    "assertion": name,
+                })
     return {
         "session": session,
         "matched_balls": len(ball_results),
         "by_class": {k: dict(v) for k, v in by_class.items()},
+        "by_divergence": {k: dict(v) for k, v in by_divergence.items()},
     }
 
 
@@ -222,6 +236,7 @@ def main():
     results = []
     global_by_class: dict[str, dict] = collections.defaultdict(
         lambda: {"pass": 0, "fail": 0})
+    global_by_divergence: dict[str, int] = collections.defaultdict(int)
     for session in FIXTURES:
         r = run_fixture(session, ledger)
         results.append(r)
@@ -230,6 +245,8 @@ def main():
         for cname, stats in r["by_class"].items():
             global_by_class[cname]["pass"] += stats["pass"]
             global_by_class[cname]["fail"] += stats["fail"]
+        for div_class, stats in (r.get("by_divergence") or {}).items():
+            global_by_divergence[div_class] += stats["count"]
 
     print("=" * 80)
     print("SYMPTOM-CLASS ASSERTION RESULTS (Tier 1 DC-vs-KKR fixtures)")
@@ -261,6 +278,13 @@ def main():
         tot = s["pass"] + s["fail"]
         pct = (100 * s["fail"] / tot) if tot else 0.0
         print(f"{c:<35} {s['pass']:>6} {s['fail']:>6} {pct:>7.1f}%")
+    print()
+    print("Failures bucketed by divergence.class_name:")
+    print(f"{'divergence class_name':<40} {'count':>6}")
+    print("-" * 50)
+    for div_class, c in sorted(
+            global_by_divergence.items(), key=lambda x: -x[1]):
+        print(f"{div_class:<40} {c:>6}")
     print()
     print("Top failing classes (first 3 divergences each):")
     print("-" * 60)

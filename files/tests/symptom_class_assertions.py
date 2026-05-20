@@ -48,34 +48,78 @@ def _legal_balls_of(ball_id: str) -> int:
 # Class 1 — cold-start phantom
 # ------------------------------------------------------------------
 
-def assert_no_cold_start_phantom(
+def assert_this_over_legal_count(
     ledger_ball: dict, ws_payload: dict,
 ) -> Result:
-    """After cold-start exit, this_over length must match ball_in_over.
+    """this_over legal-token count matches the expected progression
+    within the current over.
 
-    At ball N.M, this_over should have exactly M legal entries
-    (1-indexed). A 'phantom' is an extra token beyond the actual
-    M committed balls.
+    Semantics (per 2026-05-20 diagnosis of the 34 prior failures):
+      - Mid-over (ball_in_over in 1..5): this_over should have
+        exactly ball_in_over legal tokens with no '?' placeholders.
+      - Over-end (ball_in_over == 6): the over rolls over AT this
+        commit; this_over should be empty AND over_history[over_n]
+        should hold the 6-token completed-over record. SM and ledger
+        both observe this rollover semantics; the prior
+        cold_start_phantom assertion failed 27/34 cases here
+        because it expected non-zero count at over-end.
+
+    Mid-over mismatches with '?' placeholders or missing tokens
+    return divergence class_name='multi_ball_gap_residual': their
+    root cause is Scout cadence drop / wholesale-accept leakage,
+    addressed by the Stage 4 root-cause + memo §7 scar-tissue
+    deletion workstream rather than a class-1 SM-side fix.
     """
     ball_id = ledger_ball.get("ball_id") or ""
     over_n, ball_in_over = _ball_in_over(ball_id)
     if over_n < 0:
         return _ok()
     this_over = ws_payload.get("this_over") or []
-    # Filter out legal-ball tokens only (drop Wd/Nb extras — they
-    # don't increment legal-ball count). Tokens are in
-    # {".", "1", "2", "3", "4", "5", "6", "W", "Wd", "Nb"}.
     legal_tokens = [t for t in this_over
                     if t not in ("Wd", "Nb", "?")]
-    if len(legal_tokens) != ball_in_over:
+    placeholder_count = sum(1 for t in this_over if t == "?")
+    over_history = ws_payload.get("over_history") or {}
+    over_hist_entry = (
+        over_history.get(over_n) or over_history.get(str(over_n)))
+
+    if ball_in_over == 6:
+        # Rollover semantics: this_over empty, over_history populated.
+        if not this_over and (
+                over_hist_entry and len(over_hist_entry) == 6):
+            return _ok()
+        # Over-end with missing/incomplete archive is empirically
+        # the same root cause as the mid-over '?'-placeholder
+        # residual: the gap in the over prevented archive
+        # finalization. Tag both under multi_ball_gap_residual so
+        # they collapse into one fix-target. If a post-Stage-4
+        # re-run shows these don't auto-resolve, promote back to
+        # a dedicated over_end_rollover_anomaly bucket.
         return _fail(
-            class_name="cold_start_phantom",
+            class_name="multi_ball_gap_residual",
             ball_id=ball_id,
-            expected_legal_tokens=ball_in_over,
-            actual_legal_tokens=len(legal_tokens),
+            sub_kind="over_end_archive_missing",
             this_over=this_over,
+            over_history_entry=over_hist_entry,
+            expected="this_over=[] AND len(over_history[N])==6",
         )
-    return _ok()
+
+    if len(legal_tokens) == ball_in_over and placeholder_count == 0:
+        return _ok()
+    # Mid-over mismatch — re-tag for the gap-residual workstream.
+    return _fail(
+        class_name="multi_ball_gap_residual",
+        ball_id=ball_id,
+        expected_legal_tokens=ball_in_over,
+        actual_legal_tokens=len(legal_tokens),
+        placeholder_count=placeholder_count,
+        this_over=this_over,
+    )
+
+
+# Backward-compat alias for any external callers still importing
+# the original name. New code should use
+# assert_this_over_legal_count.
+assert_no_cold_start_phantom = assert_this_over_legal_count
 
 
 # ------------------------------------------------------------------
@@ -372,7 +416,7 @@ def assert_dismissed_batter_correct(
 # ------------------------------------------------------------------
 
 ASSERTIONS = [
-    ("class_1_cold_start_phantom", assert_no_cold_start_phantom),
+    ("class_1_this_over_legal_count", assert_this_over_legal_count),
     ("class_2_bowler_totals", assert_bowler_totals_consistent),
     ("class_3_12_wicket_token", assert_wicket_token_in_this_over),
     ("class_4_wicket_overs", assert_wicket_overs_match),
