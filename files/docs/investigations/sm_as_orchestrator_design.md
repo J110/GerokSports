@@ -224,7 +224,7 @@ on first pass: the queue under attack turned out to be load-bearing, not scar ti
 - `MAX_THIS_OVER_LEN=9` anti-ribbon guard (`this_over.py:1089-1115`)
 - MULTI_BALL gap decomposition (`score_manager.py:2095-2125` and downstream)
 - `MULTI-BALL-DERIVATION-EXPANDED` trace tag (`trace_emitter.py:64`, already deprecated)
-- P1 striker-indicator matcher (`score_manager.py:4368, 4484`)
+- ~~P1 striker-indicator matcher (`score_manager.py:4368, 4484`)~~ — already removed 2026-05-19 (semantically backwards; see §7.6 audit)
 - `[SM-W8-DISMISSED-GUARD]` re-introduction suppression (`:3870`)
 - `broadcast_this_over`, `broadcast_striker`, `broadcast_extra` fields from Scout output (`extract_regex.py:390-392, 317, 386-388`)
 - `_ScoutRetryBuffer` (`files/eyes/openscout_loop.py:74`) — subsumed by Frame Fate Ledger
@@ -385,10 +385,11 @@ not survive enumeration of its actual callers.
 | `MAX_THIS_OVER_LEN=9` | Audit pending | enumerate callers |
 | MULTI_BALL gap decomposition | Audit pending | S3 territory |
 | `MULTI-BALL-DERIVATION-EXPANDED` trace tag | Already deprecated | mark Done |
-| P1 striker-indicator matcher | Audit pending | striker-derivation audit (overlaps S5b) |
+| P1 striker-indicator matcher | **Done** (removed 2026-05-19) | per §7.6 — the P1 fallback in `_apply_wicket_fall_only` was deleted as semantically backwards |
 | `[SM-W8-DISMISSED-GUARD]` | Audit pending | enumerate callers |
 | `broadcast_extra` | **Reclassified Keep** | per §7.5 — frame-level WIDE/NO_BALL discriminator, distinct role from `extras_type` |
-| `broadcast_this_over` / `broadcast_striker` | **Split S5b/c** | per §7.3 above; S5a closed as NOT-A-DEFECT in §7.5 |
+| `broadcast_this_over` | **Split S5c** | per §7.3 above; gated on dispatch-loop redesign + ?-slot path removal |
+| `broadcast_striker` | **Split S5b-1/2/3** | per §7.6 — observability cleanup (S5b-1, clean delete), ambiguity-tiebreaker (S5b-2, audit-pending corpus check), initial-striker resolution (S5b-3, audit-pending cold-start equivalence) |
 | `_ScoutRetryBuffer` | **Reclassify Keep** | per §7.3 above |
 | `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40` | Conditional | gated on production ORPHAN-rate |
 | `_pending_bowler_ball_credits` queue (Queue B) | **Reclassified Keep** | §7.1 |
@@ -478,8 +479,7 @@ S4b's regression; the sweep makes the dependency structure explicit.
 | **Done** (already shipped) | `_merge_broadcast`, `MAX_THIS_OVER_LEN`, `on_broadcast_override`, `MULTI-BALL-DERIVATION-EXPANDED` trace tag |
 | **Conditional** (gated on architectural changes) | Queue A + `_over_archive_pending` + `_pending_slots` (gated on MULTI_BALL deletion), `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG=40` (gated on production ORPHAN-rate) |
 | **Deferred** (blocks on workstream) | MULTI_BALL gap decomposition (dispatch-loop redesign) |
-| **Bundled** (overlapping audit) | P1 striker-indicator matcher → into S5b |
-| **Split** (sub-audits required) | S5b / S5c (S5a closed NOT-A-DEFECT per §7.5) |
+| **Split** (sub-audits required) | S5b-1 / S5b-2 / S5b-3 / S5c (S5a closed NOT-A-DEFECT per §7.5; P1 striker-indicator matcher already Done per §7.6) |
 
 **Predicted-flip impact for executable deletions.**
 
@@ -581,6 +581,124 @@ confusion.
 **Closing.** S5a is closed as NOT-A-DEFECT. The Keep table is updated. No code change
 this turn; memo-only output per the audit's expectation.
 
+### 7.6 S5b audit — `broadcast_striker` derivation equivalence (2026-05-20)
+
+Six-gate checklist applied to S5b. Verdict: **SPLIT.** Field's write authority is already
+neutralized by the deterministic rotation override; remaining consumers split into pure
+observability (clean delete) and load-bearing fallbacks for cold-start / ambiguity
+edge cases (audit-pending).
+
+**Gate 1 — caller enumeration.**
+
+| Site | Role | Authority |
+|---|---|---|
+| `test_pipeline.py:1783, :8374, :13823` | producer (Scout strip OCR `m.group(1).strip()` → frame.broadcast_striker) | input source |
+| `score_manager.py:238-243` | FrameInput dataclass field | container |
+| `score_manager.py:1616` | frame→card propagation | plumbing |
+| `score_manager.py:1633` | canonicalisation allowlist (squad-key resolver) | defense-in-depth |
+| `score_manager.py:4283-4293` | `_identify_and_set` Priority 3 striker resolution | **gated by deterministic override at `:4295-4325`** |
+| `score_manager.py:4689-4698` | `_identify_striker` ambiguity tiebreaker | active fallback when balls-delta cross-match ambiguous |
+| `score_manager.py:4318-4325` | `STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC` trace | observability only |
+| `score_manager.py:4994` | `_apply_wicket_fall_only` log message | debug only (P1 path REMOVED 2026-05-19) |
+| `tests/symptom_class_assertions.py:369` | class 9 assertion (misnamed) | **does NOT read broadcast_striker** — compares ws_payload.striker to ledger's striker_after_rotation |
+
+**Gate 2 — classification.**
+
+- (a) **Detection-of-striker-identity** (active write authority): `:4283-4293` Priority 3
+  in `_identify_and_set` + `:4689-4698` fallback in `_identify_striker`. The first is
+  WARM-mode re-identification; the second is event-inference ambiguity tiebreaker.
+- (b) **Corroboration-of-derived-state**: `STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC`
+  trace at `:4318-4325`. Records *when* the broadcast disagrees with derivation; the
+  disagreement is resolved in favor of derivation. Pure observability.
+- (c) **Other / debug**: `:4994` log message in `_apply_wicket_fall_only` (P1 path
+  already deleted 2026-05-19 — the remaining log line just echoes the field for
+  context), `:1633` canonicalisation allowlist (defense-in-depth).
+- Class 9 assertion is misnamed: it's a *derivation-correctness* assertion, not a
+  *broadcast-vs-derivation* assertion. Removing `broadcast_striker` does not affect it.
+
+**Gate 3 — cross-reference adjacent state.** The deterministic rotation override
+(`:4295-4325`, committed 2026-05-19 / 2105463) is the load-bearing architectural change
+here. Once `self.striker is not None`, every broadcast-derived striker write is
+**rejected** with the disagreement trace. So `broadcast_striker`'s residual write
+authority is restricted to:
+
+1. **Initial-striker resolution when `self.striker is None`** at WARM re-entry — the
+   `else` branch at `:4326-4331` calls `_set_slot_pair(new, _ns, source="...")`.
+2. **`_identify_striker` ambiguity tiebreaker** when balls-delta cross-match gives no
+   unique striker AND state hasn't locked yet — same cold-start condition.
+
+Both authoritative consumers share a single condition: **`self.striker` is `None` at
+the moment of inference**. Outside that condition, the deterministic override neutralizes
+the field.
+
+**Gate 4 — equivalence proof.** Can derivation alone cover the residual authority?
+
+The residual authority handles the cold-start initial-striker case. Pure derivation
+cannot produce an initial striker — it has to come from somewhere upstream
+(`_accept_initial:2785` sets bat1/bat2 from card; `_resume_from_cache_hot:2687` restores
+`current_bowler` from cache but does not necessarily restore the striker). The cases
+where `self.striker is None` at WARM event inference:
+
+- **Cold-start → WARM transition.** `_accept_initial` sets bat1/bat2 but doesn't always
+  resolve which is on strike — broadcast_striker first-name match at `:4283-4293` fills
+  this in on the first frame where Scout sees the striker indicator.
+- **Hot-resume from cache.** `_resume_from_cache_hot` restores `current_bowler` from
+  cache but the striker slot might be empty depending on cache shape.
+- **Post-wicket pre-new-batter.** Between wicket commit and new-batter announcement, the
+  striker slot can be transiently None.
+
+Removing broadcast_striker would leave each of these without a fallback path; the
+SM-derived striker would stay None until a ball-event commits and `_apply_event`'s
+rotation logic can derive from balls-delta. Whether this matters in practice depends on
+whether downstream consumers (UI, commentary) tolerate transient None.
+
+**Equivalence verdict**: derivation alone covers (a) consumers IF and ONLY IF the
+upstream initial-striker resolution paths (`_accept_initial`, `_resume_from_cache_hot`)
+are themselves load-bearing enough to set striker before WARM event inference fires.
+**That equivalence is not currently proven** — it requires its own audit.
+
+**Gate 5 — lifecycle.** `broadcast_striker` is frame-bound (set by Scout per frame,
+consumed within the same frame's `on_frame`). `self.striker` is event-bound (set at
+innings init, rotated per ball event). The deterministic override makes derivation
+authoritative once locked; broadcast_striker lags after the first ball event.
+
+**Gate 6 — predicted flip.**
+
+- **Class 9 assertion**: zero flip (misnamed; doesn't read broadcast_striker).
+- **Layer 1.5 / Layer 2 baseline**: unknown without execution. The L2 fixture's 29-ball
+  corpus has cold-start in the early frames; if `_accept_initial`'s striker resolution
+  is sufficient, baseline holds. If not, frames before the first ball commit might lose
+  striker resolution and flip downstream invariants.
+- **Production observability**: cold-start corner cases may surface striker = None
+  transients that broadcast_striker currently smooths over.
+
+**Verdict — SPLIT into three sub-audits.**
+
+| Sub-item | Scope | Disposition |
+|---|---|---|
+| **S5b-1** | Observability/debug consumers: trace at `:4318-4325`, log at `:4994`, canonicalisation allowlist at `:1633`, FrameInput dataclass field plumbing | Clean delete eligible — zero authority; observability removal is intentional cleanup once the field is gone elsewhere. Predicted flips zero. Gate: comes LAST in the deletion sequence, not first. |
+| **S5b-2** | `_identify_striker` ambiguity tiebreaker (`:4689-4698`) | Removal needs equivalence proof that state-fallback (`self.striker, self.non, ...`) covers every cross-match-ambiguous case. Likely safe IF deterministic locks early; needs corpus-level confirmation. |
+| **S5b-3** | `_identify_and_set` Priority 3 (`:4283-4293`) — initial-striker resolution | **Load-bearing fallback** for cold-start / hot-resume / post-wicket-pre-new-batter cases where `self.striker is None`. Removal requires auditing `_accept_initial`, `_resume_from_cache_hot`, and the post-wicket gap to confirm initial-striker is set via another path. This is the cold-start striker derivation audit the §7 memo's S5b originally implied — substantially larger scope than a field-deletion. |
+
+**Same lesson as Queue B / `_ScoutRetryBuffer` / S5a, now confirmed four times.** The §7
+memo framed broadcast_striker as "wholesale delete" because the deterministic rotation
+override (2105463) made it look authoritative-redundant. The deeper audit reveals: the
+override deprecates broadcast_striker *mid-over* but leaves it load-bearing *at the
+boundary frames* (cold-start, hot-resume, post-wicket gap). Wholesale deletion is not
+the right shape — the right shape is sub-decomposition with the cold-start audit as the
+load-bearing gate.
+
+**P1 striker-indicator matcher.** §7.4 listed it as "Bundle with S5b." Per this audit,
+the P1 matcher in `_apply_wicket_fall_only` (`:4960-4978`) was already **removed
+2026-05-19** as semantically backwards (a striker indicator points at a still-at-the-
+crease batter, not a dismissed one). The remaining "P1 striker-indicator matcher" entry
+in §7 Delete is **already Done**. Marked complete.
+
+**Memo state.** S5b moves from "Split S5a/b/c" to "Split S5b-1/2/3" with explicit
+disposition per sub-item. S5b-1 is clean-delete eligible (comes last); S5b-2 needs a
+corpus equivalence check; S5b-3 requires a cold-start initial-striker derivation audit
+that is substantially larger than a field deletion.
+
 **Sequence recommendation** (updated 2026-05-20 after the sweep + early execution):
 
 1. ✅ Shipped: stale-test cleanup (`192be39`). Memo updates + dispatch-loop scoping doc
@@ -591,9 +709,12 @@ this turn; memo-only output per the audit's expectation.
    `PENDING-BOWLER-BALL-CREDIT-ORPHANED` rate (gates `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG`
    decision), `DISPATCH-LOOP-SHADOW-COMPARISON` divergence patterns (gates
    `SM_INLINE_MULTI_BALL` flag flip).
-3. **Next when bandwidth allows:** S5b striker-derivation audit (independent of the
-   observability gate). Bundle P1 striker-indicator matcher deletion into the same commit
-   if the audit clears.
+3. **S5b audit complete per §7.6 (2026-05-20).** Split into S5b-1 (observability cleanup,
+   clean delete eligible), S5b-2 (ambiguity tiebreaker, needs corpus check), S5b-3
+   (initial-striker resolution, needs cold-start derivation audit). P1 striker-indicator
+   matcher confirmed Done. Next concrete deliverable in this thread: S5b-2 corpus
+   equivalence check or S5b-3 cold-start audit, depending on which gates the
+   observability run does not already cover.
 4. **After observability data settles:** flag flip for `SM_INLINE_MULTI_BALL` if zero
    shadow divergence, followed by coordinated deletion of Queue A + `_over_archive_pending`
    + `_pending_slots` + MULTI_BALL decomposition.
