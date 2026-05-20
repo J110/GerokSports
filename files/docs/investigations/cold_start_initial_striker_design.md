@@ -3,6 +3,12 @@
 **Status.** Design memo. No code commits. Output is per-context verdicts that
 inform future execution decisions.
 
+> **REVISION 2026-05-20 (post-validate_gtrr_20260520_180715 analysis).** The
+> Context A "already addressed" verdict in §6 of this memo is **EMPIRICALLY
+> FALSIFIED**. See §11 for the audit findings and the corrected fix path. The
+> failure is *not* detection-bounded — it's a stale-field-name dead code path.
+> Original §1–§10 retained as written; §11 is the appended correction.
+
 **Scope.** Determine whether `broadcast_striker`'s residual authority — the
 Priority 3 path at `score_manager.py:4283-4293` in `_identify_and_set`, which
 only fires when `self.striker is None` — can be replaced with derivation, or
@@ -550,3 +556,211 @@ The memo's contribution is the per-context decomposition and the explicit
 sequencing: S5b-3 is not a deletion, it's a three-phase refactor that ends in
 a deletion. Treating it as a deletion (as the original §7 framing did) is the
 same pattern that produced S4b's regression. The discipline is what changed.
+
+## 11. Revision — Context A re-audit against validate_gtrr_20260520_180715 (2026-05-20)
+
+The original Context A verdict — "Priority 3 doesn't fire in normal Context A flow; `_accept_initial`'s `card.get("broadcast")` matching covers initial-striker disambiguation; **already addressed**, zero predicted flips" — is empirically falsified by the
+`validate_gtrr_20260520_180715` production session. First BAT-DELTA at frame 12 credits Shubman Gill +4 runs +1 ball, but the Cricbuzz commentary opens with "Sai Sudharsan on strike, Shubman Gill non-striker." Gill received credit for Sai's first FOUR.
+
+This section documents the actual failure mechanism, replaces the §6 verdict for
+Context A, and proposes the corrected fix path.
+
+### 11.1 Data gathering — frames 1–13 of validate_gtrr
+
+| Frame | pipeline.striker | extractor.batters[0] | extractor.batters[1] | scoreboard.striker tracker |
+|---|---|---|---|---|
+| 3 | `'—'` | (no batters yet) | — | (uninitialised) |
+| 4 | `'—'` | `Sai Sudharsan {0,0,striker:False}` | `Shubman Gill {None,None,striker:None}` | `[STRIKER-OBSERVE] cand='Sai' leader='Sai' state=TENTATIVE` |
+| 8 | `'Shubman Gill'` | (no batter data extracted) | — | (no observation this frame) |
+| 11 | `'Shubman Gill'` | `Sai Sudharsan {4,1,striker:True,_raw='SUDHARSAN'}` | `Shubman Gill {0,0,striker:False,_raw='GILL'}` | `[STRIKER-OBSERVE] cand='Gill' leader='Sai' state=TENTATIVE flipped=False` |
+| 12 | `'Shubman Gill'` | (extractor saw both but `striker:False` on both — Scout dropped the indicator) | — | `[STRIKER-OBSERVE] cand='Gill' leader='Gill' state=PUBLISHABLE flipped=True` |
+| 13 | `'Shubman Gill'` | `'Shubman Gill 4(1)' is_striker=True` in `batting_card_at_crease` | — | locked Gill |
+
+**Key signals.**
+
+- **Frame 4: Scout / extractor correctly identifies Sai as striker.** The
+  `striker:True` flag on `batters[0]` (Sai) at frame 11 confirms Scout's `*`-marker
+  detection working. Scoreboard tracker also sees Sai as leader.
+- **Frame 8: pipeline.striker = Shubman Gill is already set.** Between frame 4 and
+  frame 8, SM transitioned through some path that committed Gill as striker.
+- **Frame 11: Scout's broadcast indicator says Sai, but SM's `self.striker`
+  is already Gill.** The deterministic rotation override at `:4295-4325` blocks
+  the broadcast write because `self.striker is not None` — the wrong striker is
+  *locked*.
+- **Frame 12: COLD_START → WARM consensus committed**, marked as re-entry
+  (`is_reentry: True`). `_accept_initial` ran but inherited the prior
+  `self.striker = Gill` because re-entry preserves striker.
+- **Frame 12 BAT-DELTA: Gill +4 runs +1 ball.** The cold-start synth event
+  credited the wrong batter for the first ball.
+
+### 11.2 Code path inspection — `_accept_initial:2789-2808`
+
+```python
+# Striker identification (W3–W6 → Lever 1 `_set_slot_pair`)
+_strip_bc = card.get("broadcast")          # ← READS A FIELD NEVER WRITTEN
+if _strip_bc:
+    ind = str(_strip_bc).lower().strip()
+    if self.bat1_name and ind in self.bat1_name.lower():
+        self._set_slot_pair(self.bat1_name, self.bat2_name,
+                           source="init_from_card.striker")
+    elif self.bat2_name and ind in self.bat2_name.lower():
+        self._set_slot_pair(self.bat2_name, self.bat1_name,
+                           source="init_from_card.non")
+    else:
+        self._set_slot_pair(self.bat1_name, self.bat2_name,
+                           source="init_from_card.combined")
+else:
+    self._set_slot_pair(self.bat1_name, self.bat2_name,
+                       source="cold_start")
+```
+
+**`card.get("broadcast")` is unwritten.** Grep across `score_manager.py` for
+`card["broadcast"]` / `card.get("broadcast")` returns exactly one hit — this
+read. **No producer ever sets `card["broadcast"]`.** The field is dead.
+
+The chain that *should* feed the striker discriminator:
+
+```
+Scout text (with *-marker)
+  → extract_regex.py:1781-1783 result["striker_broadcast"] = first-name
+  → test_pipeline.py:13823 FrameInput.broadcast_striker = _bcast.get("striker_broadcast")
+  → score_manager.py:1616   card["broadcast_striker"] = frame.broadcast_striker
+  → consumed by _identify_and_set Priority 3 (`:4283-4293`)
+  → NOT consumed by _accept_initial (which reads card["broadcast"] instead)
+```
+
+`_accept_initial`'s broadcast-text branch is dead because it reads the wrong
+field name. Every cold-start run falls through to the `else` branch with
+`source="cold_start"`, which sets striker = bat1 regardless of who's actually
+on strike.
+
+### 11.3 Failure mode classification
+
+This is **not** a detection bug. Scout's strip parsing correctly identifies
+the striker via the `*`-marker; the information reaches `card["broadcast_striker"]`.
+This is a **stale field name** bug in `_accept_initial` — the consumer reads a
+name (`"broadcast"`) that no producer writes.
+
+History of how this drifted: pre-2026, the Scout output schema used
+`result["broadcast"]` as the free-form broadcast text. Schema rename to
+`result["striker_broadcast"]` happened (probably in the §7 broadcast G work or
+earlier), but `_accept_initial`'s consumer never updated.
+
+### 11.4 Per-context verdict update
+
+| Context | Original verdict | **Revised verdict (2026-05-20)** | Action |
+|---|---|---|---|
+| A — cold-start exit | "Already addressed" | **FALSIFIED — stale field name** | Fix: replace `card.get("broadcast")` with `card.get("broadcast_striker")` at `_accept_initial:2789-2808`; align matching logic with `_identify_and_set` Priority 3 (first-name match, skip when batters share first name). |
+| B-i — modern cache | unchanged: already addressed | unchanged | none |
+| B-ii — older cache | unchanged: blocked by override | unchanged | unchanged |
+| B-iii — empty cache | unchanged: hot-resume hardening | unchanged | unchanged |
+| C-i — striker dismissed | replace with slot-diff (S5b-3a) | unchanged | S5b-3a scaffold shipped `6aea92f` |
+| C-ii — non-striker dismissed | unchanged: already addressed | unchanged | none |
+
+**Context A is the highest-blast-radius bug class in this session** — `B-ε`'s
+mis-resolution cascades to every BAT-DELTA event for the rest of the innings
+(Gill credited Sai's runs throughout). The empirical regression detector
+`trace_epsilon_initial_striker` (commit `1d92101`) catches it.
+
+### 11.5 Proposed fix path
+
+Three execution options, in order of increasing scope:
+
+**Option F1 — direct field rename (smallest).**
+
+Single-edit: replace `card.get("broadcast")` with `card.get("broadcast_striker")`
+at `score_manager.py:2798` and update the matching logic to use first-name
+substring (matching the Priority 3 `:4283-4293` style):
+
+```python
+_strip_bc = card.get("broadcast_striker")
+if _strip_bc:
+    ind = _strip_bc.lower().strip()
+    b1_first = ((self.bat1_name or "").split() or [""])[0].lower()
+    b2_first = ((self.bat2_name or "").split() or [""])[0].lower()
+    if b1_first and b2_first and b1_first != b2_first:
+        if b1_first in ind and b2_first not in ind:
+            self._set_slot_pair(self.bat1_name, self.bat2_name,
+                               source="init_from_card.striker")
+        elif b2_first in ind and b1_first not in ind:
+            self._set_slot_pair(self.bat2_name, self.bat1_name,
+                               source="init_from_card.non")
+        else:
+            self._set_slot_pair(self.bat1_name, self.bat2_name,
+                               source="init_from_card.combined_ambiguous")
+    else:
+        self._set_slot_pair(self.bat1_name, self.bat2_name,
+                           source="init_from_card.combined")
+else:
+    self._set_slot_pair(self.bat1_name, self.bat2_name,
+                       source="cold_start_no_indicator")
+```
+
+This is a real-fix-with-low-risk commit. Predicted flips: `trace_epsilon_initial_striker` flips from FAIL to PASS for sessions where Scout's `*`-marker was detected at cold-start (the common case). For sessions where Scout missed the indicator entirely (no `striker_broadcast` populated), behavior is unchanged from current (cold-start default = bat1).
+
+**Option F2 — additive scaffold like S5b-3a (matches established pattern).**
+
+Add `SM_COLD_START_INITIAL_STRIKER_DERIVE` feature flag + `STRIKER-COLD-START-DERIVATION` trace tag. With flag off, current `card.get("broadcast")` (dead) branch unchanged; shadow trace records what F1's logic *would have* picked. With flag on, F1's logic takes precedence. Same shape as `SM_INLINE_MULTI_BALL` and `SM_POST_WICKET_SLOT_DIFF`.
+
+**This is over-engineering for a stale-field-name fix.** Option F2's shadow comparison is valuable when the proposed alternative path's correctness is uncertain. Here the proposed path is *just reading the field that already exists and is consumed correctly by `_identify_and_set` Priority 3* — there's nothing speculative to shadow-compare against. Recommended skip; F2 is documented for completeness.
+
+**Option F3 — derive from extracted batters' `striker:True` flag (architecturally cleanest).**
+
+Bypass `card["broadcast_striker"]` entirely; consume `extracted["batters"][i]["striker"]` directly. This requires the `striker` flag to be propagated through `_build_scorecard` so `card.bat1_is_striker` (or equivalent) reaches `_accept_initial`. Larger scope; pushes the derivation source up to where parse_strip already has the answer.
+
+F3 is the right long-term architecture but requires `card`-shape changes that ripple through the pipeline. F1 is the surgical fix that closes B-ε empirically; F3 can follow in a separate workstream.
+
+### 11.6 Risk register
+
+- **Scout misses the `*`-marker.** When `striker_broadcast` is None, F1 falls
+  through to the same `source="cold_start"` default as today (bat1 as striker).
+  No regression vs current behavior; just no improvement on those frames.
+- **First-name shared between batters.** F1 handles this via the
+  `b1_first != b2_first` guard, matching Priority 3's design. Same-first-name
+  pairs default to `init_from_card.combined` (bat1 striker by order). Same as
+  current behavior for those edge cases.
+- **`broadcast_striker` value disagrees with derivation later.** Frames 8-11
+  of validate_gtrr show the deterministic rotation override blocking
+  broadcast writes once `self.striker` is locked. F1 doesn't change that —
+  it only affects the initial assignment. If the initial assignment is wrong
+  (e.g., Scout's `*`-marker landed on the non-striker due to OCR error), the
+  override prevents broadcast from later correcting it. This is the residual
+  detection-boundedness risk. Frequency unknown; production data with F1
+  shipped + trace_epsilon_initial_striker as gate will surface it.
+- **Re-entry path.** `is_reentry: True` (frame 12 in validate_gtrr) means
+  `_accept_initial` runs but `self.striker` may already be set from prior
+  WARM activity. F1's `_set_slot_pair` call would overwrite it — but the
+  question is whether that's correct. If WARM established a striker via
+  legitimate balls-faced evidence and SM dropped to COLD_START, the re-entry
+  should preserve the existing striker. **F1 needs a guard: only fire the
+  broadcast-striker disambiguation when `self.striker is None`.** Otherwise
+  re-entry could clobber a correctly-derived striker with a stale broadcast
+  hint.
+
+### 11.7 Updated sequence recommendation
+
+| Stage | Action | Gate | Predicted flips |
+|---|---|---|---|
+| F1 | Replace `card.get("broadcast")` with `card.get("broadcast_striker")` at `_accept_initial:2789-2808` with first-name match logic + `self.striker is None` guard for re-entry case. | Pre-commit L1.5 + L2 hold; `trace_epsilon_initial_striker` flips FAIL → PASS for validate_gtrr_20260520_180715 (and any other session where Scout detected the striker indicator at cold-start). | Zero for fixture corpus (L2 dc-vs-kkr fixture starts with both batters at 0/0 — no `*`-marker context to test against). Beneficial for production data with Scout-detected indicator. |
+| F3 (later) | Propagate `extracted["batters"][i]["striker"]` flag through `_build_scorecard` → `card.bat1_is_striker` → consumed directly by `_accept_initial`. Cleaner derivation source. | Separate workstream; depends on `card`-shape design. | n/a |
+| S5b-3a (already shipped) | Post-wicket slot-diff scaffold | `STRIKER-POST-WICKET-DERIVATION` accumulates in production | Zero (additive, flag default off) |
+
+### 11.8 Why the original audit missed this
+
+The §7.6 / §6 verdict was reached via code reading, not production-data
+verification. The §7.2 gate 6 ("predicted flip gate — predict the
+assertion-library flip count BEFORE the dry-run") was met *qualitatively*
+("zero, Priority 3 doesn't fire post-cold-start") but the prediction was based
+on the *assumption* that `_accept_initial`'s broadcast-text branch handled
+disambiguation correctly. That assumption never got an empirical check.
+
+The S5b-2 audit succeeded because it ran the §7.2 checklist against a
+captured corpus AND predicted flips with concrete frame numbers. The S5b-3
+Context A audit reached its verdict without the same empirical step — exactly
+the failure mode the discipline is designed to prevent.
+
+**Lesson baked permanently into §7.2.** "Predicted flip gate" must include a
+concrete frame-by-frame audit against captured trace data — not a qualitative
+"this code path doesn't fire" claim. The five-observability-streams convergence
++ `trace_epsilon_initial_striker` baseline are the operational mechanism that
+will catch any future audit's hypothesis that fails empirical verification.
