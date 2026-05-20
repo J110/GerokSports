@@ -120,6 +120,12 @@ KNOWN_TAGS: set[str] = {
     # event with predicted/actual deltas + divergence_fields list. See
     # files/docs/investigations/dispatch_loop_redesign_scoping.md.
     "DISPATCH-LOOP-SHADOW-COMPARISON",
+    # S5b-2 corpus check (2026-05-20) — instrumentation for
+    # _identify_striker fallback paths. Emitted when balls-delta
+    # cross-match does not yield a unique striker; payload identifies
+    # which fallback branch fires (broadcast / state) and the relevant
+    # state at the call site. See §7.6 of sm_as_orchestrator_design.md.
+    "STRIKER-IDENTIFY-FALLBACK-INVOKED",
     "BOWLING-CARD-CLEARED",
     "STRIP-HEAD-TEAM-TOKEN-MISMATCH",
     "STRIP-HEAD-FORWARD-BALLS-NO-SCORE-POP",

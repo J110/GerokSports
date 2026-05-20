@@ -4685,6 +4685,35 @@ class ScoreManager:
                 self.bat2_name if s == self.bat1_name else self.bat1_name)
             return s, ns, d_bat[s][1]
 
+        # S5b-2 corpus check (2026-05-20): instrument the fallback paths
+        # so we can aggregate across L2 + production traces whether the
+        # broadcast-indicator fallback is ever load-bearing.
+        _bs = card.get("broadcast_striker")
+        _branch = "state_fallback"
+        if _bs:
+            ind = _bs.lower()
+            if self.bat1_name and ind in self.bat1_name.lower():
+                _branch = "broadcast_b1"
+            elif self.bat2_name and ind in self.bat2_name.lower():
+                _branch = "broadcast_b2"
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="STRIKER-IDENTIFY-FALLBACK-INVOKED",
+                    branch=_branch,
+                    d_bat_size=len(d_bat),
+                    strikers_count=len(strikers),
+                    nons_count=len(nons),
+                    self_striker_set=(self.striker is not None),
+                    self_striker=self.striker,
+                    self_non=self.non,
+                    broadcast_striker=_bs,
+                    bat1_name=self.bat1_name,
+                    bat2_name=self.bat2_name,
+                    frame_id=str(getattr(frame, "frame_id", None)))
+            except Exception:
+                pass
+
         # Broadcast indicator fallback
         if card.get("broadcast_striker"):
             ind = card["broadcast_striker"].lower()
