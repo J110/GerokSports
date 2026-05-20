@@ -248,7 +248,8 @@ on first pass: the queue under attack turned out to be load-bearing, not scar ti
   bowler-ball-credits queue; same 3-way-race resolution logic applies.
 - `_PENDING_WICKET_MAX_FRAME_LAG=40` (`:65, 5363`) — orthogonal to Scout schema; bowler-lock latency from tracker is independent. Recent tuning commits (5638eb4, 5b25e59, 31dc8b9) stand.
 - `broadcast_team`, `broadcast_target`, `broadcast_venue`, `broadcast_match_info` — cold-start metadata, not frame-by-frame; out of scope.
-- `extras_type` (renamed from wholesale `broadcast_extra`) — promoted to sub-primitive per the 5-primitive contract audit; needed because wide/no-ball/bye is not derivable from deltas alone.
+- `broadcast_extra` (frame-level OCR discriminator, values `"WD"/"NB"/None`) — drives the WIDE-vs-NO_BALL event-type classification in `_infer_extra` and gates deferred-fire confirmation in `_infer_event`. Reclassified Keep on 2026-05-20 per §7.5 — distinct role from `extras_type`.
+- `extras_type` (event-level subtype label, values `"leg_bye_or_bye"/None`) — refines attribution on committed regular-run events so this_over rendering can emit `{r}lb` tokens. Reclassified Keep on 2026-05-20 per §7.5 — distinct role from `broadcast_extra`; the two fields sit on opposite sides of the legal/illegal delivery axis and cannot be unified.
 
 ### 7.1 S4b reclassification: Queue B is structural, not scar tissue (2026-05-20)
 
@@ -334,9 +335,10 @@ Callers enumerated across `files/score_manager.py`, `files/test_pipeline.py`,
 `test_pipeline_reliability_batch.py`, `test_extras_inference_hardening.py`,
 `verify_frames.py`). Three sub-items, three distinct consumer chains:
 
-- **`broadcast_extra` → S5a (extras_type rename).** Consumer at `score_manager.py:3299, :3312`
-  (deferred-extras-fire logic) is load-bearing. §7 Keep already preserves the semantics under
-  the new `extras_type` name. Deletion is rename-not-remove. Audit-clean.
+- **`broadcast_extra` → S5a CLOSED NOT-A-DEFECT (see §7.5).** Initial classification as a
+  zero-flip rename was wrong. `broadcast_extra` and `extras_type` are not aliases — they
+  occupy opposite sides of the legal/illegal-delivery axis (frame-level WIDE/NO_BALL
+  discriminator vs event-level bye/leg-bye subtype label). Both fields moved to §7 Keep.
 
 - **`broadcast_striker` → S5b (gated on striker-derivation equivalence proof).** Consumer
   threads through `test_pipeline.py:11296-11320` into `_set_slot_pair` for W3–W6 striker
@@ -385,7 +387,8 @@ not survive enumeration of its actual callers.
 | `MULTI-BALL-DERIVATION-EXPANDED` trace tag | Already deprecated | mark Done |
 | P1 striker-indicator matcher | Audit pending | striker-derivation audit (overlaps S5b) |
 | `[SM-W8-DISMISSED-GUARD]` | Audit pending | enumerate callers |
-| `broadcast_this_over` / `broadcast_striker` / `broadcast_extra` | **Split S5a/b/c** | per §7.3 above |
+| `broadcast_extra` | **Reclassified Keep** | per §7.5 — frame-level WIDE/NO_BALL discriminator, distinct role from `extras_type` |
+| `broadcast_this_over` / `broadcast_striker` | **Split S5b/c** | per §7.3 above; S5a closed as NOT-A-DEFECT in §7.5 |
 | `_ScoutRetryBuffer` | **Reclassify Keep** | per §7.3 above |
 | `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40` | Conditional | gated on production ORPHAN-rate |
 | `_pending_bowler_ball_credits` queue (Queue B) | **Reclassified Keep** | §7.1 |
@@ -471,26 +474,21 @@ S4b's regression; the sweep makes the dependency structure explicit.
 
 | Status | Items |
 |---|---|
-| **Keep** (load-bearing) | `_pending_bowler_ball_credits` (Queue B), `_pending_bowler_wickets` (F381 queue), `_PENDING_WICKET_MAX_FRAME_LAG=40`, `_ScoutRetryBuffer`, `[SM-W8-DISMISSED-GUARD]` guard + dedup, `extras_type` (renamed `broadcast_extra`), other §7 Keep items |
+| **Keep** (load-bearing) | `_pending_bowler_ball_credits` (Queue B), `_pending_bowler_wickets` (F381 queue), `_PENDING_WICKET_MAX_FRAME_LAG=40`, `_ScoutRetryBuffer`, `[SM-W8-DISMISSED-GUARD]` guard + dedup, `broadcast_extra` (frame-level discriminator), `extras_type` (event-level subtype label), other §7 Keep items |
 | **Done** (already shipped) | `_merge_broadcast`, `MAX_THIS_OVER_LEN`, `on_broadcast_override`, `MULTI-BALL-DERIVATION-EXPANDED` trace tag |
 | **Conditional** (gated on architectural changes) | Queue A + `_over_archive_pending` + `_pending_slots` (gated on MULTI_BALL deletion), `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG=40` (gated on production ORPHAN-rate) |
 | **Deferred** (blocks on workstream) | MULTI_BALL gap decomposition (dispatch-loop redesign) |
 | **Bundled** (overlapping audit) | P1 striker-indicator matcher → into S5b |
-| **Split** (sub-audits required) | S5a / S5b / S5c |
+| **Split** (sub-audits required) | S5b / S5c (S5a closed NOT-A-DEFECT per §7.5) |
 
 **Predicted-flip impact for executable deletions.**
 
 After the sweep + the deeper 6-gate audit run on 2026-05-20:
 
-1. **S5a (`broadcast_extra` → `extras_type` rename) — DEFERRED.** The §7.3 zero-flip
-   classification was wrong. `broadcast_extra` and `extras_type` are *parallel fields with
-   different semantics*, not aliases. `broadcast_extra` is the frame-level OCR signal from
-   the broadcast strip ("WD"/"NB"); `extras_type` is the event-level classified outcome
-   ("wide"/"leg_bye_or_bye"). A real "rename" would be an architectural unification across
-   ~14 files / ~81 occurrences, with equivalence proofs at every consumer site — not a
-   mechanical rename. This is the same lesson as Queue B: the §7 memo's framing ("renamed
-   from wholesale `broadcast_extra`") was a *conceptual* statement that did not survive
-   enumeration. Marked for proper 6-gate audit; not currently shipped.
+1. **S5a (`broadcast_extra` → `extras_type` rename/unification) — CLOSED NOT-A-DEFECT
+   per §7.5.** The §7.3 zero-flip classification was wrong and the deeper audit confirmed
+   the fields cannot be unified at all: they sit on opposite sides of the legal/illegal
+   delivery axis. Both moved to §7 Keep with explicit role labels.
 
 2. **Stale-test cleanup (shipped 2026-05-20).** Eight dead tests in
    `test_recent_fixes.py` exercised removed APIs (`on_broadcast_override`,
@@ -514,41 +512,91 @@ framing is, post-audit, mostly a *cleanup follow-up* for two architectural works
 re-audit, S5b striker-derivation audit). There is no shortcut path that lets us collapse
 the §7 list ahead of those.
 
-### 7.5 S5a re-audit needed (2026-05-20)
+### 7.5 S5a architectural-unification audit — verdict NOT-A-DEFECT (2026-05-20)
 
-The §7.3 classification of S5a as a zero-flip rename was wrong. A proper 6-gate audit
-shows:
+Followed the §7.2 six-gate checklist against the underlying premise of S5a (that
+`broadcast_extra` and `extras_type` are duplicate fields suitable for unification).
+Verdict: **NOT-A-DEFECT.** The two fields serve distinct, non-overlapping roles in the
+dispatch architecture and cannot be unified without losing semantic precision.
 
-- **Field semantics differ.** `FrameInput.broadcast_extra` is the *detection signal*
-  surfaced by Scout's `parse_strip` from the broadcast strip's "WD"/"NB" tokens. `event[
-  "extras_type"]` is the *classified outcome* attached to a committed ball event by
-  `eyes/commentary.py:485` with values like `"leg_bye_or_bye"`. They are wired to
-  different paths and consumed by different invariants.
-- **Two separate cleanup options.** (1) Mechanical rename of the field name only — keep
-  both fields, change the string. Audit-clean and small (~14 files). (2) Architectural
-  unification — collapse detection signal + classified outcome into one canonical field.
-  Not zero-flip; requires equivalence proofs at every consumer (deferred-extras-fire
-  logic at `score_manager.py:3299-3314`, wide/no-ball detection at
-  `eyes/commentary.py:63-67`, `verify_frames.py` verdict prose, etc.).
-- **Open question for future audit.** Is "rename the field" actually useful in isolation,
-  or does it just add a synonym without addressing the underlying duplication? The
-  original §7 framing seems to have meant (2). If so, S5a is much closer in scope to a
-  Scout-output schema redesign than to a quick win.
+**Gate 1+2 — caller enumeration and classification.**
 
-Deferred until either (a) a follow-up audit produces a concrete equivalence-proof plan
-for option (2), or (b) we explicitly decide option (1)'s mechanical rename is worth
-shipping on its own.
+| Field | Role | Sites |
+|---|---|---|
+| `broadcast_extra` | discriminator | producer: `test_pipeline.py:1804-1806` (Scout result → `result["broadcast_extra"] = "WD"/"NB"`); consumers: `score_manager.py:3303-3322` (deferred-fire gate), `:4636-4647` (`_infer_event` hard-signal classifier), `:4744-4750` (`_infer_extra` returns WIDE vs NO_BALL based on value), `:6023-6028` (`_try_resolve_pending` post-deferral resolver); `eyes/commentary.py:63-127` (frame-level OCR signal storage + freshness check) |
+| `extras_type` | subtype label | producer: `eyes/commentary.py:485` (sets `event["extras_type"] = "leg_bye_or_bye"` on regular-run events when bowler runs flat but score moved); consumers: `score_manager.py:5169` (subtype read for context), `eyes/this_over.py:696` (renders `{r}lb` token instead of raw digit), `commentary/context_builder.py:143` (commentary context) |
 
-**Sequence recommendation.**
+**Gate 3 — cross-reference adjacent state.** The two fields are at different positions
+in the event-classification pipeline:
 
-1. Ship S5a (rename) + stale-test cleanup now. Small, audit-clean, zero predicted flips.
-2. Wait for production observability run → use the data to gate S4a step (ii) AND the
-   `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG` lag-bound decision.
-3. Start dispatch-loop redesign workstream as the long-pole. Once that lands, the
-   Queue A / `_over_archive_pending` / `_pending_slots` triplet and MULTI_BALL
-   decomposition collapse together (they all share the same producer event types).
-4. Run S5b striker-derivation audit in parallel with (3) — independent dependency set.
-   Bundle P1 striker-indicator matcher deletion into the S5b commit.
+- `broadcast_extra ∈ {"WD", "NB", None}` is an *OCR-detected discriminator* read from
+  the broadcast strip. Its value picks between two **event types**: `event.type =
+  "WIDE"` (illegal delivery, doesn't count as legal ball) vs `event.type = "NO_BALL"`
+  (illegal delivery, free hit next). The discriminator role IS the value.
+
+- `extras_type ∈ {"leg_bye_or_bye", None}` is a *subtype label* on a committed
+  regular-run event whose `event.type` is already classified as a legal delivery. The
+  subtype refines attribution (run went to extras column, not batter) without changing
+  event type or legality.
+
+The fields sit on opposite sides of the **legal/illegal delivery axis**: `broadcast_extra`
+discriminates illegal-delivery subtypes (WD/NB); `extras_type` labels a legal-delivery
+attribution variant (bye/leg-bye). Collapsing them would require either promoting WIDE
+and NO_BALL from event types to `extras_type` subtypes (losing the legal/illegal axis) or
+splitting `broadcast_extra` into separate signals (same complexity, different shape).
+Neither move adds clarity.
+
+**Gate 4 — equivalence proof.** No unified field can carry both semantics. A field with
+values `{wide, no_ball, bye, leg_bye, none}` collapses the legal/illegal distinction; the
+consumers that currently key on event.type (`score_manager.py:5169-5180` subtype dispatch
+plus the entire legal-ball-count derivation) would need a parallel signal anyway.
+Equivalence fails by construction.
+
+**Gate 5 — lifecycle.** `broadcast_extra` is frame-bound (cleared on next frame's read,
+freshness tracked via `_broadcast_extra_changed_at`). `extras_type` is event-bound
+(persists for the lifetime of the committed event in `over_history`). The lifecycle
+mismatch confirms the abstraction-level mismatch from gate 3.
+
+**Gate 6 — predicted flips.** Moot; the unification is rejected at gate 4.
+
+**Verdict.** Both fields move to §7 Keep with explicit role labels. The §7 memo's
+"renamed from wholesale `broadcast_extra`" framing was based on an incomplete reading of
+the two fields' roles — it conflated the OCR-detection-signal field with the
+event-subtype-label field because both occupy the "extras" lexical region.
+
+**Same lesson as Queue B and `_ScoutRetryBuffer`** (now confirmed three times across
+this workstream): the §7 memo inherited "scar tissue" labels that assumed semantic
+duplication. Each per-item audit has reclassified the labelled item to Keep with a
+distinct architectural role. The §7.2 six-gate checklist as standing precondition is
+load-bearing; without it, all three would have been speculative deletions matching the
+S4b regression pattern.
+
+**Optional cosmetic improvement (not S5a).** A mechanical rename
+`broadcast_extra → extras_discriminator` or `broadcast_wide_no_ball_signal` would surface
+the asymmetry with `extras_type` and prevent future readers from repeating the
+unification mistake. That is a small, isolated rename — audit-clean if pursued, but
+zero leverage on §7's actual goal. Park unless a future reader trips on the same
+confusion.
+
+**Closing.** S5a is closed as NOT-A-DEFECT. The Keep table is updated. No code change
+this turn; memo-only output per the audit's expectation.
+
+**Sequence recommendation** (updated 2026-05-20 after the sweep + early execution):
+
+1. ✅ Shipped: stale-test cleanup (`192be39`). Memo updates + dispatch-loop scoping doc
+   (`8f8a7c7`). Dispatch-loop scaffold with shadow comparison (`95e6ff5`). S5a closed
+   NOT-A-DEFECT per §7.5 (memo-only, no code commit).
+2. **In progress (operational waiting):** production observability run. Two signals
+   accumulating in parallel — `PATH-B-FIRED` rate (gates S4a step (ii)),
+   `PENDING-BOWLER-BALL-CREDIT-ORPHANED` rate (gates `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG`
+   decision), `DISPATCH-LOOP-SHADOW-COMPARISON` divergence patterns (gates
+   `SM_INLINE_MULTI_BALL` flag flip).
+3. **Next when bandwidth allows:** S5b striker-derivation audit (independent of the
+   observability gate). Bundle P1 striker-indicator matcher deletion into the same commit
+   if the audit clears.
+4. **After observability data settles:** flag flip for `SM_INLINE_MULTI_BALL` if zero
+   shadow divergence, followed by coordinated deletion of Queue A + `_over_archive_pending`
+   + `_pending_slots` + MULTI_BALL decomposition.
 
 The sweep's biggest output is *not* a deletion to ship — it is the dependency graph that
 prevents the next S4b. Future per-item audits start from this map.
