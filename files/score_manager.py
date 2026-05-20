@@ -1630,9 +1630,14 @@ class ScoreManager:
                    "broadcast_striker"):
             _raw = card.get(_k)
             if _raw:
-                _canon = self._canonicalize_name(_raw, _k)
-                if _canon:
-                    card[_k] = _canon
+                # Class-9 fix (2026-05-20): enforce squad-canonical or
+                # reject. Previous behavior kept raw on resolver-None,
+                # letting OCR junk like "PATHUM RAHUL" reach striker
+                # assignment. Now resolver-None → card[_k]=None →
+                # downstream consumers treat as "no name signal this
+                # frame; preserve prior identity." Cold-start (no
+                # scoreboard) still passes raw through.
+                card[_k] = self._squad_canonical_or_reject(_raw, _k)
 
         return card
 
@@ -1688,6 +1693,63 @@ class ScoreManager:
             return key
         except Exception:
             return None
+
+    def _squad_canonical_or_reject(self, raw: str | None,
+                                   slot: str = "") -> str | None:
+        """Class-9 gate (2026-05-20): canonicalize a raw Scout name
+        against the loaded squad, or reject it.
+
+        Behavior:
+        - Empty raw → return raw unchanged.
+        - No scoreboard loaded (cold-start pre-roster) → return raw
+          unchanged (passthrough; SM consensus layers handle).
+        - Scoreboard loaded but resolver returns None → emit
+          ``NAME-REJECTED-NOT-IN-SQUAD`` trace with best near-match
+          diagnostic, return None. Caller treats None as "no name
+          signal this frame; preserve prior identity."
+        - Resolver returns canonical → return canonical.
+        """
+        if not raw:
+            return raw
+        if not self.scoreboard:
+            return raw
+        canon = self._canonicalize_name(raw, slot)
+        if canon is not None:
+            return canon
+        # Rejected — compute best near-match for diagnostic payload.
+        best_match = None
+        best_score = 0.0
+        try:
+            lookup = getattr(
+                self.scoreboard, "_name_lookup", None) or {}
+            sim_fn = getattr(
+                self.scoreboard, "_name_similarity", None)
+            if sim_fn is not None:
+                clean = str(raw).upper().strip()
+                for key, val in lookup.items():
+                    if len(key) < 4 and len(clean) > 4:
+                        continue
+                    s = sim_fn(clean, key)
+                    if s > best_score:
+                        best_score = float(s)
+                        best_match = val
+        except Exception:
+            pass
+        log.warn(
+            f"[NAME-REJECTED-NOT-IN-SQUAD] raw={raw!r} slot={slot!r} "
+            f"best_match={best_match!r} score={best_score:.2f} "
+            f"— preserving prior identity")
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="NAME-REJECTED-NOT-IN-SQUAD",
+                    raw=raw, slot=slot,
+                    best_fuzzy_match=best_match,
+                    best_fuzzy_score=round(best_score, 2),
+                    frame_id=getattr(self, "_current_frame", None))
+            except Exception:
+                pass
+        return None
 
     def _set_slot_pair(self, striker: str | None, non: str | None,
                        *, source: str) -> None:
