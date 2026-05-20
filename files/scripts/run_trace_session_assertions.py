@@ -33,6 +33,34 @@ DEFAULT_TRACE = (
     ROOT / "logs" / "trace" / "validate_gtrr_20260520_180715.jsonl")
 
 # Per-session context. Indexed by trace filename stem.
+#
+# Cascade-closure note (2026-05-20). The validate_gtrr_20260520_180715
+# baseline below is the broken-but-known state captured BEFORE the F1
+# cold-start initial-striker fix (commit 437d952) shipped. F1's
+# subsequent cross-fixture verification (see B-β audit memo
+# files/docs/investigations/sm_wicket_dispatch_design.md §7) showed F1
+# closes at least four bug classes simultaneously: B-ε (direct),
+# B-β (cascade), multi-ball decomposition false positives (cascade),
+# and compound tokens (cascade). On the next fresh production trace
+# captured AFTER F1 ships, the expected flips are:
+#
+#   trace_epsilon_initial_striker     FAIL → PASS  (direct)
+#   trace_beta_sm_wicket_dispatch     FAIL → PASS  (cascade closure)
+#   trace_compound_tokens             FAIL → PASS  (cascade closure, observed
+#                                                   in post-F1 captured-replay)
+#   trace_alpha_bowler_runs_sum       FAIL → significant reduction (cascade
+#                                                   contributors collapsed;
+#                                                   residual depends on
+#                                                   remaining bye/extras
+#                                                   classification work)
+#   trace_extras_total                FAIL → unchanged or improved (UI render
+#                                                   layer, separate scope)
+#
+# When a fresh production trace lands, the natural validation step is
+# to add its filename stem to SESSION_CONTEXT below with the same
+# expected_initial_striker (Sai Sudharsan) AND run the assertions to
+# empirically confirm the predicted flips. Unflipped assertions on
+# fresh data become the next concrete engineering targets.
 SESSION_CONTEXT: dict[str, dict] = {
     "validate_gtrr_20260520_180715": {
         # Per Cricbuzz commentary (

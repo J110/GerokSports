@@ -20,6 +20,33 @@ Baseline against `validate_gtrr_20260520_180715` is broken-but-known.
 Each assertion documents the expected baseline failure shape. Future
 commits gate against not-getting-worse — see
 `files/scripts/run_trace_session_assertions.py` for the runner.
+
+Cascade-closure pattern (2026-05-20). These assertions are
+empirically-grounded regression detectors, NOT independent bug
+classes. Some may flip simultaneously when a root-cause fix lands.
+Most notable demonstration: F1 (commit 437d952) — a one-line
+field-name fix in `_accept_initial` — closes at minimum FOUR bug
+classes when measured against the captured Scout dump for
+validate_gtrr_20260520_180715:
+
+  1. B-ε direct (initial striker mis-resolution)
+  2. B-β cascade (SM wicket dispatch missed)
+  3. Multi-ball decomposition false positives (5 events → 0)
+  4. Compound tokens (`Wd+N`) (2 → 0)
+
+The audit-driven discipline that produced this result has a
+documented track record of preventing engineering capacity from
+being spent on cascade symptoms (Queue B reclassified Keep,
+_ScoutRetryBuffer Keep, S5a NOT-A-DEFECT, S5b-2 deletion shipped,
+B-ζ falsified, B-β cascade closed via F1).
+
+Cross-fixture verification step (now standing precondition per
+sm_as_orchestrator_design.md §7.2 gate 7): when a fix commit
+lands, replay the relevant captured Scout dump and re-run these
+assertions to check which OTHER bug-class hypotheses no longer
+reproduce. Cascade-closure findings update the workstream queue,
+not the engineering queue. Each assertion's flip should be
+cross-verified against captured replay before declaring resolved.
 """
 from __future__ import annotations
 

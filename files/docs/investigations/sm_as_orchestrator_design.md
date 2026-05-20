@@ -304,9 +304,9 @@ configuration.
 observability run: a full session producing zero `PATH-B-FIRED` traces is the precondition
 for removing the COLD_START_PHYSICS_PROMOTE construction at `score_manager.py:2266-2290`.
 
-### 7.2 Audit checklist for any §7 deletion
+### 7.2 Audit checklist for any §7 deletion or fix
 
-Before any item moves from "candidate" to "shipped deletion":
+Before any item moves from "candidate" to "shipped":
 
 1. **Enumerate all callers** of the symbol under deletion (Grep, exhaustive).
 2. **Classify each caller** as init / transition / preserved / consumer / producer.
@@ -316,8 +316,28 @@ Before any item moves from "candidate" to "shipped deletion":
    demonstrate that all N's preconditions / postconditions are preserved.
 5. **State variable lifecycle.** For every helper variable introduced or affected, trace
    reset / clear / accumulation points.
-6. **Predicted flip gate.** Predict the assertion-library flip count BEFORE the dry-run. If
-   the dry-run diverges from the predicted band, pause and re-audit — do not ship.
+6. **Predicted flip gate.** Predict the assertion-library flip count BEFORE the dry-run.
+   Gate 6 applies recursively to ALL classifications — bug-class hypotheses,
+   NOT-A-DEFECT verdicts, fix-feasibility claims, "already addressed" verdicts.
+   Predicted flips must cite concrete frame numbers from captured trace data,
+   not qualitative code-path reasoning (per §11.8 of
+   `cold_start_initial_striker_design.md` and §A of
+   `multi_ball_gap_bowler_credit_design.md`).
+7. **Cross-fixture verification.** After the fix lands, replay the relevant
+   captured Scout dump and re-run the trace-session assertions to check
+   which OTHER reported bug-class hypotheses still reproduce. Cascade-closure
+   findings update the workstream queue, not the engineering queue.
+   Demonstrated empirically by F1 (commit `437d952`): a one-line field-name
+   fix in `_accept_initial` closed at minimum four bug classes — B-ε
+   (direct), B-β (cascade), multi-ball decomposition false positives
+   (cascade), and compound tokens (cascade). See
+   `sm_wicket_dispatch_design.md` §5 for the cascade-blast-radius
+   documentation. Without this verification step, the workstream would
+   have spent capacity on B-β / compound-token / B-α-rotation fix memos
+   each of which would have been architecturally correct but operationally
+   redundant.
+
+If the dry-run diverges from the predicted band, pause and re-audit — do not ship.
 
 The S4b cycle violated steps 3 and 4 (the first attempt assumed a single trigger; the
 second attempt assumed a single transition site covered all orderings). Both regressed at
