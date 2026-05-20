@@ -47,7 +47,9 @@ COMPLETED_OVER_HOLD_S = 3.0
 # (`on_ball_event`) are NEVER subject to this cap — they are ground
 # truth. The cap only governs broadcast-sourced (vision-derived)
 # wholesale acceptance.
-MAX_THIS_OVER_LEN = 9
+# MAX_THIS_OVER_LEN removed 2026-05-20 (option G — broadcast wholesale-
+# accept path deleted; the ribbon-overlay anti-cap guard it powered
+# is no longer reachable since on_broadcast_override is gone).
 
 # Hard upper bound on observed (`on_ball_event`-sourced) tokens in a
 # single over. If we ever exceed this with real events, it means
@@ -794,215 +796,8 @@ class ThisOverManager:
             f"(now={self.this_over}). reason={reason}")
         return True
 
-    def on_broadcast_override(self, data: list | None,
-                              score: int | None = None) -> None:
-        """Use broadcast data to fill gaps — never overwrite observed.
-
-        Immutability principle: confirmed history is permanent. The
-        broadcast is permitted to FILL `?` placeholders and (only via
-        an explicit DRS event from `on_ball_event`) to overwrite the
-        LAST token. It cannot:
-          * Overwrite any non-`?` token that isn't the last
-          * Extend `this_over` beyond its current length
-          * Re-seed a non-empty `this_over`
-
-        SCORE-GATED MUTATION (the user's hard rule): the broadcast
-        strip flips every frame as the LLM re-reads it; that's the
-        flicker root cause. `this_over` mutates ONLY when score
-        advances. Until score moves past `_last_mutation_score`, all
-        broadcast writes are refused — even gap-fills — so the strip
-        cannot mutate the displayed circles between balls.
-
-        Cold-start (no prior mutation recorded) is exempt so the
-        initial join still gets a sensible mid-over fill.
-        """
-        if not data:
-            return
-
-        if (self._last_mutation_score is not None
-                and score is not None
-                and int(score) <= int(self._last_mutation_score)):
-            log.info(
-                f"Broadcast {data} ignored — score "
-                f"{score} has not advanced past last mutation "
-                f"({self._last_mutation_score}); this_over is "
-                f"score-gated.")
-            return
-
-        broadcast = self._merge_broadcast(
-            [str(x).lower().strip() for x in data])
-
-        # Token-alphabet validation.  The broadcast `THIS OVER:`
-        # field is occasionally polluted by adjacent strip
-        # overlays (most often the per-ball-speed track that
-        # sits directly above the run-track on production
-        # graphics).  Scout reads both as text and OCR doesn't
-        # reliably distinguish `THIS OVER:` from `SPEED:`.
-        # Without this gate the pipeline ingests speed numbers
-        # as run-tokens, archiving nonsense overs like
-        # `[139, 148, 143, 147, 145, 140] = 862 runs`
-        # (RR-vs-SRH 2026-04-25 F2461; class active
-        # intermittently since 2026-04-16).  A single illegal
-        # token is a strong signal that the whole strip was
-        # misread, so reject the entire list rather than try
-        # to filter — partial acceptance leaves us with a
-        # silently truncated over and the same UX bug surface.
-        _illegal = [t for t in broadcast
-                    if not self._is_legal_run_token(t)]
-        if _illegal:
-            log.warn(
-                f"[TOKEN-VALIDATE] Rejecting broadcast tokens "
-                f"{broadcast} — illegal token(s) {_illegal} "
-                f"outside cricket-scorecard alphabet (likely "
-                f"speed-track misread or adjacent-strip OCR "
-                f"pollution)")
-            return
-
-        # Multi-over recap rejection. The broadcast frequently shows
-        # the LAST 3 OVERS as one wide ribbon during between-overs
-        # breaks ("18-token strip"). Scout reads that as "this_over"
-        # and we cannot tell which 6 belong to the current over —
-        # reject wholesale. on_broadcast_override is only allowed to
-        # touch the current over.
-        if len(broadcast) > MAX_THIS_OVER_LEN:
-            log.info(
-                f"Broadcast {broadcast} ({len(broadcast)} tokens) "
-                f"exceeds MAX_THIS_OVER_LEN={MAX_THIS_OVER_LEN} — "
-                f"rejected as multi-over recap strip")
-            return
-
-        # While holding a just-completed over, ignore broadcast updates
-        # that match the held over (Scout is still reading the
-        # previous-over strip during the between-overs gap). Only
-        # accept a broadcast that's clearly the NEW over (much
-        # shorter — 0 or 1 token) which signals the next over has
-        # started on the broadcast.
-        if self._pending_clear:
-            held = [x for x in self.this_over
-                    if str(x).lower() not in ("wd", "nb")]
-            if len(broadcast) >= len(held) - 1:
-                # Same-length-or-larger broadcast while holding =>
-                # almost certainly the stale previous-over strip.
-                log.info(
-                    f"Broadcast {broadcast} ignored "
-                    f"(holding completed over {self.this_over})")
-                return
-            # Broadcast is shorter than the held over — new over has
-            # started on the strip. Flush and accept.
-            self._consume_pending_clear("broadcast shows new over")
-
-        # Empty local → accept broadcast wholesale, BUT only on cold
-        # start (we're joining mid-innings and have no observations
-        # of our own). Once we're warm (_last_over_int set), local
-        # being empty means we just transitioned overs and are
-        # waiting for the next ball event — accepting a broadcast
-        # full of '?' tokens (Scout misread) would freeze phantom
-        # placeholders into the new over. Filter '?' tokens out of
-        # the wholesale accept to keep observations clean.
-        if not self.this_over:
-            cold = self._last_over_int is None
-            if cold:
-                _bcast_before = list(self.this_over)
-                self.this_over = broadcast
-                self.this_over_sources = ["bcast"] * len(broadcast)
-                log.info(
-                    f"Broadcast fill (cold-start, empty local): "
-                    f"{self.this_over}")
-                try:
-                    from trace_emitter import get_recorder as _brget
-                    _brget().record(
-                        tag="THIS-OVER-BROADCAST-REPLACE",
-                        before=_bcast_before, after=list(self.this_over),
-                        source="cold_start_empty_local")
-                except Exception:
-                    pass
-                return
-            # Warm-mode wholesale accept: only if the broadcast has
-            # zero '?' tokens (otherwise wait for real ball events).
-            if any(t == "?" for t in broadcast):
-                log.info(
-                    f"Broadcast {broadcast} has '?' tokens "
-                    f"(warm-mode, empty local) — ignoring, will "
-                    f"wait for ball events")
-                return
-            _bcast_before = list(self.this_over)
-            self.this_over = broadcast
-            self.this_over_sources = ["bcast"] * len(broadcast)
-            log.info(
-                f"Broadcast fill (warm, empty local, "
-                f"clean tokens): {self.this_over}")
-            try:
-                from trace_emitter import get_recorder as _brget
-                _brget().record(
-                    tag="THIS-OVER-BROADCAST-REPLACE",
-                    before=_bcast_before, after=list(self.this_over),
-                    source="warm_empty_local_clean")
-            except Exception:
-                pass
-            return
-
-        # If broadcast is shorter but local has ? slots, still fill them
-        has_gaps = any(b == "?" for b in self.this_over)
-        if len(broadcast) < len(self.this_over) and not has_gaps:
-            log.info(f"Broadcast {broadcast} shorter than "
-                     f"local {self.this_over} (no gaps) — ignored")
-            return
-
-        # Count observed (non-?) balls in local
-        obs_count = sum(1 for i, b in enumerate(self.this_over)
-                        if b != "?"
-                        and i < len(self.this_over_sources)
-                        and self.this_over_sources[i] == "obs")
-
-        if obs_count == 0:
-            # All local is placeholder/bcast → safe to replace
-            _bcast_before = list(self.this_over)
-            self.this_over = broadcast
-            self.this_over_sources = ["bcast"] * len(broadcast)
-            log.info(f"Broadcast replaces all-placeholder local: "
-                     f"{self.this_over}")
-            try:
-                from trace_emitter import get_recorder as _brget
-                _brget().record(
-                    tag="THIS-OVER-BROADCAST-REPLACE",
-                    before=_bcast_before, after=list(self.this_over),
-                    source="warm_all_placeholder")
-            except Exception:
-                pass
-            return
-
-        # Only fill ? positions within the existing range —
-        # never extend local from broadcast (new balls come only
-        # from on_ball_event or MULTI_BALL placeholders).
-        old = self.this_over[:]
-        merged = list(self.this_over)
-        merged_src = list(self.this_over_sources)
-
-        filled = 0
-        for i in range(len(merged)):
-            if merged[i] == "?" and i < len(broadcast):
-                merged[i] = broadcast[i]
-                if i < len(merged_src):
-                    merged_src[i] = "bcast"
-                filled += 1
-
-        if filled > 0:
-            log.info(f"Broadcast filled {filled} gaps: {old} → {merged}")
-            _bcast_before = list(self.this_over)
-            self.this_over = merged
-            self.this_over_sources = merged_src
-            try:
-                from trace_emitter import get_recorder as _brget
-                _brget().record(
-                    tag="THIS-OVER-BROADCAST-REPLACE",
-                    before=_bcast_before, after=list(self.this_over),
-                    source="gap_merge",
-                    gaps_filled=int(filled))
-            except Exception:
-                pass
-        else:
-            log.info(f"Broadcast {broadcast} — no gaps to fill in "
-                     f"local {self.this_over}")
+    # on_broadcast_override removed 2026-05-20 (option G —
+    # broadcast wholesale-accept path deleted).
 
     def reorder_wicket_to_ball(self, ball_index_in_over: int) -> bool:
         """Move the W token in `this_over` so it occupies the
@@ -1130,35 +925,9 @@ class ThisOverManager:
             return True
         return False
 
-    @staticmethod
-    def _merge_broadcast(tokens: list[str]) -> list[str]:
-        """Normalize broadcast tokens to our display format.
-        'w' alone = WICKET (W), 'wd'/'wide' = WIDE (Wd),
-        'lb'/'2lb' = leg bye, 'b'/'1b' = bye."""
-        result = []
-        for t in tokens:
-            low = t.lower()
-            if low in ("wd", "wide"):
-                result.append("Wd")
-            elif low in ("nb", "noball"):
-                result.append("Nb")
-            elif low == "w":
-                result.append("W")
-            elif low == "lb":
-                result.append("1lb")
-            elif low.endswith("lb") and low[:-2].isdigit():
-                result.append(low)
-            elif low == "b" and len(t) == 1:
-                result.append("1b")
-            elif low.endswith("b") and low[:-1].isdigit() and not low.endswith("nb"):
-                result.append(low)
-            elif t == ".":
-                result.append(".")
-            elif t.isdigit():
-                result.append(t)
-            else:
-                result.append(t)
-        return result
+    # _merge_broadcast removed 2026-05-20 (option G — broadcast
+    # wholesale-accept path deleted; canonicalization no longer
+    # needed since no broadcast source flows in).
 
     def check_over_change(self, overs: str | None,
                           bowler: str | None,

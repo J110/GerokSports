@@ -57,7 +57,8 @@ def _ledger_record(frame, outcome, payload=None):
 log = CricketLogger("SCORE_MGR")
 
 _is_legal_run_token = _TOM._is_legal_run_token
-_merge_broadcast = _TOM._merge_broadcast
+# _merge_broadcast removed 2026-05-20 (option G — broadcast wholesale-
+# accept path deleted; ThisOverManager.on_broadcast_override gone).
 
 # Policy U — absorbed legal-ball gap fill (Issue 3 Direction B).
 ABSORBED_LEGAL = "ABSORBED_LEGAL"
@@ -4062,43 +4063,15 @@ class ScoreManager:
         if frame.broadcast_venue and not self.venue:
             self.venue = frame.broadcast_venue
 
-        # Broadcast this-over: backfill ? positions only.
-        # Alphabet gate — `over_mgr.on_broadcast_override` already
-        # rejects illegal tokens wholesale via `_is_legal_run_token`,
-        # but this SM mirror previously wrote tokens verbatim. That
-        # leaked multi-digit reads (score "100", partnership "100",
-        # speed-track "147") into `score_mgr.this_over`, which then
-        # surfaced through the WS payload's `score_mgr.completed_over`
-        # fallback (`test_pipeline.py:4498-4507`) and produced the
-        # P8 "100" leak observed in trace 866ce150 F157-F178.  Drop
-        # the entire list on any illegal token so the rejection is
-        # all-or-nothing — a partial accept would leave the surface
-        # silently truncated with the same UX bug class.
-        _bcast_this_over = card.get("broadcast_this_over")
-        if _bcast_this_over:
-            # Canonicalise via _merge_broadcast (`wd`→`Wd`, `nb`→`Nb`,
-            # `w`→`W`, etc.) BEFORE the alphabet check.  The earlier
-            # `.lower().strip()` normalisation collided with
-            # `_is_legal_run_token`'s case-sensitive set
-            # (".", "?", "W", "Wd", "Nb"): lowercase "wd"/"nb"/"w"
-            # failed membership and every legal extras token caused
-            # wholesale list rejection.  Triage memo
-            # `files/docs/investigations/test_failures_triage.md`
-            # §6.2 (Bug 2 / F8).
-            _canon = [str(t).strip() for t in _bcast_this_over]
-            _canon = _merge_broadcast(_canon)
-            _illegal = [t for t in _canon if not _is_legal_run_token(t)]
-            if _illegal:
-                log.warn(
-                    f"[THIS-OVER-BCAST-REJECT] dropping broadcast "
-                    f"{_bcast_this_over} — illegal token(s) "
-                    f"{_illegal} outside cricket-scorecard alphabet")
-            else:
-                for i, token in enumerate(_canon):
-                    if (i < len(self.this_over)
-                            and i < len(self.this_over_src)
-                            and self.this_over_src[i] == "bcast"):
-                        self.this_over[i] = token
+        # Broadcast this-over backfill removed 2026-05-20 (option G —
+        # wholesale-accept path deleted; broadcast_this_over field stays
+        # in FrameInput/card for now but no longer drives state mutation
+        # here. ThisOverManager.on_broadcast_override is also deleted.
+        # The deleted block used _merge_broadcast to canonicalize then
+        # gated on _is_legal_run_token / this_over_src=="bcast" to
+        # backfill '?' slots. With on_broadcast_override gone there's
+        # no broadcast source to backfill from; tokens come only from
+        # observed ball events.
 
         # Striker resolution moved to _identify_and_set so that
         # balls-faced and runs-delta evidence can take precedence over

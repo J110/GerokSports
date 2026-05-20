@@ -8486,12 +8486,10 @@ async def run_test():
                                 attempted=_bcast["this_over_broadcast"],
                                 frame_id=str(frame_count))
                         except Exception:
-                            pass
+                            pass                # on_broadcast_override caller removed 2026-05-20
+                # (option G — broadcast wholesale-accept deleted).
                 if not _bo_vetoed:
-                    _cur_score = scoreboard._inn.get("score")
-                    over_mgr.on_broadcast_override(
-                        _bcast["this_over_broadcast"],
-                        score=int(_cur_score) if _cur_score else None)
+                    pass
             elif (_bcast.get("this_over_broadcast")
                     and frame_type != "SCOREBOARD"):
                 log.info(
@@ -12490,18 +12488,11 @@ async def run_test():
                                         source="description_regex",
                                         frame_id=str(frame_count))
                                 except Exception:
-                                    pass
+                                    pass                        # on_broadcast_override caller removed
+                        # 2026-05-20 (option G — broadcast
+                        # wholesale-accept deleted).
                         if not _to_vetoed:
-                            try:
-                                _bcs = scoreboard._inn.get("score")
-                                over_mgr.on_broadcast_override(
-                                    _tokens,
-                                    score=int(_bcs) if _bcs is not None
-                                    else None)
-                            except Exception as _e:
-                                log.warn(
-                                    f"  [THIS-OVER-BCAST] override "
-                                    f"failed: {_e}")
+                            pass
 
             # Hard code check: detect innings 2 from vision / extractor
             _ext_target = extracted.get("target") if extracted else None
