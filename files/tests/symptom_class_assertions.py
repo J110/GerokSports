@@ -314,12 +314,39 @@ def assert_partnership_matches_score(
     ledger_ball: dict, ws_payload: dict,
     last_wicket_score: int = 0,
 ) -> Result:
+    """Sub-pattern X fix (2026-05-20): prefer ledger's
+    expected_state_after.partnership.runs as ground truth. The prior
+    `score - last_wicket_score` derivation produced a false positive
+    on the WICKET ball itself, because the runner updates
+    last_wicket_score AFTER the assertion fires — at the wicket ball,
+    last_wicket_score is still the OLD value, so the derived expected
+    equals the pre-wicket score instead of the post-wicket-reset 0.
+    Reading ledger's partnership.runs directly bypasses the runner's
+    state-tracking ordering entirely.
+    """
+    partnership = ws_payload.get("partnership_current") or {}
+    p_runs = partnership.get("runs")
+    if p_runs is None:
+        return _ok()
+    expected_from_ledger = (
+        (ledger_ball.get("expected_state_after") or {})
+        .get("partnership") or {}).get("runs")
+    if expected_from_ledger is not None:
+        if int(p_runs) != int(expected_from_ledger):
+            return _fail(
+                class_name="partnership_score_mismatch",
+                ball_id=ledger_ball.get("ball_id"),
+                partnership_runs=p_runs,
+                expected_partnership=expected_from_ledger,
+                source="ledger",
+            )
+        return _ok()
+    # Fallback when ledger lacks partnership data — derive from score
+    # and last_wicket_score with the original semantics.
     score = ws_payload.get("score")
     if score is None:
         score = (ws_payload.get("expected_state_after") or {}).get("score")
-    partnership = ws_payload.get("partnership_current") or {}
-    p_runs = partnership.get("runs")
-    if score is None or p_runs is None:
+    if score is None:
         return _ok()
     expected = int(score) - int(last_wicket_score)
     if int(p_runs) != expected:
@@ -330,6 +357,7 @@ def assert_partnership_matches_score(
             last_wicket_score=last_wicket_score,
             partnership_runs=p_runs,
             expected_partnership=expected,
+            source="derived",
         )
     return _ok()
 
