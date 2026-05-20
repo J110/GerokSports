@@ -2794,26 +2794,43 @@ class ScoreManager:
 
         self.bowler_name = card.get("bowler_name")
 
-        # Striker identification (W3–W6 → Lever 1 `_set_slot_pair`)
-        _strip_bc = card.get("broadcast")
-        if _strip_bc:
-            ind = str(_strip_bc).lower().strip()
-            if self.bat1_name and ind in self.bat1_name.lower():
-                self._set_slot_pair(
-                    self.bat1_name, self.bat2_name,
-                    source="init_from_card.striker")
-            elif self.bat2_name and ind in self.bat2_name.lower():
-                self._set_slot_pair(
-                    self.bat2_name, self.bat1_name,
-                    source="init_from_card.non")
+        # Striker identification (W3–W6 → Lever 1 `_set_slot_pair`).
+        # F1 fix (2026-05-20, B-ε): consume the canonical
+        # `broadcast_striker` field (populated from Scout's *-marker
+        # detection via test_pipeline.py:1783 + :13823 + score_manager.py:1616)
+        # instead of the legacy `broadcast` field that no producer
+        # writes. Apply Priority 3's first-name match (skip when
+        # batters share first name) for symmetric-ambiguity defense.
+        # Gate on self.striker is None so re-entry preserves an
+        # already-locked striker. See §11 of
+        # cold_start_initial_striker_design.md.
+        if self.striker is None:
+            _strip_bc = card.get("broadcast_striker")
+            if _strip_bc:
+                ind = _strip_bc.lower().strip()
+                _b1_first = ((self.bat1_name or "").split() or [""])[0].lower()
+                _b2_first = ((self.bat2_name or "").split() or [""])[0].lower()
+                if _b1_first and _b2_first and _b1_first != _b2_first:
+                    if _b1_first in ind and _b2_first not in ind:
+                        self._set_slot_pair(
+                            self.bat1_name, self.bat2_name,
+                            source="init_from_card.striker")
+                    elif _b2_first in ind and _b1_first not in ind:
+                        self._set_slot_pair(
+                            self.bat2_name, self.bat1_name,
+                            source="init_from_card.non")
+                    else:
+                        self._set_slot_pair(
+                            self.bat1_name, self.bat2_name,
+                            source="init_from_card.combined_ambiguous")
+                else:
+                    self._set_slot_pair(
+                        self.bat1_name, self.bat2_name,
+                        source="init_from_card.combined_same_first")
             else:
                 self._set_slot_pair(
                     self.bat1_name, self.bat2_name,
-                    source="init_from_card.combined")
-        else:
-            self._set_slot_pair(
-                self.bat1_name, self.bat2_name,
-                source="cold_start")
+                    source="cold_start_no_indicator")
 
         if self.bat2_name != _prev_b2_accept:
             self._w8_guard_fired.clear()
