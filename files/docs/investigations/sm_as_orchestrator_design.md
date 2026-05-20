@@ -389,7 +389,7 @@ not survive enumeration of its actual callers.
 | `[SM-W8-DISMISSED-GUARD]` | Audit pending | enumerate callers |
 | `broadcast_extra` | **Reclassified Keep** | per §7.5 — frame-level WIDE/NO_BALL discriminator, distinct role from `extras_type` |
 | `broadcast_this_over` | **Split S5c** | per §7.3 above; gated on dispatch-loop redesign + ?-slot path removal |
-| `broadcast_striker` | **Split S5b-1/2/3** | per §7.6 — observability cleanup (S5b-1, clean delete), ambiguity-tiebreaker (S5b-2, audit-pending corpus check), initial-striker resolution (S5b-3, audit-pending cold-start equivalence) |
+| `broadcast_striker` | **Split S5b-1/2/3** | per §7.6/§7.7 — S5b-2 SHIPPED 2026-05-20 (delete at `_identify_striker:4689-4698`); S5b-1 (observability cleanup) still gated on S5b-3 landing; S5b-3 (initial-striker resolution at `_identify_and_set:4283-4293`) requires cold-start equivalence audit |
 | `_ScoutRetryBuffer` | **Reclassify Keep** | per §7.3 above |
 | `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40` | Conditional | gated on production ORPHAN-rate |
 | `_pending_bowler_ball_credits` queue (Queue B) | **Reclassified Keep** | §7.1 |
@@ -698,6 +698,67 @@ in §7 Delete is **already Done**. Marked complete.
 disposition per sub-item. S5b-1 is clean-delete eligible (comes last); S5b-2 needs a
 corpus equivalence check; S5b-3 requires a cold-start initial-striker derivation audit
 that is substantially larger than a field deletion.
+
+### 7.7 S5b-2 corpus check + execution (2026-05-20)
+
+Instrumented `_identify_striker`'s fallback paths with the
+`STRIKER-IDENTIFY-FALLBACK-INVOKED` trace tag (commit `a7306cd`), then aggregated
+across L2 captured-replay (264 frames / 29 commits / dc-vs-kkr) and L1.5 derivation
+ledger (36 hand-derived FrameInputs).
+
+**Corpus results (combined L2 + L1.5, 2026-05-20).**
+
+| Branch | Count | Self-striker None | Notes |
+|---|---|---|---|
+| `state_fallback` (no broadcast_striker present) | 5 | 0 | All 5 cases routed through state with self.striker set — benign |
+| `broadcast_b1` (broadcast matched bat1) | 2 | 0 | Both at watch_20260519_121701 frames 232 + 245 |
+| `broadcast_b2` | 0 | 0 | Path never exercised |
+| **Total fallback invocations** | **7** | **0** | Zero cases where the §7.6 audit's load-bearing condition (`self.striker is None`) was met |
+
+**Frame-level read of the two `broadcast_b1` invocations:**
+
+- Frame 232: `broadcast_striker = "Pathum Nissanka"`, `self.striker = "Pathum Nissanka"`.
+  Broadcast and deterministic agree — routing through state_fallback returns the same
+  answer. No semantic change.
+- Frame 245 (the phantom-wicket frame previously documented at
+  `score_manager.py:4877-4886`): `broadcast_striker = "Pathum Nissanka"`,
+  `self.striker = "KL Rahul"`. **Disagreement.** Broadcast fallback would return Pathum;
+  state_fallback returns KL Rahul. Ground truth: KL Rahul was at the crease until the
+  frame-361 wicket. Routing through state_fallback produces the *correct* answer; the
+  broadcast write would have produced the same regression class the 2026-05-19
+  deterministic rotation override (commit 2105463) was added to block — at a different
+  call site that the override didn't reach.
+
+**Verdict — DELETE.** The broadcast-indicator fallback at `_identify_striker:4689-4698`
+is the same architectural anti-pattern as the writes the 2105463 override neutralized.
+The corpus shows zero cases where the fallback's deterministic-replacement answer was
+worse (5 state cases identical, 1 broadcast case identical, 1 broadcast case strictly
+better). Deleting the fallback closes a parallel hole that the override left untouched.
+
+**Execution.** Broadcast-indicator block removed from `_identify_striker` at
+`score_manager.py:4689-4698`. Instrumentation simplified to emit only the
+`branch=state_fallback` payload (since broadcast branches no longer exist) — trace tag
+retained so future corpus checks can verify state_fallback remains authoritative.
+Predicted flips at L1.5/L2: zero (confirmed by pre-commit).
+
+**Implications for S5b-1 and S5b-3.**
+
+- **S5b-1 (observability cleanup):** unchanged disposition — still gated on S5b-3
+  landing first, since the field itself is still consulted by `_identify_and_set`
+  Priority 3.
+- **S5b-3 (initial-striker resolution):** still pending. The cold-start derivation
+  audit remains the large workstream — `broadcast_striker`'s residual authority is
+  now confined to `_identify_and_set:4283-4293`, only firing when `self.striker is
+  None` at WARM event inference. Whether that case ever occurs in production
+  determines S5b-3's outcome.
+
+**Same lesson, five times now.** Queue B / `_ScoutRetryBuffer` / S5a / S5b → all
+reclassified Keep or Split via the §7.2 six-gate checklist. S5b-2 is the *first* §7
+candidate this workstream that survived the audit and shipped as a real deletion —
+because the corpus evidence both validated the equivalence proof AND surfaced a
+genuine bug-class the deletion fixes (frame 245's phantom-wicket-class disagreement).
+The discipline produces both Keep and Delete verdicts; the difference is whether the
+evidence supports the proposed change, not which direction the change leans.
 
 **Sequence recommendation** (updated 2026-05-20 after the sweep + early execution):
 

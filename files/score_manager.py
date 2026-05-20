@@ -4685,46 +4685,36 @@ class ScoreManager:
                 self.bat2_name if s == self.bat1_name else self.bat1_name)
             return s, ns, d_bat[s][1]
 
-        # S5b-2 corpus check (2026-05-20): instrument the fallback paths
-        # so we can aggregate across L2 + production traces whether the
-        # broadcast-indicator fallback is ever load-bearing.
-        _bs = card.get("broadcast_striker")
-        _branch = "state_fallback"
-        if _bs:
-            ind = _bs.lower()
-            if self.bat1_name and ind in self.bat1_name.lower():
-                _branch = "broadcast_b1"
-            elif self.bat2_name and ind in self.bat2_name.lower():
-                _branch = "broadcast_b2"
+        # S5b-2 audit (2026-05-20): the broadcast-indicator fallback
+        # at this site is deleted. Corpus check showed 7 fallback
+        # invocations across L2 + L1.5; in zero of them was
+        # `self.striker is None`, and in the 2 cases where the
+        # broadcast value disagreed with self.striker (frame 232/245
+        # of watch_20260519_121701), the disagreement was the same
+        # pattern the 2026-05-19 deterministic rotation override
+        # (commit 2105463) was added to block — but at a different
+        # call site. Routing those cases through state_fallback
+        # produces the deterministic answer in every observed case.
+        # See §7.6 of sm_as_orchestrator_design.md for the full
+        # audit; the instrumentation tag is kept to surface any
+        # future cases where state_fallback isn't authoritative.
         if _trace is not None:
             try:
                 _trace.get_recorder().record(
                     tag="STRIKER-IDENTIFY-FALLBACK-INVOKED",
-                    branch=_branch,
+                    branch="state_fallback",
                     d_bat_size=len(d_bat),
                     strikers_count=len(strikers),
                     nons_count=len(nons),
                     self_striker_set=(self.striker is not None),
                     self_striker=self.striker,
                     self_non=self.non,
-                    broadcast_striker=_bs,
+                    broadcast_striker=card.get("broadcast_striker"),
                     bat1_name=self.bat1_name,
                     bat2_name=self.bat2_name,
                     frame_id=str(getattr(frame, "frame_id", None)))
             except Exception:
                 pass
-
-        # Broadcast indicator fallback
-        if card.get("broadcast_striker"):
-            ind = card["broadcast_striker"].lower()
-            if self.bat1_name and ind in self.bat1_name.lower():
-                runs = (d_bat[self.bat1_name][1]
-                        if self.bat1_name in d_bat else 0)
-                return self.bat1_name, self.bat2_name, runs
-            if self.bat2_name and ind in self.bat2_name.lower():
-                runs = (d_bat[self.bat2_name][1]
-                        if self.bat2_name in d_bat else 0)
-                return self.bat2_name, self.bat1_name, runs
 
         # State fallback
         cs = card.get("score") if card.get("score") is not None else 0
