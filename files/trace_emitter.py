@@ -114,6 +114,12 @@ KNOWN_TAGS: set[str] = {
     # S4a step (i) (2026-05-20) — Path B (COLD_START_PHYSICS_PROMOTE)
     # production-firing observability before deletion in step (ii).
     "PATH-B-FIRED",
+    # Dispatch-loop redesign scoping (2026-05-20) — shadow comparison of
+    # the inline _apply_multi_ball_gap path vs current
+    # _decompose_multi_ball + dispatch loop. Emitted per multi-ball gap
+    # event with predicted/actual deltas + divergence_fields list. See
+    # files/docs/investigations/dispatch_loop_redesign_scoping.md.
+    "DISPATCH-LOOP-SHADOW-COMPARISON",
     "BOWLING-CARD-CLEARED",
     "STRIP-HEAD-TEAM-TOKEN-MISMATCH",
     "STRIP-HEAD-FORWARD-BALLS-NO-SCORE-POP",

@@ -99,6 +99,8 @@ _PENDING_WICKET_MAX_FRAME_LAG = 40
 # all green.
 _PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40
 
+SM_INLINE_MULTI_BALL = os.environ.get("SM_INLINE_MULTI_BALL", "0") == "1"
+
 
 def _is_bowler_credited_dismissal(dtype) -> bool:
     if not dtype:
@@ -3349,6 +3351,34 @@ class ScoreManager:
         self._identify_and_set(
             card, frame, _pb1r, _pb1b, _pb2r, _pb2b)
 
+        # Dispatch-loop redesign scoping (2026-05-20): shadow-compare the
+        # inline _apply_multi_ball_gap prediction against the actual
+        # _decompose_multi_ball + dispatch loop output. Pure observation
+        # — no state mutation from the inline path. Emits one
+        # DISPATCH-LOOP-SHADOW-COMPARISON trace per multi-ball gap event.
+        _mb_shadow: dict | None = None
+        try:
+            _shadow_d_balls = (
+                self._overs_to_balls(card.get("overs") or self.overs or 0)
+                - self._overs_to_balls(prev.get("overs") or 0))
+        except Exception:
+            _shadow_d_balls = 0
+        if _shadow_d_balls > 1 and _trace is not None:
+            try:
+                _mb_shadow = {
+                    "d_balls": int(_shadow_d_balls),
+                    "before": self._capture_multi_ball_shadow_state(),
+                    "predicted": self._apply_multi_ball_gap(
+                        d_score=int(d_score),
+                        d_wickets=int(d_wickets),
+                        d_balls=int(_shadow_d_balls),
+                        striker=self.striker,
+                        non=self.non,
+                        bowler_name=self.bowler_name),
+                }
+            except Exception:
+                _mb_shadow = None
+
         inferred = self._infer_event(d_score, d_wickets, d_overs, prev, card,
                                      frame)
 
@@ -3371,6 +3401,30 @@ class ScoreManager:
                     evt, {"overs": sp_o}, {"overs": sc_o}, frame)
             else:
                 self._apply_event(evt, prev, card, frame)
+
+        if _mb_shadow is not None:
+            try:
+                _after = self._capture_multi_ball_shadow_state()
+                _actual = self._compute_multi_ball_shadow_actual_delta(
+                    _mb_shadow["before"], _after)
+                _divergent = self._compare_multi_ball_shadow(
+                    _mb_shadow["predicted"], _actual)
+                _trace.get_recorder().record(
+                    tag="DISPATCH-LOOP-SHADOW-COMPARISON",
+                    d_balls=_mb_shadow["d_balls"],
+                    d_score=int(d_score),
+                    d_wickets=int(d_wickets),
+                    bowler_name=_mb_shadow["predicted"].get("bowler_name"),
+                    striker_in=_mb_shadow["predicted"].get("striker_in"),
+                    non_in=_mb_shadow["predicted"].get("non_in"),
+                    tokens=_mb_shadow["predicted"].get("tokens"),
+                    predicted=_mb_shadow["predicted"],
+                    actual=_actual,
+                    divergence_fields=_divergent,
+                    flag_on=SM_INLINE_MULTI_BALL,
+                    frame_id=str(self._current_frame))
+            except Exception:
+                pass
 
         if events:
             self.last_event = events[-1]
@@ -4298,6 +4352,207 @@ class ScoreManager:
         if rem == 0:
             return float(full)
         return float(full) + rem / 10.0
+
+    def _apply_multi_ball_gap(
+            self,
+            d_score: int, d_wickets: int, d_balls: int,
+            striker: str | None, non: str | None,
+            bowler_name: str | None) -> dict:
+        """Inline computation of multi-ball gap effects (scoping scaffold).
+
+        Pure function. Returns a result dict describing the state writes a
+        multi-ball gap of (d_balls runs=d_score wickets=d_wickets) would
+        produce — partnership delta, per-bowler total, per-ball batter
+        credits, and the final striker pair after rotation. Uses the same
+        ``_infer_gap_tokens`` heuristic as ``_decompose_multi_ball`` +
+        ``_apply_absorbed_event`` so the predicted delta matches the
+        actual decomposition path token-for-token.
+
+        Does NOT mutate self. The ``SM_INLINE_MULTI_BALL`` flag does not
+        gate any behavior in this method — it controls the dispatch-loop
+        shadow comparison wiring in ``_handle_warm``. This scaffold's
+        purpose is to produce predicted deltas for shadow comparison;
+        the flag-on path swap is a future commit gated on the shadow
+        data confirming equivalence. See
+        ``files/docs/investigations/dispatch_loop_redesign_scoping.md``.
+        """
+        result: dict[str, Any] = {
+            "d_score": int(d_score),
+            "d_wickets": int(d_wickets),
+            "d_balls": int(d_balls),
+            "bowler_name": bowler_name,
+            "striker_in": striker,
+            "non_in": non,
+            "partnership_balls_delta": 0,
+            "partnership_runs_delta": 0,
+            "bowler_balls_delta": 0,
+            "bowler_runs_delta": 0,
+            "bowler_wickets_delta": 0,
+            "batter_credits": [],
+            "final_striker": striker,
+            "final_non": non,
+            "wicket_event": None,
+            "tokens": [],
+        }
+        if d_balls <= 0:
+            return result
+        if _infer_gap_tokens is not None:
+            tokens = list(_infer_gap_tokens(
+                int(d_balls), int(d_score), int(d_wickets)))
+        else:
+            tokens = ["?"] * int(d_balls)
+        result["tokens"] = list(tokens)
+        cur_str = striker
+        cur_non = non
+        for idx, tok in enumerate(tokens):
+            is_last = idx == int(d_balls) - 1
+            if tok in (".", "W", "?"):
+                single_runs = 0
+            else:
+                try:
+                    single_runs = int(tok)
+                except (TypeError, ValueError):
+                    single_runs = 0
+            wkt_delta = 1 if (is_last and int(d_wickets) > 0) else 0
+            result["partnership_balls_delta"] += 1
+            if is_last:
+                result["partnership_runs_delta"] += int(d_score)
+            result["bowler_balls_delta"] += 1
+            result["bowler_runs_delta"] += single_runs
+            result["bowler_wickets_delta"] += wkt_delta
+            if cur_str and tok != "W":
+                result["batter_credits"].append({
+                    "name": cur_str,
+                    "runs_delta": single_runs,
+                    "balls_delta": 1,
+                    "fours": 1 if tok == "4" else 0,
+                    "sixes": 1 if tok == "6" else 0,
+                })
+            if single_runs % 2 == 1 and cur_non:
+                cur_str, cur_non = cur_non, cur_str
+        result["final_striker"] = cur_str
+        result["final_non"] = cur_non
+        if int(d_wickets) > 0:
+            result["wicket_event"] = {
+                "type": "WICKET",
+                "runs": int(d_score),
+                "legal": True,
+                "this_over_token": "W",
+                "striker": cur_str,
+            }
+        return result
+
+    def _capture_multi_ball_shadow_state(self) -> dict:
+        sb = self.scoreboard
+        if sb is not None:
+            inn = sb._inn or {}
+            bowling_card = inn.get("bowling_card") or {}
+            batting_card = sb.batting_card or {}
+        else:
+            bowling_card = {}
+            batting_card = {}
+        return {
+            "partnership_runs": int(self.partnership_runs or 0),
+            "partnership_balls": int(self.partnership_balls or 0),
+            "striker": self.striker,
+            "non": self.non,
+            "score": self.score,
+            "wickets": self.wickets,
+            "overs": self.overs,
+            "bowling_card": {
+                name: {
+                    "runs": (c or {}).get("runs"),
+                    "balls": (c or {}).get("balls"),
+                    "wickets": (c or {}).get("wickets"),
+                }
+                for name, c in bowling_card.items()
+            },
+            "batting_card": {
+                name: {
+                    "runs": (c or {}).get("runs"),
+                    "balls": (c or {}).get("balls"),
+                    "fours": (c or {}).get("fours"),
+                    "sixes": (c or {}).get("sixes"),
+                }
+                for name, c in batting_card.items()
+            },
+        }
+
+    @staticmethod
+    def _compute_multi_ball_shadow_actual_delta(
+            before: dict, after: dict) -> dict:
+        def _pb_delta(field: str) -> int:
+            return int((after.get(field) or 0)) - int((before.get(field) or 0))
+        delta: dict[str, Any] = {
+            "partnership_runs_delta": _pb_delta("partnership_runs"),
+            "partnership_balls_delta": _pb_delta("partnership_balls"),
+            "score_delta": _pb_delta("score"),
+            "wickets_delta": _pb_delta("wickets"),
+            "bowler": {},
+            "batter": {},
+            "striker_change": None,
+            "non_change": None,
+        }
+        if before.get("striker") != after.get("striker"):
+            delta["striker_change"] = (before.get("striker"), after.get("striker"))
+        if before.get("non") != after.get("non"):
+            delta["non_change"] = (before.get("non"), after.get("non"))
+        for name, after_card in (after.get("bowling_card") or {}).items():
+            before_card = (before.get("bowling_card") or {}).get(name) or {}
+            d = {}
+            for k in ("runs", "balls", "wickets"):
+                db = int(before_card.get(k) or 0)
+                da = int(after_card.get(k) or 0)
+                if da != db:
+                    d[f"{k}_delta"] = da - db
+            if d:
+                delta["bowler"][name] = d
+        for name, after_card in (after.get("batting_card") or {}).items():
+            before_card = (before.get("batting_card") or {}).get(name) or {}
+            d = {}
+            for k in ("runs", "balls", "fours", "sixes"):
+                db = int(before_card.get(k) or 0)
+                da = int(after_card.get(k) or 0)
+                if da != db:
+                    d[f"{k}_delta"] = da - db
+            if d:
+                delta["batter"][name] = d
+        return delta
+
+    @staticmethod
+    def _compare_multi_ball_shadow(predicted: dict, actual: dict) -> list[str]:
+        divergent: list[str] = []
+        for field in ("partnership_runs_delta", "partnership_balls_delta"):
+            if int(predicted.get(field) or 0) != int(actual.get(field) or 0):
+                divergent.append(field)
+        bowler_name = predicted.get("bowler_name")
+        actual_bowler = (actual.get("bowler") or {}).get(bowler_name) or {}
+        for k in ("balls_delta", "runs_delta", "wickets_delta"):
+            pred_key = "bowler_" + k.replace("_delta", "") + "_delta"
+            if (int(predicted.get(pred_key) or 0)
+                    != int(actual_bowler.get(k) or 0)):
+                divergent.append(pred_key)
+        predicted_batter_runs = sum(
+            int(c.get("runs_delta") or 0)
+            for c in predicted.get("batter_credits") or [])
+        actual_batter_runs = sum(
+            int((c or {}).get("runs_delta") or 0)
+            for c in (actual.get("batter") or {}).values())
+        if predicted_batter_runs != actual_batter_runs:
+            divergent.append("batter_runs_total")
+        predicted_batter_balls = sum(
+            int(c.get("balls_delta") or 0)
+            for c in predicted.get("batter_credits") or [])
+        actual_batter_balls = sum(
+            int((c or {}).get("balls_delta") or 0)
+            for c in (actual.get("batter") or {}).values())
+        if predicted_batter_balls != actual_batter_balls:
+            divergent.append("batter_balls_total")
+        if predicted.get("final_striker") != predicted.get("striker_in"):
+            actual_final = (actual.get("striker_change") or (None, None))[1]
+            if actual_final and actual_final != predicted.get("final_striker"):
+                divergent.append("final_striker")
+        return divergent
 
     def _decompose_multi_ball(
             self,
