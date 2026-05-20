@@ -97,7 +97,7 @@ _PENDING_WICKET_MAX_FRAME_LAG = 40
 # lag drives the constant. F381's _PENDING_WICKET_MAX_FRAME_LAG
 # above is a parallel target for tuning; deferred until L2 hits
 # all green.
-_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40
+_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 20
 
 SM_INLINE_MULTI_BALL = os.environ.get("SM_INLINE_MULTI_BALL", "0") == "1"
 SM_POST_WICKET_SLOT_DIFF = (
