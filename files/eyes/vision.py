@@ -511,6 +511,7 @@ class Vision:
 
     async def describe(self, frame: np.ndarray,
                        vision_hint: str | None = None,
+                       frame_id: int | None = None,
                        ) -> tuple[str, str, str | None]:
         """Returns (frame_type, description, action_description).
 
@@ -518,7 +519,16 @@ class Vision:
         allowed camera_view tags (bowlers_end / side_on / closeup /
         replay / graphic / ad / other) so the caller can stash the
         frame in BallAnalyzer's tagged buffer for delivery analysis.
+
+        Stage 2d: if frame_id is provided, records dispatch +
+        response/timeout/error into the Frame Fate Ledger.
         """
+        if frame_id is not None:
+            try:
+                from eyes.frame_ledger import get_ledger
+                get_ledger().record_dispatch(int(frame_id))
+            except Exception:
+                pass
         image_b64 = self._encode(frame)
         hint = vision_hint or "None — first frame or no issues."
         prompt = SCOUT_PROMPT.format(vision_hint=hint)
@@ -611,6 +621,16 @@ class Vision:
             self.last_camera_view = None
             self.last_strip_flag = False
             self.last_overlay_flag = False
+            if frame_id is not None:
+                try:
+                    from eyes.frame_ledger import (
+                        get_ledger, ScoutStatus, ScoutResponseClass)
+                    get_ledger().record_scout_response(
+                        int(frame_id),
+                        ScoutResponseClass.OTHER,
+                        status=ScoutStatus.ERROR)
+                except Exception:
+                    pass
             return ("UNKNOWN", "", None)
 
         tag, frame_type = self._parse_tag(raw)
@@ -673,6 +693,22 @@ class Vision:
                  f"{len(raw)} chars")
         if not has_digits and frame_type != "ADVERTISEMENT":
             log.info(f"[SCOUT] Preview: {raw[:200]}")
+
+        if frame_id is not None:
+            try:
+                from eyes.frame_ledger import (
+                    get_ledger, ScoutResponseClass, ScoutStatus)
+                rc = {
+                    "SCOREBOARD": ScoutResponseClass.SCOREBOARD,
+                    "GRAPHIC":    ScoutResponseClass.GRAPHIC,
+                    "CLOSEUP":    ScoutResponseClass.OTHER,
+                    "ADVERTISEMENT": ScoutResponseClass.OTHER,
+                    "PREMATCH":   ScoutResponseClass.OTHER,
+                }.get(frame_type, ScoutResponseClass.OTHER)
+                get_ledger().record_scout_response(
+                    int(frame_id), rc, status=ScoutStatus.RESPONDED)
+            except Exception:
+                pass
 
         return (frame_type, description, action_desc)
 
@@ -808,6 +844,38 @@ class Vision:
                             "finish_reason": finish,
                             "tokens": tokens if isinstance(tokens, int) else None,
                         }) + "\n")
+                    except Exception:
+                        pass
+                # Optional: save the jpeg sent to Groq (exact bytes
+                # the model received) so input/output pairs can be
+                # audited together.  Two env gates:
+                #   SCOUT_FRAME_DUMP_IDS=17,42  → dump only those IDs
+                #   SCOUT_FRAME_DUMP=1          → dump every frame
+                # (SCOUT_FRAME_DUMP_IDS takes precedence when set.)
+                _dump_ids = os.environ.get("SCOUT_FRAME_DUMP_IDS", "")
+                _dump_all = os.environ.get("SCOUT_FRAME_DUMP") == "1"
+                _do_dump = False
+                if _dump_ids:
+                    try:
+                        _wanted = {int(x) for x in _dump_ids.split(",")
+                                   if x.strip()}
+                        _do_dump = fid in _wanted
+                    except ValueError:
+                        _do_dump = False
+                elif _dump_all:
+                    _do_dump = True
+                if _do_dump:
+                    try:
+                        sid = os.environ.get(
+                            "BMF_SESSION_ID", "no_session")
+                        ddir = os.path.join(
+                            "files", "logs", "deliveries", sid,
+                            "scout_frames")
+                        os.makedirs(ddir, exist_ok=True)
+                        fpath = os.path.join(
+                            ddir, f"f{fid:06d}.jpg")
+                        with open(fpath, "wb") as _fp:
+                            _fp.write(base64.b64decode(image_b64))
                     except Exception:
                         pass
                 if attempt > 0 and retry_t0 is not None:

@@ -119,6 +119,20 @@ class FrameLedger:
         if payload is not None:
             e.rejection_payload = payload
 
+    def record_sm_outcome_if_unset(
+        self, frame_id: int, outcome: SmOutcome,
+        payload: Optional[dict] = None,
+    ) -> None:
+        e = self._entry(frame_id)
+        if e.sm_outcome != SmOutcome.NOT_YET_SEEN:
+            return
+        e.sm_outcome = outcome
+        if payload is not None:
+            e.rejection_payload = payload
+
+    def compute_silent_drops(self, expected_frame_count: int) -> int:
+        return max(0, expected_frame_count - len(self._entries))
+
     def all_entries(self) -> list[FrameLedgerEntry]:
         return list(self._entries.values())
 

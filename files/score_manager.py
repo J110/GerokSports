@@ -1464,6 +1464,32 @@ class ScoreManager:
 
     def on_frame(self, frame: FrameInput) -> dict | None:
         """Called every frame. Returns UI payload dict or None."""
+        # Stage 2d: backfill prior frame's ACCEPTED_NOOP if nothing
+        # fired during its processing. Lagged by one frame; the very
+        # last frame of a session stays NOT_YET_SEEN (acceptable
+        # given session-boundary semantics).
+        if _get_ledger is not None:
+            try:
+                prev_fid = getattr(self, "_last_frame_id_for_ledger", None)
+                if prev_fid is not None:
+                    from eyes.frame_ledger import (
+                        ExtractorOutcome as _EO)
+                    _ledger = _get_ledger()
+                    _entry = _ledger.get(prev_fid)
+                    if _entry is not None and _entry.sm_outcome == \
+                            _SmOutcome.NOT_YET_SEEN:
+                        _noop = (
+                            _SmOutcome.ACCEPTED_NOOP_NULL_OVERS
+                            if _entry.extractor_outcome == _EO.NULL_OVERS
+                            else _SmOutcome.ACCEPTED_NOOP)
+                        _ledger.record_sm_outcome_if_unset(
+                            prev_fid, _noop)
+                try:
+                    self._last_frame_id_for_ledger = int(frame.frame_id)
+                except (TypeError, ValueError, AttributeError):
+                    self._last_frame_id_for_ledger = None
+            except Exception:
+                pass
         self._frame_int(frame)
         self.recent_frames.append(frame)
         if len(self.recent_frames) > 5:

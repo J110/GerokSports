@@ -8171,7 +8171,7 @@ async def run_test():
             # === VISION (single Groq Scout call — strip + action) ===
             t0 = time.time()
             frame_type, description, action_desc = await vision.describe(
-                frame, vision_hint)
+                frame, vision_hint, frame_id=frame_count)
             _prev_ft_poison = _prev_vision_frame_type
             _prev_vision_frame_type = frame_type
             v_ms = (time.time() - t0) * 1000
@@ -9267,6 +9267,7 @@ async def run_test():
                 frame_type=frame_type,
                 team_a_name=team_names[0] if team_names else "",
                 team_b_name=team_names[1] if len(team_names) > 1 else "",
+                frame_id=frame_count,
             )
             e_ms = (time.time() - t0) * 1000
 

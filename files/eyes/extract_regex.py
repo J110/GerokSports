@@ -212,19 +212,40 @@ except ImportError:
 _HYPHEN_DIGITS = re.compile(r"\d+\s*-\s*\d+")
 
 
+def _ledger_stamp(frame_id, extractor_outcome=None, response_class=None):
+    if frame_id is None:
+        return
+    try:
+        from eyes.frame_ledger import (
+            get_ledger, ExtractorOutcome, ScoutResponseClass)
+        l = get_ledger()
+        fid = int(frame_id)
+        if extractor_outcome is not None:
+            l.record_extractor_outcome(
+                fid, getattr(ExtractorOutcome, extractor_outcome))
+        if response_class is not None:
+            e = l._entry(fid)
+            e.scout_response_class = getattr(
+                ScoutResponseClass, response_class)
+    except Exception:
+        pass
+
+
 def parse_strip(text: str,
                 team_a: str | None = None,
-                team_b: str | None = None) -> dict[str, Any] | None:
+                team_b: str | None = None,
+                frame_id: int | None = None) -> dict[str, Any] | None:
     """Try to parse SCOUT response with regex.  Returns a dict shaped
     like the LLM Extractor's JSON output for state-derivation fields,
     or ``None`` to signal "couldn't extract — caller should fall back
     to LLM".
 
-    The caller doesn't need ``team_a`` / ``team_b`` for parsing but
-    they're accepted so this function can be a drop-in replacement
-    for ``Extractor.extract`` signature later.
+    Stage 2d: if frame_id is provided, stamps extractor_outcome +
+    scout_response_class (DEGENERATE_NULL when applicable) into the
+    Frame Fate Ledger.
     """
     if not text:
+        _ledger_stamp(frame_id, extractor_outcome="REJECTED")
         return None
 
     tag = _parse_tag_line(text)
@@ -239,6 +260,7 @@ def parse_strip(text: str,
     if not strip_match:
         # No STRIP line at all — let LLM handle (probably ad / replay
         # / corrupted frame). Return None to fall back.
+        _ledger_stamp(frame_id, extractor_outcome="REJECTED")
         return None
     strip_body = strip_match.group("body").strip()
 
@@ -246,6 +268,9 @@ def parse_strip(text: str,
     # couldn't read pixels". Return a no-data response — no need for
     # LLM round-trip on this.
     if strip_body.lower().startswith("null null-null"):
+        _ledger_stamp(
+            frame_id, extractor_outcome="NULL_BOTH",
+            response_class="DEGENERATE_NULL")
         return {
             "frame_type": frame_type,
             "has_scorecard_data": False,
@@ -256,6 +281,7 @@ def parse_strip(text: str,
 
     head_match = _STRIP_HEAD.match(strip_body)
     if not head_match:
+        _ledger_stamp(frame_id, extractor_outcome="REJECTED")
         return None  # malformed STRIP — let LLM try
 
     team = head_match.group("team")
@@ -264,6 +290,14 @@ def parse_strip(text: str,
     score = _parse_num_or_null(head_match.group("runs"))
     wickets = _parse_num_or_null(head_match.group("wkts"))
     overs = _parse_overs_or_null(head_match.group("overs"))
+    if score is None and overs is None:
+        _ledger_stamp(frame_id, extractor_outcome="NULL_BOTH")
+    elif overs is None:
+        _ledger_stamp(frame_id, extractor_outcome="NULL_OVERS")
+    elif score is None:
+        _ledger_stamp(frame_id, extractor_outcome="NULL_SCORE")
+    else:
+        _ledger_stamp(frame_id, extractor_outcome="PARSED")
 
     # batters and bowler — walk the pipe-separated tail.
     batters: list[dict[str, Any]] = []

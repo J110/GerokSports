@@ -342,13 +342,15 @@ class Extractor:
 
     async def extract(self, description: str, frame_type: str,
                       team_a_name: str = "", team_b_name: str = "",
+                      frame_id: int | None = None,
                       **kwargs) -> dict:
         if not description:
             return {}
 
         t_regex0 = time.time()
         regex_result = parse_strip(
-            description, team_a_name or None, team_b_name or None)
+            description, team_a_name or None, team_b_name or None,
+            frame_id=frame_id)
         t_regex_ms = int((time.time() - t_regex0) * 1000)
         if regex_result is not None:
             log.info(
