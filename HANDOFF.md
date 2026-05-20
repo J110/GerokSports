@@ -1,356 +1,348 @@
 # Handoff — Session continuation document
 
-**Last update**: 2026-05-14 (chat is slow; new session needed)
+**Last update**: 2026-05-21
 **Branch**: `derive-not-detect`
-**Status**: Phase A1 + A2 derivation-only refactor complete (30+ commits today). Validation surfaced 4 issues mid-flight; investigation prompt is in chat history and ready to send to CC.
+**Status**: Workstream paused at operational validation gate. F1 cascade-closure result validated against captured Scout dump; production session needed to confirm assertion-library flips on fresh trace data. No engineering work currently unblocked.
 
-Entry point for next Cowork session. Read this first, then `CLAUDE.md`, then the design spec at `files/docs/investigations/derivation_only_stats_design.md`.
+Entry point for next Cowork session. Read this file first, then `CLAUDE.md`, then the design memos at:
+- `files/docs/investigations/sm_as_orchestrator_design.md` (§7 is the standing audit framework with gates 1-7)
+- `files/docs/investigations/cold_start_initial_striker_design.md` (updated with Context A revision)
+- `files/docs/investigations/multi_ball_gap_bowler_credit_design.md` (B-α + B-β cascade-closure)
+- `files/docs/investigations/dispatch_loop_redesign_scoping.md`
+- `files/docs/investigations/derivation_only_stats_design.md` (B1.x background)
+- `files/docs/investigations/no_multiball_design.md` (B1.2/B1.3 background)
+- `files/docs/investigations/deterministic_striker_rotation_design.md`
 
-## TL;DR — Where we are
+## The objective
 
-End-to-end cricket broadcast analysis pipeline. The detection architecture has been rebuilt around two principles:
-1. **Detection vs Derivation**: vision detects identity (names) only; all numerical stats derive from event accumulation.
-2. **ScoreManager (SM) is the sole authority**: no parallel writers, no strip-driven stats updates. Pipeline tracker → SM event → derivation hook → bowling_card / batting_card.
+Shift the pipeline from a detection-heavy architecture to a derivation-first architecture that consumes a strict 5-primitive Scout contract:
+1. Runs (cumulative score)
+2. Overs (current over notation)
+3. Batter identities (names from squad list, not raw OCR strings)
+4. Bowler identity
+5. First striker after innings start / new batter after wicket
 
-Phase A1 (bowler) and A2 (batter) are landed. Strip-driven `update_bowler` and `update_batter` writes are neutralized; event-driven `_apply_bowler_delta` / `_apply_batter_delta` are sole writers. Cross-cutting fixes for cold-start propagation, gap-token inference, anti-hallucination veto, joint-pop unblocking, and striker rotation symmetry have all shipped.
+Everything else on the UI is deducible from these primitives plus per-frame deltas. The session's discipline: any classification of code as "scar tissue" is a hypothesis pending the §7.2 seven-gate audit. The audit is the load-bearing safety mechanism — six audits across this session produced Keep verdicts when each surfaced a structural role the original framing missed, and one fix (F1) produced architecturally significant cascade-closure of four bug classes.
 
-**Validation pass surfaced 4 remaining issues** (see Pending below). Investigation prompt is drafted and was the last action in the previous chat — paste into CC to continue.
+## Headline result this session — F1 cascade closure
 
-## Architecture: design principles
+**F1 (`437d952`) — a one-line field-name fix at `_accept_initial:2798`** (`card.get("broadcast")` → `card.get("broadcast_striker")`) — closed at minimum four bug classes when measured against the captured Scout dump:
 
-### Detection vs Derivation
-- **Detection** (vision-only): batting_team, striker/non-striker/bowler names, dismissal events, run events, over-rollover events, boundary classification.
-- **Derivation** (event-driven, no vision for stats): bowling_card[name].balls/runs/wickets/overs/maidens, batting_card[name].runs/balls_faced/fours/sixes/status.
-- Strip values flow through `update_*` methods but the stat-write code paths are neutralized (kwargs coerced to None); only NAME observations feed the trackers.
-- Divergence between derived state and observed strip is logged as `DERIVATION-STRIP-DIVERGENCE-*` trace tags for audit. Never overrides derived state.
+| Bug class | Pre-F1 state | Post-F1 replay state | Closure type |
+|---|---|---|---|
+| B-ε (initial striker mis-resolution) | Gill credited Sai's FOUR at frame 12 | Sai credited correctly | Direct fix |
+| B-β (SM wicket dispatch missed) | 0 / 2 wickets dispatched (frames 979, 1190) | 2 / 2 dispatched | **Cascade closure** |
+| Multi-ball decomposition false positives | 5 spurious gaps in session | 0 spurious gaps | **Cascade closure** |
+| Compound tokens (`Wd+3`, `Wd+5`) | 2 emitted at frames 286, 303 | 0 emitted | **Cascade closure** |
+| Cross-credit throughout session | Persistent Gill↔Sai label swap | Correct attribution per ball | Cascade closure |
 
-### SM as sole authority
-- BED (`files/eyes/commentary.py`) emits events as advisory shadows (`SHADOW SM=X BED=Y MISMATCH`). SM's own event inference (`_infer_event` → `_accumulate_stats_from_event`) drives derivation.
-- `_event_baseline_score` is a persistent baseline anchored at successful event commits. d_score is computed against this baseline, not `self.score` (which can be clobbered by DIRECT/BOARD writers before `_infer_event` runs).
-- Seeded at COLD_START → WARM exit and at hot_resume_from_cache; reset to 0 at innings-2 transition.
+The cascade mechanism: SM's wrong initial striker (B-ε) put `self.striker` out-of-sync with the scoreboard tracker, which produced score-tracking inconsistencies that `_infer_event` misclassified as multi-ball gaps, which fed wrong tokens, which triggered downstream dispatch failures including the wicket misses. Fixing the initial striker collapses the entire downstream chain.
 
-### ConfidenceTracker (`files/eyes/confidence_tracker.py`)
-- Unified state machine: TENTATIVE → PUBLISHABLE → FIRM → LOCKED → IMMUTABLE (innings-2 only).
-- Per-entity trackers: batting_team, striker, non_striker, bowler.
-- Bowler tracker: FIRM threshold 3.0, half-life 30s, LOCKED on FIRM. Unlocks on over-end.
-- Striker/non-striker: FIRM 3.0, half-life 60s post-cefc595 tuning.
-- Batting team: FIRM 5.0 → IMMUTABLE on innings-2 detection.
+**Architectural-pivot-scale demonstration: empirically validated discipline saves engineering work.** Four bug classes the §7 list had framed as separate engineering workstreams collapsed to one root cause. The audit-driven discipline that prevented those workstreams from being launched is the meta-lesson.
 
-### Hard cricket invariants
-- `at_the_crease` max 2 batters with `status="batting"` (def2c0f).
-- Score, overs, wickets monotonically non-decreasing.
-- Wickets capped at 10.
-- Bowler cannot bowl two consecutive overs (CONSECUTIVE-OVER-BOWLER-REJECTED).
-- `sum(batting_card[*].balls_faced) <= team_legal_balls` (BATTER-BALLS-INVARIANT-FREEZE).
-- `single_ball_max_score = 7` (six + nb); `multi_ball_max_runs = 7*balls + 5`; `MULTI_BALL_MAX_BALLS = 12` for WARM, `3` for cold-start.
+## Architectural posture
 
-### GRAPHIC-FILTER scope
-- Cam ∈ {graphic, ad, replay, other} → dead-time-skip, no state derivation.
-- Exception: cam=graphic AND has_strip=true → routes through hybrid extractor path (downstream gates handle overlay hallucinations).
-- Mode-C inset detection poisons score AND this_over_broadcast (extended in afe6dfd-area).
+### Detection vs Derivation (refined this session)
+- **Detection (5 primitives only)**: vision provides runs, overs, batter names, bowler name, first-striker/new-batter signals.
+- **Derivation (everything else)**: this_over tokens derive from per-frame (Δruns, Δovers, wicket events). Striker rotation derives deterministically from first-striker + per-ball runs sequence + wicket events. Batter/bowler card stats derive from committed per-ball events. Recent Overs derive from over_history (SM-authoritative, archived per integer crossing).
+- Squad-canonical name resolver enforces that raw Scout name tokens (e.g., "PATHUM RAHUL" OCR concatenation) get rejected if they don't fuzzy-match to a squad member.
 
-### Cold-start handling
-- Consensus floor: 2 frames (tightened from 3 in 7689d90). Cold-start MULTI_BALL_MAX_BALLS = 3 (vs WARM=12). Tighter because no anchored state.
-- COLD_START → WARM exit synthesizes the gap from cold-start-entry state. `_synthesize_cold_start_ball_events` produces tokens via `infer_gap_tokens(n_balls, runs, wkts)`.
-- Skeleton-strip rejection (d935966): drops frames where score+overs present but batters+bowler all null.
-- Pre-match cue regex rejects frames containing "won the toss / chosen to / walking onto / warmup".
-- COLD-START-PHYSICS-PROMOTE (635a485 / Option E): on flip-and-reset, if candidate-to-card transition is forward-legal physics (Δballs ≤ 3, validate_diff.ok), promote candidate as anchor and commit new card as MULTI_BALL with gap synthesis.
-- Synth credit walk (8cb9465 / af7d32d): credits bowler.balls + bowler.runs + batter.balls_faced + batter.runs + boundaries per token, with fallback to scoreboard accessors if SM-side slots not yet populated.
+### SM as sole UI authority
+- WS payload reads Recent Overs from SM's `over_history`, not eyes-side `over_mgr.over_history` (`46525af`).
+- Striker rotation determined by SM, never overwritten by mid-over broadcast `>` indicator (`2105463` — deterministic rotation; broadcast indicator becomes audit-only via `STRIKER-BROADCAST-DISAGREES-DETERMINISTIC`).
+- Squad-canonical name resolver enforced at all bat1_name / bat2_name / broadcast_striker / bowler_name commit sites (`9856fd6`).
+- Initial striker at cold-start exit reads `broadcast_striker` field correctly (F1, `437d952`).
 
-### Off-roster gate
-- When extracted batters resolve to off-roster names, frame is non-live and all state-derivation signals suppressed (c5c4792).
+### No-speculative-fixes discipline (refined further this session)
+Every fix commit must cite specific trace evidence or test output that proves the diagnosed cause. "Likely" / "probably" language is investigation-only, never authorization to commit. If diagnosis can't be confirmed from existing data, add instrumentation first, re-run, then fix.
 
-## Pipeline tracks
+The discipline applies recursively to bug-class hypotheses, NOT-A-DEFECT verdicts, fix-feasibility claims, and "already addressed" verdicts. **Every classification is a hypothesis pending empirical verification. The discipline doesn't have a privileged direction.** Demonstrations this session:
+- B-ζ falsified (CC's own hypothesis caught one turn after gate 6 was tightened)
+- F-α-shadow caught false positives in CC's own observability tooling that masked the real B-α signal
+- B-β cascade-closed by F1 (saved a separate fix memo + workstream)
+
+### §7.2 seven-gate audit checklist (gate 7 added this session)
+Before any code in §7 of `sm_as_orchestrator_design.md` (the candidate-deletion list) is touched:
+1. Enumerate every caller / consumer of the candidate
+2. Classify each as (a) producer, (b) consumer, (c) read-only check, or (d) state holder
+3. Cross-reference with adjacent state — does any consumer use it for something other than the obvious role?
+4. Equivalence proof: can the candidate be removed without behavior change, or replaced with a derivation?
+5. Lifecycle trace: when set, when cleared, when read — is there a race or a hidden invariant?
+6. **Predicted-flip gate (tightened)**: must cite concrete frame numbers from captured trace data, not just qualitative code-path reasoning. Applies recursively to bug-class hypotheses, NOT-A-DEFECT verdicts, and "already addressed" claims.
+7. **Cross-fixture verification (new)**: every fix commit followed by replay against captured data to check whether OTHER reported bug classes still reproduce. F1 demonstrated this — closed four bug classes; without the cross-fixture step the workstream would have spent capacity on B-β fix memos, compound-token fix memos, multi-ball decomposition design memos — each architecturally correct but operationally redundant given F1's cascade reach.
+
+## This session's commit ledger — chronological
+
+This session ran 2026-05-19 through 2026-05-21. 17 commits total. Pre-commit gate (Layer 1.5 36/36 + Layer 2 30 balls) held on every single commit. Predicted-flip claims empirically validated at each step.
+
+```
+192be39 chore: stale-test cleanup (broken imports + dead references in test_recent_fixes.py)
+8f8a7c7 docs: memo updates §7.1-§7.4 + dispatch_loop_redesign_scoping.md (NOT-A-DEFECT verdicts for Queue B and _ScoutRetryBuffer)
+95e6ff5 chore(dispatch-loop): additive scaffold for inline multi-ball-gap with shadow comparison (SM_INLINE_MULTI_BALL flag off)
+83ebda7 docs: S5a closure — broadcast_extra and extras_type are parallel fields with different semantics (NOT-A-DEFECT)
+79989b8 docs: S5b memo — broadcast_striker write authority neutralized but field used at boundary frames (SPLIT into S5b-1/2/3)
+a7306cd chore(diagnostics): STRIKER-IDENTIFY-FALLBACK-INVOKED instrumentation for S5b-2 corpus check
+3dbace9 fix(no-multi-ball): S5b-2 deletion — broadcast-indicator fallback at _identify_striker (audit-clean)
+dd0fdde docs: S5b-3 design memo — per-context audit of broadcast_striker at _identify_and_set Priority 3
+6aea92f chore(cold-start): S5b-3a additive scaffold for post-wicket slot-diff striker derivation (SM_POST_WICKET_SLOT_DIFF flag off)
+696b7e4 tune(score_manager): shrink _PENDING_BOWLER_BALL_CREDIT_MAX_LAG 40 → 20 (production data: 0 orphans, max lag 13)
+1d92101 test(harness): five empirically-grounded assertion invariants from validate_gtrr_20260520_180715 (broken-but-known baseline)
+ea27ba5 docs: S5b-3 Context A re-audit memo — F1 failure mechanism identified (field-name bug)
+437d952 fix(score_manager): use correct broadcast_striker field name in _accept_initial cold-start (closes B-ε)
+fcbd5ef docs: B-α audit memo + B-ζ falsification + recursive gate-6 application
+37f63ad fix(observability): correct bowling_card field path in multi-ball shadow snapshot
+4d3fb33 fix(score_manager): extend pending bowler ball-credit queue to ABSORBED_LEGAL when bowler_name=None at gap commit
+c0f30cf docs: B-β cascade closure memo — h1 confirmed empirically, F1 closes B-β without code change
+40b14c7 docs: cascade-closure pattern + §7.2 gate 7 cross-fixture verification baked in
+```
+
+## Trace assertion library (broken-but-known baseline)
+
+Five empirically-grounded invariants in `files/tests/trace_session_assertions.py`. Each fails against the original `validate_gtrr_20260520_180715` trace at the documented failure shape. New baseline captured; future commits gate against not-getting-worse.
+
+| Assertion | Pre-F1 failure | Post-F1 replay state | Status |
+|---|---|---|---|
+| `trace_alpha_bowler_runs_sum` | team=174 sum=149 gap=24 | partial; F-α-queue covers one contributor | Will improve significantly on fresh production trace |
+| `trace_beta_sm_wicket_dispatch` | 2 misses (frames 979, 1190) | 2/2 dispatched in replay | Predicted PASS on fresh trace |
+| `trace_epsilon_initial_striker` | frame 12: actual=Gill, expected=Sai | Sai correctly credited | Predicted PASS on fresh trace |
+| `trace_compound_tokens` | 2 emissions (Wd+3, Wd+5) | 0 emissions in replay | Predicted PASS on fresh trace |
+| `trace_extras_total` | ui=1 archived=10 gap=9 | UI render layer; separate workstream | Stays FAIL until UI bug addressed |
+
+Runner: `python files/scripts/run_trace_session_assertions.py <trace.jsonl>`. SESSION_CONTEXT in the runner maps trace filename → context (expected_initial_striker, etc.). When a fresh session lands, add its filename stem to SESSION_CONTEXT and run.
+
+## Five observability streams (instrumentation in place)
+
+The session ran with five trace tags emitting automatically. Production session data unlocks five independent decisions per the table below.
+
+| Trace tag | Question | Gate decision |
+|---|---|---|
+| `PATH-B-FIRED` (`ac1ca89`) | Is COLD_START_PHYSICS_PROMOTE dead code in production? | Was BLOCKED — 3 fires in validate_gtrr; needs re-audit before deletion |
+| `PENDING-BOWLER-BALL-CREDIT-ORPHANED` | Is `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG` unused configuration? | DECIDED — shrunk 40 → 20 (`696b7e4`); 0 orphans observed, max lag 13 |
+| `DISPATCH-LOOP-SHADOW-COMPARISON` (`95e6ff5`) | Does inline multi-ball-gap match dispatch-loop output? | BLOCKED — 1 real B-α defect found (frame 522); 4 false positives from observability bug (`37f63ad` fixed) |
+| `STRIKER-IDENTIFY-FALLBACK-INVOKED` (`a7306cd`) | Does state_fallback remain authoritative post-S5b-2? | VALIDATED — 72/72 state_fallback, zero regressions |
+| `STRIKER-POST-WICKET-DERIVATION` (`6aea92f`) | Does slot-diff match broadcast Priority 3 across post-wicket gaps? | SCAFFOLD BLIND SPOT — both wickets in session bypassed `_apply_wicket_fall_only` pre-F1; post-F1 replay shows wickets dispatch correctly so scaffold validity needs re-test on fresh trace |
+
+## Workstream status by area
+
+### Operational validation (next concrete move)
+Run one full production session against the current branch. Standard launch sequence below. All trace tags + assertion library emit automatically. After session: add filename stem to SESSION_CONTEXT, run `run_trace_session_assertions.py`, confirm predicted flips materialize.
+
+Expected outcomes on fresh trace:
+- `trace_epsilon_initial_striker`: FAIL → PASS (F1 fix)
+- `trace_beta_sm_wicket_dispatch`: FAIL → PASS (B-β cascade)
+- `trace_compound_tokens`: FAIL → PASS (cascade)
+- `trace_alpha_bowler_runs_sum`: significant gap reduction (F-α-queue + F1 cascade contributors)
+- `trace_extras_total`: stays FAIL (UI render layer, separate workstream)
+
+Any unflipped predicted-PASS assertion = an instrumentation/cascade gap to investigate. Any newly-failing assertion = a regression to investigate.
+
+### F-α-rotation (deferred, latent)
+Striker rotation when bowler=None in ABSORBED_LEGAL has the same architectural gate as F-α-queue but the fix shape differs (requires gap_meta state tracking). Lower priority post-cascade. Will be revisited if fresh trace data shows it still fires.
+
+### Path B re-audit (blocked pre-deletion)
+S4a step (ii) was preparing Path B deletion. Production data showed 3 `PATH-B-FIRED` events in validate_gtrr session — Path B is NOT dead. Re-audit needed before any deletion attempt.
+
+### Dispatch-loop redesign (still in scaffold mode)
+`SM_INLINE_MULTI_BALL` flag-flip blocked. F-α-shadow + F-α-queue closed B-α-real, but real divergence at frame 522 of original session remains the open question. Fresh trace data needed to confirm zero divergence pre-flip.
+
+### S5b-3 cold-start initial-striker
+Context A "already addressed" verdict FALSIFIED by production data. F1 corrects the field-name bug (`broadcast` → `broadcast_striker`). Three-phase refactor in design memo:
+- 3a (scaffold for post-wicket): shipped (`6aea92f`)
+- 3b (hot-resume hardening): waits for production data confirming B-iii exercise
+- 3c (deletion): bundles with S5b-1 observability cleanup; gates on flag flips
+
+### Queue B (`_pending_bowler_ball_credits`) — Keep, with F-α-queue extension
+Documented in §7.1 as canonical 3-way-race resolver. F-α-queue (`4d3fb33`) extended its reach to ABSORBED_LEGAL events when `bowler_name=None`.
+
+### UI render layer bugs (separate workstream)
+- B-γ (Recent Overs panel drops entries): over_history is complete; UI rendering layer drops some
+- B-δ (UI bottom-strip striker render diverges from SM striker): two parallel render paths
+- `trace_extras_total` UI inconsistency
+Not in scope for the SM/pipeline workstream. Frontend audit separately.
+
+## Pipeline tracks (unchanged)
 
 ### Track 1 — State derivation (production pipeline)
 Live state for UI: score, overs, wickets, this_over, recent_overs, batting_card, bowling_card, partnership, FOW, batting_team, current_bowler, striker.
 
 Entry: `files/test_pipeline.py` main loop. Frame source: `files/eyes/capture/udp_frame_source.py` (UDP MPEG-TS via ffmpeg subprocess).
 
-Status: **A1+A2 landed**. 4 validation issues pending (see below). Single full-stack validation ongoing.
+Status: Operational validation pending; cascade closure of multiple bug classes validated against captured data.
 
 ### Track 2 — Clip extraction (OpenScout)
-Parallel Scout system for ball-event clip detection. Writes clips for delivery verification UI.
-
-Entry: `files/eyes/open_scout.py` + `files/eyes/openscout_loop.py`. Sidecar persistence: `files/eyes/openscout_persistence.py`.
-
-Status: **Disabled** (`USE_OPEN_SCOUT=0`). Will not enable until Track 1 fully validated.
-
-429 retry buffer for Track 2 shipped in 3a0a4f8 (`_ScoutRetryBuffer`, capacity 3, 5s staleness). Track 1 has its own in-call retry (5e4ff8a).
+Disabled (`USE_OPEN_SCOUT=0`). Will not enable until Track 1 fully validated.
 
 ## File paths
 
 ```
-files/test_pipeline.py             # Main pipeline (~13K lines)
-files/score_manager.py             # State machine (~3.5K lines)
+files/test_pipeline.py             # Main pipeline
+files/score_manager.py             # State machine (~6K lines after this session)
 files/eyes/scoreboard.py           # batting_card / bowling_card / squad resolution
 files/eyes/confidence_tracker.py   # ConfidenceTracker class + unit tests
 files/eyes/vision.py               # SCOUT_PROMPT_SHORT (default), SCOUT_PROMPT (verbose)
-files/eyes/agent.py                # Vision agent (LLM-based) + digits-veto + Track 1 429 retry
+files/eyes/agent.py                # Vision agent + digits-veto + Track 1 429 retry
 files/eyes/commentary.py           # BED (advisory shadow event detector)
-files/eyes/this_over.py            # over_mgr (this_over tokens, archival, MULTI_BALL handler)
-files/eyes/extract_regex.py        # Regex-primary parse_strip + hyphen-guard for bowler rows
-files/eyes/open_scout.py           # OpenScout VLM prompt (Track 2)
-files/eyes/openscout_loop.py       # OpenScout orchestration + 429 retry buffer
-files/eyes/udp_frame_source.py     # UDP MPEG-TS frame source w/ watchdog + frozen-frame telemetry
-files/eyes/match_state.py          # Scorer LLM (response_format=json_object)
-files/cricket_rules.py             # validate_diff invariants + infer_gap_tokens helper
+files/eyes/this_over.py            # over_mgr (this_over tokens, archival)
+files/eyes/extract_regex.py        # Regex-primary parse_strip
+files/eyes/frame_ledger.py         # Frame Fate Ledger (Stage 2c/2d)
+files/eyes/udp_frame_source.py     # UDP MPEG-TS frame source
+files/cricket_rules.py             # validate_diff invariants + _cold_start_infer_gap_tokens
 files/trace_emitter.py             # Structured trace tag emitter (KNOWN_TAGS registry)
-files/scripts/extract_live_clips_chunk.sh  # Track 2 clip extractor (60s loop)
-files/scripts/stream_to_server.sh         # Mac UGREEN dual-UDP sender (live)
-files/scripts/stream_to_server_test.sh    # Mac file replay dual-UDP sender
 
-scorecard-ui/app/page.tsx          # Main UI (live, scorecard, field, comm, clips, logs)
-scorecard-ui/app/deliveries/page.tsx # Clip verification UI
-scorecard-ui/app/logs/page.tsx     # Log tail viewer
-scorecard-ui/app/components/BattingCard.tsx # at-the-crease, green dot
+scorecard-ui/app/page.tsx          # Main UI
+scorecard-ui/app/components/BattingCard.tsx
 
-files/docs/investigations/derivation_only_stats_design.md  # Phase A1+A2 spec
-files/docs/investigations/thread7_fix2_cam_graphic_fast_path_design.md
-files/docs/investigations/trace_and_detect_system_design.md
+files/tests/symptom_class_assertions.py    # 11 assertion functions (12 classes)
+files/tests/trace_session_assertions.py    # 5 trace-session assertions (B-α/β/ε/compound/extras)
+files/tests/test_sm_derivation_ledger.py   # Layer 1.5 — SM derivation against ledger
+files/tests/test_pipeline_captured_replay.py  # Layer 2 — captured-Scout replay
+files/tests/fixtures/dc_vs_kkr_2026_152064_ledger.json
+files/tests/fixtures/dc_vs_kkr_2026_152064_overs_1_6_ground_truth.md
+files/tests/fixtures/gt_vs_rr_2026_commentary_first_innings.md
+
+files/scripts/run_trace_session_assertions.py     # Trace session assertion runner
+files/scripts/analyze_gap_detected_retro.py        # Stage 1 retrospective
+files/scripts/analyze_delta_balls_distribution.py  # Δballs audit
+files/scripts/classify_steady_state_gaps.py        # Gap root-cause classifier
+files/scripts/classify_ocr_miss_subclasses.py      # OCR miss sub-class audit
+files/scripts/audit_scar_tissue_targets.py         # S0 validation script
+
+files/docs/investigations/sm_as_orchestrator_design.md            # §7 framework with gates 1-7
+files/docs/investigations/dispatch_loop_redesign_scoping.md       # Design B + (i) + (ii)
+files/docs/investigations/cold_start_initial_striker_design.md    # S5b-3 per-context + Context A revision
+files/docs/investigations/multi_ball_gap_bowler_credit_design.md  # B-α audit + B-β cascade closure
+files/docs/investigations/no_multiball_design.md                  # B1.2/B1.3 background
+files/docs/investigations/derivation_only_stats_design.md         # A1/A2 background
+files/docs/investigations/deterministic_striker_rotation_design.md
 
 deploy/systemd/*.service           # pipeline, recorder, live-clips, ui
 deploy/Caddyfile                   # reverse proxy
 .github/workflows/deploy.yml       # CI deploy
+.git/hooks/pre-commit              # Layer 1.5 + Layer 2 gate
 ```
 
-## Today's session commits (chronological, ~30 commits)
-
-```
-4c58a82 fix(udp-stream): keyframe re-injection + cfr pacing + frozen-frame telemetry
-d935966 fix(cold-start): skeleton-strip + pre-match-cue rejection
-6d6719e fix(strip-head): joint-pop atomic on overs reject
-8140867 fix(graphic-filter): plausibility gate replaces unconditional poison
-afe6dfd fix(strip-head): team-match veto at broadcast override + joint-pop on overs regression
-6d3bf2a fix(#63 root cause): chase-signature gate on detected_target
-cd4f36a fix(wicket-attrib): SM.striker authoritative, scorer dismissal advisory
-2a7aac0 fix(wicket-double-write): apply_known_wicket_increment idempotency
-33a8574 fix: dismiss_batter parallel idempotency
-7689d90 tune(cold-start): consensus floor 3→2 frames
-8941e7e feat(cold-start): synthesize ball events from state delta at WARM entry
-7332d83 fix(strip-ingestion): overs fast-confirm + physics-aware graphic-filter + GRAPHIC+strip routing
-adb587d fix(bowler-override): 2-frame consensus + freeze attribution during transition
-8c1b33a fix(attribution): bowler-row junk + wicket-event-required + batter-balls sum invariant
-2640a11 docs(investigations): derivation-only stats architecture spec
-96b2cce feat(bowler): neutralize strip-driven bowling_card writes (A1 part 1)
-5e02a1c feat(bowler): MULTI_BALL decomp + F381 backfill + dismissal filter + maidens + divergence + consecutive-over trace (A1 part 2)
-4dbd0e3 fix(sm-event-delta): persistent baseline (option 2)
-caedd4c fix(sm-event-delta): reset _event_baseline_score on innings-2
-44f2510 fix(sm-event-delta): seed _event_baseline_score at WARM-entry paths
-efb0139 feat(batter): neutralize strip-driven batting_card writes; delete f043c5d (A2 part 1)
-32a2207 feat(batter): MULTI_BALL + ABSORBED_LEGAL decomp + extras + maiden gap fix + divergence (A2 part 2)
-86e9aa4 fix(gap-tokens): unified infer_gap_tokens helper + 5 call sites
-635a485 fix(cold-start): physics-linked promotion on forward-legal transitions (Option E)
-7d1ddbf fix(pre-a2): joint-pop unblocked + ABSORBED_LEGAL bowler credit + extractor regex + extras positive witness
-8cb9465 fix(cold-start + strip-head): synth credits on LOCKED + team-token prefix gate + forward-balls-no-score pop
-625e397 fix(scout): veto STRIP block when classifier reports digits=false (anti-hallucination)
-af7d32d fix(cold-start): synth credit fallback + tighten digits-veto to score>=10
-b858dd5 fix: partnership balls increment in synth credit walk (PART 1)
-cfd4b8c fix(striker-rotation): apply odd-run swap before end-of-over swap (option 1)
-```
-
-Run `git log --oneline derive-not-detect | head -50` for full list.
-
-## Pending — 4 issues from latest validation pass
-
-Investigation prompt was drafted at the end of the previous chat. Paste into CC to start.
-
-### Issue 1 (major) — overlay/ad window starves event detection
-At over 5 start (4.0-4.5 ov), "BE UNSTOPPABLE" promotional overlay obscured the strip for ~5 balls. Pipeline missed per-ball events. Recovery via MULTI_BALL decomp distributed runs as `. . 5` instead of broadcast `4 . 1` (heuristic put boundary at end; reality had it at start). Bowler stayed Roy throughout instead of Tyagi (new bowler for over 5).
-
-### Issue 2 (major) — bowler-debut latency + no retroactive credit
-Narine took over for over 4 (3.0 ov). Pipeline didn't detect his name until 3.4. Events 3.1/3.2/3.3 fired with bowler=None and never retroactively credited when Narine locked. Live bowling card showed Narine 0.1/4/0 at 3.5 ov instead of 0.5/10/0.
-
-F381 backfill mechanism (5e02a1c) handles this exact pattern for WICKET events. Needs extension to all ball events (runs/dots) — buffer during bowler-unknown window, drain on LOCK.
-
-### Issue 3 (minor) — this_over UI display stale at over-end
-At over-end boundary (n.0 ov), this_over circles show an older over's tokens instead of either blank or the just-completed over. Likely over_mgr.this_over not clearing at rollover, or UI reading from stale cached field.
-
-### Issue 4 (minor) — partnership balls still -1
-b858dd5 added partnership increment to synth credit walk but it's not firing. Likely `self.partnership` is None at synth invocation time, guarded check skips silently. Investigation needed on initialization order.
-
-## Groq TPM / rate-limit work
-
-### Current state
-- **Short prompt default**: SCOUT_PROMPT_SHORT is default since 2026-05-12. Verbose requires `SCOUT_PROMPT_MODE=verbose`.
-- **Track 1 in-call retry** (5e4ff8a): single retry on 429 with parsed reset duration. Trace tags SCOUT-RETRY-IN-CALL-{QUEUED,SUCCESS,EXHAUSTED}.
-- **Track 2 retry buffer** (3a0a4f8): ring capacity 3, 5s staleness. SCOUT-RETRY-{QUEUED,SUCCESS,EXHAUSTED,BUFFER-OVERFLOW}.
-- **Shadow-mode dedup** (a5487c2): env-gated `SCOUT_DEDUP_SHADOW=1`. phash on score-block ROI, threshold T=6, 10s TTL. Observability only — no skipping. SCOUT-DEDUP-SHADOW trace tag with `would_skip` flag.
-- **Anti-hallucination digits-veto** (625e397, tightened in af7d32d): vetoes STRIP block when scout classifier reports digits=false AND score >= 10. Single-digit cold-start strips bypass.
-
-### Multi-provider exploration (all failed for primary route)
-- **Kimi K2.6 (Fireworks)**: median 2442ms latency (2.4× Groq), failed cam classification 3/5. Defer.
-- **Cerebras Llama 4 Scout**: 404 on multimodal IDs. Account doesn't have access. Not viable for this account.
-- **Gemini 2.5 Flash**: median 5164ms latency (5.1× Groq). Defer.
-
-Conclusion: no hosted multimodal provider clears 2× Groq latency at current SCOUT_PROMPT_SHORT size. Multi-provider router not pursued for tonight.
-
-### Frame source robustness
-- **H.264 decoder fix** (4c58a82): added `-bsf:v dump_extra` + `-force_key_frames` on sender; `-vsync cfr` on receiver; promoted ffmpeg stderr to WARN; UDP-STREAM-FROZEN telemetry. Fixed the 376 fps frozen-composite-frame anomaly that was making Scout receive corrupted frames.
-- **Frame age instrumentation**: env-gated `UDP_FRAME_AGE_DEBUG=1`. Logs `[FRAME-AGE] frame_id age_ms producer_qsize consumer_lag_ms`.
-
-### Crop / dedup prototypes (validated, decided against)
-- **Bottom-50% crop**: hit rate < 5%, classifier accuracy drops on shot/bowlers_end frames. Defer.
-- **Tight ROI dedup (score block phash)**: hit rate 23.3% at threshold 6, FP rate 0%. Below 30% target but bimodal distribution. Shipped in shadow mode (a5487c2). Decision pending audit data.
-
-### Architectural follow-ups (post-validation)
-- BED consolidation: BED should be subsumed into SM as internal helper or removed entirely. Currently emits parallel events.
-- Multi-key Groq rotation: deferred. 5 client sites would need shared key-pool abstraction.
-- Local VLM (Qwen2.5-VL on MLX): post-match exploration.
-- Queueing mechanism with priority lanes: deferred until trace data justifies (SCOUT-RETRY-IN-CALL-EXHAUSTED count is the trigger).
-
-## Replay files
-
-Recordings live at `~/Projects/SportsComm/files/logs/deliveries/<session_id>/match_<session_id>.{mp4,ts}`.
-
-Validation baseline:
-- `20260508_191946/match_4621b9f8.mp4` (9.3G) — DC vs KKR (match 152064). Streamed from 10:40 mark (pre-match starts before that). Used for all today's validation cycles.
-- Cricbuzz IDs: `CRICBUZZ_MATCH_ID=152064`, `CRICBUZZ_MATCH_SLUG=dc-vs-kkr-51st-match-indian-premier-league-2026`.
-
-Other available:
-- `20260510_201650/match_9f4f588c.mp4` (5.8G)
-- `20260510_191741/match_80bbdfa5.mp4` (4.4G)
-- `8df9ceb8/match_8df9ceb8.mp4` (3.5G)
-- `6ff41b76/match_6ff41b76.mp4` (1.0G) — prior MI-RCB baseline (replaced by 4621b9f8)
-
-## Launch sequence
+## Launch sequence (operational reference)
 
 ```bash
 cd ~/Projects/SportsComm
 
 # Clear stale state
 rm -f files/match_state_cache.json logs/openscout-local_*.jsonl
-rm -f /tmp/pipeline.log /tmp/stage_trace.jsonl
+rm -f /tmp/pipeline.log /tmp/ffmpeg.log
 
-# UI (terminal A)
-cd scorecard-ui && npm run dev    # localhost:3000
+# Terminal A — UI
+cd ~/Projects/SportsComm/scorecard-ui && npm run dev
 
-# Pipeline (terminal B)
+# Terminal B — pipeline (Python 3.12 venv)
 cd ~/Projects/SportsComm
 export FRAME_SOURCE=udp
 export FRAME_SOURCE_UDP_URL='udp://0.0.0.0:9999?fifo_size=10000000&buffer_size=2097152&overrun_nonfatal=1'
 export FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS='1920x1080,1280x720'
-export CRICBUZZ_MATCH_ID=152064
-export CRICBUZZ_MATCH_SLUG=dc-vs-kkr-51st-match-indian-premier-league-2026
+export CRICBUZZ_MATCH_ID=<match_id>      # for DC-vs-KKR: 152064
+export CRICBUZZ_MATCH_SLUG=<slug>
 export BMF_SESSION_ID="validate_$(date +%Y%m%d_%H%M%S)"
-export USE_OPEN_SCOUT=0    # Track 2 disabled
+export USE_OPEN_SCOUT=0
 export SCOUT_PROMPT_MODE=verbose
 export SCOUT_RAW_DUMP=1
 export PYTHONUNBUFFERED=1
-export SCOUT_DEDUP_SHADOW=1    # observability only
+export SCOUT_DEDUP_SHADOW=1
 export SKIP_PREMATCH_S=0
-/Users/anmolmohan/opt/anaconda3/bin/python files/test_pipeline.py 2>&1 | tee /tmp/pipeline.log
-# venv: anaconda, NOT .venv/
+files/.venv/bin/python files/test_pipeline.py 2>&1 | tee /tmp/pipeline.log
 
-# Stream (terminal C, after pipeline reports ready)
-ffmpeg -re -ss 00:10:40 \
-  -i ~/Projects/SportsComm/files/logs/deliveries/20260508_191946/match_4621b9f8.mp4 \
+# Terminal C — ffplay viewer (optional)
+ffplay -fflags nobuffer -flags low_delay -framedrop \
+  -window_title "UDP 9998" \
+  "udp://127.0.0.1:9998?fifo_size=10000000&buffer_size=2097152&overrun_nonfatal=1"
+
+# Terminal D — ffmpeg dual-output stream
+ffmpeg -re -ss <offset> \
+  -i <path/to/match.mp4> \
   -c copy \
-  -map 0 -f mpegts "udp://127.0.0.1:9999?pkt_size=1316"
+  -map 0 -f tee \
+  "[f=mpegts]udp://127.0.0.1:9999?pkt_size=1316|[f=mpegts]udp://127.0.0.1:9998?pkt_size=1316"
 ```
 
-UI: http://localhost:3000
-
-## Validation acceptance criteria
-
-Bowler stats:
-- bowling_card[name].runs/balls/wickets match broadcast at over-end
-- Returning bowler resumes existing card (RESUMED trace fires)
-- No two consecutive overs by same bowler (CONSECUTIVE-OVER-BOWLER-REJECTED)
-- Wicket in between-overs gap credits to next bowler within 10 frames
-
-Batter stats:
-- batting_card[name].runs/balls_faced/4s/6s match broadcast
-- No phantom 4s/6s on wrong batter
-- Striker green dot tracks broadcast `>` indicator
-- New batter at wicket creates fresh card (CREATED), not RESUMED
-
-This_over and recent_overs:
-- All 6 ball tokens reflect what was bowled (no `?` placeholders during normal play)
-- MULTI_BALL gaps distribute realistically (boundary at end, not even-split)
-- Cold-start over 1 first ball shows `.` not `?`
-- Recent overs archive correct tokens at all positions
-
-Score progression:
-- Score/overs/wickets advance with broadcast (no freezes, no jumps)
-- Innings transition: state resets cleanly
-- batting_team LOCKED within 30s of first live strip
-- 0 false `[BATTING_TEAM-FLIP]` after LOCKED
-- 0 false `[INNINGS-2-TRANSITION]`
-- Mean lat_total < 4s
-- Scorer JSON parse failures < 5%
-
-## Key trace tags introduced today (audit signals)
-
-| Tag | What it indicates |
-|---|---|
-| EVENT-BASELINE-SEEDED-WARM-INITIAL | SM event baseline seeded at COLD→WARM exit |
-| EVENT-BASELINE-RESET-INNINGS-2 | Baseline reset at innings transition |
-| SM-EVENT-DELTA-FROM-PREV | Persistent baseline computed d_score differently from naive self.score |
-| COLD-START-SYNTHESIZE | Cold-start gap synth fired with N implied balls |
-| COLD-START-SYNTH-CREDITED | Synth credit walk applied to bowler/batter cards |
-| COLD-START-PHYSICS-PROMOTE | Forward-legal cold-start transition promoted to WARM |
-| GAP-TOKEN-INFERENCE | infer_gap_tokens called with N balls / M runs |
-| MULTI-BALL-DERIVATION-EXPANDED | Bowler credit per ball via gap-token decomposition |
-| MULTI-BALL-BATTER-DERIVATION-EXPANDED | Batter credit per ball via gap-token decomposition |
-| ABSORBED-LEGAL-BOWLER-CREDITED | WARM MULTI_BALL ABSORBED_LEGAL credit (7d1ddbf) |
-| BOWLING-CARD-CREATED / RESUMED | Tracker LOCK; new vs returning bowler |
-| BATTING-CARD-CREATED / RESUMED | Striker/non-striker tracker LOCK |
-| BOWLER-OVERRIDE-PENDING / FIRED | Bowler change consensus accumulation |
-| BOWLER-ATTRIBUTION-FROZEN | Credits frozen during override-pending |
-| BOWLER-ROW-JUNK-REJECT | Bowler row violates physics (wickets > 1 per ball) |
-| WICKET-PENDING-BOWLER-ATTRIBUTION | F381 wicket queued for next bowler |
-| WICKET-BACKFILLED-TO-BOWLER | F381 wicket credited on next bowler LOCK |
-| CONSECUTIVE-OVER-BOWLER-REJECTED | Same bowler attempted on consecutive overs |
-| BOWLER-MAIDEN-CREDITED | Over closed with 0 bowler-runs |
-| EXTRA-FABRICATION-REJECTED-NO-WITNESS | extras-witness required for multi-run wide |
-| STRIP-HEAD-JOINT-POP | Atomic strip-head reject (score/overs/wkts together) |
-| STRIP-HEAD-TEAM-TOKEN-MISMATCH | Strip prefix doesn't match batting team |
-| STRIP-HEAD-FORWARD-BALLS-NO-SCORE-POP | Implausible forward overs jump without score corroboration |
-| GRAPHIC-FILTER-PASS / POISON | Plausibility gate verdict on GRAPHIC→SCOREBOARD transition |
-| GRAPHIC-HAS-STRIP-ROUTED-HYBRID | GRAPHIC frame with visible strip routed through hybrid path |
-| BROADCAST-OVERRIDE-VETOED-TEAM-MISMATCH | this_over_broadcast override vetoed on cross-team |
-| SCORER-DISMISSAL-VETOED-* | Wrong-batter dismissal vetoed (SM authoritative) |
-| APPLY-KNOWN-WICKET-IDEMPOTENT-NO-OP | Duplicate wicket write skipped |
-| TRACKER-SWAP-MIRRORED | Striker swap synced to _inn |
-| STRIKER-TRACKER-UNLOCK-ON-DISMISSAL | Dismissed batter's tracker unlocked |
-| STRIKER-OVER-END-DOUBLE-ROTATION-APPLIED | rotation_net=cancel when last ball odd-run + over-end |
-| STRIKER-BROADCAST-CORRECTION | Broadcast `>` overrode pipeline rotation (Option 2 trigger) |
-| SCOUT-DIGITS-FALSE-STRIP-VETOED | Anti-hallucination guard fired |
-| DIGITS-VETO-SKIPPED-LOW-SCORE | Veto suppressed for score<10 cold-start |
-| SCOUT-RETRY-IN-CALL-* | Track 1 429 retry (queued/success/exhausted) |
-| SCOUT-RETRY-* | Track 2 (openscout) retry buffer |
-| SCOUT-DEDUP-SHADOW | Shadow-mode dedup observation |
-| UDP-STREAM-FROZEN | Frozen-frame anomaly detected |
-| DERIVATION-STRIP-DIVERGENCE-BOWLER / BATTER | Audit signal for derived vs observed |
+UI: http://localhost:3000. Validation fixtures:
+- DC vs KKR (`files/logs/deliveries/20260508_191946/match_4621b9f8.mp4`, start ~09:30)
+- GT vs RR (`files/logs/deliveries/8a0c6c14/match_8a0c6c14.mp4`, start ~40:30)
 
 ## What NOT to touch
 
-- `files/eyes/confidence_tracker.py` — battle-tested, foundational
-- `files/score_manager.py:_synthesize_cold_start_ball_events` — heavily-iterated, fragile
-- `files/cricket_rules.py:infer_gap_tokens` — used at 5+ call sites
-- `files/test_pipeline.py:_handle_warm` event-delta order-of-ops — option 2 fix lives here
-- Any of today's commit chain without reading the full design spec first
+- Queue B (`_pending_bowler_ball_credits`) — load-bearing 3-way-race resolver per §7.1
+- `_ScoutRetryBuffer` — active queue across Groq 429 backoff; orthogonal to Frame Fate Ledger per §7.1
+- `broadcast_extra` / `extras_type` — parallel fields on legal/illegal delivery axis per §7.5
+- Cold-start synth token-distribution heuristic in `_synthesize_cold_start_ball_events` — the only allowed heuristic site
+- `confidence_tracker.py` ConfidenceTracker class — battle-tested, foundational
+- Existing deterministic-rotation override at score_manager.py:4295-4325 — load-bearing for Class 9 fix
+- Pre-commit hook (`.git/hooks/pre-commit`) — runs Layer 1.5 + Layer 2; failure blocks commit
+- F1's field-name fix in `_accept_initial` — the cascade-closer
 
-## Style notes for next session
+## What's in flight behind feature flags
 
-- See `CLAUDE.md` for response style (no preamble, decisive, diff-only code, max 5 tool calls per task)
-- User pushes back hard when conservative or wrong. Listen, verify, push forward.
+- `SM_INLINE_MULTI_BALL` — default off. Flag flip blocked pending fresh trace divergence data.
+- `SM_POST_WICKET_SLOT_DIFF` — default off. Scaffold may need re-test on fresh trace since both wickets in last session bypassed the dispatch path pre-F1.
+
+Both flags produce zero behavior change when off; shadow comparison runs regardless.
+
+## Next session's first action
+
+1. Read this HANDOFF.md
+2. Read `files/docs/investigations/sm_as_orchestrator_design.md` §7 (audit framework + gates 1-7)
+3. Read the design memos (cold_start, multi_ball_gap, dispatch_loop)
+4. `git log --oneline derive-not-detect | head -30` for full commit context
+
+If a fresh production trace exists from operational validation:
+- Add the trace filename stem to `SESSION_CONTEXT` in `files/scripts/run_trace_session_assertions.py`
+- Run `python files/scripts/run_trace_session_assertions.py logs/trace/<trace>.jsonl`
+- Confirm predicted flips: `trace_epsilon_initial_striker` → PASS, `trace_beta_sm_wicket_dispatch` → PASS, `trace_compound_tokens` → PASS, `trace_alpha_bowler_runs_sum` → significant reduction, `trace_extras_total` → stays FAIL (UI workstream)
+- Any unflipped predicted-PASS = an instrumentation/cascade gap to investigate
+- Any newly-failing assertion = a regression to investigate
+
+If no fresh trace yet:
+- Operational waiting; no engineering work currently unblocked
+- DO NOT spend capacity on F-α-rotation memo, B-γ/B-δ UI memos, or extras-total fix design — speculative without fresh data
+- Apply §7.2 seven-gate audit to any remaining §7 items only if their candidate classification is being challenged by new evidence
+
+## Style notes (carry-over, refined)
+
+- See `CLAUDE.md` for response style (no preamble, decisive, diff-only code)
+- The no-speculative-fixes discipline is the standing operating mode
 - Architecture principles user repeatedly enforces:
   - "Detection establishes identity, derivation maintains state"
   - "SM is the final authority on the UI; everything else should not have a say"
   - "Once high confidence reached, LOCKED — only explicit events unlock"
   - "Real-time first, no offline-only solutions"
-  - "Consolidate and validate together" — minimize ping-pong validation cycles
+  - "Consolidate and validate together — minimize ping-pong validation cycles"
+  - "No speculative fixes. Find the root cause and confirm. Always."
+  - Any "scar tissue" label is a hypothesis pending the §7.2 audit
+  - **Empirically validated discipline saves engineering work.** F1 demonstrated cascade closure of four bug classes the §7 list framed as separate workstreams. Cross-fixture verification (§7.2 gate 7) prevents engineering capacity from being spent on cascade symptoms.
 
-## Next session's first action
+## Trace-and-Detect (v1, 2026-05-02)
 
-1. Read CLAUDE.md
-2. Read this HANDOFF.md (you're reading it)
-3. Read `files/docs/investigations/derivation_only_stats_design.md`
-4. `git log --oneline derive-not-detect | head -40` for today's commit chain
-5. Paste the 4-issue investigation prompt (from previous chat tail) into CC
-6. Once CC reports, batch fixes into one consolidated commit
-7. Validate again on 4621b9f8 from 10:40
+Per CLAUDE.md trace-and-detect section. Per-frame trace records to `logs/trace/<SESSION_ID>.jsonl`. Decision/guard tags auto-promoted to `decisions[]` by a logging handler installed in `test_pipeline.py` near SESSION_ID init.
 
-If the chat history isn't available, the 4 pending issues are documented above — paste the relevant section as the CC investigation prompt directly.
+## Pipeline feature flags
+
+- `USE_OPEN_SCOUT` (default 0): disabled until Track 1 fully validated
+- `USE_OPEN_SCOUT_SPANS` (default 0)
+- `SM_INLINE_MULTI_BALL` (default 0): flip blocked pending fresh trace
+- `SM_POST_WICKET_SLOT_DIFF` (default 0): scaffold needs re-test
+
+## Working venv
+
+Project venv at `files/.venv/bin/python` (Python 3.12). The anaconda path in pre-2026-05-20 HANDOFF versions was stale.
+
+## Session-end architectural insight
+
+The workstream's most important architectural insight, validated empirically across this session:
+
+**A one-edit field-name fix can close multiple bug classes the §7 list framed as separate workstreams.** F1 (`437d952`) demonstrated this by collapsing B-ε direct fix + B-β cascade closure + multi-ball decomposition false positives + compound tokens. The audit-driven discipline that prevented those separate workstreams from launching is the meta-result.
+
+Discipline track record this session:
+- Queue B / `_ScoutRetryBuffer` / S5a reclassified Keep (saved unwarranted deletion attempts)
+- B-ζ falsified one turn after gate 6 was tightened (saved a fix memo)
+- B-β cascade-closed by F1 (saved a fix memo)
+- F-α-shadow caught false positives in observability tooling (prevented misdiagnosis of B-α)
+- Cross-fixture verification (gate 7) baked into §7.2 to make the pattern permanent
+
+The workstream pauses cleanly at the operational validation gate. Next move is operational, not engineering. The trace assertion library and five observability streams are the standing data-collection mechanism for any future production session.
