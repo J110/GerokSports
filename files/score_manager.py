@@ -31,6 +31,28 @@ try:
     import trace_emitter as _trace
 except ImportError:
     _trace = None
+try:
+    from eyes.frame_ledger import (
+        get_ledger as _get_ledger,
+        SmOutcome as _SmOutcome,
+        _coerce_frame_id,
+    )
+except ImportError:
+    _get_ledger = None
+    _SmOutcome = None
+    _coerce_frame_id = None
+
+
+def _ledger_record(frame, outcome, payload=None):
+    if _get_ledger is None:
+        return
+    fid = _coerce_frame_id(frame) if _coerce_frame_id else None
+    if fid is None:
+        return
+    try:
+        _get_ledger().record_sm_outcome(fid, outcome, payload=payload)
+    except Exception:
+        pass
 
 log = CricketLogger("SCORE_MGR")
 
@@ -2394,6 +2416,17 @@ class ScoreManager:
                 f"proposed_overs={co_v} current_overs={ro} "
                 f"proposed_score={cs_v} current_score={rs} "
                 f"d_score={d_score} source=cold_start_exit_vs_last_warm")
+            if _SmOutcome is not None:
+                _ledger_record(
+                    getattr(frame, "frame_id", None)
+                    if not isinstance(frame, int) else frame,
+                    _SmOutcome.REJECTED_COLD_EXIT,
+                    payload={
+                        "delta_balls": int(d_balls),
+                        "proposed_overs": float(co_v),
+                        "current_overs": float(ro),
+                        "source": "cold_start_exit_vs_last_warm",
+                    })
             self.last_cold_start_verdict_implausible = True
             return False
 
@@ -2908,6 +2941,17 @@ class ScoreManager:
                     f"d_score={d_score} streak={cur_streak}/"
                     f"{_OVERS_JUMP_CONSENSUS_FRAMES} "
                     f"source=warm_consensus")
+                if _SmOutcome is not None:
+                    _ledger_record(
+                        getattr(frame, "frame_id", None),
+                        _SmOutcome.REJECTED_WARM_CONSENSUS,
+                        payload={
+                            "delta_balls": int(_delta_balls),
+                            "proposed_overs": float(new_overs),
+                            "current_overs": float(old_overs),
+                            "source": "warm_consensus",
+                            "streak": cur_streak,
+                        })
                 self._update_supplements(card, frame)
                 self.frames_since_event += 1
                 return None
@@ -3433,6 +3477,17 @@ class ScoreManager:
                     f"streak {self._team_change_streak}/"
                     f"{self.TEAM_CHANGE_CONSENSUS_FRAMES} — deferring "
                     f"inn-2 trigger")
+                if _SmOutcome is not None:
+                    _ledger_record(
+                        getattr(frame, "frame_id", None),
+                        _SmOutcome.REJECTED_TEAM_CHANGE_PENDING,
+                        payload={
+                            "proposed_team": frame.broadcast_team,
+                            "current_team": self.batting_team,
+                            "streak": self._team_change_streak,
+                            "consensus_required": (
+                                self.TEAM_CHANGE_CONSENSUS_FRAMES),
+                        })
         elif (frame.broadcast_team and self.batting_team
                 and frame.broadcast_team.upper()
                 == self.batting_team.upper()):
@@ -3707,6 +3762,8 @@ class ScoreManager:
             self.overs = card["overs"]
             self._track_overs_advance(
                 _prior_overs_for_gap, self.overs, frame)
+            if _SmOutcome is not None:
+                _ledger_record(frame, _SmOutcome.ACCEPTED_COMMIT)
 
         self._update_batters(card)
 

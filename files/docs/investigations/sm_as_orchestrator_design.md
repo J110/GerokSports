@@ -1,6 +1,6 @@
 # SM-as-Orchestrator + Frame Fate Ledger — Design Memo
 
-**Status:** Stage 1 + 2a + 2a' shipped. Stage 2b (Secondary LLM resolution) reverted 2026-05-19 — multi-ball gap resolution is the wrong abstraction; gaps are bugs to diagnose and fix at root cause, not classes the architecture must accommodate. Frame Fate Ledger (§4) and root-cause investigation drive the remaining work.
+**Status:** Stage 1 + 2a + 2a' + 2c shipped. Stage 2b (Secondary LLM resolution) reverted 2026-05-19 — multi-ball gap resolution is the wrong abstraction; gaps are bugs to diagnose and fix at root cause, not classes the architecture must accommodate. Frame Fate Ledger (§4) shipped as `files/eyes/frame_ledger.py` with sm_outcome wiring at 5 sites (4 SM-side + 1 SB-side + 1 pipeline-side CORRECTION_BLOCKED). Dispatch-side scout_status wiring (PENDING/TIMEOUT/RESPONDED) deferred to a follow-up commit.
 **Date:** 2026-05-19
 **Author:** J110
 **Supersedes:** the corpus + adversarial mutator foundation work paused as of this memo. Also supersedes the Secondary LLM design (former §4) and its eval-corpus / heuristic-fallback content.
@@ -246,9 +246,10 @@ This is diagnostic-only — feeds the root-cause investigation. No resolution, n
 | **2a** | `[GAP-AT-REJECTION]` tag at the three pre-`_accept_update` rejection sites | **shipped** `185bc39` |
 | **2a'** | Route hot-resume + cold-exit commits through `_track_overs_advance` (close Stage 1 instrumentation hole) | **shipped** `ca85dd9` |
 | **2b** | Secondary LLM resolution via Groq llama-3.1-8b-instant | **reverted** `5fe6768` / `97671cc` / `310bfe8` — failed eval gate (8B 33% / 70B 17% case-level vs 80% target). Root cause data-bound: Scout's `THIS OVER` null at gap frames. |
-| **2c** | Build Frame Fate Ledger (§4). Dispatch wrap in `Vision.describe`; entry per frame; SM consultation pattern; delete `_ScoutRetryBuffer` (subsumed). | next |
-| **3** | Steady-state Δ≥2 root-cause investigation: sample 20-30 events from the audit's 114, group by rejection class, propose per-class fix. | concurrent with stage 2c |
-| **4** | Implement per-class root-cause fixes. Re-run audit; goal is steady-state Δ≥2 rate at ~0. | follows stage 3 |
+| **2c** | Frame Fate Ledger module + SM-side outcome wiring at 5 sites (`_accept_update` ACCEPTED_COMMIT, 2 OVERS-JUMP-IMPLAUSIBLE-REJECTED sites, SB jump-limit, pipeline CORRECTION_BLOCKED, team-change-pending). Audit hook shows 0 NOT_YET_SEEN across 9 fixtures = wiring complete. | **shipped** |
+| **2d** | Dispatch-side scout_status wiring: `Vision.describe` opens PENDING entry; response/timeout/error closes it. Then delete `_ScoutRetryBuffer` (subsumed). | next |
+| **3** | Steady-state Δ≥2 root-cause investigation: sample 20-30 events from the audit's 114, group by rejection class, propose per-class fix. | shipped (Stage 3 sample showed bimodal 52% scout_cadence_drop / 48% ocr_miss; Stage 3a sub-classification of ocr_miss showed 75% extractor/VLM-prompt fixable, of which the c-1 sub-class turned out to already be handled by current `parse_strip`) |
+| **4** | Per-class root-cause fixes based on Ledger production data. Targets surface as ledger entries accumulate in real runs: `REJECTED_SCORE_CONSENSUS` → tune scorer correction threshold; `REJECTED_WARM_CONSENSUS` → tune `_OVERS_JUMP_CONSENSUS_FRAMES`; etc. | follows stage 2d + production-data collection |
 | **5** | 5-primitive contract cutover. Delete pending-queue, `?` placeholder, wholesale-accept paths, MULTI_BALL infrastructure listed in §7. | follows stage 4 |
 
 ## 10. Open questions for review

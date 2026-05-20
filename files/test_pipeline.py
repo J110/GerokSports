@@ -4452,6 +4452,26 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
                      f"{_cur_score}→{_proposed_score} (delta={_score_delta}) "
                      f"— blocking ALL updates for this frame")
             changes.append(f"CORRECTION_BLOCKED:{_proposed_score}")
+            try:
+                from eyes.frame_ledger import get_ledger, SmOutcome
+                _fid_ledger = None
+                try:
+                    _fid_ledger = int(globals().get("F", 0)) or int(
+                        getattr(score_mgr, "_current_frame", 0) or 0)
+                except (TypeError, ValueError):
+                    _fid_ledger = 0
+                if _fid_ledger:
+                    get_ledger().record_sm_outcome(
+                        _fid_ledger,
+                        SmOutcome.REJECTED_SCORE_CONSENSUS,
+                        payload={
+                            "proposed_score": _proposed_score,
+                            "current_score": _cur_score,
+                            "delta_score": _score_delta,
+                            "source": "scorer_correction_guard",
+                        })
+            except Exception:
+                pass
             # P12 phantom-storm window extension: ≥5 CORRECTION_BLOCKED
             # within 60s of innings-2 reset extends the transition
             # window by 60s (capped at +300s total per S4).

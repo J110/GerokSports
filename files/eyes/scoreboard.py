@@ -1428,6 +1428,20 @@ class Scoreboard:
                                 f"proposed_overs={overs_str} "
                                 f"current_overs={cur_overs} "
                                 f"source=scoreboard_jump_limit")
+                            try:
+                                from eyes.frame_ledger import (
+                                    get_ledger, SmOutcome)
+                                get_ledger().record_sm_outcome(
+                                    int(frame) if frame is not None else 0,
+                                    SmOutcome.REJECTED_SB_JUMP_LIMIT,
+                                    payload={
+                                        "delta_balls": _delta_balls,
+                                        "proposed_overs": overs_str,
+                                        "current_overs": str(cur_overs),
+                                        "source": "scoreboard_jump_limit",
+                                    })
+                            except Exception:
+                                pass
                         except (ValueError, IndexError):
                             pass
                         return False
