@@ -108,6 +108,9 @@ KNOWN_TAGS: set[str] = {
     "OVER-ARCHIVE-DOUBLE-WRITE",
     # class-9 fix (2026-05-20) — squad-canonical name gate at SM commit
     "NAME-REJECTED-NOT-IN-SQUAD",
+    # class-9b diagnostics (2026-05-20) — wicket slot-clearing path
+    "WICKET-FALL-ONLY-CALLED",
+    "WICKET-SLOT-CLEAR-ENTRY",
     "BOWLING-CARD-CLEARED",
     "STRIP-HEAD-TEAM-TOKEN-MISMATCH",
     "STRIP-HEAD-FORWARD-BALLS-NO-SCORE-POP",

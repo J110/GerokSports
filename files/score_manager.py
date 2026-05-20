@@ -4685,6 +4685,13 @@ class ScoreManager:
         same semantics without duplicating striker rotation / this_over
         mechanics from :meth:`_apply_event`.
         """
+        # Class 9b diagnostic (2026-05-20): trace function entry to
+        # confirm dispatch reaches this site at over-end wicket
+        # (sub-pattern i-a check). Pure observability; no behavior.
+        log.info(
+            f"[WICKET-FALL-ONLY-CALLED] frame={getattr(frame, 'frame_id', None)} "
+            f"score={self.score} wickets={self.wickets} "
+            f"overs={self.overs} event_keys={list(event.keys())}")
         # --- Fall of Wicket ---
         # Resolution priority (2026-05-19 — derive-not-detect):
         #   P2: event.dismissed (authoritative, set by `_infer_wicket`
@@ -4727,6 +4734,21 @@ class ScoreManager:
             f"via {_resolution_src} "
             f"(SM.self.striker was {self.striker!r}, "
             f"frame.broadcast_striker={frame.broadcast_striker!r})")
+        # Class 9b diagnostic (2026-05-20): trace identity comparison
+        # inputs to attribute sub-pattern (i-b: best_dismissed='unknown'
+        # / None) vs (i-c: best_dismissed correct but slots already
+        # cleared) vs (ii: identity-source canonicalization mismatch
+        # — already addressed by 0ddeb58's _same_player_canon).
+        log.info(
+            f"[WICKET-SLOT-CLEAR-ENTRY] frame={getattr(frame, 'frame_id', None)} "
+            f"event_dismissed={event.get('dismissed')!r} "
+            f"event_striker={event.get('striker')!r} "
+            f"best_dismissed_resolved={best_dismissed!r} "
+            f"resolution_src={_resolution_src!r} "
+            f"self.striker={self.striker!r} "
+            f"self.non={self.non!r} "
+            f"self.bat1_name={self.bat1_name!r} "
+            f"self.bat2_name={self.bat2_name!r}")
         new_entry = {
             "score": self.score, "overs": self.overs,
             "dismissed": best_dismissed,
