@@ -389,7 +389,7 @@ not survive enumeration of its actual callers.
 | `[SM-W8-DISMISSED-GUARD]` | Audit pending | enumerate callers |
 | `broadcast_extra` | **Reclassified Keep** | per §7.5 — frame-level WIDE/NO_BALL discriminator, distinct role from `extras_type` |
 | `broadcast_this_over` | **Split S5c** | per §7.3 above; gated on dispatch-loop redesign + ?-slot path removal |
-| `broadcast_striker` | **Split S5b-1/2/3** | per §7.6/§7.7 — S5b-2 SHIPPED 2026-05-20 (delete at `_identify_striker:4689-4698`); S5b-1 (observability cleanup) still gated on S5b-3 landing; S5b-3 (initial-striker resolution at `_identify_and_set:4283-4293`) requires cold-start equivalence audit |
+| `broadcast_striker` | **Split S5b-1/2/3** | per §7.6/§7.7 — S5b-2 SHIPPED 2026-05-20 (delete at `_identify_striker:4689-4698`); S5b-1 (observability cleanup) still gated on S5b-3 landing; S5b-3 design memo at [cold_start_initial_striker_design.md](cold_start_initial_striker_design.md) — three-phase refactor ending in deletion, S5b-3a (post-wicket slot-diff scaffold) is the next deliverable |
 | `_ScoutRetryBuffer` | **Reclassify Keep** | per §7.3 above |
 | `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40` | Conditional | gated on production ORPHAN-rate |
 | `_pending_bowler_ball_credits` queue (Queue B) | **Reclassified Keep** | §7.1 |
