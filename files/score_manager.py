@@ -4513,10 +4513,17 @@ class ScoreManager:
         return result
 
     def _capture_multi_ball_shadow_state(self) -> dict:
+        # F-α-shadow (2026-05-20): the canonical bowling_card lives at
+        # sb.bowling_card (Scoreboard attribute populated at :813, mutated
+        # via update_bowler_card at :2940), NOT at sb._inn["bowling_card"]
+        # (an unused location that always returns empty). Reading the
+        # wrong path silently produced false-positive divergences in
+        # every DISPATCH-LOOP-SHADOW-COMPARISON event of
+        # validate_gtrr_20260520_180715. See B-α audit memo
+        # files/docs/investigations/multi_ball_gap_bowler_credit_design.md §5.
         sb = self.scoreboard
         if sb is not None:
-            inn = sb._inn or {}
-            bowling_card = inn.get("bowling_card") or {}
+            bowling_card = sb.bowling_card or {}
             batting_card = sb.batting_card or {}
         else:
             bowling_card = {}
