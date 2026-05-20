@@ -1929,6 +1929,46 @@ class ScoreManager:
         except AttributeError:
             pass
 
+        # Class 8 sub-pattern B fix (2026-05-20): partnership is an
+        # aggregate identity-blind metric; previously it was credited
+        # only inside the gated walk below (which requires bowler +
+        # striker to be resolved). When the gap exits cold-start
+        # before either name has propagated through trackers, the
+        # walk skipped — partnership stayed at 0 through the synth
+        # window, lagging by exactly implied_runs forever after.
+        # Decoupled here: unconditional aggregate, runs even when
+        # the per-batter / per-bowler walk skips.
+        # Equivalence: synth's token distribution generates W-free
+        # token lists where sum(int-tokens) == implied_runs, so
+        # aggregate (implied_runs/implied_balls) == in-loop sum.
+        try:
+            if not self.partnership_known:
+                self.partnership_runs = 0
+                self.partnership_balls = 0
+                self.partnership_known = True
+            _pship_runs_before = int(self.partnership_runs or 0)
+            _pship_balls_before = int(self.partnership_balls or 0)
+            self.partnership_runs = (
+                int(self.partnership_runs or 0) + int(implied_runs))
+            self.partnership_balls = (
+                int(self.partnership_balls or 0) + int(implied_balls))
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="PARTNERSHIP-WRITE",
+                        runs_before=_pship_runs_before,
+                        balls_before=_pship_balls_before,
+                        runs_after=int(self.partnership_runs or 0),
+                        balls_after=int(self.partnership_balls or 0),
+                        source="synth_cold_start_aggregate",
+                        implied_runs=int(implied_runs),
+                        implied_balls=int(implied_balls),
+                        frame_id=str(self._current_frame))
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
         # Issue 1 (2026-05-14): credit synthesized balls to bowler /
         # striker when BOTH name slots are populated.  `self.bowler_name`
         # and `self.striker` are non-None only after their respective
@@ -1997,38 +2037,12 @@ class ScoreManager:
                             frame=self._current_frame)
                     except Exception:
                         pass
-                # Issue 1 follow-up (2026-05-14): partnership credit
-                # per legal delivery.  Mirrors the bowler/batter walk
-                # so over-end partnership totals match team totals.
-                # Wickets in the gap don't update partnership_runs
-                # here (the WICKET flow handles partnership closure
-                # separately); they DO consume a ball.
-                try:
-                    if not self.partnership_known:
-                        self.partnership_runs = 0
-                        self.partnership_balls = 0
-                        self.partnership_known = True
-                    _pship_runs_before = int(self.partnership_runs or 0)
-                    _pship_balls_before = int(self.partnership_balls or 0)
-                    self.partnership_balls = int(
-                        self.partnership_balls or 0) + 1
-                    if _tok not in (".", "W", "?"):
-                        self.partnership_runs = int(
-                            self.partnership_runs or 0) + single_runs
-                    if _trace is not None:
-                        try:
-                            _trace.get_recorder().record(
-                                tag="PARTNERSHIP-WRITE",
-                                runs_before=_pship_runs_before,
-                                balls_before=_pship_balls_before,
-                                runs_after=int(self.partnership_runs or 0),
-                                balls_after=int(self.partnership_balls or 0),
-                                source="synth_cold_start",
-                                frame_id=str(self._current_frame))
-                        except Exception:
-                            pass
-                except Exception:
-                    pass
+                # Partnership accumulation moved to identity-blind
+                # aggregate block above (class-8 sub-pattern B fix,
+                # 2026-05-20). The per-token in-loop write was lossy
+                # because the entire walk skipped when bowler/striker
+                # weren't resolved yet. Per-batter / per-bowler credit
+                # stays in this loop; partnership doesn't need it.
                 if _trace is not None:
                     try:
                         _trace.get_recorder().record(
