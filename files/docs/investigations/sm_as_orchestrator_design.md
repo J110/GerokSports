@@ -207,10 +207,16 @@ This is diagnostic-only — feeds the root-cause investigation. No resolution, n
 
 ## 7. Scar tissue obsolescence (revised from prior audit)
 
-**Delete:**
+**Per-item audit gate (2026-05-20).** The §7 list below is a *candidate* set, not a pre-approved
+deletion queue. Every item requires its own bounded audit before removal: enumerate all
+callers, classify each as init / transition / preserved, cross-reference against any drain or
+trigger mechanism it participates in, and produce an equivalence proof for the proposed
+replacement. The S4b attempt (see §7.1) failed precisely because this audit step was skipped
+on first pass: the queue under attack turned out to be load-bearing, not scar tissue.
+
+**Delete (pending per-item audit):**
 
 - `PendingBall` dataclass and `_pending_ball_queue` (`score_manager.py:238-250, 405, 553-604, 669-710`)
-- `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG` constant + force-flush (`:77, 800, 5444`)
 - `_over_archive_pending` deferred archive (`:5048, 5296`)
 - `_pending_slots` dict + "?" placeholder logic (`this_over.py:85-91, 847-920, 1340-1360`)
 - `on_broadcast_override` wholesale-accept (`this_over.py:797-920`)
@@ -223,11 +229,329 @@ This is diagnostic-only — feeds the root-cause investigation. No resolution, n
 - `broadcast_this_over`, `broadcast_striker`, `broadcast_extra` fields from Scout output (`extract_regex.py:390-392, 317, 386-388`)
 - `_ScoutRetryBuffer` (`files/eyes/openscout_loop.py:74`) — subsumed by Frame Fate Ledger
 
+**Conditional (deletion gated on production telemetry):**
+
+- `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40` (`score_manager.py:100`, used at `:5721`) — the
+  lag bound itself can shrink or be removed only if production traces show
+  `PENDING-BOWLER-BALL-CREDIT-ORPHANED` events are rare. If ORPHAN-rate stays at or near zero
+  across a full session, the bound is unused configuration. Gated on the same observability
+  run that gates Path B deletion (§7.1 step S4a (ii)).
+
 **Keep:**
 
+- `_pending_bowler_ball_credits` queue + producer (`score_manager.py:5249`) + consumer
+  (`_drain_pending_bowler_ball_credits` at `:5714`, drain triggers D1 at `:5028-5030` and D2
+  at `test_pipeline.py:7223`). **Reclassified Keep on 2026-05-20 (see §7.1).** Canonical
+  resolver for the 3-way race between (a) bowler-name resolution, (b) legal-ball commit, and
+  (c) bowler-tracker on_lock. No transition-driven replacement is equivalent — see §7.1.
+- `_pending_bowler_wickets` queue (F381 wicket backfill) — structural analog of the
+  bowler-ball-credits queue; same 3-way-race resolution logic applies.
 - `_PENDING_WICKET_MAX_FRAME_LAG=40` (`:65, 5363`) — orthogonal to Scout schema; bowler-lock latency from tracker is independent. Recent tuning commits (5638eb4, 5b25e59, 31dc8b9) stand.
 - `broadcast_team`, `broadcast_target`, `broadcast_venue`, `broadcast_match_info` — cold-start metadata, not frame-by-frame; out of scope.
 - `extras_type` (renamed from wholesale `broadcast_extra`) — promoted to sub-primitive per the 5-primitive contract audit; needed because wide/no-ball/bye is not derivable from deltas alone.
+
+### 7.1 S4b reclassification: Queue B is structural, not scar tissue (2026-05-20)
+
+**Verdict: NOT-A-DEFECT.** Two dry-run attempts (one bundling cold-start hook + queue
+producer deletion, one limited to a single cold-start transition hook) both regressed at
+`test_pipeline_captured_replay.py` ball 3.1 of `watch_20260519_121701`. Sunil Narine's
+first-ball credit was lost because no path covered the case where the ball event committed
+before either the bowler-name re-set or the bowler-tracker lock fired.
+
+**The 3-way race.** Bowler attribution for a legal ball needs three pieces of state to
+align: bowler-name set on `ScoreManager`, the legal-ball event commit, and the
+bowler-tracker `_locked` streak threshold. In the cricket-broadcast data we observe, all six
+orderings of these three events occur. The pre-S4b architecture handled all six via two
+drain triggers — D1 (`_accumulate_stats_from_event` inline drain when a ball commits with a
+resolved bowler) and D2 (`bowler_tracker.on_lock` callback when the streak threshold trips
+before any intervening commit). The queue itself acts as the buffer between these triggers
+and any earlier ball commits.
+
+**Why a transition-driven hook does not replace it.** S4b's Option (R) proposed firing a
+drain at every `self.bowler_name =` non-None assignment. This adds a third trigger
+("bowler-resolution → drain"), which collapses two of the six race orderings into the same
+moment. The remaining four orderings still require the queue: a ball event that commits at
+frame F with `bowler_name=None` has no future trigger to credit it unless the queue holds
+the credit until the bowler appears later. The transition hook only changes WHEN D1's drain
+body executes; it does not eliminate the need for the queue.
+
+**Audit (2026-05-20) — sites enumerated.**
+
+| Site | Function | Class |
+|---|---|---|
+| `score_manager.py:1395` | `_reset_per_innings` | → None (init) |
+| `score_manager.py:2687` | `_resume_from_cache_hot` | None → X (transition) |
+| `score_manager.py:2785` | `_accept_initial` (cold-start adoption) | None → X (transition) |
+| `score_manager.py:3922` | `_accept_update` (warm-mode bowler refresh) | None → X (transition) |
+| `score_manager.py:5384` | over-archive post-credit clear | → None (clear) |
+
+**Drain trigger inventory.**
+
+- D1 (`score_manager.py:5028-5030`) — inline drain on next ball commit
+- D2 (`test_pipeline.py:7223`) — bowler-tracker `on_lock` callback
+
+D1 and D2 cover two of the three possible "bowler resolves" mechanisms. The queue producer
+at `:5249` covers the remaining race ordering: ball-commit before either trigger fires.
+
+**Action.** Queue B and its surrounding mechanism (producer at `:5249`, drain at `:5714`,
+both trigger sites) are reclassified from the §7 Delete list to §7 Keep. The lag bound
+constant `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG=40` is moved to §7 Conditional, gated on
+production ORPHAN-rate telemetry — if ORPHANED traces are rare, the constant becomes unused
+configuration.
+
+**S4a step (ii) (Path B deletion) remains in scope** but is gated on the same production
+observability run: a full session producing zero `PATH-B-FIRED` traces is the precondition
+for removing the COLD_START_PHYSICS_PROMOTE construction at `score_manager.py:2266-2290`.
+
+### 7.2 Audit checklist for any §7 deletion
+
+Before any item moves from "candidate" to "shipped deletion":
+
+1. **Enumerate all callers** of the symbol under deletion (Grep, exhaustive).
+2. **Classify each caller** as init / transition / preserved / consumer / producer.
+3. **Cross-reference with adjacent state mechanisms** (queues, drains, tracker callbacks,
+   archive hooks). If the symbol participates in a race, enumerate every ordering.
+4. **Equivalence proof.** If the proposed replacement collapses N callers into 1 hook,
+   demonstrate that all N's preconditions / postconditions are preserved.
+5. **State variable lifecycle.** For every helper variable introduced or affected, trace
+   reset / clear / accumulation points.
+6. **Predicted flip gate.** Predict the assertion-library flip count BEFORE the dry-run. If
+   the dry-run diverges from the predicted band, pause and re-audit — do not ship.
+
+The S4b cycle violated steps 3 and 4 (the first attempt assumed a single trigger; the
+second attempt assumed a single transition site covered all orderings). Both regressed at
+Layer 2 in ways the audit would have caught.
+
+### 7.3 Pre-emptive audit of remaining §7 targets (2026-05-20)
+
+Applying the §7.2 checklist to S5 (Scout output schema shrink) and S6 (`_ScoutRetryBuffer`)
+before either ships, to avoid repeating the S4b cycle.
+
+**S5 — broadcast field deletion is three sub-deletions, not one.**
+
+Callers enumerated across `files/score_manager.py`, `files/test_pipeline.py`,
+`files/cricket_rules.py`, and the test fixtures (`test_recent_fixes.py`,
+`test_pipeline_reliability_batch.py`, `test_extras_inference_hardening.py`,
+`verify_frames.py`). Three sub-items, three distinct consumer chains:
+
+- **`broadcast_extra` → S5a (extras_type rename).** Consumer at `score_manager.py:3299, :3312`
+  (deferred-extras-fire logic) is load-bearing. §7 Keep already preserves the semantics under
+  the new `extras_type` name. Deletion is rename-not-remove. Audit-clean.
+
+- **`broadcast_striker` → S5b (gated on striker-derivation equivalence proof).** Consumer
+  threads through `test_pipeline.py:11296-11320` into `_set_slot_pair` for W3–W6 striker
+  identification. Before deletion, enumerate every other striker-derivation source
+  (`_set_slot_pair` call sites, broadcast-strip-independent paths) and prove the 9-fixture
+  Layer 2 corpus still resolves striker correctly with `broadcast_striker=None` at every
+  frame. The current striker tracker has separate lock semantics; the broadcast field
+  contributes a parallel signal that the tracker may depend on for cold-start.
+
+- **`broadcast_this_over` → S5c (gated on S3 shipping first).** Consumer is the `?`-slot
+  backfill in `_update_supplements` and downstream `_pending_slots` paths. Both of those are
+  already on the §7 Delete list (under the S3 dispatch-loop redesign). If S3 lands, S5c's
+  consumers shrink to zero and the field deletion becomes mechanical. If S3 does not land
+  (Queue A turns out to also be load-bearing — same risk as S4b), S5c blocks.
+
+**Split S5 into S5a / S5b / S5c.** Each gets its own audit + flip-prediction + dry-run.
+
+**S6 — `_ScoutRetryBuffer` is mis-classified; move to Keep.**
+
+Callers: `files/eyes/openscout_loop.py:74` (class), `:262` (instantiation), `:292`
+(`drop_stale` during backoff sweep), `:309` (`peek_oldest` for retry preference),
+`files/tests/test_openscout_loop.py:344-347` (unit test).
+
+Original §7 rationale: "subsumed by Frame Fate Ledger." This is wrong. The ledger answers
+*"what happened to frame F?"* (a passive observability record). The retry buffer answers
+*"which frames need re-classification after a Groq 429 clears?"* (an active queue that
+survives backoff across producer-slot overwrites). These are orthogonal concerns. The
+ledger does not hold frames for retry; deleting the buffer would drop un-scouted frames on
+the next producer tick during any 429 backoff window.
+
+**Action.** Move `_ScoutRetryBuffer` from §7 Delete to §7 Keep with the orthogonal-concern
+rationale. Same lesson as Queue B: the §7 list inherited a "subsumed by X" claim that did
+not survive enumeration of its actual callers.
+
+**Memo §7 Delete-list status after this pass.**
+
+| Item | Verdict | Next action |
+|---|---|---|
+| `PendingBall` + `_pending_ball_queue` (Queue A) | Audit pending | S3 dispatch-loop redesign first |
+| `_over_archive_pending` | Audit pending | per-item audit before deletion |
+| `_pending_slots` + `?` placeholder | Audit pending | S3 territory |
+| `on_broadcast_override` wholesale-accept | Already shipped (broadcast G) | mark Done |
+| `_merge_broadcast` normalizer | Audit pending | enumerate callers |
+| `MAX_THIS_OVER_LEN=9` | Audit pending | enumerate callers |
+| MULTI_BALL gap decomposition | Audit pending | S3 territory |
+| `MULTI-BALL-DERIVATION-EXPANDED` trace tag | Already deprecated | mark Done |
+| P1 striker-indicator matcher | Audit pending | striker-derivation audit (overlaps S5b) |
+| `[SM-W8-DISMISSED-GUARD]` | Audit pending | enumerate callers |
+| `broadcast_this_over` / `broadcast_striker` / `broadcast_extra` | **Split S5a/b/c** | per §7.3 above |
+| `_ScoutRetryBuffer` | **Reclassify Keep** | per §7.3 above |
+| `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG = 40` | Conditional | gated on production ORPHAN-rate |
+| `_pending_bowler_ball_credits` queue (Queue B) | **Reclassified Keep** | §7.1 |
+
+### 7.4 Audit-pending sweep results (2026-05-20)
+
+Applied the §7.2 six-gate checklist to every "Audit pending" item from §7.3. Net result:
+three items were already shipped, three reclassified to Conditional (gated on
+architectural changes that haven't shipped), one bundled with S5b, one Keep, one deferred.
+Zero items survived as "ready to delete now."
+
+The §7 list, post-sweep, is no longer a deletion queue — it is a dependency graph keyed on
+two upstream pieces of work (MULTI_BALL deletion + observability run) and one orthogonal
+audit (S5b striker-derivation equivalence). Reading it as a deletion queue is what drove
+S4b's regression; the sweep makes the dependency structure explicit.
+
+**Item-by-item findings.**
+
+- **Queue A (`PendingBall` + `_pending_ball_queue`) → Conditional.** Structurally identical
+  to Queue B: producer (`_enqueue_pending_ball` at `score_manager.py:602-653`, canonical
+  caller `_decompose_multi_ball`) + drain (`_drain_pending_queue` at `:718-754`) wired into
+  the same on_lock callbacks (`test_pipeline.py:7211-7232`). Multi-trigger consumer set:
+  bowler-lock resweep, striker-lock resweep, pre-archive retry
+  (`_attempt_pending_archive_drain` at `:775-854`), force-flush deadlines. The queue
+  mechanism itself is load-bearing for the current MULTI_BALL/ABSORBED_LEGAL handling path.
+  **Deletion is gated on MULTI_BALL gap decomposition deletion shipping first.** Once
+  MULTI_BALL events stop firing, the producer has no input and the queue can be removed
+  mechanically.
+
+- **`_over_archive_pending` → Conditional.** Direct dependency on Queue A — exists solely
+  to defer over-history archive when Queue A is non-empty at over rollover
+  (`_attempt_pending_archive_drain` at `:780, :785`, set at `:5325, :5573`, cleared at
+  `:891`). Sibling of Queue A; same deletion gate.
+
+- **`_pending_slots` (this_over.py) → Conditional.** Producer at `this_over.py:673, :718`
+  (ABSORBED_LEGAL + MULTI_BALL handlers), consumer at `:757` (`rewrite_token`, called by
+  SM's `_drain_pending_queue`). Tied to the same MULTI_BALL/ABSORBED_LEGAL producers as
+  Queue A — without those event types, no `?` placeholder is appended and `_pending_slots`
+  has no entries. Same deletion gate.
+
+- **`_merge_broadcast` → Done.** Already removed 2026-05-20 (broadcast G, option G).
+  Confirmed absent from `eyes/this_over.py` and `score_manager.py`. Stale comment-only
+  references remain in `test_recent_fixes.py:5173, :5218, :5375`; cleanup is orthogonal.
+
+- **`MAX_THIS_OVER_LEN` → Done (stale test import).** Already removed 2026-05-20.
+  Confirmed absent from `eyes/this_over.py`. **Broken import** at
+  `test_recent_fixes.py:1057` — will fail on next test run. Stale-import cleanup needed.
+
+- **`on_broadcast_override` → Done (stale test call).** Already removed 2026-05-20.
+  Confirmed only `audit_scar_tissue_targets.py` references the name. **Broken call** at
+  `test_recent_fixes.py:1060` — will fail on next test run. Stale-test cleanup needed.
+
+- **MULTI_BALL gap decomposition → Audit pending, deferred.** 17 files reference. Wired
+  through `score_manager.py`, `eyes/this_over.py`, `eyes/commentary.py`, `cricket_rules.py`,
+  `wire.py`, `eyes/agent.py`, plus test fixtures. The `_apply_event(event, prev, card)`
+  dispatch loop passes the same `(prev, card)` for every event in a frame's event list,
+  which means `_decompose_multi_ball` cannot be cleanly extracted without the dispatch-loop
+  redesign called out in the conversation summary as the "S3 / S4c" blocker. **Deferred
+  pending dispatch-loop redesign workstream.**
+
+- **`MULTI-BALL-DERIVATION-EXPANDED` trace tag → Done (deprecated).** Already marked
+  deprecated in `trace_emitter.py`. No live emission sites.
+
+- **`on_broadcast_override` wholesale-accept → Done.** See above.
+
+- **P1 striker-indicator matcher → Bundle with S5b.** Already neutralized at
+  `score_manager.py:4241-4269`: deterministic striker rotation suppresses broadcast/strip
+  writes mid-over (the `STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC` log path keeps SM's
+  rotation as the sole authority). The broadcast indicator is still *read*, but its
+  authority is gone. True deletion of the matcher overlaps directly with S5b's
+  `broadcast_striker` deletion audit (S5b must enumerate every striker derivation site;
+  the matcher is one such site). **Bundle into S5b.**
+
+- **`[SM-W8-DISMISSED-GUARD]` re-introduction suppression → Keep.** The guard itself
+  (`_sm_w8_partner_if_active` at `score_manager.py:4101-4122`) prevents re-introducing
+  dismissed batters as partner names — load-bearing for the Lever 1 PR3 dismissal
+  invariants. The `_w8_guard_fired` dedup set (`:481`) is one variable + one membership
+  check; no meaningful scar tissue to remove. Production monitoring at
+  `live_match_monitor.py:1058-1060` alerts when this fires more than expected, so the
+  telemetry has an active consumer.
+
+**Final §7 candidate list (post-sweep).**
+
+| Status | Items |
+|---|---|
+| **Keep** (load-bearing) | `_pending_bowler_ball_credits` (Queue B), `_pending_bowler_wickets` (F381 queue), `_PENDING_WICKET_MAX_FRAME_LAG=40`, `_ScoutRetryBuffer`, `[SM-W8-DISMISSED-GUARD]` guard + dedup, `extras_type` (renamed `broadcast_extra`), other §7 Keep items |
+| **Done** (already shipped) | `_merge_broadcast`, `MAX_THIS_OVER_LEN`, `on_broadcast_override`, `MULTI-BALL-DERIVATION-EXPANDED` trace tag |
+| **Conditional** (gated on architectural changes) | Queue A + `_over_archive_pending` + `_pending_slots` (gated on MULTI_BALL deletion), `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG=40` (gated on production ORPHAN-rate) |
+| **Deferred** (blocks on workstream) | MULTI_BALL gap decomposition (dispatch-loop redesign) |
+| **Bundled** (overlapping audit) | P1 striker-indicator matcher → into S5b |
+| **Split** (sub-audits required) | S5a / S5b / S5c |
+
+**Predicted-flip impact for executable deletions.**
+
+After the sweep + the deeper 6-gate audit run on 2026-05-20:
+
+1. **S5a (`broadcast_extra` → `extras_type` rename) — DEFERRED.** The §7.3 zero-flip
+   classification was wrong. `broadcast_extra` and `extras_type` are *parallel fields with
+   different semantics*, not aliases. `broadcast_extra` is the frame-level OCR signal from
+   the broadcast strip ("WD"/"NB"); `extras_type` is the event-level classified outcome
+   ("wide"/"leg_bye_or_bye"). A real "rename" would be an architectural unification across
+   ~14 files / ~81 occurrences, with equivalence proofs at every consumer site — not a
+   mechanical rename. This is the same lesson as Queue B: the §7 memo's framing ("renamed
+   from wholesale `broadcast_extra`") was a *conceptual* statement that did not survive
+   enumeration. Marked for proper 6-gate audit; not currently shipped.
+
+2. **Stale-test cleanup (shipped 2026-05-20).** Eight dead tests in
+   `test_recent_fixes.py` exercised removed APIs (`on_broadcast_override`,
+   `MAX_THIS_OVER_LEN`, `_merge_broadcast`-canonicalisation behavior, the
+   `_update_supplements` broadcast backfill block deleted under broadcast G). Removed:
+   `test_this_over_multi_over_recap_rejected`,
+   `test_this_over_cold_start_short_broadcast_accepted`,
+   `test_this_over_alphabet_rejects_speed_tokens_f2461`,
+   `test_this_over_alphabet_rejects_2026_04_16_garbage`,
+   `test_this_over_alphabet_accepts_legal_sequence`,
+   `test_this_over_alphabet_rejects_mixed_list`,
+   `test_p8_score_mgr_backfill_validates_alphabet`,
+   `test_p8_score_mgr_backfill_accepts_legal_alphabet`. Also trimmed the dead
+   `on_broadcast_override` half of `test_fixture_multi_ball_gap_camera_state_transition`,
+   keeping its surviving MULTI_BALL placeholder assertions. Predicted flips: 0 (test
+   removal only; no production code touched).
+
+Every other §7 item is gated on upstream work. The "deletion plan" in §7's original
+framing is, post-audit, mostly a *cleanup follow-up* for two architectural workstreams
+(dispatch-loop redesign, production observability run) plus two orthogonal audits (S5a
+re-audit, S5b striker-derivation audit). There is no shortcut path that lets us collapse
+the §7 list ahead of those.
+
+### 7.5 S5a re-audit needed (2026-05-20)
+
+The §7.3 classification of S5a as a zero-flip rename was wrong. A proper 6-gate audit
+shows:
+
+- **Field semantics differ.** `FrameInput.broadcast_extra` is the *detection signal*
+  surfaced by Scout's `parse_strip` from the broadcast strip's "WD"/"NB" tokens. `event[
+  "extras_type"]` is the *classified outcome* attached to a committed ball event by
+  `eyes/commentary.py:485` with values like `"leg_bye_or_bye"`. They are wired to
+  different paths and consumed by different invariants.
+- **Two separate cleanup options.** (1) Mechanical rename of the field name only — keep
+  both fields, change the string. Audit-clean and small (~14 files). (2) Architectural
+  unification — collapse detection signal + classified outcome into one canonical field.
+  Not zero-flip; requires equivalence proofs at every consumer (deferred-extras-fire
+  logic at `score_manager.py:3299-3314`, wide/no-ball detection at
+  `eyes/commentary.py:63-67`, `verify_frames.py` verdict prose, etc.).
+- **Open question for future audit.** Is "rename the field" actually useful in isolation,
+  or does it just add a synonym without addressing the underlying duplication? The
+  original §7 framing seems to have meant (2). If so, S5a is much closer in scope to a
+  Scout-output schema redesign than to a quick win.
+
+Deferred until either (a) a follow-up audit produces a concrete equivalence-proof plan
+for option (2), or (b) we explicitly decide option (1)'s mechanical rename is worth
+shipping on its own.
+
+**Sequence recommendation.**
+
+1. Ship S5a (rename) + stale-test cleanup now. Small, audit-clean, zero predicted flips.
+2. Wait for production observability run → use the data to gate S4a step (ii) AND the
+   `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG` lag-bound decision.
+3. Start dispatch-loop redesign workstream as the long-pole. Once that lands, the
+   Queue A / `_over_archive_pending` / `_pending_slots` triplet and MULTI_BALL
+   decomposition collapse together (they all share the same producer event types).
+4. Run S5b striker-derivation audit in parallel with (3) — independent dependency set.
+   Bundle P1 striker-indicator matcher deletion into the S5b commit.
+
+The sweep's biggest output is *not* a deletion to ship — it is the dependency graph that
+prevents the next S4b. Future per-item audits start from this map.
 
 ## 8. Risks and edge cases
 
