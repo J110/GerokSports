@@ -428,4 +428,158 @@ Two work items, ordered:
 
 ---
 
-**Replay paused at §11.7 Outcome A (qualified). Eleven commits will be on the chain after this C11 update: `b49e48b`, `e3171eb`, `86299e0`, `78b4835`, `ac06fa6`, `237d227`, `e19f72a`, `a99d82c`, `af19dd2`, `2df4061`, and the C11 commit. The candidate (FC5 post-event grace + non-suspicious upward score jump) has static-evidence weight no prior hypothesis carried at this stage: predicate semantics verified, on_ball_event wiring verified, production trace sequence reconstructed. Awaiting operator review before C12.**
+---
+
+## 12. C12 static-analysis pass — overs-side closure
+
+Per the operator's C12 directive: apply the same predicate-reading + sub-candidate-elimination methodology that produced C11's Outcome A. The three sub-candidates in §11.3 are each statically testable.
+
+### 12.1 Sub-candidate (a) — FC5 fires at f304 for overs (re-derivation with correct grace arithmetic)
+
+C11 §11.2 raised a concern that `_post_event_grace` would be 1 by the time the overs `sb.set` call ran at f304, blocking FC5 for overs. **That concern was based on an incorrect grace baseline.** Re-deriving:
+
+`consistent_tracker.py:782-786` — `on_ball_event` sets `_post_event_grace = 2` (absolute assignment, not increment).
+
+`consistent_tracker.py:302` — `_post_event_grace -= 1` decrement fires ONLY when FC5 actually commits a value (within the `if not suspicious_check:` block). No other code path decrements grace.
+
+**Production f300-f304 timeline:**
+
+| Frame | Event | grace value after |
+|---|---|---|
+| f300 | Ball commit (score 45 ov 4.4) → on_ball_event() | 2 |
+| f300 | sb.set calls following the commit may or may not have fired FC5 (depends on _is_suspicious results) | 0, 1, or 2 |
+| f302 | Ball commit (score 45→49) → **on_ball_event() RESETS to 2** | 2 |
+| f302 | FC4 fires for overs 4.4→4.5 — does NOT decrement grace (FC4 has its own commit path, not FC5) | 2 |
+| f302 | sb.set("score", 49, 302) FC5 path: grace=2 → fires → grace=1 | 1 |
+| f303 | POISONED upstream of sb.set → tracker.update never called → no decrement | 1 |
+| f304 | sb.set("score", 54, 304) FC5 path: grace=1>0, `_is_suspicious(score, 49, 54)`=False → fires → grace=0 | 0 |
+| f304 | sb.set("overs", "6.3", 304) FC5 path: **grace=0** → FC5 path skipped | 0 |
+| f304 | sb.set("wickets", 0, 304): current==value (both 0) → line 221 early return | 0 |
+
+**Refined finding: at f304, FC5 fires ONLY for the score commit. The overs commit at f304 cannot land via FC5 because grace was already consumed by the score commit.** Sub-candidate (a) as stated in §11.3 is **partially falsified** — FC5 admits the score, but not the overs at the same frame.
+
+The overs side requires either a different FC path OR a different f304-vs-other-frame ordering. Continuing through (b) and (c).
+
+### 12.2 Sub-candidate (b) — alternate FC path for overs
+
+All paths in `consistent_tracker.py:update` that can commit `field="overs"` on a single read:
+
+| Path | Predicate gate | f304 overs (old=4.5, new=6.3) | Verdict |
+|---|---|---|---|
+| FC1 DRS-grace | `_is_drs_pattern("overs", "6.3")` requires `0 < 4.5-6.3 ≤ 0.1` | Δ = -1.8 (forward, not backward) | **Falsified** (§11.1) |
+| FC2 batter-natural | doesn't apply to "overs" field | n/a | **Falsified by construction** |
+| FC3 bowler-natural | doesn't apply to match-level "overs" | n/a | **Falsified by construction** |
+| FC4 overs-natural | requires exactly +0.1 or X.5→(X+1).0 | 4.5→6.3 neither | **Falsified** (§11.1) |
+| FC5 post-event | requires `_post_event_grace > 0 AND not _is_suspicious` | grace=0 by time overs call runs at f304 (§12.1) | **Falsified at f304 specifically** |
+| Cold-start `_initial_consensus` | requires `field not in self.confirmed` | "overs" IS in confirmed (from f300/f302) | **Falsified** |
+| 4-frame `[CONSENSUS]` override | requires 4 consecutive reads with `_values_close(a, b, "overs")` (Δ ≤ 0.3) | Only ONE production frame proposed 6.3 (f304) | **Falsified by trace count** |
+| Pending-defer 2-frame | requires `pending_value == value` for 2 frames | Same — only one read of 6.3 | **Falsified** |
+
+**Sub-candidate (b) statically falsifies all alternate `update()` paths.** No code path in `consistent_tracker.py:update()` can admit overs=6.3 from a single f304 read.
+
+### 12.3 Sub-candidate (c) — `test_pipeline.py:11750` end-of-over hook
+
+Read at `:11742-11753`:
+
+```python
+_ext_overs = extracted.get("match_overs")
+if not _direct_block_all and _ext_overs is not None:
+    _eos = str(_ext_overs).strip()
+    if "/" in _eos: _eos = _eos.split("/")[0].strip()
+    try:
+        _eof = float(_eos)
+        if _eof < 20.0:
+            if scoreboard.set("overs", _eos, frame_count):
+                log.info(f"  [DIRECT] overs→{_eos}")
+    except (ValueError, TypeError):
+        pass
+```
+
+This is a **catch-up/end-of-over reconciliation** path that calls `sb.set("overs", ...)` from a different code site than `commit_decision`. **But it routes through the same `sb.set` → `tracker.update` → FC1/FC2/...FC5 dispatch as the main path.** Sub-candidate (c) is NOT a structurally distinct FC path — it's a different *caller* of the same `tracker.update`. Since §12.2 already falsified all FC paths for f304's overs value-shape, sub-candidate (c) inherits the same falsifications.
+
+**Sub-candidate (c) falsified by inheritance from (b).** Same code, different caller.
+
+### 12.4 Where does sb._tracker.confirmed["overs"] = 6.3 actually come from?
+
+§12.1-12.3 establish that no single-frame FC path in `consistent_tracker.py` can admit overs=6.3 from f304's single read. Yet production f318 trace shows `tracker_overs=6.3`. There are two remaining structural explanations:
+
+**(A) Multi-frame consensus accumulates 6.3 between f304 and f318.**
+
+The 4-frame `[CONSENSUS]` override at `consistent_tracker.py:319` accepts a "suspicious" value after 4 frames where the proposed value clears `_values_close`. But §12.2 noted only f304 proposed 6.3 in the SCOREBOARD-typed frames. **However** — non-SCOREBOARD-typed frames may still call `sb.set("overs", ...)` from the DIRECT path catch-up branch (§12.3). The production trace filters non-SCOREBOARD frames out of `scorer.decisions[]` but the sb.set calls still happen.
+
+Verifying this requires counting all sb.set("overs", "6.3", X) invocations across the full 1000+ frames of the session, NOT just the 341 SCOREBOARD-typed records in the trace. **Without that count, sub-candidate (A) cannot be statically falsified.**
+
+**(B) The pending-defer path fires after grace expires.**
+
+`consistent_tracker.py:411-450` (after FC5): the pending defer path accumulates a `(value, _)` candidate per field. If two consecutive frames propose the same overs=6.3, the second commits via pending-defer (the standard 2-frame consensus). The same trace-count question applies.
+
+### 12.5 Production trace reality check — what _values_close admits
+
+`_values_close("overs", a, b)` at line 759-760: `return abs(fa - fb) <= 0.3`. So 6.3 and 6.2 are "close"; 6.3 and 6.0 are close; 6.3 and 6.4 are close.
+
+If between f304 and f318 ANY 4 frames proposed overs in the range [6.0, 6.6], the consensus override at line 319 would fire. The production trace shows the broadcast strip reading at f318 as "DC 49-1 (5)" — so the broadcast itself was at overs=5.0 by that point, but Scout's hallucinated overlay reads (PANT/WARD/SHAMI at f304, and possibly similar at intermediate frames not captured as SCOREBOARD) could have produced 6.3-class readings.
+
+**The static analysis is insufficient to localize the overs commit timing.** What is statically clear:
+
+- Single-frame FC paths at f304 cannot admit overs=6.3 (§12.1-12.3 confirmed).
+- Multi-frame consensus paths CAN admit it, but require counting all sb.set calls across the full session — including non-SCOREBOARD-typed frames — to verify which mechanism fires.
+
+### 12.6 Status — Outcome A (refined further) + a half-localized question
+
+| Cascade-root half | Static-evidence status |
+|---|---|
+| **Score side** — `sb._inn["score"] = 54` at f304 via FC5 | **Statically CONFIRMED** (§11.2, §12.1) |
+| **Overs side** — `sb._inn["overs"] = 6.3` at some frame ≥ f304 | **Mechanism narrowed to multi-frame consensus** (§12.4); exact triggering frame not localizable from the 341-record SCOREBOARD-typed trace alone |
+
+The overs-side question requires a deeper trace audit: parse the full pipeline.log (or instrument sb.set with the C6 DIRECT-SCORE-COMMIT tag extended to ALL fields, not just score) to count overs-related sb.set calls between f304 and f318. This is one additional static / re-replay pass, OR a follow-up commit extending DIRECT-SCORE-COMMIT to cover overs and wickets.
+
+### 12.7 Operator's reframe — the F-α-shadow pattern empirically validated
+
+Per operator directive: "C12's overs-side analysis should look for the same pattern — which surface admits the overs jump that `_handle_warm`'s streak gate would otherwise reject?"
+
+**Two parallel state surfaces with different invariants, empirically confirmed:**
+
+- **`sb._tracker.confirmed` (Scoreboard tracker)** — gated by `_is_suspicious` which is permissive for upward score jumps under +30 (`(new - old) > 30` required to suspect) AND for forward overs jumps (only `new < old` triggers suspicion). FC5 + post-event grace admit anything that clears `_is_suspicious`. Multi-frame consensus admits a 6.3-class value if 4 reads agree within ±0.3.
+- **SM's `_handle_warm` streak gate** — gated by 3-frame consensus on `(new_overs, c_score)` tuple AND a hard `_BALLS_JUMP_TOLERANCE = 3` threshold. Strict.
+
+The weaker surface (`sb._tracker`) admits the values; the stronger surface (`_handle_warm`) rejects them. Both stay live in production state simultaneously, producing the divergence signature `sb._inn["score"]=54 sb._inn["overs"]="6.3"` vs `sm.self.score=54 sm.self.overs=4.5` observed at f318.
+
+This is **structurally identical to F-α-shadow from the F1 session** (commit `37f63ad`): `sb.bowling_card` (the canonical store) vs `sb._inn["bowling_card"]` (an unused parallel surface) had different invariants; the snapshot code read the wrong one. Here: `sb._tracker.confirmed` (canonical Scoreboard store) vs `_handle_warm` streak gate (SM-side gate) have different invariants; FC5's weaker invariant admits what the streak gate would reject.
+
+**Architectural class: dual-state-write defect** — a pattern worth cataloguing in `sm_as_orchestrator_design.md` post-C15 per the operator's note (deferred).
+
+### 12.8 C13 deliverable
+
+The user authorized C13 as the §7.2 7-gate audit on the candidate fix shape. **C13 cannot proceed cleanly yet** — the overs-side trace gap surfaced in §12.4/12.6 means the predicted-flip claim for the overs side cannot cite a single frame number. Gate 6 (predicted-flip with concrete frame numbers, recursively applied) would not close cleanly without that data.
+
+**Recommended C13 prerequisite: extend the C6 DIRECT-SCORE-COMMIT instrumentation to overs and wickets fields (one additive commit), re-run the warm-seeded + LLM-enabled replay, and capture the exact frame where `sb._inn["overs"] = 6.3` lands.** This is a small instrumentation pass — clearly authorized under "C12 prerequisites" not "C13 fix design" — and produces the empirical frame number needed for gate 6.
+
+Alternatively: parse the full production pipeline.log (if retained) for all `[DIRECT] overs→` log lines between the f304 timestamp and the f318 timestamp. This is a zero-commit static-evidence step.
+
+**Awaiting operator decision on C12.5: extend DIRECT-SCORE-COMMIT (small additive commit), OR parse pipeline.log for overs-DIRECT lines, OR proceed to C13 audit with the score-side concrete and the overs-side structurally-argued.**
+
+### 12.9 Discipline status — falsification budget tally
+
+C11 + C12 static falsifications:
+
+| # | Hypothesis | Status |
+|---|---|---|
+| C11 §3.5 | on_lock async-decoupling (C9 §7.2 candidate) | Static-falsified |
+| C11 §11.1.α-score | FC1 DRS-grace for f304 score | Static-falsified |
+| C11 §11.1.α-overs | FC1 DRS-grace for f304 overs | Static-falsified |
+| C11 §11.1.β | Cross-field gate at f304 | Static-falsified |
+| C11 §11.1.γ (FC4) | Natural-overs-increment for f304 overs | Static-falsified |
+| **C12 §12.1** | **FC5 at f304 for overs** (concern raised in §11.2 confirmed) | **Static-falsified** |
+| C12 §12.2 | All single-frame FC paths for f304 overs | Static-falsified |
+| C12 §12.3 | end-of-over hook as distinct path | Static-falsified-by-inheritance |
+
+**Total static falsifications: 8. Empirical-falsification budget impact: 0.** Per operator directive: static-falsification mechanism is doing its job. Each rejected sub-candidate prevented a wasted instrumentation cycle or commit.
+
+**Surviving candidates after C12:**
+
+- **Score side: FC5 at f304 (statically CONFIRMED).** Cascade-root for the score half.
+- **Overs side: multi-frame consensus (FC5-or-pending-defer across multiple frames between f304 and f318)** — narrowed but not yet localized; requires C12.5 prerequisite step before C13.
+
+---
+
+**Replay paused at §12.8 C12.5 prerequisite decision. Twelve commits will be on the chain after this C12 update. The two halves of the cascade root are now: (a) score-side fully localized (FC5 at f304), (b) overs-side mechanism narrowed to multi-frame consensus but exact frame requires one of two small follow-up steps. C13 §7.2 7-gate audit blocked on the overs-side empirical localization — gate 6 requires concrete frame numbers for both halves, not structural argument for one.**
