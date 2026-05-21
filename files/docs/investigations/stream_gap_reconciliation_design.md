@@ -340,4 +340,91 @@ Path 3 has the lowest engineering cost but the highest gate-6 risk (predicted-fl
 
 ---
 
-**Replay paused at §9.5 path decision. Two diagnostic commits emitted (`b49e48b`, `e3171eb`). Awaiting operator choice between Path 1 (LLM-extractor scaffolding), Path 2 (synthetic FrameInput at f304), or Path 3 (ship Shape α' on structural argument).**
+---
+
+## 10. Empirical f304 evidence — LLM-extractor replay (commit `78b4835`) and the cascade-root pivot
+
+Operator selected Path 1. LLM-extractor scaffolding shipped at `78b4835` (replay-only). Re-replay command:
+
+```
+files/.venv/bin/python files/scripts/replay_captured_scout_trace.py \
+    --dump files/logs/deliveries/validate_dckkr_20260521_070545/scout_raw.jsonl \
+    --session-id replay_dckkr_20260521_WARMSEEDED_LLM \
+    --seed-frame 37 --seed-striker "Pathum Nissanka" \
+    --seed-non-striker "KL Rahul" --seed-bowler "Anukul Roy" \
+    --enable-llm-extractor
+```
+
+Result: 193 LLM extractor calls, 28 recoveries including the previously-unreachable f303 and f304 frames. OVERS-JUMP-STREAK-STATE tag count rose from 5 to 11, FRAME-TRUST-GATE stayed at 2.
+
+### 10.1 The f304 anchor in replay — the streak gate fires and rejects
+
+```
+f303 (LLM-extracted: score=89, overs=10.2, wickets=4):
+  OVERS-JUMP-STREAK-STATE decision=reject
+  proposed=(10.2, 89) current=(4.5, 49) streak=1/3
+
+f304 (LLM-extracted: score=54, overs=6.3, wickets=0):
+  OVERS-JUMP-STREAK-STATE decision=reject
+  proposed=(6.3, 54) current=(4.5, 49) streak=1/3
+```
+
+Each proposal is a fresh candidate (different (overs, score) tuple), so the streak counter resets to 1 each time. Neither reaches the 3-frame consensus threshold. **In replay, SM's `_handle_warm` correctly rejects f304's bad overlay anchor.** SM stays at 49/4.5 through f303-f318.
+
+### 10.2 The f304 anchor in production — the gate ALSO fires and rejects
+
+Production trace `logs/trace/validate_dckkr_20260521_070545.jsonl` shows the same gate decisions at the same frames:
+
+```
+f304: OVERS-JUMP-IMPLAUSIBLE-REJECTED × 2 + GAP-AT-REJECTION
+      proposed=(6.3, 54) current=(4.5, 49) streak=1/3
+f308: OVERS-JUMP-IMPLAUSIBLE-REJECTED × 2 + DIRECT-SM-REJECT
+      + STRIP-HEAD-JOINT-POP × 2
+f318: OVERS-JUMP-IMPLAUSIBLE-REJECTED × 2 (current_overs=4.5 in payload)
+      + GRAPHIC-FILTER-POISON (tracker_score=54 tracker_overs=6.3)
+```
+
+**The streak gate fires at f304 in production identically to replay.** Same decision, same rejection.
+
+But by f318 the GRAPHIC-FILTER-POISON message reports `tracker_score=54 tracker_overs=6.3` — meaning the Scoreboard's internal `_inn.score` IS at 54 and `_inn.overs` IS at 6.3 by f318. Meanwhile the OVERS-JUMP-IMPLAUSIBLE-REJECTED payload at f318 still cites `current_overs=4.5 current_score=54` — i.e., `self.overs` (the SM) is at 4.5 but `self.score` (the SM) is at 54.
+
+**SM.score and SM.overs diverged.** Score advanced from 45 to 54 via a path that did NOT go through `_handle_warm`'s streak gate. Overs stayed at 4.5 (the gate caught the overs jump). The Scoreboard tracker (`sb._inn.score`, `sb._inn.overs`) advanced to 54 / 6.3 separately.
+
+### 10.3 The cascade root pivot
+
+This empirical evidence falsifies both the original B-η hypothesis ("multi-ball-gap decomposer accepted a bad anchor") and Shape β as stated ("strengthen the streak gate"). The streak gate at `score_manager.py:3035` does its job. The cascade root is upstream of `_handle_warm`:
+
+- **`self.score = 54` got committed via a non-`_handle_warm` SM mutation site.** Probably the DIRECT-path score-commit at `score_manager.py:1376` (which we saw mutates `self.scoreboard.batting_team`) or a similar split score/overs commit.
+- **The `[DIRECT]` log tag at f304** (`DIRECT × 3` in production) implies test_pipeline.py's score/overs/wickets DIRECT-path emitted score commits independently of SM's `_handle_warm` gating logic.
+- **Scoreboard's `_inn` mutation** (separate from SM state) advanced to 54/6.3 via the `sb.set("score", ...)` / `sb.set("overs", ...)` calls in test_pipeline.py before SM's `on_frame` was even invoked.
+
+Confirmed by inspecting `test_pipeline.py` for the DIRECT-path: there is a score-only DIRECT commit that bypasses SM's gap-rejection logic. The `[DIRECT-SM-REJECT]` tag at f308 is the SM rejecting a DIRECT score/overs proposal that the DIRECT path already executed at the tracker level.
+
+This is **Link D**, a fourth mechanism not enumerated in §3:
+
+- **Link A** (frame trust): no joint batter/bowler/score validation at the score-accept site.
+- **Link B** (streak gate bypass): hypothesized; **falsified by §10.2 evidence** — the gate fires correctly.
+- **Link C** (no resync path): once `self.score` diverges from broadcast, the override + filter chain prevents resync.
+- **Link D** (split score/overs commit): score and overs commit through different code paths, allowing `self.score` to advance while `self.overs` is held by the streak gate. **This is the active defect mechanism.**
+
+### 10.4 Implications for Shape α / Shape β / Shape α'
+
+- **Shape α' (dual-axis frame-trust at `_decompose_multi_ball`)** is **not the right site**. `_decompose_multi_ball` is never reached at f304 in production OR replay; the streak gate guards it correctly. Shape α' would not have prevented the production cascade.
+- **Shape β (streak-gate tightening)** is **also not the right site**. The streak gate is doing its job; Δballs≤3 blind spot is a separate concern.
+- **A new candidate shape is required**: a frame-trust check at the DIRECT-path score commit site in test_pipeline.py — gating individual score mutations on the same joint-lineage condition Shape α' proposed for `_decompose_multi_ball`.
+
+### 10.5 Next-step recommendation (operator decision required)
+
+The investigation has shifted target. The active defect is in test_pipeline.py's DIRECT-path score-commit logic, not in `score_manager.py`. Three paths:
+
+1. **Locate the exact DIRECT-path score-commit site in test_pipeline.py and add a fourth trace tag** (`DIRECT-SCORE-COMMIT`) that fires at every score-mutation, exposing whether f304's score=54 went through this path. One additive commit (C6-prep, observability-only). Then re-run replay; compare frame-by-frame; localize the defect.
+
+2. **Skip directly to Shape γ (DIRECT-path frame-trust gate)**: add the joint batter/bowler/score lineage check at the test_pipeline.py site where DIRECT-path commits score. This requires identifying the site first (Path 1 above) — so Path 1 is the prerequisite, not an alternative.
+
+3. **Pause the engineering work and update the brief**: B-η as the brief framed it is partially falsified. The cascade root is upstream of `_decompose_multi_ball`. The brief's Step 2 (B-ι) and Step 3 (B-θ) memos remain on hold per §7.2 cascade-closure pattern. The new design memo target is the DIRECT-path commit site — possibly a new bug class (B-κ?) replacing the brief's B-η framing.
+
+**Operator decision required before Path 1 (additional instrumentation) or Path 3 (brief update).**
+
+---
+
+**Replay paused at §10.5 path decision. Five commits landed: `b49e48b` (instrumentation), `e3171eb` (warm-seed), `86299e0` (memo §1-9), `78b4835` (LLM extractor), and this memo update (C5). The cascade-root pivot at §10.3 is the actionable evidence the brief's Step 1 instrumentation produced.**
