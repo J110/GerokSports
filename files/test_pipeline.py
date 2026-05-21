@@ -4530,9 +4530,27 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
     # existing score-correction guard above (abs(Δscore)>7) handles
     # extreme cases; this gate handles the cross-field correlation
     # class the F304 anchor exhibited (Δscore=+5 paired with
-    # Δballs=10). Empirically verified against GTRR 80 + DCKKR 47
-    # benign DIRECT-SCORE-COMMIT firings — all satisfy legitimate_pair;
-    # only F304 (the bad PANT/WARD/SHAMI overlay) fails.
+    # Δballs=10).
+    #
+    # Predicate-derivation provenance (counterfactual): the
+    # `legitimate_pair(d_score, d_balls, d_wickets)` predicate was
+    # tuned against 127 historical DIRECT-SCORE-COMMIT (DSC) firings
+    # (GTRR 80 + DCKKR 47, scoreboard.py:1493 emission site). All
+    # 127 tuples satisfy the predicate; F304 (PANT/WARD/SHAMI
+    # overlay) is the only one that fails. DSC is a BOARD-side
+    # path emitted independently of this SCORER-side gate — the
+    # 127-event evidence does NOT mean DSC events flow through
+    # this gate at runtime. They are parallel observations of the
+    # same defect class on different code paths; both happen to
+    # be characterized by the same predicate.
+    #
+    # Runtime path validated 2026-05-21 (DCKKR @ 09:30): this gate
+    # fires from `apply_scorer_decision` via the call site at
+    # test_pipeline.py:12466 (the non-poisoned-frame SCORER path).
+    # Two distinct Shape-B-class rejections observed (F210
+    # backwards-overs, F1015 zero-time double-wicket). DSC path
+    # was not exercised in that replay; gate-coverage of DSC
+    # remains counterfactual.
     _cfp_overs_up = decision.get("overs_update", {})
     _cfp_wkts_up = decision.get("wickets_update", {})
     _cfp_proposed_overs = (
