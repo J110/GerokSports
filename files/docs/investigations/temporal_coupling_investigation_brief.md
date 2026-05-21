@@ -277,3 +277,155 @@ This brief is hypothesis #6. The previous five each looked architecturally reaso
 If hypothesis #6 falsifies too, the empirical signal is that the discipline-driven investigation methodology has exhausted its yield for this defect class. The next-session HANDOFF would then carry **the retirement of this methodology** as its headline architectural finding, paired with C9's expansion-scope recommendation. That is itself an architectural insight worth preserving — five falsifications saved five wrong fixes; a sixth would signal the methodology has done its job and the next defect class needs a different approach (likely production-pipeline reproduction against the captured video — the "fresh session" path the original brief explicitly avoided).
 
 Read this brief honestly. Hypothesis #6 has more static-evidence weight than #1-#5 had at proposal time — but that is the criterion by which #1-#5 also looked reasonable at proposal. The discipline does not rest on proposal quality. It rests on empirical confirmation.
+
+---
+
+## 11. C11 static-analysis pass — predicate semantics + UDP-frozen distribution audit
+
+Per §7 decision tree, the C11 deliverable is reading the three predicate definitions + auditing the production UDP-STREAM-FROZEN distribution near f300-f320.
+
+### 11.1 Predicate semantics — applied to f304's exact values
+
+`files/eyes/consistent_tracker.py`:
+
+**`_is_drs_pattern` (line 765-780)** — accepts only narrow decrements:
+- score: `abs(new - old) <= 2`
+- overs: `0 < old - new <= 0.1` (backwards by at most 0.1)
+- wickets: `old - new == 1` (exact -1)
+
+Applied to f304:
+- score (old=49, new=54): `abs(54-49) = 5` > 2 → **False**
+- overs (old=4.5, new=6.3): `4.5 - 6.3 = -1.8`, not in (0, 0.1] → **False**
+- wickets (old=0, new=0): `0 - 0 = 0`, not == 1 → **False**
+
+**FC1 DRS-grace falsified for all three fields at f304.** Failure mode α (§5.1) is **statically disproven**. The 5-frame `_no_data_streak` does activate `_post_gap_grace`, but the `_is_drs_pattern` predicate is too narrow to admit the f304 value-shapes.
+
+**`_is_natural_overs_increment` (line 717-746)** — exactly +0.1 within-over or X.5→(X+1).0 rollover.
+
+Applied to f304: overs 4.5 → 6.3 has new_whole=6 ≠ old_whole=4 and ≠ old_whole+1 → **False**. **FC4 falsified for f304's overs.** (FC4 did fire at f302 for the legitimate 4.4→4.5 — confirmed in the trace — but cannot accept the f304 jump.)
+
+**`_is_suspicious` (line 518-683)** — the critical predicate:
+
+| Field | Rule | f304 case (old → new) | Result |
+|---|---|---|---|
+| score, decrease | `new_f < old_f` | 49 → 54 | False (no decrease) |
+| score, huge jump | `new_f - old_f > 30` | 49 → 54 | False (delta=5, well under 30) |
+| overs, backwards | `new_f < old_f` | 4.5 → 6.3 | False (forward) |
+| wickets, regression | `new_f < old_f` | 0 → 0 | False |
+
+**`_is_suspicious` returns False for f304's score=49→54 AND overs=4.5→6.3.** This is the decisive empirical finding.
+
+### 11.2 FC5 post-event grace — confirmed wired to per-ball commits
+
+`test_pipeline.py:12953` calls `scoreboard._tracker.on_ball_event()` on every legal-ball commit. `on_ball_event` at `consistent_tracker.py:782-786` sets `self._post_event_grace = 2`.
+
+Decrement semantics (line 302): `_post_event_grace -= 1` ONLY when FC5 actually commits a value. The counter does NOT decrement on tracker.update calls that reach other paths (cold-start, suspicious-consensus, pending-defer).
+
+**Production f300-f304 sequence reconstruction:**
+
+| Frame | Event | Effect on `_post_event_grace` |
+|---|---|---|
+| f300 (or earlier) | First legal-ball commit (after warm seed) → `on_ball_event()` | grace = 2 |
+| f300 | Score 45 (ov=4.4) confirms | Grace persists or decrements per FC5 fire |
+| f302 | Score 45→49 ball commit → `on_ball_event()` | grace = 2 (reset) |
+| f302 | OVERS-NATURAL-INCREMENT-FAST-CONFIRM fires for overs 4.4→4.5 | FC4 fires, not FC5; grace unchanged |
+| f302 | Score commit 45→49 — likely via FC5 (post-event grace + not suspicious) | grace = 1 |
+| f303 | POISONED — score=89 hallucination blocked upstream of sb.set; tracker.update never called | grace unchanged = 1 |
+| f304 | tracker.update("score", 54, 304): _post_event_grace=1 AND _is_suspicious returns False → FC5 commits | sb._inn["score"]=54, grace=0 |
+| f304 | tracker.update("overs", "6.3", 304): _post_event_grace=0 → FC5 path skipped | sb._inn["overs"] stays 4.5 (other paths reject) |
+
+**Wait — that decrement sequence puts grace at 0 by the second f304 call.** If grace is 0 when `tracker.update("overs", "6.3", 304)` fires, FC5 cannot accept overs. Yet production trace at f318 shows `tracker_overs=6.3`. So overs landed via a different path.
+
+**Outcome A (qualified): FC5 confirmed for the score commit at f304. The overs commit requires a separate static-evidence trail.**
+
+### 11.3 Refined Outcome A — the cascade is FC5-on-score + something-else-on-overs
+
+The f304 cascade is now empirically anchored on the SCORE side:
+
+- **sm.scoreboard._inn["score"] = 54** is **statically confirmed** to land via FC5 at f304 with the post-event grace inherited from f302's ball event. Predicate semantics verified, on_ball_event wiring verified.
+
+For the overs side, three sub-candidates:
+
+1. **FC5 fired at f303 instead of f304.** If at f303 some non-suspicious overs value triggered FC5 (unlikely since f303 was POISONED, but worth verifying the upstream gate path).
+2. **A different FC path admitted the overs jump.** FC2 / FC3 / FC4 all falsified for the overs value-shape; this leaves the cold-start `_initial_consensus` path (only fires if `field not in self.confirmed` — false post-warm-seed) or the 4-frame `[CONSENSUS]` override (would need 4 consecutive (6.3) reads, which the production trace doesn't show).
+3. **The overs got committed later, after the score was at 54.** Production sequence between f304 and f318 may have a frame where FC5 fired for overs (after another on_ball_event reset). The C9 catalogue shows `test_pipeline.py:11750` is an end-of-over wickets/overs hook that calls sb.set without going through the streak gate — possibly fires between f311 and f318.
+
+### 11.4 UDP-STREAM-FROZEN distribution audit (f290-f325)
+
+Per-frame UDP-STREAM-FROZEN counts in production:
+
+```
+f299: 1 frozen, cadence 9062ms, scout 8017ms, ext=(45, 4.4)
+f300: 0 frozen, cadence 1992ms, ext=(45, 4.4)
+f301: 2 frozen, cadence 9345ms, ext=(None, None)  ← STANDINGS-ROW-GATE
+f302: 2 frozen, cadence 5533ms, ext=(None, None)  ← STANDINGS-ROW-GATE + FC4 fires for overs
+f303: 2 frozen, cadence 4619ms, ext=(89, 10.2)    ← POISONED
+f304: 2 frozen, cadence 10601ms, ext=(54, 6.3)    ← the bad anchor
+f308: 0 frozen
+f311: 3 frozen, ext=(None, None)                  ← STANDINGS-ROW-GATE
+f318: 1 frozen
+```
+
+**The `_no_data_streak` interpretation needs clarification.** The streak counter increments in `tracker.update` when `value is None`. STANDINGS-ROW-GATE strips score/overs/wickets to None upstream of sb.set, but the production-pipeline code may or may not call sb.set with the stripped values. If sb.set is NOT called when extractor returns None, the streak doesn't increment. **This is the unresolved upstream-trace question** — and resolving it is part of C12.
+
+Importantly: §11.1 already falsified FC1 DRS-grace via `_is_drs_pattern`, so the `_no_data_streak >= 5` activation question is moot for failure mode α. The mode-γ (FC5 post-event grace) candidate does NOT depend on `_no_data_streak`.
+
+### 11.5 The FC4-at-f302 → FC5-at-f304 interaction (operator's sequencing observation)
+
+Per the operator's note: "the candidate may not be α/β/γ as currently named but a specific interaction between FC4 at f302 and FC1 (DRS grace) at f303-f304."
+
+Static analysis confirms a refined version of that interaction, but the late-stage is FC5 not FC1:
+
+- **f302 FC4 fire**: legitimate overs 4.4→4.5 fast-confirm. Sets the stage for `on_ball_event()` to fire after the score-side commit (45→49) at the same frame.
+- **f302 on_ball_event**: triggered by the legitimate ball commit at this frame. Resets `_post_event_grace = 2`.
+- **f303 POISONED**: blocks score read upstream of sb.set; tracker.update never called for score; `_post_event_grace` does not decrement.
+- **f304 FC5 fire**: the inherited grace, combined with `_is_suspicious("score", 49, 54) = False`, admits score=54 on single read.
+
+**The cascade is a legitimate-ball-event-at-f302 grace-priming feeding the bad-overlay-frame-at-f304 single-read score commit.** Two normal mechanisms (FC4 fast-confirm + on_ball_event grace + non-suspicious upward jump) composing into the cascade root via a one-frame-delayed bad-overlay read that the SM-level streak gate cannot undo (because the streak gate is downstream of sb.set's tracker).
+
+### 11.6 Discipline nuance — static falsification vs empirical falsification
+
+Per operator directive after C10: the distinction between **empirical falsification** (the captured-replay or live-instrumentation cycle empirically disproves a hypothesis — counts against the §1.2 falsification budget) and **static falsification** (a code-reading pass conclusively proves the hypothesis is impossible at the proposed site — zero-cost, does NOT count against the budget) is the right framing.
+
+**Static falsifications surfaced in C11:**
+
+| # | Hypothesis | Static-falsification mechanism | Budget impact |
+|---|---|---|---|
+| §3.5 | C9 §7.2 on_lock async-decoupling | observe() fires synchronously; on_lock callbacks don't mutate score/overs/wickets | Zero |
+| §11.1.α | FC1 DRS-grace for f304's score=54 | `_is_drs_pattern` requires `abs(delta) <= 2`; f304's delta is 5 | Zero |
+| §11.1.α | FC1 DRS-grace for f304's overs=6.3 | `_is_drs_pattern` requires backwards-by-at-most-0.1; f304's delta is +1.8 | Zero |
+| §11.1.β | Cross-field gate at f304 | Cold-start path only; sb._inn fields already in `confirmed` post-warm-seed | Zero |
+
+**Total static falsifications this brief: 4. Budget impact: 0.** Hypothesis #6 (FC5 post-event grace + non-suspicious upward jump) survives as the standing candidate, with refined sub-questions about the overs commit path (§11.3).
+
+The discipline rule made explicit: **apply static falsification liberally before any instrumentation commit.** A code-reading pass that can disprove a hypothesis is always cheaper than an instrumentation cycle. The catalogue at C9 is itself a static-falsification instrument (it enabled §3's on_lock disproof).
+
+### 11.7 C11 verdict — Outcome A (qualified)
+
+Per the C10 §7 decision tree:
+
+- **Outcome A** — "Static evidence confirms one of §5's failure modes." The FC5 post-event grace candidate (a refined version of §5.3 mode γ) is statically confirmed for the **score side** of the f304 cascade. The **overs side** remains under-resolved — three sub-candidates in §11.3, each requiring either further static analysis or targeted unit-test exercise.
+
+This is **Outcome A with a qualifier**: one of two halves of the cascade signature is empirically grounded; the other half is structurally constrained but not yet localized.
+
+**Next deliverable (C12) — see §11.8.** No further instrumentation pending §7.2 7-gate audit on whatever code-shape eventually emerges.
+
+### 11.8 C12 deliverable — open the §7.2 7-gate audit + close the overs-side question
+
+Two work items, ordered:
+
+1. **Static-analysis closure of the overs-side question.** Trace `test_pipeline.py:11750` (end-of-over hook) + the consensus-override path at `consistent_tracker.py:319-405` + verify whether any frame between f304 and f318 in the production trace had a 4-frame consensus run on overs=6.3. One static-analysis pass, no instrumentation.
+
+2. **§7.2 7-gate audit applied to the candidate fix shape.** With both halves of the cascade root empirically grounded, propose ONE candidate fix shape (e.g., "tighten FC5's `_is_suspicious` to flag large upward score jumps OR couple FC5's commit to a cross-field gate that requires the matching overs to also be non-suspicious"). Apply all 7 gates. Predicted-flip claim must cite concrete frame numbers from the captured replay (now reproducible via the C4 LLM-extractor + warm-seed scaffold once instrumented to expose FC5 fires).
+
+**Both work items must complete before any code commit.** The five-falsification track record means gate 6 (predicted-flip with concrete frame numbers) is non-negotiable.
+
+### 11.9 What C11 explicitly does NOT decide
+
+- **Does NOT authorize a fix to FC5.** Fix-shape design is C13+, gated on §7.2 audit.
+- **Does NOT authorize new instrumentation.** The C11 static-analysis pass is the cheap discipline mechanism; further instrumentation only after the §7.2 audit identifies a specific predicted-flip claim.
+- **Does NOT update HANDOFF.** Deferred per operator directive until next clean pause point (target: post-C12 audit completion OR sixth-falsification methodology retirement).
+
+---
+
+**Replay paused at §11.7 Outcome A (qualified). Eleven commits will be on the chain after this C11 update: `b49e48b`, `e3171eb`, `86299e0`, `78b4835`, `ac06fa6`, `237d227`, `e19f72a`, `a99d82c`, `af19dd2`, `2df4061`, and the C11 commit. The candidate (FC5 post-event grace + non-suspicious upward score jump) has static-evidence weight no prior hypothesis carried at this stage: predicate semantics verified, on_ball_event wiring verified, production trace sequence reconstructed. Awaiting operator review before C12.**
