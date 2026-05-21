@@ -843,3 +843,93 @@ prevents the next S4b. Future per-item audits start from this map.
 ---
 
 **Decision sought:** approval to proceed with stage 2c (Frame Fate Ledger build) and concurrent stage 3 (root-cause investigation of the audit's 114 steady-state Δ≥2 events).
+
+---
+
+## 12. Dual-state-write defect-class catalogue (added 2026-05-21 per C17)
+
+> Operator directive at C13 §9 (and reiterated at C16) called this catalogue "§8". The existing §8 ("Risks and edge cases") predates the dual-state-write framing; this catalogue is anchored at §12 to avoid renumbering the existing §8–§11. HANDOFF + Architecture_HANDOFF references updated to point here.
+
+This section catalogues the **dual-state-write defect class** — a recurring structural pattern empirically confirmed across two sessions (F1 + B-η). Per the C13 audit memo §9 mandate, this catalogue is the cross-instance reference that future audits use to check whether a candidate fix is addressing a dual-state-write defect or a single-state defect.
+
+### 12.1 Pattern definition
+
+A **dual-state-write defect** exists when:
+
+1. **Two parallel state surfaces** store representations of the same logical fact.
+2. **The two surfaces have different invariants** — what one accepts, the other may reject.
+3. **Both surfaces remain live in production** — neither is statically dead nor functionally subsumed.
+4. **A read at a downstream site reaches the surface with the weaker invariant**, which has accepted a value the stronger invariant would have rejected.
+5. **The downstream behavior diverges** from what either surface alone would have produced.
+
+The defect is NOT in either surface in isolation — each surface's local invariants may be sound. The defect is in **the architectural coupling** that lets the weaker surface admit and the stronger surface separately reject, producing observable divergence.
+
+### 12.2 The three confirmed instances (column-by-column)
+
+| Axis | F-α-shadow (F1 session, `37f63ad`) | F1/B-ε (F1 session, `437d952`) | B-η/FC5 (B-η session, `ad151fd`) |
+|---|---|---|---|
+| **(a) Two parallel surfaces** | `sb.bowling_card` (Scoreboard attribute, populated at `scoreboard.py:813`, mutated via `update_bowler_card` at `:2940`) **vs** `sb._inn["bowling_card"]` (unused parallel surface, always returns empty dict) | `card.get("broadcast")` (unwritten dead field; always None at read time) **vs** `card.get("broadcast_striker")` (actual data carrier populated upstream) | `sb._tracker.confirmed` (ConsistentReadTracker consensus state, gated by `_is_suspicious`) **vs** `sm.self.score`/`sm.self.overs` (SM-side primitives, gated by `_handle_warm` streak gate) |
+| **(b) Weaker invariant** | The unused `_inn["bowling_card"]` returns `{}` for any name lookup — no invariant beyond "dict access doesn't error" | `card.get("broadcast")` returns `None` for any read — no invariant beyond Python `dict.get` semantics | `_is_suspicious` is permissive: upward score jumps under +30 are not suspicious, forward overs jumps are not suspicious. FC5 post-event grace + non-suspicious → single-read commit |
+| **(c) Stronger invariant** | The canonical `sb.bowling_card` attribute holds the real per-bowler stats and only mutates via `update_bowler_card`'s gated delta API | `card.get("broadcast_striker")` holds the actual broadcast-strip striker name written by the Scout-output pipeline upstream | SM `_handle_warm` streak gate requires 3-frame consensus on the `(new_overs, c_score)` tuple AND `_d_balls ≤ _BALLS_JUMP_TOLERANCE (3)` to admit a proposal |
+| **(d) Detection signal** | False-positive `DISPATCH-LOOP-SHADOW-COMPARISON` divergences at frames 302/1325 of `validate_gtrr_20260520_180715` — every multi-ball-gap event diverged, masking the real B-α defect at frame 522 | At frame 12 of `validate_gtrr_20260520_180715`: Gill credited Sai's FOUR (B-ε); persistent cross-credit cascade throughout session; downstream B-β wicket-dispatch misses inherited from wrong striker | At F304 of `validate_dckkr_20260521_070545`: `(post-event immediate, grace=N)` log signature in `/tmp/pipeline.log` shows FC5 commits sb._inn["score"]=54 + sb._inn["overs"]=6.3 in one frame; downstream f318 `GRAPHIC-FILTER-POISON` cites `tracker_score=54 tracker_overs=6.3 current_score=54 current_overs=4.5` — sm.self.overs and sb._tracker.overs diverged |
+| **(e) Remediation** | Snapshot code reads the canonical `sb.bowling_card` attribute, not the unused `_inn["bowling_card"]` dict surface. Single-line fix at `_capture_multi_ball_shadow_state` | Read the correct field name `broadcast_striker` at `_accept_initial:2798`. Single-edit cascade closure of 4 bug classes (B-ε direct + B-β cascade + multi-ball false positives + compound tokens) | Cross-field pairing gate at `apply_scorer_decision:4517` checks `legitimate_pair(d_score, d_balls, d_wickets)` before any sb.set fires. If illegitimate AND any non-zero advance, defer to streak-gate / consensus paths via early return |
+
+### 12.3 The structural signature (what readers should see at a glance)
+
+All three instances share the same shape:
+
+- **Surface A** — read-path canonical, lower stratum (sb._inn[*] direct dict, card raw dict get, sb._tracker.confirmed); permissive about what can be written or what gets returned.
+- **Surface B** — invariant-enforcing canonical (sb.bowling_card attribute via update_bowler_card, broadcast_striker upstream write, SM _handle_warm streak gate); strict about admission.
+- **Defect-producing path** — a code site reads or writes Surface A in isolation, bypassing Surface B's invariants. Behavior diverges from what Surface B would have produced.
+- **Empirical signal** — produces a measurable divergence at a downstream read site that uses Surface B (or another consumer of Surface A's stale value): false-positive comparison, wrong identity, score/overs split-commit.
+
+### 12.4 Detection methodology
+
+Two complementary mechanisms developed across the two sessions:
+
+**(i) Static code-reading + predicate-trail analysis (B-η session).** Read the predicate semantics at every gate site for the suspect field. Apply the predicates to the production observed values. If a permissive predicate admits a value the strict predicate would reject, surface the dual-state surface pair. **Zero-cost; no instrumentation commit required.**
+
+**(ii) Cross-fixture empirical instrumentation (F1 + B-η sessions).** Add a trace tag at every write site for the suspect field. Replay against multiple captured Scout dumps (DCKKR + GTRR). Tabulate firings: which writes are benign cross-fixture, which produce divergence on one fixture. The divergence-only case is the candidate dual-state-write defect site.
+
+Both methodologies converge on the same defect class; (i) is cheaper, (ii) is harder to escape. The C13 audit's empirical pairing criterion (127/127 GTRR+DCKKR DIRECT-SCORE-COMMIT firings satisfy `legitimate_pair`; F304 fails) is the (ii) substrate.
+
+### 12.5 Remediation patterns
+
+**Narrow remediation (Shape A/B in C13 audit nomenclature):**
+
+Add a coupling check at the weaker surface that imports the stronger surface's invariant. Either:
+
+- (A) Tighten the weaker surface's predicate to match the stronger one's invariant (single-field, lowest reach, highest gate-3 risk if cross-field correlation is the actual defect).
+- (B) Add a new gate site upstream of the weaker surface that runs the stronger surface's invariant check (cross-field, middle reach, what C14 shipped).
+
+**Architectural remediation (Shape C in C13 audit nomenclature):**
+
+Unify the two surfaces by routing one through the other's invariant semantics. Eliminates the divergence class entirely but requires empirical corpus verification that the legitimate-case paths still flow correctly. **Deferred as engineering workstream when the narrow remediation lands cleanly; revisit if subsequent sessions produce more dual-state-write instances at adjacent sites.**
+
+The narrow remediation is the discipline-aligned cheapest move per session; the architectural remediation is the long-term cohesion goal.
+
+### 12.6 Audit obligation (§7.2 gate-3 extension)
+
+**Mandatory check at gate 3 (cross-reference adjacent state)** for any candidate fix:
+
+> Is the defect potentially a dual-state-write class? If yes, enumerate BOTH surfaces explicitly. Confirm the proposed fix addresses the weaker surface (Surface A) or the coupling between them. A fix that operates on Surface B alone — closing only the consumer-side symptom — is a half-fix that leaves the defect class active.
+
+Track record: C13 audit's Shape A (single-field `_is_suspicious` tightening) was rejected at gate 3 because it addressed only Surface B; it would not have closed the F304 cascade. Shape B (cross-field pairing gate) is the gate-3-compliant fix because it operates on the coupling.
+
+### 12.7 Cross-instance methodology lessons
+
+- **F1's cascade-closure** (cross-credit + B-β + multi-ball false positives + compound tokens) demonstrated that the narrow remediation can collapse N adjacent bug classes when the dual-state-write site is the root.
+- **B-η's static-analysis chain** demonstrated that the dual-state-write pattern can be localized via static code-reading + production log audit, without an instrumentation cycle per hypothesis. The methodology generalizes to any defect where captured-replay flattens the temporal signature.
+- **F-α-shadow** demonstrated that observability tooling itself can be a dual-state-write surface — the snapshot code's read path was the weaker surface; the canonical attribute was the stronger surface; the divergence masked a real upstream defect.
+
+### 12.8 What to watch for in future sessions
+
+Likely candidate sites for future dual-state-write instances (per C9 §7 catalogue + this session's bypass-class observations):
+
+- The 6 `_inn[*]` direct-write bypass sites at `test_pipeline.py:3620` (state-recovery Phase-2) and `:10941` (POISON-RECAL forced reset) — both bypass `sb.set`'s tracker consensus. If a future cascade involves the tracker's confirmed value diverging from `_inn`'s direct-write value, this catalogue is the candidate-localization substrate.
+- The 2 async-callback sites at `test_pipeline.py:7211-7234` (bowler/striker on_lock) — confirmed synchronous in C10 §3, but the per-frame intra-execution ordering between `observe()` and SM's subsequent processing remains a candidate temporal-coupling site if a future cascade involves identity-side state divergence.
+- **The Shape B coverage caveat** — `test_pipeline.py:8986+` (catch-up branch) and `:11750` (end-of-over hook) are sb.set call sites that the C14 gate does NOT cover. If next session's `trace_beta` does not flip PASS, these are the most likely sites for the surviving dual-state-write surface.
+
+---
+
+**This catalogue is itself a §7.2 audit instrument.** Future hypotheses can be checked against §12.2's column structure to determine whether the proposed defect is structurally a dual-state-write instance and which remediation pattern (12.5) applies. The catalogue should be extended each time a new dual-state-write instance is confirmed, preserving the column-by-column comparison so the structural signature remains unambiguous.

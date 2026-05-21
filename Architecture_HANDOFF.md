@@ -252,9 +252,9 @@ Runner: `python files/scripts/run_trace_session_assertions.py [TRACE_PATH]`. `SE
 
 Per C13 §5 audit: Shape C (route `sb._inn` writes through SM `_handle_warm` semantics) is the architecturally cleanest answer but cannot be statically audited to gate-4/7 closure. **Deferred as a follow-up engineering workstream** if Shape B's narrow coverage proves insufficient (sixth empirical falsification trigger).
 
-### 8.5 §8 dual-state-write defect-class catalogue (C17 deliverable)
+### 8.5 §12 dual-state-write defect-class catalogue (C17 — landed)
 
-`sm_as_orchestrator_design.md` §8 — new section catalogueing the three confirmed instances of the dual-state-write pattern:
+`sm_as_orchestrator_design.md` §12 — new section catalogueing the three confirmed instances of the dual-state-write pattern:
 
 1. F-α-shadow (F1 session): `sb._inn["bowling_card"]` vs `sb.bowling_card`
 2. F1/B-ε (F1 session): `card.get("broadcast")` vs `card.get("broadcast_striker")`
@@ -323,7 +323,7 @@ Out of scope for SM/pipeline workstream.
 2. **`c13_fc5_audit_memo.md`** (C13 §7.2 7-gate audit on 4 shapes) — Shape B selection + dual-state-write catalogue
 3. **`stream_gap_reconciliation_design.md`** (B-η chain §1-§13) — 5 empirical falsifications + investigation-strategy pivot
 4. **`state_mutation_site_catalogue.md`** (C9) — 38 mutation sites + 2 async callbacks; gate-bypass classes
-5. `sm_as_orchestrator_design.md` — main memo. §7 audit framework; §8 dual-state-write catalogue (C17 target)
+5. `sm_as_orchestrator_design.md` — main memo. §7 audit framework; §12 dual-state-write defect-class catalogue (C17 landed)
 6. `dckkr_20260521_cc_investigation_brief.md` — operator-side brief + §0 reframe (C8 retired Step 1 framing)
 7. `dckkr_20260521_session_observations.md` — observations + C15 predicted-flip claim section
 

@@ -232,7 +232,7 @@ files/docs/investigations/stream_gap_reconciliation_design.md       # B-η chain
 files/docs/investigations/state_mutation_site_catalogue.md          # C9 catalogue
 files/docs/investigations/dckkr_20260521_cc_investigation_brief.md  # operator brief + §0 reframe
 files/docs/investigations/dckkr_20260521_session_observations.md    # observations + C15 §
-files/docs/investigations/sm_as_orchestrator_design.md              # §7 framework + §8 (C17 target)
+files/docs/investigations/sm_as_orchestrator_design.md              # §7 framework + §12 (C17 dual-state-write catalogue)
 
 deploy/systemd/*.service           # pipeline, recorder, live-clips, ui
 deploy/Caddyfile
@@ -363,7 +363,7 @@ This session's most important architectural insights, validated empirically acro
 
 **(2) A complete falsification cascade is an architectural finding, not a failure.** Five empirical + eight static falsifications + one acceptance is the discipline working as designed. The budget mechanism (5-empirical-falsification cap per defect-class chain) ensures the cascade terminates productively rather than open-loop.
 
-**(3) Two-parallel-state-surfaces is a recurring defect class.** Three instances confirmed across two sessions: F-α-shadow (`sb.bowling_card` vs `sb._inn["bowling_card"]`), F1/B-ε (`card.get("broadcast")` vs `card.get("broadcast_striker")`), B-η/FC5 (`sb._tracker.confirmed` vs SM `_handle_warm` streak gate). To be catalogued in `sm_as_orchestrator_design.md` §8 in C17 with detection-signal + remediation-pattern documented.
+**(3) Two-parallel-state-surfaces is a recurring defect class.** Three instances confirmed across two sessions: F-α-shadow (`sb.bowling_card` vs `sb._inn["bowling_card"]`), F1/B-ε (`card.get("broadcast")` vs `card.get("broadcast_striker")`), B-η/FC5 (`sb._tracker.confirmed` vs SM `_handle_warm` streak gate). To be catalogued in `sm_as_orchestrator_design.md` §12 in C17 with detection-signal + remediation-pattern documented.
 
 The workstream pauses cleanly at the operational validation gate. Next move is operational, not engineering. The trace assertion library + 16-commit investigation chain are the standing data-collection + verification mechanisms for any future production session.
 
