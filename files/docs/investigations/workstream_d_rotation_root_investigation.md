@@ -265,6 +265,82 @@ Original §3.4 / §6 H-D2-Layer-1a: *"Layer 1 flips `trace_gamma_w_symbol_at_wic
 
 0/5 empirical cap unchanged. Signal 1 falsification + sub-findings S8/S9/S10 were all derived via static predicate-trail through the existing trace file (zero empirical cost per the C10 §1.2 static-vs-empirical distinction). The D-chain remains at 0/5 consumed across both hypotheses + 4 sub-findings (S1, S3, S4, S5, S6, S7, S8, S9, S10).
 
+### §3.4d Phase-2.5 — D2-fix structural-surface check; override gate ruled out (scratch)
+
+**Predicate-trail** at `score_manager.py:4411–4441` (the `STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC` emission site inside the private `_identify_and_set` method). Single call site at `score_manager.py:3408`, inside the steady-state branch (`d_score == d_wickets == d_overs == 0`). The gate fires on the preceding steady-state frame, never on the wicket frame itself.
+
+**Gate structure** (lines 4411–4441):
+
+```
+if new and new != self.striker:
+    if self.striker is not None:          # gate: locked-deterministic wins
+        log.info(... "keeping deterministic")
+        _trace.record(tag=STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC, ...)
+    else:                                  # else: cold-start, accept broadcast
+        self._set_slot_pair(new, ...)
+```
+
+**Gate rationale** (lines 4413–4426): designed to prevent broadcast-leading-by-one-frame from flipping `self.striker` to the post-wicket striker before the wicket-attribution logic runs. Citation: `test_sm_derivation_ledger.py` ball 4.6 DC vs KKR fixture — the broadcast indicator advanced to the post-wicket-and-EOO-swap striker (Nissanka) mid-frame, which would have flipped `self.striker` to Nissanka before wicket-attribution could identify Rahul as dismissed.
+
+### §3.4d.1 Discriminator analysis — non-discriminable predicate signature
+
+Both the DC-vs-KKR ball-4.6 regression case AND the DCKKR F855 case arrive at the same emission site with the **same predicate signature**:
+
+| | DC-vs-KKR ball 4.6 (regression case) | DCKKR F855 (this investigation) |
+|---|---|---|
+| `new` source | `broadcast_first_name` | `broadcast_first_name` |
+| `new ≠ self.striker` | yes | yes |
+| `self.striker is not None` | yes | yes |
+| Frame-type | steady-state (`d_*==0`) | steady-state (`d_*==0`) |
+| Next-frame d_wickets | ticks (wicket frame follows) | ticks (wicket frame follows) |
+
+The two cases differ in the **truth-value of the broadcast signal**, not in any locally-observable predicate:
+
+- **Regression case** — broadcast is LEADING by 1 frame (showing post-wicket striker before pipeline detects the d_wickets tick). Deterministic is correct. **Gate must keep deterministic.**
+- **DCKKR F855 case** — broadcast is CURRENT (correctly showing pre-wicket striker). Deterministic is corrupted by rotation-lock-starvation drift accumulated over many earlier frames (Obs 2/3/9 documented monotonic batter-ball drift). **Gate must accept broadcast.**
+
+**Discriminating requires one of:**
+- **Lookahead** (next-frame d_wickets value) — not in scope; requires deferral state machine.
+- **Persistence count** (broadcast has shown this name for N consecutive frames) — not in scope; requires broadcast-name history plumbing.
+- **Drift detection** (deterministic provably out-of-sync with cumulative balls-faced delta) — partial signals in scope; requires multi-frame accumulated state.
+
+All three are structural plumbing equivalent to D1's β. **Override gate is plumbing-required, NOT single-site.**
+
+### §3.4d.2 Gate is load-bearing protection — not scar tissue
+
+Per §3.4d, the override gate prevents a known regression (DC-vs-KKR ball 4.6 → Rahul-dismissed-attribution). The gate is NOT scar tissue. Removing it without a discriminator regresses the original case. **Ruling out as a D2 fix surface; the next move at this site is plumbing (D2-Layer-2 candidate), not single-site retries.**
+
+### §3.4d.3 Alternative fix surface confirmed — WICKET-ATTRIB at test_pipeline.py:13062–13068
+
+The H-D2 surface originally identified in the §3.5 structural-surface check (pre-C30) remains correct under the C30 reformulation:
+
+- Wicket-pending context is **IMPLICIT** (we're inside the `ball_event.type in ("WICKET", "WICKET_LATE")` block at `test_pipeline.py:13062`).
+- `card["broadcast_striker"]` is in scope at the site (`card` is the current frame's extracted card data, passed into the event-handling block).
+- Regression-case rationale (don't flip `self.striker` prematurely) is **independent of this site** — at WICKET-ATTRIB the wicket is already confirmed; reading broadcast for the dismissed-name attribution does not flip the striker pointer.
+- Override gate's discriminator problem is **bypassed entirely** — different code path, different invariant.
+
+Fix shape: before the `ball_event["dismissed"] = _striker_this_ball` write at `test_pipeline.py:13063`, check whether `card.get("broadcast_striker")` disagrees with `_striker_this_ball`; if so, prefer broadcast for the dismissed-name attribution. Emit `WICKET-ATTRIB-BROADCAST-OVERRIDE-APPLIED` trace tag on the override branch (gate-6 instrument).
+
+### §3.4d.4 Sub-finding S11 — signal/site decoupling (methodology meta-finding)
+
+The C30 predicate-trail moved the predictive signal from "tracker LEADER cross-check" (§3.4 / §3.4c S8 falsified Signal 1) to "broadcast-striker field". The fix site, however, did NOT move — it stayed at `test_pipeline.py:13062–13068` from the original §3.5 structural-surface check. **Signal/site decoupling: predicate-trail reformulation can move the predictive signal without moving the implementation surface.**
+
+Promoted to methodology track record (`Architecture_HANDOFF.md` §0.7 candidate). Transferable across future audits where the predicate-trail produces a "wrong signal, right site" finding. Pattern: when the original structural-surface check identifies a fix site by code-context (not by signal source), a later signal reformulation does not invalidate the site — only the consumed signal at that site needs updating.
+
+### §3.4d.5 Sub-finding S12 — non-discriminable-predicate-signature defect-class
+
+When two cases (one regression-protected, one investigation-target) arrive at the same site with the same observable predicate signature, **single-site fix is structurally impossible without plumbing**. The discriminator must come from outside the local predicate scope (lookahead, history, accumulated drift).
+
+This is a transferable audit-pattern entry, parallel to the dual-state-write defect class catalogued in `sm_as_orchestrator_design.md` §12. Candidate for §12 catalogue extension as a peer entry (the dual-state-write pattern is "two surfaces, one weaker invariant decision-flips a stronger one"; the non-discriminable-signature pattern is "two cases, one predicate signature, plumbing-required to distinguish"). Out of C30b scope; tracked here as a forward reference.
+
+### §3.4d.6 Deferred-work index update
+
+`score_manager.py:4411` override gate is explicitly ruled out as a D2 fix candidate. Re-investigation authorized only if WICKET-ATTRIB fix at `test_pipeline.py:13063` proves insufficient on next replay (equivalent to consuming the first empirical-falsification slot in the D chain's 5-cap budget; see §3.4d.7).
+
+### §3.4d.7 Falsification-budget impact
+
+0/5 empirical cap unchanged. Structural-surface check was zero-cost static (predicate-trail through existing code + comment-block read). The D-chain remains at 0/5 consumed across both hypotheses + 6 sub-findings (S1, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12 — count expanded; all static).
+
 ### §3.5 Candidate fix sites
 
 - **Layer 1 (event-builder).** Per C9 catalogue, event construction sits at `apply_scorer_decision` (`test_pipeline.py:4517`) upstream of `_apply_wicket_fall_only`. Insert a `_derive_dismissed_name` step that consumes Scout's WICKET marker + adjacent STRIKER-OBSERVE / BATTING_TEAM-OBSERVE records and emits `event.dismissed`.
