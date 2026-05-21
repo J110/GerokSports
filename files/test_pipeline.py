@@ -4514,6 +4514,129 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
                 scoreboard, score_mgr, frame, changes)
             return changes
 
+    # B-η cross-field pairing gate (C14, 2026-05-21). Closes the F304
+    # FC5 cascade root statically localized in production pipeline.log
+    # (TRACK lines: score 49→54 + overs 4.5→6.3, both with
+    # "post-event immediate, grace=N" suffix from
+    # consistent_tracker.py:304-305). The audit at
+    # files/docs/investigations/c13_fc5_audit_memo.md §10 specifies
+    # this gate: a legitimate single-frame commit's (Δscore, Δballs,
+    # Δwickets) tuple must match one legal delivery (d_balls=1,
+    # d_score ∈ [0,7], d_wickets ∈ {0,1}) OR an extras-only illegal
+    # delivery (d_balls=0, d_score ∈ [0,5], d_wickets ∈ {0,1}). When
+    # both score and overs are proposed with deltas that violate
+    # legitimate_pair AND a forward advance is non-zero, defer all
+    # three field commits to the streak gate / consensus paths. The
+    # existing score-correction guard above (abs(Δscore)>7) handles
+    # extreme cases; this gate handles the cross-field correlation
+    # class the F304 anchor exhibited (Δscore=+5 paired with
+    # Δballs=10). Empirically verified against GTRR 80 + DCKKR 47
+    # benign DIRECT-SCORE-COMMIT firings — all satisfy legitimate_pair;
+    # only F304 (the bad PANT/WARD/SHAMI overlay) fails.
+    _cfp_overs_up = decision.get("overs_update", {})
+    _cfp_wkts_up = decision.get("wickets_update", {})
+    _cfp_proposed_overs = (
+        _cfp_overs_up.get("to")
+        if isinstance(_cfp_overs_up, dict)
+        and _cfp_overs_up.get("accepted")
+        else None)
+    _cfp_proposed_wickets = (
+        _cfp_wkts_up.get("to")
+        if isinstance(_cfp_wkts_up, dict)
+        and _cfp_wkts_up.get("accepted")
+        else None)
+
+    def _cfp_to_balls(o):
+        if o is None:
+            return None
+        try:
+            if isinstance(o, str):
+                s = o.strip()
+                if "." in s:
+                    w, b = s.split(".")
+                    return int(w) * 6 + int(b)
+                return int(float(s)) * 6
+            f = float(o)
+            w = int(f)
+            b = round((f - w) * 10)
+            return w * 6 + b
+        except (ValueError, TypeError):
+            return None
+
+    if (_proposed_score is not None
+            and _cfp_proposed_overs is not None
+            and _ext_has_any_data):
+        _cfp_cur_score = scoreboard._inn.get("score")
+        _cfp_cur_overs = scoreboard._inn.get("overs")
+        _cfp_cur_wickets = scoreboard._inn.get("wickets")
+        _cfp_cur_balls = _cfp_to_balls(_cfp_cur_overs)
+        _cfp_prop_balls = _cfp_to_balls(_cfp_proposed_overs)
+        if _cfp_cur_balls is not None and _cfp_prop_balls is not None:
+            try:
+                _cfp_d_score = (
+                    int(_proposed_score)
+                    - int(_cfp_cur_score or 0))
+                _cfp_d_balls = _cfp_prop_balls - _cfp_cur_balls
+                _cfp_d_wickets = (
+                    int(_cfp_proposed_wickets)
+                    - int(_cfp_cur_wickets or 0)
+                    if _cfp_proposed_wickets is not None else 0)
+            except (ValueError, TypeError):
+                _cfp_d_score = 0
+                _cfp_d_balls = 0
+                _cfp_d_wickets = 0
+            _cfp_legitimate = (
+                (_cfp_d_balls == 1
+                 and 0 <= _cfp_d_score <= 7
+                 and _cfp_d_wickets in (0, 1))
+                or (_cfp_d_balls == 0
+                    and 0 <= _cfp_d_score <= 5
+                    and _cfp_d_wickets in (0, 1))
+            )
+            _cfp_has_advance = (
+                _cfp_d_score > 0
+                or _cfp_d_balls > 0
+                or _cfp_d_wickets > 0)
+            if not _cfp_legitimate and _cfp_has_advance:
+                log.warn(
+                    f"  [CROSS-FIELD-PAIRING-REJECT] proposed=("
+                    f"score={_proposed_score}, "
+                    f"overs={_cfp_proposed_overs}, "
+                    f"wickets={_cfp_proposed_wickets}) "
+                    f"current=(score={_cfp_cur_score}, "
+                    f"overs={_cfp_cur_overs}, "
+                    f"wickets={_cfp_cur_wickets}) "
+                    f"Δ=(score={_cfp_d_score}, "
+                    f"balls={_cfp_d_balls}, "
+                    f"wickets={_cfp_d_wickets}) — single-frame "
+                    f"commit violates legitimate_pair; deferring "
+                    f"to streak gate / consensus paths")
+                if _TRACE_RECORDER is not None:
+                    try:
+                        _TRACE_RECORDER.record(
+                            tag="CROSS-FIELD-PAIRING-REJECT",
+                            proposed_score=_proposed_score,
+                            proposed_overs=str(_cfp_proposed_overs),
+                            proposed_wickets=_cfp_proposed_wickets,
+                            current_score=_cfp_cur_score,
+                            current_overs=str(_cfp_cur_overs),
+                            current_wickets=_cfp_cur_wickets,
+                            d_score=_cfp_d_score,
+                            d_balls=_cfp_d_balls,
+                            d_wickets=_cfp_d_wickets,
+                            frame_id=frame)
+                    except Exception:
+                        pass
+                changes.append(
+                    f"CROSS-FIELD-PAIRING-REJECT:"
+                    f"d_score={_cfp_d_score},"
+                    f"d_balls={_cfp_d_balls},"
+                    f"d_wickets={_cfp_d_wickets}")
+                _apply_scorer_item2_cleanup(
+                    schema_shadow_events, step3_notes, step4_ub_false,
+                    scoreboard, score_mgr, frame, changes)
+                return changes
+
     if isinstance(score_up, dict) and score_up.get("accepted") and score_up.get("to") is not None:
         if not _ext_has_score and not _ext_has_any_data:
             log.info(f"  [GUARD] Scorer proposed score={score_up['to']} — "

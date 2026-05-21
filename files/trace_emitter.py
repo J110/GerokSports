@@ -404,6 +404,17 @@ KNOWN_TAGS: set[str] = {
     # advances while self.overs is held by a separate gate (the
     # active defect mechanism surfaced in stream-gap memo §10.3).
     "DIRECT-SCORE-COMMIT",
+    # B-η Shape B cross-field pairing gate (C14, 2026-05-21) —
+    # fires at the commit_decision site in test_pipeline.py when the
+    # proposed (Δscore, Δballs, Δwickets) tuple violates the
+    # legitimate_pair predicate (single legal delivery OR extras-
+    # only illegal delivery). Defers all three field commits to the
+    # streak gate / consensus paths. Closes the F304-class cascade
+    # root statically localized via FC5 in the production
+    # pipeline.log. See files/docs/investigations/c13_fc5_audit_memo.md
+    # for the §7.2 7-gate audit + the empirical pairing criterion
+    # verified against GTRR 80 + DCKKR 47 benign firings.
+    "CROSS-FIELD-PAIRING-REJECT",
 }
 
 # Regex matches the leading ``[TAG]`` token in any log message. Captures
