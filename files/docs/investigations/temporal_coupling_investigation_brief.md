@@ -582,4 +582,99 @@ C11 + C12 static falsifications:
 
 ---
 
-**Replay paused at §12.8 C12.5 prerequisite decision. Twelve commits will be on the chain after this C12 update. The two halves of the cascade root are now: (a) score-side fully localized (FC5 at f304), (b) overs-side mechanism narrowed to multi-frame consensus but exact frame requires one of two small follow-up steps. C13 §7.2 7-gate audit blocked on the overs-side empirical localization — gate 6 requires concrete frame numbers for both halves, not structural argument for one.**
+---
+
+## 13. C12.5b — pipeline.log audit closes gate 6 for both halves
+
+Operator authorized C12.5b first per zero-commit-cost dominance. `/tmp/pipeline.log` was retained from the production session (2.9 MB, May 21 08:14, exactly matching the session window). Header line confirms `SESSION-CONFIG session_id=validate_dckkr_20260521_070545`.
+
+### 13.1 The four production TRACK lines that close the cascade
+
+Direct grep of pipeline.log for F302-F317 TRACK lines (the consistent_tracker.update log path):
+
+```
+F302 TRACK score: 45 → 49 (post-event immediate, grace=1)
+F302 TRACK overs: 4.4 → 4.5 (fast-confirm, natural overs increment F302)
+F304 TRACK score: 49 → 54 (post-event immediate, grace=1)
+F304 TRACK overs: 4.5 → 6.3 (post-event immediate, grace=0)
+F317 TRACK [SUSPICIOUS] overs: 6.3→5.0 (backwards)  ← later regression attempt blocked
+F317 TRACK [SUSPICIOUS] overs: 6.3→5.0 (backwards)  ← repeat
+```
+
+The **`(post-event immediate, grace=N)`** suffix is the FC5 log signature from `consistent_tracker.py:304-305`. Three FC5 fires across f302+f304; one FC4 fire at f302 (overs natural increment); one POISONED frame at f303 that does not invoke tracker.update.
+
+### 13.2 Corrected `_post_event_grace` arithmetic
+
+C12 §12.1 had the grace baseline wrong by one. The correct production sequence:
+
+| Frame | TRACK event | Grace before fire | Grace after fire | Notes |
+|---|---|---|---|---|
+| f300 | First ball commit | 0 or undefined | 2 (set by `on_ball_event()`) | warm-seed baseline |
+| f302 | FC5 score 45→49 | 2 | 1 (log "grace=1") | decrement |
+| f302 | `on_ball_event()` fires (score advance = ball event) | 1 | **2** (reset) | per `test_pipeline.py:12953` |
+| f302 | FC4 overs 4.4→4.5 | 2 | 2 (FC4 doesn't decrement) | natural-overs path |
+| f303 | POISONED upstream | 2 | 2 | tracker.update never called |
+| f304 | FC5 score 49→54 | 2 | 1 (log "grace=1") | decrement |
+| f304 | FC5 overs 4.5→6.3 | 1 | 0 (log "grace=0") | decrement |
+| f304 | wickets 0==0 early return | 0 | 0 | line 221 |
+
+**Production-log evidence matches the grace=1 / grace=0 sequence exactly.** §12.1's earlier derivation missed that `on_ball_event()` fires AFTER FC5 decrements grace, resetting it back to 2 for the next frame. The corrected arithmetic confirms BOTH halves of the cascade root land at **f304 via FC5** in **the same `commit_decision` execution sequence**.
+
+### 13.3 The operator's F-α-shadow reframe — fully empirically validated
+
+The §12.7 framing is now empirically grounded with concrete frame numbers:
+
+- **Weaker invariant surface (`sb._tracker.confirmed` via FC5):** at f304, `_is_suspicious("score", 49, 54)` returns False (no rule for +5 upward jump) AND `_is_suspicious("overs", 4.5, 6.3)` returns False (no rule for forward overs jump). Grace=2 inherited from f302's on_ball_event. Both writes commit on single read.
+- **Stronger invariant surface (SM `_handle_warm` streak gate):** at f304, `_d_balls = 11 > _BALLS_JUMP_TOLERANCE = 3` triggers `OVERS-JUMP-IMPLAUSIBLE-REJECTED`. SM rejects the proposal.
+
+The weaker invariant commits to `sb._inn` first; the stronger invariant rejects when SM reads the same proposal from `sb._inn` as the "card" input. Result: divergence between `sb._inn["score"]=54 sb._inn["overs"]="6.3"` and `sm.self.overs=4.5` at f318.
+
+### 13.4 Cascade-root fully localized — gate-6 closure for C13
+
+**Predicted-flip claim with concrete frame numbers** (the prerequisite for the §7.2 7-gate audit):
+
+If FC5's `_is_suspicious` check is tightened to flag large upward score jumps (e.g., delta > 5 within a single sb.set call without a corresponding overs +0.1 advance) OR if FC5 is removed entirely OR if FC5 is coupled to a cross-field gate requiring all three fields' proposals to clear suspicion together:
+
+- **F302 TRACK score: 45 → 49** — Δ=+4 ≤ 5 → still admits (no regression on legitimate boundary)
+- **F302 TRACK overs: 4.4 → 4.5** — FC4 path, unchanged (not gated by FC5)
+- **F304 TRACK score: 49 → 54** — Δ=+5 with NO matching overs +0.1 → **rejected by tightened FC5**
+- **F304 TRACK overs: 4.5 → 6.3** — large Δ=+1.8 overs → **rejected by tightened FC5**
+- Result: sb._inn["score"] stays 49, sb._inn["overs"] stays 4.5. SM stays consistent. The B-η cascade (Issues 2, 3, 5, 6, 7, 9, 10, 11 from the session observations) collapses at root.
+
+**Cross-fixture check (gate 7) preview:** the C6 GTRR replay produced 81 DIRECT-SCORE-COMMIT firings, all benign single-ball boundary advances (Δ ≤ 6 paired with normal overs +0.1 advances). A tightening that targets "large upward delta NOT paired with overs +0.1" would not regress GTRR's legitimate boundaries.
+
+### 13.5 C13 prerequisite met — proceed to §7.2 7-gate audit
+
+The static analysis (C11+C12) plus the pipeline.log empirical evidence (C12.5b) together close gate 6 for both halves of the cascade root **without an additional instrumentation commit**. The audit-budget cost was C12.5b's pipeline.log parse (zero commits, ~5 minutes investigator time) — the dominant choice over C12.5a's instrumentation cycle, validated empirically.
+
+**C13 is now unblocked.** The next deliverable applies §7.2 7-gate audit to one or more candidate fix shapes targeting FC5. The audit must:
+
+1. Enumerate every caller of `_is_suspicious` and the FC5 path
+2. Classify each caller (will the tightening regress any legitimate write?)
+3. Cross-reference with adjacent state (cross-field gate, post-event grace lifecycle, ball-event detection)
+4. Equivalence proof: does the tightened FC5 preserve the legitimate-boundary cases (F302, F361, F488, etc.)?
+5. State lifecycle: when is grace reset, when does FC5 fire, when does on_ball_event run
+6. Predicted-flip gate: §13.4 satisfies this — both halves at f304 cited with TRACK-log evidence
+7. Cross-fixture verification: GTRR's 81 benign firings (C6 trace) as the empirical regression-detection substrate
+
+### 13.6 Discipline footnote — C12.5b vs C12.5a outcome
+
+Per the operator's directive: C12.5b dominated C12.5a on the cost axis IF it produced gate-6 closure. **It did**, with zero commits and a 5-minute pipeline.log audit. The C12.5a instrumentation path was a legitimate fallback but is no longer needed — saved one diagnostic commit.
+
+**Static-falsification tally + empirical-localization tally after C12.5b:**
+
+- Static falsifications across C11+C12: 8 (zero budget impact)
+- Empirical localizations at concrete frame numbers: 4 (F302×2, F304×2 TRACK lines)
+- Empirical falsifications across whole chain: 5 (B-η chain) — unchanged
+
+The discipline mechanism is now empirically validated as the right tool for temporal-coupling defect classes:
+
+- **Static analysis** localizes the mechanism (FC5 path + predicate semantics + grace arithmetic).
+- **Pipeline.log audit** (operator-side artifact, zero-commit-cost) localizes the exact frame.
+- **Captured-replay scaffold** (commits b49e48b–237d227) serves as the falsification mechanism for the C14 fix.
+
+Per operator directive — bake into HANDOFF post-C15.
+
+---
+
+**Replay paused at §13.5 C13-unblocked. Thirteen commits will be on the chain after this C12.5b update. The B-η cascade root is fully localized at frame F304 via FC5 in the production pipeline.log. C13 §7.2 7-gate audit proceeds on a candidate fix shape targeting FC5's `_is_suspicious` predicate or its post-event-grace gate.**
