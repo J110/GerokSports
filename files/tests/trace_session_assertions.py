@@ -357,6 +357,97 @@ def assert_w_symbol_at_wicket(records: list) -> Result:
     return _ok()
 
 
+def assert_fow_name_matches_striker_at_wicket(records: list) -> Result:
+    """B2 / surface_pair_defect_class_family §2.5 detector — INTERNAL-
+    CONSISTENCY VARIANT. For every wicket event, the dismissed-batter
+    identity recorded at the wicket frame must equal the striker pointer
+    at the immediately preceding frame (i.e., the batter who faced the
+    wicket ball per the pipeline's own pre-wicket state).
+
+    Detection priority:
+      1. ``scorer.decisions[].tag == 'trace_beta_sm_wicket_dispatch'``
+         with payload ``dismissed`` (typed emission restored in C19A3,
+         populated by replays captured after that commit).
+      2. ``ball_event.type == 'WICKET'`` with
+         ``ball_event.striker_this_ball`` (fallback for pre-C19A3
+         captured traces — same wicket signal used by
+         ``assert_sm_wicket_dispatch_invariant``).
+
+    Striker-pointer source: previous record's ``pipeline.striker``.
+
+    SCOPE LIMITATION — DOES NOT TEST CRICKET GROUND TRUTH.
+      If pipeline's striker pointer was internally consistent with its
+      FOW name commit (e.g., both surfaces stale because of rotation-
+      lock starvation from sm_as_orchestrator_design.md §7.1), this
+      assertion PASSES while cricket reality still diverges. The
+      validate_dckkr_20260521_155356 replay observed 3/3 cricket-vs-
+      pipeline misattributions (Obs 16/18/19/21 of
+      validate_dckkr_replay_observations.md), but those are reality-
+      vs-pipeline divergences; this assertion only measures pipeline-
+      internal consistency between two adjacent state surfaces.
+      Cricket ground-truth assertion infrastructure is workstream D
+      (rotation-root revisit, scoped as separate from B per C19/B2
+      scope note).
+
+    Baseline expectation against validate_dckkr_20260521_155356:
+      Unknown a priori — depends on whether rotation-lock starvation
+      corrupts both surfaces simultaneously (PASS) or only one (FAIL).
+      Treat the actual FAIL count as an empirical finding: a low
+      count means internal consistency holds even when reality
+      diverges, which would prioritize workstream D over further
+      assertion work on this surface pair.
+    """
+    failures: list[dict] = []
+    for i, rec in enumerate(records):
+        dismissed: str | None = None
+        for dec in _decisions(rec):
+            if dec.get("tag") == "trace_beta_sm_wicket_dispatch":
+                d_val = dec.get("dismissed")
+                if d_val:
+                    dismissed = str(d_val)
+                break
+        if dismissed is None:
+            be = rec.get("ball_event") or {}
+            if be.get("type") == "WICKET":
+                sb_val = be.get("striker_this_ball")
+                if sb_val:
+                    dismissed = str(sb_val)
+        if not dismissed:
+            continue
+
+        if i == 0:
+            failures.append({
+                "frame": rec.get("frame"),
+                "dismissed": dismissed,
+                "reason": "no_preceding_frame",
+            })
+            continue
+        prev = records[i - 1]
+        prev_striker = (prev.get("pipeline") or {}).get("striker")
+        if not prev_striker:
+            failures.append({
+                "frame": rec.get("frame"),
+                "dismissed": dismissed,
+                "prev_frame": prev.get("frame"),
+                "reason": "no_prev_striker",
+            })
+            continue
+        if str(prev_striker).strip().lower() != dismissed.strip().lower():
+            failures.append({
+                "frame": rec.get("frame"),
+                "ts_match": rec.get("ts_match"),
+                "dismissed": dismissed,
+                "prev_striker": prev_striker,
+            })
+
+    if failures:
+        return _fail(
+            class_name="fow_name_striker_mismatch_internal",
+            count=len(failures),
+            samples=failures[:5])
+    return _ok()
+
+
 TRACE_ASSERTIONS = [
     ("trace_alpha_bowler_runs_sum",
      assert_bowler_runs_sum_matches_team_score),
@@ -370,6 +461,8 @@ TRACE_ASSERTIONS = [
      assert_extras_total_consistent),
     ("trace_gamma_w_symbol_at_wicket",
      assert_w_symbol_at_wicket),
+    ("trace_gamma_fow_name_matches_striker_at_wicket",
+     assert_fow_name_matches_striker_at_wicket),
 ]
 
 
