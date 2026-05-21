@@ -3149,6 +3149,27 @@ def _canonical_active_slot(score_mgr, scoreboard, slot: str) -> str | None:
     return _active_card_name(scoreboard, sb.get(slot))
 
 
+def _attribute_dismissed_with_broadcast_override(
+        striker_canonical: str | None,
+        pending_bcast_striker_key: str | None,
+        trace_recorder,
+        frame_count: int) -> str | None:
+    if (pending_bcast_striker_key
+            and striker_canonical
+            and pending_bcast_striker_key != striker_canonical):
+        if trace_recorder is not None:
+            try:
+                trace_recorder.record(
+                    tag="WICKET-ATTRIB-BROADCAST-OVERRIDE-APPLIED",
+                    deterministic=striker_canonical,
+                    broadcast=pending_bcast_striker_key,
+                    frame_id=str(frame_count))
+            except Exception:
+                pass
+        return pending_bcast_striker_key
+    return striker_canonical
+
+
 def _set_inn_slot_with_sm_mirror(score_mgr, scoreboard, slot: str,
                                  value: str | None, reason: str) -> bool:
     """Path B lockstep: mirror striker/non into ``sb._inn`` and SM.
@@ -13061,11 +13082,17 @@ async def run_test():
             if ball_event:
                 if ball_event.get("type") in ("WICKET", "WICKET_LATE"):
                     if _striker_this_ball and not ball_event.get("dismissed"):
-                        ball_event["dismissed"] = _striker_this_ball
-                        ball_event["striker"] = _striker_this_ball
+                        _dismissed_attrib = (
+                            _attribute_dismissed_with_broadcast_override(
+                                _striker_this_ball,
+                                _pending_bcast_striker_key,
+                                _TRACE_RECORDER,
+                                frame_count))
+                        ball_event["dismissed"] = _dismissed_attrib
+                        ball_event["striker"] = _dismissed_attrib
                         log.info(
                             f"  [WICKET-ATTRIB] Dismissed batter set "
-                            f"from scoreboard striker: {_striker_this_ball}")
+                            f"from scoreboard striker: {_dismissed_attrib}")
                     scoreboard.apply_known_wicket_increment(
                         ball_event.get("dismissed"))
                 over_mgr.on_ball_event(

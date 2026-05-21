@@ -341,6 +341,14 @@ This is a transferable audit-pattern entry, parallel to the dual-state-write def
 
 0/5 empirical cap unchanged. Structural-surface check was zero-cost static (predicate-trail through existing code + comment-block read). The D-chain remains at 0/5 consumed across both hypotheses + 6 sub-findings (S1, S3, S4, S5, S6, S7, S8, S9, S10, S11, S12 — count expanded; all static).
 
+### §3.4e Field-name correction — broadcast-striker access path at WICKET-ATTRIB (C31)
+
+§3.4d.3 referred to `card["broadcast_striker"]` as the broadcast signal in scope at `test_pipeline.py:13062–13068`. That phrasing was imprecise: `card["broadcast_striker"]` is the SM-side access path (consumed inside `score_manager.py::_identify_and_set` at line 4359). At the test_pipeline.py-level WICKET-ATTRIB site, the canonical-form broadcast-striker signal is the closure-scoped variable **`_pending_bcast_striker_key`**, defined at `test_pipeline.py:8517` (default `None`) and populated at lines 8518–8526 via `scoreboard.resolve_name(_bcast.get("striker_broadcast"))` + `scoreboard._find_card_key`.
+
+This is a **canonical squad-key** (e.g., `"Sameer Rizvi"`), matching the canonicalization shape of `_striker_this_ball` returned by `_canonical_active_slot(...)`. Direct string equality is sound.
+
+**The §3.4d.3 conclusion is unchanged** — single-site fix surface remains valid, no plumbing required, the broadcast signal IS in scope at the WICKET-ATTRIB block. Only the variable-name reference was imprecise. C31 D2-fix uses `_pending_bcast_striker_key` directly (verified in the C31 commit's Read pass).
+
 ### §3.5 Candidate fix sites
 
 - **Layer 1 (event-builder).** Per C9 catalogue, event construction sits at `apply_scorer_decision` (`test_pipeline.py:4517`) upstream of `_apply_wicket_fall_only`. Insert a `_derive_dismissed_name` step that consumes Scout's WICKET marker + adjacent STRIKER-OBSERVE / BATTING_TEAM-OBSERVE records and emits `event.dismissed`.

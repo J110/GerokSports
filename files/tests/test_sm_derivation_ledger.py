@@ -439,7 +439,11 @@ def main(argv: list[str] | None = None) -> int:
     if cfp_rc != 0:
         return cfp_rc
     from test_bowler_dispatch_fallback import run_all as _run_bdf_gate
-    return _run_bdf_gate()
+    bdf_rc = _run_bdf_gate()
+    if bdf_rc != 0:
+        return bdf_rc
+    from test_wicket_attrib_broadcast_override import run_all as _run_wabo_gate
+    return _run_wabo_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:
