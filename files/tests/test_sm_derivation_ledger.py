@@ -425,7 +425,18 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--start-at-ball", default=None,
                    help="skip assertions until this ball_id (warmup window)")
     args = p.parse_args(argv)
-    return run_harness(Path(args.ledger), args.start_at_ball)
+    rc = run_harness(Path(args.ledger), args.start_at_ball)
+    if rc != 0:
+        return rc
+    # C15 (2026-05-21): persistent gate-6 verification for the C14
+    # cross-field pairing gate at apply_scorer_decision. Runs after
+    # the 36-ball ledger replay so pre-commit Layer 1.5 covers BOTH
+    # the SM-derivation ledger AND the Shape B gate's accept/reject
+    # boundary in one invocation. Per the C13 audit memo §11 + C15
+    # operator spec.
+    from test_cross_field_pairing_gate import run_all as _run_cfp_gate
+    cfp_rc = _run_cfp_gate()
+    return cfp_rc
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:
