@@ -22,6 +22,16 @@ After the match, the analyzer CLI (`files/analyze_trace.py`) reads the
 JSONL, fires nine internal-consistency rules (P1, P2, P3, P5, P6, P7,
 P8, P9 + P4 in advisory mode), and writes a Markdown report.
 
+## Schema note — tags are nested under `scorer.decisions[]`
+
+Tags are NOT a flat top-level `.tag` field on each trace record.
+They live in `scorer.decisions[]` as `{tag, raw_message, ...payload}`
+entries, alongside `scorer.committed_changes[]`. When grepping or
+filtering by tag, always go through `.scorer.decisions[]?.tag` — a
+naive `select(.tag == "...")` returns zero matches and looks like a
+missing emission. See the jq examples in "Inspecting a frame range"
+below for the canonical query shapes.
+
 ## Where files live
 
 | Artifact | Path |
