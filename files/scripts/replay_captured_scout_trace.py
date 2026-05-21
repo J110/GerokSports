@@ -39,6 +39,7 @@ boundary can be exercised without driving test_pipeline.py)::
 from __future__ import annotations
 
 import argparse
+import asyncio
 import json
 import logging
 import sys
@@ -54,6 +55,30 @@ from eyes.extract_regex import parse_strip  # noqa: E402
 from test_pipeline_captured_replay import (  # noqa: E402
     BATTING_TEAM, BOWLING_TEAM, build_sm, extracted_to_frame_input,
 )
+
+
+def _llm_extract_sync(extractor, description: str, frame_id: int) -> dict:
+    """Invoke the production async Extractor from sync replay code.
+
+    Returns whatever Extractor.extract() returns (possibly empty dict).
+    Exceptions are swallowed and an empty dict is returned so a single
+    frame's LLM failure doesn't abort the replay. The Extractor's
+    own regex pre-check fires first; LLM is only reached when
+    parse_strip returns None.
+    """
+    try:
+        return asyncio.run(
+            extractor.extract(
+                description=description,
+                frame_type="SCOREBOARD",
+                team_a_name=BATTING_TEAM,
+                team_b_name=BOWLING_TEAM,
+                frame_id=frame_id))
+    except Exception as e:
+        logging.getLogger("replay_llm").warning(
+            f"LLM extractor raised at frame {frame_id}: "
+            f"{type(e).__name__}: {e}")
+        return {}
 
 
 def _apply_warm_seed(
@@ -92,7 +117,8 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
         seed_frame: int | None = None,
         seed_striker: str | None = None,
         seed_non_striker: str | None = None,
-        seed_bowler: str | None = None) -> int:
+        seed_bowler: str | None = None,
+        enable_llm_extractor: bool = False) -> int:
     sm, sb = build_sm()
     warm_seed_pending = (
         seed_frame is not None
@@ -104,6 +130,17 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
             f"Warm-seed configured: striker={seed_striker!r} "
             f"non={seed_non_striker!r} bowler={seed_bowler!r} "
             f"injection_at_frame={seed_frame}")
+    extractor = None
+    llm_calls = 0
+    llm_recoveries = 0
+    if enable_llm_extractor:
+        from eyes.agent import Extractor
+        extractor = Extractor()
+        print(
+            "LLM extractor enabled — frames where parse_strip "
+            "returns None will fall through to Groq Llama (production "
+            "Extractor.extract() invoked async-to-sync per frame). "
+            "Replay-only — no impact on production cost path.")
 
     trace_dir.mkdir(parents=True, exist_ok=True)
     out_path = trace_dir / f"{session_id}.jsonl"
@@ -175,16 +212,50 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
             skipped += 1
             continue
         if not extracted or not extracted.get("has_scorecard_data"):
-            decisions = recorder.drain()
-            writer.write_record({
-                "frame": frame_id,
-                "ts_wall": ts,
-                "session": session_id,
-                "scout": {"raw_text_120": str(raw)[:120]},
-                "scorer": {"decisions": decisions},
-            })
-            skipped += 1
-            continue
+            if extractor is not None:
+                llm_calls += 1
+                llm_result = _llm_extract_sync(extractor, raw, frame_id)
+                _has_signal = (
+                    bool(llm_result)
+                    and (llm_result.get("score") is not None
+                         or llm_result.get("match_overs") is not None
+                         or llm_result.get("overs") is not None))
+                if _has_signal:
+                    llm_recoveries += 1
+                    recorder.record(
+                        tag="REPLAY-LLM-EXTRACT-RECOVERED",
+                        score=llm_result.get("score"),
+                        wickets=llm_result.get("wickets"),
+                        overs=(llm_result.get("match_overs")
+                               or llm_result.get("overs")),
+                        n_batters=len(llm_result.get("batters") or []),
+                        bowler_name=(
+                            (llm_result.get("bowler") or {}).get("name")),
+                        frame_id=frame_id)
+                    extracted = llm_result
+                    # fall through to FrameInput build + sm.on_frame
+                else:
+                    decisions = recorder.drain()
+                    writer.write_record({
+                        "frame": frame_id,
+                        "ts_wall": ts,
+                        "session": session_id,
+                        "scout": {"raw_text_120": str(raw)[:120]},
+                        "scorer": {"decisions": decisions},
+                    })
+                    skipped += 1
+                    continue
+            else:
+                decisions = recorder.drain()
+                writer.write_record({
+                    "frame": frame_id,
+                    "ts_wall": ts,
+                    "session": session_id,
+                    "scout": {"raw_text_120": str(raw)[:120]},
+                    "scorer": {"decisions": decisions},
+                })
+                skipped += 1
+                continue
         parsed += 1
         fi = extracted_to_frame_input(frame_id, ts, extracted)
 
@@ -244,6 +315,8 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
     logging.getLogger().removeHandler(log_handler)
 
     print(f"Frames: {len(frames)} | parsed: {parsed} | skipped: {skipped}")
+    if enable_llm_extractor:
+        print(f"LLM extractor calls: {llm_calls} | recoveries: {llm_recoveries}")
     print(f"New tag emission counts:")
     for tag, n in new_tag_counts.items():
         print(f"  {tag}: {n}")
@@ -264,6 +337,11 @@ def main() -> int:
     p.add_argument("--seed-striker", type=str, default=None)
     p.add_argument("--seed-non-striker", type=str, default=None)
     p.add_argument("--seed-bowler", type=str, default=None)
+    p.add_argument("--enable-llm-extractor", action="store_true",
+                   help=("Fall back to production Extractor.extract() "
+                         "(Groq Llama) when parse_strip returns "
+                         "no-scorecard-data. Replay-only; production "
+                         "cost path unchanged. Requires GROQ_API_KEY."))
     args = p.parse_args()
     seed_args = (
         args.seed_frame, args.seed_striker,
@@ -279,7 +357,8 @@ def main() -> int:
                seed_frame=args.seed_frame,
                seed_striker=args.seed_striker,
                seed_non_striker=args.seed_non_striker,
-               seed_bowler=args.seed_bowler)
+               seed_bowler=args.seed_bowler,
+               enable_llm_extractor=args.enable_llm_extractor)
 
 
 if __name__ == "__main__":
