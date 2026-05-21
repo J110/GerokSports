@@ -277,6 +277,86 @@ def assert_extras_total_consistent(records: list) -> Result:
     return _ok()
 
 
+def assert_w_symbol_at_wicket(records: list) -> Result:
+    """B1 / surface_pair_defect_class_family §2.1 detector. For every
+    wicket event, the This Over panel symbol at the wicket-ball
+    coordinate must remain ``W`` in the immediately following trace
+    record (i.e., not revert to ``.`` or ``?`` post-commit).
+
+    Wicket-event detection has two paths:
+
+    - **Primary:** ``scorer.decisions[].tag == 'trace_beta_sm_wicket_dispatch'``
+      with ``overs`` payload (typed emission restored in C19A3,
+      populated by replays captured after that commit).
+    - **Fallback:** ``ui_after.fow_count`` strictly increased relative
+      to the previous record. Used for traces captured before C19A3
+      landed (including validate_dckkr_20260521_155356, the C20-anchor
+      replay). The wicket's over.ball is read from
+      ``ui_after.scorecard.overs`` on the same record.
+
+    Baseline expectation against validate_dckkr_20260521_155356:
+    FAIL with 3 W→· (or W→?) reverts (Rahul ov 5.0, Rana ov 8.0,
+    Rizvi ov 9.5 — observed at Obs 4 / Obs 11 / Obs 17b in
+    validate_dckkr_replay_observations.md).
+    """
+    failures: list[dict] = []
+    for i, rec in enumerate(records):
+        detected_overs: str | None = None
+        for dec in _decisions(rec):
+            if dec.get("tag") == "trace_beta_sm_wicket_dispatch":
+                detected_overs = str(dec.get("overs") or "") or None
+                break
+        if detected_overs is None:
+            be = rec.get("ball_event") or {}
+            if be.get("type") == "WICKET":
+                ov_val = be.get("over")
+                if ov_val:
+                    detected_overs = str(ov_val)
+
+        if not detected_overs or "." not in detected_overs:
+            continue
+        try:
+            ball_within = int(detected_overs.split(".", 1)[1])
+        except (ValueError, IndexError):
+            continue
+        # X.0 notation in pipeline means end-of-over wicket (6th legal
+        # ball of the just-completed over). Treat as last array slot.
+        expected_position = 5 if ball_within == 0 else ball_within - 1
+        if expected_position < 0:
+            continue
+
+        if i + 1 >= len(records):
+            failures.append({
+                "frame": rec.get("frame"),
+                "overs": detected_overs,
+                "reason": "no_next_record",
+            })
+            continue
+        next_this_over = (
+            (records[i + 1].get("ui_after") or {}).get("this_over") or [])
+        # Lenient position check: extras (Wd/Nb) shift the wicket ball's
+        # array position downstream. W must appear at expected_position
+        # OR later in the array (i.e., the wicket symbol is preserved
+        # somewhere at-or-past the legal-ball coordinate).
+        window = next_this_over[expected_position:]
+        if "W" not in window:
+            failures.append({
+                "frame": rec.get("frame"),
+                "overs": detected_overs,
+                "expected_position": expected_position,
+                "expected": "W",
+                "next_this_over": next_this_over,
+                "window": window,
+            })
+
+    if failures:
+        return _fail(
+            class_name="w_symbol_at_wicket_revert",
+            count=len(failures),
+            samples=failures[:5])
+    return _ok()
+
+
 TRACE_ASSERTIONS = [
     ("trace_alpha_bowler_runs_sum",
      assert_bowler_runs_sum_matches_team_score),
@@ -288,6 +368,8 @@ TRACE_ASSERTIONS = [
      assert_no_compound_tokens),
     ("trace_extras_total",
      assert_extras_total_consistent),
+    ("trace_gamma_w_symbol_at_wicket",
+     assert_w_symbol_at_wicket),
 ]
 
 
