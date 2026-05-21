@@ -205,6 +205,66 @@ The §0 framing ("rotation-lock-starvation root that causes both batter-striker 
 
 **Sub-finding S7 — falsification budget unconsumed (cumulative).** D-chain empirical-falsification budget: 0/5 still. Phase-2.5 D2-prelim was read-only across 5 scout dump files (~2.6k total frames surveyed); zero replay execution. The 5-empirical-falsification cap per C9 §11 + C10 §1.2 remains intact for the D defect-class chain across both hypotheses + sub-findings.
 
+### §3.4c Phase-2.5 — D2-fix predicate-trail; Signal 1 falsified (scratch)
+
+**Static predicate-trail** through `validate_dckkr_20260521_155356.jsonl` at the 3 live-era wicket frames (read-only, zero behavior change). Grep window ±10 around F855 / F983 / F1017 across `STRIKER-OBSERVE`, `NON-STRIKER-OBSERVE`, `STRIKER-WRITE`, `STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC`, `STRIKER-IDENTIFY-FALLBACK-INVOKED`, `STRIKER-ALIGN-FALLBACK`, `POST-WICKET-ROTATION`.
+
+**F855 (cricket: Rizvi dismissed; pipeline: Nissanka).**
+- F845–F854 — striker_tracker `LOCKED` on `Pathum Nissanka` (wrong); non_striker_tracker `LOCKED` on `Sameer Rizvi`.
+- **F854 smoking gun** — `STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC method=broadcast_first_name broadcast='Sameer Rizvi' deterministic='Pathum Nissanka' — keeping deterministic`. The broadcast signal correctly identified Rizvi as striker; a deterministic-rotation override kept the tracker on Nissanka.
+- F855 POST-WICKET-ROTATION: `non 'Pathum Nissanka' dismissed`.
+- **Tracker LEADER is NOT an independent oracle** — corrupted with the same name as the SM pointer, via the same upstream override decision.
+
+**F983 (cricket: Nissanka dismissed; pipeline: Rizvi).**
+- F983 STRIKER-OBSERVE: cand=`Axar Patel` leader=`Axar Patel` state=`TENTATIVE` (broadcast updating to new pair post-Stubbs-walked-in).
+- F983 NON-STRIKER-OBSERVE: cand=`Tristan Stubbs` leader=`Sameer Rizvi` state=`LOCKED` (LEADER permanently stale on the already-dismissed-per-pipeline Rizvi).
+- F983 STRIKER-ALIGN-FALLBACK: `striker_ref='Sameer Rizvi', non_ref='Tristan Stubbs', ext_batter_names=['Axar Patel', 'Tristan Stubbs']` — broadcast at-the-crease pair has already rotated to {Axar, Stubbs} while pipeline's internal pair stayed {Rizvi, Stubbs}.
+- Cricket-truth dismissed Nissanka is **not in pipeline's pre-F983 at-the-crease set** (F855 already removed him per the misattribution). F983 is structurally underivable from local pipeline state alone.
+
+**F1017 (cricket: Axar still at crease per Obs 21; pipeline: Patel dismissed).**
+- F1010–F1012 — striker_tracker leader=`Tristan Stubbs` state=`LOCKED`, candidate=`Axar Patel` score=2.18→2.01. Tracker LOCKED on Stubbs from F990 onward.
+- F1017 STRIKER-WRITE: `non Axar Patel->None`. POST-WICKET-ROTATION: `non 'Axar Patel' dismissed`.
+- No actual cricket wicket — **phantom-wicket detection**, qualitatively different defect class.
+
+### §3.4c.1 Sub-finding S8 — Signal 1 falsified; deterministic-rotation override is the true root
+
+Trackers are NOT independent of the rotation-lock-starvation root; they are downstream of the same root via the deterministic-rotation override at the `STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC` decision site. The "broadcast disagrees → keep deterministic" gate is the **BW07-analog for the striker side** — it overrides the broadcast signal that would have given the correct dismissed name at F855.
+
+**Reformulated fix surface:** not Signal 1 (tracker LEADER cross-check); the actual surface is the **deterministic-rotation override emission site**. The fix is a **context-aware gate inversion** — broadcast wins when pending-wicket-attribution. Structurally a single-site change, but the "wicket-pending" signal must be in scope at the override site (D2-fix structural-surface check pending).
+
+### §3.4c.2 Sub-finding S9 — F855 → F983 cascade closure
+
+F855 misattribution makes F983 structurally underivable from local pipeline state alone. **Closing F855 auto-closes F983 via cascade closure** — F983 needs no independent fix surface.
+
+This is the **second instance of the F1-session cascade-closure-via-one-edit pattern** (meta-finding #1 in the Architecture_HANDOFF §0.7 methodology track record). The F1 pattern: one upstream fix closes N downstream symptoms when the downstream surfaces are structural consequences of the upstream defect. Here: closing the F855 striker-attribution misroute prevents pipeline from "removing" Nissanka from the at-the-crease set, leaving him available for F983's dismissed-name derivation. Same mechanical pattern, different defect surface.
+
+### §3.4c.3 Sub-finding S10 — F1017 phantom-wicket; workstream surface E candidate
+
+F1017 emits POST-WICKET-ROTATION against cricket truth (Obs 21 broadcast strip confirms Axar Patel at-the-crease at replay-end). This is **phantom-wicket detection**, not misattribution. The defect class is qualitatively distinct from F855/F983:
+- F855/F983 — real cricket wicket, wrong name attributed.
+- F1017 — no cricket wicket, fabricated dismissal event.
+
+Out of H-D2-Layer-1a scope. Tracked in `Architecture_HANDOFF.md` §0.6 deferred-work index as **workstream surface E candidate (phantom-wicket detection)** — parallel to S5's Scout-contract-gap split into a separate workstream surface. Needs its own audit chain: root-localization on the wicket-event-detection path (`ball_detector.detect`, or upstream wicket-signal aggregation), not the dismissed-name derivation path that H-D2 lives on.
+
+### §3.4c.4 Architectural note — §12 catalogue extension candidate
+
+`STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC` override is structurally the **fourth instance of the dual-state-write defect class** catalogued in `sm_as_orchestrator_design.md` §12 (after F-α-shadow / F1-B-ε / B-η-FC5 / D1-BW07-bowler-em-dash). Two surfaces, weaker invariant (deterministic-rotation override) decision-flips a stronger invariant (broadcast-derived consensus). Same §12.3 signature.
+
+Candidate for §12 catalogue extension in a follow-up commit (parallels C20's surface_pair_defect_class_family.md skeleton extension pattern). Out of C30 scope; tracked here as a forward reference.
+
+### §3.4c.5 Predicted-flip claim reformulation (locked)
+
+Original §3.4 / §6 H-D2-Layer-1a: *"Layer 1 flips `trace_gamma_w_symbol_at_wicket` FAIL×2 → PASS + cricket-truth FOW on F855/F983/F1017"*.
+
+**Reformulated:** H-D2-Layer-1a flips `trace_gamma_w_symbol_at_wicket` FAIL×2 → PASS + cricket-truth FOW on:
+- **F855** — direct fix at the deterministic-rotation override site (context-aware gate inversion: broadcast wins when pending-wicket-attribution).
+- **F983** — closes automatically via S9 cascade closure (no independent fix surface required).
+- **F1017** — split off per S10 (workstream surface E phantom-wicket detection; out of D-scope).
+
+### §3.4c.6 Falsification-budget impact
+
+0/5 empirical cap unchanged. Signal 1 falsification + sub-findings S8/S9/S10 were all derived via static predicate-trail through the existing trace file (zero empirical cost per the C10 §1.2 static-vs-empirical distinction). The D-chain remains at 0/5 consumed across both hypotheses + 4 sub-findings (S1, S3, S4, S5, S6, S7, S8, S9, S10).
+
 ### §3.5 Candidate fix sites
 
 - **Layer 1 (event-builder).** Per C9 catalogue, event construction sits at `apply_scorer_decision` (`test_pipeline.py:4517`) upstream of `_apply_wicket_fall_only`. Insert a `_derive_dismissed_name` step that consumes Scout's WICKET marker + adjacent STRIKER-OBSERVE / BATTING_TEAM-OBSERVE records and emits `event.dismissed`.
@@ -255,7 +315,7 @@ C23b lands cleanly once D1 (bowler resolves to non-em-dash) AND D2-Layer-1 (dism
 | 3 — cross-fixture preservation | Need replay on second fixture (GTRR or other) to confirm `over_end_credit_complete` timing reproducibility. Deferred to D1-prelim. | Need second fixture to confirm Scout schema (dismissed-field absent everywhere, or fixture-specific). Deferred to D2-prelim. |
 | 4 — falsification budget | 0/5 empirical falsifications consumed so far (this memo authored from existing capture). | 0/5 empirical falsifications consumed. |
 | 5 — static-falsification check | §2.5 — 3 candidates ruled out via static analysis. | §3.3 — falsified the original "ordering bug in handler" framing; refined to "scout/event-builder root". |
-| 6 — predicted-flip claim | §2.3 — FAIL×4 → FAIL×2 on `trace_gamma_bowler_w_increment_on_dispatch`. | §3.4 — Layer 1 flips `trace_gamma_w_symbol_at_wicket` FAIL×2 → PASS + FOW cricket-truth on 3 live-era wickets. Conditional on §3.3 holding cross-fixture. |
+| 6 — predicted-flip claim | §2.3 — FAIL×4 → FAIL×2 on `trace_gamma_bowler_w_increment_on_dispatch`. | §3.4c.5 (reformulated post-Signal-1-falsification) — Layer 1a flips `trace_gamma_w_symbol_at_wicket` FAIL×2 → PASS + FOW cricket-truth on F855 (direct fix at deterministic-rotation override site) + F983 (S9 cascade closure). F1017 split off (S10 — workstream surface E candidate). |
 | 7 — cross-fixture preservation post-fix | Re-run γ-bundle on archived GTRR + DCKKR captures + fresh replay. Both must hold. | Same. |
 
 ---
