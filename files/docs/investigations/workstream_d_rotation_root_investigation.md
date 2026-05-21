@@ -1,0 +1,227 @@
+# Workstream D — rotation-lock-starvation root investigation
+
+**Status.** Open — multi-hypothesis bundle, two independent shapes (H-D1 bowler em-dash; H-D2 striker fallback monoculture) + sharpening sub-findings.
+**Branch.** `derive-not-detect` (HEAD `6b613d9`, C25).
+**Entry capture.** `files/logs/deliveries/validate_dckkr_20260521_155356/` (DCKKR 2026-05-21, ov 0.0 → 11.5, ~58 min wall).
+**Methodology.** C10 temporal-coupling brief + C9 mutation-site catalogue. §7.2 7-gate audit applied to both hypotheses at §6.
+
+---
+
+## §0 Scope + entry data
+
+**Objective.** Localize and close the rotation-lock-starvation root that causes both batter-striker AND bowler-identity pointers to be stale (or em-dash sentinel) at wicket-event boundaries. Promoted at C24 closure to highest-priority unblocked workstream. Blocks C23b (`update_bowler` at wicket-dispatch).
+
+**Entry data inventory.**
+- `validate_dckkr_20260521_155356.jsonl` — 406 records, 5 wicket events captured (WICKET-ATTRIB tag), of which 4 carry `ball_event.type == 'WICKET'`.
+- `scout_raw.jsonl` — Scout VLM raw output; presence of structured `dismissed` field on wicket frames is a critical H-D2 gate-6 precondition (§3.3).
+- `pipeline.log` — DETAIL line preserved per CLAUDE.md trace-and-detect §1.
+- `validate_dckkr_replay_observations.md` — Obs 2/3/9 (rotation-lock), Obs 16/18/21 (FOW-name swap), Obs 17/19 (bowler-W increment failure).
+- C19A3 `7557d47` — `trace_beta_sm_wicket_dispatch` emission restored at `score_manager.py:5328`. **Capture pre-dates this commit** (capture 15:53:56; commit 17:31:17 same day). `resolution_src` payload not in this trace; P2/P3 attribution distribution deferred to next replay.
+- `state_mutation_site_catalogue.md` (C9) — bowler-identity write sites.
+- `surface_pair_defect_class_family.md` §2.5 (striker pointer ⊥ FOW-name) + §2.6 (FOW count ⊥ bowler-card W).
+
+---
+
+## §1 Empirical baseline
+
+### §1.1 Five WICKET-ATTRIB events; one striker-path; four non-striker-path
+
+| Frame | WICKET-ATTRIB dismissed | Slot rotation log | Cricket truth | Name match | ball_event.WICKET? |
+|---|---|---|---|---|---|
+| F400 | KL Rahul | **non**-striker → slot cleared | KL Rahul (Obs 7) | ✓ | yes |
+| F679 | Nitish Rana | **non**-striker → slot cleared | Nitish Rana (Obs 11) | ✓ | yes |
+| F855 | Pathum Nissanka | **non**-striker → slot cleared | Rizvi (Obs 16) | ✗ | yes |
+| F983 | Sameer Rizvi | **striker** → Stubbs rotated in | Nissanka (Obs 18) | ✗ | **no** |
+| F1017 | Axar Patel | **non**-striker → slot cleared | not Patel (Obs 21) | ✗ | yes |
+
+### §1.2 Reconciling §0.4 / γ-bundle baseline (`FAIL × 4`) vs 5-wicket capture
+
+`assert_bowler_w_increment_on_dispatch` keys on `ball_event.type == 'WICKET'` (lines 524-529 of `trace_session_assertions.py`). F983's striker-slot dismissal emits WICKET-ATTRIB + POST-WICKET-ROTATION + INCOMING-BATTER-PENDING but **no `ball_event.type == 'WICKET'`** — the assertion silently misses it. `FAIL × 4` is correct under the current detector; the true wicket count in this capture is **5**, with F983 invisible to the γ-bundle.
+
+**Sub-finding S1: striker-path vs non-striker-path dismissal dispatch paths emit different trace artifacts.** The 4 non-striker-path wickets emit `ball_event.type == 'WICKET'`; the 1 striker-path wicket (F983) does not. This is itself a §2.5 / §2.6 surface-pair divergence: dismissal-handler emission is keyed to slot identity in a way that should be uniform.
+
+### §1.3 WICKET-ATTRIB resolution path — P3 monoculture
+
+All 5 WICKET-ATTRIB records carry the identical log signature *"Dismissed batter set from scoreboard striker: <name>"*. **0/5 events resolve via `event.dismissed`** (P2). The dismissal handler always falls back to `scoreboard.striker` — the P3 fallback path per C19A3 schema. Per §3.3 below, this is **forced by upstream**: Scout never emits a structured `dismissed` field.
+
+### §1.4 Em-dash sentinel — over-boundary correlation
+
+`pipeline.current_bowler` snapshot at each wicket frame:
+
+| Frame | `pipeline.current_bowler` | BOWLER-OBSERVE leader | BOWLER-LOCK-RELEASED at frame | Cricket position |
+|---|---|---|---|---|
+| F400 | `'—'` | Kartik Tyagi LOCKED | **yes** — `over_n=4, prev_bowler=null, reason=over_end_credit_complete` | end of ov 5 (5.0) |
+| F679 | `'—'` | Cameron Green LOCKED | **yes** — `over_n=7, prev_bowler=null, reason=over_end_credit_complete` | end of ov 8 (8.0) |
+| F855 | `'Sunil Narine'` | Sunil Narine LOCKED | no | mid-ov 10 (9.5) |
+| F1017 | `'Anukul Roy'` | Anukul Roy LOCKED | no | mid-ov 11 (10.5) |
+
+**2/2 over-boundary wickets em-dash; 2/2 mid-over wickets name-populated.** Correlation is deterministic in this capture. C23 §0.4 stated "2/3" based on a 3-wicket sub-sample; the 4-wicket frame-anchored count refines this to "**em-dash iff over-end coincides with wicket frame**".
+
+### §1.5 Sub-finding S2 — scout dismissed-field absence
+
+Scout `raw_response` at all wicket-bracket frames (±6 of F400/F679/F855/F983/F1017) emits either `"VISIBLE_TEXT: WICKET"` (a pure event marker) or score-line text (`DC 49-1 (5) ... TYAGI 4 1 1 4 W 1-10 1`) — **never a structured `dismissed` field**. The dismissed batter's identity is never surfaced by the VLM as a typed field on this trace.
+
+Implication: H-D2's predicted-flip ("wire `event.dismissed` ahead of P3 striker fallback") **cannot fire** at the dismissal-handler boundary — there is no P2 payload to consume. The actual root sits in **scout extraction / event-construction** — either the Scout prompt schema doesn't request a dismissed-batter slot, or the event-builder downstream of Scout doesn't derive one from the strip text it does receive (e.g., "WICKET" marker + bowler-card W increment from `TYAGI ... W 1-10`).
+
+---
+
+## §2 H-D1 — bowler em-dash root
+
+### §2.1 Mechanism
+
+`BOWLER-LOCK-RELEASED reason=over_end_credit_complete` fires at the same frame as WICKET-ATTRIB when the wicket falls on the final ball of an over. The release clears `self.bowler_name` (or equivalent SM scalar) but **not** the BOWLER tracker LEADER (which holds the correct name). The wicket-dispatch site then reads the cleared scalar — producing the `'—'` sentinel observable in `pipeline.current_bowler` at F400 and F679.
+
+Structural signature matches §12.3 / §2.6 dual-state-write:
+- **Surface A** (`self.bowler_name` scalar) — weaker invariant; cleared by `over_end_credit_complete` path.
+- **Surface B** (`BOWLER-OBSERVE.leader`) — canonical; preserves Tyagi / Green correctly across the release.
+- Dispatch consumer reads A, not B. A is empty → em-dash.
+
+### §2.2 Evidence anchors
+
+- F400 — `pipeline.current_bowler='—'`, BOWLER-OBSERVE leader='Kartik Tyagi' LOCKED at F392/F393/F394/F395/F396/F400/F401, BOWLER-LOCK-RELEASED at F400 with `over_n=4, prev_bowler=null`.
+- F679 — `pipeline.current_bowler='—'`, BOWLER-OBSERVE leader='Cameron Green' LOCKED at F676/F679, BOWLER-LOCK-RELEASED at F679 with `over_n=7, prev_bowler=null`.
+- F855 — no BOWLER-LOCK-RELEASED in ±8, `pipeline.current_bowler='Sunil Narine'` — control case.
+- F1017 — no BOWLER-LOCK-RELEASED in ±8, `pipeline.current_bowler='Anukul Roy'` — second control case; `DISMISSAL` decision records `bowler='Anukul Roy'` correctly.
+
+### §2.3 Predicted-flip claim (§7.2 gate 6)
+
+Routing the wicket-dispatch bowler read to `BOWLER-OBSERVE.leader` (or equivalently: deferring `BOWLER-LOCK-RELEASED reason=over_end_credit_complete` until after the wicket-dispatch emission in over-end-coincident frames) **flips `trace_gamma_bowler_w_increment_on_dispatch` from FAIL×4 toward FAIL×2** on the next DCKKR replay. Specifically:
+- F400 — bowler resolves to Kartik Tyagi → BOWL-DELTA `+wkts=1` fires within 30-frame window → assertion passes for this wicket.
+- F679 — bowler resolves to Cameron Green → BOWL-DELTA `+wkts=1` fires → assertion passes for this wicket.
+- F855, F1017 — already had correct bowler on Surface A; predicted-flip is a no-op for these wickets at H-D1 scope (they fail via H-D2's striker-derived dismissed name corrupting the credit pipeline — see §3).
+
+**Numeric prediction:** `trace_gamma_bowler_w_increment_on_dispatch` FAIL×4 → FAIL×2 (Nissanka + Patel still fail because dismissed-name resolution is corrupted upstream; bowler-name correctness is necessary but not sufficient for the BOWL-DELTA credit to land).
+
+### §2.4 Candidate fix sites
+
+Per C9 mutation-site catalogue, bowler-identity write sites in `score_manager.py`:
+- `_finalize_over_credit` / `_release_bowler_lock_on_over_end` — emitter of `BOWLER-LOCK-RELEASED reason=over_end_credit_complete`. Candidate **A**: defer the scalar clear until after `_apply_wicket_fall_only` returns when both fire in the same frame.
+- `_apply_wicket_fall_only` (score_manager.py:5328) — current bowler-read site. Candidate **B**: re-source bowler from `BOWLER-OBSERVE.leader` snapshot at dispatch time.
+- Candidate **C**: dual-source consensus — prefer Surface A if non-empty, else Surface B. Safest under §12.3 dual-state-write semantics: doesn't change the canonical path, only fixes the cleared-too-early window.
+
+Site selection deferred to the empirical phase. Static-falsification of A vs B vs C can be done first (zero behavior change) using §7.2 gate 1 (predicate trace).
+
+### §2.5 Static-falsification candidates ruled out
+
+- *"BOWLER-OBSERVE leader is unreliable at over-end."* Falsified by F400 (Tyagi LOCKED with score=0.02 at F396, 0.02 at F400, 0.01 at F401) and F679 (Green LOCKED with score=0.57 at F676, 0.48 at F679). Tracker holds across the release; the empty scalar is the divergence, not tracker noise.
+- *"Em-dash is purely a UI render artifact."* Falsified by `pipeline.current_bowler` snapshot at F400 — the em-dash is in the trace `pipeline` payload, not just the WebSocket render. Surface A is genuinely empty at the SM-level read, not just at the build_full_payload bottleneck.
+- *"Wicket falls before the over-end-credit path fires, so the order argument doesn't apply."* Falsified by C9 catalogue showing `_finalize_over_credit` and `_apply_wicket_fall_only` both reachable in the same SM tick when the wicket is on the over's final legal ball (Obs 7 confirms wicket fell on 4.6 → over 5.0 boundary → F400 frame).
+
+---
+
+## §3 H-D2 — striker fallback monoculture (now: scout/event-construction root)
+
+### §3.1 Mechanism
+
+WICKET-ATTRIB always reads `scoreboard.striker` as the dismissed-batter identity (log signature *"Dismissed batter set from scoreboard striker"* on 5/5 events). This was originally framed as a dispatch-handler P2/P3 ordering bug. **Refined per §3.3 below**: the actual root is upstream — Scout never emits a structured `dismissed` field, so the dismissal handler has no P2 payload to consult. P3 monoculture is **forced by the input boundary**, not by the dispatch-side ordering.
+
+When the rotation-lock-starvation root has corrupted `scoreboard.striker` (Obs 2/3/9 documented monotonic drift), the dismissal handler reads the corrupted pointer and credits the wrong batter to FOW. F400/F679 happen to attribute correctly only because the rotation pointer happened to be aligned at those wicket frames; F855/F983/F1017 collide with rotation staleness.
+
+### §3.2 Evidence anchors
+
+- F400 / F679 — P3 read, name correct (rotation happens to be aligned).
+- F855 — P3 read returns 'Pathum Nissanka'; cricket truth Rizvi (Obs 16). Scout strip shows `PATHUM > RIZVI 46 28 3 7` (the `>` marks striker as Pathum — also stale per upstream rotation root).
+- F983 — P3 read returns 'Sameer Rizvi'; cricket truth Nissanka (Obs 18). Striker-path dismissal (POST-WICKET-ROTATION rotated Stubbs in). Sub-finding S1: this wicket emits no `ball_event.type == 'WICKET'`, so the γ-bundle currently misses it.
+- F1017 — P3 read returns 'Axar Patel'; cricket truth ≠ Patel (Obs 21 confirms Axar is still at the crease at 11.5).
+
+### §3.3 Gate-6 precondition — scout dismissed-field absence
+
+Empirical check on `scout_raw.jsonl` (±6 frames of each wicket): **no structured `dismissed` field on any of the 5 wicket-bracket frames**. Wicket signal arrives as:
+- F398 / F677 / F678 — `VISIBLE_TEXT: WICKET` (pure marker, no identity)
+- F400 — `TYAGI 4 1 1 4 W 1-10 1` (bowler-card with W flag; no dismissed name)
+- F855 — `NARINE 1-14 1.5` (bowler-card with W increment; no dismissed name)
+- F983 — `AXAR STUBBS 0 0 0 1 LAST 35 BALLS RUNS 41 WICKETS 4` (new pair already on field; previous batter implicit)
+- F1017 — `ANUKUL 2-27 2.5 ... 4 W+WD WD 1 2 W` (bowler-card + ball symbols)
+
+The dismissed batter's identity is therefore **derivable but not emitted** from Scout. P3 monoculture at the handler is structural under this Scout schema.
+
+### §3.4 Predicted-flip claim (conditional on §3.3)
+
+H-D2 predicted-flip splits into two layers depending on the fix locus:
+
+**Layer 1 — derive `event.dismissed` upstream of the dismissal handler.** Construct `event.dismissed` in the event-builder from cross-signals already in the Scout payload:
+- previous-frame striker name minus current-frame at-the-crease pair (set difference of length 1), OR
+- bowler-card W-increment with a `_BOWLER_CREDITED_DISMISSALS` dismissal-mode hint cross-referenced against the most-recently-faced batter from STRIKER-OBSERVE.
+
+Predicted flip: `trace_gamma_fow_name_matches_striker_at_wicket` continues to PASS (internal invariant); cricket-truth FOW attribution flips for F855/F983/F1017 because the derived `event.dismissed` overrides the corrupted striker pointer.
+
+**Layer 2 — fix the upstream rotation-lock-starvation root itself.** Even with H-D2-Layer-1 in place, the rotation pointer remains corrupted for the live-state batter-card and partnership-card surfaces (Obs 2/3/9). A separate fix at `score_manager.py:4295-4325` (deterministic-rotation override, per Obs 2 hypothesis) addresses the broader cascade.
+
+Layer 1 alone closes the FOW-name surface. Layer 2 alone (without Layer 1) does NOT close FOW-name because the WICKET-ATTRIB log still reads from `scoreboard.striker` — fixing the rotation pointer fixes the live-state error but doesn't change the dispatch-time read. **Layer 1 is the load-bearing wicket-correctness fix; Layer 2 is the load-bearing live-state-correctness fix.** They are non-overlapping in surface coverage.
+
+### §3.5 Candidate fix sites
+
+- **Layer 1 (event-builder).** Per C9 catalogue, event construction sits at `apply_scorer_decision` (`test_pipeline.py:4517`) upstream of `_apply_wicket_fall_only`. Insert a `_derive_dismissed_name` step that consumes Scout's WICKET marker + adjacent STRIKER-OBSERVE / BATTING_TEAM-OBSERVE records and emits `event.dismissed`.
+- **Layer 1 (Scout prompt schema).** Alternatively, extend the Scout VLM schema to request a dismissed-batter field. Higher-friction — needs prompt-eval regression — but cleaner architecturally.
+- **Layer 2 (rotation root).** Deferred to a separate sub-investigation. Out of D-scope per §0; tracked here as a co-located reference only.
+
+---
+
+## §4 Hypothesis independence proof (why bundle, not collapse)
+
+H-D1 fires at `BOWLER-LOCK-RELEASED reason=over_end_credit_complete` (over-boundary timing condition) and operates on the bowler-name surface.
+
+H-D2 fires at WICKET-ATTRIB dismissal-name resolution (every-wicket condition) and operates on the dismissed-batter-name surface.
+
+Collapsing them would require either:
+- A shared mechanism (refuted by §1.4 empirical: F855/F1017 have H-D2 surface failures with no H-D1 em-dash; F400/F679 have H-D1 em-dash but H-D2 surface accidentally passes because rotation was aligned).
+- A shared fix site (refuted by §2.4 vs §3.5: bowler-lock release path vs event-builder are architecturally non-adjacent).
+
+**Hypothesis bundle is the correct container.** Each shape closes a disjoint subset of γ-bundle failure modes:
+- H-D1 closes `trace_gamma_bowler_w_increment_on_dispatch` for the 2 over-boundary wickets.
+- H-D2-Layer-1 closes `trace_gamma_w_symbol_at_wicket` (indirectly, via correct dismissed name → correct W-symbol commit) and the FOW-name cricket-truth surface (which is currently untested by the γ-bundle — `trace_gamma_fow_name_matches_striker_at_wicket` is the internal-consistency invariant, PASSes by construction even when cricket-wrong).
+
+---
+
+## §5 Sequencing — H-D1 vs H-D2 commit order; C23b unblock condition
+
+### §5.1 Recommended order
+
+1. **D1-prelim.** Static-falsify Candidates A/B/C of §2.4 at zero behavior change. Pick the survivor.
+2. **D1-fix.** Land the bowler-name re-source. Pre-commit Layer 1.5 + γ-bundle on captured trace must hold. Expected: `trace_gamma_bowler_w_increment_on_dispatch` FAIL×4 → FAIL×2 on next replay.
+3. **D2-prelim.** Confirm §3.3 empirical (Scout dismissed-field absence) on a second replay (any fixture). If a fixture exists where Scout DOES emit `dismissed`, H-D2 Layer 1 candidate becomes "wire dispatch-handler to prefer Scout-emitted P2 when present" — narrower scope.
+4. **D2-fix (Layer 1).** Land the `_derive_dismissed_name` event-builder step. Expected: `trace_gamma_w_symbol_at_wicket` FAIL×2 → PASS, cricket-truth FOW attribution flips for F855/F983/F1017.
+5. **C23b.** Unblocked once D1+D2 land. Re-test `trace_gamma_bowler_w_increment_on_dispatch` end-to-end with correctly-resolved dismissed name + correctly-resolved bowler name. Expected: FAIL×2 → PASS.
+6. **S1 (assertion gap).** Independently of D1/D2, extend `assert_bowler_w_increment_on_dispatch` to detect striker-path dismissals (key on WICKET-ATTRIB or POST-WICKET-ROTATION as a fallback signal when `ball_event.type == 'WICKET'` is absent). Surfaces F983-class wickets to the γ-bundle.
+
+### §5.2 C23b unblock condition
+
+C23b lands cleanly once D1 (bowler resolves to non-em-dash) AND D2-Layer-1 (dismissed name resolves to cricket-truth, not stale-striker) both hold. C23b cannot land standalone because the wicket-dispatch path it tightens reads both pointers and would inherit em-dash failures.
+
+---
+
+## §6 §7.2 7-gate audit application
+
+| Gate | H-D1 application | H-D2 application |
+|---|---|---|
+| 1 — predicate trace | `BOWLER-LOCK-RELEASED reason=over_end_credit_complete && WICKET-ATTRIB at same frame_id` → 2/2 over-boundary wickets in capture; 0/2 mid-over wickets. | `WICKET-ATTRIB.raw_message LIKE "%scoreboard striker%"` → 5/5 wickets. `scout_raw.jsonl.dismissed` field → 0/5 wickets. |
+| 2 — predicate completeness | All 4 ball_event.WICKET frames covered; F983 striker-path not covered (sub-finding S1). | All 5 WICKET-ATTRIB frames covered including F983. |
+| 3 — cross-fixture preservation | Need replay on second fixture (GTRR or other) to confirm `over_end_credit_complete` timing reproducibility. Deferred to D1-prelim. | Need second fixture to confirm Scout schema (dismissed-field absent everywhere, or fixture-specific). Deferred to D2-prelim. |
+| 4 — falsification budget | 0/5 empirical falsifications consumed so far (this memo authored from existing capture). | 0/5 empirical falsifications consumed. |
+| 5 — static-falsification check | §2.5 — 3 candidates ruled out via static analysis. | §3.3 — falsified the original "ordering bug in handler" framing; refined to "scout/event-builder root". |
+| 6 — predicted-flip claim | §2.3 — FAIL×4 → FAIL×2 on `trace_gamma_bowler_w_increment_on_dispatch`. | §3.4 — Layer 1 flips `trace_gamma_w_symbol_at_wicket` FAIL×2 → PASS + FOW cricket-truth on 3 live-era wickets. Conditional on §3.3 holding cross-fixture. |
+| 7 — cross-fixture preservation post-fix | Re-run γ-bundle on archived GTRR + DCKKR captures + fresh replay. Both must hold. | Same. |
+
+---
+
+## §7 Open sub-questions tracked
+
+- **Layer 2 rotation-root site.** §3.4 Layer 2 references `score_manager.py:4295-4325` per Obs 2 hypothesis. Static-analysis confirmation needed; tracked as `workstream_d2_rotation_root_layer2.md` placeholder (TBD next session if Layer 1 lands cleanly and live-state surfaces don't auto-flip).
+- **S1 striker-path assertion gap.** §1.2 — extending `assert_bowler_w_increment_on_dispatch` to detect F983-class wickets needs a careful trigger predicate that doesn't double-count when both `ball_event.type == 'WICKET'` and POST-WICKET-ROTATION fire on the same frame.
+- **F855 vs Obs 16 cricket-truth verification.** §1.1 cricket-truth column is per Obs 16/18/21; broadcast-strip frame screenshots would harden the verification. Operator action.
+- **C19A3 trace_beta replay validation.** Memo's predicted-flip claims at §2.3 and §3.4 assume next replay captures `trace_beta_sm_wicket_dispatch` payloads with `resolution_src`. Preflight tag-existence check (`scripts/preflight_validation_tags.sh`) confirms emission lives in code; only replay execution remains.
+
+---
+
+## §8 Cross-reference index
+
+- `Architecture_HANDOFF.md` §0 — C19–C24 session context, γ-bundle baseline.
+- `surface_pair_defect_class_family.md` §2.5 — striker-pointer ⊥ FOW-name (H-D2 surface).
+- `surface_pair_defect_class_family.md` §2.6 — FOW count ⊥ bowler-card W (H-D1 surface).
+- `sm_as_orchestrator_design.md` §12.3 — dual-state-write structural family.
+- `state_mutation_site_catalogue.md` (C9) — bowler-identity + striker-identity write sites.
+- `temporal_coupling_investigation_brief.md` (C10) — methodology, §12.4 detection.
+- `trace_and_detect_system_design.md` §3 — trace schema reference for C19A3 payload fields.
+- `validate_dckkr_replay_observations.md` Obs 2/3/9/16/17/18/19/21 — empirical observation anchors cited per-hypothesis above.
+- `files/tests/trace_session_assertions.py:460` — `assert_bowler_w_increment_on_dispatch` (γ-B3).
+- `files/score_manager.py:5328` — C19A3 emission site for `trace_beta_sm_wicket_dispatch`.
