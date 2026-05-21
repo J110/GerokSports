@@ -275,11 +275,23 @@ UI: http://localhost:3000. Validation fixtures:
 - DC vs KKR (`files/logs/deliveries/20260508_191946/match_4621b9f8.mp4`, start ~09:30)
 - GT vs RR (`files/logs/deliveries/8a0c6c14/match_8a0c6c14.mp4`, start ~40:30)
 
-## Fresh-checkout setup (NEW in C16)
+## Fresh-checkout setup
 
 The pre-commit hook at `.git/hooks/pre-commit` prefers the project venv Python (`files/.venv/bin/python`, 3.12) over system `python3` (3.9 on most macOS). This is necessary because the C15 cross-field-pairing-gate test imports `eyes/agent.py` which uses `int | None` syntax (Python 3.10+).
 
-The hook lives outside the tracked git tree (`.git/hooks/` is gitignored), so a fresh clone needs to reinstall the hook with venv preference. **C18 will ship a `scripts/setup_precommit.sh` (or equivalent) that installs the hook with the correct content.** For now, on a fresh checkout, manually edit the hook to use `$REPO_ROOT/files/.venv/bin/python` instead of `python3`. See the version currently on disk for the exact pattern.
+The hook lives outside the tracked git tree (`.git/hooks/` is gitignored). **Run `scripts/setup_precommit.sh` after a fresh clone** (or after the canonical hook content changes). The script:
+
+- Verifies `files/.venv/bin/python` exists; fails loudly with a clear setup-instruction message if not (does NOT silently fall back to system `python3`)
+- Writes the canonical hook content (Layer 1.5 + Layer 2 + venv preference) idempotently to `.git/hooks/pre-commit`
+- Marks it executable
+- Prints verification instructions
+
+Verify post-install by running any `git commit` (hook fires automatically) OR by invoking the harnesses directly under venv:
+
+```sh
+files/.venv/bin/python files/tests/test_sm_derivation_ledger.py
+files/.venv/bin/python files/tests/test_pipeline_captured_replay.py
+```
 
 ## What NOT to touch
 
