@@ -1,8 +1,8 @@
 # Handoff — derive-not-detect branch (Architecture)
 
-**Last update.** 2026-05-21 (post-C24, workstream B closure session).
-**Branch.** `derive-not-detect` (current HEAD post-C24).
-**Session ledger.** 25 cumulative commits across two consecutive sessions on this branch. Layer 1.5 (36/36 ledger balls + 6 cross-field pairing cases) + Layer 2 (29/29 commits) held on every one. Predicted-flip claims empirically validated OR statically falsified at each step.
+**Last update.** 2026-05-21 (post-C31, workstream D fix-chain landed; C32 docs close-out).
+**Branch.** `derive-not-detect` (current HEAD post-C32).
+**Session ledger.** 33 cumulative commits across three consecutive sessions on this branch (16 in B-η + 8 in C19-C24 + 8 in C26-C31 + C32 docs). Layer 1.5 (now 36/36 ledger balls + 6 cross-field pairing + 3 D1 bowler-dispatch-fallback + 3 D2 wicket-attrib-broadcast-override = 48 cases) + Layer 2 (30 balls) held on every commit. Predicted-flip claims empirically validated OR statically falsified at each step. **C26–C31 chain consumed 0/5 of the empirical-falsification budget** — all advances static per Meta-finding #1.
 
 ---
 
@@ -93,6 +93,80 @@ Pattern continues at the accumulation rate flagged in prior HANDOFFs. Each sessi
 - **C19-C24 session (this one):** Commit-design drift (briefs can predict flips on tags deleted between authoring and HEAD; preflight tag-existence check needed) + budget-class mismatch (memo work needs 8–12 calls, code work fits 5) + skeleton-then-populate forcing function (instance-catalogue skeletons surface observation-discipline gaps when populate-time work discovers Obs entries lack data for (a)-(e) axes) + UI-layer vs state-layer disambiguation via trace + both-surfaces-stale-at-same-value (internal-consistency PASS when rotation-lock corrupts adjacent surfaces in sync).
 
 7 transferable methodology insights total. **The discipline track record is itself a load-bearing artifact.**
+
+---
+
+## 0a. Session continuation — C26–C31 (workstream D fix chain, 2026-05-21 evening)
+
+Eight commits landed after C25 in a focused chain on workstream D's two hypotheses + their sub-findings. Pre-commit Layer 1.5 + Layer 2 green across all 8. **0/5 empirical-falsification budget consumed across the entire chain** — all advances static (predicate-trail, cross-fixture grep, structural-surface check).
+
+### 0a.1 What happened
+
+- **C26 memo skeleton** — `workstream_d_rotation_root_investigation.md` (~7.5kB) opened with 2 hypotheses (H-D1 bowler em-dash root; H-D2 striker fallback monoculture) + sub-finding S1 (γ-bundle invisibility of striker-path wickets like F983). Cross-references §2.5 / §2.6 of `surface_pair_defect_class_family.md` + C9 BW07 row + C19A3 `resolution_src` schema.
+- **C27 D1-prelim** — static gates 1/2/3 audit on 3 candidates (A defer-clear / B re-source-from-tracker / C dual-source-consensus). All three survive gates. Candidate C selected on regression-risk surface (lowest of the three). S3 (methodology cross-validation: H-D1 reaches the same C9 BW07 row that retired B-θ investigation flagged) + S4 (budget unconsumed).
+- **C28 D1-fix code** — Candidate C landed at `_apply_wicket_fall_only` (`score_manager.py:5262–5286` + trace_beta emission). β plumbing addition: `score_mgr._bowler_tracker = bowler_tracker` at `test_pipeline.py:7334` + SM `__init__` slot. New trace tag `BOWLER-DISPATCH-FALLBACK-FIRED` registered in `KNOWN_TAGS`. Permanent test at `test_bowler_dispatch_fallback.py` (3 cases) wired into Layer 1.5.
+- **C29 D2-prelim cross-fixture** — Scout `dismissed` field absence verified at 0/182 wicket-signal frames across 4 substantive captures (GTRR + 2× DCKKR + validate_20260520). H-D2-Layer-1 bifurcates into Layer 1a (downstream `_derive_dismissed_name`) + Layer 1b (Scout prompt schema extension). S5 (Scout-contract gap distinct from rotation-lock-starvation root) + S6 (predicate-trail extends beyond temporal-coupling) + S7 (budget unconsumed).
+- **C30 D2-prelim refinement** — Signal 1 (tracker LEADER cross-check) statically falsified at F855/F983/F1017. S8 (deterministic-rotation override is BW07-analog for striker side) + S9 (F855 → F983 cascade closure; second instance of F1-pattern) + S10 (F1017 phantom-wicket split off to workstream surface E candidate). Predicted-flip claim reformulated.
+- **C30b D2-fix structural-surface check** — override gate at `score_manager.py:4411` ruled out as fix surface due to non-discriminable predicate signature against DC-vs-KKR ball-4.6 regression case. S11 (signal/site decoupling pattern) + S12 (non-discriminable-predicate-signature defect class). WICKET-ATTRIB at `test_pipeline.py:13062–13068` confirmed single-site no-plumbing surface.
+- **C31 D2-fix code** — single-site change at WICKET-ATTRIB with helper extraction (`_attribute_dismissed_with_broadcast_override` at module scope). §3.4e memo addendum corrected the broadcast-striker access path (`_pending_bcast_striker_key`, not `card["broadcast_striker"]`). New trace tag `WICKET-ATTRIB-BROADCAST-OVERRIDE-APPLIED` registered. Permanent test at `test_wicket_attrib_broadcast_override.py` (3 cases) wired into Layer 1.5.
+- **C32 docs close-out** — this commit.
+
+### 0a.2 Architectural-significance commits
+
+| # | Commit | Scope | Outcome |
+|---|---|---|---|
+| 26 | `85b3169` | **C26** — workstream D investigation memo skeleton | 2 hypotheses (H-D1 / H-D2) + S1 sub-finding; D-chain audit-trail anchor. |
+| 27 | `6d0bac9` | **C27** — D1-prelim static gates on 3 candidates | Candidate C selected; S3 (methodology cross-validation) + S4. |
+| 28 | `7553473` | **C28** — D1-fix dual-source consensus at `_apply_wicket_fall_only` | Em-dash em-dash sentinel closed at over-end-coincident wickets; β plumbing for tracker access. |
+| 29 | `151ee49` | **C29** — D2-prelim cross-fixture Scout-dismissed absence | 0/182 wicket-signal frames; H-D2-Layer-1 bifurcation; S5/S6/S7. |
+| 30 | `d7c7bdf` | **C30** — D2-prelim refinement | Signal 1 falsified; cascade-closure + phantom-wicket sub-findings; S8/S9/S10. |
+| 30b | `4c50344` | **C30b** — D2-fix structural-surface check | Override gate ruled out; WICKET-ATTRIB site confirmed; S11/S12. |
+| 31 | `e04324f` | **C31** — D2-fix broadcast-vs-deterministic override at WICKET-ATTRIB | Helper extraction; single-site fix; §3.4e access-path correction. |
+| 32 | (this) | **C32** — HANDOFF + Architecture_HANDOFF close-out | Docs commit; chain wrap. |
+
+### 0a.3 Predicted-flip table (gated on next DCKKR replay)
+
+```
+Pre-fix baseline (C24)                            Post-C31 predicted (next replay)
+  trace_gamma_bowler_w_increment_on_dispatch:       FAIL × 4   →   FAIL × 2
+    F400 + F679 close via D1 tracker fallback (over-end-coincident em-dash window).
+    F855 + F1017 still FAIL pending downstream cascade closure + workstream E.
+  trace_gamma_w_symbol_at_wicket:                   FAIL × 2   →   PASS
+    F855 closes via D2 broadcast-override at WICKET-ATTRIB (direct).
+    F983 closes via S9 cascade (F855 close repairs pipeline's at-the-crease set).
+    F1017 unchanged — split off to workstream surface E per S10 phantom-wicket class.
+  trace_gamma_fow_name_matches_striker_at_wicket:   PASS       →   PASS (unchanged)
+    Internal-consistency invariant — tests pipeline-self-agreement, not cricket truth.
+```
+
+If predicted flips land: C23b unblocks; close D chain in a C33-tier docs commit. If predicted flips do not land: first empirical falsification for the D chain (budget cap 5/5 still open); escalation path is plumbing at `score_manager.py:4411` (the override gate ruled out as single-site at C30b but the empirical falsification authorizes the escalation per §3.4d.6).
+
+### 0a.4 Sub-findings index (S5–S12, all static — falsification budget unconsumed)
+
+| Sub-finding | Description | Source |
+|---|---|---|
+| S5 | Scout-contract gap is architecturally distinct from rotation-lock-starvation root. Two non-overlapping fixes (Layer 1a / Layer 1b). | C29 §3.4b |
+| S6 | Predicate-trail extends beyond temporal-coupling defect class to Scout-contract gaps. | C29 §3.4b |
+| S7 | D-chain empirical-falsification budget unconsumed (~2.6k frames surveyed read-only). | C29 §3.4b |
+| S8 | Trackers not independent of rotation-lock-starvation root. Deterministic-rotation override is BW07-analog for striker side. | C30 §3.4c.1 |
+| S9 | F855 → F983 cascade closure. Second instance of F1-session cascade-closure-via-one-edit pattern. | C30 §3.4c.2 |
+| S10 | F1017 phantom-wicket detection — workstream surface E candidate. | C30 §3.4c.3 |
+| S11 | Signal/site decoupling pattern. Predicate-trail reformulation moves the predictive signal but not necessarily the fix site. | C30b §3.4d.4 |
+| S12 | Non-discriminable-predicate-signature defect class. Single-site fix structurally impossible without plumbing when two cases share an observable predicate. | C30b §3.4d.5 |
+
+### 0a.5 Methodology track record — 11 transferable insights across 4 sessions
+
+C26–C31 chain contributes 4 new insights: S6, S9, S11, S12 (see §0a.4). Combined with the prior 7 insights documented in §0.7, the running total stands at **11 transferable methodology insights**. The discipline track record continues to accumulate at the 1–3-insights-per-session rate flagged in prior HANDOFFs.
+
+Notable: S9 is the second instance of the F1 cascade-closure-via-one-edit pattern (F1 was first, 3 sessions back). The pattern's reproducibility is itself a meta-finding — Meta-finding #1 (static-analysis-at-near-zero-commit-cost) is the methodology; F1 + S9 are its first two reproductions.
+
+### 0a.6 Deferred-work index update (additions from C26-C31)
+
+- **C29b (or successor C-number)** — Scout prompt schema extension to emit `dismissed` / `dismissed_batter` field. Out of D-scope; candidate for new workstream surface.
+- **Workstream surface E** — phantom-wicket detection (F1017 case). Root-localization needed on the wicket-event-detection path.
+- **§12 catalogue extension #1** — `STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC` override as the 4th dual-state-write instance.
+- **§12 catalogue extension #2** — S12 non-discriminable-predicate-signature as a new peer defect-class entry.
+- **C23b** — bowler-W increment in wicket-dispatch path. Unblocked once next replay validates D1 + D2-Layer-1a predicted flips.
 
 ---
 
@@ -451,23 +525,37 @@ Prior session lessons retained:
 
 ---
 
-## 11. Next agent's first move (UPDATED post-C24 — see §0 for full context)
+## 11. Next agent's first move (UPDATED post-C32 — see §0a for C26-C31 chain context)
 
-1. Check `git log --oneline -25` to confirm branch state. Expected HEAD: `c671cb2` (C24). Expected chain: C24 → C23 → C22 → C21 → C20 → C19A5 → C19A4 → C19A3 → C19A1 → C18 → ... back to C16.
-2. Run `bash scripts/preflight_validation_tags.sh` to confirm all 5 expected tags are present in source (deliverable from C19A5).
-3. **Open workstream D investigation** per §0.5 above. This SUPERSEDES the prior "If a fresh production trace exists..." framing — the validation gate already fired on `validate_dckkr_20260521_155356` and results are documented in §0.3. No fresh-replay-as-validation-gate is the unblocked next move.
-4. **DO NOT** open B-ι / B-θ memos — both RETIRED as standalone workstreams (collapsed as B-η cascade symptoms, `trace_alpha` flipped PASS post-C14 confirms collapse).
-5. **DO NOT** attempt C23b without first resolving D's em-dash bowler-identity case — crediting an em-dash sentinel to bowler-W would be worse than no credit.
-6. Read order for D entry: §0 of this document → `validate_dckkr_replay_observations.md` Obs 2/3/9/16/17/18/19/21 → `surface_pair_defect_class_family.md` §2.5 + §2.6 → C19A3's `resolution_src` discriminator → C9 mutation-site catalogue → derive hypotheses per C10 static-analysis methodology.
+1. Check `git log --oneline -15` to confirm branch state. Expected HEAD: C32 docs. Expected chain: C32 → C31 → C30b → C30 → C29 → C28 → C27 → C26 → C25 → C24.
+2. Run `bash scripts/preflight_validation_tags.sh` to confirm tag presence (deliverable from C19A5; should now include `BOWLER-DISPATCH-FALLBACK-FIRED` + `WICKET-ATTRIB-BROADCAST-OVERRIDE-APPLIED` registered in C28/C31).
+3. **Primary unblocked path — empirical validation of D1 + D2 predicted flips on next DCKKR replay.** Run a fresh DCKKR replay (or any fixture with sufficient wicket density). Check the γ-bundle assertions:
+   - `trace_gamma_bowler_w_increment_on_dispatch` — predicted FAIL × 4 → FAIL × 2 (F400 + F679 close via D1).
+   - `trace_gamma_w_symbol_at_wicket` — predicted FAIL × 2 → PASS + cricket-truth FOW name flips at F855 (D2 direct) + F983 (S9 cascade closure).
+   - If predicted flips land → C23b unblocks; close D chain in a C33-tier docs commit.
+   - If predicted flips do not land → **first empirical falsification** for the D chain (budget cap 5/5 still open); next move is plumbing at `score_manager.py:4411` per §3.4d.6 of `workstream_d_rotation_root_investigation.md`.
+4. **Secondary unblocked paths (independent of replay; all static):**
+   - §12 catalogue extension — land (a) `STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC` override as 4th dual-state-write instance, (b) S12 non-discriminable-predicate-signature as new peer defect-class entry, in `sm_as_orchestrator_design.md`.
+   - C20b — per-row populate of `surface_pair_defect_class_family.md` §2.1–§2.9 (skeleton-then-populate pattern likely surfaces more forcing-function findings).
+   - Workstream surface E skeleton — open `workstream_e_phantom_wicket_detection.md` for the F1017 case.
+   - C29b — Scout prompt schema extension (`dismissed_batter` field).
+5. **DO NOT** open B-ι / B-θ memos (retired pre-C26). **DO NOT** attempt C23b before D1 + D2 empirical validation. **DO NOT** touch BW07 clear ordering at `score_manager.py:5965` (Candidate A territory, retired by risk-surface argument at C27). **DO NOT** attempt single-site fix at `score_manager.py:4411` without the empirical-falsification trigger from a failed replay (ruled out by S12 / non-discriminable predicate signature at C30b).
+6. Read order for D entry / continuation: §0a above → `workstream_d_rotation_root_investigation.md` (the C26-C31 investigation memo) → §0 above (C19-C24 context) → `surface_pair_defect_class_family.md` §2.5 + §2.6 → C9 mutation-site catalogue (BW07 row for D1, BW02/BW06 for C23b downstream).
 
 ---
 
 ## 12. Quick reference — the meta-finding chain
 
-Each session contributes one or more transferable methodology insights:
+Each session contributes one or more transferable methodology insights. **11 transferable insights total across 4 sessions:**
 
-- **F1 session (prior)**: F1 cascade-closure demonstrated one-edit fix can close 4+ bug classes. §7.2 gate 7 (cross-fixture verification) baked into the audit framework.
-- **B-η session (this one)**: Static-analysis-with-predicate-trail methodology produces full cascade-root localization at near-zero commit cost. Falsification-chain-as-architectural-finding. Dual-state-write defect class confirmed across 3 instances.
+- **F1 session (3 sessions back)**: F1 cascade-closure demonstrated one-edit fix can close 4+ bug classes. §7.2 gate 7 (cross-fixture verification) baked into the audit framework.
+- **B-η session (2 sessions back)**: Static-analysis-with-predicate-trail methodology produces full cascade-root localization at near-zero commit cost. Falsification-chain-as-architectural-finding. Dual-state-write defect class confirmed across 3 instances.
+- **C19-C24 session (prior)**: Commit-design drift detection (preflight tag-existence check). Budget-class mismatch (memo work needs 8–12 calls; code work fits 5). Skeleton-then-populate forcing-function pattern. UI-layer vs state-layer disambiguation via trace. Both-surfaces-stale-at-same-value pattern (internal-consistency PASS when rotation-lock corrupts adjacent surfaces in sync).
+- **C26-C31 session (this one — workstream D fix chain)**:
+  - **S6** — predicate-trail extends beyond temporal-coupling defect class to Scout-contract gaps.
+  - **S9** — cascade-closure-via-one-edit pattern, second instance (F1 was first); F855 fix auto-closes F983.
+  - **S11** — signal/site decoupling pattern: predicate-trail reformulation moves the predictive signal but not necessarily the fix site.
+  - **S12** — non-discriminable-predicate-signature defect class: single-site fix structurally impossible without plumbing when two cases share an observable predicate.
 
 **The discipline track record is itself a load-bearing artifact.** Preserve it; document new insights as they accumulate.
 
