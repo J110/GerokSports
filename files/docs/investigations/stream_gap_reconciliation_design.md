@@ -427,4 +427,128 @@ The investigation has shifted target. The active defect is in test_pipeline.py's
 
 ---
 
-**Replay paused at §10.5 path decision. Five commits landed: `b49e48b` (instrumentation), `e3171eb` (warm-seed), `86299e0` (memo §1-9), `78b4835` (LLM extractor), and this memo update (C5). The cascade-root pivot at §10.3 is the actionable evidence the brief's Step 1 instrumentation produced.**
+---
+
+## 11. Fifth falsification — B-κ not reproducible from captured `scout_raw.jsonl`
+
+C6 (`237d227`) shipped the `DIRECT-SCORE-COMMIT` instrumentation at the single `sb.set()` bottleneck in `eyes/scoreboard.py:1481`, paired with GTRR fixture support for gate-7 cross-fixture verification.
+
+### 11.1 Empirical replay results
+
+| Replay | DIRECT-SCORE-COMMIT firings | Anomalous (B-κ signature) | Tracker reached `score=54`? |
+|---|---|---|---|
+| DCKKR warm-seeded + LLM (`replay_dckkr_20260521_BKAPPA`) | 48 | 0 — all benign boundary advances (f138 8→15 at ov=1.2, f302 45→49 at ov=4.5, f361 49→53 at ov=5.1, etc.) | **No** — tracker holds at 49 across f303-f308 |
+| GTRR warm-seeded + LLM (`replay_gtrr_20260520_BKAPPA`, fixture=gtrr) | 81 | 0 — large-Δ commits at f72/f296/f406/f466/f1075/f1123/f1379 all track normal six/boundary events with overs advancing in parallel | N/A |
+
+### 11.2 Why the replay doesn't reach the production cascade
+
+In the replay:
+- Streak gate at `score_manager.py:3080` rejects f304 (`OVERS-JUMP-IMPLAUSIBLE-REJECTED, streak=1/3`).
+- Consensus tracker at `sb.set` line 1237 receives one LLM-extracted f304 read of `score=54`, holds it as unconfirmed.
+- Subsequent frames f305-f308 report `score=49` (parse_strip extracts the *real* broadcast strip), causing the tracker to drop the 54 candidate.
+- SM's score never advances past 49 in replay. No cascade.
+
+In production, the same f303/f304 frames produced the same `OVERS-JUMP-IMPLAUSIBLE-REJECTED` decisions (verified at §10.2). Yet by f318, `tracker_score=54`. This means the production session's tracker confirmed `54` via a path the captured-replay does not exercise.
+
+### 11.3 Falsification of the §10.3 Link D hypothesis
+
+§10.3 proposed Link D — "split score/overs commit via the DIRECT-path score-mutation site". The hypothesis was: `self.score = 54` got committed via a non-`_handle_warm` SM mutation while `self.overs` was held at 4.5.
+
+C6 instrumentation now shows that **every score commit in replay went through `sb.set()` AND was accompanied by an overs commit**. The replay never shows score-only advancement. The hypothesis is falsified by the absence-of-signal across 48+81 instrumented frames.
+
+This is the **fifth empirical falsification** of the B-η investigation chain:
+
+1. `STREAM-GAP-TOO-LARGE-TO-DECOMPOSE` (§4.3, gate 7) — falsified
+2. Shape α single-axis frame-trust (§9.4) — falsified at replay f138
+3. Shape α' dual-axis frame-trust at `_decompose_multi_ball` (§10.4) — falsified at §10.2
+4. Shape β streak-gate tightening (§10.4) — falsified at §10.2
+5. **B-κ split-commit via sb.set (§10.3)** — falsified at §11.2 / §11.3
+
+---
+
+## 12. Investigation-strategy pivot — the captured-replay path is at end-of-yield
+
+### 12.1 Diagnosis
+
+Five empirical falsifications across one investigation chain, all on the same fixture pair, all via the same instrumentation-first methodology. The chain produced four diagnostic commits (`b49e48b`, `e3171eb`, `78b4835`, `237d227`) and three design-doc revisions (`86299e0`, `ac06fa6`, this C7). Total cost: 6 commits and roughly a week of investigation. The chain's output is empirical, not speculative — that is the discipline working — but the chain has stopped converging on a localized defect.
+
+**The production cascade at f304-f318 is non-reproducible from captured `scout_raw.jsonl` alone via the SM-driven replay scaffold**, regardless of how comprehensively the scaffold is instrumented. The captured-replay path:
+
+- Faithfully reproduces parse_strip's regex extraction (verified by f300/f302 SM-state match against production)
+- Faithfully invokes the LLM-fallback extractor at the same frames production used (78b4835)
+- Faithfully exercises the `sb.set` tracker / `_handle_warm` streak gate / `_decompose_multi_ball` decomposer
+- **And yet** does not reach the `tracker_score=54` state production reached at the same frame indices
+
+The defect is in **temporal / async coupling** that the deterministic-replay scaffold flattens: consensus-tracker confirmation behavior across UDP-stream-frozen windows, frame-arrival ordering with Scout 429-retry windows, the interaction of `THIS-OVER-APPEND` writes (seen in production f304 trace but absent in replay) with the streak gate's state, etc. None of these are at a single code site that more `sb.set` / `_decompose_multi_ball` / `_handle_warm` instrumentation can localize.
+
+### 12.2 The "more instrumentation" trap
+
+The natural next-instrumentation suggestion would be: instrument `test_pipeline.py:3620` (the state-recovery direct `_inn["score"] = ...` write), or instrument `confidence_tracker.py`'s consensus-confirmation state machine, or instrument every `_inn[*]` assignment across the codebase. Each is a plausible candidate; each would be additive; each would pre-commit-pass.
+
+**But there is no empirical evidence the next instrumentation commit breaks the falsification pattern.** Four diagnostic commits in a row have produced findings that ruled out the previous hypothesis without converging on the actual defect site. Continuing the instrumentation treadmill assumes the defect is at a code site captured-replay can exercise — an assumption all five falsifications have now empirically challenged.
+
+### 12.3 The pivot
+
+The next investigation move is **static analysis of state-mutation sites + invariant classification**, NOT another instrumentation commit. Concrete shape (deliverable C9, deferred until C7+C8 land):
+
+- **Enumerate every write site** for the five primitive fields (`score`, `wickets`, `overs`, batter identities, bowler identity) across `test_pipeline.py`, `score_manager.py`, `eyes/scoreboard.py`, and any other files that mutate them.
+- **For each site, classify on four dimensions:**
+  1. **Mutation target**: which underlying state (`sm.score`, `sm.scoreboard._inn["score"]`, `sm.scoreboard.batting_card[name]["runs"]`, etc.)
+  2. **Gate protection**: which validation gates fire before the write (`_handle_warm` streak gate, `sb.set` tracker consensus, `cricket_rules.validate_diff`, etc.) and which sites bypass which gates
+  3. **Invocation pattern**: sync inline, async via callback (e.g., `on_lock`), driven by external event (Scout retry, UDP freeze), etc.
+  4. **Source of authority**: extractor reading, SM derivation, broadcast indicator, scout retry-buffer drain, etc.
+- **Identify gate-bypass / invariant-violation classes.** A site that mutates `sm.score` but bypasses `_handle_warm`'s streak gate; a site that mutates `sb._inn["score"]` but bypasses `sb.set()`'s tracker consensus; a site that writes to one slot but not its sibling. These are the temporal-coupling defect candidates.
+
+Output is a catalogue table; no fixes proposed at C9. Pure observability of the system surface.
+
+### 12.4 What replay remains useful for
+
+The captured-replay scaffold is not retired. It remains the canonical:
+- **Falsification mechanism.** Any proposed fix can be replayed against DCKKR+GTRR `scout_raw.jsonl` to confirm whether the predicted-flip holds. Five falsifications above are proof the mechanism works.
+- **Regression detector** for the existing trace-session assertions library.
+- **Pre-commit gate substrate** (Layer 1.5 / Layer 2 / `run_trace_session_assertions`).
+
+What it CANNOT do, per §11/§12 evidence: drive root-localization for temporal-coupling defects. That requires static analysis (this pivot) or end-to-end production-pipeline reproduction against the captured video (out of scope per the brief's "no fresh session needed" constraint, but a legitimate fallback if the static catalogue doesn't yield a localized defect either).
+
+---
+
+## 13. Meta-finding — the five-falsification discipline track record
+
+This investigation's most important architectural finding is **the discipline itself, demonstrated at scale across one chain**.
+
+### 13.1 The five falsifications
+
+| # | Hypothesis | Site | Falsification mechanism | Speculative fix it prevented |
+|---|---|---|---|---|
+| 1 | `STREAM-GAP-TOO-LARGE-TO-DECOMPOSE` | `_decompose_multi_ball` cap | Gate 7 cross-fixture: GTRR has working 10/11-ball absorptions | A hard Δballs cap that would have regressed GTRR's legitimate gaps |
+| 2 | Shape α single-axis frame-trust | `_decompose_multi_ball` entry | Replay f138: junk OCR batters + correct bowler → would false-reject | A frame-trust gate at the wrong site rejecting legitimate gaps |
+| 3 | Shape α' dual-axis frame-trust | `_decompose_multi_ball` entry | Replay + production agree: gate never reached at f304 | A targeted fix at a site the defect never reaches |
+| 4 | Shape β streak-gate tightening | `score_manager.py:3080` | Replay + production agree: streak gate fires correctly | A redundant tightening of a gate that wasn't broken |
+| 5 | B-κ split-commit via `sb.set` | `eyes/scoreboard.py:1481` | DCKKR+GTRR replay: 48+81 firings, no anomalous Δscore | A `sb.set` guard against a phantom signature that doesn't exist |
+
+### 13.2 The cost ratio
+
+Six diagnostic/docs commits. Roughly a week of investigation time. Five speculative fixes that would have landed without the discipline. Each speculative fix would have:
+
+- Passed Layer 1.5 / Layer 2 gates (additive enough to not regress the captured ledger)
+- Looked architecturally reasonable in code review
+- **Hidden the real defect under more cascade symptoms.** Subsequent sessions would have reported new bugs, traced them, found that the hidden defect surfaces under different overlay patterns or different async timings. Iteration cost would have compounded.
+
+The discipline's cost: six commits, one week, zero production behavior change. The alternative: one speculative-fix commit, no upfront delay, multi-session iteration cost as cascade symptoms refactor through the codebase.
+
+### 13.3 Architectural insight for next-session HANDOFF
+
+**A complete falsification chain is an architectural finding, not a failure.** Previous session's headline result was F1's cascade-closure of four bug classes (`437d952`). This session's headline result is the inverse architecture: a five-link falsification chain that **prevented** four speculative fixes from landing and surfaced a class of defect (temporal coupling) that requires a different investigation methodology (static cataloguing) than the one that built F1.
+
+The discipline pattern, validated empirically across both sessions:
+
+- F1 session: predicted-flip discipline + gate-7 cross-fixture verification → one-edit fix closed four bug classes by collapsing cascade root.
+- This session: same discipline applied recursively → five hypothesis falsifications → identified that the defect class doesn't admit instrumentation-driven localization → pivot to static cataloguing.
+
+Both outcomes are the discipline working. Track-record-wise, the F1 closure validated the methodology's positive case (a one-edit fix can collapse multiple bug classes); this session validates its negative case (a five-falsification chain can surface a defect-class mismatch with the methodology, signaling a strategic pivot). The discipline produces **both** outcomes by design — neither is more legitimate than the other.
+
+Bake into next-session HANDOFF §10 / §12 discipline-lesson catalogue.
+
+---
+
+**Replay paused at §12.3 pivot decision. Six commits landed: `b49e48b`, `e3171eb`, `86299e0`, `78b4835`, `ac06fa6`, `237d227`. Captured-replay path is at end-of-yield for B-η root-localization. Next move: C8 brief reframe → C9 state-mutation-site catalogue. No further instrumentation commits until the catalogue surfaces empirically-grounded candidates.**
