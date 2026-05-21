@@ -73,6 +73,26 @@ SESSION_CONTEXT: dict[str, dict] = {
         # session's own extras_total as the upper bound.
         "max_acceptable_extras": None,
     },
+    "validate_dckkr_20260521_070545": {
+        # Per ground-truth ledger
+        # (files/tests/fixtures/dc_vs_kkr_2026_152064_overs_1_6_ground_truth.md):
+        # "Initial state: Pathum Nissanka on strike, KL Rahul non-striker."
+        "expected_initial_striker": "Pathum Nissanka",
+        "max_acceptable_extras": None,
+    },
+    "validate_dckkr_20260521_155356": {
+        # C14 Shape B validation-gate replay (DCKKR 09:30 through
+        # ov 11.5). 4 wicket events. C24 wicket-correctness γ-bundle
+        # empirical baseline (post-C19/C20/C21/C22/C23):
+        #   trace_gamma_w_symbol_at_wicket:                 FAIL × 2
+        #   trace_gamma_fow_name_matches_striker_at_wicket: PASS
+        #   trace_gamma_bowler_w_increment_on_dispatch:     FAIL × 4
+        # Detection on this trace uses the ball_event.type==WICKET
+        # fallback because the trace was captured before C19A3's
+        # trace_beta_sm_wicket_dispatch emission landed.
+        "expected_initial_striker": "Pathum Nissanka",
+        "max_acceptable_extras": None,
+    },
 }
 
 

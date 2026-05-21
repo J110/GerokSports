@@ -1,8 +1,10 @@
 # Handoff — Session continuation document
 
-**Last update**: 2026-05-21 (post-C16)
+**Last update**: 2026-05-21 (post-C24, workstream B closure session)
 **Branch**: `derive-not-detect`
-**Status**: Workstream paused at operational validation gate. F-η cascade root localized at production F302/F304 via static analysis + pipeline.log audit; Shape B cross-field pairing gate shipped at `apply_scorer_decision`. Predicted-flip claim on disk; next natural production session is the validation gate.
+**Status**: Workstream B closes clean at the wicket-correctness γ-bundle baseline. Validation gate fired on DCKKR 2026-05-21 — C14 Shape B confirmed working (2 distinct CROSS-FIELD-PAIRING-REJECT events in production at F210 + F1015). Three forcing-function findings during C21/C22/C23 refined the surface-pair §12.3 catalogue. Workstream D (rotation-root revisit, batter + bowler identity) promoted from follow-up to highest-impact unblocked workstream — C23b (bowler-W fix) is blocked on D.
+
+**Next session entry point: open workstream D investigation.** This supersedes the prior "operational validation gate" framing further down in this document (line 319+). See "## Session continuation — C19–C24" section below for the full context.
 
 Entry point for next Cowork session. Read this file first, then `CLAUDE.md`, then `Architecture_HANDOFF.md`, then the design memos at:
 - `files/docs/investigations/temporal_coupling_investigation_brief.md` (C10–C12.5b: the static-analysis methodology + cascade-root localization)
@@ -10,7 +12,208 @@ Entry point for next Cowork session. Read this file first, then `CLAUDE.md`, the
 - `files/docs/investigations/stream_gap_reconciliation_design.md` (B-η chain §1–§13: 5 empirical falsifications + investigation-strategy pivot)
 - `files/docs/investigations/state_mutation_site_catalogue.md` (C9: 38 mutation sites + 2 async callbacks)
 - `files/docs/investigations/dckkr_20260521_cc_investigation_brief.md` (the operator-side brief + §0 reframe)
-- `files/docs/investigations/sm_as_orchestrator_design.md` §7 (the standing 7-gate audit framework) + §8 (dual-state-write defect-class catalogue — to be added in C17)
+- `files/docs/investigations/sm_as_orchestrator_design.md` §7 (the standing 7-gate audit framework) + §12 (dual-state-write defect-class catalogue — C17, cross-referenced from §12.7 to the new memo below)
+- **`files/docs/investigations/surface_pair_defect_class_family.md`** (NEW C20: family-level instance catalogue, 9 placeholder rows from DCKKR replay, per-row populate deferred to C20b)
+- **`validate_dckkr_replay_observations.md`** (21-frame observation log — entry data for workstream D)
+
+## Session continuation — C19–C24 (workstream B closure)
+
+This session ran 2026-05-21 post-C18. Eight commits landed
+(C19A1/A3/A4/A5, C20, C21, C22, C23). Session opened with operational
+validation of the C14 Shape B fix and closes with workstream B's
+wicket-correctness γ-bundle landed at empirical baseline.
+
+### Validation gate result — DCKKR 2026-05-21 (validate_dckkr_20260521_155356)
+
+Two distinct CROSS-FIELD-PAIRING-REJECT events fired in production
+during the validation replay (~58 min wall time, ov 0.0 → 11.5):
+
+- **F210** at 16:06:35 — Δscore=+6 / Δballs=-8 (backwards-overs
+  cross-field; proposed 28-0(1.3) vs current 22-0(2.5))
+- **F1015** at 16:47:14 — Δscore=0 / Δballs=0 / Δwkts=+2
+  (zero-time double-wicket; proposed 89-6(10.4) vs current 89-4(10.4))
+
+C14 Shape B predicate is doing load-bearing work — caught two
+orthogonal Shape-B-class defects (backwards-overs + zero-time
+double-wicket). The F-η-pattern (forward Δscore=+5, Δballs=+10) did
+NOT surface in this replay window; the gate caught different defect
+classes than its design memo emphasized. C14 sign-off accepted on
+"predicate is correct, gate position is correct, gate is reachable
+via apply_scorer_decision call site" basis.
+
+Three trace-emission gaps surfaced during validation diagnostics:
+- DIRECT-SCORE-COMMIT emissions = 0 (BOARD-side path not exercised)
+- trace_beta_sm_wicket_dispatch tag absent from codebase (deleted
+  between C15 authoring and HEAD)
+- No typed wicket-event trace tags emitted
+
+All three addressed in C19A1–A5 (counterfactual framing tightened on
+the legitimate_pair comment, trace_beta restored at
+_apply_wicket_fall_only, trace schema note added to operations doc,
+preflight tag-existence check added as a launch-checklist step).
+
+### Gate bundle baseline (validate_dckkr_20260521_155356)
+
+```
+4 trace_beta_sm_wicket_dispatch emissions detected via
+  ball_event.type == "WICKET" fallback (captured trace pre-dates
+  C19A3's typed emission landing).
+
+trace_gamma_w_symbol_at_wicket:                 FAIL × 2  (Rahul, Rana)
+trace_gamma_fow_name_matches_striker_at_wicket: PASS      (internal-consistency only)
+trace_gamma_bowler_w_increment_on_dispatch:     FAIL × 4
+```
+
+Total: **5 PASS / 3 FAIL across 8 assertions** (3 existing + 3 new γ
++ 2 reused existing as gate-bundle members). Detection in the new
+assertions uses fallback paths for the pre-C19A3 captured trace;
+future replays will exercise the C19A3 typed emission path.
+
+### Three forcing-function findings — skeleton-then-assertion methodology
+
+- **C21 — Nissanka W→· revert is UI-layer, not state-layer
+  (refines §2.1).** The trace's `ui_after.this_over` preserved W
+  correctly at frame 855 position 4 in `next_this_over[4:]`. The UI
+  revert observed at Obs 17b happens downstream of trace emission, in
+  the WebSocket-render layer. The §2.1 surface-pair scope therefore
+  splits: Surface B canonical (pipeline state, holds) vs Surface A
+  weaker (UI render path, reverts) — not within the pipeline state
+  itself. (Distinct from Obs 4 / Obs 11 reverts which ARE in trace
+  state — those remain in §2.1 proper.)
+- **C22 — both surfaces stale at same striker pointer value
+  (refines §2.5).** `trace_gamma_fow_name_matches_striker_at_wicket`
+  PASS × all detected wickets — pipeline-internal consistency holds
+  even though cricket reality diverged 3/3 times per Obs 16/18/19/21.
+  Rotation-lock-starvation corrupts both adjacent surfaces
+  (`ball_event.striker_this_ball` at wicket frame N AND
+  `pipeline.striker` at frame N-1) at the SAME stale value.
+  Cricket-vs-pipeline divergence requires ground-truth assertion
+  infrastructure outside the trace data — scoped as workstream D.
+- **C23 — bowler identity = em-dash sentinel at 2/3 captured wicket frames
+  (refines §2.6).** At wicket frames the pipeline's
+  `current_bowler` often reads as the literal `—` placeholder
+  (frame 400 Rahul, frame 679 Rana). Only frame 855 (Nissanka)
+  resolved a real bowler name (`Sunil Narine`). The
+  rotation-lock-starvation root therefore extends to BOWLER identity,
+  not just batter-striker. Surfaced via the assertion's FAIL output
+  itself — would not have been visible from the observation log alone.
+
+### Workstream D — promoted to highest-impact unblocked workstream
+
+**Original framing** (per the C19/B2 scope note): D = rotation-root
+revisit (batter-striker pointer staleness causing FOW name swap per
+Obs 16/18/19/21).
+
+**Expanded scope after C22 + C23 findings:** D now encompasses
+- Batter-striker pointer staleness at wicket frames (original scope)
+- Bowler identity unresolved (em-dash sentinel) at wicket frames (new)
+- Both share the same upstream root — rotation-lock fires on neither
+  pointer at wicket-event boundaries.
+
+**C23b (bowler-W fix) is BLOCKED on D.** Adding `update_bowler` at
+the wicket-dispatch path would credit an em-dash entry in 2/3 of
+captured cases — worse than no credit (pollutes bowler-card
+namespace with a sentinel). The bowler-identity-resolution defect
+must close before C23b can land cleanly.
+
+Workstream D's entry data:
+- `files/logs/deliveries/validate_dckkr_20260521_155356/` — full
+  captured artifact (trace JSONL, pipeline.log, scout dump, mp4)
+- `validate_dckkr_replay_observations.md` — 21-frame replay log
+- C19A3's `trace_beta_sm_wicket_dispatch.resolution_src` payload
+  discriminates P2 (event.dismissed) vs P3 (SM.self.striker fallback)
+  attribution paths — informs root localization
+- `files/docs/investigations/state_mutation_site_catalogue.md` (C9)
+  — candidate sites for bowler-identity-lock failures
+
+### Methodology track record — 7 transferable insights across 3 sessions
+
+The discipline's insight-accumulation rate is itself load-bearing.
+Four insights from prior sessions; three new this session:
+
+**Prior sessions:**
+1. **F1 cascade-closure pattern** — one-edit fix can close N bug
+   classes (F1 session).
+2. **Predicate-trail / static-analysis methodology** — full
+   cascade-root localization at near-zero commit cost (B-η session).
+3. **Commit-design drift** — design memos can predict FAIL→PASS
+   flips on tags that have been deleted between memo-authoring and
+   HEAD; pre-validation tag-existence check needed. C19A5 delivers
+   the preflight check; the meta-finding was the C14 validation's
+   trace_beta-absent surprise.
+4. **Budget-class mismatch in brief authoring** — code sub-tasks
+   fit 5-call budgets; memo/comparative-analysis sub-tasks need
+   8–12. Brief authoring needs to differentiate; this session's
+   Phase 1 split into 1a/1b after the budget exceeded.
+
+**New (this session, C19–C24):**
+5. **Skeleton-then-populate forcing function** — instance-catalogue
+   skeletons surface observation-discipline gaps when populate-time
+   work discovers Obs entries lack data for (a)-(e) axes. Demonstrated
+   3× in C21/C22/C23 findings above; planned populate path for C20b.
+6. **UI-layer vs state-layer disambiguation via trace** — operator
+   observations from UI render may not match trace state; assertions
+   that read trace data exclude UI-render defects. C21's Nissanka
+   case is the canonical example.
+7. **Both-surfaces-stale-at-same-value** — internal-consistency
+   assertions PASS when rotation-lock corrupts adjacent surfaces in
+   sync; cricket-vs-pipeline ground-truth assertions are a separate
+   infrastructure layer not in trace scope. C22's finding scopes
+   workstream D and bounds B2's value as a regression detector.
+
+Pattern continues to accumulate at the meaningful rate flagged in
+prior HANDOFFs. Each session contributes 1–3 transferable insights;
+the track record is itself a load-bearing artifact.
+
+### This session's commits
+
+```
+4f79613 C23: B3 — trace_gamma_bowler_w_increment_on_dispatch assertion (no fix; deferred to C23b)
+6817481 C22: B2 — trace_gamma_fow_name_matches_striker_at_wicket assertion
+b327ed1 C21: B1 — trace_gamma_w_symbol_at_wicket assertion (surface_pair_defect_class_family §2.1)
+e051cfa C20: surface_pair_defect_class_family.md skeleton — 9 instance placeholders
+74e90dd C19A5: preflight tag-existence check before validation launch
+ceeb4e0 C19A4: schema note — tags nested under scorer.decisions[].tag
+7557d47 C19A3: restore trace_beta_sm_wicket_dispatch emission at _apply_wicket_fall_only
+5a80b8f C19A1: tighten counterfactual framing on legitimate_pair predicate provenance
+```
+
+### Next session's first action — SUPERSEDES PRIOR "Next session's first action" SECTION
+
+The prior "If a fresh production trace exists..." framing further
+down in this document is superseded: **open workstream D investigation.**
+No fresh-replay-as-validation-gate is the unblocked next move —
+the gate already fired on DCKKR 2026-05-21 with results above.
+
+Workstream D entry session sequence:
+1. Read `surface_pair_defect_class_family.md` §2.5 + §2.6 plus the
+   three forcing-function findings above
+2. Read `validate_dckkr_replay_observations.md` Obs 2/3/9/16/17/18/19/21
+   (the rotation-lock and bowler-identity moments)
+3. Examine the captured trace for `resolution_src` distribution
+   across wicket events — how many P2 vs P3 attributions?
+4. Examine `pipeline.current_bowler` transitions across the captured
+   trace — when does it enter/exit the em-dash sentinel?
+5. Derive candidate root-localization hypotheses per the standard
+   temporal-coupling investigation methodology (C10 brief + C9
+   mutation-site catalogue), with §12.4 detection methodology + §12.6
+   audit obligation cross-referenced
+
+Deferred work tracked elsewhere:
+- **C20b** — per-row (a)-(e) populate of `surface_pair_defect_class_family.md`
+  §2.1–§2.9 with full evidence from Obs N anchors. Independent of D;
+  can land anytime; will likely produce more forcing-function findings.
+- **C21b** — W→· revert site identification in the symbol-commit path.
+  Most plausible candidate per static analysis:
+  `_rewrite_eyes_this_over_from_event` at `score_manager.py:695`
+  ("Fix A: SM-authoritative rewrite of eyes-side `over_mgr.this_over`").
+  Needs fresh replay with C19A3 emission firing for per-frame
+  `this_over` diff inspection.
+- **C23b** — bowler-W increment in the actual wicket-dispatch path
+  (NOT `_apply_wicket_fall_only`, which the trace confirms is not
+  being reached for these captured wickets — they dispatch via
+  ABSORBED_LEGAL gap_finalize_wicket per the docstring). BLOCKED on
+  workstream D resolving the em-dash bowler-identity case.
 
 ## The objective
 
