@@ -921,6 +921,7 @@ Track record: C13 audit's Shape A (single-field `_is_suspicious` tightening) was
 - **F1's cascade-closure** (cross-credit + B-β + multi-ball false positives + compound tokens) demonstrated that the narrow remediation can collapse N adjacent bug classes when the dual-state-write site is the root.
 - **B-η's static-analysis chain** demonstrated that the dual-state-write pattern can be localized via static code-reading + production log audit, without an instrumentation cycle per hypothesis. The methodology generalizes to any defect where captured-replay flattens the temporal signature.
 - **F-α-shadow** demonstrated that observability tooling itself can be a dual-state-write surface — the snapshot code's read path was the weaker surface; the canonical attribute was the stronger surface; the divergence masked a real upstream defect.
+- **DCKKR 2026-05-21 replay** produced 9+ instance candidates within a single match. Family-level taxonomy in `files/docs/investigations/surface_pair_defect_class_family.md` §2. §12 retains the structural theory; instance accretion moves to the new memo.
 
 ### 12.8 What to watch for in future sessions
 
