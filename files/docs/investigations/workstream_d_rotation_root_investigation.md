@@ -173,6 +173,38 @@ Predicted flip: `trace_gamma_fow_name_matches_striker_at_wicket` continues to PA
 
 Layer 1 alone closes the FOW-name surface. Layer 2 alone (without Layer 1) does NOT close FOW-name because the WICKET-ATTRIB log still reads from `scoreboard.striker` — fixing the rotation pointer fixes the live-state error but doesn't change the dispatch-time read. **Layer 1 is the load-bearing wicket-correctness fix; Layer 2 is the load-bearing live-state-correctness fix.** They are non-overlapping in surface coverage.
 
+### §3.4b Phase-2.5 — D2-prelim cross-fixture scout-dismissed-field absence (scratch)
+
+**Cross-fixture survey** of `scout_raw.jsonl` across four substantive captured deliveries (read-only, zero behavior change). For each frame, check `raw_response` for any structured `dismissed` / `dismissed_batter` field-style token; tally against wicket-signal frames (broad match: `WICKET` / `wicket` / `DISMISSED` substrings, intentionally over-inclusive to harden the absence-claim against under-counting).
+
+| Fixture | Frames | Wicket-signal frames | `dismissed`-field present |
+|---|---|---|---|
+| `validate_gtrr_20260520_180715` | 841 | 51 | **0** |
+| `validate_dckkr_20260521_155356` | 749 | 64 | **0** |
+| `validate_dckkr_20260521_070545` | 618 | 49 | **0** |
+| `validate_20260520_114437` | 415 | 18 | **0** |
+| `validate_20260513_194442` | 10 | 0 | n/a |
+
+**Universal absence: 0/182 wicket-signal frames** across 4 substantive fixtures. The DCKKR-only baseline at §3.3 (0/5 wicket-anchor frames) is now hardened to a cross-fixture invariant: the Scout VLM, as currently prompted, **never** emits a structured `dismissed` / `dismissed_batter` field on any frame in any captured fixture. The absence is a **property of Scout's prompt/output schema**, not a per-fixture artifact.
+
+**H-D2-Layer-1 predicted-flip claim at §3.4 + §6 — locked.** The gate-6 precondition holds cross-fixture; the dispatch handler can never have a P2 (`event.dismissed`) to consume under the current Scout schema. The fix must therefore land at one of two surfaces:
+
+- **§3.5 Layer 1a — event-builder downstream of Scout** (current §3.4 framing). `_derive_dismissed_name` constructs `event.dismissed` from cross-signals already in the Scout payload (previous-frame STRIKER-OBSERVE minus current-frame at-the-crease pair; bowler-card W increment cross-referenced with most-recently-faced batter).
+- **§3.5 Layer 1b — Scout prompt schema extension**. Add a `dismissed_batter` slot to Scout's structured-output JSON. Higher-friction (prompt-eval regression sweep) but cleaner architecturally — closes the contract gap at the source.
+
+These are **non-overlapping fixes**: Layer 1a closes the gap downstream from Scout (works under current Scout schema); Layer 1b closes the gap at Scout's contract boundary (changes the schema). Either one independently flips `trace_gamma_w_symbol_at_wicket` FAIL×2 → PASS + cricket-truth FOW on F855/F983/F1017. Layer 1a is the lower-friction first step; Layer 1b becomes redundant once Layer 1a holds (downstream derivation is canonical) but remains architecturally cleaner if pursued in parallel.
+
+**Sub-finding S5 — Scout-contract gap.** The universal absence is a Scout-side contract gap distinct from the rotation-lock-starvation root the workstream-D scope was promoted on. It surfaces as **two independent workstream surfaces**:
+
+1. **D2-Layer-1a (downstream derivation)** — covered by this memo; closes the immediate γ-bundle FAIL.
+2. **Scout-prompt-extension (upstream contract)** — separate workstream candidate; closes the contract gap. Out of D-scope; tracked here as a forward reference for a future C-commit + memo (placeholder: `scout_dismissed_contract_extension.md`).
+
+The §0 framing ("rotation-lock-starvation root that causes both batter-striker AND bowler-identity pointers stale") is now **architecturally precise**: the root is two-layered. The bowler layer (H-D1) was fully on the SM side (closed at C28). The batter layer (H-D2) is two-sourced — SM dispatch reads `scoreboard.striker` because Scout never gave it a `dismissed` field to read. **D-scope retains Layer 1a; Layer 1b is split off as a Scout-contract surface.**
+
+**Sub-finding S6 — methodology cross-validation extends.** S3 documented H-D1's convergence with the retired B-θ investigation on C9 BW07. S6 extends that pattern: the §3.3 single-fixture absence claim (DCKKR 0/5) was sufficient to motivate H-D2-Layer-1's predicted-flip framing, but the cross-fixture survey hardens it from "fixture-anchored hypothesis" to "Scout-schema invariant." **The S3 pattern (predicate-trail static-falsification at zero empirical cost) reproduces at S6, confirming the methodology's transferability across hypothesis types** (H-D1 was an SM-internal mechanism; H-D2 is a Scout-contract gap; same audit pattern produced both verdicts).
+
+**Sub-finding S7 — falsification budget unconsumed (cumulative).** D-chain empirical-falsification budget: 0/5 still. Phase-2.5 D2-prelim was read-only across 5 scout dump files (~2.6k total frames surveyed); zero replay execution. The 5-empirical-falsification cap per C9 §11 + C10 §1.2 remains intact for the D defect-class chain across both hypotheses + sub-findings.
+
 ### §3.5 Candidate fix sites
 
 - **Layer 1 (event-builder).** Per C9 catalogue, event construction sits at `apply_scorer_decision` (`test_pipeline.py:4517`) upstream of `_apply_wicket_fall_only`. Insert a `_derive_dismissed_name` step that consumes Scout's WICKET marker + adjacent STRIKER-OBSERVE / BATTING_TEAM-OBSERVE records and emits `event.dismissed`.
@@ -234,6 +266,7 @@ C23b lands cleanly once D1 (bowler resolves to non-em-dash) AND D2-Layer-1 (dism
 - **S1 striker-path assertion gap.** §1.2 — extending `assert_bowler_w_increment_on_dispatch` to detect F983-class wickets needs a careful trigger predicate that doesn't double-count when both `ball_event.type == 'WICKET'` and POST-WICKET-ROTATION fire on the same frame.
 - **F855 vs Obs 16 cricket-truth verification.** §1.1 cricket-truth column is per Obs 16/18/21; broadcast-strip frame screenshots would harden the verification. Operator action.
 - **C19A3 trace_beta replay validation.** Memo's predicted-flip claims at §2.3 and §3.4 assume next replay captures `trace_beta_sm_wicket_dispatch` payloads with `resolution_src`. Preflight tag-existence check (`scripts/preflight_validation_tags.sh`) confirms emission lives in code; only replay execution remains.
+- **Layer 1b — Scout prompt schema extension (C29b candidate).** Tracked in `Architecture_HANDOFF.md` §0.6 deferred-work index. Closes the Scout-contract gap at the source by adding a `dismissed_batter` field to Scout's structured output. Non-overlapping with H-D2-Layer-1a; either independently flips `trace_gamma_w_symbol_at_wicket` + cricket-truth FOW. OUT of workstream D scope; candidate for a new workstream surface (E or similar). Empirical basis at §3.4b (0/182 wicket-signal frames across 4 fixtures).
 
 ---
 
