@@ -1,17 +1,16 @@
 # Handoff — Session continuation document
 
-**Last update**: 2026-05-21
+**Last update**: 2026-05-21 (post-C16)
 **Branch**: `derive-not-detect`
-**Status**: Workstream paused at operational validation gate. F1 cascade-closure result validated against captured Scout dump; production session needed to confirm assertion-library flips on fresh trace data. No engineering work currently unblocked.
+**Status**: Workstream paused at operational validation gate. F-η cascade root localized at production F302/F304 via static analysis + pipeline.log audit; Shape B cross-field pairing gate shipped at `apply_scorer_decision`. Predicted-flip claim on disk; next natural production session is the validation gate.
 
-Entry point for next Cowork session. Read this file first, then `CLAUDE.md`, then the design memos at:
-- `files/docs/investigations/sm_as_orchestrator_design.md` (§7 is the standing audit framework with gates 1-7)
-- `files/docs/investigations/cold_start_initial_striker_design.md` (updated with Context A revision)
-- `files/docs/investigations/multi_ball_gap_bowler_credit_design.md` (B-α + B-β cascade-closure)
-- `files/docs/investigations/dispatch_loop_redesign_scoping.md`
-- `files/docs/investigations/derivation_only_stats_design.md` (B1.x background)
-- `files/docs/investigations/no_multiball_design.md` (B1.2/B1.3 background)
-- `files/docs/investigations/deterministic_striker_rotation_design.md`
+Entry point for next Cowork session. Read this file first, then `CLAUDE.md`, then `Architecture_HANDOFF.md`, then the design memos at:
+- `files/docs/investigations/temporal_coupling_investigation_brief.md` (C10–C12.5b: the static-analysis methodology + cascade-root localization)
+- `files/docs/investigations/c13_fc5_audit_memo.md` (the §7.2 7-gate audit on 4 shapes + Shape B selection)
+- `files/docs/investigations/stream_gap_reconciliation_design.md` (B-η chain §1–§13: 5 empirical falsifications + investigation-strategy pivot)
+- `files/docs/investigations/state_mutation_site_catalogue.md` (C9: 38 mutation sites + 2 async callbacks)
+- `files/docs/investigations/dckkr_20260521_cc_investigation_brief.md` (the operator-side brief + §0 reframe)
+- `files/docs/investigations/sm_as_orchestrator_design.md` §7 (the standing 7-gate audit framework) + §8 (dual-state-write defect-class catalogue — to be added in C17)
 
 ## The objective
 
@@ -22,152 +21,169 @@ Shift the pipeline from a detection-heavy architecture to a derivation-first arc
 4. Bowler identity
 5. First striker after innings start / new batter after wicket
 
-Everything else on the UI is deducible from these primitives plus per-frame deltas. The session's discipline: any classification of code as "scar tissue" is a hypothesis pending the §7.2 seven-gate audit. The audit is the load-bearing safety mechanism — six audits across this session produced Keep verdicts when each surfaced a structural role the original framing missed, and one fix (F1) produced architecturally significant cascade-closure of four bug classes.
+Everything else on the UI is deducible from these primitives plus per-frame deltas. The session's discipline: any classification of code as "scar tissue" or "defect class" is a hypothesis pending the §7.2 seven-gate audit. The audit is the load-bearing safety mechanism.
 
-## Headline result this session — F1 cascade closure
+## Headline result this session — F-η cascade-root localization via static analysis + Shape B fix
 
-**F1 (`437d952`) — a one-line field-name fix at `_accept_initial:2798`** (`card.get("broadcast")` → `card.get("broadcast_striker")`) — closed at minimum four bug classes when measured against the captured Scout dump:
+**Shape B cross-field pairing gate (`ad151fd`)** at `apply_scorer_decision` (test_pipeline.py:4517) closes the B-η cascade root that produced the DC vs KKR session's f304 anchor corruption + downstream wicket-dispatch failures.
 
-| Bug class | Pre-F1 state | Post-F1 replay state | Closure type |
-|---|---|---|---|
-| B-ε (initial striker mis-resolution) | Gill credited Sai's FOUR at frame 12 | Sai credited correctly | Direct fix |
-| B-β (SM wicket dispatch missed) | 0 / 2 wickets dispatched (frames 979, 1190) | 2 / 2 dispatched | **Cascade closure** |
-| Multi-ball decomposition false positives | 5 spurious gaps in session | 0 spurious gaps | **Cascade closure** |
-| Compound tokens (`Wd+3`, `Wd+5`) | 2 emitted at frames 286, 303 | 0 emitted | **Cascade closure** |
-| Cross-credit throughout session | Persistent Gill↔Sai label swap | Correct attribution per ball | Cascade closure |
+**Cascade root concretely localized via production `/tmp/pipeline.log` audit (C12.5b):**
 
-The cascade mechanism: SM's wrong initial striker (B-ε) put `self.striker` out-of-sync with the scoreboard tracker, which produced score-tracking inconsistencies that `_infer_event` misclassified as multi-ball gaps, which fed wrong tokens, which triggered downstream dispatch failures including the wicket misses. Fixing the initial striker collapses the entire downstream chain.
+```
+F302 TRACK score: 45 → 49 (post-event immediate, grace=1)
+F302 TRACK overs: 4.4 → 4.5 (fast-confirm, natural overs increment F302)
+F303 POISONED                                                  (upstream block)
+F304 TRACK score: 49 → 54 (post-event immediate, grace=1)      ← CASCADE ROOT
+F304 TRACK overs: 4.5 → 6.3 (post-event immediate, grace=0)    ← CASCADE ROOT
+```
 
-**Architectural-pivot-scale demonstration: empirically validated discipline saves engineering work.** Four bug classes the §7 list had framed as separate engineering workstreams collapsed to one root cause. The audit-driven discipline that prevented those workstreams from being launched is the meta-lesson.
+The `(post-event immediate, grace=N)` suffix is the FC5 log signature from `consistent_tracker.py:304-305`. Two FC5 fires at F304 admit both halves of the bad PANT/WARD/SHAMI overlay frame's reading via `_post_event_grace=2` inherited from f302's `on_ball_event()` reset, combined with `_is_suspicious` returning False for upward score jumps under +30 and forward overs jumps.
+
+**Empirical pairing criterion (C13 §2.1):**
+
+```
+legitimate_pair(d_score, d_balls, d_wickets) ≡
+    (d_balls == 1 AND 0 ≤ d_score ≤ 7 AND d_wickets ∈ {0, 1})  -- legal delivery
+  OR
+    (d_balls == 0 AND 0 ≤ d_score ≤ 5 AND d_wickets ∈ {0, 1})  -- extras-only
+```
+
+Verified empirically: 127/127 benign DIRECT-SCORE-COMMIT firings (GTRR 80 + DCKKR 47) satisfy `legitimate_pair`. F304 fails (d_balls=10, d_score=+5).
+
+## Session meta-findings — two architectural insights worth headlining
+
+This session's accumulating discipline track record produced two transferable methodology insights, alongside the prior session's F1 cascade-closure headline:
+
+### Meta-finding 1 — Static-analysis methodology at near-zero commit cost
+
+Predicate-trail reading + cross-fixture empirical verification produces full cascade-root localization without an instrumentation cycle per hypothesis. The C9 catalogue + C10 static analysis + C11 predicate semantics + C12 sub-candidate elimination + C12.5b pipeline.log parse = **full cascade-root localization at near-zero commit cost** (5 docs commits, zero behavior change), followed by C13 audit + C14 fix at 2 functional commits.
+
+The previous methodology (instrument → replay → fix) had a budget cost of one diagnostic commit per hypothesis. The static-analysis methodology had a budget cost of one docs commit per hypothesis-class. **This is a defect-class identification methodology distinct from "instrument-replay-then-fix", suited specifically to temporal-coupling defect classes that captured-replay flattens (per §0.3 of the C8 brief reframe).**
+
+### Meta-finding 2 — Falsification cascade as methodology signal-of-correctness
+
+Five empirical + eight static falsifications + one acceptance is the methodology's signal of correctness, not its signal of failure. The discipline rule "every classification is a hypothesis pending empirical verification" produces a falsification cascade BY DESIGN; the budget mechanism (5-empirical-falsification methodology-retirement trigger from C9 §11 + C10 §1.2) ensures the cascade terminates productively rather than open-loop. **A complete falsification chain is an architectural finding, not a failure.**
+
+These two meta-findings join F1's cascade-closure (prior session) and the §7.2 7-gate audit (prior session) as the workstream's accumulating discipline track record.
 
 ## Architectural posture
 
-### Detection vs Derivation (refined this session)
+### Detection vs Derivation (unchanged from prior session)
 - **Detection (5 primitives only)**: vision provides runs, overs, batter names, bowler name, first-striker/new-batter signals.
-- **Derivation (everything else)**: this_over tokens derive from per-frame (Δruns, Δovers, wicket events). Striker rotation derives deterministically from first-striker + per-ball runs sequence + wicket events. Batter/bowler card stats derive from committed per-ball events. Recent Overs derive from over_history (SM-authoritative, archived per integer crossing).
-- Squad-canonical name resolver enforces that raw Scout name tokens (e.g., "PATHUM RAHUL" OCR concatenation) get rejected if they don't fuzzy-match to a squad member.
+- **Derivation (everything else)**: this_over tokens derive from per-frame (Δruns, Δovers, wicket events). Striker rotation derives deterministically from first-striker + per-ball runs sequence + wicket events.
+- Squad-canonical name resolver enforces that raw Scout name tokens get rejected if they don't fuzzy-match to a squad member.
 
-### SM as sole UI authority
-- WS payload reads Recent Overs from SM's `over_history`, not eyes-side `over_mgr.over_history` (`46525af`).
-- Striker rotation determined by SM, never overwritten by mid-over broadcast `>` indicator (`2105463` — deterministic rotation; broadcast indicator becomes audit-only via `STRIKER-BROADCAST-DISAGREES-DETERMINISTIC`).
-- Squad-canonical name resolver enforced at all bat1_name / bat2_name / broadcast_striker / bowler_name commit sites (`9856fd6`).
+### SM as sole UI authority (unchanged + reinforced)
+- WS payload reads Recent Overs from SM's `over_history`.
+- Striker rotation determined by SM; broadcast indicator is corroboration only.
+- Squad-canonical name resolver enforced at all bat1_name / bat2_name / broadcast_striker / bowler_name commit sites.
 - Initial striker at cold-start exit reads `broadcast_striker` field correctly (F1, `437d952`).
+- **New (C14): cross-field pairing gate at `apply_scorer_decision` rejects single-frame commits whose (Δscore, Δballs, Δwickets) tuple violates `legitimate_pair`.**
 
 ### No-speculative-fixes discipline (refined further this session)
-Every fix commit must cite specific trace evidence or test output that proves the diagnosed cause. "Likely" / "probably" language is investigation-only, never authorization to commit. If diagnosis can't be confirmed from existing data, add instrumentation first, re-run, then fix.
+Every fix commit must cite specific trace evidence — concrete frame numbers — that proves the diagnosed cause. "Likely" / "probably" language is investigation-only, never authorization to commit. If diagnosis can't be confirmed from existing data, add static-analysis + pipeline.log audit first, re-run, then fix.
 
-The discipline applies recursively to bug-class hypotheses, NOT-A-DEFECT verdicts, fix-feasibility claims, and "already addressed" verdicts. **Every classification is a hypothesis pending empirical verification. The discipline doesn't have a privileged direction.** Demonstrations this session:
-- B-ζ falsified (CC's own hypothesis caught one turn after gate 6 was tightened)
-- F-α-shadow caught false positives in CC's own observability tooling that masked the real B-α signal
-- B-β cascade-closed by F1 (saved a separate fix memo + workstream)
+**The "captured-replay drives investigation" assumption is RETIRED** for temporal-coupling defects (per C8 §0.3). Captured-replay remains canonical as a falsification mechanism and regression-detection substrate; it does NOT drive root-localization for defect classes where the temporal signature flattens under deterministic replay.
 
-### §7.2 seven-gate audit checklist (gate 7 added this session)
-Before any code in §7 of `sm_as_orchestrator_design.md` (the candidate-deletion list) is touched:
-1. Enumerate every caller / consumer of the candidate
-2. Classify each as (a) producer, (b) consumer, (c) read-only check, or (d) state holder
-3. Cross-reference with adjacent state — does any consumer use it for something other than the obvious role?
-4. Equivalence proof: can the candidate be removed without behavior change, or replaced with a derivation?
-5. Lifecycle trace: when set, when cleared, when read — is there a race or a hidden invariant?
-6. **Predicted-flip gate (tightened)**: must cite concrete frame numbers from captured trace data, not just qualitative code-path reasoning. Applies recursively to bug-class hypotheses, NOT-A-DEFECT verdicts, and "already addressed" claims.
-7. **Cross-fixture verification (new)**: every fix commit followed by replay against captured data to check whether OTHER reported bug classes still reproduce. F1 demonstrated this — closed four bug classes; without the cross-fixture step the workstream would have spent capacity on B-β fix memos, compound-token fix memos, multi-ball decomposition design memos — each architecturally correct but operationally redundant given F1's cascade reach.
+### §7.2 seven-gate audit checklist (standing precondition; gates 1–7 unchanged)
+
+The framework added gate 7 (cross-fixture verification) in the prior session per F1 closure. This session applied all 7 gates to 4 candidate shapes (A/B/C/D) at C13 — first deep multi-shape audit in the chain. Gate-6 (predicted-flip with concrete frame numbers, applied recursively) is non-negotiable per the falsification track record.
+
+**New discipline nuance — static vs empirical falsification:**
+
+- **Empirical falsification** counts against the methodology-retirement budget (5-falsification cap per C9 §11 / C10 §1.2). Replay or instrumentation cycle empirically disproves a hypothesis.
+- **Static falsification** does NOT count against the budget. Code-reading or predicate-trail pass conclusively proves a hypothesis is impossible at the proposed site. Zero-cost; apply liberally before any instrumentation commit.
+
+This session: 5 empirical falsifications (B-η chain) + 8 static falsifications (C10 + C11 + C12) + 1 acceptance (Shape B). Without the static-vs-empirical distinction, the chain would have hit the retirement budget at C11.
 
 ## This session's commit ledger — chronological
 
-This session ran 2026-05-19 through 2026-05-21. 17 commits total. Pre-commit gate (Layer 1.5 36/36 + Layer 2 30 balls) held on every single commit. Predicted-flip claims empirically validated at each step.
+This session ran 2026-05-21. **16 commits total.** Pre-commit gate (Layer 1.5 + Layer 2) held on every commit. Predicted-flip claims empirically validated or statically falsified at each step.
 
 ```
-192be39 chore: stale-test cleanup (broken imports + dead references in test_recent_fixes.py)
-8f8a7c7 docs: memo updates §7.1-§7.4 + dispatch_loop_redesign_scoping.md (NOT-A-DEFECT verdicts for Queue B and _ScoutRetryBuffer)
-95e6ff5 chore(dispatch-loop): additive scaffold for inline multi-ball-gap with shadow comparison (SM_INLINE_MULTI_BALL flag off)
-83ebda7 docs: S5a closure — broadcast_extra and extras_type are parallel fields with different semantics (NOT-A-DEFECT)
-79989b8 docs: S5b memo — broadcast_striker write authority neutralized but field used at boundary frames (SPLIT into S5b-1/2/3)
-a7306cd chore(diagnostics): STRIKER-IDENTIFY-FALLBACK-INVOKED instrumentation for S5b-2 corpus check
-3dbace9 fix(no-multi-ball): S5b-2 deletion — broadcast-indicator fallback at _identify_striker (audit-clean)
-dd0fdde docs: S5b-3 design memo — per-context audit of broadcast_striker at _identify_and_set Priority 3
-6aea92f chore(cold-start): S5b-3a additive scaffold for post-wicket slot-diff striker derivation (SM_POST_WICKET_SLOT_DIFF flag off)
-696b7e4 tune(score_manager): shrink _PENDING_BOWLER_BALL_CREDIT_MAX_LAG 40 → 20 (production data: 0 orphans, max lag 13)
-1d92101 test(harness): five empirically-grounded assertion invariants from validate_gtrr_20260520_180715 (broken-but-known baseline)
-ea27ba5 docs: S5b-3 Context A re-audit memo — F1 failure mechanism identified (field-name bug)
-437d952 fix(score_manager): use correct broadcast_striker field name in _accept_initial cold-start (closes B-ε)
-fcbd5ef docs: B-α audit memo + B-ζ falsification + recursive gate-6 application
-37f63ad fix(observability): correct bowling_card field path in multi-ball shadow snapshot
-4d3fb33 fix(score_manager): extend pending bowler ball-credit queue to ABSORBED_LEGAL when bowler_name=None at gap commit
-c0f30cf docs: B-β cascade closure memo — h1 confirmed empirically, F1 closes B-β without code change
-40b14c7 docs: cascade-closure pattern + §7.2 gate 7 cross-fixture verification baked in
+b49e48b chore(diagnostics): B-η instrumentation pass — three additive trace tags + replay scaffold
+e3171eb chore(diagnostics): replay-scaffold warm-seed mode for f304-anchor reproduction
+86299e0 docs(design): B-η stream-gap reconciliation memo + post-instrumentation empirical findings
+78b4835 chore(diagnostics): replay-only LLM-extractor fallback for f304-anchor reproduction
+ac06fa6 docs(design): B-η memo §10 — empirical f304 evidence + cascade-root pivot
+237d227 chore(diagnostics): DIRECT-SCORE-COMMIT instrumentation + GTRR fixture support
+e19f72a docs(design): B-η memo §11-§13 — fifth falsification + investigation-strategy pivot + meta-finding
+a99d82c docs(brief): C8 reframe — Step 1 retarget + temporal-coupling block on Steps 2/3
+af19dd2 docs(design): C9 state-mutation site catalogue — 38 write sites + 2 async callbacks
+2df4061 docs(brief): C10 temporal-coupling investigation — sixth hypothesis, static analysis
+5833857 docs(brief): C11 static-analysis pass — Outcome A (qualified) on FC5 post-event grace
+b6e3c70 docs(brief): C12 overs-side static-analysis closure — score-side fully localized, overs-side narrowed
+c05c4b6 docs(brief): C12.5b — pipeline.log audit closes gate 6 with concrete frame numbers
+639fa4a docs(audit): C13 §7.2 7-gate audit on FC5 candidate fix shapes — Shape B selected
+ad151fd fix(test_pipeline): C14 cross-field pairing gate at apply_scorer_decision — closes B-η F304 cascade root
+770db98 test(C15): permanent gate-6 verification + baseline + predicted-flip claim for C14 fix
 ```
 
-## Trace assertion library (broken-but-known baseline)
+## Trace assertion library (broken-but-known baseline, unchanged from prior session)
 
-Five empirically-grounded invariants in `files/tests/trace_session_assertions.py`. Each fails against the original `validate_gtrr_20260520_180715` trace at the documented failure shape. New baseline captured; future commits gate against not-getting-worse.
+Five empirically-grounded invariants in `files/tests/trace_session_assertions.py`. Baselines:
 
-| Assertion | Pre-F1 failure | Post-F1 replay state | Status |
+| Assertion | DCKKR pre-fix | GTRR baseline | Predicted post-C14 on next session |
 |---|---|---|---|
-| `trace_alpha_bowler_runs_sum` | team=174 sum=149 gap=24 | partial; F-α-queue covers one contributor | Will improve significantly on fresh production trace |
-| `trace_beta_sm_wicket_dispatch` | 2 misses (frames 979, 1190) | 2/2 dispatched in replay | Predicted PASS on fresh trace |
-| `trace_epsilon_initial_striker` | frame 12: actual=Gill, expected=Sai | Sai correctly credited | Predicted PASS on fresh trace |
-| `trace_compound_tokens` | 2 emissions (Wd+3, Wd+5) | 0 emissions in replay | Predicted PASS on fresh trace |
-| `trace_extras_total` | ui=1 archived=10 gap=9 | UI render layer; separate workstream | Stays FAIL until UI bug addressed |
+| `trace_alpha_bowler_runs_sum` | FAIL gap=4 | FAIL (gap=25 pre-F1) | **predicted: gap reduces or PASS** (B-θ cascade contribution collapses) |
+| `trace_beta_sm_wicket_dispatch` | FAIL — 3 misses (f371, f521, f636) | FAIL — 2 misses | **predicted: PASS** (cascade closure — F304 anchor blocked) |
+| `trace_epsilon_initial_striker` | PASS | FAIL (pre-F1) | PASS (unchanged) |
+| `trace_compound_tokens` | PASS | FAIL (pre-F1) | PASS (unchanged) |
+| `trace_extras_total` | PASS | FAIL (UI render layer, separate scope) | PASS (unchanged) |
 
-Runner: `python files/scripts/run_trace_session_assertions.py <trace.jsonl>`. SESSION_CONTEXT in the runner maps trace filename → context (expected_initial_striker, etc.). When a fresh session lands, add its filename stem to SESSION_CONTEXT and run.
+Runner: `python files/scripts/run_trace_session_assertions.py <trace.jsonl>`.
 
-## Five observability streams (instrumentation in place)
+## Validation gate — next natural production session
 
-The session ran with five trace tags emitting automatically. Production session data unlocks five independent decisions per the table below.
+The workstream's standing operational pattern: ship with predicted-flip claim, validate on next natural production session. No fresh-session-now authorization required.
 
-| Trace tag | Question | Gate decision |
-|---|---|---|
-| `PATH-B-FIRED` (`ac1ca89`) | Is COLD_START_PHYSICS_PROMOTE dead code in production? | Was BLOCKED — 3 fires in validate_gtrr; needs re-audit before deletion |
-| `PENDING-BOWLER-BALL-CREDIT-ORPHANED` | Is `_PENDING_BOWLER_BALL_CREDIT_MAX_LAG` unused configuration? | DECIDED — shrunk 40 → 20 (`696b7e4`); 0 orphans observed, max lag 13 |
-| `DISPATCH-LOOP-SHADOW-COMPARISON` (`95e6ff5`) | Does inline multi-ball-gap match dispatch-loop output? | BLOCKED — 1 real B-α defect found (frame 522); 4 false positives from observability bug (`37f63ad` fixed) |
-| `STRIKER-IDENTIFY-FALLBACK-INVOKED` (`a7306cd`) | Does state_fallback remain authoritative post-S5b-2? | VALIDATED — 72/72 state_fallback, zero regressions |
-| `STRIKER-POST-WICKET-DERIVATION` (`6aea92f`) | Does slot-diff match broadcast Priority 3 across post-wicket gaps? | SCAFFOLD BLIND SPOT — both wickets in session bypassed `_apply_wicket_fall_only` pre-F1; post-F1 replay shows wickets dispatch correctly so scaffold validity needs re-test on fresh trace |
+**On next session's trace landing:**
+1. Add filename stem to `SESSION_CONTEXT` in `files/scripts/run_trace_session_assertions.py`
+2. Run `python files/scripts/run_trace_session_assertions.py logs/trace/<NEW>.jsonl`
+3. Observe whether `trace_beta_sm_wicket_dispatch` flips PASS
+
+**Two outcomes:**
+- **YES (predicted-flip materializes):** F-η cascade closure confirmed end-to-end. Workstream cycle complete. C19 → next-session HANDOFF rewrite documents the cycle closure.
+- **NO (sixth empirical falsification):** Shape B at `apply_scorer_decision` is necessary but not sufficient. Per §1.2 (C10 brief) + C9 §11: methodology retirement trigger OR coverage extension. The empirically-justified next move is **C19: extend Shape B coverage to `test_pipeline.py:8986+` (catch-up branch) and `:11750` (end-of-over hook)** — the two sites Shape B does not currently gate.
 
 ## Workstream status by area
 
-### Operational validation (next concrete move)
-Run one full production session against the current branch. Standard launch sequence below. All trace tags + assertion library emit automatically. After session: add filename stem to SESSION_CONTEXT, run `run_trace_session_assertions.py`, confirm predicted flips materialize.
+### F-η Shape B fix (shipped C14)
+Cross-field pairing gate at `apply_scorer_decision`. Closes the F304-class cascade root concretely localized via production pipeline.log. Permanent gate-6 test at `files/tests/test_cross_field_pairing_gate.py` (6 cases) wired into Layer 1.5.
 
-Expected outcomes on fresh trace:
-- `trace_epsilon_initial_striker`: FAIL → PASS (F1 fix)
-- `trace_beta_sm_wicket_dispatch`: FAIL → PASS (B-β cascade)
-- `trace_compound_tokens`: FAIL → PASS (cascade)
-- `trace_alpha_bowler_runs_sum`: significant gap reduction (F-α-queue + F1 cascade contributors)
-- `trace_extras_total`: stays FAIL (UI render layer, separate workstream)
+### B-ι (locked-SM-state prevents resync) — deferred pending C14 validation
+The previous brief framed B-ι as a separate engineering workstream (the deterministic-rotation override at `score_manager.py:4295-4325`). Per the dual-state-write defect-class pattern: if F-η closure prevents the SM/sb._inn divergence at f304 in the first place, B-ι's "resync prevention" symptom may never manifest. **Wait for next natural production session's trace_beta verdict before opening B-ι memo.**
 
-Any unflipped predicted-PASS assertion = an instrumentation/cascade gap to investigate. Any newly-failing assertion = a regression to investigate.
+### B-θ (over-boundary bowler credit) — deferred pending C14 validation
+Same rationale. The trace_alpha gap=4 in DCKKR is hypothesized to be B-θ's residual contribution after B-η is removed. If trace_alpha gap closes post-C14, B-θ collapses as cascade symptom. If gap persists, B-θ becomes the next standalone target.
 
-### F-α-rotation (deferred, latent)
-Striker rotation when bowler=None in ABSORBED_LEGAL has the same architectural gate as F-α-queue but the fix shape differs (requires gap_meta state tracking). Lower priority post-cascade. Will be revisited if fresh trace data shows it still fires.
+### Captured-replay scaffold (commits b49e48b–237d227)
+- `files/scripts/replay_captured_scout_trace.py` — captured-Scout replay scaffold
+- Supports `--seed-frame / --seed-striker / --seed-non-striker / --seed-bowler` (warm-seed mode)
+- Supports `--enable-llm-extractor` (production Extractor.extract() via Groq Llama)
+- Supports `--fixture {dckkr, gtrr}` (cross-fixture)
+- Emits four observation tags: `FRAME-TRUST-GATE`, `OVERS-JUMP-STREAK-STATE`, `POISON-STREAK-AT-COMMIT`, `DIRECT-SCORE-COMMIT`
+- **Limitation (§0.3 retired-assumption):** does NOT drive `apply_scorer_decision` — only SM-side `on_frame()`. Captured-replay cannot reproduce temporal-coupling defects; serves as falsification mechanism + regression detector, not localization tool.
 
-### Path B re-audit (blocked pre-deletion)
-S4a step (ii) was preparing Path B deletion. Production data showed 3 `PATH-B-FIRED` events in validate_gtrr session — Path B is NOT dead. Re-audit needed before any deletion attempt.
+### State-mutation-site catalogue (C9)
+`files/docs/investigations/state_mutation_site_catalogue.md`: 38 write sites + 2 async callbacks across `score_manager.py`, `test_pipeline.py`, `eyes/scoreboard.py`. Score, wickets, overs, batter-identity, bowler-identity primitives.
 
-### Dispatch-loop redesign (still in scaffold mode)
-`SM_INLINE_MULTI_BALL` flag-flip blocked. F-α-shadow + F-α-queue closed B-α-real, but real divergence at frame 522 of original session remains the open question. Fresh trace data needed to confirm zero divergence pre-flip.
+**Three gate-bypass classes surfaced:**
+- §7.1 `_inn[*]` direct-write bypass (6 sites) — state-recovery Phase-2 + POISON-RECAL forced reset
+- §7.2 async-callback writes (2 sites: striker/bowler on_lock) — falsified statically in C10 §3 (not actually async)
+- §7.3 hot-resume path (5 sites) — startup-only, deprioritized
 
-### S5b-3 cold-start initial-striker
-Context A "already addressed" verdict FALSIFIED by production data. F1 corrects the field-name bug (`broadcast` → `broadcast_striker`). Three-phase refactor in design memo:
-- 3a (scaffold for post-wicket): shipped (`6aea92f`)
-- 3b (hot-resume hardening): waits for production data confirming B-iii exercise
-- 3c (deletion): bundles with S5b-1 observability cleanup; gates on flag flips
+**Catalogue is itself a gate-6 instrument** (per C9 §11): future "the defect is at site X" hypotheses can be checked against the table for whether X is a real mutation site, what gates protect it, what the invocation pattern is.
 
-### Queue B (`_pending_bowler_ball_credits`) — Keep, with F-α-queue extension
-Documented in §7.1 as canonical 3-way-race resolver. F-α-queue (`4d3fb33`) extended its reach to ABSORBED_LEGAL events when `bowler_name=None`.
-
-### UI render layer bugs (separate workstream)
-- B-γ (Recent Overs panel drops entries): over_history is complete; UI rendering layer drops some
-- B-δ (UI bottom-strip striker render diverges from SM striker): two parallel render paths
-- `trace_extras_total` UI inconsistency
-Not in scope for the SM/pipeline workstream. Frontend audit separately.
+### UI render layer bugs (separate workstream — unchanged from prior session)
+- B-γ (Recent Overs panel drops entries), B-δ (UI bottom-strip striker), `trace_extras_total` UI inconsistency — out of scope for SM/pipeline workstream.
 
 ## Pipeline tracks (unchanged)
 
 ### Track 1 — State derivation (production pipeline)
-Live state for UI: score, overs, wickets, this_over, recent_overs, batting_card, bowling_card, partnership, FOW, batting_team, current_bowler, striker.
-
 Entry: `files/test_pipeline.py` main loop. Frame source: `files/eyes/capture/udp_frame_source.py` (UDP MPEG-TS via ffmpeg subprocess).
 
-Status: Operational validation pending; cascade closure of multiple bug classes validated against captured data.
+Status: C14 fix in place; operational validation pending; cascade-root localized at F302/F304 via static analysis + pipeline.log empirical evidence.
 
 ### Track 2 — Clip extraction (OpenScout)
 Disabled (`USE_OPEN_SCOUT=0`). Will not enable until Track 1 fully validated.
@@ -175,53 +191,56 @@ Disabled (`USE_OPEN_SCOUT=0`). Will not enable until Track 1 fully validated.
 ## File paths
 
 ```
-files/test_pipeline.py             # Main pipeline
-files/score_manager.py             # State machine (~6K lines after this session)
+files/test_pipeline.py             # Main pipeline; apply_scorer_decision at :4356
+                                   # C14 cross-field pairing gate at :4517
+files/score_manager.py             # State machine (~6500 lines)
+files/eyes/scoreboard.py           # Scoreboard + sb.set bottleneck at :1188-1481
+                                   # DIRECT-SCORE-COMMIT emission at :1481 (C6)
+files/eyes/consistent_tracker.py   # ConsistentReadTracker — 5 fast-confirm paths
+                                   # FC5 post-event grace at :294-306 (cascade root)
 files/eyes/scoreboard.py           # batting_card / bowling_card / squad resolution
-files/eyes/confidence_tracker.py   # ConfidenceTracker class + unit tests
+files/confidence_tracker.py        # ConfidenceTracker (team / striker / bowler)
+                                   # NOT the FC5 site (don't confuse with consistent_tracker.py)
 files/eyes/vision.py               # SCOUT_PROMPT_SHORT (default), SCOUT_PROMPT (verbose)
-files/eyes/agent.py                # Vision agent + digits-veto + Track 1 429 retry
-files/eyes/commentary.py           # BED (advisory shadow event detector)
-files/eyes/this_over.py            # over_mgr (this_over tokens, archival)
-files/eyes/extract_regex.py        # Regex-primary parse_strip
-files/eyes/frame_ledger.py         # Frame Fate Ledger (Stage 2c/2d)
+files/eyes/agent.py                # Extractor.extract() — LLM fallback path
+                                   # Uses int|None syntax (Python 3.10+)
+files/eyes/extract_regex.py        # Regex-primary parse_strip (returns None on STRIP miss)
+files/eyes/frame_ledger.py         # Frame Fate Ledger
 files/eyes/udp_frame_source.py     # UDP MPEG-TS frame source
-files/cricket_rules.py             # validate_diff invariants + _cold_start_infer_gap_tokens
-files/trace_emitter.py             # Structured trace tag emitter (KNOWN_TAGS registry)
+files/cricket_rules.py             # validate_diff invariants
+files/trace_emitter.py             # KNOWN_TAGS registry (180+ tags incl. C6/C10/C14)
 
 scorecard-ui/app/page.tsx          # Main UI
 scorecard-ui/app/components/BattingCard.tsx
 
 files/tests/symptom_class_assertions.py    # 11 assertion functions (12 classes)
-files/tests/trace_session_assertions.py    # 5 trace-session assertions (B-α/β/ε/compound/extras)
-files/tests/test_sm_derivation_ledger.py   # Layer 1.5 — SM derivation against ledger
+files/tests/trace_session_assertions.py    # 5 trace-session assertions
+files/tests/test_sm_derivation_ledger.py   # Layer 1.5 — 36 balls + 6 cross-field gate cases
 files/tests/test_pipeline_captured_replay.py  # Layer 2 — captured-Scout replay
+files/tests/test_cross_field_pairing_gate.py  # C15 permanent gate-6 (6 cases)
 files/tests/fixtures/dc_vs_kkr_2026_152064_ledger.json
-files/tests/fixtures/dc_vs_kkr_2026_152064_overs_1_6_ground_truth.md
 files/tests/fixtures/gt_vs_rr_2026_commentary_first_innings.md
 
 files/scripts/run_trace_session_assertions.py     # Trace session assertion runner
-files/scripts/analyze_gap_detected_retro.py        # Stage 1 retrospective
-files/scripts/analyze_delta_balls_distribution.py  # Δballs audit
-files/scripts/classify_steady_state_gaps.py        # Gap root-cause classifier
-files/scripts/classify_ocr_miss_subclasses.py      # OCR miss sub-class audit
-files/scripts/audit_scar_tissue_targets.py         # S0 validation script
+files/scripts/replay_captured_scout_trace.py      # Captured-replay scaffold (C-commits)
+files/scripts/analyze_gap_detected_retro.py
+files/scripts/audit_scar_tissue_targets.py
 
-files/docs/investigations/sm_as_orchestrator_design.md            # §7 framework with gates 1-7
-files/docs/investigations/dispatch_loop_redesign_scoping.md       # Design B + (i) + (ii)
-files/docs/investigations/cold_start_initial_striker_design.md    # S5b-3 per-context + Context A revision
-files/docs/investigations/multi_ball_gap_bowler_credit_design.md  # B-α audit + B-β cascade closure
-files/docs/investigations/no_multiball_design.md                  # B1.2/B1.3 background
-files/docs/investigations/derivation_only_stats_design.md         # A1/A2 background
-files/docs/investigations/deterministic_striker_rotation_design.md
+files/docs/investigations/temporal_coupling_investigation_brief.md  # C10–C12.5b chain
+files/docs/investigations/c13_fc5_audit_memo.md                     # C13 7-gate audit
+files/docs/investigations/stream_gap_reconciliation_design.md       # B-η chain §1–§13
+files/docs/investigations/state_mutation_site_catalogue.md          # C9 catalogue
+files/docs/investigations/dckkr_20260521_cc_investigation_brief.md  # operator brief + §0 reframe
+files/docs/investigations/dckkr_20260521_session_observations.md    # observations + C15 §
+files/docs/investigations/sm_as_orchestrator_design.md              # §7 framework + §8 (C17 target)
 
 deploy/systemd/*.service           # pipeline, recorder, live-clips, ui
-deploy/Caddyfile                   # reverse proxy
-.github/workflows/deploy.yml       # CI deploy
-.git/hooks/pre-commit              # Layer 1.5 + Layer 2 gate
+deploy/Caddyfile
+.github/workflows/deploy.yml
+.git/hooks/pre-commit              # Layer 1.5 + Layer 2 gate; venv-Python preference (C15)
 ```
 
-## Launch sequence (operational reference)
+## Launch sequence (operational reference, unchanged)
 
 ```bash
 cd ~/Projects/SportsComm
@@ -238,7 +257,7 @@ cd ~/Projects/SportsComm
 export FRAME_SOURCE=udp
 export FRAME_SOURCE_UDP_URL='udp://0.0.0.0:9999?fifo_size=10000000&buffer_size=2097152&overrun_nonfatal=1'
 export FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS='1920x1080,1280x720'
-export CRICBUZZ_MATCH_ID=<match_id>      # for DC-vs-KKR: 152064
+export CRICBUZZ_MATCH_ID=<match_id>
 export CRICBUZZ_MATCH_SLUG=<slug>
 export BMF_SESSION_ID="validate_$(date +%Y%m%d_%H%M%S)"
 export USE_OPEN_SCOUT=0
@@ -249,100 +268,108 @@ export SCOUT_DEDUP_SHADOW=1
 export SKIP_PREMATCH_S=0
 files/.venv/bin/python files/test_pipeline.py 2>&1 | tee /tmp/pipeline.log
 
-# Terminal C — ffplay viewer (optional)
-ffplay -fflags nobuffer -flags low_delay -framedrop \
-  -window_title "UDP 9998" \
-  "udp://127.0.0.1:9998?fifo_size=10000000&buffer_size=2097152&overrun_nonfatal=1"
-
-# Terminal D — ffmpeg dual-output stream
-ffmpeg -re -ss <offset> \
-  -i <path/to/match.mp4> \
-  -c copy \
-  -map 0 -f tee \
-  "[f=mpegts]udp://127.0.0.1:9999?pkt_size=1316|[f=mpegts]udp://127.0.0.1:9998?pkt_size=1316"
+# Terminal C, D — see prior HANDOFF for ffplay viewer + ffmpeg dual-output stream
 ```
 
 UI: http://localhost:3000. Validation fixtures:
 - DC vs KKR (`files/logs/deliveries/20260508_191946/match_4621b9f8.mp4`, start ~09:30)
 - GT vs RR (`files/logs/deliveries/8a0c6c14/match_8a0c6c14.mp4`, start ~40:30)
 
+## Fresh-checkout setup (NEW in C16)
+
+The pre-commit hook at `.git/hooks/pre-commit` prefers the project venv Python (`files/.venv/bin/python`, 3.12) over system `python3` (3.9 on most macOS). This is necessary because the C15 cross-field-pairing-gate test imports `eyes/agent.py` which uses `int | None` syntax (Python 3.10+).
+
+The hook lives outside the tracked git tree (`.git/hooks/` is gitignored), so a fresh clone needs to reinstall the hook with venv preference. **C18 will ship a `scripts/setup_precommit.sh` (or equivalent) that installs the hook with the correct content.** For now, on a fresh checkout, manually edit the hook to use `$REPO_ROOT/files/.venv/bin/python` instead of `python3`. See the version currently on disk for the exact pattern.
+
 ## What NOT to touch
 
+Per prior session + this session's findings:
+
 - Queue B (`_pending_bowler_ball_credits`) — load-bearing 3-way-race resolver per §7.1
-- `_ScoutRetryBuffer` — active queue across Groq 429 backoff; orthogonal to Frame Fate Ledger per §7.1
-- `broadcast_extra` / `extras_type` — parallel fields on legal/illegal delivery axis per §7.5
-- Cold-start synth token-distribution heuristic in `_synthesize_cold_start_ball_events` — the only allowed heuristic site
+- `_ScoutRetryBuffer` — active queue across Groq 429 backoff per §7.1
+- `broadcast_extra` / `extras_type` — parallel fields per §7.5
+- Cold-start synth token-distribution heuristic in `_synthesize_cold_start_ball_events`
 - `confidence_tracker.py` ConfidenceTracker class — battle-tested, foundational
-- Existing deterministic-rotation override at score_manager.py:4295-4325 — load-bearing for Class 9 fix
-- Pre-commit hook (`.git/hooks/pre-commit`) — runs Layer 1.5 + Layer 2; failure blocks commit
-- F1's field-name fix in `_accept_initial` — the cascade-closer
+- Existing deterministic-rotation override at `score_manager.py:4295-4325` — load-bearing
+- **NEW: C14 cross-field pairing gate at `apply_scorer_decision` (`test_pipeline.py:4517`)** — the cascade-closer for B-η
+- **NEW: Permanent gate-6 test at `files/tests/test_cross_field_pairing_gate.py`** — the empirical regression detector for C14
+- F1's field-name fix at `_accept_initial:2789-2808`
+- F-α-shadow fix in `_capture_multi_ball_shadow_state:4515+`
+- F-α-queue in `_apply_absorbed_event` (5310-5358)
+- Pre-commit hook venv preference — deviating from this will silently break L1.5 imports
 
-## What's in flight behind feature flags
+## What's in flight behind feature flags (unchanged)
 
-- `SM_INLINE_MULTI_BALL` — default off. Flag flip blocked pending fresh trace divergence data.
-- `SM_POST_WICKET_SLOT_DIFF` — default off. Scaffold may need re-test on fresh trace since both wickets in last session bypassed the dispatch path pre-F1.
-
-Both flags produce zero behavior change when off; shadow comparison runs regardless.
+- `SM_INLINE_MULTI_BALL` — default off
+- `SM_POST_WICKET_SLOT_DIFF` — default off
+- `USE_OPEN_SCOUT` / `USE_OPEN_SCOUT_SPANS`
 
 ## Next session's first action
 
 1. Read this HANDOFF.md
-2. Read `files/docs/investigations/sm_as_orchestrator_design.md` §7 (audit framework + gates 1-7)
-3. Read the design memos (cold_start, multi_ball_gap, dispatch_loop)
-4. `git log --oneline derive-not-detect | head -30` for full commit context
+2. Read `Architecture_HANDOFF.md` + `CLAUDE.md`
+3. Read the design memo chain in the order listed at the top of this file
+4. `git log --oneline derive-not-detect | head -20` for full session context
 
-If a fresh production trace exists from operational validation:
-- Add the trace filename stem to `SESSION_CONTEXT` in `files/scripts/run_trace_session_assertions.py`
-- Run `python files/scripts/run_trace_session_assertions.py logs/trace/<trace>.jsonl`
-- Confirm predicted flips: `trace_epsilon_initial_striker` → PASS, `trace_beta_sm_wicket_dispatch` → PASS, `trace_compound_tokens` → PASS, `trace_alpha_bowler_runs_sum` → significant reduction, `trace_extras_total` → stays FAIL (UI workstream)
-- Any unflipped predicted-PASS = an instrumentation/cascade gap to investigate
-- Any newly-failing assertion = a regression to investigate
+**If a fresh production trace exists in `logs/trace/` newer than `validate_dckkr_20260521_070545.jsonl`:** the validation gate has fired.
+- Add the filename stem to `SESSION_CONTEXT` in `files/scripts/run_trace_session_assertions.py`
+- Run the assertions
+- **Predicted: `trace_beta_sm_wicket_dispatch` flips FAIL→PASS; `trace_alpha_bowler_runs_sum` gap reduces or closes**
+- If yes: F-η cascade closure confirmed; rewrite HANDOFF documenting cycle closure
+- If no: **sixth empirical falsification** — open C19 design memo for extending Shape B coverage to `test_pipeline.py:8986+` (catch-up branch) and `:11750` (end-of-over hook)
 
-If no fresh trace yet:
-- Operational waiting; no engineering work currently unblocked
-- DO NOT spend capacity on F-α-rotation memo, B-γ/B-δ UI memos, or extras-total fix design — speculative without fresh data
-- Apply §7.2 seven-gate audit to any remaining §7 items only if their candidate classification is being challenged by new evidence
+**If no fresh trace yet:** operational pause; no engineering work currently unblocked. DO NOT spend capacity on B-ι / B-θ memos, on Shape C/D revisits, or on dual-state-write catalogue extensions — wait for empirical pressure from the next session's trace.
 
-## Style notes (carry-over, refined)
+## Standing discipline (refined this session)
 
-- See `CLAUDE.md` for response style (no preamble, decisive, diff-only code)
-- The no-speculative-fixes discipline is the standing operating mode
-- Architecture principles user repeatedly enforces:
-  - "Detection establishes identity, derivation maintains state"
-  - "SM is the final authority on the UI; everything else should not have a say"
-  - "Once high confidence reached, LOCKED — only explicit events unlock"
-  - "Real-time first, no offline-only solutions"
-  - "Consolidate and validate together — minimize ping-pong validation cycles"
-  - "No speculative fixes. Find the root cause and confirm. Always."
-  - Any "scar tissue" label is a hypothesis pending the §7.2 audit
-  - **Empirically validated discipline saves engineering work.** F1 demonstrated cascade closure of four bug classes the §7 list framed as separate workstreams. Cross-fixture verification (§7.2 gate 7) prevents engineering capacity from being spent on cascade symptoms.
+Architecture principles user repeatedly enforces (carried from prior session, refined this session):
 
-## Trace-and-Detect (v1, 2026-05-02)
+- "Detection establishes identity, derivation maintains state"
+- "SM is the final authority on the UI; everything else should not have a say"
+- "Once high confidence reached, LOCKED — only explicit events unlock"
+- "Real-time first, no offline-only solutions"
+- "Consolidate and validate together — minimize ping-pong validation cycles"
+- **"No speculative fixes. Find the root cause and confirm. Always."** — this session: 5 empirical + 8 static falsifications enforced the rule recursively across 16 commits.
+- Any "scar tissue" / "defect class" label is a hypothesis pending the §7.2 audit.
+- **Static-falsification ≠ empirical-falsification.** Static is zero-cost; apply liberally before any instrumentation commit. Empirical counts against the methodology-retirement budget (cap: 5 per session per defect-class chain).
+- **Captured-replay does NOT drive root-localization for temporal-coupling defects.** It remains canonical as falsification + regression-detection substrate.
+- **A complete falsification chain is an architectural finding, not a failure.** Document each chain's meta-finding in HANDOFF alongside the positive cascade-closure findings (F1, etc.).
 
-Per CLAUDE.md trace-and-detect section. Per-frame trace records to `logs/trace/<SESSION_ID>.jsonl`. Decision/guard tags auto-promoted to `decisions[]` by a logging handler installed in `test_pipeline.py` near SESSION_ID init.
+## Trace-and-Detect (v1, unchanged)
 
-## Pipeline feature flags
+Per CLAUDE.md trace-and-detect section. Per-frame trace records to `logs/trace/<SESSION_ID>.jsonl`. New trace tags this session:
+
+- `FRAME-TRUST-GATE`, `OVERS-JUMP-STREAK-STATE`, `POISON-STREAK-AT-COMMIT` (C6 instrumentation pass)
+- `DIRECT-SCORE-COMMIT` (C12 — at sb.set bottleneck)
+- `CROSS-FIELD-PAIRING-REJECT` (C14 — at apply_scorer_decision gate)
+- `REPLAY-LLM-EXTRACT-RECOVERED` (replay-scaffold-only, not in production)
+
+## Pipeline feature flags (unchanged)
 
 - `USE_OPEN_SCOUT` (default 0): disabled until Track 1 fully validated
 - `USE_OPEN_SCOUT_SPANS` (default 0)
-- `SM_INLINE_MULTI_BALL` (default 0): flip blocked pending fresh trace
-- `SM_POST_WICKET_SLOT_DIFF` (default 0): scaffold needs re-test
+- `SM_INLINE_MULTI_BALL` (default 0): flag flip blocked pending fresh trace
+- `SM_POST_WICKET_SLOT_DIFF` (default 0)
 
 ## Working venv
 
-Project venv at `files/.venv/bin/python` (Python 3.12). The anaconda path in pre-2026-05-20 HANDOFF versions was stale.
+Project venv at `files/.venv/bin/python` (Python 3.12). **Pre-commit hook uses this venv** (C15 change). System `python3` (Python 3.9 on macOS) does not support the Python 3.10+ syntax used in `eyes/agent.py`.
 
 ## Session-end architectural insight
 
-The workstream's most important architectural insight, validated empirically across this session:
+This session's most important architectural insights, validated empirically across 16 commits:
 
-**A one-edit field-name fix can close multiple bug classes the §7 list framed as separate workstreams.** F1 (`437d952`) demonstrated this by collapsing B-ε direct fix + B-β cascade closure + multi-ball decomposition false positives + compound tokens. The audit-driven discipline that prevented those separate workstreams from launching is the meta-result.
+**(1) Static-analysis methodology + predicate-trail reading + pipeline.log audit produces full cascade-root localization at near-zero commit cost.** The chain C9 + C10 + C11 + C12 + C12.5b produced 8 static falsifications and concrete F302/F304 localization with zero behavior change. Followed by C13 audit + C14 fix at 2 functional commits.
 
-Discipline track record this session:
-- Queue B / `_ScoutRetryBuffer` / S5a reclassified Keep (saved unwarranted deletion attempts)
-- B-ζ falsified one turn after gate 6 was tightened (saved a fix memo)
-- B-β cascade-closed by F1 (saved a fix memo)
-- F-α-shadow caught false positives in observability tooling (prevented misdiagnosis of B-α)
-- Cross-fixture verification (gate 7) baked into §7.2 to make the pattern permanent
+**(2) A complete falsification cascade is an architectural finding, not a failure.** Five empirical + eight static falsifications + one acceptance is the discipline working as designed. The budget mechanism (5-empirical-falsification cap per defect-class chain) ensures the cascade terminates productively rather than open-loop.
 
-The workstream pauses cleanly at the operational validation gate. Next move is operational, not engineering. The trace assertion library and five observability streams are the standing data-collection mechanism for any future production session.
+**(3) Two-parallel-state-surfaces is a recurring defect class.** Three instances confirmed across two sessions: F-α-shadow (`sb.bowling_card` vs `sb._inn["bowling_card"]`), F1/B-ε (`card.get("broadcast")` vs `card.get("broadcast_striker")`), B-η/FC5 (`sb._tracker.confirmed` vs SM `_handle_warm` streak gate). To be catalogued in `sm_as_orchestrator_design.md` §8 in C17 with detection-signal + remediation-pattern documented.
+
+The workstream pauses cleanly at the operational validation gate. Next move is operational, not engineering. The trace assertion library + 16-commit investigation chain are the standing data-collection + verification mechanisms for any future production session.
+
+Track record of architectural insights accumulated across sessions:
+
+- **F1 session (prior)**: cascade-closure pattern — one-edit fix can close N bug classes; §7.2 gate 7 (cross-fixture verification) catches cascade reach.
+- **B-η session (this one)**: static-analysis-with-predicate-trail methodology + falsification-chain-as-architectural-finding + dual-state-write defect class.
+
+Each session contributes one or more transferable methodology insights that survive into the next session's discipline. **The discipline track record is itself a load-bearing artifact** — preserve it; document new insights as they accumulate.
