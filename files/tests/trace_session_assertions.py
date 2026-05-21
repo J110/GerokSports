@@ -448,6 +448,138 @@ def assert_fow_name_matches_striker_at_wicket(records: list) -> Result:
     return _ok()
 
 
+_EXPLICITLY_NOT_BOWLER_CREDITED = frozenset({
+    "run_out", "run-out", "runout",
+    "retired_hurt", "retired-hurt", "retired",
+    "obstructing_the_field", "obstructing-the-field",
+    "hit_the_ball_twice", "hit-the-ball-twice",
+    "timed_out", "timed-out",
+})
+
+
+def assert_bowler_w_increment_on_dispatch(records: list) -> Result:
+    """B3 / surface_pair_defect_class_family §2.6 detector. For every
+    wicket event, a BOWL-DELTA with ``+wkts >= 1`` must fire for the
+    current bowler within a frame window after the wicket dispatch,
+    unless the dismissal type is explicitly NOT bowler-credited per
+    cricket rules.
+
+    Detection priority:
+      1. ``scorer.decisions[].tag == 'trace_beta_sm_wicket_dispatch'``
+         with payload ``dismissed`` / ``wicket_type`` / ``bowler``
+         (typed emission added in C19A3).
+      2. ``ball_event.type == 'WICKET'`` with
+         ``ball_event.dismissal_mode`` and ``pipeline.current_bowler``
+         (fallback for pre-C19A3 captured traces — same wicket signal
+         as the B1/B2 fallbacks).
+
+    Dismissal-type gating — LENIENT (intentional).
+      FAILs unless the dismissal type is in an explicit
+      not-bowler-credited list (run-outs, retired-hurt, obstructing-
+      the-field, hit-the-ball-twice, timed-out). Unknown/None
+      dismissal modes are treated as "should-be-credited" because
+      pipeline's broadcast-extraction frequently emits None for
+      wickets that ARE bowler-credited in cricket reality
+      (Obs 17/18/19/21 of validate_dckkr_replay_observations.md
+      observed 3/3 None-dismissal wickets that cricket-truth requires
+      crediting). Strict gating (only the
+      ``_BOWLER_CREDITED_DISMISSALS`` set from score_manager.py:71)
+      would mask these by skipping them. The C19/B2 scope guard
+      explicitly authorized this lenient framing.
+
+    Window: search ``records[i..i+30]`` for a BOWL-DELTA whose bowler
+    matches AND whose ``+wkts`` field is ``>= 1``. 30 frames ≈ 5-7
+    cricket balls at ~1Hz scout cadence, matching
+    ``_PENDING_WICKET_MAX_FRAME_LAG`` from score_manager.py.
+
+    Baseline expectation against validate_dckkr_20260521_155356:
+      Obs 17/19/21 observed 3/3 bowler-W omissions in cricket reality.
+      Empirical trace count: ``+wkts >= 1`` BOWL-DELTA records = 0
+      across the entire replay. Predicted FAIL = (number of detected
+      wickets) minus (explicitly-not-credited cases). On this trace
+      the wicket count is 4 (Rahul/Rana/Nissanka/Patel — see
+      assert_sm_wicket_dispatch_invariant FAIL output) and all four
+      come in with bowler-credited or None dismissal modes, so the
+      lenient gate predicts FAIL × 4.
+    """
+    pat = re.compile(
+        r"BOWL-DELTA\] (\S.+?) \+runs=(-?\d+) \+balls=(-?\d+) "
+        r"\+wkts=(-?\d+) → ")
+    LOOKAHEAD = 30
+    failures: list[dict] = []
+    for i, rec in enumerate(records):
+        dismissed: str | None = None
+        wicket_type: str | None = None
+        bowler_from_payload: str | None = None
+        for dec in _decisions(rec):
+            if dec.get("tag") == "trace_beta_sm_wicket_dispatch":
+                if dec.get("dismissed"):
+                    dismissed = str(dec.get("dismissed"))
+                if dec.get("wicket_type"):
+                    wicket_type = str(dec.get("wicket_type"))
+                if dec.get("bowler"):
+                    bowler_from_payload = str(dec.get("bowler"))
+                break
+        if dismissed is None:
+            be = rec.get("ball_event") or {}
+            if be.get("type") == "WICKET":
+                if be.get("striker_this_ball"):
+                    dismissed = str(be.get("striker_this_ball"))
+                if be.get("dismissal_mode"):
+                    wicket_type = str(be.get("dismissal_mode"))
+        if not dismissed:
+            continue
+
+        wt_norm = wicket_type.strip().lower() if wicket_type else None
+        if wt_norm and wt_norm in _EXPLICITLY_NOT_BOWLER_CREDITED:
+            continue
+
+        bowler = bowler_from_payload or (
+            (rec.get("pipeline") or {}).get("current_bowler"))
+        if not bowler:
+            failures.append({
+                "frame": rec.get("frame"),
+                "dismissed": dismissed,
+                "wicket_type": wicket_type,
+                "reason": "no_current_bowler",
+            })
+            continue
+
+        bowler_norm = bowler.strip().lower()
+        credited = False
+        for j in range(i, min(i + LOOKAHEAD + 1, len(records))):
+            for dec in _decisions(records[j]):
+                if dec.get("tag") != "BOWL-DELTA":
+                    continue
+                msg = dec.get("raw_message") or ""
+                mm = pat.search(msg)
+                if not mm:
+                    continue
+                if mm.group(1).strip().lower() != bowler_norm:
+                    continue
+                if int(mm.group(4)) >= 1:
+                    credited = True
+                    break
+            if credited:
+                break
+
+        if not credited:
+            failures.append({
+                "frame": rec.get("frame"),
+                "ts_match": rec.get("ts_match"),
+                "dismissed": dismissed,
+                "wicket_type": wicket_type,
+                "bowler": bowler,
+            })
+
+    if failures:
+        return _fail(
+            class_name="bowler_w_increment_missing_on_dispatch",
+            count=len(failures),
+            samples=failures[:5])
+    return _ok()
+
+
 TRACE_ASSERTIONS = [
     ("trace_alpha_bowler_runs_sum",
      assert_bowler_runs_sum_matches_team_score),
@@ -463,6 +595,8 @@ TRACE_ASSERTIONS = [
      assert_w_symbol_at_wicket),
     ("trace_gamma_fow_name_matches_striker_at_wicket",
      assert_fow_name_matches_striker_at_wicket),
+    ("trace_gamma_bowler_w_increment_on_dispatch",
+     assert_bowler_w_increment_on_dispatch),
 ]
 
 
