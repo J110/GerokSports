@@ -322,43 +322,44 @@ ad151fd fix(test_pipeline): C14 cross-field pairing gate at apply_scorer_decisio
 770db98 test(C15): permanent gate-6 verification + baseline + predicted-flip claim for C14 fix
 ```
 
-## Trace assertion library (broken-but-known baseline, unchanged from prior session)
+## Trace assertion library (UPDATED post-C24)
 
-Five empirically-grounded invariants in `files/tests/trace_session_assertions.py`. Baselines:
+Eight empirically-grounded invariants in `files/tests/trace_session_assertions.py` (5 existing + 3 new γ-bundle members from C21/C22/C23). Baseline on `validate_dckkr_20260521_155356`:
 
-| Assertion | DCKKR pre-fix | GTRR baseline | Predicted post-C14 on next session |
-|---|---|---|---|
-| `trace_alpha_bowler_runs_sum` | FAIL gap=4 | FAIL (gap=25 pre-F1) | **predicted: gap reduces or PASS** (B-θ cascade contribution collapses) |
-| `trace_beta_sm_wicket_dispatch` | FAIL — 3 misses (f371, f521, f636) | FAIL — 2 misses | **predicted: PASS** (cascade closure — F304 anchor blocked) |
-| `trace_epsilon_initial_striker` | PASS | FAIL (pre-F1) | PASS (unchanged) |
-| `trace_compound_tokens` | PASS | FAIL (pre-F1) | PASS (unchanged) |
-| `trace_extras_total` | PASS | FAIL (UI render layer, separate scope) | PASS (unchanged) |
+| Assertion | Pre-C19 baseline | Post-C24 baseline on DCKKR 2026-05-21 |
+|---|---|---|
+| `trace_alpha_bowler_runs_sum` | FAIL gap=4 (DCKKR pre-fix) | PASS |
+| `trace_beta_sm_wicket_dispatch` | FAIL — 3 misses | FAIL × 4 (4 wickets detected via ball_event fallback; typed emission landed C19A3 — next replay validates) |
+| `trace_epsilon_initial_striker` | PASS | PASS |
+| `trace_compound_tokens` | PASS | PASS |
+| `trace_extras_total` | PASS | PASS |
+| `trace_gamma_w_symbol_at_wicket` (NEW C21) | — | **FAIL × 2** (Rahul ov 5.0 / Rana ov 8.0 — W→· revert in this_over state) |
+| `trace_gamma_fow_name_matches_striker_at_wicket` (NEW C22) | — | PASS (internal-consistency only; cricket-vs-pipeline divergence undetectable here, scoped to D) |
+| `trace_gamma_bowler_w_increment_on_dispatch` (NEW C23) | — | **FAIL × 4** (no bowler-W increment within 30-frame lookahead at any captured wicket) |
+
+**Total post-C24: 5 PASS / 3 FAIL across 8 assertions.** The γ-bundle (3 new assertions) supersedes `trace_beta_sm_wicket_dispatch` as the wicket-correctness gate signal — trace_beta tests dispatch occurrence; the γ-bundle tests dispatch correctness across W-symbol, FOW-name, and bowler-W surfaces.
 
 Runner: `python files/scripts/run_trace_session_assertions.py <trace.jsonl>`.
 
-## Validation gate — next natural production session
+## Validation gate — STATUS: FIRED on DCKKR 2026-05-21 (see top-of-document Session continuation section)
 
-The workstream's standing operational pattern: ship with predicted-flip claim, validate on next natural production session. No fresh-session-now authorization required.
+The C14 validation gate **already fired** on `validate_dckkr_20260521_155356` (full results in the C19–C24 session continuation section above). C14 sign-off accepted on "predicate is correct, gate reachable, two distinct Shape-B-class defects caught" basis — F-η pattern specifically did not surface but the predicate's generality is empirically established.
 
-**On next session's trace landing:**
-1. Add filename stem to `SESSION_CONTEXT` in `files/scripts/run_trace_session_assertions.py`
-2. Run `python files/scripts/run_trace_session_assertions.py logs/trace/<NEW>.jsonl`
-3. Observe whether `trace_beta_sm_wicket_dispatch` flips PASS
-
-**Two outcomes:**
-- **YES (predicted-flip materializes):** F-η cascade closure confirmed end-to-end. Workstream cycle complete. C19 → next-session HANDOFF rewrite documents the cycle closure.
-- **NO (sixth empirical falsification):** Shape B at `apply_scorer_decision` is necessary but not sufficient. Per §1.2 (C10 brief) + C9 §11: methodology retirement trigger OR coverage extension. The empirically-justified next move is **C19: extend Shape B coverage to `test_pipeline.py:8986+` (catch-up branch) and `:11750` (end-of-over hook)** — the two sites Shape B does not currently gate.
+Standing pattern for future sessions remains: ship with predicted-flip claim, validate on next natural production session. The original "predicted: PASS on trace_beta" framing is **SUPERSEDED** by the γ-bundle baseline above — the new gate signal is FAIL × 2 (w_symbol) + FAIL × 4 (bowler_w) → expected PASS after workstream D resolves the rotation-lock-starvation root and C21b/C23b land. C19's "extend Shape B coverage to catch-up branch + end-of-over hook" alternative is also retired: empirical evidence from DCKKR shows the root is upstream (rotation pointer staleness at wicket frames), not coverage gaps in the gate's call sites.
 
 ## Workstream status by area
 
-### F-η Shape B fix (shipped C14)
-Cross-field pairing gate at `apply_scorer_decision`. Closes the F304-class cascade root concretely localized via production pipeline.log. Permanent gate-6 test at `files/tests/test_cross_field_pairing_gate.py` (6 cases) wired into Layer 1.5.
+### F-η Shape B fix (shipped C14, VALIDATED 2026-05-21)
+Cross-field pairing gate at `apply_scorer_decision` (test_pipeline.py:4602/4617/4631). Empirically validated on DCKKR 2026-05-21 — 2 distinct CROSS-FIELD-PAIRING-REJECT events fired in production (F210 backwards-overs, F1015 zero-time double-wicket). The gate's call site is `test_pipeline.py:12466` (non-poisoned SCORER path). DSC path was NOT exercised in the validation replay; gate-coverage of DSC remains counterfactual per C19A1's tightened comment. Permanent gate-6 test at `files/tests/test_cross_field_pairing_gate.py` (6 cases) wired into Layer 1.5.
 
-### B-ι (locked-SM-state prevents resync) — deferred pending C14 validation
-The previous brief framed B-ι as a separate engineering workstream (the deterministic-rotation override at `score_manager.py:4295-4325`). Per the dual-state-write defect-class pattern: if F-η closure prevents the SM/sb._inn divergence at f304 in the first place, B-ι's "resync prevention" symptom may never manifest. **Wait for next natural production session's trace_beta verdict before opening B-ι memo.**
+### B-ι (locked-SM-state prevents resync) — RETIRED as standalone workstream
+Per DCKKR 2026-05-21 evidence: `trace_alpha_bowler_runs_sum` flipped PASS post-C14, indicating no resync-prevention symptom in production. B-ι hypothesis dissolved as cascade symptom of B-η, consistent with the dual-state-write defect-class pattern. **No standalone B-ι memo needed.**
 
-### B-θ (over-boundary bowler credit) — deferred pending C14 validation
-Same rationale. The trace_alpha gap=4 in DCKKR is hypothesized to be B-θ's residual contribution after B-η is removed. If trace_alpha gap closes post-C14, B-θ collapses as cascade symptom. If gap persists, B-θ becomes the next standalone target.
+### B-θ (over-boundary bowler credit) — RETIRED as standalone workstream
+Same as B-ι. trace_alpha gap closed post-C14. B-θ collapsed as cascade symptom of B-η. The bowler-W increment defect surfaced via `trace_gamma_bowler_w_increment_on_dispatch` is a SEPARATE defect (wicket-event commit path, not over-boundary bowler credit) and is the target of workstream D + C23b, not a B-θ reopening.
+
+### Workstream D (rotation-root revisit) — HIGHEST-PRIORITY unblocked workstream
+See top-of-document "Workstream D — promoted to highest-impact unblocked workstream" section for full scope. Original scope: batter-striker pointer staleness causing FOW name swap (Obs 16/18/19/21). Expanded scope after C22+C23 findings: bowler-identity em-dash sentinel at wicket frames (Obs 17/19). C23b (bowler-W fix) is BLOCKED on D resolving the em-dash case — crediting an em-dash sentinel would be worse than no credit.
 
 ### Captured-replay scaffold (commits b49e48b–237d227)
 - `files/scripts/replay_captured_scout_trace.py` — captured-Scout replay scaffold
