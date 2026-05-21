@@ -379,6 +379,23 @@ KNOWN_TAGS: set[str] = {
     "SCOUT-RETRY-IN-CALL-QUEUED",
     "SCOUT-RETRY-IN-CALL-SUCCESS",
     "SCOUT-RETRY-IN-CALL-EXHAUSTED",
+    # B-η instrumentation pass (2026-05-21) — three additive tags for
+    # stream-gap reconciliation root-cause investigation. See
+    # files/docs/investigations/stream_gap_reconciliation_design.md §6.
+    # FRAME-TRUST-GATE fires at every multi-ball-gap commit attempt
+    # (d_balls > 1 entering _decompose_multi_ball), capturing the
+    # proposed batter/bowler lineage vs SM's current lineup.
+    # OVERS-JUMP-STREAK-STATE fires at both branches of the
+    # _overs_jump_streak guard (accept and reject) so the analyzer
+    # can observe how the 3-frame consensus accumulator behaves on
+    # any given gap-commit candidate. POISON-STREAK-AT-COMMIT fires
+    # alongside FRAME-TRUST-GATE, snapshotting SM's poison-related
+    # state at the gap-commit moment for backward cross-frame
+    # analysis. All three are observation-only — zero behavior
+    # change.
+    "FRAME-TRUST-GATE",
+    "OVERS-JUMP-STREAK-STATE",
+    "POISON-STREAK-AT-COMMIT",
 }
 
 # Regex matches the leading ``[TAG]`` token in any log message. Captures

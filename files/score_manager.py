@@ -2558,6 +2558,20 @@ class ScoreManager:
                         current_score=int(rs),
                         delta_score=int(d_score),
                         source="cold_start_exit_vs_last_warm")
+                    _trace.get_recorder().record(
+                        tag="OVERS-JUMP-STREAK-STATE",
+                        decision="reject",
+                        source="cold_start_exit_vs_last_warm",
+                        proposed_overs=float(co_v),
+                        current_overs=float(ro),
+                        delta_balls=int(d_balls),
+                        proposed_score=int(cs_v),
+                        current_score=int(rs),
+                        delta_score=int(d_score),
+                        streak=None,
+                        consensus_required=None,
+                        frame_id=getattr(frame, "frame_id", None)
+                        if not isinstance(frame, int) else frame)
                 except Exception:
                     pass
             log.info(
@@ -3090,6 +3104,22 @@ class ScoreManager:
                                 _OVERS_JUMP_CONSENSUS_FRAMES),
                             source_frame_id=getattr(
                                 frame, "frame_id", None))
+                        _trace.get_recorder().record(
+                            tag="OVERS-JUMP-STREAK-STATE",
+                            decision="reject",
+                            source="warm_consensus",
+                            proposed_overs=float(new_overs),
+                            current_overs=float(old_overs),
+                            delta_overs=float(d_overs),
+                            delta_balls=int(_delta_balls),
+                            proposed_score=int(c_score),
+                            current_score=int(_self_score),
+                            delta_score=int(d_score),
+                            streak=int(cur_streak),
+                            consensus_required=int(
+                                _OVERS_JUMP_CONSENSUS_FRAMES),
+                            frame_id=getattr(
+                                frame, "frame_id", None))
                     except Exception:
                         pass
                 log.info(
@@ -3127,6 +3157,26 @@ class ScoreManager:
                 self._update_supplements(card, frame)
                 self.frames_since_event += 1
                 return None
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="OVERS-JUMP-STREAK-STATE",
+                        decision="accept",
+                        source="warm_consensus",
+                        proposed_overs=float(new_overs),
+                        current_overs=float(old_overs),
+                        delta_overs=float(d_overs),
+                        delta_balls=int(_d_balls),
+                        proposed_score=int(c_score),
+                        current_score=int(_self_score),
+                        delta_score=int(d_score),
+                        streak=int(cur_streak),
+                        consensus_required=int(
+                            _OVERS_JUMP_CONSENSUS_FRAMES),
+                        frame_id=getattr(
+                            frame, "frame_id", None))
+                except Exception:
+                    pass
             self._overs_jump_candidate = None
             self._overs_jump_streak = 0
         elif getattr(self, "_overs_jump_candidate", None) is not None:
@@ -4695,6 +4745,112 @@ class ScoreManager:
         old_overs = prev.get("overs") or 0
         d_balls = self._overs_to_balls(new_overs) - self._overs_to_balls(old_overs)
         if d_balls > 1:
+            # B-η instrumentation pass (2026-05-21) — observation-only
+            # trace tags at the multi-ball gap commit point. See
+            # files/docs/investigations/stream_gap_reconciliation_design.md
+            # §6. FRAME-TRUST-GATE captures the proposed-vs-current
+            # batter/bowler lineage so we can tell after the fact
+            # whether the gap was anchored on a frame whose lineup
+            # disagreed with SM (the f304 overlay pattern).
+            # POISON-STREAK-AT-COMMIT snapshots SM's local poison /
+            # streak state at the same moment; the analyzer
+            # cross-references this with the prior-frame
+            # POISONED/POISON-STREAK/GRAPHIC-FILTER-POISON decisions
+            # already captured in scorer.decisions[]. Both are pure
+            # observers — no behavior change.
+            if _trace is not None:
+                try:
+                    _sb = getattr(self, "scoreboard", None)
+                    # XI lookup via the is_playing_xi flag on each
+                    # batting_card / bowling_card slot — robust to
+                    # transient clearing of sb.batting_team during
+                    # cold-start guards (which would null-out a
+                    # _team_match_membership[team_name] lookup).
+                    _bat_card = getattr(
+                        _sb, "batting_card", None) or {} if _sb else {}
+                    _bowl_card = getattr(
+                        _sb, "bowling_card", None) or {} if _sb else {}
+                    _batting_xi = [
+                        n for n, c in _bat_card.items()
+                        if isinstance(c, dict) and c.get("is_playing_xi")]
+                    _bowling_xi = [
+                        n for n, c in _bowl_card.items()
+                        if isinstance(c, dict) and c.get("is_playing_xi")]
+                    _bat_team = getattr(_sb, "batting_team", None) if _sb else None
+                    _bowl_team = getattr(_sb, "bowling_team", None) if _sb else None
+                    _proposed_batters = [
+                        n for n in (
+                            getattr(frame, "ext_bat1_name", None),
+                            getattr(frame, "ext_bat2_name", None))
+                        if n]
+                    _proposed_bowler = getattr(
+                        frame, "ext_bowler_name", None)
+                    _sm_batters = [
+                        n for n in (self.bat1_name, self.bat2_name) if n]
+                    _proposed_batter_in_sm = any(
+                        self._same_player_canon(p, s)
+                        for p in _proposed_batters
+                        for s in _sm_batters
+                    ) if _proposed_batters and _sm_batters else False
+                    _proposed_batter_in_xi = any(
+                        self._same_player_canon(p, x)
+                        for p in _proposed_batters
+                        for x in _batting_xi
+                    ) if _proposed_batters and _batting_xi else False
+                    _proposed_bowler_in_xi = (
+                        any(self._same_player_canon(_proposed_bowler, x)
+                            for x in _bowling_xi)
+                        if _proposed_bowler and _bowling_xi else False)
+                    _trace.get_recorder().record(
+                        tag="FRAME-TRUST-GATE",
+                        decision="observe",
+                        delta_balls=int(d_balls),
+                        delta_score=int(d_score),
+                        delta_wickets=int(d_wickets),
+                        delta_overs=float(d_overs),
+                        proposed_overs=float(new_overs),
+                        current_overs=float(old_overs),
+                        proposed_score=int(card.get("score") or 0),
+                        current_score=int(prev.get("score") or 0),
+                        proposed_batters=_proposed_batters,
+                        proposed_bowler=_proposed_bowler,
+                        sm_bat1=self.bat1_name,
+                        sm_bat2=self.bat2_name,
+                        sm_bowler=self.bowler_name,
+                        sm_striker=self.striker,
+                        sm_non=self.non,
+                        sb_batting_team=_bat_team,
+                        sb_bowling_team=_bowl_team,
+                        proposed_batter_in_sm_lineup=bool(
+                            _proposed_batter_in_sm),
+                        proposed_batter_in_batting_xi=bool(
+                            _proposed_batter_in_xi),
+                        proposed_bowler_in_bowling_xi=bool(
+                            _proposed_bowler_in_xi),
+                        batting_xi_size=len(_batting_xi),
+                        bowling_xi_size=len(_bowling_xi),
+                        frame_id=getattr(frame, "frame_id", None))
+                    _trace.get_recorder().record(
+                        tag="POISON-STREAK-AT-COMMIT",
+                        delta_balls=int(d_balls),
+                        delta_score=int(d_score),
+                        proposed_overs=float(new_overs),
+                        current_overs=float(old_overs),
+                        overs_jump_streak=int(getattr(
+                            self, "_overs_jump_streak", 0) or 0),
+                        overs_jump_candidate=(
+                            list(getattr(
+                                self, "_overs_jump_candidate", None) or ())
+                            or None),
+                        last_cold_start_verdict_implausible=bool(
+                            getattr(
+                                self,
+                                "last_cold_start_verdict_implausible",
+                                False)),
+                        sm_mode=getattr(self, "mode", None),
+                        frame_id=getattr(frame, "frame_id", None))
+                except Exception:
+                    pass
             return self._decompose_multi_ball(
                 d_score, d_wickets, d_overs, d_balls, striker)
 
