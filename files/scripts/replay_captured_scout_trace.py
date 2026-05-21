@@ -23,6 +23,18 @@ Usage::
     files/.venv/bin/python files/scripts/replay_captured_scout_trace.py \\
         --dump files/logs/deliveries/validate_dckkr_20260521_070545/scout_raw.jsonl \\
         --session-id replay_dckkr_20260521_INSTRUMENTED
+
+Warm-seed mode (skips cold-start emulation; jumps SM directly to a
+WARM baseline at the named frame so frames after the cold-exit
+boundary can be exercised without driving test_pipeline.py)::
+
+    files/.venv/bin/python files/scripts/replay_captured_scout_trace.py \\
+        --dump files/logs/deliveries/validate_dckkr_20260521_070545/scout_raw.jsonl \\
+        --session-id replay_dckkr_20260521_WARMSEEDED \\
+        --seed-frame 37 \\
+        --seed-striker "Pathum Nissanka" \\
+        --seed-non-striker "KL Rahul" \\
+        --seed-bowler "Anukul Roy"
 """
 from __future__ import annotations
 
@@ -44,8 +56,54 @@ from test_pipeline_captured_replay import (  # noqa: E402
 )
 
 
-def run(dump_path: Path, session_id: str, trace_dir: Path) -> int:
+def _apply_warm_seed(
+    sm, sb, *,
+    striker: str, non_striker: str, bowler: str,
+    score: int = 0, wickets: int = 0, overs: float = 0.0,
+) -> None:
+    """Inject a WARM baseline directly onto SM state.
+
+    Mirrors what the live pipeline reaches after cold-start exit:
+    self.mode=WARM, self.score/wickets/overs/bowler_name/striker/
+    non/bat1_name/bat2_name all populated. The captured-replay
+    harness's build_sm already promoted the openers to
+    status='batting' in batting_card, so per-ball card writes after
+    the seed will accumulate normally.
+    """
+    sm.mode = "WARM"
+    sm.score = int(score)
+    sm.wickets = int(wickets)
+    sm.overs = float(overs)
+    sm.bowler_name = bowler
+    sm.striker = striker
+    sm.non = non_striker
+    sm.bat1_name = striker
+    sm.bat2_name = non_striker
+    if sb is not None:
+        try:
+            sb.set("score", int(score), frame=0)
+            sb.set("wickets", int(wickets), frame=0)
+            sb.set("overs", float(overs), frame=0)
+        except Exception:
+            pass
+
+
+def run(dump_path: Path, session_id: str, trace_dir: Path,
+        seed_frame: int | None = None,
+        seed_striker: str | None = None,
+        seed_non_striker: str | None = None,
+        seed_bowler: str | None = None) -> int:
     sm, sb = build_sm()
+    warm_seed_pending = (
+        seed_frame is not None
+        and seed_striker is not None
+        and seed_non_striker is not None
+        and seed_bowler is not None)
+    if warm_seed_pending:
+        print(
+            f"Warm-seed configured: striker={seed_striker!r} "
+            f"non={seed_non_striker!r} bowler={seed_bowler!r} "
+            f"injection_at_frame={seed_frame}")
 
     trace_dir.mkdir(parents=True, exist_ok=True)
     out_path = trace_dir / f"{session_id}.jsonl"
@@ -81,6 +139,21 @@ def run(dump_path: Path, session_id: str, trace_dir: Path) -> int:
             frame_id = int(f.get("frame_id"))
         except (TypeError, ValueError):
             continue
+        if seed_frame is not None and frame_id < seed_frame:
+            skipped += 1
+            continue
+        if warm_seed_pending and frame_id >= (seed_frame or 0):
+            _apply_warm_seed(
+                sm, sb,
+                striker=seed_striker,  # type: ignore[arg-type]
+                non_striker=seed_non_striker,  # type: ignore[arg-type]
+                bowler=seed_bowler)  # type: ignore[arg-type]
+            warm_seed_pending = False
+            print(
+                f"Warm-seed injected at frame {frame_id}: "
+                f"sm.mode=WARM score=0 wickets=0 overs=0.0 "
+                f"striker={sm.striker!r} non={sm.non!r} "
+                f"bowler={sm.bowler_name!r}")
         ts = float(f.get("ts") or time.time())
         raw = f.get("raw_response") or ""
         recorder.begin_frame(frame_id)
@@ -186,8 +259,27 @@ def main() -> int:
         "--trace-dir",
         type=Path,
         default=FILES_DIR.parent / "logs" / "trace")
+    p.add_argument("--seed-frame", type=int, default=None,
+                   help="Skip frames < N and inject warm seed at frame N")
+    p.add_argument("--seed-striker", type=str, default=None)
+    p.add_argument("--seed-non-striker", type=str, default=None)
+    p.add_argument("--seed-bowler", type=str, default=None)
     args = p.parse_args()
-    return run(args.dump, args.session_id, args.trace_dir)
+    seed_args = (
+        args.seed_frame, args.seed_striker,
+        args.seed_non_striker, args.seed_bowler)
+    if any(x is not None for x in seed_args) and not all(
+            x is not None for x in seed_args):
+        p.error(
+            "warm-seed mode requires all of --seed-frame, --seed-striker, "
+            "--seed-non-striker, --seed-bowler (got "
+            f"frame={args.seed_frame} striker={args.seed_striker!r} "
+            f"non={args.seed_non_striker!r} bowler={args.seed_bowler!r})")
+    return run(args.dump, args.session_id, args.trace_dir,
+               seed_frame=args.seed_frame,
+               seed_striker=args.seed_striker,
+               seed_non_striker=args.seed_non_striker,
+               seed_bowler=args.seed_bowler)
 
 
 if __name__ == "__main__":
