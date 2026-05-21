@@ -471,6 +471,7 @@ class ScoreManager:
         self.bat2_name: str | None = None
 
         self.bowler_name: str | None = None
+        self._bowler_tracker = None
 
         self.striker: str | None = None
         self.non: str | None = None
@@ -5259,10 +5260,29 @@ class ScoreManager:
             f"self.non={self.non!r} "
             f"self.bat1_name={self.bat1_name!r} "
             f"self.bat2_name={self.bat2_name!r}")
+        _canonical_bowler = self.bowler_name
+        _bowler_for_dispatch = _canonical_bowler
+        if not _canonical_bowler or _canonical_bowler == "—":
+            _tracker = getattr(self, "_bowler_tracker", None)
+            _leader = (getattr(_tracker, "leader", None)
+                       if _tracker is not None else None)
+            if _leader:
+                _bowler_for_dispatch = _leader
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag="BOWLER-DISPATCH-FALLBACK-FIRED",
+                            canonical=_canonical_bowler,
+                            leader=_leader,
+                            overs=self.overs,
+                            wickets=self.wickets,
+                            frame_id=str(self._current_frame))
+                    except Exception:
+                        pass
         new_entry = {
             "score": self.score, "overs": self.overs,
             "dismissed": best_dismissed,
-            "bowler": self.bowler_name,
+            "bowler": _bowler_for_dispatch,
             "wicket_type": event.get("wicket_type"),
         }
 
@@ -5333,7 +5353,7 @@ class ScoreManager:
                 _trace.get_recorder().record(
                     tag="trace_beta_sm_wicket_dispatch",
                     dismissed=best_dismissed,
-                    bowler=self.bowler_name,
+                    bowler=_bowler_for_dispatch,
                     overs=self.overs,
                     score=self.score,
                     wickets=self.wickets,

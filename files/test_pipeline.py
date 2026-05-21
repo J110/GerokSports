@@ -7331,6 +7331,7 @@ async def run_test():
 
     # === SCORE MANAGER (live mode — events drive Wire commentary) ===
     score_mgr = ScoreManager(shadow=False)
+    score_mgr._bowler_tracker = bowler_tracker
     # Attach the scoreboard so SM can canonicalize raw scout names
     # ("N RANA", "Rahul") to canonical squad keys ("Nitish Rana",
     # "KL Rahul") at the single entry point (_build_scorecard).  Without

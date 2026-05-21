@@ -436,7 +436,10 @@ def main(argv: list[str] | None = None) -> int:
     # operator spec.
     from test_cross_field_pairing_gate import run_all as _run_cfp_gate
     cfp_rc = _run_cfp_gate()
-    return cfp_rc
+    if cfp_rc != 0:
+        return cfp_rc
+    from test_bowler_dispatch_fallback import run_all as _run_bdf_gate
+    return _run_bdf_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:
