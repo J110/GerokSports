@@ -5328,6 +5328,21 @@ class ScoreManager:
         self.partnership_runs = 0
         self.partnership_balls = 0
         self.partnership_known = True
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="trace_beta_sm_wicket_dispatch",
+                    dismissed=best_dismissed,
+                    bowler=self.bowler_name,
+                    overs=self.overs,
+                    score=self.score,
+                    wickets=self.wickets,
+                    wicket_type=event.get("wicket_type"),
+                    resolution_src=_resolution_src,
+                    fow_index=target_idx,
+                    frame_id=str(self._current_frame))
+            except Exception:
+                pass
 
     def _apply_absorbed_event(
             self, evt: dict, sim_prev: dict, sim_card: dict,
