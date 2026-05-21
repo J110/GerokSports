@@ -51,13 +51,70 @@ sys.path.insert(0, str(FILES_DIR))
 sys.path.insert(0, str(FILES_DIR / "tests"))
 
 import trace_emitter  # noqa: E402
+from score_manager import ScoreManager  # noqa: E402
 from eyes.extract_regex import parse_strip  # noqa: E402
+from eyes.scoreboard import Scoreboard  # noqa: E402
 from test_pipeline_captured_replay import (  # noqa: E402
-    BATTING_TEAM, BOWLING_TEAM, build_sm, extracted_to_frame_input,
+    BATTING_TEAM as DCKKR_BATTING_TEAM,
+    BOWLING_TEAM as DCKKR_BOWLING_TEAM,
+    build_sm as build_sm_dckkr,
+    extracted_to_frame_input,
 )
 
 
-def _llm_extract_sync(extractor, description: str, frame_id: int) -> dict:
+# GT vs RR fixture squads (innings 1, validate_gtrr_20260520_180715).
+# Sourced from files/tests/fixtures/gt_vs_rr_2026_commentary_first_innings.md
+# — Opening pair: Sai Sudharsan / Shubman Gill, opening bowler Jofra
+# Archer. Squad order matters: BATTING_SQUAD[0:2] are the openers, the
+# remainder of the XI follows in the typical batting order from the
+# captured trace.
+GTRR_BATTING_TEAM = "GT"
+GTRR_BOWLING_TEAM = "RR"
+GTRR_BATTING_SQUAD = [
+    "Sai Sudharsan", "Shubman Gill", "Jos Buttler",
+    "Jason Holder", "Rahul Tewatia", "Ravisrinivasan Sai Kishore",
+    "Mahipal Lomror", "Manav Suthar", "Anuj Rawat",
+    "Gerald Coetzee", "Karim Janat",
+]
+GTRR_BOWLING_SQUAD = [
+    "Jofra Archer", "Brijesh Sharma", "Tushar Deshpande",
+    "Yash Raj Punja", "Ravindra Jadeja", "Donovan Ferreira",
+    "Yashasvi Jaiswal", "Sanju Samson", "Riyan Parag",
+    "Dhruv Jurel", "Nitish Rana",
+]
+
+
+def build_sm_gtrr() -> tuple[ScoreManager, Scoreboard]:
+    sb = Scoreboard()
+    sb.setup_innings(
+        batting_team=GTRR_BATTING_TEAM,
+        bowling_team=GTRR_BOWLING_TEAM,
+        batting_squad=GTRR_BATTING_SQUAD,
+        bowling_squad=GTRR_BOWLING_SQUAD,
+        batting_xi=GTRR_BATTING_SQUAD[:11],
+        bowling_xi=GTRR_BOWLING_SQUAD[:11],
+    )
+    for opener in (GTRR_BATTING_SQUAD[0], GTRR_BATTING_SQUAD[1]):
+        slot = sb.batting_card.get(opener)
+        if slot is not None:
+            slot["status"] = "batting"
+            slot["runs"] = 0
+            slot["balls"] = 0
+            slot["fours"] = 0
+            slot["sixes"] = 0
+    sm = ScoreManager(shadow=False)
+    sm.scoreboard = sb
+    return sm, sb
+
+
+FIXTURE_BUILDERS = {
+    "dckkr": (build_sm_dckkr, DCKKR_BATTING_TEAM, DCKKR_BOWLING_TEAM),
+    "gtrr": (build_sm_gtrr, GTRR_BATTING_TEAM, GTRR_BOWLING_TEAM),
+}
+
+
+def _llm_extract_sync(extractor, description: str, frame_id: int,
+                       batting_team: str, bowling_team: str) -> dict:
     """Invoke the production async Extractor from sync replay code.
 
     Returns whatever Extractor.extract() returns (possibly empty dict).
@@ -71,8 +128,8 @@ def _llm_extract_sync(extractor, description: str, frame_id: int) -> dict:
             extractor.extract(
                 description=description,
                 frame_type="SCOREBOARD",
-                team_a_name=BATTING_TEAM,
-                team_b_name=BOWLING_TEAM,
+                team_a_name=batting_team,
+                team_b_name=bowling_team,
                 frame_id=frame_id))
     except Exception as e:
         logging.getLogger("replay_llm").warning(
@@ -118,8 +175,10 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
         seed_striker: str | None = None,
         seed_non_striker: str | None = None,
         seed_bowler: str | None = None,
-        enable_llm_extractor: bool = False) -> int:
-    sm, sb = build_sm()
+        enable_llm_extractor: bool = False,
+        fixture: str = "dckkr") -> int:
+    builder, batting_team, bowling_team = FIXTURE_BUILDERS[fixture]
+    sm, sb = builder()
     warm_seed_pending = (
         seed_frame is not None
         and seed_striker is not None
@@ -170,6 +229,7 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
         "FRAME-TRUST-GATE": 0,
         "OVERS-JUMP-STREAK-STATE": 0,
         "POISON-STREAK-AT-COMMIT": 0,
+        "DIRECT-SCORE-COMMIT": 0,
     }
     for f in frames:
         try:
@@ -195,7 +255,7 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
         raw = f.get("raw_response") or ""
         recorder.begin_frame(frame_id)
         try:
-            extracted = parse_strip(raw, BATTING_TEAM, BOWLING_TEAM)
+            extracted = parse_strip(raw, batting_team, bowling_team)
         except Exception as e:
             decisions = recorder.drain()
             decisions.append({
@@ -214,7 +274,8 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
         if not extracted or not extracted.get("has_scorecard_data"):
             if extractor is not None:
                 llm_calls += 1
-                llm_result = _llm_extract_sync(extractor, raw, frame_id)
+                llm_result = _llm_extract_sync(
+                    extractor, raw, frame_id, batting_team, bowling_team)
                 _has_signal = (
                     bool(llm_result)
                     and (llm_result.get("score") is not None
@@ -342,6 +403,10 @@ def main() -> int:
                          "(Groq Llama) when parse_strip returns "
                          "no-scorecard-data. Replay-only; production "
                          "cost path unchanged. Requires GROQ_API_KEY."))
+    p.add_argument("--fixture", choices=("dckkr", "gtrr"), default="dckkr",
+                   help=("Squad/team config to load. dckkr = DC vs KKR "
+                         "(default), gtrr = GT vs RR per fixtures/"
+                         "gt_vs_rr_2026_commentary_first_innings.md."))
     args = p.parse_args()
     seed_args = (
         args.seed_frame, args.seed_striker,
@@ -358,7 +423,8 @@ def main() -> int:
                seed_striker=args.seed_striker,
                seed_non_striker=args.seed_non_striker,
                seed_bowler=args.seed_bowler,
-               enable_llm_extractor=args.enable_llm_extractor)
+               enable_llm_extractor=args.enable_llm_extractor,
+               fixture=args.fixture)
 
 
 if __name__ == "__main__":

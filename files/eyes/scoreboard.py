@@ -1479,6 +1479,25 @@ class Scoreboard:
         self._inn[field] = value
         if old != value:
             self._log("set", field, old, value, frame)
+            # B-κ instrumentation (2026-05-21) — fire DIRECT-SCORE-COMMIT
+            # at every score-field write that advances the tracker. The
+            # payload's overs_at_commit / wickets_at_commit fields let
+            # the analyzer detect "split score/overs commit" sequences —
+            # the active defect mechanism surfaced in stream-gap
+            # reconciliation memo §10. Wrapped defensively; trace
+            # emission must never break the write path. Layer 1.5 +
+            # Layer 2 gates pre-validate the additive nature.
+            if field == "score" and _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="DIRECT-SCORE-COMMIT",
+                        score_before=old,
+                        score_after=value,
+                        overs_at_commit=self._inn.get("overs"),
+                        wickets_at_commit=self._inn.get("wickets"),
+                        frame_id=frame)
+                except Exception:
+                    pass
             # Cold-start seeding of the auto-dismiss gate (Issue D,
             # 2026-04-21; refined by Fix #1, 2026-04-23).
             #

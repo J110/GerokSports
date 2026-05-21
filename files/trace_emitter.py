@@ -396,6 +396,14 @@ KNOWN_TAGS: set[str] = {
     "FRAME-TRUST-GATE",
     "OVERS-JUMP-STREAK-STATE",
     "POISON-STREAK-AT-COMMIT",
+    # B-κ instrumentation (2026-05-21) — emitted by Scoreboard.set
+    # whenever field=="score" lands a non-rejecting write. Payload
+    # captures score_before / score_after and the current overs +
+    # wickets at the moment of the score write, so the analyzer can
+    # detect "split score/overs commit" sequences where self.score
+    # advances while self.overs is held by a separate gate (the
+    # active defect mechanism surfaced in stream-gap memo §10.3).
+    "DIRECT-SCORE-COMMIT",
 }
 
 # Regex matches the leading ``[TAG]`` token in any log message. Captures
