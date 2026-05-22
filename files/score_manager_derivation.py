@@ -84,6 +84,7 @@ class WicketEvent:
     is_runout_speculative: bool          # delta_score > 0 same frame
     wicket_type: Optional[str] = None    # caught/bowled/lbw/stumped/run_out/...
     wicket_number: Optional[int] = None  # 1-indexed wicket # (for FoW slot)
+    new_batter: Optional[str] = None     # current_at_crease - prior_at_crease - {dismissed}
 
 
 @dataclass(frozen=True)
@@ -188,6 +189,14 @@ def derive_wicket_event(
         current_wd=current.extras_wd,
         current_nb=current.extras_nb,
     )
+    # §12.3 step 5 (commit 8/N): new_batter via reverse set-difference.
+    # The current at-crease set minus the prior set minus the dismissed
+    # batter = the post-wicket arrival. None when Scout primitive lags
+    # (new batter slot not yet observable); caller defers cascade.
+    arrived = current_set - prior_set
+    if dismissed is not None:
+        arrived = arrived - {dismissed}
+    new_batter = next(iter(arrived)) if len(arrived) == 1 else None
 
     return WicketEvent(
         delta_wickets=delta_w,
@@ -199,6 +208,7 @@ def derive_wicket_event(
         this_over_token=token,
         is_extras_dismissal=delta_extras > 0,
         is_runout_speculative=delta_score > 0,
+        new_batter=new_batter,
     )
 
 

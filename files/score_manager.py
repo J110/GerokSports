@@ -869,6 +869,15 @@ class ScoreManager:
             self._increment_bowler_wickets(event.bowler_name)
         if event.bowler_name:
             self._last_bowler_at_wicket_commit = event.bowler_name
+        # §12.3 step 5 (commit 8/N): post-wicket striker rotation
+        # cascade. Routes through apply_striker_event with reasons
+        # wicket_new_batter / wicket_non_striker_stays per §13.2 rule 2.
+        # Idempotent — _apply_event's downstream derive_striker_event
+        # call (commit 7a) re-evaluates from post-cascade SM state and
+        # returns no_change if the cascade already produced the right
+        # rotation. Anomalies + deferrals emit trace tags so the
+        # harness diff can localise gaps.
+        self._apply_post_wicket_striker_rotation(event)
         self._emit_trace(
             tag="SYNTHETIC-WICKET-DISPATCHED",
             payload={
@@ -939,6 +948,72 @@ class ScoreManager:
                 "source": source,
                 "frame_id": self._current_frame,
             })
+
+    def _apply_post_wicket_striker_rotation(self, event) -> None:
+        """§12.3 step 5 — post-wicket striker cascade.
+
+        Match event.dismissed_batter against (self.striker, self.non)
+        to determine who comes in where. Build a StrikerEvent with
+        reason wicket_new_batter (striker dismissed) or
+        wicket_non_striker_stays (non dismissed) and dispatch via
+        apply_striker_event. Defensive trace tags for the deferred
+        and anomaly cases:
+          - POST-WICKET-STRIKER-CASCADE-DEFERRED — Scout primitive
+            lag (new_batter is None); next frame's derivation
+            re-evaluates.
+          - POST-WICKET-STRIKER-ROTATION-ANOMALY — dismissed name
+            matches neither striker nor non; shouldn't happen, but
+            if it does the harness will detect via D-post-FoW-striker.
+        """
+        from score_manager_derivation import StrikerEvent as _SE
+        dismissed = event.dismissed_batter
+        new_batter = event.new_batter
+        if dismissed is None:
+            self._emit_trace(
+                tag="POST-WICKET-STRIKER-CASCADE-DEFERRED",
+                payload={
+                    "reason": "dismissed_unresolved",
+                    "frame_id": self._current_frame,
+                })
+            return
+        if new_batter is None:
+            self._emit_trace(
+                tag="POST-WICKET-STRIKER-CASCADE-DEFERRED",
+                payload={
+                    "reason": "new_batter_unresolved",
+                    "dismissed": dismissed,
+                    "frame_id": self._current_frame,
+                })
+            return
+        prev_striker = self.striker
+        prev_non = self.non
+        if dismissed == prev_striker:
+            next_striker = new_batter
+            next_non = prev_non
+            reason = "wicket_new_batter"
+        elif dismissed == prev_non:
+            next_striker = prev_striker
+            next_non = new_batter
+            reason = "wicket_non_striker_stays"
+        else:
+            self._emit_trace(
+                tag="POST-WICKET-STRIKER-ROTATION-ANOMALY",
+                payload={
+                    "dismissed": dismissed,
+                    "new_batter": new_batter,
+                    "self_striker": prev_striker,
+                    "self_non": prev_non,
+                    "frame_id": self._current_frame,
+                })
+            return
+        striker_event = _SE(
+            prev_striker=prev_striker,
+            next_striker=next_striker,
+            prev_non_striker=prev_non,
+            next_non_striker=next_non,
+            reason=reason,
+        )
+        self.apply_striker_event(striker_event)
 
     def apply_striker_identity_proposed(
             self, proposed_name: str, source: str) -> None:
@@ -5636,14 +5711,15 @@ class ScoreManager:
             self.bat1_name = None
         if self._same_player_canon(self.bat2_name, best_dismissed):
             self.bat2_name = None
-        if self._same_player_canon(best_dismissed, self.striker):
-            self._set_slot_pair(
-                None, survivor,
-                source="apply_event.wicket_striker_out")
-        elif self._same_player_canon(best_dismissed, self.non):
-            self._set_slot_pair(
-                survivor, None,
-                source="apply_event.wicket_non_striker_out")
+        # §15 step 8 cascade: ordering matters. apply_wicket_event's
+        # cascade (below) reads self.striker / self.non to identify
+        # the dismissed slot. The _set_slot_pair calls here MUST fire
+        # AFTER the cascade — if they run first, striker is nulled
+        # before cascade can read it and cascade hits the
+        # POST-WICKET-STRIKER-ROTATION-ANOMALY path. The cascade
+        # itself only mutates when event.new_batter is resolved
+        # (Scout primitive available); when it defers, these
+        # _set_slot_pair calls remain the canonical fallback writer.
         # §15 step 7b: FoW write delegated to apply_wicket_event (the
         # canonical FoW path). Bowler-W credit also routes through it
         # for bowler-attributable wickets; run-outs / obstructed-field
@@ -5669,8 +5745,35 @@ class ScoreManager:
             is_runout_speculative=bool(event.get("runs", 0)),
             wicket_type=event.get("wicket_type"),
             wicket_number=(self.wickets or 0),
+            # §15 step 8 cascade: use event["new_batter"] only (set by
+            # _infer_wicket from card.bat slots). Bat-slot fallback was
+            # tried and rejected — surviving partner != new arrival;
+            # using surviving slot caused cascade to reassign wrong
+            # striker/non pair (+2 boundary regression in step 8b).
+            # When event lacks new_batter (Scout primitive lag), cascade
+            # emits POST-WICKET-STRIKER-CASCADE-DEFERRED and waits for
+            # the next frame's derive_striker_event re-evaluation.
+            new_batter=event.get("new_batter"),
         )
         self.apply_wicket_event(_w_event)
+        # §15 step 8 cascade-defer fallback: when event["new_batter"] is
+        # None (Scout primitive lag), cascade emits POST-WICKET-STRIKER-
+        # CASCADE-DEFERRED without mutating striker/non. Restore the
+        # pre-rewrite _set_slot_pair behavior so striker is still
+        # nulled and non still holds the survivor — preserves the
+        # existing post-wicket invariant the harness has been
+        # validating against. When new_batter IS resolved, cascade
+        # owns the (striker, non) write and this fallback is skipped
+        # to avoid overwriting the cascade's correct assignment.
+        if event.get("new_batter") is None:
+            if self._same_player_canon(best_dismissed, self.striker):
+                self._set_slot_pair(
+                    None, survivor,
+                    source="apply_event.wicket_striker_out")
+            elif self._same_player_canon(best_dismissed, self.non):
+                self._set_slot_pair(
+                    survivor, None,
+                    source="apply_event.wicket_non_striker_out")
         self.partnership_runs = 0
         self.partnership_balls = 0
         self.partnership_known = True

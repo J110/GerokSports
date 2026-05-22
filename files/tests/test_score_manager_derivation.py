@@ -374,6 +374,110 @@ class TestDeriveStrikerEvent:
         assert sm.striker is None
         assert sm.non == "X"
 
+    def test_derive_wicket_event_computes_new_batter_via_set_diff(self):
+        # §12.3 step 5 cascade — new_batter = current_at_crease -
+        # prior_at_crease - {dismissed}.
+        prior = snap(
+            wickets=0, bat1_name="Rahul", bat2_name="Nissanka")
+        current = snap(
+            wickets=1, bat1_name="NewBat", bat2_name="Nissanka",
+            overs="4.6")
+        ev = derive_wicket_event(prior, current, "Tyagi")
+        assert ev is not None
+        assert ev.dismissed_batter == "Rahul"
+        assert ev.new_batter == "NewBat"
+
+    def test_derive_wicket_event_new_batter_None_when_unresolved(self):
+        # Scout primitive lag: new batter slot not yet observable
+        prior = snap(
+            wickets=0, bat1_name="Rahul", bat2_name="Nissanka")
+        current = snap(
+            wickets=1, bat1_name=None, bat2_name="Nissanka",
+            overs="4.6")
+        ev = derive_wicket_event(prior, current, "Tyagi")
+        assert ev is not None
+        assert ev.dismissed_batter == "Rahul"
+        assert ev.new_batter is None
+
+    def test_post_wicket_cascade_striker_dismissed_new_batter_takes_strike(self):
+        # §12.3 step 5 — striker dismissed, new batter takes strike.
+        import sys as _sys
+        from pathlib import Path as _P
+        _sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+        import score_manager  # noqa: E402
+        sm = score_manager.ScoreManager(shadow=True)
+        sm.striker = "Rahul"
+        sm.non = "Nissanka"
+        ev = WicketEvent(
+            delta_wickets=1, over_ball="4.6", bowler_name="Tyagi",
+            dismissed_batter="Rahul",
+            delta_score=0, delta_extras=0,
+            this_over_token="W",
+            is_extras_dismissal=False, is_runout_speculative=False,
+            new_batter="Rana")
+        sm._apply_post_wicket_striker_rotation(ev)
+        assert sm.striker == "Rana"
+        assert sm.non == "Nissanka"
+
+    def test_post_wicket_cascade_non_striker_dismissed_striker_stays(self):
+        import sys as _sys
+        from pathlib import Path as _P
+        _sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+        import score_manager  # noqa: E402
+        sm = score_manager.ScoreManager(shadow=True)
+        sm.striker = "Nissanka"
+        sm.non = "Rahul"
+        ev = WicketEvent(
+            delta_wickets=1, over_ball="4.6", bowler_name="Tyagi",
+            dismissed_batter="Rahul",
+            delta_score=0, delta_extras=0,
+            this_over_token="W",
+            is_extras_dismissal=False, is_runout_speculative=False,
+            new_batter="Rana")
+        sm._apply_post_wicket_striker_rotation(ev)
+        assert sm.striker == "Nissanka"
+        assert sm.non == "Rana"
+
+    def test_post_wicket_cascade_deferred_when_new_batter_unresolved(self):
+        import sys as _sys
+        from pathlib import Path as _P
+        _sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+        import score_manager  # noqa: E402
+        sm = score_manager.ScoreManager(shadow=True)
+        sm.striker = "Rahul"
+        sm.non = "Nissanka"
+        ev = WicketEvent(
+            delta_wickets=1, over_ball="4.6", bowler_name="Tyagi",
+            dismissed_batter="Rahul",
+            delta_score=0, delta_extras=0,
+            this_over_token="W",
+            is_extras_dismissal=False, is_runout_speculative=False,
+            new_batter=None)  # Scout lag
+        sm._apply_post_wicket_striker_rotation(ev)
+        # Cascade deferred — striker unchanged
+        assert sm.striker == "Rahul"
+        assert sm.non == "Nissanka"
+
+    def test_post_wicket_cascade_anomaly_when_dismissed_in_neither_slot(self):
+        import sys as _sys
+        from pathlib import Path as _P
+        _sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+        import score_manager  # noqa: E402
+        sm = score_manager.ScoreManager(shadow=True)
+        sm.striker = "Rahul"
+        sm.non = "Nissanka"
+        ev = WicketEvent(
+            delta_wickets=1, over_ball="4.6", bowler_name="Tyagi",
+            dismissed_batter="Stranger",  # neither at crease
+            delta_score=0, delta_extras=0,
+            this_over_token="W",
+            is_extras_dismissal=False, is_runout_speculative=False,
+            new_batter="Rana")
+        sm._apply_post_wicket_striker_rotation(ev)
+        # Anomaly — no mutation
+        assert sm.striker == "Rahul"
+        assert sm.non == "Nissanka"
+
     def test_apply_striker_identity_proposed_refuses_when_set(self):
         # §13.8.1 — conservative-refuse semantic for proposed identities
         # (broadcast/_identify_and_set callers). Distinct from
