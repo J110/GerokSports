@@ -417,6 +417,16 @@ KNOWN_TAGS: set[str] = {
     # for the §7.2 7-gate audit + the empirical pairing criterion
     # verified against GTRR 80 + DCKKR 47 benign firings.
     "CROSS-FIELD-PAIRING-REJECT",
+    # Workstream G Shape A (2026-05-22) — post-wicket cascade pending-
+    # queue lifecycle. The fire-once defer at apply_wicket_event becomes
+    # an enqueue; a per-frame drain in _handle_warm resolves new_batter
+    # via slot-diff against the captured pre-fallback pair (audit §2.3.1
+    # Mitigation A). See workstream_g_shape_a_pending_cascade_audit.md.
+    "POST-WICKET-CASCADE-ENQUEUED",
+    "POST-WICKET-CASCADE-DRAIN-FIRED",
+    "POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START",
+    "POST-WICKET-CASCADE-QUEUE-OVERFLOW",
+    "CASCADE-DRAIN-EXPIRED",
 }
 
 # Regex matches the leading ``[TAG]`` token in any log message. Captures

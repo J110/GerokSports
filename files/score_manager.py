@@ -496,6 +496,11 @@ class ScoreManager:
         # once self.striker becomes non-None again. See
         # cold_start_initial_striker_design.md.
         self._post_wicket_slot_to_diff: str | None = None
+        # Workstream G Shape A (2026-05-22) — FIFO queue of post-wicket
+        # cascades deferred because event.new_batter was None at commit
+        # time (G2 strip-render-lag root). Bounded at 3 per audit §4 Q1;
+        # overflow pops oldest + emits POST-WICKET-CASCADE-QUEUE-OVERFLOW.
+        self._pending_post_wicket_cascade: list = []
 
         # Match context (innings / batting_team / target → Path B properties)
         self.venue: str | None = None
@@ -965,7 +970,8 @@ class ScoreManager:
             matches neither striker nor non; shouldn't happen, but
             if it does the harness will detect via D-post-FoW-striker.
         """
-        from score_manager_derivation import StrikerEvent as _SE
+        from score_manager_derivation import (
+            StrikerEvent as _SE, PendingCascade as _PC)
         dismissed = event.dismissed_batter
         new_batter = event.new_batter
         if dismissed is None:
@@ -976,26 +982,75 @@ class ScoreManager:
                     "frame_id": self._current_frame,
                 })
             return
+        prev_striker = self.striker
+        prev_non = self.non
+        if dismissed == prev_striker:
+            cascade_reason = "wicket_new_batter"
+            survivor = prev_non
+        elif dismissed == prev_non:
+            cascade_reason = "wicket_non_striker_stays"
+            survivor = prev_striker
+        else:
+            cascade_reason = None
+            survivor = None
         if new_batter is None:
             self._emit_trace(
                 tag="POST-WICKET-STRIKER-CASCADE-DEFERRED",
                 payload={
                     "reason": "new_batter_unresolved",
                     "dismissed": dismissed,
+                    "deferred_to_drain": True,
                     "frame_id": self._current_frame,
                 })
+            if cascade_reason is None:
+                # dismissed matches neither slot — anomaly; do not enqueue
+                # because the drain has no captured-pair semantic to apply.
+                self._emit_trace(
+                    tag="POST-WICKET-STRIKER-ROTATION-ANOMALY",
+                    payload={
+                        "dismissed": dismissed,
+                        "new_batter": None,
+                        "self_striker": prev_striker,
+                        "self_non": prev_non,
+                        "reason": "defer_with_no_slot_match",
+                        "frame_id": self._current_frame,
+                    })
+                return
+            if len(self._pending_post_wicket_cascade) >= 3:
+                _evicted = self._pending_post_wicket_cascade.pop(0)
+                self._emit_trace(
+                    tag="POST-WICKET-CASCADE-QUEUE-OVERFLOW",
+                    payload={
+                        "evicted_frame_set_at": _evicted.frame_set_at,
+                        "evicted_dismissed": _evicted.dismissed,
+                        "incoming_dismissed": dismissed,
+                        "frame_id": self._current_frame,
+                    })
+            _entry = _PC(
+                wicket_event=event,
+                dismissed=dismissed,
+                survivor=survivor,
+                reason=cascade_reason,
+                prev_striker=prev_striker,
+                prev_non_striker=prev_non,
+                frame_set_at=self._current_frame,
+                wicket_frame_for_history=self._current_frame,
+            )
+            self._pending_post_wicket_cascade.append(_entry)
+            self._emit_trace(
+                tag="POST-WICKET-CASCADE-ENQUEUED",
+                payload={
+                    "dismissed": dismissed,
+                    "survivor": survivor,
+                    "reason": cascade_reason,
+                    "prev_striker": prev_striker,
+                    "prev_non_striker": prev_non,
+                    "frame_set_at": self._current_frame,
+                    "ttl_frames": _entry.ttl_frames,
+                    "queue_depth": len(self._pending_post_wicket_cascade),
+                })
             return
-        prev_striker = self.striker
-        prev_non = self.non
-        if dismissed == prev_striker:
-            next_striker = new_batter
-            next_non = prev_non
-            reason = "wicket_new_batter"
-        elif dismissed == prev_non:
-            next_striker = prev_striker
-            next_non = new_batter
-            reason = "wicket_non_striker_stays"
-        else:
+        if cascade_reason is None:
             self._emit_trace(
                 tag="POST-WICKET-STRIKER-ROTATION-ANOMALY",
                 payload={
@@ -1006,14 +1061,84 @@ class ScoreManager:
                     "frame_id": self._current_frame,
                 })
             return
+        if cascade_reason == "wicket_new_batter":
+            next_striker = new_batter
+            next_non = prev_non
+        else:
+            next_striker = prev_striker
+            next_non = new_batter
         striker_event = _SE(
             prev_striker=prev_striker,
             next_striker=next_striker,
             prev_non_striker=prev_non,
             next_non_striker=next_non,
-            reason=reason,
+            reason=cascade_reason,
         )
         self.apply_striker_event(striker_event)
+
+    def _attempt_pending_cascade_drain(self) -> None:
+        """Workstream G Shape A — drain pending post-wicket cascades.
+
+        Iterates FIFO; resolves new_batter via slot-diff against the
+        captured pre-fallback pair (audit §2.3.1 Mitigation A). On
+        resolve: dispatches via apply_striker_event with the captured
+        pair as prev. On TTL expiry: pops + emits CASCADE-DRAIN-EXPIRED.
+        Halts at the first unresolved-but-within-TTL entry (FIFO order
+        preserved; cricket guarantees strict event ordering).
+        """
+        from score_manager_derivation import StrikerEvent as _SE
+        while self._pending_post_wicket_cascade:
+            entry = self._pending_post_wicket_cascade[0]
+            age = self._current_frame - entry.frame_set_at
+            at_crease = {n for n in (self.bat1_name, self.bat2_name) if n}
+            arrived = at_crease - {entry.dismissed}
+            if entry.survivor is not None:
+                arrived = arrived - {entry.survivor}
+            new_batter = next(iter(arrived)) if len(arrived) == 1 else None
+            if new_batter is not None:
+                if entry.reason == "wicket_new_batter":
+                    next_striker = new_batter
+                    next_non = entry.prev_non_striker
+                else:
+                    next_striker = entry.prev_striker
+                    next_non = new_batter
+                striker_event = _SE(
+                    prev_striker=entry.prev_striker,
+                    next_striker=next_striker,
+                    prev_non_striker=entry.prev_non_striker,
+                    next_non_striker=next_non,
+                    reason=entry.reason,
+                )
+                self.apply_striker_event(striker_event)
+                self._emit_trace(
+                    tag="POST-WICKET-CASCADE-DRAIN-FIRED",
+                    payload={
+                        "dismissed": entry.dismissed,
+                        "new_batter": new_batter,
+                        "reason": entry.reason,
+                        "frame_set_at": entry.frame_set_at,
+                        "wicket_frame_for_history":
+                            entry.wicket_frame_for_history,
+                        "age_frames": age,
+                        "frame_id": self._current_frame,
+                    })
+                self._pending_post_wicket_cascade.pop(0)
+                continue
+            if age > entry.ttl_frames:
+                self._emit_trace(
+                    tag="CASCADE-DRAIN-EXPIRED",
+                    payload={
+                        "dismissed": entry.dismissed,
+                        "survivor": entry.survivor,
+                        "reason": entry.reason,
+                        "frame_set_at": entry.frame_set_at,
+                        "age_frames": age,
+                        "ttl_frames": entry.ttl_frames,
+                        "frame_id": self._current_frame,
+                    })
+                self._pending_post_wicket_cascade.pop(0)
+                continue
+            break
 
     def apply_striker_identity_proposed(
             self, proposed_name: str, source: str) -> None:
@@ -1839,6 +1964,20 @@ class ScoreManager:
         self.pending_extra_frames = 0
         self.pending_wicket = None
         self.pending_wicket_frames = 0
+
+        if self._pending_post_wicket_cascade:
+            _wiped = [
+                {"frame_set_at": pc.frame_set_at,
+                 "age": self._current_frame - pc.frame_set_at,
+                 "dismissed": pc.dismissed}
+                for pc in self._pending_post_wicket_cascade]
+            self._emit_trace(
+                tag="POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START",
+                payload={
+                    "wiped_entries": _wiped,
+                    "frame_id": self._current_frame,
+                })
+        self._pending_post_wicket_cascade = []
 
         self.recent_frames = []
 
@@ -3356,6 +3495,12 @@ class ScoreManager:
         if self._over_archive_pending is not None:
             self._attempt_pending_archive_drain(
                 card.get("overs") if isinstance(card, dict) else None)
+        # Workstream G Shape A: drain BEFORE _identify_and_set so a
+        # resolved cascade writes self.striker via apply_striker_event
+        # FIRST; subsequent apply_striker_identity_proposed reads a
+        # non-None striker and refuses (audit §4 Q3 ordering).
+        if self._pending_post_wicket_cascade:
+            self._attempt_pending_cascade_drain()
         self._try_resolve_pending(frame)
 
         if card.get("score") is not None:

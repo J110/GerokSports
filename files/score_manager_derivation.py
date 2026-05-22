@@ -102,6 +102,34 @@ class StrikerEvent:
 
 
 @dataclass(frozen=True)
+class PendingCascade:
+    """Workstream G Shape A — deferred post-wicket striker cascade.
+
+    Populated by `_apply_post_wicket_striker_rotation` when
+    `event.new_batter` is None at wicket-commit (G2 strip-render-lag root
+    per `workstream_g_scout_extraction_timing.md` §3.3). Drained by
+    `_attempt_pending_cascade_drain` once Scout slot-diff resolves the
+    new batter or the TTL expires.
+
+    Mitigation A (audit §2.3.1): captures `prev_striker` /
+    `prev_non_striker` BEFORE the `_apply_wicket_fall_only` fallback at
+    `score_manager.py:5768-5776` nulls the dismissed slot. The drain
+    rebuilds the StrikerEvent from this captured pair, not from the
+    live `self.striker` / `self.non` (which have been nulled by drain
+    time).
+    """
+    wicket_event: WicketEvent
+    dismissed: str
+    survivor: Optional[str]
+    reason: str  # "wicket_new_batter" | "wicket_non_striker_stays"
+    prev_striker: Optional[str]
+    prev_non_striker: Optional[str]
+    frame_set_at: int
+    wicket_frame_for_history: int
+    ttl_frames: int = 80
+
+
+@dataclass(frozen=True)
 class ThisOverToken:
     raw: str                             # "." | "1"-"6" | "W" | "Wd"...
     delta_score: int
