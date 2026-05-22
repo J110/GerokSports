@@ -720,11 +720,22 @@ This inverts the §11 estimate that put Bowler-W-credit as Step 6 #2 priority. T
 
 ### §13.1 — Scope: what goes, what stays
 
-**Goes (replaced):**
-- Inline `self.striker = ...` assignments scattered across `score_manager.py` (estimated 8-12 sites; CC must grep at execution time).
+**CC commit (3/N) discovery 2026-05-22 evening:** `self.striker` has TWO orthogonal write semantics that share the field but are distinct concerns. §13 scope is ROTATION only; IDENTITY-RESOLUTION is separate (per §13.8).
+
+**Goes (replaced — STRIKER ROTATION sites only):**
+- Inline rotation swaps in `_apply_event` (odd-run + over-end paths).
 - Deterministic-rotation override at `score_manager.py:4295-4325`. **CRITICAL: this is currently in `Architecture_HANDOFF.md`'s "What NOT to touch" list — the §13 rewrite explicitly removes that fence and REPLACES the override with `derive_striker_event`. The S12 non-discriminable-predicate-signature defect (from C30b) lives in this override; rewriting eliminates the surface entirely.**
 - Post-wicket striker-init logic inside `_apply_wicket_fall_only` and `_apply_event` wicket-branch.
 - Cold-start striker-init (currently F1 fix at `:2789-2808`). F1's intent is preserved but reimplemented via the canonical derivation.
+- `_set_slot_pair`'s rotation-side effects ONLY (not its identity-resolution side effects per §13.8).
+
+**NOT §13 scope (IDENTITY-RESOLUTION sites — handled by §13.8 separately):**
+- `_identify_striker` (Scout broadcast-striker confirms which canonical name maps to the existing striker — no rotation occurs).
+- `_set_slot_pair`'s identity-resolution side effects (post-wicket slot management; rotation is the §13-scope subset, identity-resolution is the §13.8-scope subset).
+- NAME-REJECTED-NOT-IN-SQUAD recovery paths.
+- Broadcast-striker confirmation paths.
+
+**The distinction is load-bearing:** ROTATION writes change WHO is on strike (batter A → batter B). IDENTITY-RESOLUTION writes change WHICH NAME maps to the existing striker (batter "Roy" → batter "Anukul Roy" after squad-resolver fires). Routing IDENTITY-RESOLUTION through `apply_striker_event` is wrong because there is no rotation event to derive — the function would produce `no_change` reason and skip, leaving the identity-resolution unhandled. Worse, if the derivation tries to compute parity from primitives that haven't changed (idle frame), it returns the wrong answer. **Keep these semantics separate.**
 
 **Stays (untouched):**
 - Scout 5-primitive extraction including `first_striker` and per-frame `bat1_name`/`bat2_name`.
@@ -737,9 +748,13 @@ This inverts the §11 estimate that put Bowler-W-credit as Step 6 #2 priority. T
 @dataclass(frozen=True)
 class StrikerEvent:
     prev_striker: Optional[str]
+    prev_non_striker: Optional[str]
     next_striker: str
+    next_non_striker: Optional[str]
     reason: str   # "first_striker_init" | "odd_run_rotation" | "end_of_over_swap" |
-                  # "wicket_new_batter" | "wicket_non_striker_stays" | "no_change"
+                  # "odd_run_on_end_of_over_cancels" |          # XOR composition per B-1 fix
+                  # "wicket_new_batter" | "wicket_non_striker_stays" |
+                  # "striker_post_wicket_multi_ball_best_effort" | "no_change"
 
 def derive_striker_event(
     prior: SnapshotPrimitives,
@@ -769,19 +784,29 @@ def derive_striker_event(
 
 ```python
 def apply_striker_event(self, event: StrikerEvent) -> None:
-    """Single mutation path for self.striker."""
+    """Single mutation path for the (striker, non_striker) pair.
+
+    B-2 fix 2026-05-22 evening: owns BOTH self.striker AND self.non — caller-mirror
+    pattern eliminated (parallel-write anti-pattern). Atomic update preserves the
+    pair invariant across post-FoW slot-clearing windows.
+    """
     if event.reason == "no_change":
         return
     self.striker = event.next_striker
+    self.non = event.next_non_striker
     self._emit_trace(
         tag="STRIKER-EVENT-DISPATCHED",
         payload={
-            "prev": event.prev_striker,
-            "next": event.next_striker,
+            "prev_striker": event.prev_striker,
+            "prev_non_striker": event.prev_non_striker,
+            "next_striker": event.next_striker,
+            "next_non_striker": event.next_non_striker,
             "reason": event.reason,
         },
     )
 ```
+
+**Derivation note for `next_non_striker`:** computed inside `derive_striker_event` from `current.bat1_name` + `current.bat2_name` (the post-event at-the-crease pair). Trivially: `next_non_striker = (current.bat1_name if next_striker == current.bat2_name else current.bat2_name)`. The event carries the resolved pair so `apply_striker_event` does no recomputation — the derivation function is the single source of truth for the rotation outcome, the apply function only mutates state.
 
 ### §13.4 — Entry-point replacements
 
@@ -825,6 +850,112 @@ Each edge case has a unit test in the new module.
 - Per-batter-ledger drift (Obs 16 — independent).
 - Phantom-runs (Obs 8 — independent).
 - Pipeline-lag (Obs 10 — independent).
+
+### §13.8 — Striker IDENTITY-RESOLUTION canonical path (sibling to §13.3, NOT a rotation event)
+
+CC's commit (3/N) discovery: `self.striker` writes split into ROTATION (§13 scope) and IDENTITY-RESOLUTION (this section). The two semantics share a field but must NOT share a write path.
+
+**Contract:**
+
+```python
+def apply_striker_identity_resolved(self, resolved_name: str, source: str) -> None:
+    """
+    Identity-resolution write path. Does NOT rotate — only updates the canonical
+    name string for the existing striker. Fires when Scout/broadcast resolves a
+    fuzzy-matched name, recovers from a NAME-REJECTED-NOT-IN-SQUAD case, or
+    confirms the broadcast-striker primitive for the existing at-the-crease slot.
+
+    Pre-condition (architectural invariant): if self.striker is non-None, the
+    resolved_name must map to the SAME at-the-crease slot. If not, the two
+    semantics are colliding — that's a bug to raise, not silently handle.
+
+    source: identifies the caller for trace audit (e.g., "identify_striker",
+    "broadcast_confirm", "name_rejected_recovery", "set_slot_pair_identity").
+    """
+    if self.striker is not None and self.striker != resolved_name:
+        # Identity-resolution must never change WHO is on strike — only WHICH NAME.
+        # If we got here, something upstream conflated rotation with identity.
+        self._emit_trace(
+            tag="STRIKER-IDENTITY-CONFLICT",
+            payload={
+                "existing": self.striker,
+                "resolved": resolved_name,
+                "source": source,
+            },
+        )
+        # Best-effort per §16: proceed with resolved_name; alert flags the bug.
+    self.striker = resolved_name
+    self._emit_trace(
+        tag="STRIKER-IDENTITY-RESOLVED",
+        payload={"name": resolved_name, "source": source},
+    )
+```
+
+**Entry-point replacements (separate from §13.4):**
+- `_identify_striker` → calls `apply_striker_identity_resolved(name, source="identify_striker")`.
+- `_set_slot_pair` identity-side effects → call `apply_striker_identity_resolved(...)`.
+- NAME-REJECTED-NOT-IN-SQUAD recovery → call with `source="name_rejected_recovery"`.
+- Broadcast-striker confirmation → call with `source="broadcast_confirm"`.
+
+**Scope sizing:** likely 2-4 call sites, smaller than §13's ROTATION surface. Lands as its own commit after §13's rotation consolidation closes, OR as part of Workstream G (per §11.3 item #2) since both are about consolidating parallel-write-paths under §16's principle.
+
+**Why this matters for §13's parity gate:** CC's commit (3/N) +2/-5 signature at over_ball 8.5 was caused by IDENTITY-RESOLUTION writes racing with ROTATION writes. Consolidating only the ROTATION sites left the IDENTITY-RESOLUTION sites still writing independently. After §13.8 lands too, both write paths are canonical and the race disappears.
+
+### §13.8.1 — Third canonical method: `apply_striker_identity_proposed` (CC commit (7/N) discovery)
+
+CC's attempted step 9 surfaced that `self.striker` has not TWO but THREE orthogonal write semantics. The third was previously hiding inside the deterministic-rotation override at `_identify_and_set` (`:4700-4736` post-7c) — a conservative-refuse gate against noisy broadcast-driven writes. Removing the override produced +24 Boundary-counter-double-increment + +9 Per-batter-ledger-drift regressions (BAT-DELTA at `:6358` was using `self.striker` for per-ball runs/boundary credit; without the gate, broadcast-driven flips between rotation events misattributed credits).
+
+The override is load-bearing not for "ball-4.6 wicket-attribution" (the surfaced test case) but for **all per-ball credit attribution between rotation events**. The Layer 1.5 ball-4.6 test passed without the override because `_infer_wicket`'s slot-diff P2 path handles dismissed-name independent of `self.striker`. The actual coverage is mid-frame BAT-DELTA stability.
+
+**Contract:**
+
+```python
+def apply_striker_identity_proposed(self, proposed_name: str, source: str) -> None:
+    """
+    PROPOSED-identity write path. Conservative-refuse if self.striker is already set.
+
+    Use when caller has a NOISY signal (broadcast OCR confirmation, frame-by-frame
+    identity tagging) and the existing striker should be preserved against mid-over
+    noise. Distinct from apply_striker_identity_resolved which is AUTHORITATIVE
+    (post-wicket NAME-REJECTED recovery, cold-start init).
+
+    source: identifies caller for trace audit (e.g., "identify_and_set",
+    "broadcast_confirm_per_frame").
+    """
+    if self.striker is not None:
+        self._emit_trace(
+            tag="STRIKER-IDENTITY-PROPOSAL-REFUSED",
+            payload={
+                "existing": self.striker,
+                "proposed": proposed_name,
+                "source": source,
+            },
+        )
+        return  # conservative-refuse — preserve existing
+    self.striker = proposed_name
+    self._emit_trace(
+        tag="STRIKER-IDENTITY-PROPOSED",
+        payload={"name": proposed_name, "source": source},
+    )
+```
+
+**Entry-point replacement (step 9 retry):**
+- `_identify_and_set`'s deterministic-rotation override body (`:4700-4736`) → replace with single call to `apply_striker_identity_proposed(name, source="identify_and_set")`. Delete the inline gate logic.
+
+**Three-method canonical surface for `self.striker` post-§13/§13.8:**
+
+| Method | Semantic | Refuse-when-set? | Typical callers |
+|---|---|---|---|
+| `apply_striker_event` | ROTATION — batters cross during delivery | No (always applies) | `_apply_event` rotation paths, post-wicket cascade |
+| `apply_striker_identity_resolved` | AUTHORITATIVE IDENTITY — fuzzy name resolved or recovery | No (overwrites existing) | NAME-REJECTED recovery, cold-start init, `_set_slot_pair` identity-side |
+| `apply_striker_identity_proposed` | PROPOSED IDENTITY — noisy broadcast signal | **YES** (conservative-refuse) | `_identify_and_set`, broadcast-confirm-per-frame paths |
+
+**Layer 1.5 protection gap:** the mid-frame BAT-DELTA stability invariant CC's attempted step 9 violated is NOT currently in Layer 1.5. Step 9's commit (7/N) should add a fixture-anchored test: "after rotation at frame N, BAT-DELTA credits between frames N and N+1 must land on the rotation-derived striker, not broadcast-driven flips." This codifies the invariant the override was implicitly protecting.
+
+**Architectural fence (post-§13 + §13.8 + §13.8.1):**
+
+Add to `Architecture_HANDOFF.md` "What NOT to touch":
+- **`apply_striker_event` + `apply_striker_identity_resolved` + `apply_striker_identity_proposed`** — THREE canonical write paths for `self.striker`. Any new code that writes `self.striker` directly is a regression. Future writes must route through ONE of these three functions based on semantic: rotation / authoritative-identity / proposed-identity. Adding a fourth path re-introduces the structural race CC's commit (3/N) caught, OR re-introduces the conservative-refuse-bypass CC's step 9 first-attempt caught.
 
 ---
 
@@ -919,6 +1050,90 @@ Cold-start contract under §14:
 - Recent-Overs panel will show `?` placeholders for the cold-start-bypassed over until next over starts cleanly. This is the correct behavior — we genuinely don't know what happened before pipeline booted.
 
 This is the derivation-first principle taken to cold-start: refuse to invent state where primitives don't justify it.
+
+### §14.5.1 — Empirical falsification of §14.5's predicted closures (CC commit 9/N attempt, 2026-05-22)
+
+Step 11 attempted; reverted before commit; three independent empirical findings:
+
+1. **C21b at 10.5 is NOT a cold-start subcase.** Removing the wholesale-wipe replaces `['1','1',...,'1','25']` with `['?','?','?','?','?']` at the 10.5 snapshot — both lack the W token, classifier fires identically. Root cause is **same Workstream G adjacency as commit (8/N)'s cascade defer rate**: Scout doesn't observe/write the W token at the wicket-commit frame regardless of cold-start policy. Cold-start synthesis isn't the C21b surface for this instance.
+
+2. **Multi-ball-compression at 4 doesn't drop.** All 4 instances live in the post-cold-start window where the synthesizer doesn't fire. They're driven by per-event this_over delta logic, not by cold-start backfill.
+
+3. **Removing the synthesizer regresses other surfaces** (+5 Boundary-counter-double-increment + +2 D-post-FoW-striker). The synthesizer's per-ball stats walks are load-bearing in non-obvious ways — nothing else compensates for the dropped credits.
+
+4. **COLD-START-EXIT fires 12 times** in the DCKKR dump, not the predicted "once per pipeline boot". Pipeline state machine re-enters cold-start synthesis multiple times per session (6+ re-entries per commit (8/N) earlier diagnostic). The single-shot boundary-marker model in §16.2 doesn't match the multi-re-entry reality.
+
+**Conclusion:** §14.5's no-backfill policy is correct in principle but requires upstream Workstream G work (Scout extraction timing at wicket-commit + cold-start re-entry frequency root cause) before it's implementable. Step 11 deferred until Workstream G closes the upstream signals; the no-backfill policy CANNOT land productively while cold-start fires 12 times per session.
+
+### §14.5.2 — COLD-START-EXIT semantics gap (§16.2 redesign required)
+
+§16.2 designed COLD-START-EXIT as a single-shot boundary marker between "before pipeline existed" and "during operation". Empirical reality: pipeline re-enters cold-start multiple times mid-session. Two redesign options for next-session work:
+
+- **(i) Bifurcate tags:** emit `COLD-START-EXIT-INITIAL` once at pipeline boot, `COLD-START-EXIT-REENTRY` on each subsequent re-entry. PIPELINE-MISSED-DELIVERY classifier treats initial vs re-entry differently (initial = benign-by-design; re-entry = P0 bug because pipeline lost convergence mid-session).
+- **(ii) Treat ALL cold-start windows as benign**, but raise alert on re-entry frequency: `COLD-START-REENTRY` count > 1 per session = Workstream G bug. PIPELINE-MISSED-DELIVERY during ANY cold-start window is benign, but re-entry itself is a signal to investigate.
+
+Pick at Workstream G open-time. Either way, §16's principle stays — what changes is the boundary semantics.
+
+---
+
+## §17 — §15 arc closure + next-session pivot (2026-05-22 evening)
+
+**§15 triple-subsystem greenfield rewrite arc STRUCTURALLY COMPLETE at commit (8/N) `1af2bd9`.** Surface drops predicted by §12.5 / §13.5 / §14.6 require Workstream G (Scout-extraction-timing + cold-start-re-entry-frequency) as upstream dependency; the arc's structural goals are accomplished, surface drops await Workstream G closure.
+
+### §17.1 — What §15 actually accomplished (commits 1/N–8/N)
+
+1. **Three canonical write paths for `self.striker`** (§13/§13.8/§13.8.1): `apply_striker_event` (rotation), `apply_striker_identity_resolved` (authoritative), `apply_striker_identity_proposed` (proposed). All 8 remaining `self.striker = None` writes are invalidation-only; no non-canonical name writes remain.
+2. **Canonical wicket dispatch path** (§12/§12.10): `apply_wicket_event` is sole FoW + bowler-W writer. `_apply_wicket_fall_only` retained as thin shim; full deletion deferred until partnership/slot-clearing have canonical paths.
+3. **Bowler-W-credit-failure 7 → 1** (commit 7b harness): canonical path credits bowler; `_last_bowler_at_wicket_commit` sibling field closes the 2 snapshot-extraction artifacts.
+4. **F-A-commit-lag 50 → 49, F-B-ad-occlusion 27 → 23** (commit 7b bonuses): cross-surface effects from bowler-identity fidelity improvement.
+5. **Cascade scaffolding** (§12.3 step 5): wired but 100% deferred in DCKKR dump due to Scout-new-batter timing — empirical evidence for Workstream G.
+6. **Pure derivation module** (`files/score_manager_derivation.py`, 48/48 tests): three derivation functions + four edge-case categories codified.
+7. **Architectural fence updates** in HANDOFF and Architecture_HANDOFF: three canonical striker paths + apply_wicket_event listed in "What NOT to touch"; deterministic-rotation override at `:4700-4736` (post-7c line range) replaced and removed from fence list.
+
+### §17.2 — What §15 did NOT accomplish (and why)
+
+- **C21b at 10.5 still fires** — root cause is Scout-extraction timing at wicket-commit, not cold-start synthesizer (§14.5.1).
+- **Multi-ball-compression stays at 4** — driven by per-event this_over delta logic, not cold-start backfill.
+- **D-post-FoW-striker stays at 20** — cascade structurally wired but 100% deferred in dump due to Scout-new-batter-read lag.
+- **Compound-with-wicket-token at 2** — wicket dispatch path canonical, but compound-W tokens still don't reach this_over at the right frames (Scout-timing again).
+- **Surface count: 14 → 14** (no net drop). Structural cleanup is real; empirical-drop-on-this-dump is not. Live-replay validation per §10.4 is still mandatory before claiming any of the predicted drops in production.
+
+### §17.3 — Next-session priority #1: Workstream G investigation
+
+**Promotes from §11.3 item #2 (already a §16 promotion) to item #1.** Scope:
+
+1. **Scout extraction timing at wicket-commit frames.** Empirical signal: commit (8/N) cascade defer rate (2/2 = 100% in dump). Why does Scout's `bat1_name`/`bat2_name` primitive not include the new batter at the moment `wickets` increments? Candidates: (a) Scout extraction cadence too low; (b) broadcast-strip render lag between wicket animation + new-batter-on-screen; (c) Scout VLM prompt not asking for new-batter identity; (d) lock-mechanism gating identity reads at post-wicket frames.
+
+2. **Cold-start re-entry frequency root cause.** Empirical signal: commit (9/N) attempt — 12 COLD-START-EXIT fires in DCKKR dump (6+ re-entries). Why does the pipeline lose convergence and re-enter cold-start mid-session? Candidates: (a) ConsistentReadTracker thresholds too aggressive; (b) confidence_tracker race with Scout-extraction confidence drops; (c) lock-release path triggered by spurious events.
+
+3. **COLD-START-EXIT semantics redesign** per §14.5.2 — bifurcate tags or treat all cold-start as benign; enable PIPELINE-MISSED-DELIVERY classifier meaningful operation.
+
+4. **§14.5 step 11 retry** AFTER 1+2+3 close — the no-backfill policy lands cleanly once cold-start is a one-time event.
+
+5. **C21b + Multi-ball-compression + D-post-FoW-striker validation** — §15's predicted drops should materialize once Workstream G closes the upstream signals.
+
+### §17.4 — Next-session priority #2+: §11.3 surgical items 3-7 unchanged
+
+After Workstream G closure (or in parallel where independent):
+- Workstream F sub-class A + B (bowler misattribution)
+- Per-batter-ledger conservation assertion (Obs 16)
+- Recent-Overs partial-render policy (Obs 11b)
+- Phantom-runs root-localize (Obs 8)
+
+### §17.5 — Methodology insights consolidated for HANDOFF (12 → 16)
+
+Insights surfaced during §15 arc that should land in HANDOFF "Standing discipline" alongside the existing 12:
+
+- **#13 — A single struct field can carry multiple orthogonal write semantics; audit before consolidation.** Surfaced commit (3/N) ROTATION-vs-IDENTITY split + commit (7/N) IDENTITY-RESOLVED-vs-PROPOSED split.
+- **#14 — Silently-no-op bugs (NameError under try/except, attribute lookups returning None) hide downstream effects until harness diff aggregates across surfaces.** Surfaced commit (6/N) trace_beta NameError. Operational corollary: re-raise NameError + AttributeError specifically, only catch domain exceptions.
+- **#15 — Layer 1.5 catches isolated mutation-correctness regressions; harness diff catches emergent cross-surface composition regressions. Both necessary; harness is higher-signal layer during multi-component wire-throughs.** Surfaced commit (8/N) — 4 iterations, all caught by harness diff, zero by Layer 1.5.
+- **#16 — Multi-component rewrites can produce structurally-correct commits that don't deliver predicted empirical drops.** That's empirical falsification of the prediction's hypothesis, not failure of the rewrite. Close the arc honestly; pivot to the actual root cause. Surfaced commit (9/N) attempt — §14.5 hypothesis falsified by data; arc closed at structural completion.
+
+Record in HANDOFF.md "Standing discipline" section after §15 arc closes.
+
+### §17.6 — §15 arc-closure commit (optional, this session or next)
+
+Single docs commit on `obs/silent-wicket-absorption` updating HANDOFF + Architecture_HANDOFF with the §15 closure summary + the 4 new methodology insights. Branch rename from `obs/silent-wicket-absorption` to `rewrite/wicket-striker-this_over-canonical` (or similar) before merge to `derive-not-detect`. No further code changes in §15 scope.
 
 ### §14.6 — Harness acceptance gates
 
@@ -1123,6 +1338,8 @@ class WicketEvent:
     over_ball: str                     # "10.5" — pipeline's current over.ball at dispatch frame
     bowler_name: str                   # tracker-locked current bowler
     dismissed_batter: Optional[str]    # derived via set-difference; None on ambiguous case
+    new_batter: Optional[str]          # derived via reverse set-difference: current_at_crease - prior_at_crease.
+                                       # None if new batter Scout-read hasn't arrived yet (cascade defers per §12.3 step 5).
     delta_score: int                   # current.score - prior.score
     delta_extras: int                  # current.extras_total - prior.extras_total
     this_over_token: str               # "W" / "<N>+W" / "Wd+W" / "Nb+W" — composed per rules below
@@ -1180,8 +1397,24 @@ def apply_wicket_event(self, event: WicketEvent) -> None:
     if event.bowler_name:
         self._increment_bowler_wickets(event.bowler_name)
 
-    # 5. Striker rotation — new batter from prior_at_crease set difference's complement
+    # 5. Striker cascade — derive post-wicket striker from event + current SM state
     self._apply_post_wicket_striker_rotation(event)
+
+    # ^ Implementation (commit (8/N) per §13.2 reasons):
+    #   if event.dismissed_batter == self.striker:
+    #       reason = "wicket_new_batter"; next_striker = event.new_batter; next_non = self.non
+    #   elif event.dismissed_batter == self.non:
+    #       reason = "wicket_non_striker_stays"; next_striker = self.striker; next_non = event.new_batter
+    #   else: emit POST-WICKET-STRIKER-ROTATION-ANOMALY; return  (dismissed_batter doesn't match crease)
+    #
+    #   If event.new_batter is None (Scout read of new batter hasn't arrived):
+    #       emit POST-WICKET-STRIKER-CASCADE-DEFERRED with payload (dismissed_batter, current_at_crease)
+    #       return without mutating striker. Next frame's rotation derivation will catch up
+    #       when Scout primitive resolves.
+    #
+    #   Else: build StrikerEvent(prev, prev_non, next, next_non, reason) and call self.apply_striker_event(ev).
+    #   apply_striker_event is idempotent (no_change short-circuit), so this is safe even when
+    #   _apply_event's 7a wire-through ALSO calls apply_striker_event downstream of the wicket processing.
 
     # 6. Trace emission (new tag)
     self._emit_trace(

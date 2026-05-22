@@ -1,10 +1,12 @@
 # Handoff — Session continuation document
 
-**Last update**: 2026-05-21 (post-C31, workstream D fix-chain landed)
-**Branch**: `derive-not-detect`
-**Status**: Workstream D's investigation-then-fix chain closed across 8 commits (C26 memo skeleton → C27 D1-prelim → C28 D1-fix → C29 D2-prelim cross-fixture → C30 D2-prelim refinement → C30b D2-fix structural-surface check → C31 D2-fix code → C32 this docs close-out). D1 (bowler em-dash sentinel at over-end-coincident wickets) and D2-Layer-1a (broadcast-vs-deterministic dismissed-name attribution at WICKET-ATTRIB) both shipped as code. Empirical validation gated on next DCKKR replay; predicted flips locked at §6 of `workstream_d_rotation_root_investigation.md`. Falsification budget unconsumed (0/5 across entire chain — all advances static).
+**Last update**: 2026-05-22 evening (post §15 triple-subsystem rewrite arc closure at commit `1af2bd9`).
+**Branch**: `obs/silent-wicket-absorption` (carries §15 arc — 9 commits including this docs close-out). Operator suggested rename to `rewrite/wicket-striker-this_over-canonical` before merge to `derive-not-detect`.
+**Status**: §15 arc STRUCTURALLY COMPLETE at commit (8/N) `1af2bd9`. Three canonical write paths for `self.striker` established; canonical wicket dispatch; cascade scaffolding wired. Bowler-W-credit-failure 7→1 + F-A/F-B bonuses landed. Predicted C21b/Multi-ball-compression/D-post-FoW-striker drops did NOT materialize on the DCKKR dump — empirically falsified by commit (9/N) attempt; root cause is **Workstream G** (Scout-extraction-timing + cold-start-re-entry-frequency), not the subsystems themselves. Full retrospective + 4 new methodology insights in `files/docs/investigations/differential_testing_methodology_design.md` §17.
 
-**Next session entry point: empirical validation of D1 + D2 predicted flips on next DCKKR replay.** Secondary unblocked paths (independent of replay status): §12 catalogue extension (override-as-4th-instance + S12 non-discriminable-predicate-signature), C20b surface_pair populate, workstream E skeleton (F1017 phantom-wicket), C29b Scout schema extension. See "## Session continuation — C26–C31" section below for the full context.
+**Next session entry point: Workstream G investigation per §17.3** — Scout extraction timing at wicket-commit frames (cascade defer rate 100% in dump), cold-start re-entry frequency root cause (12 COLD-START-EXIT fires in dump → 6+ re-entries), COLD-START-EXIT semantics redesign per §14.5.2, then §14.5 step 11 retry. Also live-replay validation per §10.4 mandatory before claiming §15's predicted drops in production. Secondary: §11.3 surgical items 3-7 (Workstream F bowler misattribution, Per-batter-ledger conservation, Recent-Overs partial-render, phantom-runs root-localize) unchanged.
+
+**Prior session context** (workstream D fix-chain, 2026-05-21): D1 (bowler em-dash sentinel) + D2-Layer-1a (broadcast-vs-deterministic dismissed-name) shipped as code; empirical validation gated on next DCKKR replay. See "## Session continuation — C26–C31" section below.
 
 Entry point for next Cowork session. Read this file first, then `CLAUDE.md`, then `Architecture_HANDOFF.md`, then the design memos at:
 - `files/docs/investigations/temporal_coupling_investigation_brief.md` (C10–C12.5b: the static-analysis methodology + cascade-root localization)
@@ -15,6 +17,67 @@ Entry point for next Cowork session. Read this file first, then `CLAUDE.md`, the
 - `files/docs/investigations/sm_as_orchestrator_design.md` §7 (the standing 7-gate audit framework) + §12 (dual-state-write defect-class catalogue — C17, cross-referenced from §12.7 to the new memo below)
 - **`files/docs/investigations/surface_pair_defect_class_family.md`** (NEW C20: family-level instance catalogue, 9 placeholder rows from DCKKR replay, per-row populate deferred to C20b)
 - **`validate_dckkr_replay_observations.md`** (21-frame observation log — entry data for workstream D)
+
+## Session continuation — §15 triple-subsystem rewrite arc (2026-05-22 evening, this session)
+
+§15 arc structurally complete at commit (8/N) `1af2bd9`. Branch `obs/silent-wicket-absorption` carries 9 commits (8 §15 + this docs). Full retrospective in `files/docs/investigations/differential_testing_methodology_design.md` §17; summary below.
+
+### What §15 accomplished (commits 1/N–8/N)
+
+| # | Commit | Scope | Outcome |
+|---|---|---|---|
+| 1/N | `4b30503` | obs(workstream-i): SILENT-WICKET-ABSORPTION trace tag + Surface I classifier + differential-testing harness bring-up | 15-surface coverage on DCKKR dump; Surface I detects 2 instances (Rahul 4.6, Stubbs 10.5) |
+| 2/N | `dc9d580` | feat(derivation): pure functions + canonical commit paths for wicket/striker/this_over (no call-site changes) | New module `files/score_manager_derivation.py` (~340 LOC); 37 unit tests green |
+| 3/N | `f233217` | feat(_apply_event wire-through): this_over token → apply_this_over_token (step 5 partial) | Striker wire-through deferred to 7a (atomic-pair contract); wicket wire-through deferred to 7b |
+| 4/N | `531d6f8` | feat(B-2 + Rule 1): StrikerEvent atomic pair + post-wicket cold-start guard | derive_striker_event Rule 1 tightened (post-wicket striker=None doesn't trigger cold-start re-seed) |
+| 5/N | `7e63373` | feat(7a): striker ROTATION consolidation through apply_striker_event | `:6341-6343` inline swap replaced with apply_striker_event; +2 boundary regression at over_ball 8.5 documented as ROTATION ↔ IDENTITY race (§13.8 entry point) |
+| 6/N | `6d1f0cd` | feat(7c): identity-resolution canonical path + early-return fix | apply_striker_identity_resolved per §13.8; `_set_slot_pair` routed through it; +2 regression closed |
+| 7/N | `68acda4` | feat(7b): apply_wicket_event subsumes _apply_wicket_fall_only FoW + bowler-W | **Bowler-W-credit-failure 7 → 1 (-6)**; F-A 50→49 (-1); F-B 27→23 (-4); `_last_bowler_at_wicket_commit` sibling field |
+| 8/N | `2ad432f` | feat(9): apply_striker_identity_proposed — third canonical striker path | _identify_and_set override at `:4700-4736` replaced; 88× STRIKER-IDENTITY-PROPOSAL-REFUSED fires confirm semantic preserved |
+| 9/N | `1af2bd9` | feat(8): post-wicket striker cascade wired into apply_wicket_event | Cascade structurally wired; 100% defer rate in DCKKR dump (Scout new_batter primitive lag — Workstream G adjacent signal) |
+
+### What §15 did NOT accomplish (and why)
+
+§14.5 step 11 cold-start no-backfill attempted (commit 9/N candidate) and **reverted** — empirically falsified on this dump:
+- **C21b at 10.5 still fires** — root cause is Scout-extraction timing at wicket-commit, not cold-start synthesizer.
+- **Multi-ball-compression stays at 4** — driven by per-event this_over delta logic, not cold-start backfill.
+- **D-post-FoW-striker stays at 20** — cascade structurally wired but 100% deferred in dump due to Scout-new-batter-read lag.
+- **Surface count: 14 → 14 net.** Structural cleanup is real; empirical-drop-on-this-dump is not.
+
+The predicted drops await **Workstream G** (Scout-extraction timing + cold-start re-entry frequency). Live-replay validation per §10.4 still mandatory.
+
+### Architectural fence (post-§15)
+
+Three canonical write paths for `self.striker`:
+1. `apply_striker_event` (rotation per §13/§13.3)
+2. `apply_striker_identity_resolved` (authoritative identity per §13.8)
+3. `apply_striker_identity_proposed` (conservative-refuse per §13.8.1)
+
+All 8 remaining `self.striker = None` writes are invalidation-only (cold-start invalidation / innings reset / NAME-REJECTED). No non-canonical name writes remain.
+
+Canonical wicket dispatch path: `apply_wicket_event` is sole FoW + bowler-W writer. `_apply_wicket_fall_only` retained as thin shim; full deletion deferred until partnership/slot-clearing have canonical paths.
+
+Deterministic-rotation override at `score_manager.py:4700-4736` (was at `:4295-4325` pre-7c line range) **REMOVED** — replaced by `apply_striker_identity_proposed`. The S12 non-discriminable-predicate-signature defect (C30b) surface eliminated.
+
+### Test infrastructure
+
+- `files/score_manager_derivation.py` — pure derivation module (~480 LOC, 3 derive functions + 4 dataclasses + 1 helper + 1 exception).
+- `files/tests/test_score_manager_derivation.py` — 48 unit tests across 3 classes covering happy paths + every §12.2/§13.6/§13.8/§14.7 edge case named in the spec.
+- `files/scripts/replay_diff_harness.py` — 15-surface classifier (Silent-wicket-absorption added in commit 1/N; C21b-symbol-revert added by snapshot extension + classifier in 5b.4).
+- `files/scripts/ingest_cricbuzz_ground_truth.py` — dual-mode (curated ledger + Cricbuzz commentary), 122 events for full DC innings.
+- `files/scripts/replay_captured_scout_trace.py` — extended with `--snapshot-output` flag, wicket-dispatch + mutation triggers, FoW key/overs normalization, `_last_bowler_at_wicket_commit` sibling-field fallback.
+
+### Workstream G investigation queue (next session)
+
+Per §17.3 — promoted from §11.3 item #2 to item #1:
+
+1. **Scout extraction timing at wicket-commit frames.** Cascade defer rate 100% in DCKKR dump (2/2). Candidates: extraction cadence too low / broadcast-strip render lag / VLM prompt not asking for new-batter / lock-mechanism gating identity reads.
+2. **Cold-start re-entry frequency root cause.** 12 COLD-START-EXIT fires in dump (6+ re-entries) vs the "once per pipeline boot" assumption in §16.2.
+3. **COLD-START-EXIT semantics redesign** per §14.5.2 — bifurcate tags or treat all cold-start as benign.
+4. **§14.5 step 11 retry** AFTER 1+2+3 close.
+5. **C21b + Multi-ball-compression + D-post-FoW-striker validation** — predicted drops materialize once Workstream G closes upstream signals.
+
+---
 
 ## Session continuation — C19–C24 (workstream B closure)
 
@@ -602,6 +665,7 @@ Architecture principles user repeatedly enforces (carried from prior session, re
 - "Real-time first, no offline-only solutions"
 - "Consolidate and validate together — minimize ping-pong validation cycles"
 - **"No speculative fixes. Find the root cause and confirm. Always."** — this session: 5 empirical + 8 static falsifications enforced the rule recursively across 16 commits.
+- **"Every delivery must be accounted for."** Added 2026-05-22 (post-replay session). The pipeline does NOT silently skip deliveries. If Δballs > 1 in any state transition during operation, that is a P0 bug to raise and resolve immediately — NOT a case to silently handle with defensive defaults. Build no logic that assumes the pipeline may miss a delivery; silent fallbacks normalize the failure mode. Workstream G (pipeline-lag / missed-deliveries) is therefore a correctness workstream, not a performance one. Pre-pipeline-existence balls (mid-match cold-start) are a separate regime — they didn't happen during operation, so don't count as "missed"; cold-start exit emits an explicit `COLD-START-EXIT` boundary tag so subsequent missed-delivery events are unambiguously bugs.
 - Any "scar tissue" / "defect class" label is a hypothesis pending the §7.2 audit.
 - **Static-falsification ≠ empirical-falsification.** Static is zero-cost; apply liberally before any instrumentation commit. Empirical counts against the methodology-retirement budget (cap: 5 per session per defect-class chain).
 - **Captured-replay does NOT drive root-localization for temporal-coupling defects.** It remains canonical as falsification + regression-detection substrate.
@@ -639,15 +703,20 @@ This session's most important architectural insights, validated empirically acro
 
 The workstream pauses cleanly at the operational validation gate. Next move is operational, not engineering. The trace assertion library + 16-commit investigation chain are the standing data-collection + verification mechanisms for any future production session.
 
-Track record of architectural insights accumulated across sessions (**11 transferable insights total**):
+Track record of architectural insights accumulated across sessions (**16 transferable insights total**):
 
-- **F1 session (3 sessions back)**: cascade-closure pattern — one-edit fix can close N bug classes; §7.2 gate 7 (cross-fixture verification) catches cascade reach.
-- **B-η session (2 sessions back)**: static-analysis-with-predicate-trail methodology + falsification-chain-as-architectural-finding + dual-state-write defect class.
-- **C19-C24 session (prior)**: commit-design drift (preflight tag-existence check) + budget-class mismatch (memo work needs 8–12 calls, code work fits 5) + skeleton-then-populate forcing function + UI-layer vs state-layer disambiguation via trace + both-surfaces-stale-at-same-value (internal-consistency PASS when rotation-lock corrupts adjacent surfaces in sync).
-- **C26-C31 session (this one — workstream D fix chain)**:
+- **F1 session (4 sessions back)**: cascade-closure pattern — one-edit fix can close N bug classes; §7.2 gate 7 (cross-fixture verification) catches cascade reach.
+- **B-η session (3 sessions back)**: static-analysis-with-predicate-trail methodology + falsification-chain-as-architectural-finding + dual-state-write defect class.
+- **C19-C24 session (2 sessions back)**: commit-design drift (preflight tag-existence check) + budget-class mismatch (memo work needs 8–12 calls, code work fits 5) + skeleton-then-populate forcing function + UI-layer vs state-layer disambiguation via trace + both-surfaces-stale-at-same-value (internal-consistency PASS when rotation-lock corrupts adjacent surfaces in sync).
+- **C26-C31 session (prior — workstream D fix chain)**:
   - **S6** — predicate-trail static-falsification extends beyond temporal-coupling defect class to Scout-contract gaps.
   - **S9** — cascade-closure-via-one-edit pattern, second instance (F1 was first); F855 fix auto-closes F983 with no independent surface.
   - **S11** — signal/site decoupling pattern: predicate-trail reformulation moves the predictive signal but not necessarily the fix site.
   - **S12** — non-discriminable-predicate-signature defect class: when two cases share an observable predicate at a site, single-site fix structurally impossible without plumbing.
+- **§15 triple-subsystem rewrite session (this one)**:
+  - **#13 — A single struct field can carry multiple orthogonal write semantics; audit before consolidation.** Surfaced commit (5/N) ROTATION-vs-IDENTITY split for `self.striker` (+24 boundary regression caught the missed sub-semantic) and confirmed commit (7/N) IDENTITY-RESOLVED-vs-PROPOSED split (+24/+9 regression caught the second missed sub-semantic). Canonical-path consolidation is iterative; the harness's diff-by-diff localizes the missed sub-semantic via specific surface-class regression.
+  - **#14 — Silently-no-op bugs (NameError swallowed under try/except, attribute lookups returning None) hide downstream effects until harness diff aggregates them across surfaces.** Surfaced commit (7/N) — `trace_beta_sm_wicket_dispatch` had been silently failing because a stale `target_idx` reference raised NameError inside a try/except that caught and discarded it. Operational corollary: re-raise NameError + AttributeError specifically, only catch domain exceptions explicitly.
+  - **#15 — Layer 1.5 catches isolated mutation-correctness regressions; harness diff catches emergent cross-surface composition regressions. Both are necessary; harness is the higher-signal layer during multi-component wire-throughs.** Surfaced commit (8/N) cascade wire-through — 4 iterations, all caught by harness diff, zero by Layer 1.5. The harness is doing the load-bearing detection as multi-component changes compose.
+  - **#16 — Multi-component rewrites can produce structurally-correct commits that don't deliver predicted empirical drops. That's empirical falsification of the prediction's hypothesis, not failure of the rewrite. Close the arc honestly; pivot to the actual root cause.** Surfaced commit (9/N) attempt — §14.5 hypothesis falsified by data (cold-start no-backfill didn't close C21b in DCKKR dump because Scout-extraction-timing at wicket-commit is the actual root); arc closed at structural completion (commit 8/N), Workstream G promoted to next-session priority #1.
 
 Each session contributes one or more transferable methodology insights that survive into the next session's discipline. **The discipline track record is itself a load-bearing artifact** — preserve it; document new insights as they accumulate.
