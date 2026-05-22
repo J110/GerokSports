@@ -1219,6 +1219,17 @@ class ScoreManager:
                 self._sm_feeder_sb_missing_logged = True
             self._sm_scalar_fallback["wickets"] = iv
             return
+        # Workstream I Phase 1: capture prior_wickets before the set so a
+        # SILENT-WICKET-ABSORPTION tag can flag scalar-set increments that
+        # bypass the wicket-event chain (no WICKET event, no _add_fow
+        # write). The classifier in replay_diff_harness.py uses the
+        # snapshot-stream FoW deltas to confirm absorption; this tag is
+        # observability for trace-level debugging.
+        try:
+            _prior_w = self._sb_inn_get("wickets")
+            _prior_w = int(_prior_w) if _prior_w is not None else 0
+        except (TypeError, ValueError):
+            _prior_w = 0
         try:
             ok = self.scoreboard.set("wickets", iv, self._current_frame)
         except Exception as e:
@@ -1229,6 +1240,19 @@ class ScoreManager:
         log.info(
             f"  [SM-FEEDER-SYNC] field=wickets value={iv} "
             f"sb_accepted={str(ok).lower()}")
+        if ok and iv > _prior_w and _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="SILENT-WICKET-ABSORPTION",
+                    frame_id=self._current_frame,
+                    prior_wickets=_prior_w,
+                    new_wickets=iv,
+                    delta=iv - _prior_w,
+                    current_over_ball=(
+                        f"{self.overs:.1f}"
+                        if self.overs is not None else None))
+            except Exception:
+                pass
 
     @property
     def run_rate(self) -> float | None:

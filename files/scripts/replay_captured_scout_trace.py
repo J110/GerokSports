@@ -49,6 +49,7 @@ from pathlib import Path
 FILES_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(FILES_DIR))
 sys.path.insert(0, str(FILES_DIR / "tests"))
+sys.path.insert(0, str(FILES_DIR / "scripts"))
 
 import trace_emitter  # noqa: E402
 from score_manager import ScoreManager  # noqa: E402
@@ -60,6 +61,8 @@ from test_pipeline_captured_replay import (  # noqa: E402
     build_sm as build_sm_dckkr,
     extracted_to_frame_input,
 )
+from ingest_cricbuzz_ground_truth import (  # noqa: E402
+    UIBallSnapshot, canonical_name)
 
 
 # GT vs RR fixture squads (innings 1, validate_gtrr_20260520_180715).
@@ -170,13 +173,166 @@ def _apply_warm_seed(
             pass
 
 
+def _legal_balls_from_overs_str(overs) -> int:
+    if overs is None:
+        return 0
+    try:
+        s = f"{float(overs):.1f}"
+        completed, balls = s.split(".")
+        return int(completed) * 6 + int(balls)
+    except (TypeError, ValueError):
+        return 0
+
+
+def _format_overs(overs) -> str | None:
+    if overs is None:
+        return None
+    try:
+        return f"{float(overs):.1f}"
+    except (TypeError, ValueError):
+        return None
+
+
+def _build_ui_snapshot(sm, sb, frame_id: int) -> UIBallSnapshot:
+    """Snapshot the WS-payload-equivalent fields directly from SM + SB.
+
+    Mirrors the field set `_build_full_payload_from_state` would read.
+    Pipeline emits canonical (last-name) form already; we still pass
+    through `canonical_name` for symmetry with the ingester.
+    """
+    striker = canonical_name(getattr(sm, "striker", None))
+    non = canonical_name(getattr(sm, "non", None))
+    bowler = canonical_name(getattr(sm, "bowler_name", None))
+
+    batting_card = getattr(sb, "batting_card", {}) or {}
+    bowling_card = getattr(sb, "bowling_card", {}) or {}
+
+    def _slot(card: dict, canon: str | None) -> dict:
+        if not canon:
+            return {}
+        if canon in card:
+            return card[canon] or {}
+        for k, v in card.items():
+            if canonical_name(k) == canon:
+                return v or {}
+        return {}
+
+    striker_slot = _slot(batting_card, striker)
+    non_slot = _slot(batting_card, non)
+    bowler_slot = _slot(bowling_card, bowler)
+
+    overs = getattr(sm, "overs", None)
+    if overs is None:
+        overs = (getattr(sb, "_inn", {}) or {}).get("overs")
+    overs_str = _format_overs(overs) or "0.0"
+    # Normalize post-rollover overs ("1.0" after the 6th ball of over 0)
+    # to ball_id convention ("0.6") to match the ground-truth ingester
+    # which keys on Cricbuzz ball_id. Pipeline-internal SM keeps the
+    # post-rollover form; we only re-key the snapshot for diff alignment.
+    try:
+        c, b = overs_str.split(".")
+        if int(b) == 0 and int(c) > 0:
+            overs_str = f"{int(c) - 1}.6"
+    except (ValueError, AttributeError):
+        pass
+
+    fow_entries = []
+    for fow in getattr(sb, "fall_of_wickets", []) or []:
+        # SM's _apply_wicket_fall_only writes the dismissed batter under
+        # key "dismissed" (score_manager.py:5306-5311); Scoreboard's
+        # _add_fow uses key "batter". Read both. Same for overs format:
+        # SM writes self.overs (post-rollover, e.g. 8.0) while ball_id
+        # convention is "7.6"; normalise so the diff harness aligns.
+        _ov = fow.get("overs")
+        _ov_str = _format_overs(_ov) or _ov
+        if isinstance(_ov_str, str):
+            try:
+                c, b = _ov_str.split(".")
+                if int(b) == 0 and int(c) > 0:
+                    _ov_str = f"{int(c) - 1}.6"
+            except (ValueError, AttributeError):
+                pass
+        fow_entries.append([
+            int(fow.get("score") or 0),
+            int(fow.get("wicket") or 0),
+            canonical_name(
+                fow.get("dismissed") or fow.get("batter")),
+            _ov_str,
+        ])
+
+    over_history = getattr(sb, "over_history", {}) or {}
+    completed = None
+    try:
+        c, b = overs_str.split(".")
+        if int(b) == 0:
+            completed = int(c) - 1
+    except (ValueError, AttributeError):
+        pass
+    recent = []
+    if completed is not None and completed >= 0:
+        recent = over_history.get(completed) or over_history.get(str(completed)) or []
+
+    extras_inn = (getattr(sb, "_inn", {}) or {}).get("extras") or {}
+
+    return UIBallSnapshot(
+        over_ball=overs_str,
+        score=int(getattr(sm, "score", 0) or 0),
+        wickets=int(getattr(sm, "wickets", 0) or 0),
+        balls_total=_legal_balls_from_overs_str(overs),
+        striker_name=striker,
+        striker_runs=int(striker_slot.get("runs") or 0),
+        striker_balls=int(
+            striker_slot.get("balls") or striker_slot.get("balls_faced") or 0),
+        striker_fours=int(striker_slot.get("fours") or 0),
+        striker_sixes=int(striker_slot.get("sixes") or 0),
+        non_striker_name=non,
+        non_striker_runs=int(non_slot.get("runs") or 0),
+        non_striker_balls=int(
+            non_slot.get("balls") or non_slot.get("balls_faced") or 0),
+        non_striker_fours=int(non_slot.get("fours") or 0),
+        non_striker_sixes=int(non_slot.get("sixes") or 0),
+        bowler_name=bowler,
+        bowler_overs=bowler_slot.get("overs"),
+        bowler_runs=int(bowler_slot.get("runs") or 0),
+        bowler_wickets=int(bowler_slot.get("wickets") or 0),
+        this_over_tokens=list(
+            getattr(sm, "this_over", None)
+            or getattr(sm, "completed_over", None)
+            or getattr(sb, "this_over", None)
+            or []),
+        recent_over_n_minus_1=list(recent),
+        partnership_runs=0,
+        partnership_balls=0,
+        extras_total=int(extras_inn.get("total") or 0),
+        extras_wd=int(extras_inn.get("wides") or 0),
+        extras_nb=int(extras_inn.get("no_balls") or 0),
+        extras_b=int(extras_inn.get("byes") or 0),
+        extras_lb=int(extras_inn.get("leg_byes") or 0),
+        fow_entries=fow_entries,
+    )
+
+
+_SNAPSHOT_TRIGGER_TAGS = {
+    "DIRECT-SCORE-COMMIT",
+    "GAP-FINALIZE-WICKET",
+    "WIDE-COMMIT",
+    "NOBALL-COMMIT",
+    # 5b.4 Patch B: wickets with Δscore=0 don't fire DIRECT-SCORE-COMMIT.
+    # SM dispatches every wicket through `_finalize_wicket` which records
+    # this tag; treat as secondary trigger so wicket frames produce a
+    # snapshot and the diff harness can classify C21b / Bowler-W-credit.
+    "trace_beta_sm_wicket_dispatch",
+}
+
+
 def run(dump_path: Path, session_id: str, trace_dir: Path,
         seed_frame: int | None = None,
         seed_striker: str | None = None,
         seed_non_striker: str | None = None,
         seed_bowler: str | None = None,
         enable_llm_extractor: bool = False,
-        fixture: str = "dckkr") -> int:
+        fixture: str = "dckkr",
+        snapshot_output: Path | None = None) -> int:
     builder, batting_team, bowling_team = FIXTURE_BUILDERS[fixture]
     sm, sb = builder()
     warm_seed_pending = (
@@ -210,6 +366,16 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
     recorder = trace_emitter.get_recorder()
     log_handler = trace_emitter.install_log_handler(logging.getLogger())
     logging.getLogger().setLevel(logging.INFO)
+
+    snapshot_fh = None
+    snapshot_count = 0
+    last_snap_key: tuple | None = None
+    snap_event_index: dict[str, int] = {}
+    last_this_over: tuple = ()
+    if snapshot_output is not None:
+        snapshot_output.parent.mkdir(parents=True, exist_ok=True)
+        snapshot_fh = snapshot_output.open("w")
+        print(f"Snapshot output: {snapshot_output}")
 
     frames = []
     with dump_path.open() as fh:
@@ -344,6 +510,29 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
             tag = d.get("tag")
             if tag in new_tag_counts:
                 new_tag_counts[tag] += 1
+        if snapshot_fh is not None:
+            tag_triggered = any(
+                d.get("tag") in _SNAPSHOT_TRIGGER_TAGS for d in decisions)
+            # 5b.4 mutation trigger: detect this_over reversion (C21b
+            # symbol-revert manifests as a token mutation between idle
+            # frames, NOT at commit boundaries). Sample whenever
+            # SM.this_over delta is observable.
+            cur_this_over = tuple(getattr(sm, "this_over", None) or [])
+            this_over_changed = (
+                bool(cur_this_over) and cur_this_over != last_this_over)
+            if tag_triggered or this_over_changed:
+                snap = _build_ui_snapshot(sm, sb, frame_id)
+                snap_key = (
+                    snap.over_ball, snap.score, snap.wickets,
+                    tuple(snap.this_over_tokens))
+                if snap_key != last_snap_key:
+                    snap.event_index = snap_event_index.get(snap.over_ball, 0)
+                    snap_event_index[snap.over_ball] = snap.event_index + 1
+                    from dataclasses import asdict
+                    snapshot_fh.write(json.dumps(asdict(snap)) + "\n")
+                    snapshot_count += 1
+                    last_snap_key = snap_key
+                last_this_over = cur_this_over
         writer.write_record({
             "frame": frame_id,
             "ts_wall": ts,
@@ -373,6 +562,9 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
         })
 
     writer.close()
+    if snapshot_fh is not None:
+        snapshot_fh.close()
+        print(f"Snapshots written: {snapshot_count}")
     logging.getLogger().removeHandler(log_handler)
 
     print(f"Frames: {len(frames)} | parsed: {parsed} | skipped: {skipped}")
@@ -407,6 +599,11 @@ def main() -> int:
                    help=("Squad/team config to load. dckkr = DC vs KKR "
                          "(default), gtrr = GT vs RR per fixtures/"
                          "gt_vs_rr_2026_commentary_first_innings.md."))
+    p.add_argument("--snapshot-output", type=Path, default=None,
+                   help=("If set, emit a UIBallSnapshot JSONL stream "
+                         "at every legal-ball commit. Schema matches "
+                         "ingest_cricbuzz_ground_truth.py output so "
+                         "replay_diff_harness.py can diff line-by-line."))
     args = p.parse_args()
     seed_args = (
         args.seed_frame, args.seed_striker,
@@ -424,7 +621,8 @@ def main() -> int:
                seed_non_striker=args.seed_non_striker,
                seed_bowler=args.seed_bowler,
                enable_llm_extractor=args.enable_llm_extractor,
-               fixture=args.fixture)
+               fixture=args.fixture,
+               snapshot_output=args.snapshot_output)
 
 
 if __name__ == "__main__":
