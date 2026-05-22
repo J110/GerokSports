@@ -436,9 +436,9 @@ ad151fd fix(test_pipeline): C14 cross-field pairing gate at apply_scorer_decisio
 770db98 test(C15): permanent gate-6 verification + baseline + predicted-flip claim for C14 fix
 ```
 
-## Trace assertion library (UPDATED post-C24)
+## Trace assertion library (UPDATED post-C24, +trace_eta 2026-05-22)
 
-Eight empirically-grounded invariants in `files/tests/trace_session_assertions.py` (5 existing + 3 new γ-bundle members from C21/C22/C23). Baseline on `validate_dckkr_20260521_155356`:
+Nine empirically-grounded invariants in `files/tests/trace_session_assertions.py` (5 existing + 3 γ-bundle from C21/C22/C23 + 1 η-bundle from Workstream G step 4). Baseline on `validate_dckkr_20260521_155356`:
 
 | Assertion | Pre-C19 baseline | Post-C24 baseline on DCKKR 2026-05-21 |
 |---|---|---|
@@ -450,8 +450,9 @@ Eight empirically-grounded invariants in `files/tests/trace_session_assertions.p
 | `trace_gamma_w_symbol_at_wicket` (NEW C21) | — | **FAIL × 2** (Rahul ov 5.0 / Rana ov 8.0 — W→· revert in this_over state) |
 | `trace_gamma_fow_name_matches_striker_at_wicket` (NEW C22) | — | PASS (internal-consistency only; cricket-vs-pipeline divergence undetectable here, scoped to D) |
 | `trace_gamma_bowler_w_increment_on_dispatch` (NEW C23) | — | **FAIL × 4** (no bowler-W increment within 30-frame lookahead at any captured wicket) |
+| `trace_eta_post_wicket_cascade_drains` (NEW WS-G step 4) | — | PASS trivially on pre-Shape-A traces (0 enqueues; tag wasn't in KNOWN_TAGS until f09fc38). Post-Shape-A replay predicted: 2 enqueues (F679, F855) → 2 DRAIN-FIRED terminals (F709 age=30, F893 age=38) per audit §5 |
 
-**Total post-C24: 5 PASS / 3 FAIL across 8 assertions.** The γ-bundle (3 new assertions) supersedes `trace_beta_sm_wicket_dispatch` as the wicket-correctness gate signal — trace_beta tests dispatch occurrence; the γ-bundle tests dispatch correctness across W-symbol, FOW-name, and bowler-W surfaces.
+**Total post-C24: 6 PASS / 3 FAIL across 9 assertions.** The γ-bundle (3 assertions) tests wicket-dispatch correctness across W-symbol, FOW-name, and bowler-W surfaces. The η-bundle (1 assertion) tests post-wicket cascade lifecycle: every `POST-WICKET-CASCADE-ENQUEUED` must reach one of three terminal states (DRAIN-FIRED / DRAIN-EXPIRED / WIPED-BY-COLD-START) by end-of-session, else orphan-FAIL per audit §2.5 lifecycle table.
 
 Runner: `python files/scripts/run_trace_session_assertions.py <trace.jsonl>`.
 

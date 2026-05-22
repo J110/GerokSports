@@ -580,6 +580,83 @@ def assert_bowler_w_increment_on_dispatch(records: list) -> Result:
     return _ok()
 
 
+def assert_post_wicket_cascade_drains(records: list) -> Result:
+    """Workstream G Shape A detector. Every POST-WICKET-CASCADE-
+    ENQUEUED tag in the session must reach a terminal state by
+    end-of-session: POST-WICKET-CASCADE-DRAIN-FIRED (preferred —
+    Scout new_batter resolved within TTL),
+    CASCADE-DRAIN-EXPIRED (acceptable — TTL hit; broadcast never
+    refreshed), or POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START
+    (acceptable — innings reset / state recovery).
+
+    Match key: ``frame_set_at`` in the enqueue payload vs each
+    terminal-state record's payload (DRAIN-FIRED + EXPIRED carry the
+    field directly; WIPED-BY-COLD-START carries a list of
+    ``wiped_entries`` each with a ``frame_set_at``).
+
+    A terminal-state-absent entry is an orphan: the queue carried a
+    pending cascade past end-of-session without any of the three
+    lifecycle exits. Per audit §2.5 / Q4 this should not occur (the
+    five reset paths plus TTL guarantee a terminal); an orphan
+    finding triggers audit-memo §3 revisit BEFORE further code lands.
+
+    Baseline expectation:
+      - Pre-Shape-A traces (any trace captured before f09fc38):
+        zero enqueues, zero terminals → PASS trivially.
+      - Post-Shape-A DCKKR replay: 2 enqueues (F679, F855), each
+        matched by a DRAIN-FIRED at F709 (age=30) and F893 (age=38)
+        respectively per audit §5 predicted-flip.
+    """
+    enqueues: dict[int, dict] = {}
+    fired_frames: set[int] = set()
+    expired_frames: set[int] = set()
+    wiped_frames: set[int] = set()
+    for rec in records:
+        for dec in _decisions(rec):
+            tag = dec.get("tag")
+            if tag == "POST-WICKET-CASCADE-ENQUEUED":
+                fsa = dec.get("frame_set_at")
+                if fsa is not None:
+                    enqueues[int(fsa)] = {
+                        "frame": rec.get("frame"),
+                        "dismissed": dec.get("dismissed"),
+                        "reason": dec.get("reason"),
+                    }
+            elif tag == "POST-WICKET-CASCADE-DRAIN-FIRED":
+                fsa = dec.get("frame_set_at")
+                if fsa is not None:
+                    fired_frames.add(int(fsa))
+            elif tag == "CASCADE-DRAIN-EXPIRED":
+                fsa = dec.get("frame_set_at")
+                if fsa is not None:
+                    expired_frames.add(int(fsa))
+            elif tag == "POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START":
+                for e in (dec.get("wiped_entries") or []):
+                    fsa = e.get("frame_set_at")
+                    if fsa is not None:
+                        wiped_frames.add(int(fsa))
+    orphans: list[dict] = []
+    terminals: set[int] = fired_frames | expired_frames | wiped_frames
+    for fsa, info in enqueues.items():
+        if fsa not in terminals:
+            orphans.append({
+                "frame_set_at": fsa,
+                "enqueue_frame": info["frame"],
+                "dismissed": info["dismissed"],
+                "reason": info["reason"],
+            })
+    if orphans:
+        return _fail(
+            class_name="pending_cascade_orphan",
+            count=len(orphans),
+            samples=orphans[:5],
+            enqueues=len(enqueues),
+            fired=len(fired_frames),
+            expired=len(expired_frames),
+            wiped=len(wiped_frames))
+    return _ok()
+
+
 TRACE_ASSERTIONS = [
     ("trace_alpha_bowler_runs_sum",
      assert_bowler_runs_sum_matches_team_score),
@@ -597,6 +674,8 @@ TRACE_ASSERTIONS = [
      assert_fow_name_matches_striker_at_wicket),
     ("trace_gamma_bowler_w_increment_on_dispatch",
      assert_bowler_w_increment_on_dispatch),
+    ("trace_eta_post_wicket_cascade_drains",
+     assert_post_wicket_cascade_drains),
 ]
 
 
