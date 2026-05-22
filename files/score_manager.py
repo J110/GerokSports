@@ -869,10 +869,12 @@ class ScoreManager:
         (self.striker, self.non) pair.
 
         Mutates BOTH pointers atomically — caller no longer needs to
-        mirror self.non separately. no_change reason is a no-op
-        (also skipped when next_striker is None).
+        mirror self.non separately. Only no_change reason is a no-op;
+        a None next_striker IS a legitimate mutation (e.g. cricket
+        pair-swap on (Nissanka, None) → (None, Nissanka) per the §15
+        step-7c fix at over_ball 8.4).
         """
-        if event.reason == "no_change" or event.next_striker is None:
+        if event.reason == "no_change":
             return
         self.striker = event.next_striker
         self.non = event.next_non_striker
@@ -884,6 +886,37 @@ class ScoreManager:
                 "prev_non_striker": event.prev_non_striker,
                 "next_non_striker": event.next_non_striker,
                 "reason": event.reason,
+                "frame_id": self._current_frame,
+            })
+
+    def apply_striker_identity_resolved(
+            self, resolved_name: str, source: str) -> None:
+        """§13.8 — single mutation path for self.striker IDENTITY-
+        RESOLUTION semantics. Sibling to apply_striker_event (which
+        owns ROTATION). Does NOT rotate — only updates the canonical
+        name string for the existing on-strike batter.
+
+        Pre-condition: if self.striker is non-None and != resolved_name,
+        emit STRIKER-IDENTITY-CONFLICT (something upstream conflated
+        rotation with identity). Proceed best-effort per §16.
+        """
+        if resolved_name is None:
+            return
+        if self.striker is not None and self.striker != resolved_name:
+            self._emit_trace(
+                tag="STRIKER-IDENTITY-CONFLICT",
+                payload={
+                    "existing": self.striker,
+                    "resolved": resolved_name,
+                    "source": source,
+                    "frame_id": self._current_frame,
+                })
+        self.striker = resolved_name
+        self._emit_trace(
+            tag="STRIKER-IDENTITY-RESOLVED",
+            payload={
+                "name": resolved_name,
+                "source": source,
                 "frame_id": self._current_frame,
             })
 
@@ -2037,7 +2070,19 @@ class ScoreManager:
                 f"[SM-SLOT-INVARIANT] duplicate slots {_s!r} "
                 f"(source={source}); clearing non")
             _ns = None
-        self.striker, self.non = _s, _ns
+        # §13.8 / step 7c: route the striker write through the
+        # canonical identity-resolution path so trace surfaces every
+        # identity write and the ROTATION ↔ IDENTITY race detector
+        # (STRIKER-IDENTITY-CONFLICT) can fire on slot collision.
+        # `_s is None` is the slot-clearing case (post-wicket /
+        # cold-start invalidation) — write directly since the
+        # apply_striker_identity_resolved contract requires a name.
+        if _s is None:
+            self.striker = None
+        else:
+            self.apply_striker_identity_resolved(
+                _s, source=f"set_slot_pair:{source}")
+        self.non = _ns
 
     # ------------------------------------------------------------------
     # Validation

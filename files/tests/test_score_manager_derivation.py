@@ -361,6 +361,18 @@ class TestDeriveStrikerEvent:
         sm.apply_striker_event(ev2)
         assert sm.striker == "X"
         assert sm.non == "Y"
+        # Cricket pair-swap with non=None: (X, None) → (None, X) MUST
+        # mutate even though next_striker is None. §15 step-7c bug
+        # surfaced at over_ball 8.4 — early-return on next=None blocked
+        # the swap.
+        sm.striker = "X"; sm.non = None
+        ev3 = _SE(
+            prev_striker="X", next_striker=None,
+            prev_non_striker=None, next_non_striker="X",
+            reason="odd_run_rotation")
+        sm.apply_striker_event(ev3)
+        assert sm.striker is None
+        assert sm.non == "X"
 
     def test_odd_run_on_end_of_over_cancels_to_no_change(self):
         # Cricket rule: 1 run on last ball of over = batters cross (run)
