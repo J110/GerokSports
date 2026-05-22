@@ -6325,22 +6325,21 @@ class ScoreManager:
                      f"this_over_now={self.this_over}")
 
         # --- Strike Rotation ---
-        # §15 step 7 attempt reverted: even with B-2's atomic-pair
-        # contract + Rule 1 tightening, parallel striker-write paths
-        # beyond _apply_event (e.g. _identify_striker, _set_slot_pair,
-        # broadcast-striker confirmation) interact with
-        # apply_striker_event's writes and produce divergent state at
-        # specific frames (+2 Boundary-counter-double-increment at
-        # over_ball 8.5). Full striker consolidation requires routing
-        # ALL striker-write sites through apply_striker_event, which
-        # is a larger surface change than step 7 anticipated. Inline
-        # rotation preserved for parity; broader consolidation deferred
-        # to a follow-up commit with explicit operator approval on the
-        # expanded scope.
-        if event.get("legal", True) and event.get("runs", 0) % 2 == 1:
-            self.striker, self.non = self.non, self.striker
-        if is_over_change:
-            self.striker, self.non = self.non, self.striker
+        # §15 step 7a: ROTATION-semantic writes consolidated through
+        # derive_striker_event + apply_striker_event (the B-2 atomic
+        # pair). Per §13.1's ROTATION-vs-IDENTITY distinction, this is
+        # the ONLY rotation site; identity-resolution writes
+        # (_set_slot_pair, _identify_striker, NAME-REJECTED recovery)
+        # are §13.8 / step-7c scope and keep their existing call paths.
+        # Residual +2 Boundary at over_ball 8.5 (if any) is the
+        # ROTATION ↔ IDENTITY race and the trigger for 7c.
+        # ABSORBED_LEGAL never reaches here.
+        _wire_current_str = self._snapshot_primitives_from_dict(card)
+        _wire_striker_ev = _derive_striker_event(
+            _wire_prior, _wire_current_str, None,
+            over_boundary_crossed=is_over_change,
+            legal_ball_completed=event.get("legal", True))
+        self.apply_striker_event(_wire_striker_ev)
 
         # --- Fall of Wicket ---
         # Slot indexing: after _accept_update bumped self.wickets to N,

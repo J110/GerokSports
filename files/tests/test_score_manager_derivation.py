@@ -409,20 +409,23 @@ class TestDeriveStrikerEvent:
         assert ev.reason == "lost_frames_ambiguous"
         assert ev.next_striker == "A"
 
-    def test_legal_ball_drift_returns_prev(self):
+    def test_legal_ball_drift_uses_non_striker_pointer(self):
         # Striker isn't in current crease set — pipeline drift case.
+        # The cricket-correct swap is (striker ↔ non_striker) using the
+        # pointers directly; bat-slot lookup is fallback only. With
+        # prior.non="B", the swap target is "B" regardless of slot drift.
         prior = snap(
-            striker="X", bat1_name="A", bat2_name="B", score=10,
-            overs="3.3")
+            striker="X", non_striker="B",
+            bat1_name="A", bat2_name="B", score=10, overs="3.3")
         current = snap(
-            striker="X", bat1_name="A", bat2_name="B", score=11,
-            overs="3.4")
+            striker="X", non_striker="B",
+            bat1_name="A", bat2_name="B", score=11, overs="3.4")
         ev = derive_striker_event(
             prior, current, None,
             over_boundary_crossed=False, legal_ball_completed=True)
-        # _swap_partner returns prev when prev isn't in either slot
         assert ev.reason == "odd_run_rotation"
-        assert ev.next_striker == "X"
+        assert ev.next_striker == "B"
+        assert ev.next_non_striker == "X"
 
 
 # ─────────────────────────────────────────────────────────────────────

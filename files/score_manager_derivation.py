@@ -329,9 +329,20 @@ def derive_striker_event(
         swap_for_runs = (crossing_runs % 2 == 1)
         swap_for_over_end = over_boundary_crossed
         if swap_for_runs ^ swap_for_over_end:
+            # Cricket swap = (striker ↔ non_striker) pair exchange.
+            # Use prev_non directly; bat-slot lookup is fallback only
+            # for pipeline states where prior.non_striker is missing
+            # (cold-start drift or stale slot hydration). The slot
+            # fallback caused a Layer-1.5 regression at FoW1 when the
+            # test fixture pre-hydrated bat slots to post-event values
+            # while striker pointer was still pre-event — both
+            # pointers collapsed to the dismissed batter.
+            swap_target = (
+                prev_non if prev_non and prev_non != prev
+                else _swap_partner(current, prev))
             return StrikerEvent(
                 prev_striker=prev,
-                next_striker=_swap_partner(current, prev),
+                next_striker=swap_target,
                 prev_non_striker=prev_non,
                 next_non_striker=prev,
                 reason="end_of_over_swap" if swap_for_over_end
