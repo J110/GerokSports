@@ -292,6 +292,38 @@ class TestDeriveStrikerEvent:
         assert ev.reason == "odd_run_rotation"
         assert ev.next_striker == "B"
 
+    def test_odd_run_on_end_of_over_cancels_to_no_change(self):
+        # Cricket rule: 1 run on last ball of over = batters cross (run)
+        # + switch ends (over-end) = net same striker continues.
+        # Discovered as +19 Boundary-counter-double-increment regression
+        # at §15 step-5 harness diff.
+        prior = snap(
+            striker="A", bat1_name="A", bat2_name="B", score=10,
+            overs="3.5")
+        current = snap(
+            striker="A", bat1_name="A", bat2_name="B", score=11,
+            overs="4.0")
+        ev = derive_striker_event(
+            prior, current, None,
+            over_boundary_crossed=True, legal_ball_completed=True)
+        assert ev.reason == "no_change"
+        assert ev.next_striker == "A"
+
+    def test_even_run_on_end_of_over_swaps(self):
+        # 2 runs on last ball of over = no crossing + switch ends =
+        # net rotation (over-end swap only).
+        prior = snap(
+            striker="A", bat1_name="A", bat2_name="B", score=10,
+            overs="3.5")
+        current = snap(
+            striker="A", bat1_name="A", bat2_name="B", score=12,
+            overs="4.0")
+        ev = derive_striker_event(
+            prior, current, None,
+            over_boundary_crossed=True, legal_ball_completed=True)
+        assert ev.reason == "end_of_over_swap"
+        assert ev.next_striker == "B"
+
     def test_lost_frames_striker_ambiguous(self):
         # §13.6 #5 — multiple legal balls in one snapshot transition.
         # Refuse to derive rotation; emit lost_frames_ambiguous.

@@ -22,6 +22,12 @@ from cricket_rules import (
 )
 from eyes.cricket_logger import CricketLogger
 from eyes.this_over import ThisOverManager as _TOM
+from score_manager_derivation import (
+    SnapshotPrimitives as _SnapshotPrimitives,
+    derive_striker_event as _derive_striker_event,
+    derive_this_over_token as _derive_this_over_token,
+    derive_wicket_event as _derive_wicket_event,
+)
 
 try:
     from cricket_rules import _cold_start_infer_gap_tokens as _infer_gap_tokens
@@ -734,6 +740,41 @@ class ScoreManager:
     # — NOT yet wired to any call site. Session B wires existing
     # entry points through these methods per §15.
     # ──────────────────────────────────────────────────────────────
+
+    def _snapshot_primitives_from_dict(self, src: dict | None) -> _SnapshotPrimitives:
+        """Build SnapshotPrimitives from a prev/card scoreboard dict +
+        current SM state.
+
+        Step-5 best-effort: bat1/bat2/bowler/striker/extras are read
+        from CURRENT SM state (no event-time history). Score/wickets/
+        overs come from `src` (prev = pre-event; card = post-event).
+        Sufficient for behavior-preservation per the step-5 acceptance;
+        a fuller temporal-snapshot path lands in Session B step 7 if
+        needed.
+        """
+        src = src or {}
+        extras = self._extras_writable() or {}
+        try:
+            overs_str = f"{float(src.get('overs') or 0):.1f}"
+        except (TypeError, ValueError):
+            overs_str = "0.0"
+        return _SnapshotPrimitives(
+            score=int(src.get("score") or 0),
+            wickets=int(src.get("wickets") or 0),
+            overs=overs_str,
+            bat1_name=self.bat1_name,
+            bat2_name=self.bat2_name,
+            bowler_name=self.bowler_name,
+            striker=self.striker,
+            extras_total=int(extras.get("total") or 0),
+            extras_wd=int(extras.get("wides") or 0),
+            extras_nb=int(extras.get("no_balls") or 0),
+            extras_b=int(extras.get("byes") or 0),
+            extras_lb=int(extras.get("leg_byes") or 0),
+            first_striker=getattr(self, "first_striker", None),
+            legal_balls_in_over=getattr(
+                self, "_legal_balls_in_over_new_path", 0),
+        )
 
     def _emit_trace(self, tag: str, payload: dict) -> None:
         if _trace is None:
@@ -6044,6 +6085,15 @@ class ScoreManager:
                 "[SM] ABSORBED_LEGAL reached _apply_event — "
                 "should use _apply_absorbed_event; skipping")
             return
+        # §15 step 5 — derivation-path snapshots. Built BEFORE
+        # _accumulate_stats_from_event so prior reflects pre-event
+        # SM state for slot fields (bat1/bat2/striker). Used by the
+        # derive_* calls below to replace inline this_over /
+        # striker / _rewrite_eyes mutations with the canonical
+        # apply_* methods per §15. Wicket-branch wire-through is
+        # deferred to step 7 (_apply_wicket_fall_only routing)
+        # to avoid FoW/bowler-W duplication.
+        _wire_prior = self._snapshot_primitives_from_dict(prev)
         # --- Stat accumulation (single-writer derivation path) ---
         # Must run BEFORE strike rotation so `event["striker"]` /
         # `self.striker` still names the batter who actually faced the
@@ -6082,8 +6132,17 @@ class ScoreManager:
             # bug. After the closing append we archive and start the
             # new over empty; the genuine first ball of the new over
             # arrives on the next frame's event.
-            self.this_over.append(event.get("this_over_token", "?"))
-            self.this_over_src.append("obs")
+            # §15 step 5: wire through apply_this_over_token + propagate.
+            # Falls back to inline append if derivation returns None
+            # (event has no Δ but pipeline still wants a placeholder).
+            _wire_current = self._snapshot_primitives_from_dict(card)
+            _wire_token = _derive_this_over_token(
+                _wire_prior, _wire_current, None)
+            if _wire_token is not None:
+                self.apply_this_over_token(_wire_token)
+            else:
+                self.this_over.append(event.get("this_over_token", "?"))
+                self.this_over_src.append("obs")
             self._rewrite_eyes_this_over_from_event(
                 card, event.get("this_over_token", "?"))
             self.completed_over = list(self.this_over)
@@ -6207,8 +6266,16 @@ class ScoreManager:
                         legal_so_far += 1
                 except (TypeError, ValueError):
                     pass
-            self.this_over.append(event.get("this_over_token", "?"))
-            self.this_over_src.append("obs")
+            # §15 step 5: wire through apply_this_over_token. Same
+            # fallback as the is_over_change branch above.
+            _wire_current2 = self._snapshot_primitives_from_dict(card)
+            _wire_token2 = _derive_this_over_token(
+                _wire_prior, _wire_current2, None)
+            if _wire_token2 is not None:
+                self.apply_this_over_token(_wire_token2)
+            else:
+                self.this_over.append(event.get("this_over_token", "?"))
+                self.this_over_src.append("obs")
             self._rewrite_eyes_this_over_from_event(
                 card, event.get("this_over_token", "?"))
 
@@ -6253,6 +6320,15 @@ class ScoreManager:
                      f"this_over_now={self.this_over}")
 
         # --- Strike Rotation ---
+        # §15 step 5: kept inline for parity. Striker wire-through via
+        # apply_striker_event surfaced a +2 Boundary-counter-double-
+        # increment regression at over_ball 8.5 (post-FoW2 slot
+        # clearing interacts with apply_striker_event's striker-only
+        # mutation contract — self.non isn't atomically swapped). Fix
+        # requires the apply_striker_event contract to own BOTH
+        # striker + non as a pair, or for the caller to mirror swap
+        # atomically. Deferred for follow-up commit; this_over wire-
+        # through preserved at parity.
         # ABSORBED_LEGAL never reaches here (warm path uses
         # `_apply_absorbed_event`; D3 keeps striker fixed across the gap).
         if event.get("legal", True) and event.get("runs", 0) % 2 == 1:

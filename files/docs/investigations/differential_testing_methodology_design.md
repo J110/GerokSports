@@ -805,8 +805,17 @@ Non-regression invariant: all other 12 surfaces unchanged.
 1. **Run-out on completed Nth run.** Cricket rule: striker is the batter who didn't complete the final run. Pipeline cannot determine "who didn't complete" from primitives alone — both batters' positions during the run are unknown. **Acceptable simplification:** treat as standard rotation per Δscore parity. Cricket-truth diverges in ~1% of cases; harness will flag if it matters via a `STRIKER-AFTER-RUNOUT-AMBIGUOUS` trace tag. Bound the residual to <1% case.
 2. **Wicket on no-ball (free-hit).** Free-hit applies to next delivery; striker rotation for the wicket-ball itself follows normal rules. Wicket-on-no-ball is rare for stumpings (no-balls don't count) but possible for run-outs.
 3. **Wicket-on-wide with stumping (the 10.2 case in DCKKR).** Wide doesn't advance ball-count; rotation does NOT fire on the wide itself. But the wicket changes the at-the-crease set. Apply rule 2 (wicket new-batter logic) without rule 4 (no legal-ball rotation since extras-only).
-4. **Bye/leg-bye on odd runs.** Batters DO cross during byes/leg-byes if odd runs scored. The runs go to extras (not batter), but rotation fires. Distinguish from wides/no-balls (no crossing).
-5. **Lost-frames between snapshots.** If pipeline missed frames (Workstream G lag-consequence), Δscore + Δwickets + Δover may bundle multiple deliveries into one snapshot. Striker rotation cannot be fully derived. Emit `STRIKER-LOST-FRAMES-AMBIGUOUS` and refuse to derive; let the next confident snapshot re-anchor.
+4. **Bye/leg-bye on odd runs.** Batters DO cross during byes/leg-byes if odd runs scored. The runs go to extras (not batter), but rotation fires. Distinguish from wides/no-balls (no crossing). Concrete parity expression: `(Δscore - Δextras_wd - Δextras_nb) % 2 == 1` → swap. **Do NOT subtract Δextras_b or Δextras_lb** — those are legal-ball extras where batters cross.
+5. **Multi-ball gap = alert + best-effort derive (§16 every-delivery-accounted-for principle).** Operator-added principle 2026-05-22 evening supersedes the prior "refuse to derive" guard. Pipeline missing a delivery (Δballs > 1 in any state transition) is a P0 bug — NOT a case to silently handle by freezing striker.
+
+   Behavior:
+   - On `legal_ball_completed and (current.balls - prior.balls > 1)`: emit `PIPELINE-MISSED-DELIVERY` alert trace tag with payload (delta_balls, delta_score, delta_wickets, over_boundary_crossed, wicket_event_present). Harness classifies as Surface J per §16.4.
+   - Then proceed with best-effort derivation, never refuse:
+     - **No wicket in gap:** parity-of-crossing-runs over the gap equals net rotation count regardless of per-ball distribution (proven by inspection — every odd-run-ball contributes 1 swap mod 2; sum of swaps ≡ parity of total-crossing-runs). Derive normally via `(Δscore - Δwd - Δnb) % 2 == 1` + over-boundary swap. Mathematically correct.
+     - **Wicket in gap:** parity-derive rotation chain AND set new-batter-at-strike via at-the-crease set difference. Mark reason `striker_post_wicket_multi_ball_best_effort` so downstream knows positional accuracy is degraded. Positional ambiguity on which ball carried the wicket is acknowledged via reason field, not via refusal-to-derive.
+   - The alert IS the contract surface for upstream investigation. Striker downstream consumers get a best-effort answer; alerting + harness flag the underlying missed-delivery for fix.
+
+   **Score-primitive defects produce wrong striker downstream.** If upstream score-primitive registers Δscore=0 when cricket truth had Δscore=3 (Obs 11a phantom-dots case), striker derivation will produce no rotation when reality required one. This is NOT a striker-derivation defect — striker correctly derives from whatever score primitive it's given. The fix is upstream in workstream E2 / Obs 11a / Obs 8 (score-primitive correctness); striker corrects automatically once score is right. Do NOT add compensating logic to striker that tries to detect or correct upstream score-corruption — that would re-introduce coupling that the derivation-first principle explicitly forbids.
 
 Each edge case has a unit test in the new module.
 
@@ -991,6 +1000,80 @@ Session C — cold-start + cleanup:
 ```
 
 Estimated total: 8-10 commits across 2-3 sessions. Surface count reduction predicted: 14 → 5-7 (closes ~50% of the surface ledger). The remaining surface fixes (Workstream F, Per-batter, Recent-Overs policy, phantom-runs, pipeline-lag) become each 1-session surgical fixes per §11.3 items 2-7.
+
+---
+
+## §16 — Architectural principle: Every-delivery-accounted-for (operator-added 2026-05-22 evening)
+
+> "Every delivery must be accounted for. We should not be building anything assuming that sometimes our pipeline will miss a delivery. If it does, that's an issue that we need to raise and resolve ASAP."
+
+Now in HANDOFF.md "Standing discipline" list alongside "No speculative fixes" and "Detection establishes identity, derivation maintains state." Architectural fence — applies to ALL future code, not just the §12+§13+§14 triple rewrite.
+
+### §16.1 — Implications for derivation guards
+
+Any "refuse to derive" guard that fires on missed-delivery signals (Δballs > 1) is now structurally suspect. Refusal silently accepts the missed delivery; the principle requires raising it instead.
+
+Pattern for all derivation functions (wicket / striker / this_over):
+```
+if missed_delivery_detected(prior, current):
+    emit_trace_tag("PIPELINE-MISSED-DELIVERY", payload={...})
+# then proceed to best-effort derivation
+```
+
+The alert tag is the contract surface. Downstream consumers (harness, CI, operator dashboard) treat it as P0 signal. Derivation produces best-effort output; alerting flags the bug for upstream investigation.
+
+§13.6 #5 revised per this principle (above).
+
+### §16.2 — Implications for cold-start
+
+§14.5 cold-start contract ("at cold-start entry, `self.this_over = []`; pre-cold-start balls are accepted as unknowable") is consistent with §16 because pre-cold-start balls happened BEFORE pipeline operation started — pipeline didn't "miss" them, it didn't exist yet.
+
+Adding clarification:
+- Emit `COLD-START-EXIT` trace tag at the boundary between cold-start synthesis regime and steady-state derivation regime.
+- After `COLD-START-EXIT`, any Δballs > 1 transition is unambiguously a P0 missed-delivery bug (vs ambiguous pre-cold-start where it's an accepted unknown).
+- Before `COLD-START-EXIT`, missing balls are an artifact of mid-match pipeline boot, not a defect.
+
+### §16.3 — Implications for §11.3 priority order
+
+Workstream G (pipeline-lag) was item #7 (lowest priority, deferred as "performance, not correctness"). Per §16, missed deliveries ARE a correctness defect. **Workstream G promotes from #7 to #2**, immediately after the §12+§13+§14 triple rewrite.
+
+Justification: every Obs 1-16 observation with missed-delivery signal (Obs 9 missing balls 7.5+7.6, Obs 10 lag-growth 1→3 balls, Obs 11a "registered 4 balls as dots") is now a P0 correctness defect, not a deferred performance issue.
+
+Revised §11.3 fix-order:
+1. §12+§13+§14 triple rewrite (wicket / striker / this_over).
+2. **Workstream G — every-delivery-accounted-for enforcement.** Add `PIPELINE-MISSED-DELIVERY` alert path + harness Surface J classifier + root-cause investigation for Obs 9 / Obs 10 / Obs 11a / Obs 11b missed-delivery instances.
+3. Workstream F sub-class B (defer-and-mark-uncertain bowler).
+4. Workstream F sub-class A (over-boundary commit-lag bowler).
+5. Per-batter-ledger conservation assertion (Obs 16).
+6. Recent-Overs partial-render policy (Obs 11b — adjacent to Workstream G but separate fix).
+7. Phantom-runs root-localize (Obs 8).
+
+### §16.4 — New defect surface — Surface J: pipeline-missed-delivery
+
+Add to the 14-surface ledger:
+- **Surface J — pipeline-missed-delivery.** Predicate: any state transition where `derive_*` functions emit `PIPELINE-MISSED-DELIVERY` alert (Δballs > 1 outside cold-start regime).
+- Relationship to existing surfaces: Multi-ball-compression (currently 4 dump instances) IS the harness-side manifestation of Surface J. Re-alias or merge per CC's discretion at integration time.
+
+### §16.5 — Implications for harness acceptance gates
+
+Pre-§12/§13/§14 acceptance per §14.6 said "Multi-ball-compression ≤ 1 (cold-start residual)". Post-§16: this becomes "**Multi-ball-compression == 0 outside cold-start window. Inside cold-start window, all instances must occur before `COLD-START-EXIT` tag.**" Any post-cold-start instance is a bug to fix, not an accepted residual.
+
+§16's acceptance gate for Workstream G (priority #2 above): harness reports zero Surface J instances except those that fall within the cold-start window. If non-zero outside the window → bug filed, root-cause investigation triggered.
+
+### §16.6 — Architectural fence (post-§12+§13+§14 + Workstream G)
+
+Add to `Architecture_HANDOFF.md` "What NOT to touch" once Workstream G lands:
+- **`PIPELINE-MISSED-DELIVERY` alert trace tag and Surface J classifier.** Future code MUST NOT silently handle Δballs > 1 transitions outside the cold-start window. Any code that does is a regression of the every-delivery-accounted-for principle. The alert is the load-bearing contract surface; silencing it defeats the architectural intent.
+
+### §16.7 — Audit obligation against existing rewrite specs
+
+The §12 / §13 / §14 specs were drafted before this principle was canonized. CC's review checklist before Session B step 5 commits:
+- §12.2 `derive_wicket_event`: no missed-delivery silent handling needed (wicket logic is per-event, not gap-based).
+- §13.2 `derive_striker_event`: §13.6 #5 already revised above. Confirm derive_striker_event emits `PIPELINE-MISSED-DELIVERY` alongside `striker_post_wicket_multi_ball_best_effort` reason.
+- §14.2 `derive_this_over_token`: §14.7 #2 says emit `THIS-OVER-CLUSTER-LOST-FRAMES` and append `?` per missed ball. Per §16, ALSO emit `PIPELINE-MISSED-DELIVERY` for the same condition. The cluster handling stays (UI rendering) but the alert is the bug-signal layer.
+- §12.10.1 Path B hook at `scoreboard.set("wickets", ...)`: if Path B fires with `delta_wickets > 1` (multi-wicket-jump), this IS missed delivery — emit `PIPELINE-MISSED-DELIVERY` BEFORE dispatching the synthetic WICKET event. Multi-wicket-jump means we missed the intermediate state.
+
+CC: incorporate these audit findings into Session B step 5's commit (2/N) without escalating scope.
 
 ---
 

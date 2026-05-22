@@ -279,30 +279,31 @@ def derive_striker_event(
             reason="lost_frames_ambiguous",
         )
 
-    # Rule 3: over-boundary swap (no wicket)
-    if legal_ball_completed and over_boundary_crossed:
-        return StrikerEvent(
-            prev_striker=prev,
-            next_striker=_swap_partner(current, prev),
-            reason="end_of_over_swap",
-        )
-
-    # Rule 4: odd-run rotation. Subtract ONLY non-crossing extras
-    # (wides + no-balls); byes/leg-byes ARE legal-ball deliveries where
-    # batters cross on odd runs (§13.6 #4). The previous formulation
-    # subtracted ALL extras and missed bye/leg-bye rotations.
+    # Rules 3 + 4 combined — cricket rules cascade. Odd-run + end-of-over
+    # means batters cross (rotation #1) AND switch ends (rotation #2) →
+    # net same striker. XOR the two swap-triggers so double-swap cancels.
+    # §13.6 #4: byes/leg-byes stay in the parity (subtract only wd+nb,
+    # the non-crossing extras).
     if legal_ball_completed:
         delta_score = current.score - prior.score
         non_crossing_extras = (
             (current.extras_wd - prior.extras_wd)
             + (current.extras_nb - prior.extras_nb))
         crossing_runs = delta_score - non_crossing_extras
-        if crossing_runs % 2 == 1:
+        swap_for_runs = (crossing_runs % 2 == 1)
+        swap_for_over_end = over_boundary_crossed
+        if swap_for_runs ^ swap_for_over_end:
             return StrikerEvent(
                 prev_striker=prev,
                 next_striker=_swap_partner(current, prev),
-                reason="odd_run_rotation",
+                reason="end_of_over_swap" if swap_for_over_end
+                else "odd_run_rotation",
             )
+        if swap_for_runs and swap_for_over_end:
+            # Two swaps cancel — net no rotation.
+            return StrikerEvent(
+                prev_striker=prev, next_striker=prev,
+                reason="no_change")
 
     return StrikerEvent(
         prev_striker=prev,
