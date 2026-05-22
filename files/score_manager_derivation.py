@@ -53,6 +53,24 @@ class SnapshotPrimitives:
     legal_balls_in_over: int = 0  # 0-5; rolls over to 0 after 6th legal ball
 
 
+_NON_BOWLER_DISMISSALS = {
+    "run_out", "runout", "obstructed_field", "retired", "retired_hurt",
+    "timed_out", "handled_ball", "hit_ball_twice",
+}
+
+
+def is_bowler_attributable(wicket_type: Optional[str]) -> bool:
+    """Cricket rule: bowler is credited for caught / bowled / lbw /
+    stumped / hit-wicket / bowler_wicket (and any other dismissal
+    not on the explicit non-bowler list). NOT credited for run-out /
+    obstructed-field / timed-out / handled-ball / retired. Unknown /
+    None defaults to attributable (matches the pre-rewrite default
+    in _accumulate_stats_from_event)."""
+    if not wicket_type:
+        return True
+    return wicket_type.lower().replace(" ", "_") not in _NON_BOWLER_DISMISSALS
+
+
 @dataclass(frozen=True)
 class WicketEvent:
     delta_wickets: int                   # >= 1 (function returns None if 0)
@@ -64,6 +82,8 @@ class WicketEvent:
     this_over_token: str                 # composed per §12.2 rules below
     is_extras_dismissal: bool            # delta_extras > 0 same frame
     is_runout_speculative: bool          # delta_score > 0 same frame
+    wicket_type: Optional[str] = None    # caught/bowled/lbw/stumped/run_out/...
+    wicket_number: Optional[int] = None  # 1-indexed wicket # (for FoW slot)
 
 
 @dataclass(frozen=True)

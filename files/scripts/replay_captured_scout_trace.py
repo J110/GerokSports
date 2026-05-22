@@ -202,7 +202,14 @@ def _build_ui_snapshot(sm, sb, frame_id: int) -> UIBallSnapshot:
     """
     striker = canonical_name(getattr(sm, "striker", None))
     non = canonical_name(getattr(sm, "non", None))
-    bowler = canonical_name(getattr(sm, "bowler_name", None))
+    # §12.10.3 sibling fix: when sm.bowler_name has been cleared by
+    # over-end BOWLER-LOCK-RELEASED, fall back to the SM field that
+    # apply_wicket_event captures at wicket commit time. Closes the
+    # false-positive Bowler-W-credit-failure class where pipeline
+    # credited correctly but the snapshot couldn't see it.
+    bowler = canonical_name(
+        getattr(sm, "bowler_name", None)
+        or getattr(sm, "_last_bowler_at_wicket_commit", None))
 
     batting_card = getattr(sb, "batting_card", {}) or {}
     bowling_card = getattr(sb, "bowling_card", {}) or {}

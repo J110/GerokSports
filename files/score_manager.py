@@ -807,49 +807,67 @@ class ScoreManager:
             pass
 
     def apply_wicket_event(self, event) -> None:
-        """§12.3 — single mutation path for wicket state.
+        """§12.3 (refined for §15 step 7b) — narrow canonical commit
+        path for wicket-specific state:
+          1. FoW append (idempotent — replace placeholder, refuse
+             rewrite of confirmed entries; matches the pre-rewrite
+             _apply_wicket_fall_only behaviour).
+          2. Bowler-W credit IF wicket_type is bowler-attributable
+             (caught/bowled/lbw/stumped/hit-wicket). Run-outs and
+             obstructed-field do NOT credit the bowler.
+          3. _last_bowler_at_wicket_commit sibling field for harness
+             snapshotter (per §12.10.3).
+          4. SYNTHETIC-WICKET-DISPATCHED trace.
 
-        Inputs: WicketEvent from
-        ``files/score_manager_derivation.py:derive_wicket_event``.
-        Effects:
-          1. self.wickets += event.delta_wickets
-          2. FoW append (dict carries both "dismissed" and "batter"
-             keys for compatibility with snapshot extractors that
-             read either)
-          3. this_over token append + over_mgr propagate
-          4. Bowler-W credit (single path)
-          5. Striker rotation cascade — Session B integration; today
-             callers must follow this with derive_striker_event +
-             apply_striker_event.
-          6. Trace emission
-        Session A scaffolding only; not wired to call sites yet.
-        Records _last_bowler_at_wicket_commit per §12.10.3 sibling
-        fix so harness snapshotter can fall back when sm.bowler_name
-        has been cleared by over-end handoff.
+        Deliberately does NOT:
+          - mutate self.wickets (owned by the @wickets.setter via
+            _accept_update, which fires before _apply_event)
+          - append to self.this_over (apply_this_over_token owns it,
+            including Wd+W compound token composition per §15 step 5)
+          - emit trace_beta_sm_wicket_dispatch (_apply_wicket_fall_only
+            still owns the post-wicket side effects — slot clearing,
+            partnership reset, trace_beta — until those have their
+            own canonical paths)
         """
-        self.wickets = (self.wickets or 0) + event.delta_wickets
+        from score_manager_derivation import is_bowler_attributable
+        wkt_no = (
+            event.wicket_number
+            if event.wicket_number is not None
+            else (self.wickets or 0))
         try:
             fow_list = self._fow_writable()
-            fow_list.append({
-                "wicket": self.wickets,
+            new_entry = {
+                "wicket": wkt_no,
                 "score": self.score,
                 "overs": event.over_ball,
                 "dismissed": event.dismissed_batter,
                 "batter": event.dismissed_batter,
                 "bowler": event.bowler_name,
+                "wicket_type": event.wicket_type,
                 "_witnessed": True,
-            })
+            }
+            target_idx = wkt_no - 1
+            if target_idx < 0:
+                fow_list.append(new_entry)
+            elif target_idx < len(fow_list):
+                existing = fow_list[target_idx] or {}
+                is_placeholder = (
+                    existing.get("score") in (None, "?")
+                    or not existing.get("dismissed")
+                    or existing.get("_unwitnessed"))
+                if is_placeholder:
+                    fow_list[target_idx] = new_entry
+                # else: confirmed entry — refuse rewrite
+            else:
+                while len(fow_list) < target_idx:
+                    fow_list.append(
+                        self._make_fow_placeholder(len(fow_list) + 1))
+                fow_list.append(new_entry)
         except Exception:
             pass
-        self.this_over.append(event.this_over_token)
-        try:
-            self.this_over_src.append("obs")
-        except AttributeError:
-            pass
-        self._rewrite_eyes_this_over_from_event(
-            {"overs": event.over_ball}, event.this_over_token)
-        if event.bowler_name:
+        if event.bowler_name and is_bowler_attributable(event.wicket_type):
             self._increment_bowler_wickets(event.bowler_name)
+        if event.bowler_name:
             self._last_bowler_at_wicket_commit = event.bowler_name
         self._emit_trace(
             tag="SYNTHETIC-WICKET-DISPATCHED",
@@ -857,6 +875,8 @@ class ScoreManager:
                 "over_ball": event.over_ball,
                 "dismissed": event.dismissed_batter,
                 "bowler": event.bowler_name,
+                "wicket_type": event.wicket_type,
+                "wicket_number": wkt_no,
                 "delta_wickets": event.delta_wickets,
                 "delta_score": event.delta_score,
                 "delta_extras": event.delta_extras,
@@ -5529,7 +5549,12 @@ class ScoreManager:
             f"self.non={self.non!r} "
             f"self.bat1_name={self.bat1_name!r} "
             f"self.bat2_name={self.bat2_name!r}")
-        _canonical_bowler = self.bowler_name
+        # §15 step 7b: prefer event["_bowler_at_commit"] (captured by
+        # _apply_event BEFORE the over-end BOWLER-LOCK-RELEASED clear)
+        # over self.bowler_name. For over-end wickets self.bowler_name
+        # has already been nulled by the time this function runs.
+        _canonical_bowler = (
+            event.get("_bowler_at_commit") or self.bowler_name)
         _bowler_for_dispatch = _canonical_bowler
         if not _canonical_bowler or _canonical_bowler == "—":
             _tracker = getattr(self, "_bowler_tracker", None)
@@ -5589,31 +5614,33 @@ class ScoreManager:
             self._set_slot_pair(
                 survivor, None,
                 source="apply_event.wicket_non_striker_out")
-        target_idx = (self.wickets or 0) - 1
-        _fl = self._fow_writable()
-        if target_idx < 0:
-            _fl.append(new_entry)
-        elif target_idx < len(_fl):
-            existing = _fl[target_idx]
-            is_placeholder = (existing.get("score") == "?"
-                              or not existing.get("dismissed"))
-            if is_placeholder:
-                _fl[target_idx] = new_entry
-            else:
-                log.warn(
-                    f"[SM] FOW W{target_idx + 1} immutable "
-                    f"(confirmed {existing.get('dismissed')}@"
-                    f"{existing.get('score')}/{existing.get('overs')})"
-                    f" — refusing rewrite to "
-                    f"{new_entry.get('dismissed')}@"
-                    f"{new_entry.get('score')}/"
-                    f"{new_entry.get('overs')}")
-        else:
-            while len(_fl) < target_idx:
-                _fl.append(
-                    self._make_fow_placeholder(
-                        len(_fl) + 1))
-            _fl.append(new_entry)
+        # §15 step 7b: FoW write delegated to apply_wicket_event (the
+        # canonical FoW path). Bowler-W credit also routes through it
+        # for bowler-attributable wickets; run-outs / obstructed-field
+        # skip the credit per cricket rule. apply_wicket_event is
+        # idempotent — replaces placeholders, refuses to rewrite
+        # confirmed entries — matching the pre-rewrite semantics.
+        from score_manager_derivation import WicketEvent as _WE
+        try:
+            _ob_str = (
+                f"{float(self.overs):.1f}"
+                if self.overs is not None else "0.0")
+        except (TypeError, ValueError):
+            _ob_str = str(self.overs) if self.overs is not None else "0.0"
+        _w_event = _WE(
+            delta_wickets=1,
+            over_ball=_ob_str,
+            bowler_name=_bowler_for_dispatch,
+            dismissed_batter=best_dismissed,
+            delta_score=int(event.get("runs", 0) or 0),
+            delta_extras=0,
+            this_over_token=event.get("this_over_token", "W"),
+            is_extras_dismissal=False,
+            is_runout_speculative=bool(event.get("runs", 0)),
+            wicket_type=event.get("wicket_type"),
+            wicket_number=(self.wickets or 0),
+        )
+        self.apply_wicket_event(_w_event)
         self.partnership_runs = 0
         self.partnership_balls = 0
         self.partnership_known = True
@@ -5628,7 +5655,7 @@ class ScoreManager:
                     wickets=self.wickets,
                     wicket_type=event.get("wicket_type"),
                     resolution_src=_resolution_src,
-                    fow_index=target_idx,
+                    fow_index=(self.wickets or 0) - 1,
                     frame_id=str(self._current_frame))
             except Exception:
                 pass
@@ -5698,11 +5725,15 @@ class ScoreManager:
                         single_runs = 0
                 _wkt_delta = 1 if (is_last and evt.get(
                     "gap_finalize_wicket")) else 0
+                # §15 step 7b: wickets_delta=0 — apply_wicket_event is
+                # the canonical bowler-W credit path (called by
+                # _apply_wicket_fall_only at the gap_finalize branch
+                # below). Runs/balls stay on this path.
                 self.scoreboard.update_bowler(
                     bowler_name,
                     runs_delta=single_runs,
                     balls_delta=1,
-                    wickets_delta=_wkt_delta,
+                    wickets_delta=0,
                     frame=self._current_frame)
                 if _trace is not None:
                     try:
@@ -5799,9 +5830,12 @@ class ScoreManager:
                         single_runs = 0
                 _wkt_delta = 1 if (is_last and evt.get(
                     "gap_finalize_wicket")) else 0
+                # §15 step 7b: wickets_delta=0 — apply_wicket_event
+                # is the canonical bowler-W credit path. Queued
+                # runs/balls backfill stays on this path.
                 self._queue_pending_bowler_ball_credit(
                     runs_delta=single_runs,
-                    wickets_delta=_wkt_delta,
+                    wickets_delta=0,
                     event_overs=evt.get("over"),
                     frame_id=self._current_frame)
                 if _trace is not None:
@@ -6009,11 +6043,15 @@ class ScoreManager:
                     "WICKET-NO-STRIKER", event,
                     striker_name=striker_name, bowler_name=bowler_name)
             if bowler_name:
+                # §15 step 7b: wickets_delta=0 here — apply_wicket_event
+                # (called downstream by _apply_wicket_fall_only) is the
+                # canonical bowler-W credit path. Runs/balls stay on
+                # this path; only the wicket credit moved.
                 self.scoreboard.update_bowler(
                     bowler_name,
                     runs_delta=runs_this_ball,
                     balls_delta=1 if legal else 0,
-                    wickets_delta=1 if bowler_attributable else 0,
+                    wickets_delta=0,
                     frame=self._current_frame)
             elif bowler_attributable:
                 # F381 backfill: queue for credit when next bowler locks.
@@ -6144,6 +6182,14 @@ class ScoreManager:
         # deferred to step 7 (_apply_wicket_fall_only routing)
         # to avoid FoW/bowler-W duplication.
         _wire_prior = self._snapshot_primitives_from_dict(prev)
+        # §15 step 7b: capture bowler_name BEFORE the over-end
+        # BOWLER-LOCK-RELEASED clear at :6306 (otherwise
+        # _apply_wicket_fall_only sees None for over-end wickets
+        # like Rana 7.6, Rahul 4.6 — apply_wicket_event would skip
+        # bowler-W credit since _accumulate's WICKET credit is now
+        # disabled).
+        if event.get("type") == "WICKET" and self.bowler_name:
+            event["_bowler_at_commit"] = self.bowler_name
         # --- Stat accumulation (single-writer derivation path) ---
         # Must run BEFORE strike rotation so `event["striker"]` /
         # `self.striker` still names the batter who actually faced the
