@@ -374,6 +374,41 @@ class TestDeriveStrikerEvent:
         assert sm.striker is None
         assert sm.non == "X"
 
+    def test_apply_striker_identity_proposed_refuses_when_set(self):
+        # §13.8.1 — conservative-refuse semantic for proposed identities
+        # (broadcast/_identify_and_set callers). Distinct from
+        # apply_striker_identity_resolved (which proceeds best-effort).
+        # Codifies the BAT-DELTA stability invariant the
+        # _identify_and_set override historically protected:
+        # broadcast-driven proposals must NOT flip self.striker mid-
+        # over, or per-ball BAT-DELTA credits the wrong batter
+        # (commit 7a/7b: +24 Boundary-counter-double-increment + +9
+        # Per-batter-ledger-drift regression when this semantic
+        # was missing from the canonical path).
+        import sys as _sys
+        from pathlib import Path as _P
+        _sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+        import score_manager  # noqa: E402
+        sm = score_manager.ScoreManager(shadow=True)
+        # Deterministic striker locked
+        sm.striker = "Rahul"
+        sm.non = "Nissanka"
+        # Broadcast proposal arrives mid-over with a different name
+        sm.apply_striker_identity_proposed(
+            "Nissanka", source="identify_and_set.broadcast_first_name")
+        # Refused — self.striker stays at the deterministic value
+        assert sm.striker == "Rahul"
+        assert sm.non == "Nissanka"
+        # Cold-start case: proposal accepted when striker is None
+        sm.striker = None
+        sm.apply_striker_identity_proposed(
+            "Nissanka", source="identify_and_set.balls_delta")
+        assert sm.striker == "Nissanka"
+        # Same-name proposal is a no-op (no trace, no mutation)
+        sm.apply_striker_identity_proposed(
+            "Nissanka", source="identify_and_set.balls_delta")
+        assert sm.striker == "Nissanka"
+
     def test_odd_run_on_end_of_over_cancels_to_no_change(self):
         # Cricket rule: 1 run on last ball of over = batters cross (run)
         # + switch ends (over-end) = net same striker continues.

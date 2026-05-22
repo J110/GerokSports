@@ -940,6 +940,53 @@ class ScoreManager:
                 "frame_id": self._current_frame,
             })
 
+    def apply_striker_identity_proposed(
+            self, proposed_name: str, source: str) -> None:
+        """§13.8.1 — third canonical mutation path for self.striker:
+        the conservative-refuse semantic for noisy / broadcast-driven
+        identity proposals.
+
+        Distinct from apply_striker_identity_resolved (which proceeds
+        best-effort with an alert): this method REFUSES the write
+        when self.striker is already set. The proposal is acceptable
+        ONLY when self.striker is None (cold-start / post-wicket
+        gap where no deterministic value exists yet).
+
+        Empirical justification (commit 7a/7b chain): _identify_and_set
+        is called per-frame from Scout/broadcast reads. Broadcast can
+        flip mid-over ahead of deterministic rotation. Per-ball
+        BAT-DELTA at _accumulate_stats_from_event uses self.striker —
+        flipping it mid-over miscredits boundaries and runs to the
+        wrong batter (+24 Boundary-counter-double-increment, +9
+        Per-batter-ledger-drift in the step-9 attempt without this
+        refuse semantic).
+
+        Fires STRIKER-IDENTITY-PROPOSAL-REFUSED when refused;
+        STRIKER-IDENTITY-PROPOSAL-ACCEPTED when self.striker was None.
+        """
+        if proposed_name is None:
+            return
+        if self.striker is not None and self.striker != proposed_name:
+            self._emit_trace(
+                tag="STRIKER-IDENTITY-PROPOSAL-REFUSED",
+                payload={
+                    "existing": self.striker,
+                    "proposed": proposed_name,
+                    "source": source,
+                    "frame_id": self._current_frame,
+                })
+            return
+        if self.striker == proposed_name:
+            return
+        self.striker = proposed_name
+        self._emit_trace(
+            tag="STRIKER-IDENTITY-PROPOSAL-ACCEPTED",
+            payload={
+                "name": proposed_name,
+                "source": source,
+                "frame_id": self._current_frame,
+            })
+
     def apply_this_over_token(self, token) -> None:
         """§14.3 — append + rollover. MULTI tokens expand per
         cluster_tokens (lost-frames Recent-Overs '?' rendering per
@@ -4698,42 +4745,25 @@ class ScoreManager:
             method = _slot_diff_method
 
         if new and new != self.striker:
-            if self.striker is not None:
-                # Deterministic striker rotation (2026-05-19) — SM-internal
-                # parity with 2105463. Once an initial striker is locked
-                # (innings-start init or post-wicket new-batter), the
-                # broadcast/strip-derived striker indicator no longer
-                # overrides self.striker mid-over. SM's per-ball rotation
-                # in `_apply_event` is the sole authority through to the
-                # next wicket.
-                #
-                # Surfaced by files/tests/test_sm_derivation_ledger.py
-                # at ball 4.6 of the DC vs KKR fixture: the broadcast
-                # indicator advanced to the post-wicket-and-EOO-swap
-                # striker (Nissanka) mid-frame, flipping `self.striker`
-                # before the wicket-attribution logic could identify
-                # Rahul as dismissed.
-                log.info(
-                    f"  [STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC]"
-                    f" method={method} broadcast={new!r} "
-                    f"deterministic={self.striker!r} — "
-                    f"keeping deterministic")
-                if _trace is not None:
-                    try:
-                        _trace.get_recorder().record(
-                            tag=("STRIKER-SM-BROADCAST-DISAGREES-"
-                                 "DETERMINISTIC"),
-                            method=method,
-                            broadcast_striker=new,
-                            deterministic_striker=self.striker)
-                    except Exception:
-                        pass
-            else:
+            # §15 step 9 (retry per §13.8.1) — route through
+            # apply_striker_identity_proposed (conservative-refuse).
+            # When self.striker is None: proposal is accepted (also
+            # sets self.non via _w8_non_for_identified through
+            # _set_slot_pair). When self.striker is set: proposal is
+            # REFUSED, STRIKER-IDENTITY-PROPOSAL-REFUSED trace fires.
+            # The pre-rewrite override (STRIKER-SM-BROADCAST-DISAGREES-
+            # DETERMINISTIC) is now the canonical method's body; the
+            # S12 C30b defect surface is eliminated by removing the
+            # inline gate.
+            if self.striker is None:
                 log.info(f"[STRIKER] method={method} striker={new} "
                          f"(was={self.striker})")
                 _ns = self._w8_non_for_identified(new)
                 self._set_slot_pair(
                     new, _ns, source=f"identify_and_set.{method}")
+            else:
+                self.apply_striker_identity_proposed(
+                    new, source=f"identify_and_set.{method}")
 
         # S5b-3a: once striker is non-None again, the post-wicket gap
         # is closed; clear the slot-diff anchor.
