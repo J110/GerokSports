@@ -44,6 +44,7 @@ class SnapshotPrimitives:
     bowler_name: Optional[str]
     striker: Optional[str]        # current pointer (None on cold-start)
     extras_total: int             # sum of wd+nb+b+lb
+    non_striker: Optional[str] = None  # partner pointer (None on cold-start)
     extras_wd: int = 0
     extras_nb: int = 0
     extras_b: int = 0
@@ -69,6 +70,8 @@ class WicketEvent:
 class StrikerEvent:
     prev_striker: Optional[str]
     next_striker: Optional[str]
+    prev_non_striker: Optional[str]
+    next_non_striker: Optional[str]
     reason: str
     # reason ∈ {"first_striker_init", "odd_run_rotation",
     #          "end_of_over_swap", "wicket_new_batter",
@@ -202,21 +205,49 @@ def derive_striker_event(
       4. Legal-ball with delta_score odd (excludes extras-only Δ) →
          odd_run_rotation.
       5. Else → no_change.
+
+    Returns the full rotation pair (striker, non_striker). B-2 contract:
+    apply_striker_event mutates both atomically.
     """
     prev = prior.striker
+    prev_non = prior.non_striker or _other_at_crease(prior, prev)
 
-    # Rule 1: cold-start init
-    if prev is None:
+    # Rule 1: cold-start init. Gated on BOTH striker AND non-striker
+    # being None — that's the true innings-start state. A mid-innings
+    # post-wicket striker=None (slot cleared by wicket dispatch, non
+    # remains the survivor) must NOT trigger cold-start init: that
+    # would re-seed striker from self.first_striker (the innings
+    # opener), causing wrong-batter attribution from the wicket frame
+    # onward. Discovered as +2 Boundary-counter-double-increment at
+    # over_ball 8.5 during §15 step-7 wire-through attempt.
+    if prev is None and prior.non_striker is None:
         if current.first_striker:
+            new_non = _other_at_crease(current, current.first_striker)
             return StrikerEvent(
                 prev_striker=None,
                 next_striker=current.first_striker,
+                prev_non_striker=prev_non,
+                next_non_striker=new_non,
                 reason="first_striker_init",
             )
         # No Scout primitive — leave None for caller to defer
         return StrikerEvent(
             prev_striker=None,
             next_striker=None,
+            prev_non_striker=prev_non,
+            next_non_striker=prev_non,
+            reason="no_change",
+        )
+    if prev is None:
+        # Post-wicket slot-clear or pipeline drift — striker is None
+        # but non-striker is populated. Refuse to derive a new striker
+        # from cold-start primitives; let upstream wicket-event /
+        # Scout-read resolve it.
+        return StrikerEvent(
+            prev_striker=None,
+            next_striker=None,
+            prev_non_striker=prev_non,
+            next_non_striker=prev_non,
             reason="no_change",
         )
 
@@ -226,64 +257,69 @@ def derive_striker_event(
         if dismissed is None:
             # Edge Case §13.6.1 — run-out-on-completed-Nth-run with
             # ambiguous resolution. Fall through to standard parity
-            # rotation; flag the ambiguity for telemetry. The pipeline
-            # accepts ~1% miscredit on this path per spec.
+            # rotation; flag the ambiguity for telemetry.
             if legal_ball_completed and wicket_event.delta_score % 2 == 1:
                 return StrikerEvent(
                     prev_striker=prev,
                     next_striker=_swap_partner(prior, prev),
+                    prev_non_striker=prev_non,
+                    next_non_striker=prev,
                     reason="runout_ambiguous_default_parity",
                 )
             return StrikerEvent(
                 prev_striker=prev,
                 next_striker=prev,
+                prev_non_striker=prev_non,
+                next_non_striker=prev_non,
                 reason="runout_ambiguous_default_parity",
             )
 
         # New batter = (current_at_crease - prior_at_crease).pop()
         new_at_crease = _at_crease(current) - _at_crease(prior)
         new_batter = next(iter(new_at_crease)) if len(new_at_crease) == 1 else None
+        survivor = prev_non if dismissed == prev else prev
 
         if dismissed == prev:
             # Striker dismissed → new batter takes strike
             base_next = new_batter
+            base_non = survivor
             base_reason = "wicket_new_batter"
         else:
-            # Non-striker dismissed → striker stays
+            # Non-striker dismissed → striker stays; new batter is non-striker
             base_next = prev
+            base_non = new_batter
             base_reason = "wicket_non_striker_stays"
 
         # Cascade end-of-over swap when the wicket-ball also rolled the over
-        if legal_ball_completed and over_boundary_crossed and base_next:
-            # End-of-over swap fires on top of wicket logic
-            partner = _resolve_partner(current, base_next)
+        if legal_ball_completed and over_boundary_crossed and base_next and base_non:
             return StrikerEvent(
                 prev_striker=prev,
-                next_striker=partner if partner else base_next,
+                next_striker=base_non,
+                prev_non_striker=prev_non,
+                next_non_striker=base_next,
                 reason=base_reason,
             )
         return StrikerEvent(
             prev_striker=prev,
             next_striker=base_next,
+            prev_non_striker=prev_non,
+            next_non_striker=base_non,
             reason=base_reason,
         )
 
     # §13.6 #5 — lost-frames guard. If multiple legal balls passed
-    # between snapshots, striker rotation cannot be derived (we don't
-    # know which balls were odd/even or contained wickets). Refuse to
-    # derive; let the next confident snapshot re-anchor.
+    # between snapshots, striker rotation cannot be derived. Refuse;
+    # let the next confident snapshot re-anchor.
     if legal_ball_completed and _legal_balls_delta(prior, current) > 1:
         return StrikerEvent(
             prev_striker=prev,
             next_striker=prev,
+            prev_non_striker=prev_non,
+            next_non_striker=prev_non,
             reason="lost_frames_ambiguous",
         )
 
-    # Rules 3 + 4 combined — cricket rules cascade. Odd-run + end-of-over
-    # means batters cross (rotation #1) AND switch ends (rotation #2) →
-    # net same striker. XOR the two swap-triggers so double-swap cancels.
-    # §13.6 #4: byes/leg-byes stay in the parity (subtract only wd+nb,
-    # the non-crossing extras).
+    # Rules 3 + 4 combined — cricket rules cascade via XOR.
     if legal_ball_completed:
         delta_score = current.score - prior.score
         non_crossing_extras = (
@@ -296,20 +332,45 @@ def derive_striker_event(
             return StrikerEvent(
                 prev_striker=prev,
                 next_striker=_swap_partner(current, prev),
+                prev_non_striker=prev_non,
+                next_non_striker=prev,
                 reason="end_of_over_swap" if swap_for_over_end
                 else "odd_run_rotation",
             )
         if swap_for_runs and swap_for_over_end:
             # Two swaps cancel — net no rotation.
             return StrikerEvent(
-                prev_striker=prev, next_striker=prev,
-                reason="no_change")
+                prev_striker=prev,
+                next_striker=prev,
+                prev_non_striker=prev_non,
+                next_non_striker=prev_non,
+                reason="no_change",
+            )
 
     return StrikerEvent(
         prev_striker=prev,
         next_striker=prev,
+        prev_non_striker=prev_non,
+        next_non_striker=prev_non,
         reason="no_change",
     )
+
+
+def _other_at_crease(
+    snap: SnapshotPrimitives, name: Optional[str]
+) -> Optional[str]:
+    """Return the at-crease batter who isn't `name`."""
+    if not name:
+        if snap.bat1_name:
+            return snap.bat1_name
+        return snap.bat2_name
+    if snap.bat1_name == name:
+        return snap.bat2_name
+    if snap.bat2_name == name:
+        return snap.bat1_name
+    if snap.bat1_name:
+        return snap.bat1_name
+    return snap.bat2_name
 
 
 def _swap_partner(snap: SnapshotPrimitives, prev: str) -> Optional[str]:

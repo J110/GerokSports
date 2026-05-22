@@ -36,6 +36,7 @@ def snap(**overrides) -> SnapshotPrimitives:
         bat2_name="B",
         bowler_name="Bowler",
         striker="A",
+        non_striker="B",
         extras_total=0,
         extras_wd=0,
         extras_nb=0,
@@ -149,22 +150,46 @@ class TestDeriveWicketEvent:
 
 class TestDeriveStrikerEvent:
     def test_cold_start_first_striker_init(self):
-        prior = snap(striker=None)
-        current = snap(striker=None, first_striker="A")
+        prior = snap(striker=None, non_striker=None)
+        current = snap(striker=None, non_striker=None, first_striker="A")
         ev = derive_striker_event(
             prior, current, None,
             over_boundary_crossed=False, legal_ball_completed=False)
         assert ev.reason == "first_striker_init"
         assert ev.next_striker == "A"
+        # B-2: cold-start init sets non-striker to the partner at crease
+        assert ev.next_non_striker == "B"
 
     def test_cold_start_no_primitive_no_change(self):
-        prior = snap(striker=None)
-        current = snap(striker=None, first_striker=None)
+        prior = snap(striker=None, non_striker=None)
+        current = snap(striker=None, non_striker=None, first_striker=None)
         ev = derive_striker_event(
             prior, current, None,
             over_boundary_crossed=False, legal_ball_completed=False)
         assert ev.reason == "no_change"
         assert ev.next_striker is None
+
+    def test_post_wicket_striker_None_does_not_trigger_cold_start_init(self):
+        # Mid-innings post-wicket: striker cleared by wicket dispatch,
+        # non-striker remains as the surviving batter. Rule 1 must NOT
+        # re-seed striker from self.first_striker (innings opener) —
+        # that's wrong-batter attribution. Discovered as +2 Boundary
+        # regression at over_ball 8.5 during §15 step-7 attempt.
+        prior = snap(
+            striker=None, non_striker="Nissanka",
+            bat1_name=None, bat2_name="Nissanka",
+            first_striker="Nissanka")
+        current = snap(
+            striker=None, non_striker="Nissanka",
+            bat1_name=None, bat2_name="Nissanka",
+            first_striker="Nissanka", overs="8.1")
+        ev = derive_striker_event(
+            prior, current, None,
+            over_boundary_crossed=False, legal_ball_completed=True)
+        assert ev.reason == "no_change"
+        assert ev.next_striker is None
+        # non-striker is preserved
+        assert ev.next_non_striker == "Nissanka"
 
     def test_odd_run_rotates_strike(self):
         prior = snap(
@@ -178,6 +203,10 @@ class TestDeriveStrikerEvent:
             over_boundary_crossed=False, legal_ball_completed=True)
         assert ev.reason == "odd_run_rotation"
         assert ev.next_striker == "B"
+        # B-2: pair swap is atomic — non-striker becomes the prior striker
+        assert ev.next_non_striker == "A"
+        assert ev.prev_striker == "A"
+        assert ev.prev_non_striker == "B"
 
     def test_even_run_no_rotation(self):
         prior = snap(striker="A", score=10, overs="3.3")
@@ -207,6 +236,7 @@ class TestDeriveStrikerEvent:
             over_boundary_crossed=True, legal_ball_completed=True)
         assert ev.reason == "end_of_over_swap"
         assert ev.next_striker == "B"
+        assert ev.next_non_striker == "A"
 
     def test_wicket_striker_dismissed_new_batter_takes_strike(self):
         we = WicketEvent(
@@ -214,15 +244,20 @@ class TestDeriveStrikerEvent:
             dismissed_batter="A", delta_score=0, delta_extras=0,
             this_over_token="W", is_extras_dismissal=False,
             is_runout_speculative=False)
-        prior = snap(striker="A", bat1_name="A", bat2_name="B")
+        prior = snap(
+            striker="A", non_striker="B",
+            bat1_name="A", bat2_name="B")
         current = snap(
-            striker="A", bat1_name="NewBat", bat2_name="B",
+            striker="A", non_striker="B",
+            bat1_name="NewBat", bat2_name="B",
             wickets=1, overs="4.6")
         ev = derive_striker_event(
             prior, current, we,
             over_boundary_crossed=False, legal_ball_completed=True)
         assert ev.reason == "wicket_new_batter"
         assert ev.next_striker == "NewBat"
+        # B-2: surviving partner becomes the non-striker
+        assert ev.next_non_striker == "B"
 
     def test_wicket_non_striker_dismissed_striker_stays(self):
         we = WicketEvent(
@@ -230,15 +265,20 @@ class TestDeriveStrikerEvent:
             dismissed_batter="B", delta_score=0, delta_extras=0,
             this_over_token="W", is_extras_dismissal=False,
             is_runout_speculative=False)
-        prior = snap(striker="A", bat1_name="A", bat2_name="B")
+        prior = snap(
+            striker="A", non_striker="B",
+            bat1_name="A", bat2_name="B")
         current = snap(
-            striker="A", bat1_name="A", bat2_name="NewBat",
+            striker="A", non_striker="B",
+            bat1_name="A", bat2_name="NewBat",
             wickets=1, overs="4.3")
         ev = derive_striker_event(
             prior, current, we,
             over_boundary_crossed=False, legal_ball_completed=True)
         assert ev.reason == "wicket_non_striker_stays"
         assert ev.next_striker == "A"
+        # B-2: new batter becomes the non-striker
+        assert ev.next_non_striker == "NewBat"
 
     def test_runout_ambiguous_default_parity_with_odd_runs(self):
         we = WicketEvent(
@@ -291,6 +331,36 @@ class TestDeriveStrikerEvent:
             over_boundary_crossed=False, legal_ball_completed=True)
         assert ev.reason == "odd_run_rotation"
         assert ev.next_striker == "B"
+
+    def test_b2_atomic_pair_via_apply_striker_event(self):
+        # B-2: apply_striker_event must mutate BOTH self.striker AND
+        # self.non in a single call — no caller-side mirror needed.
+        # Discovered as +2 Boundary-counter-double-increment at over_ball
+        # 8.5 during §15 step-5 wire-through (commit f233217).
+        import sys as _sys
+        from pathlib import Path as _P
+        _sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+        import score_manager  # noqa: E402
+        sm = score_manager.ScoreManager(shadow=True)
+        sm.striker = "A"
+        sm.non = "B"
+        from score_manager_derivation import StrikerEvent as _SE
+        ev = _SE(
+            prev_striker="A", next_striker="B",
+            prev_non_striker="B", next_non_striker="A",
+            reason="odd_run_rotation")
+        sm.apply_striker_event(ev)
+        assert sm.striker == "B"
+        assert sm.non == "A"
+        # no_change reason must NOT mutate
+        sm.striker = "X"; sm.non = "Y"
+        ev2 = _SE(
+            prev_striker="X", next_striker="X",
+            prev_non_striker="Y", next_non_striker="Y",
+            reason="no_change")
+        sm.apply_striker_event(ev2)
+        assert sm.striker == "X"
+        assert sm.non == "Y"
 
     def test_odd_run_on_end_of_over_cancels_to_no_change(self):
         # Cricket rule: 1 run on last ball of over = batters cross (run)

@@ -766,6 +766,7 @@ class ScoreManager:
             bat2_name=self.bat2_name,
             bowler_name=self.bowler_name,
             striker=self.striker,
+            non_striker=self.non,
             extras_total=int(extras.get("total") or 0),
             extras_wd=int(extras.get("wides") or 0),
             extras_nb=int(extras.get("no_balls") or 0),
@@ -864,20 +865,24 @@ class ScoreManager:
             })
 
     def apply_striker_event(self, event) -> None:
-        """§13.3 — single mutation path for self.striker.
+        """§13.3 (B-2) — single mutation path for the
+        (self.striker, self.non) pair.
 
-        Inputs: StrikerEvent from
-        ``files/score_manager_derivation.py:derive_striker_event``.
-        no_change reason is a no-op (also skipped when next is None).
+        Mutates BOTH pointers atomically — caller no longer needs to
+        mirror self.non separately. no_change reason is a no-op
+        (also skipped when next_striker is None).
         """
         if event.reason == "no_change" or event.next_striker is None:
             return
         self.striker = event.next_striker
+        self.non = event.next_non_striker
         self._emit_trace(
             tag="STRIKER-EVENT-DISPATCHED",
             payload={
-                "prev": event.prev_striker,
-                "next": event.next_striker,
+                "prev_striker": event.prev_striker,
+                "next_striker": event.next_striker,
+                "prev_non_striker": event.prev_non_striker,
+                "next_non_striker": event.next_non_striker,
                 "reason": event.reason,
                 "frame_id": self._current_frame,
             })
@@ -6320,17 +6325,18 @@ class ScoreManager:
                      f"this_over_now={self.this_over}")
 
         # --- Strike Rotation ---
-        # §15 step 5: kept inline for parity. Striker wire-through via
-        # apply_striker_event surfaced a +2 Boundary-counter-double-
-        # increment regression at over_ball 8.5 (post-FoW2 slot
-        # clearing interacts with apply_striker_event's striker-only
-        # mutation contract — self.non isn't atomically swapped). Fix
-        # requires the apply_striker_event contract to own BOTH
-        # striker + non as a pair, or for the caller to mirror swap
-        # atomically. Deferred for follow-up commit; this_over wire-
-        # through preserved at parity.
-        # ABSORBED_LEGAL never reaches here (warm path uses
-        # `_apply_absorbed_event`; D3 keeps striker fixed across the gap).
+        # §15 step 7 attempt reverted: even with B-2's atomic-pair
+        # contract + Rule 1 tightening, parallel striker-write paths
+        # beyond _apply_event (e.g. _identify_striker, _set_slot_pair,
+        # broadcast-striker confirmation) interact with
+        # apply_striker_event's writes and produce divergent state at
+        # specific frames (+2 Boundary-counter-double-increment at
+        # over_ball 8.5). Full striker consolidation requires routing
+        # ALL striker-write sites through apply_striker_event, which
+        # is a larger surface change than step 7 anticipated. Inline
+        # rotation preserved for parity; broader consolidation deferred
+        # to a follow-up commit with explicit operator approval on the
+        # expanded scope.
         if event.get("legal", True) and event.get("runs", 0) % 2 == 1:
             self.striker, self.non = self.non, self.striker
         if is_over_change:
