@@ -615,22 +615,592 @@ The single new defect class introduced by Phase 2 is "wicket-cluster-lost-frames
 2. Whether pipeline already maintains a `_prior_at_crease_set` field that can serve as the set-difference operand without new state. If not, add as a single `tuple` field.
 3. Whether `_apply_event` accepts a synthetic-event input or requires the event to have come from a specific upstream source. If gated on origin, find the lowest-surface-area override.
 
-### §11.3 — Revised Step 6 fix-order
+### §11.3 — Revised Step 6 fix-order (2026-05-22 evening — triple-subsystem greenfield consolidation)
 
-Surface I is now the blocker for C21b dump-validation. Revised:
+Operator-approved 2026-05-22 (twice): first consolidation absorbed wicket-related defects into §12; second consolidation 2026-05-22 evening absorbs striker-rotation + this_over publishing into a coordinated triple-rewrite (§12 + §13 + §14). Justification: same architectural pattern in all three subsystems (parallel write paths with no canonical derivation source); cricket rules for each are simple state machines; harness covers all three. Decoupling analysis confirms none of the three is structurally tied to anything outside SM. Triple-rewrite has higher leverage than 3 separate rewrites because the three subsystems interact (wickets feed striker init; striker rotation feeds this_over token composition; etc.). Revised order:
 
-1. **Workstream I Phase 1** (observability + classifier) — this session, ~30 lines, single commit.
-2. **Bowler-W-credit at `gap_finalize_wicket`** — proceed in parallel since it's independent of Surface I.
-3. **Workstream I Phase 2** (architectural fix — Candidate A or B) — next session.
-4. **C21b** — re-attempt after Surface I Phase 2 lands; C21b for the 10.5 case will auto-close if Phase 2 uses Candidate A.
-5. D-post-FoW-striker.
-6. F2 defer-and-mark-uncertain bowler.
-7. Per-batter-ledger conservation assertion.
-8. Recent-Overs partial-render.
-9. Compound-with-wicket-token.
+1. **§12 + §13 + §14 — Triple-subsystem greenfield rewrite** (one coordinated effort, 2-3 sessions). Covers:
+   - **§12 wicket-subsystem:** Surface I (silent absorption), C21b (W-symbol revert/non-write at wicket frames), Obs 9 (wicket-frame misalign — wicket-coincident cases), Obs 13 (compound-with-wicket-token). [bowler-W-credit removed from scope per §12.10 diagnostic findings — collapses into Surface I + snapshot fix.]
+   - **§13 striker-rotation subsystem:** D-post-FoW-striker (20 instances), Obs 7 post-FoW-striker-pointer, the deterministic-rotation override at `score_manager.py:4295-4325` (the S12 non-discriminable-predicate-signature surface — REPLACED not patched).
+   - **§14 this_over publishing subsystem:** C21b broader pattern (cold-start subcase + non-wicket symbol drops), Multi-ball-compression, parts of Recent-Overs-drop (the unresolved-ball over-discard policy is item #5 below, but token-completeness lands here).
+   - **Snapshot-side fix** (sibling to §12): `_last_bowler_at_wicket_commit` field for harness bowler-key extraction. Closes the 2 false-positive bowler-W-credit-failure instances per §12.10 Material Finding A.
+2. **Workstream F sub-class B** (defer-and-mark-uncertain bowler under ad-occlusion). Surgical, single-site, ~30-50 LOC.
+3. **Workstream F sub-class A** (over-boundary commit-lag bowler misattribution). Surgical.
+4. **Per-batter-ledger conservation assertion** (Obs 16). Add assertion to trace library first; audit mutation sites flagged by the assertion's failures.
+5. **Recent-Overs partial-render policy** (Obs 11b). Single-site fix at the over-archive gate's unresolved-ball discard rule. Distinct from §14 token completeness — the panel may still drop an over even if every token is valid, depending on archive-gate threshold.
+6. **Phantom-runs root-localize** (Obs 8). Use the E2 classifier output to localize.
+7. **Pipeline-lag performance investigation** (Obs 10). Separate workstream — not correctness, but throughput.
 
 ### §11.4 — Methodology meta-finding from §10.6
 
 **Failed-fix iteration is the methodology's signal-of-correctness, not its signal-of-failure** — same architectural insight as the F1/B-η session's "falsification cascade as methodology signal" (HANDOFF Meta-finding 2). Iteration 1's empirical falsification at the harness gate caught a wrong-site fix before commit. Iteration 2's static falsification at trace-inspection caught a wrong-anchor fix before code change. Net: **0 commits lost; 2 wrong fixes prevented; 1 new defect class surfaced.** This is the discipline working as designed.
 
 The discipline track record extends: **12 transferable insights across 5 sessions** now (11 prior + this session's "harness validates the no-speculative-fixes discipline at sub-commit granularity" finding).
+
+### §11.5 — Phase 1 landing 2026-05-22 — empirical results + structural surprises
+
+Commit `4b30503 obs(workstream-i): silent-wicket-absorption observability tag + classifier` on branch `obs/silent-wicket-absorption`. 11 files / +4419 / -2.
+
+**Acceptance criteria met (all 4):** Surface I detects 2 (wickets at 4.6 Rahul + 10.5 Stubbs); C21b unchanged at 1; all other 13 surfaces identical; `SILENT-WICKET-ABSORPTION` trace tag fired 2× (frames 679 + 855).
+
+**Surprise 1 — detected absorptions diverge from §11 prediction.** §11 predicted wickets 4 (Nissanka 10.2) + 5 (Stubbs 10.5). Actual detection: wicket 1 (Rahul 4.6) + wicket 5 (Stubbs 10.5). Pipeline's two valid FoW entries are `(74, Rana, 7.6)` and `(80, Nissanka, 9.5)` — the second is wrong-attribution: FoW3 Rizvi 9.5 is mislabeled as Nissanka by `score_manager.py:5306` `new_entry["dismissed"] = best_dismissed`.
+
+Surface I count is correct by chance: **3 real silent absorptions exist** (wickets 1, 4, 5), but the wrong-attribution at 9.5 masks the Surface I detection at 10.2 — harness pairs pipeline's Nissanka-9.5 with GT's Nissanka-10.2 within ±N frame tolerance and skips the Surface I flag.
+
+Defect-class taxonomy: the wrong-attribution at 9.5 is D2 (broadcast-override at WICKET-ATTRIB) reproducing in the dump, structurally identical to Obs 9's live finding — wicket WAS dispatched but with a name borrowed from a downstream broadcast-strip frame where Nissanka's stumping animation was already on-screen. Not a new defect surface; existing D2-falsification surface, different frame.
+
+**Surprise 2 — `self.wickets` has at least two mutation paths.** Phase 1's SM-FEEDER-SYNC trace tag fires at frames 679 + 855 — the WORKING dispatches where WICKET-FALL-ONLY-CALLED also fires. The silent absorptions at frames 946 + 1062 reach `self.wickets` via a DIFFERENT mutation path that doesn't traverse the Phase 1 instrumentation point.
+
+Structural implication for §12.4 entry-point #4: Phase 2 cannot rely on hooking SM-FEEDER-SYNC alone. **§12.6 Session N step 1 amended: enumerate ALL paths that mutate `self.wickets` and identify which fires at frames 946/1062.** The §12.4 #4 spec's "verify at execution time whether (3) alone is sufficient" hedge is now empirically confirmed insufficient — Path B must be found before §12.4 entry-point #4 can be specified.
+
+Concrete read targets for Path B identification (CC next):
+
+```
+grep -n 'self\.wickets\s*=' files/score_manager.py
+grep -n 'self\.wickets\s*+=' files/score_manager.py
+grep -n 'scoreboard\.set\("wickets"' files/score_manager.py files/eyes/
+grep -n '_inn\[.*wickets' files/score_manager.py files/eyes/scoreboard.py
+```
+
+Cross-reference output with `WICKET-FALL-ONLY-CALLED` trace tag firings at frames 946 + 1062 (operator confirmed those frames have no tag fire). The mutation path that fires at those frames without a wicket-event dispatch is Path B.
+
+These two surprises do NOT block §12 work but sharpen §12.6 Session N step 1's read-before-write scope. Update §12.6 step 1 inline: "Enumerate all `self.wickets` mutation paths; identify Path B (the one that fires at frames 946/1062 in the captured dump)."
+
+### §11.6 — §12.6 Session N step 1 read-pass complete 2026-05-22 evening
+
+CC executed the 5-target read pass. Findings landed as §12.10 below. Headline: Bowler-W-credit-failure has zero independent root causes — 2 instances are snapshot-extraction artifacts, 5 share root with Surface I. §12 scope shrinks; the saved budget reallocates to §13 + §14 triple-rewrite expansion per §11.3 second consolidation.
+
+## §12.10 — §12.6 Session N step 1 read-pass findings (2026-05-22 evening)
+
+CC's 5-target diagnostic read produced two material findings that materially adjust §12's scope.
+
+### §12.10.1 — Path B identified
+
+The second `self.wickets` mutation path (per §11.5 Surprise 2) is **direct `scoreboard.set("wickets", N, frame)` called from OUTSIDE SM**. In the replay scaffold this is `files/scripts/replay_captured_scout_trace.py:327`; in production `test_pipeline.py` the upstream sb-hydration does the same. This bypasses SM's `@wickets.setter` entirely (where Phase 1's `SILENT-WICKET-ABSORPTION` trace tag lives), explaining why frames 946 + 1062 never fire the tag despite incrementing the wickets counter.
+
+The §12.4 entry-point #4 spec direction: hook at `scoreboard.set` itself when `field == "wickets"` and new value > prior. This is the centralized intercept — one site covers both replay-scaffold and production-test-pipeline callers. Alternative is to hook each caller (replay scaffold + test_pipeline), which duplicates the dispatch logic across paths.
+
+**Decision:** centralize at `scoreboard.set`'s wickets-field branch. Dispatch the synthetic WICKET event from there, routing into `apply_wicket_event` per §12.3.
+
+### §12.10.2 — Material Finding A: Bowler-W-credit-failure 7 instances decompose into 2 + 5 + 0
+
+| Sub-class | Count | Root cause |
+|---|---|---|
+| Snapshot-extraction artifact at successfully-dispatched wickets (7.6, 9.5) | 2 | `bowling_card` HAS the credit; harness snapshotter reads `bowling_card[canonical_name(sm.bowler_name)]` but `sm.bowler_name` is `None` at extraction time due to `BOWLER-LOCK-RELEASED` at over-end. Snapshot reads `bowling_card[None] = {}` → reports 0W. **The credit is correct; the snapshot can't see it.** |
+| Same-root-as-Surface-I (10.2, 10.3, 10.5, 11.1, 11.2, 11.3) | 5 | Path B silent absorption skips `_apply_event` → skips `_accumulate_stats_from_event` at `:5767` → bowler-W increment never fires. Auto-closes when Surface I Phase 2 Candidate A (dispatch synthetic WICKET on Path B) lands. |
+| Genuinely independent | 0 | After subtracting the 2 snapshot artifacts and the 5 Surface-I-overlap instances, the residual is zero. |
+
+### §12.10.3 — Material Finding B: Bowler-W-credit is structurally subsumed
+
+The §12.4 entry-point design absorbs the 5 Surface-I-overlap instances automatically (Path B dispatch → `apply_wicket_event` → canonical `scoreboard.update_bowler(..., wickets_delta=1, ...)` call). The 2 snapshot artifacts are closed by a separate small-scope sibling fix on the SM/snapshot contract.
+
+**Sibling fix specification — `_last_bowler_at_wicket_commit` field:**
+- Capture `self.bowler_name` (or canonical-resolved equivalent) into `self._last_bowler_at_wicket_commit` at the moment `apply_wicket_event` fires.
+- Field survives `BOWLER-LOCK-RELEASED` over-end clearing (NOT cleared on over-boundary).
+- Harness snapshotter (in `files/scripts/replay_captured_scout_trace.py` snapshot-emit hook) reads `sm._last_bowler_at_wicket_commit` as fallback when `sm.bowler_name is None` at wicket-coincident snapshot frames.
+- Net: 2 false-positive Bowler-W-credit-failure instances close. No SM behavior change beyond a single field write.
+
+### §12.10.4 — `_increment_bowler_wickets` is mythical; 7 inline sites are the real surface
+
+§12.3 step 4 named `_increment_bowler_wickets` as the canonical commit-path function. CC's grep confirmed **no such function exists today.** Bowler-W credit is inline at 7 call sites, all via `self.scoreboard.update_bowler(name, ..., wickets_delta=N, frame=...)` (sites: `:2057, :5456, :5691, :5767, :5853, :6267, :6348`).
+
+The §12 rewrite creates `_increment_bowler_wickets` as the canonical path (or wires `apply_wicket_event` to call `scoreboard.update_bowler` once). Either shape works; the architectural intent is "ONE call site, called from `apply_wicket_event` exclusively, all 7 prior inline sites removed." This is itself an architectural fence — the post-§12 codebase should fail a linter rule that flags any `scoreboard.update_bowler(.., wickets_delta=...)` call outside `apply_wicket_event`'s call graph.
+
+### §12.10.5 — §12.7 out-of-scope addition
+
+Add to §12.7: **"Bowler-W-credit at `gap_finalize_wicket` as a standalone defect — empirically subsumed by Surface I + a snapshot-extraction bug per §12.10 read pass; no independent root cause exists. Closing Surface I + landing the `_last_bowler_at_wicket_commit` sibling fix auto-closes the entire 7-instance count without §12.4 needing a dedicated entry-point or `apply_wicket_event` field for bowler-W."**
+
+This inverts the §11 estimate that put Bowler-W-credit as Step 6 #2 priority. The diagnostic eliminated a candidate workstream by absorbing it structurally.
+
+---
+
+## §13 — Striker-rotation subsystem greenfield rewrite spec
+
+**Operator decision 2026-05-22 evening (post-§12 diagnostic):** expand greenfield-rewrite scope to include striker rotation. Same architectural pattern as wicket-handling (parallel write paths, no canonical derivation source). Cricket rules are simple state machine; complexity is accumulated entanglement.
+
+### §13.1 — Scope: what goes, what stays
+
+**Goes (replaced):**
+- Inline `self.striker = ...` assignments scattered across `score_manager.py` (estimated 8-12 sites; CC must grep at execution time).
+- Deterministic-rotation override at `score_manager.py:4295-4325`. **CRITICAL: this is currently in `Architecture_HANDOFF.md`'s "What NOT to touch" list — the §13 rewrite explicitly removes that fence and REPLACES the override with `derive_striker_event`. The S12 non-discriminable-predicate-signature defect (from C30b) lives in this override; rewriting eliminates the surface entirely.**
+- Post-wicket striker-init logic inside `_apply_wicket_fall_only` and `_apply_event` wicket-branch.
+- Cold-start striker-init (currently F1 fix at `:2789-2808`). F1's intent is preserved but reimplemented via the canonical derivation.
+
+**Stays (untouched):**
+- Scout 5-primitive extraction including `first_striker` and per-frame `bat1_name`/`bat2_name`.
+- Broadcast-striker indicator field on cards (input to derivation, not authoritative).
+- `_handle_warm` streak gate (unrelated to striker pointer).
+
+### §13.2 — Derivation contract
+
+```python
+@dataclass(frozen=True)
+class StrikerEvent:
+    prev_striker: Optional[str]
+    next_striker: str
+    reason: str   # "first_striker_init" | "odd_run_rotation" | "end_of_over_swap" |
+                  # "wicket_new_batter" | "wicket_non_striker_stays" | "no_change"
+
+def derive_striker_event(
+    prior: SnapshotPrimitives,
+    current: SnapshotPrimitives,
+    wicket_event: Optional[WicketEvent],   # from §12.2
+    over_boundary_crossed: bool,            # current.over % 1 == 0 and prior wasn't
+    legal_ball_completed: bool,             # current.balls > prior.balls
+) -> StrikerEvent:
+    """
+    Pure derivation. No side effects. Cricket rules:
+
+    1. Cold-start (prior.striker is None): next = current.first_striker per Scout primitive.
+    2. Wicket event with set-difference dismissed:
+         - dismissed_batter exists in prior_at_crease + missing from current_at_crease
+         - new_batter = (current_at_crease - prior_at_crease).pop()
+         - If dismissed_batter == prior.striker: next = new_batter (new batter takes strike)
+           [exception: run-out-on-completed-Nth-run — see Edge Case 3]
+         - Else (dismissed was non-striker): next = prior.striker (striker stays)
+         - Then apply post-wicket end-of-over swap if legal_ball_completed completes an over.
+    3. Over-boundary crossed (legal_ball_completed AND current.over % 1 == 0): swap.
+    4. Legal-ball with delta_score odd (delta excludes extras-only Δ): swap.
+    5. Else: no change.
+    """
+```
+
+### §13.3 — Canonical commit
+
+```python
+def apply_striker_event(self, event: StrikerEvent) -> None:
+    """Single mutation path for self.striker."""
+    if event.reason == "no_change":
+        return
+    self.striker = event.next_striker
+    self._emit_trace(
+        tag="STRIKER-EVENT-DISPATCHED",
+        payload={
+            "prev": event.prev_striker,
+            "next": event.next_striker,
+            "reason": event.reason,
+        },
+    )
+```
+
+### §13.4 — Entry-point replacements
+
+Every site that currently writes to `self.striker` becomes a call to `derive_striker_event` → `apply_striker_event` chain. CC must grep at execution time:
+```
+grep -n 'self\.striker\s*=' files/score_manager.py
+```
+Estimated 8-12 sites; all consolidate to one call-graph through `apply_striker_event`.
+
+### §13.5 — Harness acceptance gates
+
+| Surface | Pre-rewrite count | Post-rewrite target | Notes |
+|---|---|---|---|
+| D-post-FoW-striker | 20 | ≤ 4 | Wicket-coincident cases close via §13.2 rule 2. Residual ≤ 4 from non-wicket post-FoW propagation drift (lag/race issues, Workstream G territory). |
+| Obs 7 striker-pointer (this-replay live) | live-only | live-confirms-via-replay | Live-replay validation per §10.4 mandatory. |
+
+Non-regression invariant: all other 12 surfaces unchanged.
+
+### §13.6 — Edge cases (cricket rules at the boundary)
+
+1. **Run-out on completed Nth run.** Cricket rule: striker is the batter who didn't complete the final run. Pipeline cannot determine "who didn't complete" from primitives alone — both batters' positions during the run are unknown. **Acceptable simplification:** treat as standard rotation per Δscore parity. Cricket-truth diverges in ~1% of cases; harness will flag if it matters via a `STRIKER-AFTER-RUNOUT-AMBIGUOUS` trace tag. Bound the residual to <1% case.
+2. **Wicket on no-ball (free-hit).** Free-hit applies to next delivery; striker rotation for the wicket-ball itself follows normal rules. Wicket-on-no-ball is rare for stumpings (no-balls don't count) but possible for run-outs.
+3. **Wicket-on-wide with stumping (the 10.2 case in DCKKR).** Wide doesn't advance ball-count; rotation does NOT fire on the wide itself. But the wicket changes the at-the-crease set. Apply rule 2 (wicket new-batter logic) without rule 4 (no legal-ball rotation since extras-only).
+4. **Bye/leg-bye on odd runs.** Batters DO cross during byes/leg-byes if odd runs scored. The runs go to extras (not batter), but rotation fires. Distinguish from wides/no-balls (no crossing).
+5. **Lost-frames between snapshots.** If pipeline missed frames (Workstream G lag-consequence), Δscore + Δwickets + Δover may bundle multiple deliveries into one snapshot. Striker rotation cannot be fully derived. Emit `STRIKER-LOST-FRAMES-AMBIGUOUS` and refuse to derive; let the next confident snapshot re-anchor.
+
+Each edge case has a unit test in the new module.
+
+### §13.7 — Out-of-scope
+
+- Bowler-pointer rotation (separate subsystem, Workstream F territory).
+- Per-batter-ledger drift (Obs 16 — independent).
+- Phantom-runs (Obs 8 — independent).
+- Pipeline-lag (Obs 10 — independent).
+
+---
+
+## §14 — This_over publishing subsystem greenfield rewrite spec
+
+**Operator decision 2026-05-22 evening:** expand greenfield-rewrite scope to include this_over publishing. Same architectural pattern. Cricket rule is literally `Δscore + Δwickets + Δextras → token`.
+
+### §14.1 — Scope: what goes, what stays
+
+**Goes (replaced):**
+- `_rewrite_eyes_this_over_from_event` at `score_manager.py:695` (and all call sites).
+- `_fix_last_this_over_token` at `:6491` (retry/recovery path).
+- `_synthesize_cold_start_ball_events` token-distribution heuristic at `:1892-1938` — replaced with the new derivation function called per-frame from cold-start exit forward.
+- All inline `self.this_over.append(...)` sites in `_apply_event` (`:5907`, `:6032`, others).
+- Compound-token rendering logic (currently absent for wicket-on-extras per Obs 13 #4 — added in §14.2).
+
+**Stays (untouched):**
+- `over_mgr` interface (this_over feeds over_mgr's display, contract unchanged).
+- WS payload's reading of over_history (SM remains canonical authority).
+- Over-archive policy at the over-rollover boundary (Recent-Overs-drop is Step 6 #5, separate from token completeness).
+
+### §14.2 — Derivation contract
+
+```python
+@dataclass(frozen=True)
+class ThisOverToken:
+    raw: str                       # ".", "1", "2", "4", "6", "W", "wd", "nb", "1wd",
+                                   # "4+W", "Wd+W", "Nb+W", etc.
+    delta_score: int
+    delta_legal_balls: int         # 0 or 1
+    wicket_flag: bool
+    extras_type: Optional[str]     # "wd", "nb", "b", "lb", or None
+
+def derive_this_over_token(
+    prior: SnapshotPrimitives,
+    current: SnapshotPrimitives,
+    wicket_event: Optional[WicketEvent],
+) -> Optional[ThisOverToken]:
+    """
+    Pure derivation. Returns None on idle frames (no delivery between prior + current).
+
+    Token-composition rules:
+      - delta_legal_balls == 0 and delta_extras == 0 and delta_wickets == 0 → None (idle)
+      - delta_legal_balls == 1, delta_score in 0..6, no wicket → "." | "1" | "2" | "3" | "4" | "5" | "6"
+      - delta_legal_balls == 0, delta_extras > 0 → "wd" | "nb" | "Nwd" | "Nnb" (prefix with run count)
+      - delta_legal_balls == 1, delta_score > 0, no wicket, byes → "Nb" | "Nlb" (legal ball, extras runs)
+      - wicket present, delta_score == 0, delta_extras == 0 → "W"
+      - wicket present, delta_score > 0, delta_legal_balls == 1 → f"{delta_score}+W" (run-out on scoring ball)
+      - wicket present, delta_extras > 0, delta_legal_balls == 0 → "Wd+W" | "Nb+W"
+      - Edge: multiple legal balls in one snapshot transition (lost frames) → return cluster token "MULTI" with payload, caller collapses or defers per Edge Case below.
+    """
+```
+
+### §14.3 — Canonical commit
+
+```python
+def apply_this_over_token(self, token: ThisOverToken) -> None:
+    """Append token to current over. Trigger over-rollover when 6 legal balls complete."""
+    self.this_over.append(token.raw)
+    if token.delta_legal_balls > 0:
+        self.legal_balls_in_over += 1
+        if self.legal_balls_in_over >= 6:
+            self._archive_over()
+            self.this_over = []
+            self.legal_balls_in_over = 0
+    self._emit_trace(
+        tag="THIS-OVER-TOKEN-APPENDED",
+        payload={
+            "raw": token.raw,
+            "delta_score": token.delta_score,
+            "delta_legal_balls": token.delta_legal_balls,
+            "wicket_flag": token.wicket_flag,
+            "extras_type": token.extras_type,
+        },
+    )
+```
+
+### §14.4 — Entry-point replacements
+
+Replace all sites that mutate `self.this_over`:
+- `_apply_event` token-append sub-branches → call `derive_this_over_token` + `apply_this_over_token`.
+- `_apply_wicket_fall_only` (currently doesn't write this_over — that's the C21b bug) → wired via `apply_wicket_event` from §12.3, which calls `derive_this_over_token` for the wicket-frame token.
+- `_synthesize_cold_start_ball_events` → at cold-start exit, prime `prior_primitives` from Scout's current frame, then derive per-frame forward from N+1. **No wholesale wipe + heuristic distribution. No backfill speculation.** The first cold-start-post frame produces `None` (idle) because there's no prior to derive Δ from; from the second frame onward, derivation produces tokens normally.
+
+### §14.5 — Cold-start architectural note
+
+The current synthesizer's behavior — wholesale wipe of `self.this_over` + heuristic token distribution — is architecturally wrong. It speculates about which ball carried which token, including dropping W tokens because "no observation basis for which ball" (its own docstring). The fix is not "smarter distribution"; it's "don't backfill speculatively at all."
+
+Cold-start contract under §14:
+- At cold-start entry (Scout first-confident-read after boot), capture current primitives as initial state. `self.this_over` remains `[]` (empty); the pre-cold-start balls are lost (we don't know them — that's accepted).
+- From frame N+1 forward, derive per-frame Δ tokens normally.
+- Recent-Overs panel will show `?` placeholders for the cold-start-bypassed over until next over starts cleanly. This is the correct behavior — we genuinely don't know what happened before pipeline booted.
+
+This is the derivation-first principle taken to cold-start: refuse to invent state where primitives don't justify it.
+
+### §14.6 — Harness acceptance gates
+
+| Surface | Pre-rewrite count | Post-rewrite target | Notes |
+|---|---|---|---|
+| C21b-symbol-revert | 1 | 0 | Cold-start subcase closes — no wholesale wipe means no W loss. Live-replay confirms broader pattern. |
+| Compound-with-wicket-token | 2 | 0 | §14.2 composition rules handle Wd+W, Nb+W, 4+W. |
+| Multi-ball-compression | 4 | ≤ 1 | Token-compression cases close; the 1 residual is the cold-start-window "lost balls" case which §14.5 explicitly accepts. |
+| Extras-counter-drop | 16 | ≤ 4 | Δextras-anchored derivation propagates correctly to extras counter via standard `apply_this_over_token` flow. Residual ≤ 4 from independent extras-state race conditions. |
+
+Non-regression invariant: all other 10 surfaces unchanged.
+
+### §14.7 — Edge cases
+
+1. **Idle frame (no Δ).** Return `None`. Caller skips.
+2. **Multi-ball gap in single snapshot transition** (Workstream G lag-consequence). Δlegal_balls > 1. Acceptable answers: (a) emit `THIS-OVER-CLUSTER-LOST-FRAMES` and append `?` token per missed ball; (b) collapse into single compound token with a `LOST_FRAMES_N` annotation. Pick (a) — preserves Recent-Overs panel's `?` rendering for unresolved balls (Obs 11b's existing behavior).
+3. **Wicket on free-hit (post no-ball).** Standard wicket token; free-hit context is a separate state (not part of this_over token).
+4. **Extras with byes/leg-byes credited to extras + advancing ball count.** Token is `Nb` or `Nlb` (legal ball + extras score). Rotation in §13 handles cross-during-byes correctly.
+5. **Scout-extracted score ambiguous.** Defer derivation; emit `THIS-OVER-TOKEN-DEFERRED` and wait for next confident read.
+
+### §14.8 — Out-of-scope
+
+- Recent-Overs panel render policy (Step 6 #5 — independent).
+- Phantom-runs root cause (Step 6 #6 — Δscore correctness is upstream of this_over derivation).
+- Pipeline-lag (Step 6 #7 — performance).
+
+---
+
+## §15 — Unified execution sequence for §12 + §13 + §14 triple rewrite
+
+The three subsystems share enough plumbing that they should land in coordinated commits, NOT three independent feature branches. Recommended sequence (2-3 sessions):
+
+```
+Session A — derivation modules + first canonical commit path:
+  1. Implement derive_wicket_event + derive_striker_event + derive_this_over_token
+     in a single new module files/score_manager_derivation.py (or as section inside
+     score_manager.py — operator pick).
+  2. Implement apply_wicket_event + apply_striker_event + apply_this_over_token.
+     Each is a thin method on SM that calls scoreboard mutators + emits trace.
+  3. Unit tests for all three derivation functions, covering happy paths + edge cases
+     from §12.2/§13.6/§14.7.
+  4. Commit (1/N) "feat(derivation): pure functions + canonical commit paths for
+     wicket / striker / this_over (no call-site changes yet)".
+
+Session B — wire entry points + harness diff per commit:
+  5. Wire _apply_event paths: wicket branch → apply_wicket_event; rotation
+     decision → derive_striker_event → apply_striker_event; token append →
+     derive_this_over_token → apply_this_over_token. Pre-commit Layer 1.5 + Layer 2.
+     Harness diff: working paths preserved.
+  6. Commit (2/N).
+  7. Wire _apply_wicket_fall_only through apply_wicket_event (which cascades to
+     apply_striker_event for post-wicket strike-pointer + apply_this_over_token
+     for W token). Harness diff.
+  8. Commit (3/N).
+  9. Replace deterministic-rotation override at :4295-4325 with derive_striker_event
+     call. Harness diff: D-post-FoW-striker drops.
+  10. Commit (4/N).
+  11. Wire scoreboard.set("wickets", ...) hook for Path B (per §12.10.1).
+     Cascades through apply_wicket_event. Harness diff: Surface I drops to 0.
+  12. Commit (5/N).
+
+Session C — cold-start + cleanup:
+  13. Replace _synthesize_cold_start_ball_events token-distribution heuristic
+      with the no-backfill policy per §14.5. Harness diff: C21b drops; Multi-ball-
+      compression drops.
+  14. Commit (6/N).
+  15. Add _last_bowler_at_wicket_commit sibling field. Update harness snapshotter
+      to read it. Harness diff: Bowler-W-credit-failure 2 false-positives close.
+  16. Commit (7/N).
+  17. Final acceptance run: all §12.5 + §13.5 + §14.6 gates met. Layer 1.5
+      + Layer 2 green.
+  18. Commit (8/N) "feat: triple-subsystem greenfield rewrite complete".
+
+  19. Live-replay validation per §10.4 + §12.8 + §13.5 + §14.6. Mandatory before
+      claiming closure on the operator-visible defect surfaces.
+  20. Update HANDOFF / Architecture_HANDOFF. Add the three new functions to
+      "What NOT to touch" (replacing the prior deterministic-rotation override
+      entry which §13 explicitly retired).
+```
+
+Estimated total: 8-10 commits across 2-3 sessions. Surface count reduction predicted: 14 → 5-7 (closes ~50% of the surface ledger). The remaining surface fixes (Workstream F, Per-batter, Recent-Overs policy, phantom-runs, pipeline-lag) become each 1-session surgical fixes per §11.3 items 2-7.
+
+---
+
+## §12 — Wicket-subsystem greenfield rewrite spec
+
+**Operator decision 2026-05-22:** consolidate wicket-handling defects (5-7 surfaces) into one coordinated rewrite rather than 5-7 surgical fixes that may interact unpredictably. Local-fix approach is fighting structural entropy (2 failed C21b iterations as evidence). Harness now covers every wicket surface, so a coordinated rewrite is validatable diff-by-diff.
+
+### §12.1 — Scope: what goes, what stays
+
+**Goes (replaced):**
+- `_apply_event` wicket-branch (handles roughly 50% of wicket cases today).
+- `_apply_wicket_fall_only` (gap-finalize path).
+- `_synthesize_cold_start_ball_events` wicket-handling stub (currently distributes nothing per docstring).
+- SM-FEEDER-SYNC `scoreboard.set("wickets", N)` silent-absorption callback (no wicket dispatch today).
+
+**Stays (untouched):**
+- Scout 5-primitive extraction (`eyes/agent.py`, `eyes/extract_regex.py`, `eyes/scoreboard.py` extraction-side).
+- C14 cross-field pairing gate at `apply_scorer_decision`.
+- F1 fix at `_accept_initial:2789-2808`.
+- F-α-shadow / F-α-queue / Queue B mechanisms (the working post-wicket-credit machinery).
+- ConsistentReadTracker (used for tracker-locked bowler-name input to derivation).
+- WS payload builder / UI render path.
+- Trace infrastructure, harness, ground-truth fixture.
+- Layer 1.5 + Layer 2 test scaffolds (acceptance criteria below extend these, not replace).
+
+### §12.2 — Derivation contract (the new module)
+
+New file: `files/score_manager_wicket.py` (or inline as a section inside `score_manager.py` if operator prefers single-file scope — pick at execution time).
+
+```python
+from dataclasses import dataclass
+from typing import Optional
+
+@dataclass(frozen=True)
+class SnapshotPrimitives:
+    score: int
+    wickets: int
+    overs: str                  # "10.5"
+    bat1_name: Optional[str]    # at-the-crease set, position-agnostic
+    bat2_name: Optional[str]
+    bowler_name: Optional[str]
+    extras_total: int           # sum of wd/nb/b/lb
+
+@dataclass(frozen=True)
+class WicketEvent:
+    delta_wickets: int                 # >= 1 (function returns None if 0)
+    over_ball: str                     # "10.5" — pipeline's current over.ball at dispatch frame
+    bowler_name: str                   # tracker-locked current bowler
+    dismissed_batter: Optional[str]    # derived via set-difference; None on ambiguous case
+    delta_score: int                   # current.score - prior.score
+    delta_extras: int                  # current.extras_total - prior.extras_total
+    this_over_token: str               # "W" / "<N>+W" / "Wd+W" / "Nb+W" — composed per rules below
+    is_extras_dismissal: bool          # True if delta_extras > 0 in same frame
+    is_runout_speculative: bool        # True if delta_score > 0 in same frame (run on the wicket ball)
+
+def derive_wicket_event(
+    prior: SnapshotPrimitives,
+    current: SnapshotPrimitives,
+    tracker_locked_bowler: Optional[str],
+) -> Optional[WicketEvent]:
+    """
+    Pure derivation. No side effects. No Scout extension assumed.
+
+    Returns None if current.wickets <= prior.wickets (no wicket fell).
+
+    Set-difference rule for dismissed_batter:
+      prior_set = {prior.bat1_name, prior.bat2_name} - {None}
+      current_set = {current.bat1_name, current.bat2_name} - {None}
+      diff = prior_set - current_set
+      if len(diff) == 1: dismissed_batter = diff.pop()
+      if len(diff) == 0: dismissed_batter = None  # defer per Edge Case 2
+      if len(diff) >= 2: raise WicketAmbiguousDualChange  # Edge Case 3
+    """
+    ...
+```
+
+Token composition rules (this_over_token):
+- `delta_wickets > 0 and delta_score == 0 and delta_extras == 0` → `"W"`
+- `delta_wickets > 0 and delta_score > 0` → `f"{delta_score}+W"` (run-out on a scoring ball)
+- `delta_wickets > 0 and delta_extras > 0 and delta_score == delta_extras` → `"Wd+W"` (or `"Nb+W"` based on extras_type — needs the prior.extras_wd / .extras_nb breakdown; extend `SnapshotPrimitives` if not already present)
+- All cases: `is_extras_dismissal` and `is_runout_speculative` flags surface the compound nature for downstream consumers
+
+### §12.3 — Canonical commit path
+
+```python
+def apply_wicket_event(self, event: WicketEvent) -> None:
+    """Single mutation path for wicket state. All downstream effects fan out from here."""
+    # 1. Mutate canonical state
+    self.wickets += event.delta_wickets
+
+    # 2. FoW append (single _add_fow path — replaces all current callers)
+    self._add_fow(
+        score=self.score,
+        wickets=self.wickets,
+        batter=event.dismissed_batter,  # may be None — UI renders as em-dash
+        over_ball=event.over_ball,
+    )
+
+    # 3. this_over token append + over_mgr propagate
+    self.this_over.append(event.this_over_token)
+    self._rewrite_eyes_this_over_from_event(self.current_bowling_card, event.this_over_token)
+
+    # 4. Bowler-W credit (single path — replaces the current 4-path mess)
+    if event.bowler_name:
+        self._increment_bowler_wickets(event.bowler_name)
+
+    # 5. Striker rotation — new batter from prior_at_crease set difference's complement
+    self._apply_post_wicket_striker_rotation(event)
+
+    # 6. Trace emission (new tag)
+    self._emit_trace(
+        tag="SYNTHETIC-WICKET-DISPATCHED",
+        payload={
+            "over_ball": event.over_ball,
+            "dismissed": event.dismissed_batter,
+            "bowler": event.bowler_name,
+            "delta_score": event.delta_score,
+            "delta_extras": event.delta_extras,
+            "this_over_token": event.this_over_token,
+            "source": "<entry_point_id>",  # caller fills in
+        },
+    )
+```
+
+Edge case handling lives at the call sites (per Edge Cases 1-3 in §11.2), NOT in `apply_wicket_event` itself — the dispatch function trusts the event is well-formed. Callers that deferred dispatch (e.g., Edge Case 2 pending-queue) re-invoke when conditions resolve.
+
+### §12.4 — Four entry-point replacements
+
+Each entry point calls `derive_wicket_event` → if non-None, calls `apply_wicket_event`:
+
+1. **`_apply_event` wicket-branch** (`score_manager.py:5862+`). Currently appends to `self.this_over` at `:5907`/`:6032` and calls `_rewrite_eyes_this_over_from_event`. Replace the wicket sub-branch with: build `SnapshotPrimitives` from pre-event + post-event SM state → `derive_wicket_event` → `apply_wicket_event`. Existing `_apply_event` other branches (legal-ball runs, extras, etc.) unchanged.
+
+2. **`_apply_wicket_fall_only`** (`score_manager.py:5191+`). Currently handles FoW + partnership but no `this_over` write. Replace body with: build primitives → derive → apply. All 3 call sites (`:5562`, `:6094`, `:6458`) now go through the canonical path. **The 3-call-site guard problem from Iteration 1 dissolves** — `apply_wicket_event` is idempotent on this_over via tail-check.
+
+3. **`_synthesize_cold_start_ball_events`** (`score_manager.py:1856+`). Currently wipes `this_over` and rewrites without W tokens. Modification: after the existing `self.this_over = list(tokens)` wipe-rewrite at `:1938`, iterate `self.fall_of_wickets` for entries in the current over and overlay their W tokens at the correct positions. **Plus** — for the silent-absorption case where FoW is itself incomplete, the synthesizer compares `prior_snapshot` (pre-cold-start-entry) vs `current_snapshot` (post-cold-start-entry) and calls `derive_wicket_event` to dispatch any missing wickets through `apply_wicket_event` BEFORE the synthesis. This means FoW is complete by the time the overlay runs.
+
+4. **SM-FEEDER-SYNC `scoreboard.set("wickets", N)` site.** Currently silent absorption. Add a hook (likely in `scoreboard.set` itself or its caller in `score_manager.py`): when `field == "wickets"` and new value > prior, capture primitives before/after and call `derive_wicket_event`. The most architecturally clean version: the synthesizer modification in (3) above absorbs this case too, since cold-start re-entry is what triggers SM-FEEDER-SYNC's wicket-jump in the captured dump. Verify at execution time whether (3) alone is sufficient or (4) needs a separate hook.
+
+### §12.5 — Harness acceptance gates per surface
+
+After full rewrite lands, harness must show:
+
+| Surface | Pre-rewrite count | Post-rewrite target | Notes |
+|---|---|---|---|
+| C21b-symbol-revert | 1 | 0 | Cold-start subcase auto-closes via (3). Live-replay confirms broader closure per §10.4. |
+| Workstream I — silent-wicket-absorption | 2 | 0 | (3) or (4) dispatches the missing wickets via canonical path. |
+| Obs 9 wicket-frame-misalign | 32 | ≤4 | Wicket-coincident cases close; non-wicket-frame lag-misalign remain (Workstream G territory). |
+| Obs 13 compound-with-wicket-token | 2 | 0 | Token composition rules in §12.2 handle Wd+W / N+W. |
+| Obs 14 bowler-W-credit-failure | 7 | 0 | Single canonical commit path always credits bowler. |
+| D2-Layer-2 post-FoW striker init | 20 | ≤8 | Wicket-coincident striker-init cases close via §12.3 step 5; non-wicket post-FoW propagation drift remains. |
+
+**Non-regression invariant:** all other 8 surfaces unchanged. F-A/F-B/Per-batter-ledger-drift/Recent-overs-drop/E2-phantom-runs/Boundary-counter/Multi-ball-compression/G-pipeline-lag counts must not increase.
+
+### §12.6 — Execution sequence (1-2 sessions)
+
+```
+Session N — landing:
+  1. Read-before-write — 30 min:
+     - grep current 4 entry points for the exact mutation sites
+     - confirm SnapshotPrimitives field availability
+     - verify _prior_at_crease_set exists or design its placement
+     - inspect _add_fow / _increment_bowler_wickets / _apply_post_wicket_striker_rotation signatures
+  2. Implement derive_wicket_event + apply_wicket_event in new module (or inline section). No call-site changes yet.
+  3. Add unit tests for derive_wicket_event covering: clean wicket, run-out-on-scoring-ball, Wd+W, set-difference empty (Edge Case 2 deferral), Δwickets > 1 (Edge Case 1), set-difference = 2 (Edge Case 3 raise).
+  4. Pre-commit Layer 1.5 + Layer 2 green; commit "(1/5) derive_wicket_event module + tests".
+  5. Wire entry point (1) — _apply_event wicket-branch. Smallest blast radius (path that works today).
+  6. Harness diff: pre-rewrite baseline vs post-(1) report. Expected: no surface count change (path already works). Confirms (1) is behavior-preserving.
+  7. Commit "(2/5) wire _apply_event wicket-branch through derive/apply".
+  8. Wire entry point (2) — _apply_wicket_fall_only. Harness diff. Confirms (2) closes the gap-finalize C21b case if dump contains one.
+  9. Commit "(3/5) wire _apply_wicket_fall_only through derive/apply".
+
+Session N+1 — closing the cold-start case:
+  10. Wire entry point (3) — _synthesize_cold_start_ball_events. This is the leveraged one — closes the silent-absorption path the entire iteration 1+2 chain investigated.
+  11. Harness diff: target counts per §12.5. C21b 1→0; Workstream I 2→0; Bowler-W-credit 7→0; etc.
+  12. Commit "(4/5) wire cold-start synthesizer through derive/apply + W-token overlay".
+  13. Wire entry point (4) IF (3) didn't subsume it. Harness diff confirms idempotency or zero-effect.
+  14. Commit "(5/5) wire SM-FEEDER-SYNC wicket-jump hook" (or skip if (3) covers it).
+  15. Final acceptance run: all §12.5 gates met. Commit "wicket-subsystem greenfield complete".
+
+  16. Live-replay validation per §10.4. Fresh UDP replay against DCKKR fixture (or any wicket-dense fixture).
+      Confirm 5-7 surface counts on live trace match harness predictions.
+  17. If live confirms: update HANDOFF / Architecture_HANDOFF with the rewrite-as-landed.
+      If live diverges: open §13 retrospective with the new findings.
+```
+
+### §12.7 — What §12 explicitly does NOT fix
+
+Out of scope for this rewrite (handled separately per §11.3 items 2-7):
+- **Workstream F bowler misattribution** (over-boundary commit-lag, ad-occlusion fallback). Different surface — bowler identity at non-wicket frames.
+- **Per-batter-ledger-drift** (Obs 16). Independent surface — runs attribution between live batters, no wicket dependency.
+- **Recent-Overs drop** (Obs 11b). Independent — over-archive gate's unresolved-ball discard policy.
+- **Phantom-runs** (Obs 8). Independent — score-state fabrication on non-wicket events.
+- **Pipeline-lag** (Obs 10). Performance/throughput, not correctness.
+- **Boundary-counter double-increment** (Obs 3). Independent — parallel-update-path on 4s/6s counter columns, no wicket dependency.
+
+If §12 closes 5-7 surfaces as predicted, defect-density drops from 14 to 7-9 surfaces in 1-2 sessions. The remaining surgical fixes are individually smaller-scope than the unified rewrite and each have clear single-site fix candidates per the original Step 6 priority list.
+
+### §12.8 — Live-replay confirmation gate (mandatory per §10.4)
+
+Harness validates the cold-start-synth path. The other 4 C21b cases (4.5/4.6, 7.4, 10.1, over-11 wickets per Obs ledger) live in live-replay only — dump doesn't capture all the WICKET dispatches. After §12 lands, run a fresh DCKKR UDP replay and confirm γ-bundle assertions show:
+- `trace_gamma_w_symbol_at_wicket`: pre-rewrite FAIL×3+ → PASS at every wicket
+- `trace_gamma_bowler_w_increment_on_dispatch`: pre-rewrite FAIL×7 → PASS at every wicket
+- `trace_gamma_fow_name_matches_striker_at_wicket`: PASS (unchanged invariant)
+- FoW entries match cricket truth at all 8 wickets
+
+Live-replay is the FINAL acceptance gate for §12. Until live confirms, §12 is "harness-passed, live-pending" status — record this on the HANDOFF.
+
+### §12.9 — Architecture HANDOFF entry (write at end of §12 landing)
+
+Add to `Architecture_HANDOFF.md` under §"What NOT to touch":
+- **NEW: `derive_wicket_event` + `apply_wicket_event` (post-§12)** — single canonical wicket-handling path. Any future wicket-related fix must go through these two functions; do not add parallel write paths to `self.wickets` / `self.fall_of_wickets` / `self.this_over` wicket-token append. Adding a 5th entry point would re-introduce exactly the structural entropy §12 was designed to eliminate.
+
+This is the architectural fence that prevents future regression of the wicket subsystem.

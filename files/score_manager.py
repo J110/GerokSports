@@ -726,6 +726,160 @@ class ScoreManager:
         except Exception:
             pass
 
+    # ──────────────────────────────────────────────────────────────
+    # Triple-subsystem greenfield rewrite — canonical commit paths
+    # (§12.3 / §13.3 / §14.3). Pure derivation lives in
+    # files/score_manager_derivation.py; these are the thin SM
+    # methods that mutate state and emit trace. Session A scaffolding
+    # — NOT yet wired to any call site. Session B wires existing
+    # entry points through these methods per §15.
+    # ──────────────────────────────────────────────────────────────
+
+    def _emit_trace(self, tag: str, payload: dict) -> None:
+        if _trace is None:
+            return
+        try:
+            _trace.get_recorder().record(tag=tag, **payload)
+        except Exception:
+            pass
+
+    def _increment_bowler_wickets(self, bowler_name: str) -> None:
+        """§12.3 step 4 — single bowler-W credit path.
+
+        Replaces the 7 inline `scoreboard.update_bowler(...,
+        wickets_delta=...)` sites enumerated in §12.10.4. Callers in
+        Session B reroute through here; today this method is the
+        canonical commit but the 7 inline sites still coexist (they
+        will be removed in Session B per §15 steps 5-12).
+        """
+        if self.scoreboard is None or not bowler_name:
+            return
+        try:
+            self.scoreboard.update_bowler(
+                bowler_name,
+                runs_delta=0,
+                balls_delta=0,
+                wickets_delta=1,
+                frame=self._current_frame)
+        except Exception:
+            pass
+
+    def apply_wicket_event(self, event) -> None:
+        """§12.3 — single mutation path for wicket state.
+
+        Inputs: WicketEvent from
+        ``files/score_manager_derivation.py:derive_wicket_event``.
+        Effects:
+          1. self.wickets += event.delta_wickets
+          2. FoW append (dict carries both "dismissed" and "batter"
+             keys for compatibility with snapshot extractors that
+             read either)
+          3. this_over token append + over_mgr propagate
+          4. Bowler-W credit (single path)
+          5. Striker rotation cascade — Session B integration; today
+             callers must follow this with derive_striker_event +
+             apply_striker_event.
+          6. Trace emission
+        Session A scaffolding only; not wired to call sites yet.
+        Records _last_bowler_at_wicket_commit per §12.10.3 sibling
+        fix so harness snapshotter can fall back when sm.bowler_name
+        has been cleared by over-end handoff.
+        """
+        self.wickets = (self.wickets or 0) + event.delta_wickets
+        try:
+            fow_list = self._fow_writable()
+            fow_list.append({
+                "wicket": self.wickets,
+                "score": self.score,
+                "overs": event.over_ball,
+                "dismissed": event.dismissed_batter,
+                "batter": event.dismissed_batter,
+                "bowler": event.bowler_name,
+                "_witnessed": True,
+            })
+        except Exception:
+            pass
+        self.this_over.append(event.this_over_token)
+        try:
+            self.this_over_src.append("obs")
+        except AttributeError:
+            pass
+        self._rewrite_eyes_this_over_from_event(
+            {"overs": event.over_ball}, event.this_over_token)
+        if event.bowler_name:
+            self._increment_bowler_wickets(event.bowler_name)
+            self._last_bowler_at_wicket_commit = event.bowler_name
+        self._emit_trace(
+            tag="SYNTHETIC-WICKET-DISPATCHED",
+            payload={
+                "over_ball": event.over_ball,
+                "dismissed": event.dismissed_batter,
+                "bowler": event.bowler_name,
+                "delta_wickets": event.delta_wickets,
+                "delta_score": event.delta_score,
+                "delta_extras": event.delta_extras,
+                "this_over_token": event.this_over_token,
+                "frame_id": self._current_frame,
+            })
+
+    def apply_striker_event(self, event) -> None:
+        """§13.3 — single mutation path for self.striker.
+
+        Inputs: StrikerEvent from
+        ``files/score_manager_derivation.py:derive_striker_event``.
+        no_change reason is a no-op (also skipped when next is None).
+        """
+        if event.reason == "no_change" or event.next_striker is None:
+            return
+        self.striker = event.next_striker
+        self._emit_trace(
+            tag="STRIKER-EVENT-DISPATCHED",
+            payload={
+                "prev": event.prev_striker,
+                "next": event.next_striker,
+                "reason": event.reason,
+                "frame_id": self._current_frame,
+            })
+
+    def apply_this_over_token(self, token) -> None:
+        """§14.3 — append + rollover. MULTI tokens expand per
+        cluster_tokens (lost-frames Recent-Overs '?' rendering per
+        §14.7 #2). Archive integration deferred to Session B; this
+        method clears this_over on the 6th legal ball but does not
+        write to over_history (existing inline archive logic at
+        score_manager.py:5932-5934 retains that responsibility until
+        Session B).
+        """
+        if token.raw == "MULTI":
+            for sub in (token.cluster_tokens or []):
+                self.this_over.append(sub)
+                try:
+                    self.this_over_src.append("lost_frames_infer")
+                except AttributeError:
+                    pass
+        else:
+            self.this_over.append(token.raw)
+            try:
+                self.this_over_src.append("obs")
+            except AttributeError:
+                pass
+        if token.delta_legal_balls > 0:
+            self._legal_balls_in_over_new_path = (
+                getattr(self, "_legal_balls_in_over_new_path", 0)
+                + token.delta_legal_balls)
+            if self._legal_balls_in_over_new_path >= 6:
+                self._legal_balls_in_over_new_path = 0
+        self._emit_trace(
+            tag="THIS-OVER-TOKEN-APPENDED",
+            payload={
+                "raw": token.raw,
+                "delta_score": token.delta_score,
+                "delta_legal_balls": token.delta_legal_balls,
+                "wicket_flag": token.wicket_flag,
+                "extras_type": token.extras_type,
+                "frame_id": self._current_frame,
+            })
+
     def _drain_pending_queue(self, reason: str) -> int:
         """FIFO-drain entries with both bowler+striker known.
 
