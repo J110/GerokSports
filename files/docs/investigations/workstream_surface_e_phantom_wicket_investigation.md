@@ -351,3 +351,121 @@ Static-falsification count: 3 (HC + HD + HE; HB falsified at gate 1
 sub-step).
 Memo: files/docs/investigations/workstream_surface_e_phantom_wicket_investigation.md (12 sections, ~420 lines).
 ```
+
+---
+
+## §13 Step-2 outcome + revert reference
+
+**Step-2 commit (now reverted).** `65ef9c9` (`feat(workstream-surface-e): E1 HA' — N=3 consensus + overs-advance gate + PHANTOM-WICKET-SUSPECT observability at ball_detector wicket predicate`) landed Change 1 (HA' runtime suppression at `ball_detector.py:96+`) + Change 2 (`PHANTOM-WICKET-SUSPECT` tag registration in `trace_emitter.py`) + 7 new L1.5 cases in `files/tests/test_phantom_wicket_consensus.py`. All 7 synthetic test cases passed; pre-commit L1.5 36/36 + L2 30 balls green.
+
+**Revert commit.** `061c77d` (`revert "feat(workstream-surface-e): E1 HA' — ..."`) undoes all 4 files; restores L1.5 family to 70 cases; restores baseline at HEAD = `d40e2b9` (WS-C29b step-1 falsification close-out) functionality.
+
+**Why reverted.** Two layers of pre-step-3 static investigation (§14 + §15) falsified HA' independently:
+- §14 (step-2.5): F1018 = 5 confirmed; OCR oscillation persistence falsifies HA' closure (admits F1017 phantom at F1019).
+- §15 (step-2.6): Cricket-physics gate hypothesis (Option Y) falsified at gate 4 — OCR-noise envelope uniform across phantom and genuine cohort.
+
+Per user decisive factor: "Option Z is genuinely worse than pre-patch — adds 50ms latency on every genuine wicket while admitting the F1017 phantom at F1019 anyway, net negative. Don't ship." Step-2 shipped exactly that Option-Z behavior; revert restores correctness posture.
+
+## §14 Step-2.5 — HA' closure falsification via F1018 reading
+
+Static read from `files/logs/deliveries/validate_dckkr_20260521_155356/scout_raw.jsonl` (zero empirical-budget cost; no pipeline replay):
+
+| Frame | Scout `wickets` | Scout `overs` | STRIP fragment |
+|---|---|---|---|
+| F1015 | 6 | 10.4 | `DC 89-6 (10.4)` |
+| F1016 | 4 | 10.4 | `DC 89-4 (10.4)` |
+| F1017 | 5 | 10.5 | `DC 89-5 (10.5)` |
+| **F1018** | **5** | **10.5** | `DC 89-5 (10.5)` |
+| F1019 | 5 | 10.5 | `DC 89-5 (10.5)` |
+
+**HA' simulation** (entering state: prev_wkts=4, prev_overs=10.4):
+
+| Frame | wicket_fell_raw | candidate / streak | overs_advanced | HA' decision |
+|---|---|---|---|---|
+| F1015 | True (6>4) | candidate=6, streak=1 | False (10.4 vs 10.4) | SUPPRESS |
+| F1016 | n/a — wickets_changed=False (4==4 prev) | candidate=6/streak=1 PRESERVED | n/a | EARLY-RETURN at :59-60 |
+| F1017 | True (5>4) | candidate=5 (≠6 reset), streak=1 | True (10.5>10.4) | SUPPRESS |
+| **F1018** | True (5>4 prev unchanged) | candidate=5 (==5), **streak=2** | True | SUPPRESS |
+| **F1019** | True (5>4 prev unchanged) | candidate=5 (==5), **streak=3** | True | **ADMIT** — phantom committed |
+
+**Closure FALSIFIED.** HA' ADMITS the F1017 phantom at F1019 (2-frame delayed). Step-2 ships Option-Z behavior (50ms genuine-wicket latency + phantom still admitted) — net negative correctness vs pre-patch.
+
+## §15 Step-2.6 — Cricket-physics-gate (Option Y) falsification via OCR-noise-uniformity finding
+
+**Phase 1 verification: K=10 backward-window wickets sequences per genuine wicket** (from same Scout dump):
+
+| Genuine wicket | Frame | K=10 window verdict | Regression detected |
+|---|---|---|---|
+| Rahul ov 5.0 | F400 | CLEAN | None |
+| **Rana ov 8.0** | F679 | **REGRESSION** | F673: wkts 3→1 (6 frames before wicket) |
+| **Nissanka ov 9.5** | F855 | **REGRESSION** | F853: wkts 8→2 (2 frames before wicket) |
+| 4th wicket ov 10.1 | F983 | CLEAN | None |
+
+**2 of 4 genuine wickets carry prior wickets-counter regressions within K=10.** Under Option Y (extended consensus threshold N=5 when `_recent_wickets_regression > 0`), both Rana and Nissanka would have their threshold bumped. Static simulation of Rana F679 under Option Y shows the wkts=2 candidate only achieves streak=1 within the visible window (F680 changes to wkts=8 OCR error, resetting candidate). **Rana wicket would be LOST as false-negative** — Option Y delivers net-negative correctness exactly as Option Z did.
+
+**K-tuning cannot rescue Option Y.** Nissanka's F853 regression is 2 frames before F855 wicket; any K ≥ 2 catches it. Any K < 2 is too tight to span the F1015-F1017 phantom window.
+
+**Architectural finding — OCR-noise-uniformity.** The wickets-counter regression pattern is present in BOTH:
+- Phantom cases (F1015 wkts=6 spike around F1017 phantom-commit).
+- Genuine cases (F853 wkts=8 around F855 Nissanka; F671/F673 around F679 Rana).
+
+The cricket-physics-regression-recency gate CANNOT discriminate phantom from genuine because both classes exhibit the same OCR-noise envelope around their wicket-events. The hypothesis that "F1016's regression IS the load-bearing signal" was wrong — the regression signal is uniform, not phantom-specific. **Detection-layer discriminators built on wickets-counter dynamics are structurally incapable of separating phantom from genuine within the current Scout primitive set.**
+
+## §16 Retirement declaration
+
+**Surface E retires without UI closure delivered.** F1017 phantom-wicket on `validate_dckkr_20260521_155356` remains as known production limitation. No detection-layer fix that preserves cricket-truth without false-negative regression has been identified within the current Scout primitive set.
+
+**Workstream arc statistics.**
+- 4 static-investigation steps (step-1 + step-2 patch + step-2.5 falsification + step-2.6 falsification + retirement) + 1 patch + 1 revert + 1 docs commit.
+- 0/5 empirical-budget consumed — entire arc was static + on-disk inspection.
+- F1017 cohort: 1 confirmed + 1 candidate (validate_ws_h_step7 ghost).
+- Architectural insight delivered: OCR-noise-uniformity finding (§15) + S26 candidate promoted to numbered insight (§17).
+
+**Future re-investigation prerequisites.** Closing F1017 phantom requires one of:
+1. **New Scout primitive providing a discriminating signal** — e.g., FoW-graphic overlay parsing emitting structured `dismissed_batter` from non-strip frames (would require revisiting C29b source-modality blocker on the graphic-overlay sub-modality only).
+2. **Production telemetry sufficient to train an ML classifier** on phantom-vs-genuine examples — would require accumulating labeled cohort across multiple matches.
+3. **Operator-side post-hoc inspection workflow** — accept pipeline-side phantom emission; provide downstream UI for operator to flag and retract phantom wicket-events.
+
+None of these are in current Phase 1 scope. Phase 1 second pillar re-opens for re-selection (§17.1 candidates listed below).
+
+## §17 S26 promotion — static-investigation-rounds compound
+
+**S26 — Static-investigation-rounds compound** (PROMOTED from candidate to numbered insight; three-instance evidence threshold met).
+
+**Statement.** Each layer of static analysis can surface findings that falsify the prior layer's strategic framing. The methodology scales: more static layers → more falsification of intermediate claims → higher confidence in surviving conclusions. The discipline produces compounding returns — finding-then-falsification-then-refinement cycles operate at near-zero budget cost when staged correctly.
+
+**Three-instance evidence:**
+
+1. **WS-C29b step-1 (`d40e2b9`).** Strategic argument "extend Scout prompt schema with `dismissed_batter`" → falsified by source-modality blocker (bottom-strip pixels don't render dismissed names) BEFORE any patch. Saved 1/5 + commit-churn that would have shipped a non-functional prompt change.
+
+2. **WS-Surface-E step-2.5 (this memo §14).** Strategic argument "HA' N=3 consensus + overs-advance gate closes F1017 phantom" → falsified by F1018=5 reading + simulation showing HA' admits phantom at F1019. Falsification occurred AFTER step-2 commit (`65ef9c9`) — incurred revert cost (`061c77d`).
+
+3. **WS-Surface-E step-2.6 (this memo §15).** Strategic argument "cricket-physics-gate (Option Y) provides the missing discriminator" → falsified by OCR-noise-uniformity finding (regression signal uniform across phantom + genuine cohort). Static cohort verification PREVENTED Option Y patch from shipping.
+
+**Operational corollary (load-bearing for next workstreams).** **"Gate-4 incomplete = STOP, do not proceed to patch-and-verify-empirically-later."** Code churn (commit + revert) is the cost of treating gate-4-incomplete as a "proceed and verify" signal rather than a "stop and verify statically first" signal. Surface E step-1 §7 listed gate 4 as "LOAD-BEARING — static verification incomplete" — the discipline should have STOPPED at step-1 close-out + run step-2.5-equivalent BEFORE step-2 patch authorization. The user's decision to run step-2.5 AFTER step-2 (rather than before) cost one revert cycle.
+
+**Cross-references.**
+- S22 (WS-H step-9): static-investigation-first protocol holds across multi-step arcs. S26 is S22's per-layer corollary — S22 says "static before empirical at workstream scope"; S26 says "static-round-N+1 before patch at intra-workstream scope."
+- S21 (WS-H step-5b) + S23 (WS-I step-3) + S25 (WS-C29b step-1, awaiting promotion at next close-out): all assertion-side / planning-level shape-family insights. S26 is a methodology-level insight peer to S22.
+
+**Methodology insights running total: 22 → 23 (S26 promoted).** S25 (strategic-framing-vs-source-modality) remains a candidate awaiting its third-instance confirmation (currently 2 instances: C29b + Surface E step-1).
+
+### §17.1 Phase 1 second-pillar re-selection candidates
+
+Surface E retirement consumes the Phase 1 second-pillar slot without delivery. Re-selection candidates (ranked by remaining cohort confidence + budget economics):
+
+| Candidate | Fix surface category | Expected arc | Budget cost |
+|---|---|---|---|
+| **§11.3 item 5 — Recent-Overs partial-render** (RECOMMENDED) | Possibly assertion-side per WS-I pattern reuse | 3-step assertion-side if confirmed | 0/5 if assertion-side; 1/5 if pipeline-side |
+| §11.3 item 4 — Per-batter-ledger conservation | Narrow scope, UI-visible | 3-5 step | 0-1/5 |
+| WS-D §3.5 Layer 1a — `_derive_dismissed_name` close (HE survivor from C29b) | Pipeline-side; S12 plumbing concern | 9+ step multi-arc | 1-2/5 |
+| WS-F bowler-misattribution — γ-bowler-w adjacent surfaces | Narrow pipeline-side | 5-9 step | 1-2/5 |
+
+**Recommended Phase 1 second pillar: §11.3 item 5 (Recent-Overs partial-render).** If static investigation confirms an assertion-side shape, delivers budget-neutral UI closure mirroring WS-I economics. Step-1 investigation memo authorized at next session.
+
+## §18 Surface_pair catalogue entry — phantom-wicket as architectural-known-defect
+
+Cross-reference: `files/docs/investigations/surface_pair_defect_class_family.md` §2.10 (new entry) — phantom-wicket-detection-class with F1017 anchor + retirement reference to this memo §13-§18. Defect persists in production; documented as architectural-known-limitation pending future Scout-primitive extension or ML-classifier-trained telemetry.
+
+**Arc retired.**
+

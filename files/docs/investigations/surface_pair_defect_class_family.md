@@ -175,6 +175,39 @@ C20b populate.
   promoted.
 - (a)-(e): **POPULATE-NEXT-SESSION (C20b).**
 
+### §2.10 — Phantom-wicket detection (architectural-known-defect)
+
+- **Obs anchors:** F1017 on `validate_dckkr_20260521_155356` —
+  POST-WICKET-ROTATION emitted on Axar against cricket truth
+  (Obs 21 confirms Axar at-the-crease at replay-end). Scout OCR
+  oscillation F1015 wkts=6 / F1016 wkts=4 / F1017 wkts=5 / F1018-F1019
+  wkts=5 (3-frame persistent jump) fires `ball_detector.check()` strict-
+  increase predicate at `files/eyes/state/ball_detector.py:69`.
+- **Surface A:** `ball_detector.check()` wicket-fell predicate —
+  single-frame strict-increase on wickets-counter; no consensus or
+  cross-field debouncer.
+- **Surface B:** `apply_wicket_event` downstream commit — accepts
+  upstream wicket-events unconditionally per §15 fence (canonical
+  dispatch path).
+- **One-line defect:** Phantom-wicket emitted at strip OCR-instability
+  boundary; downstream cascade (WICKET-ATTRIB + striker rotation +
+  FoW append) commits unrecoverable false-positive wicket event.
+- **Fix-surface status:** No fix landed. WS-Surface-E HA' (N=3 consensus
+  + overs-advance gate) statically falsified — admits phantom at F1019
+  per `workstream_surface_e_phantom_wicket_investigation.md` §14.
+  Cricket-physics-gate (Option Y) statically falsified — OCR-noise
+  envelope uniform across phantom + genuine cohort per memo §15.
+  Detection-layer discriminators built on wickets-counter dynamics
+  are structurally incapable of separating phantom from genuine within
+  the current Scout primitive set.
+- **Re-investigation prerequisites:** (1) new Scout primitive providing
+  discriminating signal (e.g., FoW-graphic overlay parsing); OR
+  (2) ML classifier trained on labeled phantom-vs-genuine cohort;
+  OR (3) operator-side post-hoc retraction workflow.
+- (a)-(e): see `workstream_surface_e_phantom_wicket_investigation.md`
+  §13-§18 for full retirement context + architectural-known-defect
+  framing.
+
 ## §3 Cross-instance methodology
 
 **Placeholder for C20b+.** Populate as additional matches add instance
