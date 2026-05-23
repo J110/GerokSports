@@ -452,7 +452,12 @@ def main(argv: list[str] | None = None) -> int:
         return pcd_rc
     from test_innings_change_wickets_regressed_guard import (
         run_all as _run_wrg_gate)
-    return _run_wrg_gate()
+    wrg_rc = _run_wrg_gate()
+    if wrg_rc != 0:
+        return wrg_rc
+    from test_gamma_fow_name_canonical_degradation import (
+        run_all as _run_gfg_gate)
+    return _run_gfg_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:

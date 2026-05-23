@@ -425,12 +425,27 @@ def assert_fow_name_matches_striker_at_wicket(records: list) -> Result:
         prev = records[i - 1]
         prev_striker = (prev.get("pipeline") or {}).get("striker")
         if not prev_striker:
-            failures.append({
-                "frame": rec.get("frame"),
-                "dismissed": dismissed,
-                "prev_frame": prev.get("frame"),
-                "reason": "no_prev_striker",
-            })
+            canonical_match = False
+            for dec in _decisions(rec):
+                tag = dec.get("tag", "")
+                if tag not in (
+                        "WICKET-RESOLVED-FROM-DETERMINISTIC-STRIKER",
+                        "WICKET-RESOLVED-FROM-PENDING"):
+                    continue
+                if dec.get("_auto"):
+                    continue
+                resolved = dec.get("dismissed")
+                if resolved and str(resolved).strip().lower() == (
+                        dismissed.strip().lower()):
+                    canonical_match = True
+                    break
+            if not canonical_match:
+                failures.append({
+                    "frame": rec.get("frame"),
+                    "dismissed": dismissed,
+                    "prev_frame": prev.get("frame"),
+                    "reason": "no_prev_striker",
+                })
             continue
         if str(prev_striker).strip().lower() != dismissed.strip().lower():
             failures.append({
