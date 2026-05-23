@@ -1,10 +1,42 @@
 # Handoff — derive-not-detect branch (Architecture)
 
-**Last update.** 2026-05-23 (WS-H step-9 arc close-out — WS-H FULLY RETIRED + S22 static-investigation-first protocol meta-finding).
-**Branch.** `derive-not-detect` (HEAD = WS-H step-9 docs commit). Feature branch `rewrite/wicket-striker-this_over-canonical` deleted local + remote.
-**Session ledger.** **60 cumulative commits** across five consecutive sessions on `derive-not-detect` lineage: 16 B-η + 8 C19-C24 + 8 C26-C31 + C32 docs + 10 §15 arc (9 feat + 1 docs) + 8 Workstream G + 1 pre-merge gitignore + 1 merge commit + 9 Workstream H (step-1 memo + P1 patch + step-4 close-out + step-5 memo + H1 patch + step-8 close-out + step-5b memo + Shape A patch + step-9 arc close-out). Layer 1.5 (36 ledger balls + 6 cross-field pairing + 3 D1 bowler-dispatch + 3 D2 WICKET-ATTRIB + 6 pending-cascade + 9 WS-H wickets_regressed guard + 4 WS-H γ-fow-name graceful-degradation = **67 cases**) + Layer 2 (30 balls) held on every commit. Derivation unit tests at 48/48. **Empirical-falsification budget: 2/5 remaining** (1/5 consumed across entire 9-step WS-H arc at step-7; load-bearing artifact = S22 static-investigation-first protocol verified at arc scale, plus S16/S17/S18 step-4 + S19 step-5 + S20 step-8 + S21 step-5b). **WS-H ARC FULLY CLOSED** — primary objective + step-5 + step-5b all CLOSED. D-post-FoW-striker 20 → 2 (step-3 P1); F939 SM-INNINGS-2-RESET 1 → 0 (step-7 H1); γ-fow-name `no_prev_striker` cohort F679+F948+F1017 + 4 bonus pre-existing across historical traces all closed (step-5c Shape A; gate-7 cross-fixture budget-neutral). γ-w-symbol parallel surface OUT-OF-SCOPE (deferred to workstream D rotation-root revisit). WS-G primary objective RETROACTIVELY DELIVERED via WS-H per insight #18 scope-separation.
+**Last update.** 2026-05-23 (WS-I step-3 arc close-out — WS-I FULLY RETIRED + S23 trace-schema-precondition family canonically landed).
+**Branch.** `derive-not-detect` (HEAD = WS-I step-3 docs commit). Feature branch `rewrite/wicket-striker-this_over-canonical` deleted local + remote.
+**Session ledger.** **63 cumulative commits** across five consecutive sessions on `derive-not-detect` lineage: 16 B-η + 8 C19-C24 + 8 C26-C31 + C32 docs + 10 §15 arc (9 feat + 1 docs) + 8 Workstream G + 1 pre-merge gitignore + 1 merge commit + 9 Workstream H + 3 Workstream I (step-1 memo + Shape B patch + step-3 arc close-out). Layer 1.5 (36 ledger balls + 6 cross-field pairing + 3 D1 bowler-dispatch + 3 D2 WICKET-ATTRIB + 6 pending-cascade + 9 WS-H wickets_regressed guard + 4 WS-H γ-fow-name graceful-degradation + 3 WS-I γ-w-symbol schema-precondition = **70 cases**) + Layer 2 (30 balls) held on every commit. Derivation unit tests at 48/48. **Empirical-falsification budget: 2/5 remaining** (1/5 consumed across entire 9-step WS-H arc at step-7 — WS-I arc consumed 0/5; load-bearing artifacts = S22 static-investigation-first protocol verified at arc scale, plus S16/S17/S18 step-4 + S19 step-5 + S20 step-8 + S21 step-5b + **S23 WS-I step-3 — trace-schema heterogeneity as assertion-precondition**). **WS-I ARC FULLY CLOSED** — primary objective (γ-w-symbol UNIFIED-4 cohort closure on validate_ws_h_step7) CLOSED at step-2 (Shape B patch `a459713`). Gate-7 cross-fixture verified budget-neutrally across 166 on-disk traces: REPLAY-cohort 49 traces → 0 FAILs (49 latent schema-noise FAILs swept); LIVE-cohort 117 traces → 17 FAILs preserved across 15 fixtures (C21 baseline intact). 0 regressions. **WS-H ARC remains FULLY CLOSED** — D-post-FoW-striker 20 → 2 (step-3 P1); F939 SM-INNINGS-2-RESET 1 → 0 (step-7 H1); γ-fow-name `no_prev_striker` cohort all closed (step-5c Shape A). γ-w-symbol parallel surface now CLOSED via WS-I Shape B (was OUT-OF-SCOPE during WS-H; opened + closed in WS-I 3-step arc). WS-G primary objective RETROACTIVELY DELIVERED via WS-H per insight #18 scope-separation. **Candidate S24** (NOT yet promoted): arc length scales with fix-surface category — pipeline-side ~9 steps + 1/5 budget (WS-H) vs assertion-side ~3 steps + 0/5 budget (WS-I); awaits 3rd-instance confirmation.
 
 **§15 fence count correction.** The post-merge `grep -c 'self.striker = None' files/score_manager.py` returns **7**, not the "8 invalidation-only writes" referenced in the original §15 fence documentation below. The discrepancy is descriptive shorthand; the structural fence invariant ("no non-canonical name writes") holds — non-None writes occur exclusively in the three canonical methods (`apply_striker_event:945`, `apply_striker_identity_resolved:980`, `apply_striker_identity_proposed:1211/1213`). Future docs should cite the structural invariant rather than the count.
+
+## Architectural fence — post-Workstream-I (2026-05-23)
+
+WS-I established the **S21 + S23 two-shape assertion-side fix family** as a standing audit framework alongside the §15 canonical write-path pipeline-side fence. Both fences are now peer disciplines in the §7.2 audit:
+
+| Fence | Code surface | Verification economics | Fix shapes | Examples |
+|---|---|---|---|---|
+| §15 canonical write paths | `score_manager.py` (production pipeline) | gate-7 = 1/5 budget per empirical replay | Pipeline-side write to canonical path | P1 (`ef0860d`), H1 (`832d376`) — WS-H |
+| S21 + S23 assertion-side family | `files/tests/trace_session_assertions.py` (assertion library) | gate-7 = 0/5 budget per on-disk re-count | Shape A canonical-resolution graceful-degrade (S21); Shape B schema-precondition graceful-skip (S23) | Shape A `1dbba14` — WS-H step-5c; Shape B `a459713` — WS-I step-2 |
+
+**Discipline (load-bearing for next session).** Fix-surface classification belongs at gate-2 of the §7.2 audit. Classify the candidate fix:
+1. **Pipeline-side fix** → schedule empirical replay for gate-7; consumes 1/5 budget.
+2. **Assertion-side fix (Shape A or Shape B)** → schedule on-disk gate-7 re-count; zero budget cost.
+3. **Producer-side trace-emitter fix** → schedule both (assertion re-count first to verify the schema gap is the root; pipeline replay only if production code changes).
+
+The classification routes gate-7 economics correctly and prevents budget mis-consumption. Candidate S24 (NOT yet promoted) formalizes this as arc-length-by-fix-surface-category — pipeline-side ~9 steps + 1/5 budget vs assertion-side ~3 steps + 0/5 budget.
+
+**Trace-schema heterogeneity caveat (S23).** Replay-path traces (`replay_*`, `validate_ws_h_*`, `validate_shape_*`, `validate_surface_*` — 49 traces in `logs/trace/`) emit a structurally different schema from live-pipeline traces (`validate_dckkr_*`, `watch_*`, `local_*`, `run_*`, etc. — 117 traces): the replay-cohort bypasses the UIMirror.apply cycle so `ui_after` is absent on every frame, whereas the live-cohort populates `ui_after` 100% of the time. Assertions reading `ui_after.<...>` must precondition on field presence (Shape B). All future assertion authoring should declare schema preconditions explicitly in the docstring and emit INAPPLICABLE (SKIP) when preconditions aren't met. Two diagnostic refinements catalogued under Phase 4 (S23-corollary multi-wicket-per-frame undercount + S23-extension `_final_extras_total` silent-stricter-bound) — NOT opened as workstreams.
+
+**Trace assertion library baseline post-WS-I closure** (across all 166 on-disk traces, REPLAY + LIVE cohorts distinguished):
+
+- **γ-w-symbol (post-Shape-B):**
+  - REPLAY-cohort (49 traces, 0% `ui_after`): **0 FAILs** — full schema-precondition retirement.
+  - LIVE-cohort (117 traces, 100% `ui_after`): **17 FAILs preserved across 15 fixtures**. C21 baseline FAIL × 2 on `validate_dckkr_20260521_155356` intact (Rahul ov 5.0 + Rana ov 8.0). 15 mixed live-cohort fixtures deferred to workstream D rotation-root / UI render-layer C21 case-by-case classification.
+- **γ-fow-name (post-Shape-A, unchanged at WS-I):** PASS on 11 of 13 ui_after-populated traces; 2 remaining FAILs are true-mismatch class at `validate_20260513_180911` F407 + `validate_dckkr_20260522_063211` F1196 (workstream D rotation-root revisit scope).
+- **γ-bowler-w:** PASS preserved across all traces.
+- **η-cascade:** PASS preserved; all 3 terminal classes (DRAIN-FIRED + DRAIN-EXPIRED + WIPED-BY-COLD-START) empirically observed in step-7 trace.
+- **α / β / ε / compound / extras:** all PASS preserved.
+
+**Next session: C29b Scout schema extension** as Phase 1 second pillar — cascade-closure target with surface E phantom-wicket + phantom-runs + WS-F bowler-misattribution dividends via upstream Scout-prompt contract closure (`dismissed_batter` structured field). The architectural-fence invariants from WS-G + §15 + WS-H + WS-I are unchanged.
+
+---
 
 ## Architectural fence — post-Workstream-G (2026-05-23)
 
@@ -28,7 +60,7 @@ All three terminal classes empirically observed for the first time in the step-7
 **Trace assertion library baseline post-WS-H closure** (validate_ws_h_step7_20260523_172140 + 12 other on-disk traces):
 
 - γ-fow-name: PASS on 11 of 13 traces; 2 remaining FAILs are true-mismatch class at validate_20260513_180911 F407 + validate_dckkr_20260522_063211 F1196 (workstream D rotation-root revisit scope).
-- γ-w-symbol: FAIL × 4 baseline preserved on validate_ws_h_step7 (parallel surface — different read path; workstream D revisit scope).
+- γ-w-symbol: (WS-H era — FAIL × 4 baseline preserved on validate_ws_h_step7; parallel surface deferred to WS-I.) **Superseded by WS-I post-Shape-B baseline in the new architectural-fence section above (REPLAY-cohort 0 / LIVE-cohort 17 across 15 fixtures).**
 - γ-bowler-w: PASS preserved across all traces.
 - η-cascade: PASS preserved; all 3 terminal classes (DRAIN-FIRED + DRAIN-EXPIRED + WIPED-BY-COLD-START) now empirically observed in the step-7 trace.
 - α/β/ε/compound/extras: all PASS preserved.

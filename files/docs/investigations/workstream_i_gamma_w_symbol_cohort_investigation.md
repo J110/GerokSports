@@ -328,3 +328,122 @@ flips FAIL × N → 0; ui_after-populated baselines UNCHANGED.
 
 Empirical-budget status: 2/5 → 2/5 (UNCHANGED).
 ```
+
+---
+
+## §12 Step-2 outcome — patch landed at `a459713`
+
+**Patch.** `files/tests/trace_session_assertions.py:335-346` — Shape B schema-presence guard ahead of the existing `next_this_over` read. Three predicate branches collapse to `continue` (treat as INAPPLICABLE): (a) `next_ui_after is None / not isinstance(..., dict)`; (b) `next_this_over is None / not isinstance(..., list)`; (c) `next_this_over == []`. The existing FAIL terminal (`"W" not in window`) is preserved unchanged for populated-list inputs.
+
+**New L1.5 test file.** `files/tests/test_gamma_w_symbol_schema_precondition.py` — 3 cases (T-1 / T-2 / T-3), wired into `test_sm_derivation_ledger.main()` after the WS-H step-5c gfg gate. L1.5 family count: **67 → 70**.
+
+| Case | F<wicket+1>.ui_after | F<wicket+1>.this_over | Expected | Observed |
+|---|---|---|---|---|
+| T-1 replay-path schema-absence | (key missing) | n/a | SKIP / PASS-by-precondition | PASS |
+| T-2 live-path W-present | `{...}` | `["1","6","1","4",".","W"]` | PASS via discriminative path | PASS |
+| T-3 live-path W-missing (C21 revert) | `{...}` | `["1","6","1","4",".","."]` | FAIL with samples preserved | PASS (FAIL terminal preserved) |
+
+**Gate-7 cross-fixture verification — verbatim from on-disk re-count across 166 traces in `logs/trace/`:**
+
+| Cohort | Trace count | `ui_after` population | γ-w-symbol FAIL total post-Shape-B |
+|---|---|---|---|
+| REPLAY-cohort | 49 | 0% | **0** (full closure — was hundreds pre-patch) |
+| LIVE-cohort | 117 | 100% | **17** preserved across 15 fixtures |
+
+Per-trace headlines (predicted-flip table locked):
+
+| Trace | Pre | Post |
+|---|---|---|
+| `validate_ws_h_step7_20260523_172140` | FAIL × 4 | **0** ✓ UNIFIED-4 cohort closure |
+| `validate_ws_h_step3_20260523_164642` | FAIL × 2 | **0** (bonus closure) |
+| `validate_dckkr_20260521_155356` (C21 baseline) | FAIL × 2 | **2** ✓ C21 capability preserved |
+| `validate_shape_a_*` (×2), `validate_surface_b_*` | varied | **0** (all closed — schema-absent) |
+| `replay_dckkr_*` (38 variants) + `replay_gtrr_*` (1) | varied | **0** (all closed) |
+| 14 other live-cohort fixtures with state-layer reverts | — | FAIL × 1 (×13) + FAIL × 2 (`dfb1c947.jsonl`) preserved (genuine signal) |
+
+**Predicted-flip table conformance.** All §8 predictions held: REPLAY-cohort closes to 0; LIVE-cohort baseline unchanged (C21 FAIL × 2 preserved); η-bundle + γ-fow-name + γ-bowler-w unaffected. Zero regressions, zero new FAILs on live-pipeline traces, 49 latent schema-noise FAILs swept across replay-cohort.
+
+**Gate-bundle posture post-step-2.** All 7 §7.2 gates closed inline. Gates 1-5 static per step-1 §7; gate 6 = the 3 new L1.5 cases above; gate 7 = the on-disk cross-fixture re-count table above. No empirical-budget consumption — gate-7 mirrored WS-H step-5c exactly.
+
+---
+
+## §13 Arc closure declaration
+
+**WS-I primary objective.** **CLOSED.** UNIFIED-4 cohort on `validate_ws_h_step7_20260523_172140` closed via Shape B at `a459713`. All 4 instances (F679 Pathum Nissanka + F855 Nitish Rana + F948 KL Rahul + F1017 Pathum Nissanka) retire to schema-precondition skip; the assertion is no longer false-positive on replay-path traces.
+
+**Bonus closures.** **49 latent γ-w-symbol FAILs** swept across the entire on-disk replay-cohort (38 `replay_dckkr_*` variants + 1 `replay_gtrr_*` + 2 `validate_shape_a_*` + 1 `validate_surface_b_121222` + 1 `validate_ws_h_step3` + 1 `validate_ws_h_step7` + 5 additional `replay_dckkr_*` step variants — all schema-absent). Each was an assertion false-positive that had been silently inflating the regression-detector noise floor since the assertion was authored at C21 (`b327ed1`).
+
+**Live-cohort preservation.** **17 γ-w-symbol FAILs preserved** across 15 live-pipeline fixtures. Attribution:
+- **2 FAILs at `validate_dckkr_20260521_155356`** — the C21 catalogue baseline (Rahul ov 5.0 + Rana ov 8.0). State-layer revert pattern. Workstream D rotation-root revisit scope.
+- **2 FAILs at `dfb1c947.jsonl`** — historical live-pipeline trace; classification deferred to D-revisit case-by-case audit.
+- **13 FAILs × 1 each across 13 other live-pipeline fixtures** (`2d7ab712`, `488acb37`, `866ce150`, `d03b43da`, `local_20260513_105442`, `local_20260513_140027`, `validate_20260520_114437`, `validate_dckkr_20260521_070545`, `validate_gtrr_20260520_180715`, `watch_20260514_133723`, `watch_20260514_161246`, `watch_20260515_161437`, `watch_20260519_121701`) — mixed attribution candidates: workstream D rotation-root residuals + UI render-layer C21 instances + potential genuine pipeline defects requiring case-by-case classification. **NOT in WS-I scope.** Deferred to D-revisit; per-fixture classification is a Phase 4 / D-residuals catalogue obligation.
+
+**Signal-vs-noise separation.** Pre-Shape-B the assertion library could not distinguish "trace lacks ui_after schema" from "pipeline emitted W then reverted." Post-Shape-B the assertion fires only when the trace schema is populated AND W is missing at the expected position. The 49 → 0 replay-cohort closure and the 17 live-cohort preserved FAILs are the cleanest signal-vs-noise separation the trace assertion library has produced.
+
+**Cross-arc retroactive closures.** None. WS-I scope was structurally distinct from prior workstreams (γ-w-symbol read-path is independent of γ-fow-name, γ-bowler-w, and η-cascade). No WS-G/WS-H surface count moves as a side effect of WS-I.
+
+**Empirical-budget status.** **0/5 consumed across the WS-I 3-step arc.** Step-1 = static-falsification only; step-2 = fixture-mocked gate-6 + on-disk gate-7 (no pipeline replay); step-3 = docs-only. Budget remains at **2/5** in line with WS-H step-9 close-out. The arc is the cheapest correctness workstream in the `derive-not-detect` lineage to date.
+
+**No follow-on workstream open.** S23-corollary + S23-extension are catalogued under Phase 4 architectural cleanup (NOT opened as WS-J). Next session pivots to **C29b Scout schema extension** as Phase 1 second pillar — the cascade-closure target with surface E phantom-wicket + phantom-runs + WS-F bowler-misattribution dividends.
+
+---
+
+## §14 S23 family canonical landing
+
+### S23 (canonical body)
+
+**Statement.** Trace-schema heterogeneity as assertion-precondition. Replay-path traces (`replay_*`, `validate_ws_h_*`, `validate_shape_*`, `validate_surface_*`) and live-pipeline traces (`validate_dckkr_*`, `watch_*`, `local_*`, `run*`, `anchor*`, etc.) emit structurally different trace record schemas — specifically, the replay-cohort bypasses the UIMirror.apply cycle so the `ui_after` snapshot is absent on every frame, whereas the live-cohort populates `ui_after` 100% of the time. Assertions that read schema-dependent fields must precondition on field presence to avoid silent-FAIL-via-data-absence (Shape B) — or symmetrically, silent-PASS-via-data-absence on PASS-by-membership predicate directions.
+
+**Defensive `or {}` / `or []` patterns at assertion read surfaces are the load-bearing root cause.** They convert "schema not populated" into "data is degenerate but well-formed" which the predicate then operates on as if it were real signal. The correct discipline is to declare schema preconditions at the read surface and emit INAPPLICABLE (SKIP) when preconditions aren't met, rather than defaulting to a degenerate-but-actionable value.
+
+**Discipline (load-bearing).**
+1. **Read-surface schema preconditions.** Each assertion's docstring should declare its schema preconditions explicitly (e.g., "requires `ui_after.this_over` populated as a non-empty list").
+2. **Inverse-defensive defaults at FAIL terminals.** Replace `(rec.get("ui_after") or {}).get("this_over") or []` with explicit `if rec.get("ui_after") is None: continue` (or typed INAPPLICABLE) for FAIL-terminal reads.
+3. **Cohort-aware gate-7 protocols.** Distinguish REPLAY-cohort vs LIVE-cohort fixtures when reporting per-trace baselines; a single "FAIL × N" tally that mixes the two cohorts loses signal-vs-noise discrimination.
+
+**Two-shape family (paired with S21).** S21 + S23 form a coherent assertion-side fix family:
+- **Shape A (S21, WS-H step-5c, `1dbba14`):** Canonical-resolution graceful-degrade. When the assertion's expected reconstruction path is invalidated mid-frame (cascade-drain wipes prev_striker), graceful-degrade by reading the canonical alternate source (`WICKET-RESOLVED-FROM-DETERMINISTIC-STRIKER` / `WICKET-RESOLVED-FROM-PENDING` tag's `dismissed` payload) at the wicket-commit frame.
+- **Shape B (S23, WS-I step-2, `a459713`):** Schema-precondition graceful-skip. When the assertion's read-surface schema is not populated by the trace producer (replay-cohort), skip the predicate; do not fail on degenerate-default data.
+
+Both shapes preserve discriminative power on live-path data and retire false-positives on data-absent / canonical-alternate inputs. Both are assertion-side; both are budget-neutral via on-disk gate-7 re-count.
+
+### S23-corollary (catalogued under Phase 4 — NOT opened as workstream)
+
+**Statement.** `assert_w_symbol_at_wicket` body's `break`-after-first-`trace_beta_sm_wicket_dispatch` loop at `trace_session_assertions.py:308` undercounts wickets when a single frame contains multiple wicket dispatches. Observed at F1017 (Pathum Nissanka @10.4 + Tristan Stubbs @10.5 — both `trace_beta_sm_wicket_dispatch` records in the same frame's `scorer.decisions`). The Stubbs wicket is structurally invisible to γ-w-symbol on this trace.
+
+**Disposition.** Diagnostic refinement, not load-bearing defect. The undercount preserves correctness (no false-FAIL introduced; the missed wicket simply isn't checked) but understates the assertion's coverage. **Deferred to Phase 4 architectural cleanup** as a small targeted predicate refinement (loop-over-all matching decisions instead of break-after-first). CANDIDATE for inclusion in a future docs-class commit that bundles small assertion-correctness refinements.
+
+### S23-extension (catalogued under Phase 4 — NOT opened as workstream)
+
+**Statement.** `_final_extras_total` at `trace_session_assertions.py:89-95` silently defaults to `None` when `ui_after.extras_total` is absent on every record (the schema-absent cohort). `assert_bowler_runs_sum_matches_team_score` then sets `max_acceptable_extras = 0` (the `extras if extras is not None else 0` branch at `:150`). On a replay-cohort fixture with legitimate extras, the gap check `score - sum_bowler - 0` becomes a stricter bound than intended — surfacing as PASS-by-luck stricter-bound on traces where extras happen to be 0, and as silent-FAIL-via-stricter-bound on traces with non-zero extras.
+
+**Disposition.** Different read surface from γ-w-symbol but the same S23 schema-precondition pattern (defensive default at a read surface masks schema absence). `assert_extras_total_consistent` at `:269` already implements the correct PASS-by-precondition pattern (`if et is None: return _ok()`) — that one is the reference correct shape. The `_final_extras_total` → `assert_bowler_runs_sum_matches_team_score` chain should mirror it. **Deferred to Phase 4** as a targeted patch in a future docs-class commit. CANDIDATE for inclusion alongside S23-corollary in a Phase 4 assertion-correctness sweep.
+
+**Why catalogue, not workstream.** Both refinements are measurement-quality improvements with no UI-visible defect attached. Phase 1 second-pillar (C29b Scout schema extension) targets cascade-closure dividends (surface E phantom-wicket + phantom-runs + WS-F bowler-misattribution); opening WS-J for S23-extension instead of for C29b would drift the Phase 1 plan and lose the cascade-closure dividend that C29b targets. Catalogued under Phase 4 architectural cleanup queue for opportunistic landing.
+
+---
+
+## §15 Arc-level meta-finding — fix-surface category drives arc length (candidate S24)
+
+**Statement (CANDIDATE — not yet promoted to numbered insight).** Workstream arc length scales with fix-surface category. Pipeline-side fixes (writes to production code paths like `score_manager.py`) require investigation + patch + empirical validation (consumes 1/5 budget per replay cycle) + close-out, typically spanning 8-9 steps. Assertion-side fixes (writes to `files/tests/trace_session_assertions.py` only) require investigation + patch + on-disk gate-7 re-count (zero budget cost) + close-out, typically spanning 3 steps.
+
+**Two confirmed instances:**
+
+| Arc | Fix surface | Steps | Patches | Empirical-budget cost |
+|---|---|---|---|---|
+| WS-H (D-post-FoW-striker + F939 + γ-fow-name) | Pipeline-side (P1 + H1) + assertion-side (Shape A) | **9** | 3 (P1 `ef0860d` + H1 `832d376` + Shape A `1dbba14`) | 1/5 (steps 3 + 7) |
+| WS-I (γ-w-symbol) | Assertion-side only (Shape B) | **3** | 1 (Shape B `a459713`) | 0/5 |
+
+**Why deferred to candidate-S24 status.** Two instances is insufficient to promote to numbered methodology insight per the S20 + S21 precedent (two-instance promotion is acceptable for cohort-exposure / disambiguation patterns where the mechanism is well-specified; arc-length-by-fix-surface-category is a higher-level meta-pattern that requires a third instance to rule out coincidence and confirm the mechanism). **A third assertion-side workstream (whether opening a fresh investigation or landing a Phase 4 S23-corollary / S23-extension patch as a small arc) would empirically establish the S24 pattern.**
+
+**Operational corollary if S24 confirms.** Budget planning should classify fix surface at gate-2 of the §7.2 audit (the fix-surface attribution step) and route gate-7 verification accordingly: pipeline-side gate-7 → schedule empirical replay (1/5 budget); assertion-side gate-7 → schedule on-disk re-count (0/5 budget). The classification is already happening implicitly per WS-H step-9 S22 protocol; S24 would formalize it as an arc-planning input.
+
+**Arc-level statistics for WS-I.**
+- 3 steps, 1 patch, 3 commits, 0 empirical-budget consumption.
+- 49 latent FAILs swept (replay-cohort retirement).
+- 17 live-cohort FAILs preserved (signal-vs-noise separation).
+- 22 cumulative methodology insights on the `derive-not-detect` lineage post-S23.
+- Two diagnostic refinements catalogued (S23-corollary + S23-extension); neither opens a workstream.
+- Next session pivots to **C29b Scout schema extension** as Phase 1 second pillar.
+
+**Arc retired.**
