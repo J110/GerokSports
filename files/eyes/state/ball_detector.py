@@ -22,12 +22,6 @@ class BallDetector:
         self.last_ball_time: float = 0
         self.min_gap = min_gap
         self.total_detected = 0
-        # Surface E HA': N=3 consensus + overs-advance gate suppresses
-        # phantom-wicket emissions from OCR-instability oscillations
-        # (see workstream_surface_e_phantom_wicket_investigation.md §5,
-        # F1017 anchor on validate_dckkr_20260521_155356).
-        self._wicket_candidate: int | None = None
-        self._wicket_streak: int = 0
 
     def check(self, scoreboard: dict) -> dict | None:
         """Returns a ball event dict if a new ball was bowled, else None."""
@@ -100,40 +94,6 @@ class BallDetector:
         runs = max(0, runs)
 
         if wicket_fell:
-            if self._wicket_candidate == wickets:
-                self._wicket_streak += 1
-            else:
-                self._wicket_candidate = wickets
-                self._wicket_streak = 1
-            overs_advanced = False
-            if overs is not None and self.prev_overs is not None:
-                try:
-                    overs_advanced = float(overs) > float(self.prev_overs)
-                except (ValueError, TypeError):
-                    overs_advanced = False
-            if self._wicket_streak < 3 or not overs_advanced:
-                try:
-                    import trace_emitter as _trace
-                    _trace.get_recorder().record(
-                        tag="PHANTOM-WICKET-SUSPECT",
-                        wickets_prev=self.prev_wickets,
-                        wickets_observed=wickets,
-                        streak=self._wicket_streak,
-                        overs_prev=self.prev_overs,
-                        overs_current=overs,
-                        overs_advanced=overs_advanced,
-                        suppressed=True,
-                    )
-                except Exception:
-                    pass
-                return None
-            self._wicket_candidate = None
-            self._wicket_streak = 0
-        else:
-            self._wicket_candidate = None
-            self._wicket_streak = 0
-
-        if wicket_fell:
             result = "wicket"
         elif runs == 0:
             result = "dot"
@@ -179,5 +139,3 @@ class BallDetector:
         self.prev_wickets = None
         self.prev_overs = None
         self.last_ball_time = 0
-        self._wicket_candidate = None
-        self._wicket_streak = 0
