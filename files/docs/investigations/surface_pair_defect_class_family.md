@@ -192,21 +192,29 @@ C20b populate.
 - **One-line defect:** Phantom-wicket emitted at strip OCR-instability
   boundary; downstream cascade (WICKET-ATTRIB + striker rotation +
   FoW append) commits unrecoverable false-positive wicket event.
-- **Fix-surface status:** No fix landed. WS-Surface-E HA' (N=3 consensus
-  + overs-advance gate) statically falsified — admits phantom at F1019
-  per `workstream_surface_e_phantom_wicket_investigation.md` §14.
-  Cricket-physics-gate (Option Y) statically falsified — OCR-noise
-  envelope uniform across phantom + genuine cohort per memo §15.
-  Detection-layer discriminators built on wickets-counter dynamics
-  are structurally incapable of separating phantom from genuine within
-  the current Scout primitive set.
-- **Re-investigation prerequisites:** (1) new Scout primitive providing
-  discriminating signal (e.g., FoW-graphic overlay parsing); OR
-  (2) ML classifier trained on labeled phantom-vs-genuine cohort;
-  OR (3) operator-side post-hoc retraction workflow.
+- **Fix-surface status:** No fix landed. WS-Surface-E (detection-layer)
+  HA' + Option Y both statically falsified — OCR-noise envelope uniform
+  across phantom + genuine cohort per `workstream_surface_e_phantom_wicket_investigation.md`
+  §15. WS-K (state-machine layer) all 5 within-Phase-1-scope candidates
+  (KA / KB / KC / KD / KE) statically falsified at gate 1 per
+  `workstream_k_phantom_wicket_state_machine_investigation.md` §4 +
+  §13 — every state-machine signal is downstream of strip OCR via the
+  §15 canonical write-path fence; "multi-frame resilience" of higher
+  layer is illusory at the discriminator level. **Multi-layer
+  convergent falsification confirms F1017 as architectural-known-defect
+  at every pipeline-internal layer (S27 candidate evidence).**
+- **Re-investigation prerequisites:** (1) phantom-wicket cohort grows
+  beyond 1-confirmed via natural production accumulation; OR
+  (2) Scout primitive set expansion to include signal NOT downstream of
+  strip OCR (e.g., `graphic_state` field parsing FoW-overlay text on
+  `camera_view=graphic` frames); OR (3) KF external Cricbuzz-commentary
+  real-time discriminator (Phase 2 architectural pivot — `files/scripts/ingest_cricbuzz_ground_truth.py`
+  already ingests for post-hoc regression but not real-time);
+  OR (4) operator-side post-hoc retraction workflow (Phase 3 UI scope).
 - (a)-(e): see `workstream_surface_e_phantom_wicket_investigation.md`
-  §13-§18 for full retirement context + architectural-known-defect
-  framing.
+  §13-§18 for detection-layer retirement context AND
+  `workstream_k_phantom_wicket_state_machine_investigation.md` §11-§14
+  for state-machine layer retirement + S27 candidate framing.
 
 ## §3 Cross-instance methodology
 

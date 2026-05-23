@@ -321,3 +321,55 @@ S27 candidate awaiting second instance).
 
 Memo: files/docs/investigations/workstream_k_phantom_wicket_state_machine_investigation.md (11 sections, ~470 lines).
 ```
+
+---
+
+## §12 Retirement declaration
+
+**WS-K closes at step-1 with universal-candidate-exhaustion.** F1017 phantom-wicket confirmed as architectural-known-defect at **every pipeline-internal layer** (detection per Surface E §15 + state-machine per WS-K §3+§4). The Surface E `a4f91f5` retirement framing was correct ex-ante; WS-K step-1 has now validated it via convergent falsification.
+
+**Cost-benefit of WS-K step-1 as a discipline data point.** Single static-investigation cycle (zero empirical-budget consumed) bought two architectural-significance returns:
+- Confirmation that F1017 is structurally undiscriminable at state-machine layer (not just detection) — load-bearing for any future re-investigation decisions.
+- Surfacing of S27 candidate (shared-signal-source structural barrier) as a transferable methodology insight distinct from S26.
+
+**KF (Cricbuzz-commentary external corroboration) DEFERRED to Phase 2 architectural-pivot queue.** Not opened as a workstream this session. Re-opening prerequisites:
+1. Phantom-wicket cohort grows beyond 1-confirmed via natural production telemetry accumulation, OR
+2. Independent strategic justification surfaces for real-time Cricbuzz commentary integration (live-stats overlay, commentary annotations, real-time fact-checking layer, etc.), OR
+3. New Scout primitive emerges that provides discriminating signal NOT downstream of strip OCR (e.g., a `graphic_state` field parsing FoW-overlay text on `camera_view=graphic` frames — flagged here as hypothetical; not investigated).
+
+Per the user's KF stop condition: "this is a major architectural investment requiring separate scoping decision." Deferred.
+
+**No WS-K step-2.** No patch surface within Phase 1 scope. Phase 1 second-pillar re-selection proceeds per HANDOFF `a4f91f5` next-session pointer.
+
+## §13 S27 candidate consolidation
+
+**S27 — Shared-signal-source structural barrier (CANDIDATE — single instance).**
+
+**Statement.** When sequential investigation layers (detection, state-machine, etc.) all derive their signals from a shared upstream source, falsifications at any layer propagate upward into all downstream layers. The "multi-frame resilience" or "downstream filtering" or "cross-component reconciliation" framing of higher layers is illusory at the discriminator level — every signal is ultimately bounded by the upstream source's discriminative capacity. The structural barrier is the shared source itself; investigation layers cannot exceed its discriminative ceiling.
+
+**Single-instance evidence (this step's load-bearing finding).** The §15 canonical write-path fence guarantees that every state-machine signal (striker pointer + partnership + bowler tracker + batting-card status + bat-slot resolution + this_over) flows through canonical write paths from strip OCR. When OCR is noisy at F1015-F1017 (wkts=6 spike → wkts=4 regression → wkts=5 settled-wrong), every downstream state-machine signal inherits the same noise envelope. The fence is correctness-preserving (no non-canonical writes) but discriminator-limiting (no signal can exceed strip OCR's discriminative capacity).
+
+**Distinction from S26 (process-level peer).** S26 ("static-investigation-rounds compound") is about the methodology process: more static layers → more falsification of intermediate claims → higher confidence in surviving conclusions. S27 (proposed: "shared-signal-source structural barrier") is the structural-cause peer: WHY do multi-layer falsifications converge? Because layers share an upstream source whose discriminative capacity bounds all downstream layers. S26 describes the discipline; S27 describes the structural reason the discipline produces convergent falsification.
+
+**Promotion threshold.** Single instance — defer to candidate status. Second-instance confirmation would require a future workstream where layers converge on a shared-source falsification (different from this one — e.g., a defect class where pipeline + UI both falsify on shared WebSocket-payload source, or extractor + state-machine both falsify on shared OCR field).
+
+**Operational corollary if S27 confirms.** At step-1 close-out of any layered-investigation, identify the layer's signal-source provenance. If the next-layer's signal-source is downstream of the current layer's source, predict shared-barrier falsification BEFORE committing the next-layer investigation cycle. Saves investigation time at near-zero cost (the prediction itself is static).
+
+**Cross-reference to S26.** S26 says: "more static layers → higher confidence." S27 says: "when multi-layer falsifications converge on shared source, the surviving conclusion is 'no fix exists within current signal scope.'" Together: S26 + S27 jointly mature the multi-layer-investigation discipline into a standing audit framework.
+
+## §14 Future re-investigation prerequisites
+
+F1017 phantom-wicket retires definitively for Phase 1 scope. Future re-investigation requires one of:
+
+1. **Cohort growth via natural production accumulation.** Current cohort: 1 confirmed (validate_dckkr_20260521_155356) + 1 candidate ghost (validate_ws_h_step7). Future production sessions may surface additional phantom-wicket instances. When cohort grows to N ≥ 3 distinct instances across distinct fixtures, KF architectural-pivot ROI economics shift to justify the investment.
+
+2. **Scout primitive set expansion to include a signal NOT downstream of strip OCR.** Candidate (hypothetical; not investigated this session): a `graphic_state` Scout field parsing FoW-overlay text on `camera_view=graphic` frames. Such a field would extract dismissed-batter name + dismissal timing from the broadcast's FoW graphic overlay, which is rendered seconds-to-minutes after the wicket-event and provides external corroboration independent of the strip OCR that fired the phantom. Re-opens the C29b Scout-prompt-extension question on a narrower scope (graphic-frame extraction, NOT per-frame strip extension).
+
+3. **External corroboration architecture (KF — Cricbuzz commentary real-time discriminator).** Major Phase 2 investment. `files/scripts/ingest_cricbuzz_ground_truth.py` already ingests Cricbuzz commentary for post-hoc regression-fixture purposes; wiring as a real-time discriminator at `apply_wicket_event` site requires fresh scoping memo + new latency-tolerance + failure-mode + cost-commitment architecture. Defer until cohort growth (prereq 1) or strategic justification surfaces.
+
+4. **Operator-side post-hoc retraction workflow.** Accept pipeline-side phantom emission; provide downstream UI for operator to flag and retract phantom wicket-events. This is a Phase 3 UI/operational concern; out of pipeline scope.
+
+**Recommendation: prerequisite (1) is the lowest-friction monitoring path.** Watch natural production traces for additional phantom-wicket instances. Surface E's `surface_pair §2.10` catalogue entry + WS-K's retirement declaration are the standing observability surfaces. No active monitoring infrastructure needed beyond existing trace assertion library.
+
+**Arc retired.**
+
