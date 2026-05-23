@@ -1,10 +1,26 @@
 # Handoff — derive-not-detect branch (Architecture)
 
-**Last update.** 2026-05-22 evening (post-§15 triple-subsystem rewrite arc closure at commit `1af2bd9` + this docs close-out).
-**Branch.** `obs/silent-wicket-absorption` (carries §15 arc — 9 commits). Operator suggested rename to `rewrite/wicket-striker-this_over-canonical` before merge to `derive-not-detect`.
-**Session ledger.** 42 cumulative commits across four consecutive sessions on the derive-not-detect lineage (16 B-η + 8 C19-C24 + 8 C26-C31 + C32 docs + 9 §15 arc). Layer 1.5 (now 36 ledger balls + 6 cross-field pairing + 3 D1 bowler-dispatch + 3 D2 WICKET-ATTRIB = 48 cases) + Layer 2 (30 balls) held on every §15 commit. Derivation unit tests at 48/48. **§15 arc consumed 0/5 of the empirical-falsification budget; one §14.5 hypothesis falsified by data (commit 9/N attempt reverted) producing a methodology insight (#16) rather than a commit.**
+**Last update.** 2026-05-23 (post-Workstream-G lifecycle closure at commit `50af67e` + step-8 re-validation docs commit).
+**Branch.** `obs/silent-wicket-absorption` (carries §15 arc + Workstream G chain — 17 commits including step-8 close-out). Operator suggested rename to `rewrite/wicket-striker-this_over-canonical` before merge to `derive-not-detect`.
+**Session ledger.** 50 cumulative commits across five consecutive sessions on the derive-not-detect lineage (16 B-η + 8 C19-C24 + 8 C26-C31 + C32 docs + 9 §15 arc + 8 Workstream G). Layer 1.5 (36 ledger balls + 6 cross-field pairing + 3 D1 bowler-dispatch + 3 D2 WICKET-ATTRIB + 6 pending-cascade = 54 cases) + Layer 2 (30 balls) held on every commit. Derivation unit tests at 48/48. **Workstream G arc consumed 1/5 of the empirical-falsification budget** (4/5 remaining); the consumption produced insight #17 + #18 retrospectives plus the Surface B lifecycle closure rather than a wasted iteration.
 
-## Architectural fence — post-§15 (2026-05-22 evening)
+## Architectural fence — post-Workstream-G (2026-05-23)
+
+Building on the §15 fence (three canonical `self.striker` writers; canonical wicket dispatch; deterministic-rotation override removed), Workstream G adds the **PendingCascade lifecycle** as a fully observable state machine:
+
+- **State.** `self._pending_post_wicket_cascade: list[PendingCascade]` — FIFO queue bounded at 3 (audit Q1).
+- **Producer.** `apply_wicket_event` cascade-defer path enqueues when `event.new_batter` is None (Mitigation A captures pre-fallback `(prev_striker, prev_non_striker)`).
+- **Consumers — drain hook.** `_attempt_pending_cascade_drain` runs at top of `_handle_warm` (the original f09fc38 wire-up) AND at C1-C6 COLD→WARM transitions (50af67e Surface B defense-in-depth).
+- **Consumers — wipe sites.** `_clear_per_innings_sm_surface` (f09fc38) + W1-W4 cold-entry sites (50af67e Surface B). All wipes emit `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` with the pre-wipe queue state captured.
+- **Terminal-state trace tags.** `POST-WICKET-CASCADE-DRAIN-FIRED` (resolved), `CASCADE-DRAIN-EXPIRED` (TTL hit), `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` (cold-entry wipe). Insight #17 mandate: every cold-entry reset path is empirically verified to emit a structured tag with positive trace evidence; silent `__init__` default-inits are eliminated by the W4 pre-`__init__` ordering at `set_innings_2`.
+
+The PendingCascade lifecycle is regression-detected by `trace_eta_post_wicket_cascade_drains` (the η-bundle's single assertion). Substantive baseline on `validate_surface_b_121222`: 2 enqueues + 2 WIPED terminals; PASS.
+
+**Workstream G primary objective remains OPEN.** Surface B closes the lifecycle gap but does NOT deliver the original §15-arc-predicted D-post-FoW-striker drop (20 → 5-10). The blocker is structural: the SM enters COLD_START aggressively post-wicket (5× `SM-INNINGS-2-RESET reason=wickets_regressed` per replay) which wipes the cascade before drain can resolve. Workstream H (cold-start re-entry frequency root cause + COLD-START-EXIT semantics redesign per `differential_testing_methodology_design.md` §14.5.2 + `_detect_innings_change` predicate tightening) is the next-session entry point per HANDOFF §17.4.
+
+## Architectural fence — post-§15 (2026-05-22 evening, still active)
+
+(The §15 fence below remains canonical for striker-write semantics. Workstream G extends it with the PendingCascade lifecycle in the preceding section; the §15 fence itself is unchanged.)
 
 **Three canonical write paths for `self.striker`** (§13 / §13.8 / §13.8.1 in the design memo):
 

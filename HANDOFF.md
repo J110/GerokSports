@@ -1,10 +1,10 @@
 # Handoff — Session continuation document
 
-**Last update**: 2026-05-22 evening (post §15 triple-subsystem rewrite arc closure at commit `1af2bd9`).
-**Branch**: `obs/silent-wicket-absorption` (carries §15 arc — 9 commits including this docs close-out). Operator suggested rename to `rewrite/wicket-striker-this_over-canonical` before merge to `derive-not-detect`.
-**Status**: §15 arc STRUCTURALLY COMPLETE at commit (8/N) `1af2bd9`. Three canonical write paths for `self.striker` established; canonical wicket dispatch; cascade scaffolding wired. Bowler-W-credit-failure 7→1 + F-A/F-B bonuses landed. Predicted C21b/Multi-ball-compression/D-post-FoW-striker drops did NOT materialize on the DCKKR dump — empirically falsified by commit (9/N) attempt; root cause is **Workstream G** (Scout-extraction-timing + cold-start-re-entry-frequency), not the subsystems themselves. Full retrospective + 4 new methodology insights in `files/docs/investigations/differential_testing_methodology_design.md` §17.
+**Last update**: 2026-05-23 (post Workstream G lifecycle closure at commit `50af67e` + step-8 re-validation).
+**Branch**: `obs/silent-wicket-absorption` (carries §15 arc + Workstream G chain — 17 commits). Operator suggested rename to `rewrite/wicket-striker-this_over-canonical` before merge to `derive-not-detect`.
+**Status**: **Workstream G lifecycle objective CLOSED** at commit `50af67e` (Surface B cold-start lifecycle closure; gate-5 lifecycle gap closed). All four audit §5 lifecycle predictions empirically verified on re-validation `validate_surface_b_121222`: 2 enqueues (F679 / F855) matched by 2 WIPED-BY-COLD-START terminals (F690 age=11 / F859 age=4); `trace_eta` orphan count 2 → 0. **Workstream G PRIMARY objective remains OPEN** per insight #18 scope-separation: D-post-FoW-striker remains at 20 because the SM enters COLD_START aggressively post-wicket (5× `SM-INNINGS-2-RESET reason=wickets_regressed` in the step-5/8 trace), wiping the cascade before drain can resolve. The original predicted-flip table requires Workstream H — cold-start re-entry frequency root cause per HANDOFF §17.3 Item 2.
 
-**Next session entry point: Workstream G investigation per §17.3** — Scout extraction timing at wicket-commit frames (cascade defer rate 100% in dump), cold-start re-entry frequency root cause (12 COLD-START-EXIT fires in dump → 6+ re-entries), COLD-START-EXIT semantics redesign per §14.5.2, then §14.5 step 11 retry. Also live-replay validation per §10.4 mandatory before claiming §15's predicted drops in production. Secondary: §11.3 surgical items 3-7 (Workstream F bowler misattribution, Per-batter-ledger conservation, Recent-Overs partial-render, phantom-runs root-localize) unchanged.
+**Next session entry point: Workstream H** — cold-start re-entry frequency root cause + COLD-START-EXIT semantics redesign per §14.5.2 + `_detect_innings_change` predicate tightening for `wickets_regressed` triggers inside a hot post-wicket window. Entry data + scope stub in §17.4 below. Secondary: §11.3 surgical items 3-7 (Workstream F bowler misattribution, Per-batter-ledger conservation, Recent-Overs partial-render, phantom-runs root-localize) unchanged.
 
 **Prior session context** (workstream D fix-chain, 2026-05-21): D1 (bowler em-dash sentinel) + D2-Layer-1a (broadcast-vs-deterministic dismissed-name) shipped as code; empirical validation gated on next DCKKR replay. See "## Session continuation — C26–C31" section below.
 
@@ -18,7 +18,114 @@ Entry point for next Cowork session. Read this file first, then `CLAUDE.md`, the
 - **`files/docs/investigations/surface_pair_defect_class_family.md`** (NEW C20: family-level instance catalogue, 9 placeholder rows from DCKKR replay, per-row populate deferred to C20b)
 - **`validate_dckkr_replay_observations.md`** (21-frame observation log — entry data for workstream D)
 
-## Session continuation — §15 triple-subsystem rewrite arc (2026-05-22 evening, this session)
+## Session continuation — Workstream G lifecycle closure (2026-05-22 → 2026-05-23)
+
+Workstream G chain closed at commit `50af67e` (Surface B cold-start lifecycle closure) + step-8 re-validation. 8-step arc spanning two days; 0/5 → 1/5 empirical-falsification budget consumed (preserved at 4/5 remaining). Lifecycle objective closed; primary objective (D-post-FoW-striker drop) deferred to Workstream H per insight #18 scope-separation.
+
+### Workstream G commit ledger (steps 1–8)
+
+| Step | Commit | Scope | Outcome |
+|---|---|---|---|
+| 1 | (docs) | Scout-extraction timing audit memo (`workstream_g_scout_extraction_timing.md`) — G1-G5 hypothesis enumeration; G2 broadcast-strip render lag surviving | F679→F708 (29 frames), F855→F892 (37 frames) static evidence; gates 1-5 falsified except G2 |
+| 2 | (docs) | Shape A §7.2 audit (`workstream_g_shape_a_pending_cascade_audit.md`) — green-light + Mitigation A (capture pre-fallback pair) | All 7 gates PASS-WITH-MITIGATION; FIFO queue bounded at 3; TTL=80; Q1-Q5 answered |
+| 3 | `f09fc38` | feat(workstream-g): Shape A pending-cascade scaffold + Mitigation A | `PendingCascade` dataclass + helper + 5 trace tags registered; L1.5 51 cases |
+| 4 | `2ea930f` + `d4dd8ee` | test(L1.5): G-1/G-2/G-3 + trace_eta_post_wicket_cascade_drains assertion + DCKKR/GTRR baselines | trace assertion library 8 → 9; PASS trivially on pre-Shape-A traces (0 enqueues) |
+| 5 | `5484cdb` | docs(workstream-g): step-5 validation addendum — Shape A drain falsified | Outcome 2; 0/5 → 1/5 empirical consumed; H-Vα + H-Vβ + H-Vδ co-survive; insight candidate #17 surfaced (gate-5 lifecycle empirical verification) |
+| 6 | `cc21d03` + `4f14dee` | docs(workstream-g): transition-site catalogue + Surface A vs B audit (deliverables A + B) | Catalogue: 4 WARM→COLD + 6 COLD→WARM sites; Surface A red-light (3 gate failures); Surface B green-light for lifecycle closure |
+| 7 | `50af67e` | feat(workstream-g): Surface B cold-start lifecycle closure (audit 4f14dee) | Helper `_wipe_pending_cascade_on_cold_entry`; W1-W4 wipe-emit sites; C1-C6 drain-trigger sites; L1.5 51 → 54 (G-4/G-5/G-6) |
+| 8 | (this) | docs(workstream-g): step-8 validation + lifecycle closure | All four audit §5 predictions LANDED on `validate_surface_b_121222`; trace_eta PASS; insight #17 + #18 retrospectives |
+
+### Step-8 re-validation evidence
+
+Re-validation replay `logs/trace/validate_surface_b_121222.jsonl` against the same captured-Scout dump as step 5 (`files/logs/deliveries/validate_dckkr_20260521_155356/scout_raw.jsonl`). Single independent variable: `f09fc38` → `50af67e` code delta. Predicted lifecycle outcomes per audit §5:
+
+```
+POST-WICKET-CASCADE-ENQUEUED × 2
+  F679 frame_set_at=679 reason=wicket_non_striker_stays dismissed=Nitish Rana    ✓
+  F855 frame_set_at=855 reason=wicket_new_batter        dismissed=Pathum Nissanka ✓
+
+POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START × 2
+  F690 site=set_innings_2:wickets_regressed age=11 dismissed=Nitish Rana       ✓
+  F859 site=set_innings_2:wickets_regressed age=4  dismissed=Pathum Nissanka   ✓
+
+POST-WICKET-CASCADE-DRAIN-FIRED × 0    ✓
+CASCADE-DRAIN-EXPIRED × 0              ✓
+
+trace_eta_post_wicket_cascade_drains: PASS (orphan count 2 → 0)    ✓
+```
+
+Gate-bundle delta vs step-5 baseline (`validate_shape_a_114349`): single load-bearing flip — `trace_eta` FAIL × 2 orphans → PASS. All other 8 assertions identical (no regression). Gate-4 equivalence proof empirically verified.
+
+**Insight #18 scope holds.** `STRIKER-EVENT-DISPATCHED` count unchanged at 19 (no new cascade-resolved rotations because wipes always fire before drain on this dump). D-post-FoW-striker surface count remains at 20. Workstream G primary objective remains open.
+
+### Trace assertion library — substantive trace_eta baseline
+
+Library count unchanged at 9. The `trace_eta_post_wicket_cascade_drains` row updates from "PASS trivially (pre-Shape-A; 0 enqueues)" to **substantive PASS × 2** on `validate_surface_b_121222`: 2 enqueues matched by 2 WIPED-BY-COLD-START terminals.
+
+### Architectural fence — post-Workstream-G
+
+The PendingCascade lifecycle now covers:
+
+| Reset path | Trace tag | Coverage |
+|---|---|---|
+| `__init__` (constructor) | (none — pre-session) | Default-init only |
+| `_clear_per_innings_sm_surface` direct call | `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` | f09fc38 path; observability via existing emit |
+| `set_innings_2` pre-`__init__` (W4) | `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` site=set_innings_2:<reason> | 50af67e PRE-__init__ ordering — load-bearing per insight #17 |
+| `force_cold_start_recalibration` (W3) | `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` site=force_cold_start_recalibration:<reason> | 50af67e |
+| `_handle_warm` overs-regress (W1) | `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` site=_handle_warm_overs_regress | 50af67e |
+| `_handle_warm` stale-reject (W2) | `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` site=_handle_warm_stale_reject | 50af67e |
+| COLD→WARM (C1-C6) | (drain attempt; emits `POST-WICKET-CASCADE-DRAIN-FIRED` only when slot-diff resolves) | 50af67e; defense-in-depth no-op on step-8 dump |
+| `apply_wicket_event` defer | `POST-WICKET-STRIKER-CASCADE-DEFERRED` + `POST-WICKET-CASCADE-ENQUEUED` | f09fc38 |
+| Drain success | `POST-WICKET-CASCADE-DRAIN-FIRED` | f09fc38 |
+| TTL expiry | `CASCADE-DRAIN-EXPIRED` | f09fc38 |
+
+Insight #17 protocol applied: every cold-entry reset path is now empirically verified to emit a structured tag with the queue state captured before any wipe. Silent `__init__` default-inits (the step-5 falsification root) are eliminated as the dominant W4 wipe path now runs pre-`__init__`.
+
+### Methodology track record — insights #17 and #18
+
+**Insight #17 retrospective.** *Audit gate-5 lifecycle enumeration must empirically verify each reset path's trace observability before declaring the lifecycle closed.* Surfaced in step 5 when a green-light audit (7/7 gates + Mitigation A) was overturned by empirical evidence — the gate-5 enumeration identified the correct number of reset paths but mis-attributed which path the cold-start re-entry actually uses. Static analysis from `_clear_per_innings_sm_surface` callers led to a wipe-site assumption (`full_reset`) that did not match the dominant production path (`set_innings_2` → `__init__` re-run, which bypasses `_clear_per_innings_sm_surface`). First instance in the discipline of a green-light audit overturned by empirical falsification; the methodology insight is itself the load-bearing artifact of the 1/5 budget consumed.
+
+**Insight #18 retrospective.** *A green-light audit can deliver lifecycle closure without delivering the original predicted-flip outcomes. Scope-separation discipline required.* Surfaced in step 6 audit §5 when Surface B was identified as gate-5-closing but predicted-flip-table-orthogonal. Empirically confirmed in step 8: `trace_eta` flips PASS as predicted; D-post-FoW-striker remains at 20 as predicted. The discipline now treats "lifecycle closure" and "primary-objective closure" as separable audit deliverables; surfaces declare scope explicitly; re-validation verifies only the scoped objective.
+
+Running total: **18 transferable methodology insights** across 5 sessions on `derive-not-detect` lineage.
+
+## §17.4 Workstream H entry data (next session)
+
+**Objective.** Localize the cold-start re-entry frequency root cause and propose a fix for the `_detect_innings_change` predicate's handling of `wickets_regressed` triggers during the post-wicket hot window.
+
+**Empirical anchor.** `logs/trace/validate_surface_b_121222.jsonl` shows 5× `SM-INNINGS-2-RESET reason=wickets_regressed` at frames F462, F690, F801, F859, F992 across a 749-frame replay. Each is triggered by `_detect_innings_change` at `score_manager.py:3578` (call site) / `:4307` (predicate body). The predicate is reading a wicket-counter regression as innings-2 transition; in the regime the catalogue documented, this is a Scout-misread artifact, not a legitimate innings boundary.
+
+**Reading list (sequence).**
+
+1. `files/docs/investigations/workstream_g_cold_start_transition_catalogue.md` §5 — Item 1 ↔ Item 2 ↔ Item 3 coupling analysis.
+2. `files/docs/investigations/workstream_g_shape_a_validation_addendum.md` §4 — recommended sequence for Workstream H.
+3. `files/docs/investigations/workstream_g_cold_drain_surface_audit.md` §4.1 — scope-separation rationale.
+4. `differential_testing_methodology_design.md` §14.5.2 — COLD-START-EXIT semantics redesign discussion.
+
+**Entry sites.**
+
+- `_detect_innings_change` predicate body at `files/score_manager.py:4307` — the `wickets_regressed` branch.
+- `set_innings_2` callers + their `reason` parameter at `:4427+` — five call sites in `_accept_update`, `_update_misc`, `_update_supplements`, `_handle_innings_change` per the docstring at `:4432-4441`.
+- Step-5 finding: cold-start re-entry violates the `§16.2` "once per pipeline boot" assumption (`differential_testing_methodology_design.md` §16.2). The assumption is documented as retired in §17.3 Item 2 and is the natural target for the COLD-START-EXIT tag bifurcation work.
+
+**Predicted-flip framing for Workstream H.** If the `_detect_innings_change` predicate is tightened to reject `wickets_regressed` triggers within an N-frame post-wicket hot window:
+
+- `SM-INNINGS-2-RESET reason=wickets_regressed` count: 5 → ≤2 (only legitimate innings transitions remain).
+- `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` count: 2 → 0 (cascade survives past F690 and F859).
+- Cascade drains on COLD→WARM at C5 (`COLD-START-FORCED-RECOVER`) instances OR via the existing warm-side drain hook if SM stays WARM long enough for bat slots to refresh.
+- `POST-WICKET-CASCADE-DRAIN-FIRED` count: 0 → ≥1 (provisional; depends on bat-slot resolution timing).
+- `D-post-FoW-striker` surface count: 20 → drops materially (target: per the original step-2 audit §5 prediction, 5–10).
+
+**Budget.** 4/5 empirical-falsification slots remaining. Workstream H's first empirical replay will consume 1/5 if the predicted predicate-tightening doesn't deliver the cold-start re-entry reduction. Conservative discipline: open Workstream H as static investigation first; do not commit empirical replay until a static-falsification chain converges on a candidate predicate change.
+
+**Do NOT in Workstream H:**
+
+- Reopen Surface A (red-lighted on gate 3 / gate 5 / gate 6 in step 6 audit).
+- Adjust TTL=80, Mitigation A capture site, or any audit-locked Shape A parameter.
+- Touch the W1-W4 wipe-emit sites or C1-C6 drain-trigger sites unless Workstream H's static analysis surfaces a defect in the catalogue's per-site classification.
+- Open the Workstream H investigation in this session — that's a fresh-session entry point. The close-out commit positions H without starting it.
+
+## Session continuation — §15 triple-subsystem rewrite arc (2026-05-22 evening, prior session)
 
 §15 arc structurally complete at commit (8/N) `1af2bd9`. Branch `obs/silent-wicket-absorption` carries 9 commits (8 §15 + this docs). Full retrospective in `files/docs/investigations/differential_testing_methodology_design.md` §17; summary below.
 
