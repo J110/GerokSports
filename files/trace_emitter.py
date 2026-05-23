@@ -224,6 +224,14 @@ KNOWN_TAGS: set[str] = {
     # parity with 98a53cc's playing-teams guard on the
     # batting_team_changed branch.
     "INN2-SCORE-RESET-TEAM-CHANGE-REQUIRED-REJECTED",
+    # 2026-05-23 — WS-H P1 parity guard on the wickets_regressed
+    # branch of `_detect_innings_change`. Mirrors the score_reset
+    # branch's rejection above. Fires when SM suppresses a wickets
+    # regression that isn't accompanied by a batting-team flip (OCR
+    # misread under sponsor / standings / skeleton overlays). Memo:
+    # files/docs/investigations/workstream_h_cold_start_reentry_
+    # root_cause.md §5.1.
+    "WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED",
     # 2026-05-19 — symmetric runs/balls bowler-credit backfill queue
     # in score_manager.py. Structural analog to the F381 wicket
     # backfill pair (WICKET-PENDING-BOWLER-ATTRIBUTION /

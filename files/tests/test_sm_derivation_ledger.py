@@ -447,7 +447,12 @@ def main(argv: list[str] | None = None) -> int:
     if wabo_rc != 0:
         return wabo_rc
     from test_pending_cascade_drain import run_all as _run_pcd_gate
-    return _run_pcd_gate()
+    pcd_rc = _run_pcd_gate()
+    if pcd_rc != 0:
+        return pcd_rc
+    from test_innings_change_wickets_regressed_guard import (
+        run_all as _run_wrg_gate)
+    return _run_wrg_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:

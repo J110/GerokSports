@@ -4453,8 +4453,36 @@ class ScoreManager:
         # catching real resets (e.g. 6→0 or 6→1 on new innings).
         if (w is not None and self.wickets is not None
                 and self.wickets >= 2 and w < self.wickets - 1):
-            changed = True
-            reason = reason or "wickets_regressed"
+            if _team_changed:
+                changed = True
+                reason = reason or "wickets_regressed"
+            else:
+                if _trace is not None:
+                    try:
+                        _trace.get_recorder().record(
+                            tag=("WICKETS-REGRESS-TEAM-CHANGE-"
+                                 "REQUIRED-REJECTED"),
+                            prev_score=(int(self.score)
+                                        if self.score is not None
+                                        else None),
+                            prev_wickets=int(self.wickets),
+                            cand_score=(int(s)
+                                        if s is not None else None),
+                            cand_wickets=int(w),
+                            prev_team=self.batting_team,
+                            cand_team=frame.broadcast_team,
+                            frame_id=getattr(
+                                frame, "frame_id", None))
+                    except Exception:
+                        pass
+                log.info(
+                    f"  [WICKETS-REGRESS-TEAM-CHANGE-"
+                    f"REQUIRED-REJECTED] prev={self.score}/"
+                    f"{self.wickets} prev_team={self.batting_team} "
+                    f"cand={s}/{w} cand_team="
+                    f"{frame.broadcast_team!r} — wickets "
+                    f"regression without team change is OCR "
+                    f"misread, not innings transition")
 
         if not changed:
             return False

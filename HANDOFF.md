@@ -38,7 +38,9 @@ Workstream G chain closed at commit `50af67e` (Surface B cold-start lifecycle cl
 | 8 | `324e788` | docs(workstream-g): step-8 validation + lifecycle closure | All four audit §5 predictions LANDED on `validate_surface_b_121222`; trace_eta PASS; insight #17 + #18 retrospectives |
 | pre-merge | `29b239c` | chore(gitignore): expand to cover env noise pre-merge | Env-noise patterns added (worktrees/wrangler/_tmp/trace/machine logs/etc); real-WIP set preserved as untracked |
 | merge | `5206885` | merge: rewrite/wicket-striker-this_over-canonical → derive-not-detect | --no-ff merge bringing 19 commits onto `derive-not-detect`; L1.5 54/54 + L2 30/30 + 9 trace assertions (trace_eta PASS); §15 fence verified canonical-only |
-| post-merge docs | (this) | docs(post-merge): HANDOFF + Architecture_HANDOFF status update | Header + ledger reflect merged state; §15 fence None-write count corrected 8→7 (descriptive shorthand was off-by-one; structural invariant holds) |
+| post-merge docs | `22877c5` | docs(post-merge): HANDOFF + Architecture_HANDOFF status update | Header + ledger reflect merged state; §15 fence None-write count corrected 8→7 (descriptive shorthand was off-by-one; structural invariant holds) |
+| WS-H step 1 | `9b2afc5` | docs(workstream-h): step-1 investigation memo — 4 hypotheses + S13/S14/S15 sub-findings | Static-falsification chain converges on P1 team-change-corroboration parity for `_detect_innings_change` wickets_regressed branch; empirical budget 4/5 unchanged |
+| WS-H step 2 | (this) | feat(workstream-h): P1 — team-change-corroboration guard on _detect_innings_change wickets_regressed branch | Mirrors 2026-05-19 score_reset_from_progress hardening at `:4423`; new tag `WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED`; L1.5 54 → 60 cases (6 new in `test_innings_change_wickets_regressed_guard.py`); empirical budget 4/5 unchanged |
 
 ### Step-8 re-validation evidence
 
