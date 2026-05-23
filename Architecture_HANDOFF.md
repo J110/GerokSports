@@ -1,8 +1,10 @@
 # Handoff — derive-not-detect branch (Architecture)
 
-**Last update.** 2026-05-23 (post-Workstream-G lifecycle closure at commit `50af67e` + step-8 re-validation docs commit).
-**Branch.** `obs/silent-wicket-absorption` (carries §15 arc + Workstream G chain — 17 commits including step-8 close-out). Operator suggested rename to `rewrite/wicket-striker-this_over-canonical` before merge to `derive-not-detect`.
-**Session ledger.** 50 cumulative commits across five consecutive sessions on the derive-not-detect lineage (16 B-η + 8 C19-C24 + 8 C26-C31 + C32 docs + 9 §15 arc + 8 Workstream G). Layer 1.5 (36 ledger balls + 6 cross-field pairing + 3 D1 bowler-dispatch + 3 D2 WICKET-ATTRIB + 6 pending-cascade = 54 cases) + Layer 2 (30 balls) held on every commit. Derivation unit tests at 48/48. **Workstream G arc consumed 1/5 of the empirical-falsification budget** (4/5 remaining); the consumption produced insight #17 + #18 retrospectives plus the Surface B lifecycle closure rather than a wasted iteration.
+**Last update.** 2026-05-23 (post-merge — §15 arc + Workstream G arc merged to `derive-not-detect` at `5206885`).
+**Branch.** `derive-not-detect` (current HEAD post-merge). Feature branch `rewrite/wicket-striker-this_over-canonical` deleted local + remote.
+**Session ledger.** **52 cumulative commits** across five consecutive sessions on `derive-not-detect` lineage: 16 B-η + 8 C19-C24 + 8 C26-C31 + C32 docs + 10 §15 arc (9 feat + 1 docs) + 8 Workstream G + 1 pre-merge gitignore + 1 merge commit. Layer 1.5 (36 ledger balls + 6 cross-field pairing + 3 D1 bowler-dispatch + 3 D2 WICKET-ATTRIB + 6 pending-cascade = 54 cases) + Layer 2 (30 balls) held on every commit. Derivation unit tests at 48/48. **Workstream G arc consumed 1/5 of the empirical-falsification budget** (4/5 remaining); the consumption produced insight #17 + #18 retrospectives plus the Surface B lifecycle closure rather than a wasted iteration.
+
+**§15 fence count correction.** The post-merge `grep -c 'self.striker = None' files/score_manager.py` returns **7**, not the "8 invalidation-only writes" referenced in the original §15 fence documentation below. The discrepancy is descriptive shorthand; the structural fence invariant ("no non-canonical name writes") holds — non-None writes occur exclusively in the three canonical methods (`apply_striker_event:945`, `apply_striker_identity_resolved:980`, `apply_striker_identity_proposed:1211/1213`). Future docs should cite the structural invariant rather than the count.
 
 ## Architectural fence — post-Workstream-G (2026-05-23)
 
