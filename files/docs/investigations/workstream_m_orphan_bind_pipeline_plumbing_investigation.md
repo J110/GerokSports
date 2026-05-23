@@ -398,3 +398,125 @@ Methodology insights running total: 24 (S26-v2 promotion authorized
 at WS-M step-3; S28 already promoted at WS-L step-3).
 Memo: files/docs/investigations/workstream_m_orphan_bind_pipeline_plumbing_investigation.md (14 sections, ~550 lines).
 ```
+
+---
+
+## §15 Step-3 empirical replay outcome — mechanism-confirmation FAIL via SM-only replay inadequacy
+
+**Trace path.** `logs/trace/validate_ws_m_step3_20260523_221808.jsonl` — 618 records. Anchor fixture: `validate_dckkr_20260521_070545` (12-run anchor).
+
+**Replay invocation.** `files/scripts/replay_captured_scout_trace.py --dump files/logs/deliveries/validate_dckkr_20260521_070545/scout_raw.jsonl --session-id validate_ws_m_step3_20260523_221808 --fixture dckkr`. Runtime ~3 seconds (SM-only path).
+
+**Gate table — locked predictions vs actual:**
+
+| Metric | Locked prediction | Actual outcome | Status |
+|---|---|---|---|
+| `PENDING-BALL-ORPHAN-FALLBACK-ENQUEUED` count | ≥22 | **0** | **MECHANISM-CONFIRMATION FAIL** |
+| `PENDING-BALL-SLOT-BOUND-ORPHAN` count | 0 | 0 | (preserved at 0 — no orphan path entered in replay) |
+| `PENDING-BALL-ENQUEUED` count | ≥22 | 3 | (replay enqueues differently from production) |
+| `PENDING-BALL-SLOT-BOUND` count | ≥22 | 0 | (binding path not exercised) |
+| `PENDING-BALL-DRAINED` count | ≥22 | 1 | (drain partially exercised) |
+| `trace_alpha_batter_runs_sum` on anchor | PASS / partial | PASS via Shape B SKIP (no ui_after) | Non-discriminative |
+| `trace_alpha_bowler_runs_sum` | UNCHANGED | PASS | Regression-guard PASS |
+| `trace_gamma_w_symbol_at_wicket` | UNCHANGED | PASS | Regression-guard PASS |
+| `trace_gamma_fow_name_matches_striker_at_wicket` | UNCHANGED | FAIL F798 (pre-existing residual) | Pre-existing per WS-H step-5c left-over true-mismatch class; NOT new |
+| `trace_gamma_bowler_w_increment_on_dispatch` | PASS | PASS | Regression-guard PASS |
+| `trace_eta_post_wicket_cascade_drains` | PASS | PASS | Regression-guard PASS |
+
+**Mechanism-confirmation FAIL root cause attribution.** `replay_captured_scout_trace.py` is an **SM-only replay** per its docstring: "the cascade exercised here is the SM-only subset." Without test_pipeline.py's full pipeline (which wires over_mgr via `attach_score_manager`), the over_mgr ABSORBED_LEGAL handler at `eyes/this_over.py:665-683` never calls `bind_pending_slot` → no orphan events fire → Shape 2 fallback path never activates. Additionally: replay-class traces lack `ui_after` population (per WS-I cross-fixture survey: `replay_*` traces show 0% `ui_after`), so `trace_alpha_batter_runs_sum` triggers Shape B precondition SKIP rather than discriminating sum-vs-expected.
+
+**This is a methodology finding, NOT a Shape 2 falsification.** Shape 2's logic is correct per the 5 L1.5 unit cases (M-1 through M-5 PASS). The SM-only replay tool is structurally unable to test cross-module wiring fixes (over_mgr ↔ score_manager). Per the decision tree's letter, mechanism-confirmation FAIL = 1/5 budget consumed regardless of root cause.
+
+**Empirical-budget status post-step-3.** **2/5 → 1/5.** Methodology cap proximity flagged.
+
+## §16 WS-M arc closure declaration
+
+**WS-M arc statistics.**
+- 4 steps (step-1 investigation + step-1b sub-investigation + step-2 patch + step-3 empirical + step-4 close-out).
+- 4 commits (`579b3d6` step-1 + `c46fcb0` step-1b + `d2f0759` step-2 + this step-4) + 1 empirical replay session (no commit).
+- 1 patch (Shape 2 at `d2f0759`).
+- 1/5 empirical-budget consumed (step-3 mechanism-confirmation FAIL via replay-tool inadequacy).
+- 5 new L1.5 cases (M-1 through M-5 in `test_orphan_fallback_bind.py`); L1.5 family 75 → 80.
+
+**Shape 2 patch status.** **STAYS LANDED at `d2f0759`.** No revert. Justification:
+- 5/5 L1.5 unit cases PASS (correctness verified at unit level).
+- No regression on existing assertions (γ-bundle / η-cascade PASS).
+- The empirical-replay-tool inadequacy is a replay-side finding, not a Shape 2 logic finding.
+- Strict-extension semantics: Shape 2 only fires when `self.striker` is non-None (previously-orphan path); when striker is None, existing `PENDING-BALL-SLOT-BOUND-ORPHAN` emission preserved. Zero behavior change for non-striker-available cases.
+
+**Sub-cohort A disposition.** **Predicted-closure-pending-production-verification.** 18-run total cohort (validate_dckkr_20260521_070545 12 + validate_dckkr_20260521_155356 3 + validate_dckkr_20260522_063211 3) projected UNIFIED-3 closure via Shape 2's consumer-side fallback bind. Production confirmation requires either (a) natural production session traces exercising the over_mgr-wired path + `trace_alpha_batter_runs_sum` re-run against new traces (budget-neutral) OR (b) targeted full-pipeline replay against test_pipeline.py (1/5 additional budget, methodology cap proximity).
+
+**Sub-cohort B disposition.** **Phase 4 catalogue item — natural-cohort-growth-triggered future investigation.** 1-run gap on `validate_20260513_194442`. Non-orphan-bind class (zero PendingBall activity per step-1b §11). Defer until cohort grows.
+
+**No HB pipeline-side gate authorized at step-4.** Sub-cohort A's production verification path is sufficient. HB pivot only triggers if natural session traces show Sub-cohort A FAILing post-Shape-2 (would indicate Shape 2 mechanism inadequate even when exercised in production).
+
+## §17 S26-v2 promotion — two-instance threshold met
+
+**S26-v2 — Pre-step-N verification-1 spot-check of step-(N-1) UNVERIFIED markers** (PROMOTED candidate → numbered insight; two-instance evidence threshold met).
+
+**Canonical statement.** *"Operational corollary v2 to S26: before opening step-N, spot-check step-(N-1)'s UNVERIFIED markers via 2-3 targeted code reads + trace inspection. Deviation discovery at this stage costs ~1-3 tool calls; deviation discovery at step-N verification-1 costs ~10+ tool calls + memo writing + STOP. ~10× cost reduction demonstrated."*
+
+**Two-instance evidence at promotion.**
+1. **WS-L step-1b (`394ed58`).** Step-2 verification-1 caught §3 deviation (COLD_START_SYNTH already covered + compound-token subsumed + ABSORBED_LEGAL forwarder elsewhere) at half-commit-cycle cost (~10 tool calls + STOP + step-1b refinement memo).
+2. **WS-M step-1b (`c46fcb0`).** Pre-step-2 spot-check surfaced cohort SPLIT 3+1 (3 dckkr fixtures queue-empty + 1 small-fixture non-orphan-bind) at single-tool-call cost.
+
+**Cost reduction demonstrated.** ~10× (1-call vs 10-call). Promotes to numbered insight at this step-4 close-out.
+
+**Cross-references.**
+- S22 (workstream-scope static-investigation-first protocol) — workstream-opening boundary discipline.
+- S26 (intra-workstream per-layer compounding) — original layer-cost-optimization insight.
+- S26-v2 (this) — step-opening boundary cost-optimization refinement at intra-workstream scope.
+- S28 (workstream-opening pre-screen fix-surface-category) — peer at workstream-opening boundary.
+
+**S22 + S26 + S26-v2 + S28 jointly form the standing static-investigation cost-optimization framework.**
+
+## §18 Candidate methodology insight (S29 candidate or unnumbered — defer naming) — replay-tool-fitness pre-screen
+
+**Statement (CANDIDATE — single-instance evidence at WS-M step-3; NOT yet promoted).** *"Validate replay-tool fitness for the hypothesis fix-surface category BEFORE authorizing empirical replay budget consumption. Cross-module wiring fixes (like over_mgr ↔ score_manager bind_pending_slot path) cannot be validated via SM-only replay tooling. Pre-screen at step-2 verification: confirm replay scope covers the fix surface's module-interaction graph. Available replay tools should be classified by module-coverage capability; the hypothesis's fix surface should be classified by module-interaction requirements; mismatch BEFORE replay launch saves 1/5 budget."*
+
+**First-instance footprint.** WS-M step-3 mechanism-confirmation FAIL on SM-only replay vs over_mgr-wired Shape 2 fix surface. The replay tool's documented limitation ("the cascade exercised here is the SM-only subset") was visible at script docstring inspection time but not classified as a fitness-blocker until empirical attempt revealed mechanism tags = 0.
+
+**Operational corollary.** At any step-3 (or empirical-replay-authorization) decision:
+1. Classify fix surface's module-interaction graph (single-module / cross-module / cross-component / cross-process).
+2. Classify available replay tools' module-coverage capability.
+3. If mismatch: STOP; defer empirical to natural session OR escalate to higher-coverage replay tool (with its own budget cost).
+4. Only if match: authorize empirical-replay budget consumption.
+
+**Promotion threshold.** Single-instance — defer to candidate status pending second-instance evidence. If a future workstream's empirical-replay attempt surfaces the same module-coverage mismatch, promote at that step's close-out.
+
+**Naming.** Defer to next close-out cycle (S29 candidate suggested but final numbering TBD pending observation of additional candidates surfacing).
+
+**Cross-reference.** S26-v2 (per-step UNVERIFIED-marker spot-check) catches deviation at static-investigation boundaries; this candidate catches inadequate empirical-validation tooling at the empirical-replay boundary. Both are cost-optimization refinements at different methodology layers.
+
+## §19 Phase 4 catalogue entries + Phase 1 → Phase 4 transition framing
+
+### Phase 4 catalogue entries from WS-M arc
+
+**(a) Sub-cohort A production-confirmation-pending.** 18-run total cohort (validate_dckkr_20260521_070545 12 + validate_dckkr_20260521_155356 3 + validate_dckkr_20260522_063211 3). Predicted closure via Shape 2 `d2f0759` consumer-side fallback bind. Re-run `trace_alpha_batter_runs_sum` against natural production session traces budget-neutrally to confirm closure. If natural session traces FAIL Sub-cohort A predicted closure → HB pipeline-side gate authorized as Phase 1 follow-on (requires budget recovery to ≥2/5).
+
+**(b) Sub-cohort B 1-run residual.** `validate_20260513_194442` 1-run gap. Non-orphan-bind class (zero PendingBall activity). Defer to natural-cohort-growth-triggered future investigation; current single-fixture-anchor insufficient for productive root-cause analysis.
+
+**(c) Sub-mechanism (b) all-bound + (c) queue-overflow remain uncovered.** Step-1b §11 confirmed both sub-mechanisms FALSIFIED on current cohort. If natural production sessions surface either sub-mechanism, re-open WS-M-extension investigation.
+
+### Phase 1 → Phase 4 transition framing
+
+**Phase 1 second-pillar productive-work chain.** WS-Per-Batter-Ledger (`eceac23` → `110026d` → `d0e72b3`) → WS-L (`579b3d6` → `110026d` ref → `394ed58` → `70eb977`) → WS-M (`579b3d6` ref → `c46fcb0` → `d2f0759` → this step-4) — **COMPLETE.** 11 commits across the chain (8 docs + 2 patches + 1 empirical). 1/5 empirical-budget consumed across the chain. 4 cohort discriminators shipped + 2 production patches landed.
+
+**Cheap-wins phase has narrowed to its structural floor.** Remaining Phase 1 admissible work is **assertion-side WS-I-pattern reuse only** (per S28 pre-screen categories). Pipeline-plumbing arcs (WS-D Layer 1a, WS-F bowler-misattribution) and external-corroboration architectural pivots (KF Cricbuzz-corroboration) are **unaffordable at 1/5 budget**.
+
+**Production-session-driven validation mode.** With budget at methodology cap proximity, the validation discipline shifts from "step-3 empirical replay verifies predicted-flip" to "natural production sessions accumulate traces; shipped assertions re-run against new traces budget-neutrally." Verification deferred to organic production captures.
+
+**Budget recovery path.** Empirical-budget can recover via successive workstreams that consume 0/5 (pure static investigation OR assertion-side closure OR docs-class cleanup). Discipline-cap reset at session-end OR at explicit re-scoping decision.
+
+## §20 Status footer (step-4 arc closure)
+
+**WS-M arc.** **CLOSED.** Shape 2 patch (`d2f0759`) STAYS LANDED. Production confirmation deferred to natural session. Sub-cohort A predicted closure pending. Sub-cohort B Phase 4 catalogue. No HB pipeline-side gate authorized.
+
+**Sub-findings landed.** S26-v2 PROMOTED to numbered insight (two-instance evidence). Replay-tool-fitness candidate (defer naming) surfaces with first-instance footprint. Total methodology insights: 24 → 25 (S26-v2 promoted).
+
+**Empirical-budget status.** **1/5 — methodology cap proximity.** Any further empirical-replay-consuming workstream requires explicit re-scoping. Production-session-driven validation mode is the standing discipline.
+
+**Phase 1 second-pillar productive-work chain.** COMPLETE. Phase 1 → Phase 4 transition framing canonicalized at HANDOFF.
+
+**Arc retired.**
+
