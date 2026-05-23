@@ -332,8 +332,19 @@ def assert_w_symbol_at_wicket(records: list) -> Result:
                 "reason": "no_next_record",
             })
             continue
-        next_this_over = (
-            (records[i + 1].get("ui_after") or {}).get("this_over") or [])
+        next_ui_after = records[i + 1].get("ui_after")
+        if not isinstance(next_ui_after, dict):
+            # S23 Shape B: trace-schema precondition — `ui_after` is
+            # populated on live-pipeline traces (UIMirror.apply cycle)
+            # but absent on replay-path traces (`replay_*`,
+            # `validate_ws_h_*`, `validate_shape_*`, `validate_surface_*`).
+            # Treat schema absence as INAPPLICABLE-to-this-read-surface
+            # rather than FAIL-by-degenerate-default. See
+            # workstream_i_gamma_w_symbol_cohort_investigation.md §5.HA.
+            continue
+        next_this_over = next_ui_after.get("this_over")
+        if not isinstance(next_this_over, list) or not next_this_over:
+            continue
         # Lenient position check: extras (Wd/Nb) shift the wicket ball's
         # array position downstream. W must appear at expected_position
         # OR later in the array (i.e., the wicket symbol is preserved

@@ -457,7 +457,12 @@ def main(argv: list[str] | None = None) -> int:
         return wrg_rc
     from test_gamma_fow_name_canonical_degradation import (
         run_all as _run_gfg_gate)
-    return _run_gfg_gate()
+    gfg_rc = _run_gfg_gate()
+    if gfg_rc != 0:
+        return gfg_rc
+    from test_gamma_w_symbol_schema_precondition import (
+        run_all as _run_gws_gate)
+    return _run_gws_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:
