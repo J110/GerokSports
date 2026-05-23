@@ -467,7 +467,12 @@ def main(argv: list[str] | None = None) -> int:
         return gws_rc
     from test_alpha_batter_runs_sum import (
         run_all as _run_abr_gate)
-    return _run_abr_gate()
+    abr_rc = _run_abr_gate()
+    if abr_rc != 0:
+        return abr_rc
+    from test_orphan_fallback_bind import (
+        run_all as _run_ofb_gate)
+    return _run_ofb_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:

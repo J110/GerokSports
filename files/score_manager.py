@@ -1443,8 +1443,18 @@ class ScoreManager:
         test_pipeline.py) enqueues N PendingBalls, then over_mgr fields
         N ABSORBED_LEGAL events and binds each in order.
 
-        Returns True on successful bind, False if no unbound entry exists
-        (orphan — likely a "?" emitted without prior SM enqueue).
+        WS-M Shape 2 (`c46fcb0` step-1b → step-2): on no-match orphan path,
+        lazily enqueue a fallback PendingBall using the current striker
+        pointer as attribution before falling back to the existing
+        `PENDING-BALL-SLOT-BOUND-ORPHAN` emission. Closes producer-consumer
+        rate-mismatch class where over_mgr emits more ABSORBED_LEGAL events
+        than `_decompose_multi_ball` / BED enqueues PendingBalls. The
+        fallback preserves the existing orphan emission when no current
+        striker is available (fallback-fail signal).
+
+        Returns True on successful bind (including fallback-bind),
+        False only when no unbound entry exists AND no current striker is
+        available for fallback (existing orphan path preserved).
         """
         for entry in self._pending_ball_queue:
             if not entry.committed and entry.slot_idx is None:
@@ -1455,6 +1465,22 @@ class ScoreManager:
                     frame_id=entry.frame_id,
                 )
                 return True
+        if self.striker:
+            fallback = PendingBall(
+                frame_id=self._current_frame,
+                runs_delta=0,
+                slot_idx=slot_idx,
+                striker=self.striker,
+            )
+            self._pending_ball_queue.append(fallback)
+            self._emit_pending_trace(
+                "PENDING-BALL-ORPHAN-FALLBACK-ENQUEUED",
+                slot_idx=slot_idx,
+                frame_id=self._current_frame,
+                striker=self.striker,
+                queue_depth_pre_enqueue=len(self._pending_ball_queue) - 1,
+            )
+            return True
         self._emit_pending_trace(
             "PENDING-BALL-SLOT-BOUND-ORPHAN",
             slot_idx=slot_idx,

@@ -74,6 +74,16 @@ KNOWN_TAGS: set[str] = {
     "PENDING-BALL-QUEUE-OVERFLOW",
     "PENDING-BALL-SLOT-BOUND",
     "PENDING-BALL-SLOT-BOUND-ORPHAN",
+    # WS-M Shape 2 (2026-05-23, step-1b → step-2) — consumer-side fallback
+    # bind at score_manager.py:bind_pending_slot. Fires when over_mgr emits
+    # ABSORBED_LEGAL with no PendingBall in queue AND current striker
+    # pointer is available. Lazily enqueues fallback PendingBall with
+    # current-striker attribution + slot_idx; PENDING-BALL-SLOT-BOUND-ORPHAN
+    # preserved as fallback-fail signal (fires only when no current striker
+    # available for fallback). Cohort: Sub-cohort A 3 dckkr fixtures
+    # (validate_dckkr_20260521_070545 + ..._155356 + ..._063211); 22+6+6
+    # orphan events per fixture per WS-M step-1b §11.
+    "PENDING-BALL-ORPHAN-FALLBACK-ENQUEUED",
     "WICKET-PENDING-BOWLER-ATTRIBUTION",
     "WICKET-BACKFILLED-TO-BOWLER",
     "WICKET-ATTRIBUTION-ORPHANED",
