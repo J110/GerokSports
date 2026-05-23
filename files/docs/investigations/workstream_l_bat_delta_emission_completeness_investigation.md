@@ -424,3 +424,53 @@ S28 promotion pending step-3).
 Memo: files/docs/investigations/workstream_l_bat_delta_emission_completeness_investigation.md (14 sections, ~580 lines).
 ```
 
+---
+
+## §15 Step-3 outcome — WS-L primary CLOSED + WS-M opener
+
+**WS-L primary objective:** ship a cohort discriminator for per-batter-ledger conservation gaps + localize the downstream fix surface. **CLOSED at step-2 (`110026d`) + step-1b (`394ed58`).**
+
+- Step-2: `trace_alpha_batter_runs_sum` assertion shipped + Shape B schema precondition + coverage floor + 5 L1.5 cases + gate-7 cross-fixture re-count (LIVE PASS×4 + LIVE FAIL×4 + REPLAY SKIP×49).
+- Step-1b: §3 writer-path enumeration corrected via code-reading; leading candidate REVISED to LD-orphan; downstream fix surface localized to `eyes.over_mgr.ABSORBED_LEGAL_handler` + PendingBall queue drain logic; Fork B retirement recommended.
+- Step-3 (this): Fork B retirement formalized; WS-M opens as Phase 1 follow-on with inherited cohort + pre-localized fix surface.
+
+**Arc statistics.** 4 commits (`579b3d6` + `110026d` + `394ed58` + this) + companion WS-M step-1 opener in same session. 0/5 empirical-budget consumed. L1.5 70 → 75 cases. 4 LIVE-FAIL cohort surfaced for WS-M (gaps: 12 + 3 + 3 + 1 runs). 1 promoted methodology insight (S28) + 1 candidate (S26-v2) surfaced during arc.
+
+## §16 S28 promotion — pre-screen fix-surface-category before opening Phase 1 step-1 memos
+
+**S28 — Pre-screen fix-surface-category before opening Phase 1 step-1 memos** (PROMOTED candidate → numbered insight; two-instance evidence threshold met).
+
+**Statement.** Before opening a step-1 investigation memo for a Phase 1 second-pillar candidate, run a pre-screen audit classifying the candidate's likely fix-surface category. Categories admitting Phase 1 scope: pipeline-direct / assertion-side / pipeline-plumbing-required. Categories NOT admitting Phase 1 scope: Scout-source / external-signal / UI-render. RED-category candidates defer immediately without full step-1 cycle; GREEN-category candidates proceed to step-1 with explicit fix-surface attribution locked at gate-2.
+
+**Two-instance evidence at promotion.**
+1. **WS-Per-Batter-Ledger step-1 (`eceac23`).** Pre-screen GREEN-ASSERTION-SIDE → cohort discriminator shipped at step-2 (`110026d`) + 4 LIVE-FAIL surface. First instance of pre-screen-cleared-step-1-delivering-productive-code after three consecutive deferrals (C29b → Surface E+WS-K → Recent-Overs).
+2. **WS-L step-1 (`579b3d6`).** Pre-screen GREEN-ASSERTION-SIDE-INSTRUMENTATION → static analysis converged on LA + UNIFIED-4 closure projection. Second-instance confirmation (even though step-1b refined the leading candidate, the pre-screen verdict — WS-L is Phase 1 admissible as assertion-side — was correct; patch shipped at step-2 + delivered cohort discrimination as projected).
+
+**Operational corollary (load-bearing for next workstreams).** Where pre-screen RED, defer immediately without full step-1 cycle. Where pre-screen GREEN, proceed to step-1 with explicit fix-surface attribution. Where pre-screen AMBIGUOUS (rare; defect manifests at multiple layers), run targeted pre-screen-2 reading the suspect writer sites BEFORE authorizing step-1.
+
+**Cost-benefit demonstrated.** Without pre-screen: 3 consecutive Phase 1 second-pillar candidates terminated at deferral. With pre-screen: 2 consecutive Phase 1 second-pillar candidates shipped productive code. Pre-screen prevented 3-4 deferral cycles' worth of static-investigation waste.
+
+**Cross-references.** S22 (workstream-scope static-investigation-first) + S26 (intra-workstream layer compounding) + S26-v2 candidate (pre-step-N spot-check) + S21 + S23 two-shape assertion-side family. S28 is the planning-level peer to S22; the pre-screen runs at the workstream-opening boundary.
+
+## §17 Candidate S26-v2 first-instance footprint
+
+**Candidate S26-v2 — Pre-step-N verification-1 should spot-check step-(N-1) UNVERIFIED markers via targeted code reads BEFORE proceeding with memo writing + verification commitment** (single-instance evidence at WS-L step-2 deviation; NOT yet promoted).
+
+**Cost demonstration.** WS-L step-1 §3 marked the 3 candidate writer paths as UNVERIFIED. Step-2 instructions implicitly trusted §3 enumeration. Code-reading at step-2 verification-1 surfaced the deviation. Cost: ~10 tool calls + STOP. Had pre-step-2 audit (5 tool calls reading writer paths inline) caught the deviation earlier, step-2 would have pivoted to step-1b refinement directly.
+
+**Awaits second-instance for promotion.** Any future workstream where step-N verification surfaces deviation from step-(N-1) UNVERIFIED markers triggers second-instance. Suggested canonical statement: *"Operational corollary v2 to S26: before opening step-N, spot-check step-(N-1)'s UNVERIFIED markers via 2-3 targeted code reads. Deviation discovery at this stage costs ~5 tool calls; deviation discovery at step-N verification-1 costs ~10+ tool calls + memo writing + STOP."*
+
+**Cross-references.** S26 (intra-workstream per-layer compounding) — S26-v2 is the cost-optimization refinement. S28 (workstream-opening pre-screen) + S26-v2 (step-opening spot-check) jointly form the methodology cost-optimization layer.
+
+## §18 Status footer (step-3 retirement)
+
+**WS-L assertion-side primary objective.** **CLOSED at step-2 + step-1b.** `trace_alpha_batter_runs_sum` permanent regression detector landed; cohort discriminator validated; downstream fix surface localized.
+
+**WS-M handoff.** Companion commit this session opens WS-M step-1 investigation memo. Empirical anchor: 4 LIVE-FAIL cohort + PendingBall orphan-bind localization. Pre-screen verdict: pipeline-plumbing-required per S28; 1-2/5 budget cost expected at WS-M step-3 empirical validation.
+
+**Methodology insights running total: 23 → 24 (S28 promoted).** S26-v2 candidate surfaces with first-instance footprint at WS-L step-1b; awaits second-instance. S27 + S25 candidates unchanged.
+
+**Empirical-budget status.** **2/5 — UNCHANGED across entire WS-L arc + step-3 close-out.**
+
+**Arc retired. WS-M opens in companion commit this session.**
+
