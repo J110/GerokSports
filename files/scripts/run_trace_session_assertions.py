@@ -105,6 +105,34 @@ SESSION_CONTEXT: dict[str, dict] = {
         "expected_initial_striker": "Pathum Nissanka",
         "max_acceptable_extras": None,
     },
+    "validate_ws_h_step3_20260523_164642": {
+        # Workstream H step-3 P1 empirical validation replay against
+        # the same captured-Scout dump as WS-G steps 5/8
+        # (files/logs/deliveries/validate_dckkr_20260521_155356/
+        # scout_raw.jsonl). Single independent variable: P1 patch
+        # ef0860d (team-change-corroboration guard on the
+        # wickets_regressed branch of _detect_innings_change).
+        # WS-H primary objective CLOSED on this trace:
+        #   SM-INNINGS-2-RESET reason=wickets_regressed:  5  → 1 (F939 only;
+        #                                                        inherited
+        #                                                        sibling-asymmetry
+        #                                                        per S16)
+        #   WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED: 0 → 19 structured
+        #   POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START: 2 → 0
+        #   POST-WICKET-CASCADE-DRAIN-FIRED:               0 → 2 (F680, F858)
+        #   D-post-FoW-striker surface count:             20 → 2
+        #   trace_gamma_bowler_w_increment_on_dispatch:   FAIL×4 → PASS
+        #                                                 (composite-fix per S18)
+        #   trace_gamma_fow_name_matches_striker_at_wicket: PASS → FAIL × 1
+        #                                                 (F679; per S17)
+        #   trace_eta_post_wicket_cascade_drains:         PASS × 2 (terminal
+        #                                                 distribution shifted
+        #                                                 WIPED → FIRED)
+        # See files/docs/investigations/workstream_h_cold_start_
+        # reentry_root_cause.md §8-§11.
+        "expected_initial_striker": "Pathum Nissanka",
+        "max_acceptable_extras": None,
+    },
     "validate_dckkr_20260521_155356": {
         # C14 Shape B validation-gate replay (DCKKR 09:30 through
         # ov 11.5). 4 wicket events. C24 wicket-correctness γ-bundle

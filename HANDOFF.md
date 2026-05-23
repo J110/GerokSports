@@ -1,12 +1,12 @@
 # Handoff — Session continuation document
 
-**Last update**: 2026-05-23 (post-merge — §15 arc + Workstream G arc merged to `derive-not-detect` at `5206885`).
-**Branch**: `derive-not-detect` (current HEAD post-merge). Feature branch `rewrite/wicket-striker-this_over-canonical` deleted local + remote.
-**Status**: **§15 arc + Workstream G arc MERGED** at `5206885`. Merge brings 19 commits onto `derive-not-detect`: 10 §15-arc commits + 8 Workstream G commits + 1 pre-merge gitignore cleanup. **Workstream G lifecycle objective CLOSED** at `50af67e` (Surface B; gate-5 lifecycle gap closed); all four audit §5 lifecycle predictions empirically verified on re-validation `validate_surface_b_121222` — 2 enqueues (F679/F855) matched by 2 WIPED-BY-COLD-START terminals (F690 age=11, F859 age=4); `trace_eta` orphan count 2 → 0. **Workstream G PRIMARY objective remains OPEN** per insight #18 scope-separation: D-post-FoW-striker remains at 20; cascade is wiped before drain can resolve because SM enters COLD_START aggressively post-wicket (5× `SM-INNINGS-2-RESET reason=wickets_regressed`). The primary objective requires Workstream H — cold-start re-entry frequency root cause per HANDOFF §17.3 Item 2.
+**Last update**: 2026-05-23 (WS-H step-4 close-out — primary objective CLOSED).
+**Branch**: `derive-not-detect` (HEAD = WS-H step-4 docs commit). Feature branch `rewrite/wicket-striker-this_over-canonical` deleted local + remote.
+**Status**: **WS-H primary objective CLOSED.** P1 patch `ef0860d` shipped + step-3 empirical validation on `logs/trace/validate_ws_h_step3_20260523_164642.jsonl` (749 frames; single-independent-variable vs. baseline `validate_surface_b_121222`). Load-bearing flips: **D-post-FoW-striker 20 → 2** (per insight #18 scope; far exceeds 5-10 prediction); WIPED-BY-COLD-START 2 → 0; DRAIN-FIRED 0 → 2 (F680, F858); γ-bowler-w FAIL × 4 → PASS (composite-fix closure per S18). Two documented residuals OPEN as follow-on workstreams: **WS-H step-5** (F939 sibling-asymmetry inherited from `_team_changed` precedent; 1× SM-INNINGS-2-RESET residual; per S16) + **WS-H step-5b** (F679 γ-fow-name regression from cascade-drain second-order trail dependency; per S17). **§15 arc + Workstream G arc** previously MERGED at `5206885`; WS-G lifecycle objective remains CLOSED at `50af67e`. P1 patch stays landed — NO revert. Empirical budget 4/5 → **3/5** consumed (load-bearing artifact: S16 + S17 + S18, mirroring WS-G's "budget consumption produced insight #17 + #18" framing).
 
 **§15 fence count correction.** Post-merge `grep -c 'self.striker = None' files/score_manager.py` returns **7**, not the "8" claimed in pre-merge HANDOFF/Architecture_HANDOFF copy. The discrepancy was an off-by-one descriptive shorthand carried from the original §15-arc docs; the structural fence invariant ("no non-canonical name writes") holds — non-None writes are exclusively from the three canonical methods (`apply_striker_event:945`, `apply_striker_identity_resolved:980`, `apply_striker_identity_proposed:1211/1213`).
 
-**Next session's first action: Workstream H step 1** — cold-start re-entry frequency root cause memo. Entry data + reading-list in §17.4 below. The merge commit `5206885` is the canonical entry point on `derive-not-detect`; the docs commit on top (this one) brings post-merge bookkeeping. Secondary: §11.3 surgical items 3-7 (Workstream F bowler misattribution, Per-batter-ledger conservation, Recent-Overs partial-render, phantom-runs root-localize) unchanged.
+**Next session's first action: WS-H step-5 (F939) OR step-5b (F679) investigation memo.** Entry data + reading-list in §17.5 below. WS-H primary objective is CLOSED — these are follow-on workstreams of distinct architectural class (S16 vs S17). Secondary: §11.3 surgical items 3-7 (Workstream F bowler misattribution, Per-batter-ledger conservation, Recent-Overs partial-render, phantom-runs root-localize) unchanged.
 
 **Prior session context** (workstream D fix-chain, 2026-05-21): D1 (bowler em-dash sentinel) + D2-Layer-1a (broadcast-vs-deterministic dismissed-name) shipped as code; empirical validation gated on next DCKKR replay. See "## Session continuation — C26–C31" section below.
 
@@ -40,7 +40,9 @@ Workstream G chain closed at commit `50af67e` (Surface B cold-start lifecycle cl
 | merge | `5206885` | merge: rewrite/wicket-striker-this_over-canonical → derive-not-detect | --no-ff merge bringing 19 commits onto `derive-not-detect`; L1.5 54/54 + L2 30/30 + 9 trace assertions (trace_eta PASS); §15 fence verified canonical-only |
 | post-merge docs | `22877c5` | docs(post-merge): HANDOFF + Architecture_HANDOFF status update | Header + ledger reflect merged state; §15 fence None-write count corrected 8→7 (descriptive shorthand was off-by-one; structural invariant holds) |
 | WS-H step 1 | `9b2afc5` | docs(workstream-h): step-1 investigation memo — 4 hypotheses + S13/S14/S15 sub-findings | Static-falsification chain converges on P1 team-change-corroboration parity for `_detect_innings_change` wickets_regressed branch; empirical budget 4/5 unchanged |
-| WS-H step 2 | (this) | feat(workstream-h): P1 — team-change-corroboration guard on _detect_innings_change wickets_regressed branch | Mirrors 2026-05-19 score_reset_from_progress hardening at `:4423`; new tag `WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED`; L1.5 54 → 60 cases (6 new in `test_innings_change_wickets_regressed_guard.py`); empirical budget 4/5 unchanged |
+| WS-H step 2 | `ef0860d` | feat(workstream-h): P1 — team-change-corroboration guard on _detect_innings_change wickets_regressed branch | Mirrors 2026-05-19 score_reset_from_progress hardening at `:4423`; new tag `WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED`; L1.5 54 → 60 cases (6 new in `test_innings_change_wickets_regressed_guard.py`); empirical budget 4/5 unchanged |
+| WS-H step 3 | (validation — no code commit) | Empirical replay against captured-Scout dump | `validate_ws_h_step3_20260523_164642` (749 frames; single-independent-variable vs. `validate_surface_b_121222`): D-post-FoW-striker 20 → **2**; WIPED-BY-COLD-START 2 → **0**; DRAIN-FIRED 0 → **2** (F680, F858); γ-bowler-w FAIL×4 → **PASS** (composite-fix closure with D1); residuals 1× SM-INNINGS-2-RESET at F939 + 1× γ-fow-name FAIL at F679; budget 4/5 → **3/5** (load-bearing artifact: S16/S17/S18) |
+| WS-H step 4 | (this) | docs(workstream-h): step-4 close-out — primary objective CLOSED (D-post-FoW-striker 20→2) + S16/S17/S18 sub-findings + step-5/5b openers | Memo §8-§12 appended; HANDOFF + Architecture_HANDOFF status; SESSION_CONTEXT entry for the validation trace |
 
 ### Step-8 re-validation evidence
 
@@ -96,7 +98,54 @@ Insight #17 protocol applied: every cold-entry reset path is now empirically ver
 
 Running total: **18 transferable methodology insights** across 5 sessions on `derive-not-detect` lineage.
 
-## §17.4 Workstream H entry data (next session)
+## §17.5 WS-H step-5 / step-5b entry data (next-session priority)
+
+WS-H primary objective CLOSED at WS-H step-4 (D-post-FoW-striker 20 → 2 per insight #18 scope on `validate_ws_h_step3_20260523_164642`). Two follow-on workstreams of distinct architectural class are OPEN:
+
+### §17.5.1 WS-H step-5 — F939 sibling-asymmetry investigation (S16 surface)
+
+**Objective.** Bring `_team_changed` consensus-gating into parity with `batting_team_changed` branch; close 1× SM-INNINGS-2-RESET residual at F939 + tighten the sibling `score_reset_from_progress` branch simultaneously.
+
+**Empirical anchor.** 1× SM-INNINGS-2-RESET at F939 + 19× WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED structured records on `logs/trace/validate_ws_h_step3_20260523_164642.jsonl`.
+
+**Predicate sites.** `_team_changed` derivation at `score_manager.py:4417-4419`; consumers at `:4423` (score_reset_from_progress) and `:4454-4486` (wickets_regressed P1). Sibling parity target: `batting_team_changed` consensus implementation at `:4337-4385`.
+
+**Reading list.**
+1. `files/docs/investigations/workstream_h_cold_start_reentry_root_cause.md` §9.1 + §10 S16.
+2. `workstream_g_cold_start_transition_catalogue.md` §5.
+3. `score_manager.py:4337-4385` (consensus precedent).
+4. `score_manager.py:4417-4447` (`_team_changed` derivation + score_reset consumer cross-check).
+
+**Predicted-flip framing.** SM-INNINGS-2-RESET at F939: 1 → 0. Baseline 19 structured rejections unchanged. Legitimate inn-2 acceptance latency: 1-frame → 3-frame consensus delay (cricket-safe per `batting_team_changed` precedent).
+
+**Discipline.** Per WS-H step-1 precedent: static investigation memo FIRST; do not commit empirical replay until static-falsification chain converges.
+
+### §17.5.2 WS-H step-5b — F679 FoW-trail drain-awareness (S17 surface)
+
+**Objective.** Make γ-fow-name prev_striker resolution drain-aware so cascade DRAIN-FIRED at the wicket-commit window does not invalidate the assertion's reconstruction.
+
+**Empirical anchor.** 1× `trace_gamma_fow_name_matches_striker_at_wicket` FAIL at F679 (reason=`no_prev_striker`) on the same trace.
+
+**Sites.** γ-fow-name assertion in `files/tests/trace_session_assertions.py` (prev_striker reconstruction path — exact location TBD via step-5b static analysis); likely also prev_striker tracking in the `SmDispatchSummary` / `WicketEvent` chain.
+
+**Reading list.**
+1. `files/docs/investigations/workstream_h_cold_start_reentry_root_cause.md` §9.2 + §10 S17.
+2. `workstream_g_cold_drain_surface_audit.md` §3 (lifecycle table).
+3. γ-bundle context in HANDOFF status section (γ-bowler-w / γ-fow-name baseline-shift).
+
+**Predicted-flip framing.** γ-fow-name FAIL at F679: 1 → 0. No other regression observed across the assertion library.
+
+**Discipline.** Per WS-H step-1 precedent: static investigation memo FIRST.
+
+### §17.5.3 Sequencing note
+
+Step-5 and step-5b are independent surfaces — neither is a prerequisite for the other. Operator picks based on priority. S16 (step-5) has compounding value (closes a sibling residual simultaneously); S17 (step-5b) is narrower-scope but the regression is in a γ-bundle assertion that's load-bearing for the wicket-correctness coverage.
+
+## §17.4 Workstream H entry data (CLOSED — WS-H step-1 through step-4 complete)
+
+**Closure note (2026-05-23, WS-H step-4).** Original §17.4 entry data drove WS-H step-1 (memo at `9b2afc5`) → step-2 patch P1 (`ef0860d`) → step-3 empirical validation (D-post-FoW-striker 20 → 2; budget 4/5 → 3/5; load-bearing artifact S16/S17/S18) → step-4 docs close-out (this commit). Primary objective CLOSED. Two follow-on workstreams open per §17.5. The original entry data preserved below for reference; do not re-enter on this objective.
+
+---
 
 **Objective.** Localize the cold-start re-entry frequency root cause and propose a fix for the `_detect_innings_change` predicate's handling of `wickets_regressed` triggers during the post-wicket hot window.
 
@@ -833,5 +882,9 @@ Track record of architectural insights accumulated across sessions (**16 transfe
   - **#14 — Silently-no-op bugs (NameError swallowed under try/except, attribute lookups returning None) hide downstream effects until harness diff aggregates them across surfaces.** Surfaced commit (7/N) — `trace_beta_sm_wicket_dispatch` had been silently failing because a stale `target_idx` reference raised NameError inside a try/except that caught and discarded it. Operational corollary: re-raise NameError + AttributeError specifically, only catch domain exceptions explicitly.
   - **#15 — Layer 1.5 catches isolated mutation-correctness regressions; harness diff catches emergent cross-surface composition regressions. Both are necessary; harness is the higher-signal layer during multi-component wire-throughs.** Surfaced commit (8/N) cascade wire-through — 4 iterations, all caught by harness diff, zero by Layer 1.5. The harness is doing the load-bearing detection as multi-component changes compose.
   - **#16 — Multi-component rewrites can produce structurally-correct commits that don't deliver predicted empirical drops. That's empirical falsification of the prediction's hypothesis, not failure of the rewrite. Close the arc honestly; pivot to the actual root cause.** Surfaced commit (9/N) attempt — §14.5 hypothesis falsified by data (cold-start no-backfill didn't close C21b in DCKKR dump because Scout-extraction-timing at wicket-commit is the actual root); arc closed at structural completion (commit 8/N), Workstream G promoted to next-session priority #1.
+- **Workstream H session (2026-05-23)**:
+  - **S16 — Parity-precedent inheritance.** When a fix mirrors a hardened-sibling structurally, it inherits the sibling's residual gaps. Surfaced WS-H step-3 (F939): P1's mirror of `score_reset_from_progress :4423` inherited the sibling's single-frame `_team_changed` consensus gap. Operational corollary: parity-mirror audits must extend to the precedent's known-residual list AND the parity input's own derivation site BEFORE declaring the mirror as a closed fix. Remediation at the precedent (consensus-gate `_team_changed`) closes both consumers simultaneously. See `files/docs/investigations/workstream_h_cold_start_reentry_root_cause.md` §10 S16.
+  - **S17 — Cascade-lifecycle second-order regression class.** When a lifecycle fix enables a previously-blocked drain path, downstream assertions that implicitly assumed the drain was blocked may regress. Surfaced WS-H step-3 (F679): γ-fow-name's prev_striker reconstruction assumed cascade-blocked-drain semantics; cascade DRAIN-FIRED exposed the dependency. Operational corollary: gate-5 (lifecycle) must extend to "lifecycle-enabling-of-blocked-paths" as a distinct audit row, separate from "lifecycle-correctness-of-the-newly-enabled-path." See WS-H memo §10 S17.
+  - **S18 — Composite-fix cascade closure (third instance of F1 pattern).** D1 (C28 em-dash bowler-tracker) + P1 (ef0860d) compose to close γ-bowler-w which D1 alone could not (predicted FAIL × 2; actual PASS). Pattern recap: F1 single-edit closing N classes (first), S9 F855→F983 (second), now S18 D1+P1 → γ-bowler-w (third). Operational corollary: when a downstream assertion stays FAIL after its "direct" fix lands, prefer an upstream lifecycle audit before declaring the assertion's own surface as the residual root. Each workstream's gate-6 should explicitly include a "but if upstream lifecycle X lands first, residual may collapse" annotation. See WS-H memo §10 S18.
 
-Each session contributes one or more transferable methodology insights that survive into the next session's discipline. **The discipline track record is itself a load-bearing artifact** — preserve it; document new insights as they accumulate.
+Each session contributes one or more transferable methodology insights that survive into the next session's discipline. **The discipline track record is itself a load-bearing artifact** — preserve it; document new insights as they accumulate. Cumulative running total: **19 insights** (#1-#16 prior + S16/S17/S18 this session).

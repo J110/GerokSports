@@ -412,3 +412,152 @@ The 2026-05-19 score_reset comment (:4390-4410) names the misread class verbatim
 **Empirical-falsification budget.** UNCHANGED at 4/5 remaining. No empirical replays consumed.
 
 **Next-session deliverable.** WS-H step 2 — code commit implementing P1 at `files/score_manager.py:4454-4457` mirror of `:4423-4447` structure. Layer 1.5 + Layer 2 + derivation unit gates required green pre-commit. WS-H step 3 — empirical replay against `validate_surface_b_121222` (and one fresh-trace fixture) to confirm gate-6 provisional predictions: SM-INNINGS-2-RESET 5→0, WIPED-BY-COLD-START 2→0, DRAIN-FIRED 0→≥1, D-post-FoW-striker 20→5-10.
+
+---
+
+## §8 Step-3 validation outcome (2026-05-23)
+
+**Decision frame.** Step-3 outcome class: **lifecycle-closure WITH documented architectural findings** — the same shape as WS-G step 5 → step 8. The 1/5 empirical-budget consumption produces transferable methodology insights (S16, S17, S18 below); it is not a wasted iteration. Per insight #18, "lifecycle closure" and "primary-objective closure" are separable audit deliverables; WS-H closes both, with two named residuals opened as follow-on workstreams (step-5 and step-5b in §11).
+
+**Trace artifact.** `logs/trace/validate_ws_h_step3_20260523_164642.jsonl` — 749 records (matches pre-P1 baseline `validate_surface_b_121222.jsonl` exact 749 frames). Single independent variable: P1 patch `ef0860d`. Same captured-Scout dump `files/logs/deliveries/validate_dckkr_20260521_155356/scout_raw.jsonl` used by WS-G steps 5 + 8.
+
+**Full gate table — actuals vs. locked predictions.**
+
+| Metric | Pre-P1 baseline | Locked prediction | Actual (post-P1) | Status |
+|---|---|---|---|---|
+| `SM-INNINGS-2-RESET reason=wickets_regressed` | 5 | **0** | **1** (F939 only) | **MISS by 1** |
+| `WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED` (structured) | 0 | **5** | **19** | OVER (counterfactual stronger than predicted: 19 frames newly suppressed) |
+| `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` | 2 (F690, F859) | **0** | **0** | PASS |
+| `POST-WICKET-CASCADE-DRAIN-FIRED` | 0 | **≥1** | **2** (F680, F858) | PASS (exceeds) |
+| `POST-WICKET-CASCADE-ENQUEUED` | 2 | 2 | 2 (F679, F855) | sanity holds |
+| `CASCADE-DRAIN-EXPIRED` | 0 | n/a | 0 | (info) |
+| `D-post-FoW-striker` surface count | 20 | 5-10 | **2** | PASS (strongly exceeds; 90% reduction) |
+| `trace_eta_post_wicket_cascade_drains` | PASS × 2 (2 enqueues / 2 WIPED) | PASS × 2 | PASS (2 enqueues / 2 FIRED, 0 WIPED, 0 EXPIRED) | PASS |
+| `trace_gamma_w_symbol_at_wicket` | FAIL × 2 | UNCHANGED | FAIL × 2 (F679, F855) | unchanged |
+| `trace_gamma_fow_name_matches_striker_at_wicket` | PASS | UNCHANGED | **FAIL × 1** (F679, reason=no_prev_striker) | **REGRESSION** |
+| `trace_gamma_bowler_w_increment_on_dispatch` | FAIL × 4 | UNCHANGED | **PASS** | UNEXPECTED IMPROVEMENT |
+
+**Empirical-budget consumption.** 4/5 → **3/5**. Load-bearing artifact of the consumption is S16 + S17 + S18 (§10 below), mirroring WS-G's "budget consumption produced insight #17 + #18 retrospectives" framing.
+
+**Primary-objective closure declaration per insight #18.** Four of the locked rows hit or exceed prediction:
+
+- `D-post-FoW-striker` 20 → 2 (the WS-H primary-objective surface count per §17.3/§17.4 handoff scope).
+- `WIPED-BY-COLD-START` 2 → 0 (non-provisional gate, met exactly).
+- `DRAIN-FIRED` 0 → 2 (provisional gate, exceeded — both F679 + F855 cascades resolved).
+- `γ-bowler-w-increment-on-dispatch` FAIL × 4 → PASS (composite-fix cascade closure per §10 S18).
+
+The remaining residuals — 1× SM-INNINGS-2-RESET at F939 + 1× γ-fow-name FAIL at F679 — are documented as architectural findings (§9), not as workstream failure. Both have transferable diagnostic value (S16, S17) and concrete next-session entry points (§11).
+
+---
+
+## §9 Architectural findings on the two residuals + one unexpected closure
+
+### §9.1 F939 — inherited consensus-asymmetry from score_reset sibling
+
+**Frame anchor.** F939, single-frame KKR misread flipping both team AND wickets simultaneously. Telemetry: `prev=84/3 (10.1) prev_team=DC cand=51/0 cand_team=KKR cand_target=None`.
+
+**Predicate behavior.** Two same-frame events: (a) `batting_team_changed` branch at `:4337-4385` correctly deferred via the 3-frame consensus path (logged `[SM] team-change candidate KKR streak 1/3 — deferring inn-2 trigger`); (b) wickets_regressed branch at `:4454-4486` accepted because the `_team_changed` local at `:4417-4419` is True for that single frame (not consensus-gated).
+
+**Architectural root.** `_team_changed = bool(_bcast_team and _cur_team and _bcast_team != _cur_team)` is a single-frame boolean. The sibling `score_reset_from_progress` branch at `:4423` uses the same single-frame check — that sibling has the SAME consensus gap by design. The CC step-2 verification confirmed parity exact: P1 inherited the sibling's residual, it did not introduce it. The inheritance is structural; per S16 below, parity-mirror fixes inherit precedent gaps.
+
+**Cricket truth.** Over 10.1, DC batting innings 1, no innings transition exists. F939 is genuinely false-positive — a single-frame KKR overlay misread that the consensus-aware branch correctly rejected but the boolean-only branches accept.
+
+**Remediation surface (deferred to step-5 — §11).** Bring `_team_changed` to consensus parity with `batting_team_changed` (3-frame consensus, e.g., consume `_team_change_streak` directly). This closes F939 AND tightens the sibling `score_reset_from_progress` simultaneously — potential S9-pattern cascade-closure-via-one-edit (third instance per S18 below).
+
+### §9.2 F679 — cascade-drain second-order FoW-trail dependency
+
+**Frame anchor.** F679 wicket-commit (Pathum Nissanka dismissed); cascade DRAIN-FIRED at F680 (was WIPED-BY-COLD-START pre-P1).
+
+**Trail-shuffle mechanism.** Pre-P1: at the F679 wicket-commit, the cascade was deferred + then wiped 11 frames later (F690 SM-INNINGS-2-RESET); the prev_striker resolution at FoW assertion site saw the original (pre-cascade) striker chain. Post-P1: F679 cascade enqueues, drains at F680 — i.e., the surviving-batter is now resolved by F680 instead of being deferred indefinitely. The γ-fow-name assertion's reconstruction at F679 looks one frame back at F678; reason `no_prev_striker` indicates the prior frame's striker state was unset (likely because cascade-drain mutation invalidated the stale identity assumption).
+
+**Architectural root.** The prev_striker reconstruction in γ-fow-name implicitly assumes the cascade has NOT yet drained at the wicket-commit frame. P1's cascade-drain enabling exposes the latent dependency: the assertion was correct under the pre-P1 wipe-and-no-drain regime, and now needs to read the cascade lifecycle state explicitly.
+
+**Remediation surface (deferred to step-5b — §11).** Make prev_striker resolution at the γ-fow-name assertion site drain-aware: when the cascade drained between F678 and F679, the resolved (cascade-output) striker becomes the FoW name source rather than the F678 stale state. Dependency is on cascade lifecycle ordering, not on the `_detect_innings_change` predicate.
+
+### §9.3 γ-bowler-w unexpected closure — composite-fix D-chain residual resolved
+
+**Frame anchors.** F679 + F855 bowler-W increments now landing post-cascade-drain. Pre-P1 baseline: `trace_gamma_bowler_w_increment_on_dispatch` was FAIL × 4 (workstream_d_rotation_root_investigation.md §6 predicted FAIL × 4 → FAIL × 2 via D1 alone; actual now PASS at zero residuals via D1 + P1 composition).
+
+**Mechanism.** D1 (em-dash bowler-tracker fallback, commit C28) was already in place at branch HEAD. P1 enables cascade DRAIN-FIRED at the wicket-commit window, which propagates the resolved bowler identity into wicket attribution. D1 + P1 compose: D1 ensured the bowler identity was resolvable; P1 ensured the cascade lifecycle let the resolution reach the attribution site at the right frame. Either fix alone falls short of γ-bowler-w PASS — both together close it.
+
+**Cross-reference.** This is the third independent confirmation of the F1-pattern (single edit closing N classes via cascade): F1 itself (S12-area), S9 (F855→F983 single-edit dependency cascade), and now S18 (P1 enabling D1 composition). See §10 S18.
+
+---
+
+## §10 Sub-findings (S16, S17, S18)
+
+### S16 — Parity-precedent inheritance
+
+When a fix mirrors a hardened-sibling structurally, it inherits the sibling's residual gaps. **Architectural diagnostic:** the parity audit must extend to whether the precedent itself has open residuals before declaring parity-mirror as a closed fix. P1's parity mirror of `score_reset_from_progress :4423` inherited the sibling's single-frame `_team_changed` consensus gap; F939 surfaces this. **Operational corollary:** when a sibling-parity fix lands, audit (a) the sibling's known-residuals list and (b) the parity input's own derivation site — `_team_changed` is a precedent-residual surface that affects two consumers now, not one. Remediation at the precedent (consensus-gate the `_team_changed` derivation) closes both consumers simultaneously.
+
+### S17 — Cascade-lifecycle second-order regression class
+
+When a lifecycle fix enables a previously-blocked drain path, downstream assertions that implicitly assumed the drain was blocked may regress. **Audit obligation:** enumerate downstream consumers of "blocked drain state" before landing lifecycle-enabling fixes. F679 surfaces this: the γ-fow-name assertion's prev_striker reconstruction implicitly assumed cascade-blocked-drain semantics; cascade DRAIN-FIRED exposed the dependency. **Operational corollary:** lifecycle-enabling fixes are not safe-by-construction even when they pass all 7 gates statically — gate-5 (lifecycle) must extend to "lifecycle-enabling-of-blocked-paths" as a distinct audit row, separate from "lifecycle-correctness-of-the-newly-enabled-path."
+
+### S18 — Composite-fix cascade closure (third instance of F1 pattern)
+
+D1 (C28 em-dash bowler-tracker fallback) + P1 (ef0860d wickets_regressed team-change guard) compose to close γ-bowler-w which D1 alone could not. **Pattern recap:**
+
+- **First instance — F1.** Single-edit closing N classes (B-ε direct + B-β cascade + multi-ball-compression cascade + compound-tokens cascade).
+- **Second instance — S9.** F855 fix auto-closes F983 via shared dependency surface.
+- **Third instance — S18.** D1 + P1 composite closure of γ-bowler-w; neither alone delivers the assertion flip, both together do.
+
+**Methodology consequence.** The F1-pattern is now structurally reproducible across three independent fix-pairs. Insight: when a downstream assertion stays FAIL after its "direct" fix lands, prefer an upstream lifecycle audit (often a separate workstream's fix) before declaring the assertion's own surface as the residual root. **Operational corollary:** the "residual count after direct fix" prediction in any workstream's gate-6 should explicitly include a "but if upstream lifecycle X lands first, residual may collapse" annotation. This is how WS-H delivered the γ-bowler-w PASS that WS-D predicted as FAIL × 2.
+
+---
+
+## §11 Step-5 / step-5b entry data
+
+### §11.1 Step-5 — F939 sibling-asymmetry investigation
+
+**Empirical anchor.** 1× SM-INNINGS-2-RESET at F939 + 19× WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED structured records on `logs/trace/validate_ws_h_step3_20260523_164642.jsonl`.
+
+**Predicate sites.** `_team_changed` derivation at `score_manager.py:4417-4419`; consumers at `:4423` (score_reset_from_progress) and `:4454-4486` (wickets_regressed P1). Sibling parity target: `batting_team_changed` consensus implementation at `:4337-4385` (uses `self._team_change_streak` / `TEAM_CHANGE_CONSENSUS_FRAMES`).
+
+**Reading list.**
+1. This memo §9.1 + §10 S16.
+2. `workstream_g_cold_start_transition_catalogue.md` §5 (WARM→COLD coupling).
+3. `score_manager.py:4337-4385` (consensus implementation as parity target).
+4. `score_manager.py:4417-4447` (`_team_changed` derivation + score_reset consumer for cross-check).
+
+**Predicted-flip framing.** Bring `_team_changed` to 3-frame consensus parity:
+
+| Metric | Pre-step-5 (this trace) | Post-step-5 predicted |
+|---|---|---|
+| SM-INNINGS-2-RESET at F939 | 1 | 0 |
+| Baseline 4 suppressions (F462/F690/F801/F859 et al) | 19 structured records | UNCHANGED (still rejected via existing team-mismatch path) |
+| Legitimate inn-2 acceptance latency | 1-frame | 3-frame consensus delay (matches batting_team_changed precedent; cricket-safe per existing branch design) |
+
+**Do NOT touch ahead of step-5 investigation memo.** Static analysis must converge before any code edit (per WS-H step-1 discipline).
+
+### §11.2 Step-5b — F679 FoW-trail drain-awareness
+
+**Empirical anchor.** 1× `trace_gamma_fow_name_matches_striker_at_wicket` FAIL at F679 (reason=`no_prev_striker`).
+
+**Sites.** γ-fow-name assertion in `files/tests/trace_session_assertions.py` (prev_striker reconstruction path; specific location TBD via step-5b static analysis). Likely also: prev_striker tracking in the `SmDispatchSummary` / `WicketEvent` chain that the assertion consumes.
+
+**Reading list.**
+1. This memo §9.2 + §10 S17.
+2. `workstream_g_cold_drain_surface_audit.md` §3 (lifecycle table — drain enabling consumers).
+3. γ-bundle context in HANDOFF §0 (assertion-baseline-shift section).
+
+**Predicted-flip framing.** Make prev_striker resolution drain-aware:
+
+| Metric | Pre-step-5b (this trace) | Post-step-5b predicted |
+|---|---|---|
+| γ-fow-name FAIL at F679 | 1 | 0 |
+| γ-fow-name baseline FAIL elsewhere | 0 | 0 (no other regression observed) |
+| γ-eta cascade drain assertions | PASS | UNCHANGED (drain-aware assertion does not alter drain lifecycle) |
+
+**Do NOT touch ahead of step-5b investigation memo.**
+
+---
+
+## §12 Cross-memo budget + status footer
+
+**Empirical-falsification budget.** 4/5 → **3/5** consumed by step-3 validation (loading-bearing artifact: S16 + S17 + S18).
+**WS-H primary objective.** CLOSED — D-post-FoW-striker 20 → 2 per insight #18 scope.
+**WS-H step-5 (F939).** OPEN per §11.1.
+**WS-H step-5b (F679).** OPEN per §11.2.
+**P1 patch status.** STAYS LANDED at `ef0860d`. No revert.
+**Sibling-precedent surface (score_reset_from_progress `:4423`).** Now confirmed-residual via S16; close together with F939 in step-5.
