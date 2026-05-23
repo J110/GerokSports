@@ -23,5 +23,3 @@ logs/trace/
 logs/machine-*.log
 logs/openscout-*.jsonl
 data/commentary/player_styles_*.json
-AGENTS.md
-qrackpot/
