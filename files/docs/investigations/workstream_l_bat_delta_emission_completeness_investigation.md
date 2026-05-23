@@ -271,3 +271,156 @@ Methodology insights running total: 23 (S28 promotion pending
 step-3).
 Memo: files/docs/investigations/workstream_l_bat_delta_emission_completeness_investigation.md (11 sections, ~340 lines).
 ```
+
+---
+
+## §11 Step-1b refinement — code-reading evidence overturns §3 enumeration
+
+**Trigger.** Step-2 verification (pre-patch, no commit) surfaced significant deviation from §3 hypothesis enumeration. The §3 markers "UNVERIFIED" on the 3 candidate writer paths were stop-signals that step-2's verification-1 caught (per S26 operational corollary).
+
+**Code-reading findings** (from `score_manager.py` direct inspection):
+
+| §3 §5-LA candidate writer path | Actual code-reading finding |
+|---|---|
+| Cold-start synth credit | **ALREADY COVERED.** `:6314-6397` `COLD_START_SYNTH` branch credits batter via `scoreboard.update_batter` at `:6367-6373` + emits `MULTI-BALL-BATTER-DERIVATION-EXPANDED` tag at `:6376-6383`. `update_batter` propagates to scoreboard's logging path which produces BAT-DELTA. Only 1 COLD-START-SYNTH-CREDITED emission across `validate_dckkr_20260521_070545` — confirms this path is NOT producing the 12-run gap. |
+| ABSORBED_LEGAL multi-ball gap-fill | **EXPLICITLY SKIPPED at `:6275-6280`** with `_emit_credit_skipped("ABSORBED-FORWARDED-ELSEWHERE", event)`. The "elsewhere" forwarder must be elsewhere in the codebase. Search across `score_manager.py` did not surface a specific ABSORBED_LEGAL-batter-forwarder downstream of `_accumulate_stats_from_event`. The PendingBall queue lifecycle at `:1443-1444` (B1.2c) suggests ABSORBED_LEGAL events bind via slot resolution in `over_mgr`'s ABSORBED_LEGAL handler (not `score_manager`). Forwarder candidate: PendingBall slot-bind drain path. |
+| Compound-token expansion (Wd+6 / Nb+5) | **SUBSUMED in WIDE/NO_BALL branches** at `:6475-6482`. `WIDE` branch sets `runs_off_bat = 0` (correct cricket physics — wides don't credit batter runs); `NO_BALL` branch sets `runs_off_bat = int(event.get("batter_runs", 0) or 0)` (credits batter for the runs scored off the no-ball). Both branches call `update_batter` at `:6496` with the correct delta. BAT-DELTA fires via `update_batter`'s logging propagation. |
+
+**Net §3 correction.** Of the 3 candidate writer paths originally enumerated as LA's fix surface: 1 ALREADY-COVERED (COLD_START_SYNTH) + 1 SUBSUMED (compound-token via WIDE/NO_BALL) + 1 EXPLICIT-SKIP-FORWARDER-ELSEWHERE (ABSORBED_LEGAL). The original LA emission-extension shape is structurally not the fix surface for 2 of 3 sites; only the ABSORBED_LEGAL forwarder remains a candidate.
+
+## §12 ABSORBED-FORWARDED-ELSEWHERE forwarder localization + F138 diagnostic refinement
+
+**ABSORBED_LEGAL forwarder.** Per `score_manager.py:1443-1444` docstring: "test_pipeline.py enqueues N PendingBalls, then over_mgr fields N ABSORBED_LEGAL events and binds each in order." The forwarder is in **`eyes.over_mgr`'s ABSORBED_LEGAL handler** — not in `score_manager.py`. Per `:5341-5357` decomposition, ABSORBED_LEGAL events are emitted with PendingBall enqueue (B1.2c); slot-binding happens in `over_mgr`. If binding fails, `PENDING-BALL-SLOT-BOUND-ORPHAN` tag fires.
+
+**F138 diagnostic refinement** (the 7-run jump on `validate_dckkr_20260521_070545`):
+
+- F130: mode=WARM, score=8.
+- F138: mode=WARM, score=15 (+7 runs), striker=KL Rahul.
+- F138 decision tags include: `PENDING-BALL-SLOT-BOUND-ORPHAN` + `THIS-OVER-APPEND` + `COMPLETED-OVER-SUPPRESSED` + `SM-EVENT-DELTA-FROM-PREV` + `SCORE-CONSENSUS`.
+- **NO BAT-DELTA tag fires at F138.** The 7-run jump is observed by the pipeline (score consensus + over-completion logic engages) but the per-ball events that produced the runs cannot bind to a striker slot → orphan-bind → no `update_batter` call → no BAT-DELTA emission.
+
+**Refined root-cause finding.** The 7-run gap is NOT emission completeness (LA shape) NOR extras under-counting (LD-extras shape). It is **ORPHAN-BIND class**: pending-ball events that the pipeline correctly identifies as ambiguous (cannot determine which striker faced them) and parks in the PendingBall queue; if the queue can't drain to a slot before the next event displaces them, the runs are dropped from per-batter attribution entirely.
+
+This is a **REAL CORRECTNESS GAP** — the 7 runs were scored by someone, the pipeline doesn't know who, and the runs accrue to scoreboard total but NOT to any batter's ledger. The cricket-truth IS broken: per-batter cumulative runs are under-counted by the orphan-bound run total.
+
+**Per `trace_emitter.py:76` tag definition.** `PENDING-BALL-SLOT-BOUND-ORPHAN` is "no-MULTI_BALL pending-ball queue lifecycle (B1.1 series)" observability — the tag exists for exactly this defect class. The pipeline INTENTIONALLY emits the orphan tag rather than silently dropping; the tag is meant to surface the gap for downstream investigation. WS-L step-1b discovers that the cohort surfacing via `trace_alpha_batter_runs_sum` FAILs is the natural-language reflection of these orphan-bind events.
+
+## §13 Reframed leading candidate — pivot to LD-orphan + recommend new investigation arc
+
+**Leading candidate REVISED: LD-orphan (orphan-bind correctness gap).**
+
+**Statement.** The 4 LIVE-FAIL gaps from WS-Per-Batter-Ledger step-3 are driven by PendingBall queue orphan-bind events. Pipeline correctly identifies that per-ball striker attribution is ambiguous for these deliveries; parks them in the queue; if queue drain fails before displacement, the runs are dropped from per-batter ledger. The assertion's gap is structurally identical to the orphan-bind run aggregate.
+
+**Fix-surface category.** **PIPELINE-PLUMBING-REQUIRED per S26 operational corollary** — the orphan-bind handler is in `eyes.over_mgr` (not `score_manager.py`), the queue drain logic is in PendingBall queue lifecycle, and any fix requires either (a) a fallback striker-attribution policy on drain failure OR (b) a measurement-quality framing where the assertion's tolerance budget includes orphan-bind aggregate.
+
+**Phase 1 scope verdict.** **OUT-OF-SCOPE for current WS-L.** WS-L was authorized as ASSERTION-SIDE-INSTRUMENTATION per the §10 pre-screen. The actual root is PIPELINE-PLUMBING-REQUIRED — a different fix-surface category that admits only with explicit re-authorization.
+
+**Per the user's stop conditions for §11-§13 refinement:** "LD confirmed (extras accounting root) → STOP, report; recommend new investigation arc." Adapting: LD-orphan confirmed (orphan-bind correctness root rather than extras-accounting) → STOP, report; recommend new investigation arc.
+
+### Three forks for WS-L disposition
+
+**Fork A — Open new investigation arc (WS-M HC-orphan-bind).** Pipeline-side investigation into PendingBall queue drain logic + over_mgr ABSORBED_LEGAL handler. Estimated arc: 5-9 step pipeline-side per WS-H precedent; 1-2/5 budget for empirical validation. Cohort: 4 LIVE-FAILs already characterized; HC-orphan would close them via fallback striker-attribution OR measurement-tolerance extension.
+
+**Fork B — Retire WS-L with measurement-quality reframing.** Acknowledge `trace_alpha_batter_runs_sum` correctly surfaces orphan-bind events as cohort discriminator (this IS load-bearing observability). The assertion stays as permanent regression detector. Document the orphan-bind interpretation in a step-3 close-out. Defer fix-surface investigation to natural production cohort growth. 0/5 budget; same fate-shape as Surface E `a4f91f5`.
+
+**Fork C — Extend assertion with orphan-bind tolerance.** Add an `orphan_runs_aggregate` reading helper to the assertion. Allow the gap to include orphan-bind aggregate as a separate tolerance class. This converts the assertion from "FAIL on conservation violation" to "FAIL on conservation violation NOT attributable to orphan-bind". 0/5 budget; preserves assertion utility while acknowledging the measurement-quality limitation.
+
+### Recommendation: Fork B (retire with measurement-quality reframing)
+
+WS-L's assertion shipped at `110026d` correctly surfaces orphan-bind events as cohort discriminator. That IS the load-bearing observability the pipeline architecture intends (per `trace_emitter.py:76` orphan-tag definition). The 4 LIVE-FAIL gaps reflect a real but bounded correctness gap class that the pipeline already self-reports via PENDING-BALL-SLOT-BOUND-ORPHAN. No additional WS-L work is required to deliver further value.
+
+Fork A is over-scoped for current Phase 1 economics (pipeline-plumbing-required + 1-2/5 budget). Defer to natural cohort growth.
+Fork C is technically clean but adds complexity for marginal gain; the assertion's current "FAIL signal" effectively flags orphan-bind events as the cohort discriminator — operator inspection of PENDING-BALL-SLOT-BOUND-ORPHAN tags at FAIL frames provides the diagnostic path Fork C would automate.
+
+**Recommended next step:** WS-L step-3 close-out memo formalizes Fork B retirement with measurement-quality framing. S28 second-instance promotion STILL HOLDS (the pre-screen correctly identified WS-L's assertion-side instrumentation as Phase 1 admissible; the patch shipped and delivered cohort discrimination; the orphan-bind discovery is a downstream-investigation outcome, not a pre-screen failure). PENDING-BALL-SLOT-BOUND-ORPHAN cohort logged as Phase 4 catalogue item for future cohort-growth-triggered investigation.
+
+### Methodology refinement — pre-step-N verification-1 spot-check obligation
+
+**Lesson from WS-L step-2 verification.** Step-2 verification-1 caught §3 UNVERIFIED-and-deviated-on-verification at half-commit-cycle cost (memo writing + verification reads + STOP). S26 operational corollary refines: **"pre-step-N audit obligation includes spot-check of step-(N-1) UNVERIFIED claims."** A 2-3 tool-call pre-check at step-N opening (read the writer paths inline; confirm covered vs uncovered) would catch deviation BEFORE memo writing + verification commitment.
+
+**Candidate refinement to S26.** *"Operational corollary v2: before opening step-N, spot-check step-(N-1)'s UNVERIFIED markers via 2-3 targeted code reads. Deviation discovery at this stage costs ~5 tool calls; deviation discovery at step-N verification-1 costs ~10+ tool calls + memo writing + STOP."* Single-instance evidence (WS-L step-2 deviation). Awaits second-instance for promotion.
+
+**Cross-references.**
+- S22 (static-investigation-first across multi-step arcs).
+- S26 (intra-workstream per-layer compounding).
+- S28-candidate (pre-screen fix-surface-category before step-1 opening).
+- S26-v2-candidate (pre-step-N verification-1 spot-check, this refinement).
+
+All four jointly mature the static-investigation discipline. S26-v2 is the methodology-cost-optimization layer.
+
+---
+
+## §14 Status footer (step-1b)
+
+**WS-L step-1b status.** CLOSED — §3 writer-path enumeration corrected via code-reading. Leading candidate REVISED to LD-orphan (orphan-bind correctness gap). Original LA shape structurally not the fix surface for 2 of 3 sites.
+
+**Recommended next step.** WS-L step-3 close-out memo formalizes Fork B retirement (measurement-quality reframing). Permanent assertion `trace_alpha_batter_runs_sum` stays as cohort discriminator + observability surface for orphan-bind events. WS-M HC-orphan-bind deferred to natural cohort growth.
+
+**S28 promotion status.** Still authorized at WS-L step-3 close-out. The pre-screen verdict (GREEN-ASSERTION-SIDE-INSTRUMENTATION) at WS-L step-1 was correct; the assertion shipped + delivered cohort discrimination as projected. The downstream discovery that the cohort reflects orphan-bind events (not emission completeness) is investigation-outcome refinement, not pre-screen falsification.
+
+**Empirical-budget status.** **2/5 — UNCHANGED across step-1b.**
+
+**Methodology insights running total.** 23 (S28 promotion pending step-3). S26-v2 candidate surfaced — single instance, awaits second.
+
+**Recommended commit message (DO NOT auto-commit beyond this step-1b memo append; user authorizes WS-L step-3 close-out explicitly):**
+
+```
+docs(workstream-l): step-1b refinement — §3 writer-path enumeration corrected via code-reading; leading candidate REVISED to LD-orphan (orphan-bind correctness gap); recommend Fork B retirement with measurement-quality reframing
+
+Step-2 verification (pre-patch, no commit) surfaced significant deviation
+from §3 hypothesis enumeration. Code-reading of score_manager.py shows:
+  COLD_START_SYNTH path ALREADY COVERED (:6367 update_batter call).
+  ABSORBED_LEGAL EXPLICITLY SKIPPED at :6275-6280 with forwarder in
+    eyes.over_mgr (not score_manager.py) — PendingBall queue
+    lifecycle (B1.1 series).
+  Compound-token (Wd+6 / Nb+5) SUBSUMED in WIDE/NO_BALL branches
+    at :6475-6482 — already emit via update_batter at :6496.
+
+F138 diagnostic refinement on validate_dckkr_20260521_070545 (the
+7-run jump anchor): mode=WARM (not cold-start); decision tags
+include PENDING-BALL-SLOT-BOUND-ORPHAN + THIS-OVER-APPEND +
+COMPLETED-OVER-SUPPRESSED + SM-EVENT-DELTA-FROM-PREV; NO BAT-DELTA
+emitted. The 7-run jump reflects PendingBall queue orphan-bind
+events — pipeline correctly identifies per-ball striker ambiguity,
+parks events in queue; queue drain fails before displacement; runs
+drop from per-batter attribution while accruing to scoreboard
+total. Cricket-truth IS broken: 7 runs scored by someone, pipeline
+can't tell us who.
+
+Refined leading candidate: LD-orphan (orphan-bind correctness gap).
+Fix-surface category: PIPELINE-PLUMBING-REQUIRED (over_mgr +
+PendingBall queue drain logic; outside score_manager.py scope).
+Phase 1 OUT-OF-SCOPE for current WS-L (was authorized as ASSERTION-
+SIDE-INSTRUMENTATION; LD-orphan is pipeline-plumbing).
+
+Three forks for WS-L disposition:
+  Fork A WS-M HC-orphan-bind new investigation arc — 5-9 step
+    pipeline-side + 1-2/5 budget; over-scoped for current Phase 1
+    economics.
+  Fork B Retire WS-L with measurement-quality reframing — RECOMMENDED.
+    Assertion correctly surfaces orphan-bind events as cohort
+    discriminator (per trace_emitter.py:76 orphan-tag definition is
+    intentional observability). Cohort logged as Phase 4 catalogue
+    item; PendingBall orphan-bind investigation deferred to natural
+    cohort growth.
+  Fork C Extend assertion with orphan-bind tolerance — clean but
+    marginal gain; assertion's current FAIL signal effectively flags
+    orphan-bind cohort.
+
+S28 second-instance promotion STILL HOLDS at WS-L step-3 close-out
+— pre-screen verdict was correct; assertion shipped + delivered
+cohort discrimination as projected. Downstream discovery that the
+cohort reflects orphan-bind events (not emission completeness) is
+investigation-outcome refinement, not pre-screen falsification.
+
+Methodology refinement candidate (S26-v2): pre-step-N verification-1
+should spot-check step-(N-1)'s UNVERIFIED markers via targeted code
+reads. Single-instance evidence (this WS-L step-2 deviation); awaits
+second-instance for promotion.
+
+Empirical-budget status: 2/5 → 2/5 (UNCHANGED).
+Methodology insights running total: 23 (S26-v2 candidate +
+S28 promotion pending step-3).
+Memo: files/docs/investigations/workstream_l_bat_delta_emission_completeness_investigation.md (14 sections, ~580 lines).
+```
+
