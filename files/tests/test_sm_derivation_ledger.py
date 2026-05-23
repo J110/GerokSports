@@ -462,7 +462,12 @@ def main(argv: list[str] | None = None) -> int:
         return gfg_rc
     from test_gamma_w_symbol_schema_precondition import (
         run_all as _run_gws_gate)
-    return _run_gws_gate()
+    gws_rc = _run_gws_gate()
+    if gws_rc != 0:
+        return gws_rc
+    from test_alpha_batter_runs_sum import (
+        run_all as _run_abr_gate)
+    return _run_abr_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:

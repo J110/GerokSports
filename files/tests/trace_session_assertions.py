@@ -112,6 +112,30 @@ def _running_bowler_runs(records: list) -> dict[str, int]:
     return totals
 
 
+def _running_batter_runs(records: list) -> tuple[dict[str, int], int]:
+    """Latest BAT-DELTA → cumulative runs per batter + total emission count.
+
+    Returns (final-runs-per-batter, total BAT-DELTA emission count).
+    Emission count drives the Shape B coverage-precondition gate at
+    `assert_batter_runs_sum_matches_team_score`.
+    """
+    pat = re.compile(
+        r"BAT-DELTA\] (\S.+?) \+runs=(-?\d+) \+balls=(-?\d+) "
+        r"\+4s=(-?\d+) \+6s=(-?\d+) → runs=(\d+) balls=(\d+)")
+    totals: dict[str, int] = {}
+    n_emissions = 0
+    for r in records:
+        for d in _decisions(r):
+            if d.get("tag") != "BAT-DELTA":
+                continue
+            n_emissions += 1
+            msg = d.get("raw_message", "") or ""
+            mm = pat.search(msg)
+            if mm:
+                totals[mm.group(1).strip()] = int(mm.group(6))
+    return totals, n_emissions
+
+
 def _count_wd_nb_tokens_in_archives(records: list) -> int:
     """Sum of Wd/Nb tokens written via OVER-ARCHIVE-WRITE."""
     n = 0
@@ -157,6 +181,54 @@ def assert_bowler_runs_sum_matches_team_score(
             assumed_extras=max_acceptable_extras,
             unaccounted_runs=gap,
             bowler_totals=bowler_totals)
+    return _ok()
+
+
+def assert_batter_runs_sum_matches_team_score(
+        records: list,
+        coverage_floor: float = 0.7,
+        tolerance: int = 0) -> Result:
+    """B-α-batter detector. Cricket-physics: team_score = sum(per-batter
+    runs) + extras. Per-batter cumulative runs read from BAT-DELTA
+    emissions (latest-per-name). Final team_score + extras read from
+    `ui_after.scorecard.score` + `ui_after.extras_total`.
+
+    Two preconditions (Shape B schema-precondition family per S23):
+
+    1. ``ui_after.scorecard.score`` + ``ui_after.extras_total`` must
+       both be present in the trace (REPLAY-cohort traces lack
+       ``ui_after`` entirely → INAPPLICABLE skip).
+    2. BAT-DELTA emission count must cover at least ``coverage_floor``
+       (default 70%) of the expected-runs envelope. Below floor → SKIP
+       (the gap between observed sum and expected can't be attributed
+       to correctness violations vs emission-completeness gap without
+       higher coverage).
+
+    Where preconditions pass, the FAIL terminal fires when
+    ``score - sum_batter - extras > tolerance``.
+    """
+    final_score, _ = _team_score_wickets(_last_ts_match(records))
+    extras = _final_extras_total(records)
+    if final_score is None or extras is None:
+        return _ok()
+    expected = final_score - int(extras)
+    if expected <= 0:
+        return _ok()
+    bat_totals, n_emissions = _running_batter_runs(records)
+    if n_emissions / max(expected, 1) < coverage_floor:
+        return _ok()
+    sum_bat = sum(bat_totals.values())
+    gap = expected - sum_bat
+    if gap > tolerance:
+        return _fail(
+            class_name="batter_runs_sum_short",
+            team_score=final_score,
+            extras=int(extras),
+            expected_batter_runs=expected,
+            batter_runs_sum=sum_bat,
+            unaccounted_runs=gap,
+            bat_delta_emissions=n_emissions,
+            batter_totals=bat_totals)
     return _ok()
 
 
@@ -686,6 +758,8 @@ def assert_post_wicket_cascade_drains(records: list) -> Result:
 TRACE_ASSERTIONS = [
     ("trace_alpha_bowler_runs_sum",
      assert_bowler_runs_sum_matches_team_score),
+    ("trace_alpha_batter_runs_sum",
+     assert_batter_runs_sum_matches_team_score),
     ("trace_beta_sm_wicket_dispatch",
      assert_sm_wicket_dispatch_invariant),
     ("trace_epsilon_initial_striker",
