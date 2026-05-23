@@ -22,6 +22,12 @@ from cricket_rules import (
 )
 from eyes.cricket_logger import CricketLogger
 from eyes.this_over import ThisOverManager as _TOM
+from score_manager_derivation import (
+    SnapshotPrimitives as _SnapshotPrimitives,
+    derive_striker_event as _derive_striker_event,
+    derive_this_over_token as _derive_this_over_token,
+    derive_wicket_event as _derive_wicket_event,
+)
 
 try:
     from cricket_rules import _cold_start_infer_gap_tokens as _infer_gap_tokens
@@ -490,6 +496,11 @@ class ScoreManager:
         # once self.striker becomes non-None again. See
         # cold_start_initial_striker_design.md.
         self._post_wicket_slot_to_diff: str | None = None
+        # Workstream G Shape A (2026-05-22) — FIFO queue of post-wicket
+        # cascades deferred because event.new_batter was None at commit
+        # time (G2 strip-render-lag root). Bounded at 3 per audit §4 Q1;
+        # overflow pops oldest + emits POST-WICKET-CASCADE-QUEUE-OVERFLOW.
+        self._pending_post_wicket_cascade: list = []
 
         # Match context (innings / batting_team / target → Path B properties)
         self.venue: str | None = None
@@ -725,6 +736,527 @@ class ScoreManager:
             rewrite(slot_idx, token)
         except Exception:
             pass
+
+    # ──────────────────────────────────────────────────────────────
+    # Triple-subsystem greenfield rewrite — canonical commit paths
+    # (§12.3 / §13.3 / §14.3). Pure derivation lives in
+    # files/score_manager_derivation.py; these are the thin SM
+    # methods that mutate state and emit trace. Session A scaffolding
+    # — NOT yet wired to any call site. Session B wires existing
+    # entry points through these methods per §15.
+    # ──────────────────────────────────────────────────────────────
+
+    def _snapshot_primitives_from_dict(self, src: dict | None) -> _SnapshotPrimitives:
+        """Build SnapshotPrimitives from a prev/card scoreboard dict +
+        current SM state.
+
+        Step-5 best-effort: bat1/bat2/bowler/striker/extras are read
+        from CURRENT SM state (no event-time history). Score/wickets/
+        overs come from `src` (prev = pre-event; card = post-event).
+        Sufficient for behavior-preservation per the step-5 acceptance;
+        a fuller temporal-snapshot path lands in Session B step 7 if
+        needed.
+        """
+        src = src or {}
+        extras = self._extras_writable() or {}
+        try:
+            overs_str = f"{float(src.get('overs') or 0):.1f}"
+        except (TypeError, ValueError):
+            overs_str = "0.0"
+        return _SnapshotPrimitives(
+            score=int(src.get("score") or 0),
+            wickets=int(src.get("wickets") or 0),
+            overs=overs_str,
+            bat1_name=self.bat1_name,
+            bat2_name=self.bat2_name,
+            bowler_name=self.bowler_name,
+            striker=self.striker,
+            non_striker=self.non,
+            extras_total=int(extras.get("total") or 0),
+            extras_wd=int(extras.get("wides") or 0),
+            extras_nb=int(extras.get("no_balls") or 0),
+            extras_b=int(extras.get("byes") or 0),
+            extras_lb=int(extras.get("leg_byes") or 0),
+            first_striker=getattr(self, "first_striker", None),
+            legal_balls_in_over=getattr(
+                self, "_legal_balls_in_over_new_path", 0),
+        )
+
+    def _emit_trace(self, tag: str, payload: dict) -> None:
+        if _trace is None:
+            return
+        try:
+            _trace.get_recorder().record(tag=tag, **payload)
+        except Exception:
+            pass
+
+    def _wipe_pending_cascade_on_cold_entry(
+            self, transition_site: str) -> None:
+        """Workstream G Surface B — wipe-on-WARM→COLD per audit §3
+        (4f14dee). Captures the queue state, emits
+        POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START with per-entry
+        payload, then clears the queue. Insight #17 requires positive
+        trace observability — silent wipes via __init__ re-runs are
+        the prohibited pattern.
+
+        transition_site discriminates the W-site: one of W1
+        ``_handle_warm_overs_regress``, W2 ``_handle_warm_stale_reject``,
+        W3 ``force_cold_start_recalibration``, W4 ``set_innings_2``
+        (with reason in payload).
+        """
+        if not self._pending_post_wicket_cascade:
+            return
+        wiped_entries = [
+            {"frame_set_at": p.frame_set_at,
+             "age": self._current_frame - p.frame_set_at,
+             "dismissed": p.dismissed,
+             "reason": p.reason}
+            for p in self._pending_post_wicket_cascade
+        ]
+        self._emit_trace(
+            tag="POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START",
+            payload={
+                "transition_site": transition_site,
+                "wiped_entries": wiped_entries,
+                "frame_id": self._current_frame,
+            })
+        self._pending_post_wicket_cascade = []
+
+    def _increment_bowler_wickets(self, bowler_name: str) -> None:
+        """§12.3 step 4 — single bowler-W credit path.
+
+        Replaces the 7 inline `scoreboard.update_bowler(...,
+        wickets_delta=...)` sites enumerated in §12.10.4. Callers in
+        Session B reroute through here; today this method is the
+        canonical commit but the 7 inline sites still coexist (they
+        will be removed in Session B per §15 steps 5-12).
+        """
+        if self.scoreboard is None or not bowler_name:
+            return
+        try:
+            self.scoreboard.update_bowler(
+                bowler_name,
+                runs_delta=0,
+                balls_delta=0,
+                wickets_delta=1,
+                frame=self._current_frame)
+        except Exception:
+            pass
+
+    def apply_wicket_event(self, event) -> None:
+        """§12.3 (refined for §15 step 7b) — narrow canonical commit
+        path for wicket-specific state:
+          1. FoW append (idempotent — replace placeholder, refuse
+             rewrite of confirmed entries; matches the pre-rewrite
+             _apply_wicket_fall_only behaviour).
+          2. Bowler-W credit IF wicket_type is bowler-attributable
+             (caught/bowled/lbw/stumped/hit-wicket). Run-outs and
+             obstructed-field do NOT credit the bowler.
+          3. _last_bowler_at_wicket_commit sibling field for harness
+             snapshotter (per §12.10.3).
+          4. SYNTHETIC-WICKET-DISPATCHED trace.
+
+        Deliberately does NOT:
+          - mutate self.wickets (owned by the @wickets.setter via
+            _accept_update, which fires before _apply_event)
+          - append to self.this_over (apply_this_over_token owns it,
+            including Wd+W compound token composition per §15 step 5)
+          - emit trace_beta_sm_wicket_dispatch (_apply_wicket_fall_only
+            still owns the post-wicket side effects — slot clearing,
+            partnership reset, trace_beta — until those have their
+            own canonical paths)
+        """
+        from score_manager_derivation import is_bowler_attributable
+        wkt_no = (
+            event.wicket_number
+            if event.wicket_number is not None
+            else (self.wickets or 0))
+        try:
+            fow_list = self._fow_writable()
+            new_entry = {
+                "wicket": wkt_no,
+                "score": self.score,
+                "overs": event.over_ball,
+                "dismissed": event.dismissed_batter,
+                "batter": event.dismissed_batter,
+                "bowler": event.bowler_name,
+                "wicket_type": event.wicket_type,
+                "_witnessed": True,
+            }
+            target_idx = wkt_no - 1
+            if target_idx < 0:
+                fow_list.append(new_entry)
+            elif target_idx < len(fow_list):
+                existing = fow_list[target_idx] or {}
+                is_placeholder = (
+                    existing.get("score") in (None, "?")
+                    or not existing.get("dismissed")
+                    or existing.get("_unwitnessed"))
+                if is_placeholder:
+                    fow_list[target_idx] = new_entry
+                # else: confirmed entry — refuse rewrite
+            else:
+                while len(fow_list) < target_idx:
+                    fow_list.append(
+                        self._make_fow_placeholder(len(fow_list) + 1))
+                fow_list.append(new_entry)
+        except Exception:
+            pass
+        if event.bowler_name and is_bowler_attributable(event.wicket_type):
+            self._increment_bowler_wickets(event.bowler_name)
+        if event.bowler_name:
+            self._last_bowler_at_wicket_commit = event.bowler_name
+        # §12.3 step 5 (commit 8/N): post-wicket striker rotation
+        # cascade. Routes through apply_striker_event with reasons
+        # wicket_new_batter / wicket_non_striker_stays per §13.2 rule 2.
+        # Idempotent — _apply_event's downstream derive_striker_event
+        # call (commit 7a) re-evaluates from post-cascade SM state and
+        # returns no_change if the cascade already produced the right
+        # rotation. Anomalies + deferrals emit trace tags so the
+        # harness diff can localise gaps.
+        self._apply_post_wicket_striker_rotation(event)
+        self._emit_trace(
+            tag="SYNTHETIC-WICKET-DISPATCHED",
+            payload={
+                "over_ball": event.over_ball,
+                "dismissed": event.dismissed_batter,
+                "bowler": event.bowler_name,
+                "wicket_type": event.wicket_type,
+                "wicket_number": wkt_no,
+                "delta_wickets": event.delta_wickets,
+                "delta_score": event.delta_score,
+                "delta_extras": event.delta_extras,
+                "this_over_token": event.this_over_token,
+                "frame_id": self._current_frame,
+            })
+
+    def apply_striker_event(self, event) -> None:
+        """§13.3 (B-2) — single mutation path for the
+        (self.striker, self.non) pair.
+
+        Mutates BOTH pointers atomically — caller no longer needs to
+        mirror self.non separately. Only no_change reason is a no-op;
+        a None next_striker IS a legitimate mutation (e.g. cricket
+        pair-swap on (Nissanka, None) → (None, Nissanka) per the §15
+        step-7c fix at over_ball 8.4).
+        """
+        if event.reason == "no_change":
+            return
+        self.striker = event.next_striker
+        self.non = event.next_non_striker
+        self._emit_trace(
+            tag="STRIKER-EVENT-DISPATCHED",
+            payload={
+                "prev_striker": event.prev_striker,
+                "next_striker": event.next_striker,
+                "prev_non_striker": event.prev_non_striker,
+                "next_non_striker": event.next_non_striker,
+                "reason": event.reason,
+                "frame_id": self._current_frame,
+            })
+
+    def apply_striker_identity_resolved(
+            self, resolved_name: str, source: str) -> None:
+        """§13.8 — single mutation path for self.striker IDENTITY-
+        RESOLUTION semantics. Sibling to apply_striker_event (which
+        owns ROTATION). Does NOT rotate — only updates the canonical
+        name string for the existing on-strike batter.
+
+        Pre-condition: if self.striker is non-None and != resolved_name,
+        emit STRIKER-IDENTITY-CONFLICT (something upstream conflated
+        rotation with identity). Proceed best-effort per §16.
+        """
+        if resolved_name is None:
+            return
+        if self.striker is not None and self.striker != resolved_name:
+            self._emit_trace(
+                tag="STRIKER-IDENTITY-CONFLICT",
+                payload={
+                    "existing": self.striker,
+                    "resolved": resolved_name,
+                    "source": source,
+                    "frame_id": self._current_frame,
+                })
+        self.striker = resolved_name
+        self._emit_trace(
+            tag="STRIKER-IDENTITY-RESOLVED",
+            payload={
+                "name": resolved_name,
+                "source": source,
+                "frame_id": self._current_frame,
+            })
+
+    def _apply_post_wicket_striker_rotation(self, event) -> None:
+        """§12.3 step 5 — post-wicket striker cascade.
+
+        Match event.dismissed_batter against (self.striker, self.non)
+        to determine who comes in where. Build a StrikerEvent with
+        reason wicket_new_batter (striker dismissed) or
+        wicket_non_striker_stays (non dismissed) and dispatch via
+        apply_striker_event. Defensive trace tags for the deferred
+        and anomaly cases:
+          - POST-WICKET-STRIKER-CASCADE-DEFERRED — Scout primitive
+            lag (new_batter is None); next frame's derivation
+            re-evaluates.
+          - POST-WICKET-STRIKER-ROTATION-ANOMALY — dismissed name
+            matches neither striker nor non; shouldn't happen, but
+            if it does the harness will detect via D-post-FoW-striker.
+        """
+        from score_manager_derivation import (
+            StrikerEvent as _SE, PendingCascade as _PC)
+        dismissed = event.dismissed_batter
+        new_batter = event.new_batter
+        if dismissed is None:
+            self._emit_trace(
+                tag="POST-WICKET-STRIKER-CASCADE-DEFERRED",
+                payload={
+                    "reason": "dismissed_unresolved",
+                    "frame_id": self._current_frame,
+                })
+            return
+        prev_striker = self.striker
+        prev_non = self.non
+        if dismissed == prev_striker:
+            cascade_reason = "wicket_new_batter"
+            survivor = prev_non
+        elif dismissed == prev_non:
+            cascade_reason = "wicket_non_striker_stays"
+            survivor = prev_striker
+        else:
+            cascade_reason = None
+            survivor = None
+        if new_batter is None:
+            self._emit_trace(
+                tag="POST-WICKET-STRIKER-CASCADE-DEFERRED",
+                payload={
+                    "reason": "new_batter_unresolved",
+                    "dismissed": dismissed,
+                    "deferred_to_drain": True,
+                    "frame_id": self._current_frame,
+                })
+            if cascade_reason is None:
+                # dismissed matches neither slot — anomaly; do not enqueue
+                # because the drain has no captured-pair semantic to apply.
+                self._emit_trace(
+                    tag="POST-WICKET-STRIKER-ROTATION-ANOMALY",
+                    payload={
+                        "dismissed": dismissed,
+                        "new_batter": None,
+                        "self_striker": prev_striker,
+                        "self_non": prev_non,
+                        "reason": "defer_with_no_slot_match",
+                        "frame_id": self._current_frame,
+                    })
+                return
+            if len(self._pending_post_wicket_cascade) >= 3:
+                _evicted = self._pending_post_wicket_cascade.pop(0)
+                self._emit_trace(
+                    tag="POST-WICKET-CASCADE-QUEUE-OVERFLOW",
+                    payload={
+                        "evicted_frame_set_at": _evicted.frame_set_at,
+                        "evicted_dismissed": _evicted.dismissed,
+                        "incoming_dismissed": dismissed,
+                        "frame_id": self._current_frame,
+                    })
+            _entry = _PC(
+                wicket_event=event,
+                dismissed=dismissed,
+                survivor=survivor,
+                reason=cascade_reason,
+                prev_striker=prev_striker,
+                prev_non_striker=prev_non,
+                frame_set_at=self._current_frame,
+                wicket_frame_for_history=self._current_frame,
+            )
+            self._pending_post_wicket_cascade.append(_entry)
+            self._emit_trace(
+                tag="POST-WICKET-CASCADE-ENQUEUED",
+                payload={
+                    "dismissed": dismissed,
+                    "survivor": survivor,
+                    "reason": cascade_reason,
+                    "prev_striker": prev_striker,
+                    "prev_non_striker": prev_non,
+                    "frame_set_at": self._current_frame,
+                    "ttl_frames": _entry.ttl_frames,
+                    "queue_depth": len(self._pending_post_wicket_cascade),
+                })
+            return
+        if cascade_reason is None:
+            self._emit_trace(
+                tag="POST-WICKET-STRIKER-ROTATION-ANOMALY",
+                payload={
+                    "dismissed": dismissed,
+                    "new_batter": new_batter,
+                    "self_striker": prev_striker,
+                    "self_non": prev_non,
+                    "frame_id": self._current_frame,
+                })
+            return
+        if cascade_reason == "wicket_new_batter":
+            next_striker = new_batter
+            next_non = prev_non
+        else:
+            next_striker = prev_striker
+            next_non = new_batter
+        striker_event = _SE(
+            prev_striker=prev_striker,
+            next_striker=next_striker,
+            prev_non_striker=prev_non,
+            next_non_striker=next_non,
+            reason=cascade_reason,
+        )
+        self.apply_striker_event(striker_event)
+
+    def _attempt_pending_cascade_drain(self) -> None:
+        """Workstream G Shape A — drain pending post-wicket cascades.
+
+        Iterates FIFO; resolves new_batter via slot-diff against the
+        captured pre-fallback pair (audit §2.3.1 Mitigation A). On
+        resolve: dispatches via apply_striker_event with the captured
+        pair as prev. On TTL expiry: pops + emits CASCADE-DRAIN-EXPIRED.
+        Halts at the first unresolved-but-within-TTL entry (FIFO order
+        preserved; cricket guarantees strict event ordering).
+        """
+        from score_manager_derivation import StrikerEvent as _SE
+        while self._pending_post_wicket_cascade:
+            entry = self._pending_post_wicket_cascade[0]
+            age = self._current_frame - entry.frame_set_at
+            at_crease = {n for n in (self.bat1_name, self.bat2_name) if n}
+            arrived = at_crease - {entry.dismissed}
+            if entry.survivor is not None:
+                arrived = arrived - {entry.survivor}
+            new_batter = next(iter(arrived)) if len(arrived) == 1 else None
+            if new_batter is not None:
+                if entry.reason == "wicket_new_batter":
+                    next_striker = new_batter
+                    next_non = entry.prev_non_striker
+                else:
+                    next_striker = entry.prev_striker
+                    next_non = new_batter
+                striker_event = _SE(
+                    prev_striker=entry.prev_striker,
+                    next_striker=next_striker,
+                    prev_non_striker=entry.prev_non_striker,
+                    next_non_striker=next_non,
+                    reason=entry.reason,
+                )
+                self.apply_striker_event(striker_event)
+                self._emit_trace(
+                    tag="POST-WICKET-CASCADE-DRAIN-FIRED",
+                    payload={
+                        "dismissed": entry.dismissed,
+                        "new_batter": new_batter,
+                        "reason": entry.reason,
+                        "frame_set_at": entry.frame_set_at,
+                        "wicket_frame_for_history":
+                            entry.wicket_frame_for_history,
+                        "age_frames": age,
+                        "frame_id": self._current_frame,
+                    })
+                self._pending_post_wicket_cascade.pop(0)
+                continue
+            if age > entry.ttl_frames:
+                self._emit_trace(
+                    tag="CASCADE-DRAIN-EXPIRED",
+                    payload={
+                        "dismissed": entry.dismissed,
+                        "survivor": entry.survivor,
+                        "reason": entry.reason,
+                        "frame_set_at": entry.frame_set_at,
+                        "age_frames": age,
+                        "ttl_frames": entry.ttl_frames,
+                        "frame_id": self._current_frame,
+                    })
+                self._pending_post_wicket_cascade.pop(0)
+                continue
+            break
+
+    def apply_striker_identity_proposed(
+            self, proposed_name: str, source: str) -> None:
+        """§13.8.1 — third canonical mutation path for self.striker:
+        the conservative-refuse semantic for noisy / broadcast-driven
+        identity proposals.
+
+        Distinct from apply_striker_identity_resolved (which proceeds
+        best-effort with an alert): this method REFUSES the write
+        when self.striker is already set. The proposal is acceptable
+        ONLY when self.striker is None (cold-start / post-wicket
+        gap where no deterministic value exists yet).
+
+        Empirical justification (commit 7a/7b chain): _identify_and_set
+        is called per-frame from Scout/broadcast reads. Broadcast can
+        flip mid-over ahead of deterministic rotation. Per-ball
+        BAT-DELTA at _accumulate_stats_from_event uses self.striker —
+        flipping it mid-over miscredits boundaries and runs to the
+        wrong batter (+24 Boundary-counter-double-increment, +9
+        Per-batter-ledger-drift in the step-9 attempt without this
+        refuse semantic).
+
+        Fires STRIKER-IDENTITY-PROPOSAL-REFUSED when refused;
+        STRIKER-IDENTITY-PROPOSAL-ACCEPTED when self.striker was None.
+        """
+        if proposed_name is None:
+            return
+        if self.striker is not None and self.striker != proposed_name:
+            self._emit_trace(
+                tag="STRIKER-IDENTITY-PROPOSAL-REFUSED",
+                payload={
+                    "existing": self.striker,
+                    "proposed": proposed_name,
+                    "source": source,
+                    "frame_id": self._current_frame,
+                })
+            return
+        if self.striker == proposed_name:
+            return
+        self.striker = proposed_name
+        self._emit_trace(
+            tag="STRIKER-IDENTITY-PROPOSAL-ACCEPTED",
+            payload={
+                "name": proposed_name,
+                "source": source,
+                "frame_id": self._current_frame,
+            })
+
+    def apply_this_over_token(self, token) -> None:
+        """§14.3 — append + rollover. MULTI tokens expand per
+        cluster_tokens (lost-frames Recent-Overs '?' rendering per
+        §14.7 #2). Archive integration deferred to Session B; this
+        method clears this_over on the 6th legal ball but does not
+        write to over_history (existing inline archive logic at
+        score_manager.py:5932-5934 retains that responsibility until
+        Session B).
+        """
+        if token.raw == "MULTI":
+            for sub in (token.cluster_tokens or []):
+                self.this_over.append(sub)
+                try:
+                    self.this_over_src.append("lost_frames_infer")
+                except AttributeError:
+                    pass
+        else:
+            self.this_over.append(token.raw)
+            try:
+                self.this_over_src.append("obs")
+            except AttributeError:
+                pass
+        if token.delta_legal_balls > 0:
+            self._legal_balls_in_over_new_path = (
+                getattr(self, "_legal_balls_in_over_new_path", 0)
+                + token.delta_legal_balls)
+            if self._legal_balls_in_over_new_path >= 6:
+                self._legal_balls_in_over_new_path = 0
+        self._emit_trace(
+            tag="THIS-OVER-TOKEN-APPENDED",
+            payload={
+                "raw": token.raw,
+                "delta_score": token.delta_score,
+                "delta_legal_balls": token.delta_legal_balls,
+                "wicket_flag": token.wicket_flag,
+                "extras_type": token.extras_type,
+                "frame_id": self._current_frame,
+            })
 
     def _drain_pending_queue(self, reason: str) -> int:
         """FIFO-drain entries with both bowler+striker known.
@@ -1219,6 +1751,17 @@ class ScoreManager:
                 self._sm_feeder_sb_missing_logged = True
             self._sm_scalar_fallback["wickets"] = iv
             return
+        # Workstream I Phase 1: capture prior_wickets before the set so a
+        # SILENT-WICKET-ABSORPTION tag can flag scalar-set increments that
+        # bypass the wicket-event chain (no WICKET event, no _add_fow
+        # write). The classifier in replay_diff_harness.py uses the
+        # snapshot-stream FoW deltas to confirm absorption; this tag is
+        # observability for trace-level debugging.
+        try:
+            _prior_w = self._sb_inn_get("wickets")
+            _prior_w = int(_prior_w) if _prior_w is not None else 0
+        except (TypeError, ValueError):
+            _prior_w = 0
         try:
             ok = self.scoreboard.set("wickets", iv, self._current_frame)
         except Exception as e:
@@ -1229,6 +1772,19 @@ class ScoreManager:
         log.info(
             f"  [SM-FEEDER-SYNC] field=wickets value={iv} "
             f"sb_accepted={str(ok).lower()}")
+        if ok and iv > _prior_w and _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="SILENT-WICKET-ABSORPTION",
+                    frame_id=self._current_frame,
+                    prior_wickets=_prior_w,
+                    new_wickets=iv,
+                    delta=iv - _prior_w,
+                    current_over_ball=(
+                        f"{self.overs:.1f}"
+                        if self.overs is not None else None))
+            except Exception:
+                pass
 
     @property
     def run_rate(self) -> float | None:
@@ -1440,6 +1996,20 @@ class ScoreManager:
         self.pending_extra_frames = 0
         self.pending_wicket = None
         self.pending_wicket_frames = 0
+
+        if self._pending_post_wicket_cascade:
+            _wiped = [
+                {"frame_set_at": pc.frame_set_at,
+                 "age": self._current_frame - pc.frame_set_at,
+                 "dismissed": pc.dismissed}
+                for pc in self._pending_post_wicket_cascade]
+            self._emit_trace(
+                tag="POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START",
+                payload={
+                    "wiped_entries": _wiped,
+                    "frame_id": self._current_frame,
+                })
+        self._pending_post_wicket_cascade = []
 
         self.recent_frames = []
 
@@ -1813,7 +2383,19 @@ class ScoreManager:
                 f"[SM-SLOT-INVARIANT] duplicate slots {_s!r} "
                 f"(source={source}); clearing non")
             _ns = None
-        self.striker, self.non = _s, _ns
+        # §13.8 / step 7c: route the striker write through the
+        # canonical identity-resolution path so trace surfaces every
+        # identity write and the ROTATION ↔ IDENTITY race detector
+        # (STRIKER-IDENTITY-CONFLICT) can fire on slot collision.
+        # `_s is None` is the slot-clearing case (post-wicket /
+        # cold-start invalidation) — write directly since the
+        # apply_striker_identity_resolved contract requires a name.
+        if _s is None:
+            self.striker = None
+        else:
+            self.apply_striker_identity_resolved(
+                _s, source=f"set_slot_pair:{source}")
+        self.non = _ns
 
     # ------------------------------------------------------------------
     # Validation
@@ -2288,6 +2870,12 @@ class ScoreManager:
                 self._last_warm_state = None
                 self._accept_initial(_candidate_for_seed, frame)
                 self.mode = "WARM"
+                # Workstream G Surface B (C1 physics-promote drain
+                # trigger; audit 4f14dee §3.1). Defense-in-depth no-op
+                # in the step-5 dump (queue wiped at W-sites); fires
+                # only if a wicket arrives mid-COLD without a W-wipe.
+                if self._pending_post_wicket_cascade:
+                    self._attempt_pending_cascade_drain()
                 # 2. Snapshot the just-seeded state as `prev` for the
                 #    gap event.
                 _prev_snap = self._snapshot()
@@ -2353,6 +2941,9 @@ class ScoreManager:
                 self._last_warm_state = None
                 self._accept_initial(card, frame)
                 self.mode = "WARM"
+                # Workstream G Surface B (C2 give-up drain trigger).
+                if self._pending_post_wicket_cascade:
+                    self._attempt_pending_cascade_drain()
                 log.info(f"[SM] COLD_START → WARM (max frames, ref cleared)  "
                          f"{self.score}/{self.wickets} ({self.overs})")
                 self._maybe_synthesize_cold_start_gap()
@@ -2389,6 +2980,9 @@ class ScoreManager:
                 self._last_warm_state = None
                 self._accept_initial(card, frame)
                 self.mode = "WARM"
+                # Workstream G Surface B (C3 give-up drain trigger).
+                if self._pending_post_wicket_cascade:
+                    self._attempt_pending_cascade_drain()
                 log.info(f"[SM] COLD_START → WARM (max frames, ref cleared)  "
                          f"{self.score}/{self.wickets} ({self.overs})")
                 self._maybe_synthesize_cold_start_gap()
@@ -2398,6 +2992,9 @@ class ScoreManager:
         self._last_warm_state = None
         self._accept_initial(card, frame)
         self.mode = "WARM"
+        # Workstream G Surface B (C4 consensus drain trigger).
+        if self._pending_post_wicket_cascade:
+            self._attempt_pending_cascade_drain()
         log.info(
             f"[SM] COLD_START → WARM (consensus "
             f"{self.cold_candidate_streak}/"
@@ -2441,6 +3038,9 @@ class ScoreManager:
         self.cold_candidate = None
         self.cold_candidate_streak = 0
         self.mode = "WARM"
+        # Workstream G Surface B (C5 watchdog-forced drain trigger).
+        if self._pending_post_wicket_cascade:
+            self._attempt_pending_cascade_drain()
         log.info(
             f"[SM] COLD_START → WARM (pipeline watchdog)  "
             f"{self.score}/{self.wickets} ({self.overs})")
@@ -2714,6 +3314,9 @@ class ScoreManager:
         self.cold_candidate = None
         self.cold_candidate_streak = 0
         self.cold_frames = 0
+        # Workstream G Surface B (C6 hot-resume drain trigger).
+        if self._pending_post_wicket_cascade:
+            self._attempt_pending_cascade_drain()
         log.info(
             f"[SM] HOT-RESUME from cache  "
             f"{self.score}/{self.wickets} ({self.overs}) frame=F{frame}")
@@ -2945,6 +3548,12 @@ class ScoreManager:
         if self._over_archive_pending is not None:
             self._attempt_pending_archive_drain(
                 card.get("overs") if isinstance(card, dict) else None)
+        # Workstream G Shape A: drain BEFORE _identify_and_set so a
+        # resolved cascade writes self.striker via apply_striker_event
+        # FIRST; subsequent apply_striker_identity_proposed reads a
+        # non-None striker and refuses (audit §4 Q3 ordering).
+        if self._pending_post_wicket_cascade:
+            self._attempt_pending_cascade_drain()
         self._try_resolve_pending(frame)
 
         if card.get("score") is not None:
@@ -3299,6 +3908,8 @@ class ScoreManager:
                 f"{new_overs}) confirmed after "
                 f"{self._overs_regress_streak} frames — "
                 f"re-entering COLD_START")
+            self._wipe_pending_cascade_on_cold_entry(
+                transition_site="_handle_warm_overs_regress")
             self._last_warm_state = self._snapshot()
             self.mode = "COLD_START"
             self.cold_candidate = None
@@ -3359,6 +3970,8 @@ class ScoreManager:
             if self._stale_reject_count > 10:
                 log.info("[SM] Too many consecutive rejections — "
                          "re-entering COLD_START to re-calibrate")
+                self._wipe_pending_cascade_on_cold_entry(
+                    transition_site="_handle_warm_stale_reject")
                 self._last_warm_state = self._snapshot()
                 self.mode = "COLD_START"
                 self.cold_candidate = None
@@ -3543,6 +4156,8 @@ class ScoreManager:
         """
         prev_state = (f"{self.score}/{self.wickets} ({self.overs}) "
                       f"mode={self.mode}")
+        self._wipe_pending_cascade_on_cold_entry(
+            transition_site=f"force_cold_start_recalibration:{reason or 'external'}")
         self._last_warm_state = self._snapshot() if self.score is not None else None
         self.mode = "COLD_START"
         self.cold_candidate = None
@@ -3916,6 +4531,12 @@ class ScoreManager:
         # that would have leaked into innings-2's first d_score.
         _prev_event_baseline = getattr(
             self, "_event_baseline_score", None)
+        # Workstream G Surface B (W4 — insight #17): emit
+        # WIPED-BY-COLD-START BEFORE __init__ re-runs and silently
+        # default-inits the queue. Audit memo 4f14dee §3.3 ordering
+        # mandate — placement here is load-bearing.
+        self._wipe_pending_cascade_on_cold_entry(
+            transition_site=f"set_innings_2:{reason}")
         shadow = self.shadow
         history = self.innings_history
         reset_frame = self._current_frame
@@ -4409,42 +5030,25 @@ class ScoreManager:
             method = _slot_diff_method
 
         if new and new != self.striker:
-            if self.striker is not None:
-                # Deterministic striker rotation (2026-05-19) — SM-internal
-                # parity with 2105463. Once an initial striker is locked
-                # (innings-start init or post-wicket new-batter), the
-                # broadcast/strip-derived striker indicator no longer
-                # overrides self.striker mid-over. SM's per-ball rotation
-                # in `_apply_event` is the sole authority through to the
-                # next wicket.
-                #
-                # Surfaced by files/tests/test_sm_derivation_ledger.py
-                # at ball 4.6 of the DC vs KKR fixture: the broadcast
-                # indicator advanced to the post-wicket-and-EOO-swap
-                # striker (Nissanka) mid-frame, flipping `self.striker`
-                # before the wicket-attribution logic could identify
-                # Rahul as dismissed.
-                log.info(
-                    f"  [STRIKER-SM-BROADCAST-DISAGREES-DETERMINISTIC]"
-                    f" method={method} broadcast={new!r} "
-                    f"deterministic={self.striker!r} — "
-                    f"keeping deterministic")
-                if _trace is not None:
-                    try:
-                        _trace.get_recorder().record(
-                            tag=("STRIKER-SM-BROADCAST-DISAGREES-"
-                                 "DETERMINISTIC"),
-                            method=method,
-                            broadcast_striker=new,
-                            deterministic_striker=self.striker)
-                    except Exception:
-                        pass
-            else:
+            # §15 step 9 (retry per §13.8.1) — route through
+            # apply_striker_identity_proposed (conservative-refuse).
+            # When self.striker is None: proposal is accepted (also
+            # sets self.non via _w8_non_for_identified through
+            # _set_slot_pair). When self.striker is set: proposal is
+            # REFUSED, STRIKER-IDENTITY-PROPOSAL-REFUSED trace fires.
+            # The pre-rewrite override (STRIKER-SM-BROADCAST-DISAGREES-
+            # DETERMINISTIC) is now the canonical method's body; the
+            # S12 C30b defect surface is eliminated by removing the
+            # inline gate.
+            if self.striker is None:
                 log.info(f"[STRIKER] method={method} striker={new} "
                          f"(was={self.striker})")
                 _ns = self._w8_non_for_identified(new)
                 self._set_slot_pair(
                     new, _ns, source=f"identify_and_set.{method}")
+            else:
+                self.apply_striker_identity_proposed(
+                    new, source=f"identify_and_set.{method}")
 
         # S5b-3a: once striker is non-None again, the post-wicket gap
         # is closed; clear the slot-diff anchor.
@@ -5260,7 +5864,12 @@ class ScoreManager:
             f"self.non={self.non!r} "
             f"self.bat1_name={self.bat1_name!r} "
             f"self.bat2_name={self.bat2_name!r}")
-        _canonical_bowler = self.bowler_name
+        # §15 step 7b: prefer event["_bowler_at_commit"] (captured by
+        # _apply_event BEFORE the over-end BOWLER-LOCK-RELEASED clear)
+        # over self.bowler_name. For over-end wickets self.bowler_name
+        # has already been nulled by the time this function runs.
+        _canonical_bowler = (
+            event.get("_bowler_at_commit") or self.bowler_name)
         _bowler_for_dispatch = _canonical_bowler
         if not _canonical_bowler or _canonical_bowler == "—":
             _tracker = getattr(self, "_bowler_tracker", None)
@@ -5312,39 +5921,69 @@ class ScoreManager:
             self.bat1_name = None
         if self._same_player_canon(self.bat2_name, best_dismissed):
             self.bat2_name = None
-        if self._same_player_canon(best_dismissed, self.striker):
-            self._set_slot_pair(
-                None, survivor,
-                source="apply_event.wicket_striker_out")
-        elif self._same_player_canon(best_dismissed, self.non):
-            self._set_slot_pair(
-                survivor, None,
-                source="apply_event.wicket_non_striker_out")
-        target_idx = (self.wickets or 0) - 1
-        _fl = self._fow_writable()
-        if target_idx < 0:
-            _fl.append(new_entry)
-        elif target_idx < len(_fl):
-            existing = _fl[target_idx]
-            is_placeholder = (existing.get("score") == "?"
-                              or not existing.get("dismissed"))
-            if is_placeholder:
-                _fl[target_idx] = new_entry
-            else:
-                log.warn(
-                    f"[SM] FOW W{target_idx + 1} immutable "
-                    f"(confirmed {existing.get('dismissed')}@"
-                    f"{existing.get('score')}/{existing.get('overs')})"
-                    f" — refusing rewrite to "
-                    f"{new_entry.get('dismissed')}@"
-                    f"{new_entry.get('score')}/"
-                    f"{new_entry.get('overs')}")
-        else:
-            while len(_fl) < target_idx:
-                _fl.append(
-                    self._make_fow_placeholder(
-                        len(_fl) + 1))
-            _fl.append(new_entry)
+        # §15 step 8 cascade: ordering matters. apply_wicket_event's
+        # cascade (below) reads self.striker / self.non to identify
+        # the dismissed slot. The _set_slot_pair calls here MUST fire
+        # AFTER the cascade — if they run first, striker is nulled
+        # before cascade can read it and cascade hits the
+        # POST-WICKET-STRIKER-ROTATION-ANOMALY path. The cascade
+        # itself only mutates when event.new_batter is resolved
+        # (Scout primitive available); when it defers, these
+        # _set_slot_pair calls remain the canonical fallback writer.
+        # §15 step 7b: FoW write delegated to apply_wicket_event (the
+        # canonical FoW path). Bowler-W credit also routes through it
+        # for bowler-attributable wickets; run-outs / obstructed-field
+        # skip the credit per cricket rule. apply_wicket_event is
+        # idempotent — replaces placeholders, refuses to rewrite
+        # confirmed entries — matching the pre-rewrite semantics.
+        from score_manager_derivation import WicketEvent as _WE
+        try:
+            _ob_str = (
+                f"{float(self.overs):.1f}"
+                if self.overs is not None else "0.0")
+        except (TypeError, ValueError):
+            _ob_str = str(self.overs) if self.overs is not None else "0.0"
+        _w_event = _WE(
+            delta_wickets=1,
+            over_ball=_ob_str,
+            bowler_name=_bowler_for_dispatch,
+            dismissed_batter=best_dismissed,
+            delta_score=int(event.get("runs", 0) or 0),
+            delta_extras=0,
+            this_over_token=event.get("this_over_token", "W"),
+            is_extras_dismissal=False,
+            is_runout_speculative=bool(event.get("runs", 0)),
+            wicket_type=event.get("wicket_type"),
+            wicket_number=(self.wickets or 0),
+            # §15 step 8 cascade: use event["new_batter"] only (set by
+            # _infer_wicket from card.bat slots). Bat-slot fallback was
+            # tried and rejected — surviving partner != new arrival;
+            # using surviving slot caused cascade to reassign wrong
+            # striker/non pair (+2 boundary regression in step 8b).
+            # When event lacks new_batter (Scout primitive lag), cascade
+            # emits POST-WICKET-STRIKER-CASCADE-DEFERRED and waits for
+            # the next frame's derive_striker_event re-evaluation.
+            new_batter=event.get("new_batter"),
+        )
+        self.apply_wicket_event(_w_event)
+        # §15 step 8 cascade-defer fallback: when event["new_batter"] is
+        # None (Scout primitive lag), cascade emits POST-WICKET-STRIKER-
+        # CASCADE-DEFERRED without mutating striker/non. Restore the
+        # pre-rewrite _set_slot_pair behavior so striker is still
+        # nulled and non still holds the survivor — preserves the
+        # existing post-wicket invariant the harness has been
+        # validating against. When new_batter IS resolved, cascade
+        # owns the (striker, non) write and this fallback is skipped
+        # to avoid overwriting the cascade's correct assignment.
+        if event.get("new_batter") is None:
+            if self._same_player_canon(best_dismissed, self.striker):
+                self._set_slot_pair(
+                    None, survivor,
+                    source="apply_event.wicket_striker_out")
+            elif self._same_player_canon(best_dismissed, self.non):
+                self._set_slot_pair(
+                    survivor, None,
+                    source="apply_event.wicket_non_striker_out")
         self.partnership_runs = 0
         self.partnership_balls = 0
         self.partnership_known = True
@@ -5359,7 +5998,7 @@ class ScoreManager:
                     wickets=self.wickets,
                     wicket_type=event.get("wicket_type"),
                     resolution_src=_resolution_src,
-                    fow_index=target_idx,
+                    fow_index=(self.wickets or 0) - 1,
                     frame_id=str(self._current_frame))
             except Exception:
                 pass
@@ -5429,11 +6068,15 @@ class ScoreManager:
                         single_runs = 0
                 _wkt_delta = 1 if (is_last and evt.get(
                     "gap_finalize_wicket")) else 0
+                # §15 step 7b: wickets_delta=0 — apply_wicket_event is
+                # the canonical bowler-W credit path (called by
+                # _apply_wicket_fall_only at the gap_finalize branch
+                # below). Runs/balls stay on this path.
                 self.scoreboard.update_bowler(
                     bowler_name,
                     runs_delta=single_runs,
                     balls_delta=1,
-                    wickets_delta=_wkt_delta,
+                    wickets_delta=0,
                     frame=self._current_frame)
                 if _trace is not None:
                     try:
@@ -5530,9 +6173,12 @@ class ScoreManager:
                         single_runs = 0
                 _wkt_delta = 1 if (is_last and evt.get(
                     "gap_finalize_wicket")) else 0
+                # §15 step 7b: wickets_delta=0 — apply_wicket_event
+                # is the canonical bowler-W credit path. Queued
+                # runs/balls backfill stays on this path.
                 self._queue_pending_bowler_ball_credit(
                     runs_delta=single_runs,
-                    wickets_delta=_wkt_delta,
+                    wickets_delta=0,
                     event_overs=evt.get("over"),
                     frame_id=self._current_frame)
                 if _trace is not None:
@@ -5740,11 +6386,15 @@ class ScoreManager:
                     "WICKET-NO-STRIKER", event,
                     striker_name=striker_name, bowler_name=bowler_name)
             if bowler_name:
+                # §15 step 7b: wickets_delta=0 here — apply_wicket_event
+                # (called downstream by _apply_wicket_fall_only) is the
+                # canonical bowler-W credit path. Runs/balls stay on
+                # this path; only the wicket credit moved.
                 self.scoreboard.update_bowler(
                     bowler_name,
                     runs_delta=runs_this_ball,
                     balls_delta=1 if legal else 0,
-                    wickets_delta=1 if bowler_attributable else 0,
+                    wickets_delta=0,
                     frame=self._current_frame)
             elif bowler_attributable:
                 # F381 backfill: queue for credit when next bowler locks.
@@ -5866,6 +6516,23 @@ class ScoreManager:
                 "[SM] ABSORBED_LEGAL reached _apply_event — "
                 "should use _apply_absorbed_event; skipping")
             return
+        # §15 step 5 — derivation-path snapshots. Built BEFORE
+        # _accumulate_stats_from_event so prior reflects pre-event
+        # SM state for slot fields (bat1/bat2/striker). Used by the
+        # derive_* calls below to replace inline this_over /
+        # striker / _rewrite_eyes mutations with the canonical
+        # apply_* methods per §15. Wicket-branch wire-through is
+        # deferred to step 7 (_apply_wicket_fall_only routing)
+        # to avoid FoW/bowler-W duplication.
+        _wire_prior = self._snapshot_primitives_from_dict(prev)
+        # §15 step 7b: capture bowler_name BEFORE the over-end
+        # BOWLER-LOCK-RELEASED clear at :6306 (otherwise
+        # _apply_wicket_fall_only sees None for over-end wickets
+        # like Rana 7.6, Rahul 4.6 — apply_wicket_event would skip
+        # bowler-W credit since _accumulate's WICKET credit is now
+        # disabled).
+        if event.get("type") == "WICKET" and self.bowler_name:
+            event["_bowler_at_commit"] = self.bowler_name
         # --- Stat accumulation (single-writer derivation path) ---
         # Must run BEFORE strike rotation so `event["striker"]` /
         # `self.striker` still names the batter who actually faced the
@@ -5904,8 +6571,17 @@ class ScoreManager:
             # bug. After the closing append we archive and start the
             # new over empty; the genuine first ball of the new over
             # arrives on the next frame's event.
-            self.this_over.append(event.get("this_over_token", "?"))
-            self.this_over_src.append("obs")
+            # §15 step 5: wire through apply_this_over_token + propagate.
+            # Falls back to inline append if derivation returns None
+            # (event has no Δ but pipeline still wants a placeholder).
+            _wire_current = self._snapshot_primitives_from_dict(card)
+            _wire_token = _derive_this_over_token(
+                _wire_prior, _wire_current, None)
+            if _wire_token is not None:
+                self.apply_this_over_token(_wire_token)
+            else:
+                self.this_over.append(event.get("this_over_token", "?"))
+                self.this_over_src.append("obs")
             self._rewrite_eyes_this_over_from_event(
                 card, event.get("this_over_token", "?"))
             self.completed_over = list(self.this_over)
@@ -6029,8 +6705,16 @@ class ScoreManager:
                         legal_so_far += 1
                 except (TypeError, ValueError):
                     pass
-            self.this_over.append(event.get("this_over_token", "?"))
-            self.this_over_src.append("obs")
+            # §15 step 5: wire through apply_this_over_token. Same
+            # fallback as the is_over_change branch above.
+            _wire_current2 = self._snapshot_primitives_from_dict(card)
+            _wire_token2 = _derive_this_over_token(
+                _wire_prior, _wire_current2, None)
+            if _wire_token2 is not None:
+                self.apply_this_over_token(_wire_token2)
+            else:
+                self.this_over.append(event.get("this_over_token", "?"))
+                self.this_over_src.append("obs")
             self._rewrite_eyes_this_over_from_event(
                 card, event.get("this_over_token", "?"))
 
@@ -6075,12 +6759,21 @@ class ScoreManager:
                      f"this_over_now={self.this_over}")
 
         # --- Strike Rotation ---
-        # ABSORBED_LEGAL never reaches here (warm path uses
-        # `_apply_absorbed_event`; D3 keeps striker fixed across the gap).
-        if event.get("legal", True) and event.get("runs", 0) % 2 == 1:
-            self.striker, self.non = self.non, self.striker
-        if is_over_change:
-            self.striker, self.non = self.non, self.striker
+        # §15 step 7a: ROTATION-semantic writes consolidated through
+        # derive_striker_event + apply_striker_event (the B-2 atomic
+        # pair). Per §13.1's ROTATION-vs-IDENTITY distinction, this is
+        # the ONLY rotation site; identity-resolution writes
+        # (_set_slot_pair, _identify_striker, NAME-REJECTED recovery)
+        # are §13.8 / step-7c scope and keep their existing call paths.
+        # Residual +2 Boundary at over_ball 8.5 (if any) is the
+        # ROTATION ↔ IDENTITY race and the trigger for 7c.
+        # ABSORBED_LEGAL never reaches here.
+        _wire_current_str = self._snapshot_primitives_from_dict(card)
+        _wire_striker_ev = _derive_striker_event(
+            _wire_prior, _wire_current_str, None,
+            over_boundary_crossed=is_over_change,
+            legal_ball_completed=event.get("legal", True))
+        self.apply_striker_event(_wire_striker_ev)
 
         # --- Fall of Wicket ---
         # Slot indexing: after _accept_update bumped self.wickets to N,

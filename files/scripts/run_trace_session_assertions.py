@@ -80,6 +80,31 @@ SESSION_CONTEXT: dict[str, dict] = {
         "expected_initial_striker": "Pathum Nissanka",
         "max_acceptable_extras": None,
     },
+    "validate_surface_b_121222": {
+        # Workstream G step-8 re-validation replay against the
+        # captured-Scout dump from validate_dckkr_20260521_155356,
+        # under Surface B code 50af67e (cold-start lifecycle closure).
+        # Same-fixture as step-5 validate_shape_a_114349; isolates the
+        # f09fc38 → 50af67e delta as the only independent variable.
+        #
+        # All four lifecycle predictions per workstream_g_cold_drain_
+        # surface_audit.md §5 LANDED:
+        #   POST-WICKET-CASCADE-ENQUEUED × 2
+        #     F679 reason=wicket_non_striker_stays (Nitish Rana)
+        #     F855 reason=wicket_new_batter (Pathum Nissanka)
+        #   POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START × 2
+        #     F690 age=11 site=set_innings_2:wickets_regressed
+        #     F859 age=4  site=set_innings_2:wickets_regressed
+        #   POST-WICKET-CASCADE-DRAIN-FIRED × 0
+        #   CASCADE-DRAIN-EXPIRED × 0
+        #   trace_eta_post_wicket_cascade_drains: PASS (orphan 2 → 0)
+        #
+        # Insight #18 scope: D-post-FoW-striker remains at 20.
+        # Primary objective deferred to Workstream H (cold-start
+        # re-entry frequency root cause; HANDOFF §17.3 items 2/3/4).
+        "expected_initial_striker": "Pathum Nissanka",
+        "max_acceptable_extras": None,
+    },
     "validate_dckkr_20260521_155356": {
         # C14 Shape B validation-gate replay (DCKKR 09:30 through
         # ov 11.5). 4 wicket events. C24 wicket-correctness γ-bundle

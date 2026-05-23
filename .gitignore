@@ -13,3 +13,15 @@ files/scripts/broadcast_mode_tuning/live_raw/
 *.mp4
 .env
 files/.env
+
+# --- 2026-05-22 pre-merge cleanup (env noise) ---
+.claude/worktrees/
+.wrangler/
+files/_tmp_combined_sampler_*.json
+files/_tmp_*
+logs/trace/
+logs/machine-*.log
+logs/openscout-*.jsonl
+data/commentary/player_styles_*.json
+AGENTS.md
+qrackpot/

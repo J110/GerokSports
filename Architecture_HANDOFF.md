@@ -1,8 +1,59 @@
 # Handoff — derive-not-detect branch (Architecture)
 
-**Last update.** 2026-05-21 (post-C31, workstream D fix-chain landed; C32 docs close-out).
-**Branch.** `derive-not-detect` (current HEAD post-C32).
-**Session ledger.** 33 cumulative commits across three consecutive sessions on this branch (16 in B-η + 8 in C19-C24 + 8 in C26-C31 + C32 docs). Layer 1.5 (now 36/36 ledger balls + 6 cross-field pairing + 3 D1 bowler-dispatch-fallback + 3 D2 wicket-attrib-broadcast-override = 48 cases) + Layer 2 (30 balls) held on every commit. Predicted-flip claims empirically validated OR statically falsified at each step. **C26–C31 chain consumed 0/5 of the empirical-falsification budget** — all advances static per Meta-finding #1.
+**Last update.** 2026-05-23 (post-Workstream-G lifecycle closure at commit `50af67e` + step-8 re-validation docs commit).
+**Branch.** `obs/silent-wicket-absorption` (carries §15 arc + Workstream G chain — 17 commits including step-8 close-out). Operator suggested rename to `rewrite/wicket-striker-this_over-canonical` before merge to `derive-not-detect`.
+**Session ledger.** 50 cumulative commits across five consecutive sessions on the derive-not-detect lineage (16 B-η + 8 C19-C24 + 8 C26-C31 + C32 docs + 9 §15 arc + 8 Workstream G). Layer 1.5 (36 ledger balls + 6 cross-field pairing + 3 D1 bowler-dispatch + 3 D2 WICKET-ATTRIB + 6 pending-cascade = 54 cases) + Layer 2 (30 balls) held on every commit. Derivation unit tests at 48/48. **Workstream G arc consumed 1/5 of the empirical-falsification budget** (4/5 remaining); the consumption produced insight #17 + #18 retrospectives plus the Surface B lifecycle closure rather than a wasted iteration.
+
+## Architectural fence — post-Workstream-G (2026-05-23)
+
+Building on the §15 fence (three canonical `self.striker` writers; canonical wicket dispatch; deterministic-rotation override removed), Workstream G adds the **PendingCascade lifecycle** as a fully observable state machine:
+
+- **State.** `self._pending_post_wicket_cascade: list[PendingCascade]` — FIFO queue bounded at 3 (audit Q1).
+- **Producer.** `apply_wicket_event` cascade-defer path enqueues when `event.new_batter` is None (Mitigation A captures pre-fallback `(prev_striker, prev_non_striker)`).
+- **Consumers — drain hook.** `_attempt_pending_cascade_drain` runs at top of `_handle_warm` (the original f09fc38 wire-up) AND at C1-C6 COLD→WARM transitions (50af67e Surface B defense-in-depth).
+- **Consumers — wipe sites.** `_clear_per_innings_sm_surface` (f09fc38) + W1-W4 cold-entry sites (50af67e Surface B). All wipes emit `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` with the pre-wipe queue state captured.
+- **Terminal-state trace tags.** `POST-WICKET-CASCADE-DRAIN-FIRED` (resolved), `CASCADE-DRAIN-EXPIRED` (TTL hit), `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` (cold-entry wipe). Insight #17 mandate: every cold-entry reset path is empirically verified to emit a structured tag with positive trace evidence; silent `__init__` default-inits are eliminated by the W4 pre-`__init__` ordering at `set_innings_2`.
+
+The PendingCascade lifecycle is regression-detected by `trace_eta_post_wicket_cascade_drains` (the η-bundle's single assertion). Substantive baseline on `validate_surface_b_121222`: 2 enqueues + 2 WIPED terminals; PASS.
+
+**Workstream G primary objective remains OPEN.** Surface B closes the lifecycle gap but does NOT deliver the original §15-arc-predicted D-post-FoW-striker drop (20 → 5-10). The blocker is structural: the SM enters COLD_START aggressively post-wicket (5× `SM-INNINGS-2-RESET reason=wickets_regressed` per replay) which wipes the cascade before drain can resolve. Workstream H (cold-start re-entry frequency root cause + COLD-START-EXIT semantics redesign per `differential_testing_methodology_design.md` §14.5.2 + `_detect_innings_change` predicate tightening) is the next-session entry point per HANDOFF §17.4.
+
+## Architectural fence — post-§15 (2026-05-22 evening, still active)
+
+(The §15 fence below remains canonical for striker-write semantics. Workstream G extends it with the PendingCascade lifecycle in the preceding section; the §15 fence itself is unchanged.)
+
+**Three canonical write paths for `self.striker`** (§13 / §13.8 / §13.8.1 in the design memo):
+
+1. `apply_striker_event(event: StrikerEvent)` — ROTATION semantic (batters cross during a delivery). XOR rule 3+4 handles cricket double-swap cancellation.
+2. `apply_striker_identity_resolved(name, source)` — AUTHORITATIVE identity write. Proceeds best-effort with `STRIKER-IDENTITY-CONFLICT` alert. Used by `_set_slot_pair` callers (post-wicket survivor, NAME-REJECTED recovery, cold-start init).
+3. `apply_striker_identity_proposed(name, source)` — CONSERVATIVE-REFUSE identity proposal. Refuses when `self.striker` is set; accepts only when None. Used by `_identify_and_set` per-frame Scout/broadcast reads. Fires `STRIKER-IDENTITY-PROPOSAL-REFUSED` on refuse, `STRIKER-IDENTITY-PROPOSAL-ACCEPTED` on accept.
+
+All 8 remaining `self.striker = None` writes are invalidation-only (cold-start invalidation / innings reset / NAME-REJECTED). No non-canonical name writes remain. **Any new code that writes `self.striker` directly is a regression. Future writes must route through ONE of the three canonical paths based on semantic.**
+
+**Canonical wicket dispatch path** (§12 / §12.10): `apply_wicket_event(event: WicketEvent)` is the sole FoW + bowler-W writer + post-wicket striker-rotation cascade dispatcher. `_apply_wicket_fall_only` retained as thin shim that builds the WicketEvent and delegates to `apply_wicket_event`; full deletion deferred until partnership/slot-clearing have canonical paths.
+
+**Deterministic-rotation override at `score_manager.py:4700-4736`** (was at `:4295-4325` pre-7c line range) **REMOVED.** Replaced by `apply_striker_identity_proposed` per §15 step 9 retry. The S12 non-discriminable-predicate-signature defect (C30b) surface is eliminated.
+
+---
+
+## §15 — Session continuation: triple-subsystem rewrite arc (2026-05-22 evening)
+
+§15 arc structurally complete at commit (8/N) `1af2bd9`. Full retrospective + commit ledger + methodology insights in `files/docs/investigations/differential_testing_methodology_design.md` §17 and the matching section in HANDOFF.md. Summary:
+
+**Surface drops (commit 7b `68acda4`):**
+- Bowler-W-credit-failure 7 → 1 (-6)
+- F-A-commit-lag 50 → 49 (-1) — cross-surface bonus from bowler-identity fidelity
+- F-B-ad-occlusion 27 → 23 (-4) — same bonus mechanism
+
+**Surface drops NOT achieved (Workstream G dependency):**
+- C21b-symbol-revert: stays at 1 (10.5 wicket is Scout-extraction-timing not cold-start subcase)
+- Multi-ball-compression: stays at 4 (per-event delta logic, not cold-start backfill)
+- D-post-FoW-striker: stays at 20 (cascade structurally wired but 100% deferred — Scout new_batter primitive lag)
+- Compound-with-wicket-token: stays at 2 (Scout timing again)
+
+**Net surface count: 14 → 14.** Structural cleanup is real; empirical-drop-on-this-dump is not. Live-replay validation per §10.4 still mandatory.
+
+**Next session priority #1: Workstream G investigation** (Scout-extraction timing + cold-start re-entry frequency + COLD-START-EXIT semantics redesign + §14.5 step 11 retry).
 
 ---
 

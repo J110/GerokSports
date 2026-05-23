@@ -443,7 +443,11 @@ def main(argv: list[str] | None = None) -> int:
     if bdf_rc != 0:
         return bdf_rc
     from test_wicket_attrib_broadcast_override import run_all as _run_wabo_gate
-    return _run_wabo_gate()
+    wabo_rc = _run_wabo_gate()
+    if wabo_rc != 0:
+        return wabo_rc
+    from test_pending_cascade_drain import run_all as _run_pcd_gate
+    return _run_pcd_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:
