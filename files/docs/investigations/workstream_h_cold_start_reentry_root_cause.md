@@ -553,7 +553,7 @@ D1 (C28 em-dash bowler-tracker fallback) + P1 (ef0860d wickets_regressed team-ch
 
 ---
 
-## §12 Cross-memo budget + status footer
+## §12 Cross-memo budget + status footer (step-3 era)
 
 **Empirical-falsification budget.** 4/5 → **3/5** consumed by step-3 validation (loading-bearing artifact: S16 + S17 + S18).
 **WS-H primary objective.** CLOSED — D-post-FoW-striker 20 → 2 per insight #18 scope.
@@ -561,3 +561,115 @@ D1 (C28 em-dash bowler-tracker fallback) + P1 (ef0860d wickets_regressed team-ch
 **WS-H step-5b (F679).** OPEN per §11.2.
 **P1 patch status.** STAYS LANDED at `ef0860d`. No revert.
 **Sibling-precedent surface (score_reset_from_progress `:4423`).** Now confirmed-residual via S16; close together with F939 in step-5.
+
+*(Status superseded by §13 + §14 below — step-5 has since CLOSED and step-5b scope has extended to a 3-frame cohort. The original step-3 footer preserved for arc continuity.)*
+
+---
+
+## §13 Step-7 validation outcome (2026-05-23, WS-H step-5 closure)
+
+**Decision frame.** Step-7 outcome class is **primary-closure WITH cascade-lifecycle-second-order γ-regression cohort** — the same shape as WS-H step-3 → step-4 (insight #18 + S17 precedent). Lifecycle-closure and γ-bundle-measurement are scope-separable; the budget consumption produces transferable methodology insight S20 (cohort-exposure pattern), not wasted iteration. H1 stays landed at `832d376` — NO revert. Per S20: the γ regressions are REVEALED, not INTRODUCED — F948 + F1017 share the SAME `no_prev_striker` root as F679 (step-5b territory).
+
+**Trace artifact.** `logs/trace/validate_ws_h_step7_20260523_172140.jsonl` — 749 records (matches step-3 baseline `validate_ws_h_step3_20260523_164642.jsonl` exact 749 frames). Single independent variable: H1 patch `832d376`. Same captured-Scout dump `files/logs/deliveries/validate_dckkr_20260521_155356/scout_raw.jsonl` used by WS-G steps 5/8 and WS-H step-3.
+
+**Full gate table — actuals vs. locked predictions.**
+
+| Metric | Pre-H1 baseline (step-3) | Locked prediction | Actual (post-H1) | Status |
+|---|---|---|---|---|
+| `SM-INNINGS-2-RESET reason=wickets_regressed` | 1 (F939) | **0** | **0** | PASS (load-bearing) |
+| `SM-INNINGS-2-RESET reason=score_reset_from_progress` | 0 | **0** | **0** | PASS (S19 degeneracy held) |
+| `WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED` (structured) | 19 | ≥19 | **26** | PASS (+7: F939, F940, F942, F946, F993, F1008 + cohort propagation) |
+| `INN2-SCORE-RESET-TEAM-CHANGE-REQUIRED-REJECTED` (structured) | 2 | ≥2 | **3** | PASS (+1: F1008) |
+| `POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START` | 0 | 0 | **0** | regression-guard PASS |
+| `POST-WICKET-CASCADE-DRAIN-FIRED` | 2 (F680, F858) | 2 | **4** | regression-guard PASS (advanced; 2 new drains from cascades that didn't get wiped) |
+| `POST-WICKET-CASCADE-ENQUEUED` | 2 (F679, F855) | 2 | **5** | sanity — upstream trajectory diverged (+3 wickets reach the enqueue path now that F939 doesn't wipe innings-1 state) |
+| `CASCADE-DRAIN-EXPIRED` | 0 | (info) | **1** | new terminal class observed (first empirical instance) |
+| `D-post-FoW-striker` surface count | 2 | 2 | **2** | regression-guard PASS |
+| `trace_eta_post_wicket_cascade_drains` | PASS × 2 | PASS × 2 | **PASS** (5 enqueues = 4 FIRED + 1 EXPIRED + 0 WIPED) | regression-guard PASS — η-bundle conservation holds across all three terminals |
+| `trace_gamma_w_symbol_at_wicket` | FAIL × 2 (F679, F855) | FAIL × 2 | **FAIL × 4** (F679, F855, F948, F1017) | REGRESSION ×2 NEW (F948 over 10.1, F1017 over 10.4) |
+| `trace_gamma_fow_name_matches_striker_at_wicket` | FAIL × 1 (F679) | FAIL × 1 | **FAIL × 3** (F679, F948, F1017; all reason=`no_prev_striker`) | REGRESSION ×2 NEW (F948 dismissed=KL Rahul; F1017 dismissed=Pathum Nissanka) |
+| `trace_gamma_bowler_w_increment_on_dispatch` | PASS | PASS | **PASS** | regression-guard PASS (composite-fix closure from S18 preserved) |
+| `Silent-wicket-absorption` (classifier surface) | 1 | (not in locked table) | **0** | bonus: surface fully closed post-H1 |
+
+**Cascade-lifecycle conservation check.** 5 ENQUEUED = 4 FIRED + 1 EXPIRED + 0 WIPED. All three terminal classes empirically observed for the first time in a single trace; η-bundle conservation invariant holds exactly.
+
+### §13.1 WS-H step-5 primary closure declaration
+
+Load-bearing predictions per memo §11.1:
+
+- **SM-INNINGS-2-RESET reason=wickets_regressed: 1 → 0.** F939 closes exactly. ✓
+- **score_reset baseline holds at 0.** S19 empirical-degeneracy prediction (zero positive `score_reset_from_progress` fires) preserved under H1. ✓
+- **S18 cascade-closure dividend confirmed structurally.** H1 propagates to BOTH `:4423` score_reset + `:4456` wickets_regressed consumers by parity inheritance — sibling deferral count 2 → 3 (one new rejection at F1008) confirms the propagation; sibling fire count 0 → 0 confirms the degeneracy holds in the H1-tightened regime, not just in step-5 cross-fixture survey.
+
+**WS-H step-5 OBJECTIVE CLOSED.**
+
+### §13.2 γ-regression cohort characterization (S17 generality)
+
+Pre-H1 step-3: 1 γ-fow-name FAIL at F679 (reason=`no_prev_striker`). The S17 sub-finding was authored on this single-frame anchor.
+
+Post-H1 step-7: 3 γ-fow-name FAIL at F679 + F948 + F1017, all reason=`no_prev_striker`. Plus γ-w-symbol FAIL × 4 at the same wicket-commit frames (F679, F855, F948, F1017) — these are the SAME wicket events failing two different sub-assertions, so the cohort is really 3 wicket-commit frames (F679, F948, F1017), each failing both γ checks.
+
+**Cricket truth (per snapshot diff):**
+
+- F679 — Pathum Nissanka dismissed at ball 8.0 (cascade DRAIN-FIRED at F680).
+- F948 — KL Rahul dismissed at ball 10.1 (new post-H1; previously masked by F939 reset wiping innings-1 state mid-over).
+- F1017 — Pathum Nissanka dismissed at ball 10.4 (new post-H1; same masking root).
+
+**Why pre-H1 didn't surface F948/F1017.** F939's spurious `SM-INNINGS-2-RESET reason=wickets_regressed` (pre-H1) reset innings to 2 with KKR as `batting_team`, wiping the innings-1 wicket-commit state mid-over (between balls 9.5 and 10.x). Subsequent wickets F948/F1017 either (a) failed to reach the wicket-commit code path because SM treated them as innings-2 with a fresh team or (b) reached it but the γ assertions' prev_striker reconstruction had different (cascade-wiped) state. Either way, the γ assertions saw `no_prev_striker` ONLY at F679 because the post-F939 wickets were structurally invisible to the assertion.
+
+Post-H1: F939 doesn't reset → innings-1 persists → F948 + F1017 wickets process correctly through the cascade pipeline (enqueue + drain) → γ assertions reach the prev_striker reconstruction site for these NEW wicket frames → same `no_prev_striker` defect surfaces three times instead of once.
+
+**Conclusion.** Step-5b's empirical anchor extends from 1 frame (F679) to a 3-frame cohort (F679 + F948 + F1017). The defect class is unchanged — still `no_prev_striker` at γ-fow-name reconstruction — but the cohort size is a measurement-quality improvement, not a correctness regression (per S20 below).
+
+### §13.3 Cascade-lifecycle advancement (bonus)
+
+Beyond the primary step-5 prediction, H1 advanced the cascade lifecycle:
+
+- DRAIN-FIRED count 2 → 4: the additional 2 wickets that pre-H1 were swallowed by F939's reset now enqueue + drain successfully.
+- CASCADE-DRAIN-EXPIRED count 0 → 1: first empirical observation of TTL expiry (the third class of cascade terminals; pre-H1 step-3 had 0 + 0 + 2-FIRED + 0-EXPIRED; step-7 has 0 + 0 + 4-FIRED + 1-EXPIRED). η-bundle conservation invariant fully empirically demonstrated.
+- Silent-wicket-absorption classifier surface 1 → 0: closed as side-effect.
+
+These are net-positive lifecycle health signals; not regression-guarded; documented here as empirical confirmation that H1 widens correctness rather than narrowing it.
+
+---
+
+## §14 Sub-finding S20 — Cohort-exposure pattern
+
+**S20 — Cohort-exposure pattern.** When an upstream closure prevents state corruption that previously masked downstream defects, the downstream measurement layer observes a regression — but the regression is **REVEALED, not INTRODUCED**. The cohort size is a measurement-quality signal: a one-instance "regression" pre-closure becomes an N-instance cohort post-closure as more frames reach the downstream code path. Strengthens empirical anchor for the downstream investigation; weakens the case for reverting the upstream closure.
+
+**Two instances now observed:**
+
+- **First instance (WS-H step-3 P1):** F679 single γ-fow-name FAIL revealed by P1 enabling cascade DRAIN-FIRED at F680 (was WIPED pre-P1). S17 was authored on this one-instance signal.
+- **Second instance (WS-H step-7 H1):** F679 + F948 + F1017 three-instance γ-fow-name cohort revealed by H1 preventing F939's spurious innings-2 reset that previously masked F948/F1017. Same defect class, same `no_prev_striker` root.
+
+**Cross-references.** S17 (cascade-lifecycle-second-order regression class) describes the *mechanism*; S20 describes the *empirical-measurement caveat* on S17-shaped regressions. Together they form the lifecycle-enabling-fix audit pattern:
+
+1. Before landing a lifecycle-enabling fix, predict that downstream consumers of "blocked-state" will surface defects (per S17).
+2. After landing, expect the downstream defect cohort to GROW, not shrink (per S20). A non-growing cohort means either (a) the lifecycle fix isn't effective, or (b) the downstream consumers already cover all reachable cases.
+3. Cohort growth is closure progress, not regression. Score the upstream fix on its primary objective; defer the downstream cohort to its own scoped workstream.
+
+**Operational corollary.** A regression-guard table in any predicted-flip column should distinguish:
+
+- "Δ count of NEW defect-class instances" (true regression — new class introduced).
+- "Δ count of EXISTING defect-class instances" (cohort exposure — same class, more reachability).
+
+WS-H step-7 is type (b) for both γ-w-symbol and γ-fow-name — same root, more frames reached. Type (a) was NOT observed; this is the discipline working as designed.
+
+**Methodology insight escalation.** S17 + S20 jointly graduate the cascade-lifecycle-enabling-fix audit pattern from a single-instance heuristic to a two-instance reproducible discipline. Future lifecycle-enabling commits should include the cohort-growth prediction explicitly in their gate-6 framing.
+
+---
+
+## §15 Status footer (current — step-8 era)
+
+**Empirical-falsification budget.** 3/5 → **2/5** consumed by step-7 validation (load-bearing artifact: S20 cohort-exposure as second instance + step-5b empirical anchor extension F679 → 3-frame cohort). Mirrors WS-G's "budget consumption produced insight #17 + #18" and WS-H step-3's "budget consumption produced S16 + S17 + S18" framing exactly.
+
+**WS-H primary objective.** CLOSED (step-3; D-post-FoW-striker 20 → 2; stable post-H1 at step-7).
+
+**WS-H step-5 (F939).** **CLOSED** (step-7; SM-INNINGS-2-RESET 1 → 0; S18 dividend confirmed; S19 degeneracy held).
+
+**WS-H step-5b (F679 + F948 + F1017 cohort).** **OPEN** with 3-frame empirical anchor (extends from single-frame to cohort per S20). Defect class unchanged — `no_prev_striker` at γ-fow-name prev_striker reconstruction. Entry data + reading list from §11.2 unchanged (root class identical; only the empirical anchor count differs).
+
+**P1 patch status.** STAYS LANDED at `ef0860d`. No revert.
+**H1 patch status.** STAYS LANDED at `832d376`. No revert.
+
+**Methodology insights running total.** 16 → 19 (WS-H step-4: S16/S17/S18) → 20 (WS-H step-8: S20).

@@ -472,3 +472,47 @@ Co-Authored-By: ...
 **Empirical-budget status.** UNCHANGED at 3/5 remaining. No empirical replays consumed.
 
 **Next-session deliverable.** WS-H step-6 — single-line code edit at `files/score_manager.py:4419` mirror of `:4417-4419` + 3 new L1.5 cases. Layer 1.5 + Layer 2 + derivation unit gates required green pre-commit. WS-H step-7 — empirical replay against `validate_ws_h_step3_20260523_164642` (and one legitimate-inn-2 fixture if available) to confirm gate-6 + gate-7 predictions.
+
+---
+
+## §11 Step-7 empirical confirmation (2026-05-23)
+
+**Trace artifact.** `logs/trace/validate_ws_h_step7_20260523_172140.jsonl` — 749 records (single-independent-variable vs. step-3 baseline; H1 patch `832d376` is the only delta).
+
+### §11.1 S18 cascade-closure dividend — structural propagation confirmed
+
+H1's single-line addition at `:4417-4420` (`and changed and reason == "batting_team_changed"`) tightens the `_team_changed` boolean for BOTH downstream consumers. Empirical witness on the step-7 trace:
+
+| Consumer site | Pre-H1 (step-3) | Post-H1 (step-7) | Δ |
+|---|---|---|---|
+| `:4456` wickets_regressed branch (P1) — `WICKETS-REGRESS-TEAM-CHANGE-REQUIRED-REJECTED` structured | 19 | 26 | **+7** (F939, F940, F942, F946, F993, F1008 + cohort propagation) |
+| `:4423` score_reset_from_progress branch — `INN2-SCORE-RESET-TEAM-CHANGE-REQUIRED-REJECTED` structured | 2 | 3 | **+1** (F1008) |
+
+Both consumers gain rejection records from consensus-pending frames. The propagation is empirically verified — the single-line edit at the predicate-derivation site touches two consumer surfaces atomically, exactly as the §4 H1 gate-1/2 analysis predicted.
+
+### §11.2 S19 empirical-degeneracy hypothesis — confirmed
+
+Pre-H1 cross-fixture survey (§1.3): zero positive `INNINGS-TRANSITION-TELEMETRY reason=score_reset_from_progress` fires across all 12 captured traces.
+
+Post-H1 step-7 trace: **zero** positive `score_reset_from_progress` fires. The degeneracy holds under the H1-tightened regime — not just on the pre-existing traces surveyed in step-5 §1.3, but on the freshly-produced step-7 trace where H1 actively tightens the sibling.
+
+The S18 cascade-closure dividend at the score_reset consumer is now **empirically verified as degenerate-on-dump under H1 specifically**, not merely predicted to be so by extrapolation from the pre-H1 cross-fixture survey. This is the strongest form S19 can take with current captured-data — the architectural closure remains real (the predicate input tightens both consumers; the gate is in place against the F939-shape attack applied to the score_reset surface), but the empirical magnitude reduction is exactly zero on the dump.
+
+### §11.3 Sibling-baseline frame attribution
+
+The single new `INN2-SCORE-RESET-TEAM-CHANGE-REQUIRED-REJECTED` structured record post-H1 lands at F1008. Cricket-truth correspondence: a sponsor/overlay frame near the 10.x over window where the score-reset surface (s=0, w=0) coincided with a non-DC team read; H1's consensus-gate correctly held the rejection at the sibling consumer rather than letting the single-frame misread through. Pre-H1, this same frame would have hit the existing single-frame `_team_changed` guard (which already rejected it, hence baseline=2 with no F1008 entry — the H1 tightening doesn't change the disposition, only the gating reason recorded in the structured payload).
+
+### §11.4 Step-5 closure declaration
+
+WS-H step-5 **CLOSED**. The static-falsification chain in §4 (H1 leading; H2 inferior; H3 falsified) was empirically validated by step-7:
+
+- F939 SM-INNINGS-2-RESET: 1 → 0 (load-bearing prediction).
+- score_reset_from_progress fires: 0 → 0 (S19 prediction).
+- Sibling propagation: 2 → 3 (S18 structural propagation).
+- Existing rejection cohort growth: 19 → 26 (consensus-pending defers add as predicted).
+
+Plus a cascade-lifecycle advancement bonus not in the locked table: DRAIN-FIRED 2 → 4 (two additional cascade resolutions because F939's spurious reset no longer wipes innings-1 cascades mid-over). See root-cause memo §13.3 for the bonus characterization.
+
+**γ-bundle cohort exposure (S20).** Per root-cause memo §13.2 + §14: F948 + F1017 join F679 in the `no_prev_striker` cohort. Step-5b empirical anchor extends from 1 frame to 3; defect class unchanged. This consumed 1/5 budget per the step-7 stop-condition (γ-regression beyond F679); load-bearing artifact = S20.
+
+**Empirical-budget status.** 3/5 → **2/5** (step-7 validation). H1 patch `832d376` STAYS LANDED — no revert.

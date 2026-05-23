@@ -133,6 +133,16 @@ SESSION_CONTEXT: dict[str, dict] = {
         "expected_initial_striker": "Pathum Nissanka",
         "max_acceptable_extras": None,
     },
+    "validate_ws_h_step7": {
+        # Workstream H step-7 H1 empirical validation replay against
+        # the same captured-Scout dump as WS-H step-3
+        # (files/logs/deliveries/validate_dckkr_20260521_155356/
+        # scout_raw.jsonl). Single independent variable: H1 patch
+        # 832d376 (consensus-parity gate on _team_changed at the
+        # _detect_innings_change derivation site :4417-:4420).
+        "expected_initial_striker": "Pathum Nissanka",
+        "max_acceptable_extras": None,
+    },
     "validate_dckkr_20260521_155356": {
         # C14 Shape B validation-gate replay (DCKKR 09:30 through
         # ov 11.5). 4 wicket events. C24 wicket-correctness γ-bundle
