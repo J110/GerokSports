@@ -196,6 +196,12 @@ KNOWN_TAGS: set[str] = {
     "INN2-COLD-START-LOCKOUT",
     "INN2-COLD-START-CONSENSUS",
     "INN2-TRANSITION-PHANTOM-STORM",
+    # Surface E (2026-05-23) — phantom-wicket suppression observability.
+    # Emitted by ball_detector.check() when a wickets-counter increment
+    # is observed but the HA' consensus (streak >= 3) or overs-advance
+    # gate is not satisfied. Suppresses the wicket-event emission;
+    # records the candidate state for operator post-hoc inspection.
+    "PHANTOM-WICKET-SUSPECT",
     # P10 (2026-05-03) — strip-OCR gap padding after timeout.
     "TIMEOUT-GAP-INFER",
     # P14 (2026-05-03) — batter slot identity consensus reset on
