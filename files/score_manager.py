@@ -4416,7 +4416,8 @@ class ScoreManager:
             if self.batting_team else None)
         _team_changed = bool(
             _bcast_team and _cur_team
-            and _bcast_team != _cur_team)
+            and _bcast_team != _cur_team
+            and changed and reason == "batting_team_changed")
         if (s == 0 and w == 0
                 and self.score is not None and self.score > 20
                 and self.wickets is not None):
