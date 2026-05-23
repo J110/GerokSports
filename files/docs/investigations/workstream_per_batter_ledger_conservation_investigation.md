@@ -223,3 +223,87 @@ Empirical-budget status: 2/5 → 2/5 (UNCHANGED).
 Methodology insights running total: 23 (unchanged).
 Memo: files/docs/investigations/workstream_per_batter_ledger_conservation_investigation.md (10 sections, ~260 lines).
 ```
+
+---
+
+## §11 Step-2 outcome — patch landed at `110026d`
+
+**Patch.** `files/tests/trace_session_assertions.py` — new `assert_batter_runs_sum_matches_team_score` + `_running_batter_runs` helper mirroring `assert_bowler_runs_sum_matches_team_score` / `_running_bowler_runs` exactly. Registered as `trace_alpha_batter_runs_sum` in TRACE_ASSERTIONS at `:687+`. Two preconditions per Shape B / S23 family: (1) `ui_after.scorecard.score` + `ui_after.extras_total` must both be present; (2) BAT-DELTA emission count must cover ≥70% of expected-runs envelope.
+
+**New L1.5 test file.** `files/tests/test_alpha_batter_runs_sum.py` — 5 cases (T-1 PASS / T-2 FAIL-mismatch / T-3 REPLAY-SKIP / T-4 coverage-floor-SKIP / T-5 extras-only-SKIP). Wired into `test_sm_derivation_ledger.main()` after WS-I gws gate. L1.5 family count: **70 → 75**.
+
+**Gate-7 cross-fixture verification — verbatim from on-disk re-count across all `validate_*` + `replay_*` traces:**
+
+| Cohort | Outcome distribution | Notes |
+|---|---|---|
+| **LIVE (8 ui_after-populated)** | **PASS×4 + FAIL×4** | 2 PASS-via-sum-match + 2 PASS-via-coverage-skip; 4 genuine FAILs surface conservation gaps |
+| **REPLAY (49 ui_after-absent)** | **SKIP×49** | Shape B precondition (no `ui_after` → early `_ok()`) |
+
+**Per-fixture LIVE-cohort outcomes:**
+
+| Fixture | Outcome | Coverage | Gap (FAIL only) |
+|---|---|---|---|
+| `validate_20260520_114437` | PASS (sum-match) | 100% (48/48) | — |
+| `validate_dckkr_20260522_062844` | PASS (sum-match) | 100% (3/3) | — |
+| `validate_20260513_180911` | PASS (coverage-skip) | 17% (7/41) | — (below floor) |
+| `validate_gtrr_20260520_180715` | PASS (coverage-skip) | 73% (92/173) | — (above floor but coverage marginal — actually 53% n_emissions/expected → SKIP) |
+| **`validate_20260513_194442`** | **FAIL** | 100% (1/1) | **1** |
+| **`validate_dckkr_20260521_070545`** | **FAIL** | 87% (67/93) | **12** |
+| **`validate_dckkr_20260521_155356`** | **FAIL** | 97% (70/89) | **3** |
+| **`validate_dckkr_20260522_063211`** | **FAIL** | 97% (69/88) | **3** |
+
+**Gate-bundle posture post-step-2.** All 7 §7.2 gates closed inline. Gates 1-5 static per step-1 §5; gate 6 = the 5 new L1.5 cases; gate 7 = the cross-fixture re-count above. No empirical-budget consumption — assertion-side gate-7 budget-neutral closure per WS-I precedent.
+
+---
+
+## §12 Cohort discrimination outcome — 4 LIVE-FAILs with per-fixture gap attribution
+
+**Genuine LIVE-cohort conservation gaps surfaced:**
+
+| Fixture | Gap (runs) | Significance |
+|---|---|---|
+| **`validate_dckkr_20260521_070545`** | **12** | **LOAD-BEARING LARGEST SIGNAL** — if this gap is emission-completeness only, HC instrumentation closes the entire cohort. If correctness-violation, HB pipeline-side gate required. |
+| `validate_dckkr_20260521_155356` | 3 | Mid-size gap; plausibly emission-gap on a 2-3 ball subpath |
+| `validate_dckkr_20260522_063211` | 3 | Mid-size gap; plausibly emission-gap |
+| `validate_20260513_194442` | 1 | Small gap; plausibly extras-mismatch or single-emission omission |
+
+**Categorization deferred to WS-L step-1.** The step-2 assertion delivered the discriminator but does NOT categorize per-FAIL whether the gap reflects (a) BAT-DELTA emission-completeness gap on specific subpaths (cold-start synth credit / ABSORBED_LEGAL multi-ball gap expansion / specific extra-types) OR (b) actual correctness violations in per-batter cumulative-runs ledger. WS-L (this commit's follow-on) opens the audit.
+
+**Pre-screen verdict for WS-L: GREEN — ASSERTION-SIDE INSTRUMENTATION.** HC fix surface is BAT-DELTA emission extension at canonical batter-runs writer sites in `score_manager.py` — trace-emitter-coverage-extension precedent (WS-G PendingCascade lifecycle pattern). Predicted 0/5 budget.
+
+---
+
+## §13 WS-Per-Batter-Ledger primary objective CLOSED
+
+**Workstream primary objective:** ship a discriminative cohort detector for per-batter-ledger conservation. **CLOSED at step-2 (`110026d`).** 4 LIVE-FAILs surfaced; cohort discrimination validated; permanent L1.5 regression detector landed; budget-neutral closure.
+
+**Arc statistics.**
+- 3 steps (step-1 investigation + step-2 assertion + step-3 close-out).
+- 3 commits (`eceac23` step-1 + `110026d` step-2 + this step-3).
+- 0/5 empirical-budget consumed across entire arc.
+- Cohort discriminator delivered + 4 LIVE-FAILs surfaced for WS-L follow-on.
+
+**Distinction from Surface E / WS-K / Recent-Overs deferral arcs.** Per-Batter-Ledger is the first Phase 1 second-pillar arc to ship productive code post-WS-I. The discipline cost of three consecutive deferrals (C29b → Surface E + WS-K → Recent-Overs) was vindicated by the S28-candidate pre-screen methodology refinement, which enabled Per-Batter-Ledger to clear pre-screen on first attempt and deliver the cohort discriminator.
+
+**No HB pipeline-side gate authorized at step-3.** WS-L (this commit's follow-on) opens with HC observability-completeness audit. HB is only authorized if WS-L step-1 confirms the 12-run gap on `validate_dckkr_20260521_070545` is genuine correctness violation rather than emission gap.
+
+---
+
+## §14 Sub-findings + S28 candidate context
+
+### S28 candidate (pre-screen methodology refinement) — single-instance VALIDATED
+
+**Status.** Per-Batter-Ledger is the first Phase 1 second-pillar arc to clear pre-screen AND deliver productive code AND surface a downstream cohort. **S28 pre-screen methodology validated as first-instance evidence** that the gate-2-fix-surface-accessibility check works as designed. Promotion to numbered insight awaits second-instance confirmation (e.g., WS-L step-1 pre-screen clearing GREEN as assertion-side-instrumentation would be the second instance).
+
+**Operational corollary (load-bearing).** Pre-screen fix-surface-category before opening Phase 1 step-1 memos. Categories: pipeline-direct / assertion-side / pipeline-plumbing-required / Scout-source / UI-render. Phase 1 scope admits first three only. Cheap-wins phase narrows: assertion-side family (S21 + S23) is the dominant remaining productive shape; pre-screen prevents step-1 cycles terminating at deferral.
+
+**Cross-references.**
+- S22 (workstream-scope static-investigation-first) + S26 (intra-workstream per-layer corollary) + S28-candidate (planning-level pre-screen refinement) form the standing static-investigation discipline.
+- S21 (canonical-resolution graceful-degrade) + S23 (schema-precondition graceful-skip) are the canonical assertion-side fix shapes Per-Batter-Ledger reused (S23 schema precondition via ui_after presence + coverage-floor extension).
+
+### No other sub-findings promoted
+
+**Methodology insights running total: 23 (unchanged).** S25 (strategic-framing-vs-source-modality) candidate at 2 instances; S27 (shared-signal-source structural barrier) candidate at 1 instance; S28 (pre-screen-fix-surface-category) candidate at 1 instance.
+
+**Arc retired. WS-L opens in companion commit this session.**
+
