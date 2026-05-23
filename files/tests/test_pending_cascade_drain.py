@@ -288,6 +288,139 @@ def _run_g3_cold_start_wipe() -> tuple[bool, str]:
         f"WIPED-BY-COLD-START emitted with age=10")
 
 
+def _run_g4_set_innings_2_wipe() -> tuple[bool, str]:
+    """G-4 — Surface B W4 (audit 4f14dee §3.3 ordering site).
+    set_innings_2 must emit WIPED-BY-COLD-START BEFORE __init__
+    body re-runs, else the queue is silently emptied by the
+    default-init and insight #17 fails.
+
+    Mirrors audit §5 predicted-flip frame numbers (F855 enqueue,
+    F859 wipe with age=4 — matching the step-5 trace's second
+    SM-INNINGS-2-RESET fire).
+    """
+    sm, _sb = _build_pre_wicket_sm(
+        striker="Pathum Nissanka", non="Sameer Rizvi",
+        dismissed_is_striker=True)
+    sm._current_frame = 855
+    event = _wicket_event_no_new_batter(dismissed="Pathum Nissanka")
+    _reset_recorder(855)
+    sm.apply_wicket_event(event)
+
+    if len(sm._pending_post_wicket_cascade) != 1:
+        return False, (
+            f"enqueue: expected queue.len==1, got "
+            f"{len(sm._pending_post_wicket_cascade)}")
+
+    sm._current_frame = 859
+    _reset_recorder(859)
+    sm.set_innings_2(target=200, batting_team="KKR",
+                     reason="wickets_regressed")
+    wipe_records = _drained_records()
+
+    if len(sm._pending_post_wicket_cascade) != 0:
+        return False, (
+            f"wipe: expected queue empty, got len="
+            f"{len(sm._pending_post_wicket_cascade)}")
+    wiped = _records_with_tag(
+        wipe_records, "POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START")
+    if len(wiped) != 1:
+        return False, (
+            f"wipe: expected 1 WIPED-BY-COLD-START trace, got "
+            f"{len(wiped)}")
+    if wiped[0].get("transition_site") != "set_innings_2:wickets_regressed":
+        return False, (
+            f"wipe: expected transition_site="
+            f"'set_innings_2:wickets_regressed', got "
+            f"{wiped[0].get('transition_site')!r}")
+    entries = wiped[0].get("wiped_entries") or []
+    if len(entries) != 1:
+        return False, (
+            f"wipe: expected 1 entry, got {len(entries)}")
+    if entries[0].get("frame_set_at") != 855:
+        return False, (
+            f"wipe: expected frame_set_at=855, got "
+            f"{entries[0].get('frame_set_at')}")
+    if entries[0].get("age") != 4:
+        return False, (
+            f"wipe: expected age=4 (audit §5 prediction), got "
+            f"{entries[0].get('age')}")
+    return True, (
+        f"enqueue at F855, set_innings_2(reason=wickets_regressed) "
+        f"at F859; WIPED emitted PRE-__init__ with age=4")
+
+
+def _run_g5_force_cold_start_wipe() -> tuple[bool, str]:
+    """G-5 — Surface B W3 (force_cold_start_recalibration). Closes
+    the wipe-coverage gap at the external escape-hatch site.
+    """
+    sm, _sb = _build_pre_wicket_sm(
+        striker="Pathum Nissanka", non="Sameer Rizvi",
+        dismissed_is_striker=True)
+    sm._current_frame = 855
+    _reset_recorder(855)
+    sm.apply_wicket_event(_wicket_event_no_new_batter(
+        dismissed="Pathum Nissanka"))
+
+    if len(sm._pending_post_wicket_cascade) != 1:
+        return False, "enqueue failed"
+
+    sm._current_frame = 862
+    _reset_recorder(862)
+    sm.force_cold_start_recalibration(reason="stuck_warm_consensus")
+    wipe_records = _drained_records()
+
+    if len(sm._pending_post_wicket_cascade) != 0:
+        return False, (
+            f"wipe: expected queue empty, got len="
+            f"{len(sm._pending_post_wicket_cascade)}")
+    wiped = _records_with_tag(
+        wipe_records, "POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START")
+    if len(wiped) != 1:
+        return False, (
+            f"wipe: expected 1 WIPED-BY-COLD-START, got {len(wiped)}")
+    site = wiped[0].get("transition_site") or ""
+    if not site.startswith("force_cold_start_recalibration:"):
+        return False, (
+            f"wipe: expected transition_site startswith "
+            f"'force_cold_start_recalibration:', got {site!r}")
+    entries = wiped[0].get("wiped_entries") or []
+    if not entries or entries[0].get("age") != 7:
+        return False, (
+            f"wipe: expected age=7, got {entries[0].get('age') if entries else 'no-entries'}")
+    if sm.mode != "COLD_START":
+        return False, f"mode: expected COLD_START, got {sm.mode!r}"
+    return True, (
+        f"enqueue at F855, force_cold_start_recalibration at F862; "
+        f"WIPED with age=7, mode=COLD_START")
+
+
+def _run_g6_drain_trigger_noop_on_empty_queue() -> tuple[bool, str]:
+    """G-6 — defense-in-depth (audit 4f14dee §3.6). COLD→WARM drain
+    trigger fires _attempt_pending_cascade_drain unconditionally;
+    when queue is empty the call must be a clean no-op (no
+    DRAIN-FIRED, no DRAIN-EXPIRED).
+    """
+    sm, _sb = _build_pre_wicket_sm(
+        striker="Pathum Nissanka", non="Sameer Rizvi",
+        dismissed_is_striker=True)
+    sm._current_frame = 870
+    sm.bat1_name = "Pathum Nissanka"
+    sm.bat2_name = "Tristan Stubbs"
+    _reset_recorder(870)
+    sm._attempt_pending_cascade_drain()
+    recs = _drained_records()
+    fired = _records_with_tag(recs, "POST-WICKET-CASCADE-DRAIN-FIRED")
+    expired = _records_with_tag(recs, "CASCADE-DRAIN-EXPIRED")
+    if fired or expired:
+        return False, (
+            f"empty-queue drain: expected no tags, got fired="
+            f"{len(fired)} expired={len(expired)}")
+    if sm._pending_post_wicket_cascade:
+        return False, "queue: expected empty, got non-empty"
+    return True, (
+        "empty-queue drain at F870 emits no tags; queue unchanged")
+
+
 CASES: list[tuple[str, callable]] = [
     ("G-1 happy-path drain (F855 → F893 Stubbs resolves)",
      _run_g1_happy_path),
@@ -295,6 +428,12 @@ CASES: list[tuple[str, callable]] = [
      _run_g2_ttl_expiry),
     ("G-3 cold-start wipe (_clear_per_innings_sm_surface clears queue)",
      _run_g3_cold_start_wipe),
+    ("G-4 Surface B W4 (set_innings_2 pre-__init__ wipe — insight #17)",
+     _run_g4_set_innings_2_wipe),
+    ("G-5 Surface B W3 (force_cold_start_recalibration wipe)",
+     _run_g5_force_cold_start_wipe),
+    ("G-6 Surface B drain-trigger no-op on empty queue (defense-in-depth)",
+     _run_g6_drain_trigger_noop_on_empty_queue),
 ]
 
 

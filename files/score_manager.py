@@ -790,6 +790,38 @@ class ScoreManager:
         except Exception:
             pass
 
+    def _wipe_pending_cascade_on_cold_entry(
+            self, transition_site: str) -> None:
+        """Workstream G Surface B — wipe-on-WARM→COLD per audit §3
+        (4f14dee). Captures the queue state, emits
+        POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START with per-entry
+        payload, then clears the queue. Insight #17 requires positive
+        trace observability — silent wipes via __init__ re-runs are
+        the prohibited pattern.
+
+        transition_site discriminates the W-site: one of W1
+        ``_handle_warm_overs_regress``, W2 ``_handle_warm_stale_reject``,
+        W3 ``force_cold_start_recalibration``, W4 ``set_innings_2``
+        (with reason in payload).
+        """
+        if not self._pending_post_wicket_cascade:
+            return
+        wiped_entries = [
+            {"frame_set_at": p.frame_set_at,
+             "age": self._current_frame - p.frame_set_at,
+             "dismissed": p.dismissed,
+             "reason": p.reason}
+            for p in self._pending_post_wicket_cascade
+        ]
+        self._emit_trace(
+            tag="POST-WICKET-CASCADE-DRAIN-WIPED-BY-COLD-START",
+            payload={
+                "transition_site": transition_site,
+                "wiped_entries": wiped_entries,
+                "frame_id": self._current_frame,
+            })
+        self._pending_post_wicket_cascade = []
+
     def _increment_bowler_wickets(self, bowler_name: str) -> None:
         """§12.3 step 4 — single bowler-W credit path.
 
@@ -2838,6 +2870,12 @@ class ScoreManager:
                 self._last_warm_state = None
                 self._accept_initial(_candidate_for_seed, frame)
                 self.mode = "WARM"
+                # Workstream G Surface B (C1 physics-promote drain
+                # trigger; audit 4f14dee §3.1). Defense-in-depth no-op
+                # in the step-5 dump (queue wiped at W-sites); fires
+                # only if a wicket arrives mid-COLD without a W-wipe.
+                if self._pending_post_wicket_cascade:
+                    self._attempt_pending_cascade_drain()
                 # 2. Snapshot the just-seeded state as `prev` for the
                 #    gap event.
                 _prev_snap = self._snapshot()
@@ -2903,6 +2941,9 @@ class ScoreManager:
                 self._last_warm_state = None
                 self._accept_initial(card, frame)
                 self.mode = "WARM"
+                # Workstream G Surface B (C2 give-up drain trigger).
+                if self._pending_post_wicket_cascade:
+                    self._attempt_pending_cascade_drain()
                 log.info(f"[SM] COLD_START → WARM (max frames, ref cleared)  "
                          f"{self.score}/{self.wickets} ({self.overs})")
                 self._maybe_synthesize_cold_start_gap()
@@ -2939,6 +2980,9 @@ class ScoreManager:
                 self._last_warm_state = None
                 self._accept_initial(card, frame)
                 self.mode = "WARM"
+                # Workstream G Surface B (C3 give-up drain trigger).
+                if self._pending_post_wicket_cascade:
+                    self._attempt_pending_cascade_drain()
                 log.info(f"[SM] COLD_START → WARM (max frames, ref cleared)  "
                          f"{self.score}/{self.wickets} ({self.overs})")
                 self._maybe_synthesize_cold_start_gap()
@@ -2948,6 +2992,9 @@ class ScoreManager:
         self._last_warm_state = None
         self._accept_initial(card, frame)
         self.mode = "WARM"
+        # Workstream G Surface B (C4 consensus drain trigger).
+        if self._pending_post_wicket_cascade:
+            self._attempt_pending_cascade_drain()
         log.info(
             f"[SM] COLD_START → WARM (consensus "
             f"{self.cold_candidate_streak}/"
@@ -2991,6 +3038,9 @@ class ScoreManager:
         self.cold_candidate = None
         self.cold_candidate_streak = 0
         self.mode = "WARM"
+        # Workstream G Surface B (C5 watchdog-forced drain trigger).
+        if self._pending_post_wicket_cascade:
+            self._attempt_pending_cascade_drain()
         log.info(
             f"[SM] COLD_START → WARM (pipeline watchdog)  "
             f"{self.score}/{self.wickets} ({self.overs})")
@@ -3264,6 +3314,9 @@ class ScoreManager:
         self.cold_candidate = None
         self.cold_candidate_streak = 0
         self.cold_frames = 0
+        # Workstream G Surface B (C6 hot-resume drain trigger).
+        if self._pending_post_wicket_cascade:
+            self._attempt_pending_cascade_drain()
         log.info(
             f"[SM] HOT-RESUME from cache  "
             f"{self.score}/{self.wickets} ({self.overs}) frame=F{frame}")
@@ -3855,6 +3908,8 @@ class ScoreManager:
                 f"{new_overs}) confirmed after "
                 f"{self._overs_regress_streak} frames — "
                 f"re-entering COLD_START")
+            self._wipe_pending_cascade_on_cold_entry(
+                transition_site="_handle_warm_overs_regress")
             self._last_warm_state = self._snapshot()
             self.mode = "COLD_START"
             self.cold_candidate = None
@@ -3915,6 +3970,8 @@ class ScoreManager:
             if self._stale_reject_count > 10:
                 log.info("[SM] Too many consecutive rejections — "
                          "re-entering COLD_START to re-calibrate")
+                self._wipe_pending_cascade_on_cold_entry(
+                    transition_site="_handle_warm_stale_reject")
                 self._last_warm_state = self._snapshot()
                 self.mode = "COLD_START"
                 self.cold_candidate = None
@@ -4099,6 +4156,8 @@ class ScoreManager:
         """
         prev_state = (f"{self.score}/{self.wickets} ({self.overs}) "
                       f"mode={self.mode}")
+        self._wipe_pending_cascade_on_cold_entry(
+            transition_site=f"force_cold_start_recalibration:{reason or 'external'}")
         self._last_warm_state = self._snapshot() if self.score is not None else None
         self.mode = "COLD_START"
         self.cold_candidate = None
@@ -4472,6 +4531,12 @@ class ScoreManager:
         # that would have leaked into innings-2's first d_score.
         _prev_event_baseline = getattr(
             self, "_event_baseline_score", None)
+        # Workstream G Surface B (W4 — insight #17): emit
+        # WIPED-BY-COLD-START BEFORE __init__ re-runs and silently
+        # default-inits the queue. Audit memo 4f14dee §3.3 ordering
+        # mandate — placement here is load-bearing.
+        self._wipe_pending_cascade_on_cold_entry(
+            transition_site=f"set_innings_2:{reason}")
         shadow = self.shadow
         history = self.innings_history
         reset_frame = self._current_frame
