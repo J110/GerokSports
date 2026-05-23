@@ -422,3 +422,52 @@ Co-Authored-By: ...
 **Recommended next step.** WS-H step-5c — single-function assertion-side edit at `files/tests/trace_session_assertions.py:425-:433` (Shape A degrade-gracefully) + cross-fixture survey against 12 on-disk traces (no new replay needed). If the cross-fixture survey holds, no budget consumption. If it surfaces a Shape A miss, revisit at Shape B fallback.
 
 **Methodology insight surfaced.** S21 — Assertion-expectation vs. pipeline-state defect class (§9). Cross-references S17 + S20 to form the post-lifecycle-fix audit triad.
+
+---
+
+## §12 Step-5c outcome + step-5b close (2026-05-23 step-9 retrospective)
+
+Shape A patch landed at `1dbba14` (single-function assertion-side edit per §10.1 recommendation). All static predictions empirically verified:
+
+### §12.1 UNIFIED cohort verification (§6 claim)
+
+§6 predicted that a single Shape A edit would close all 3 cohort frames (F679 + F948 + F1017) simultaneously. Step-5c on-disk re-run of the modified γ-fow-name assertion against `validate_ws_h_step7_20260523_172140.jsonl`:
+
+- F679 (dismissed=Pathum Nissanka): canonical-resolution tag `WICKET-RESOLVED-FROM-DETERMINISTIC-STRIKER` dismissed=Pathum Nissanka → MATCH → graceful-degrade PASS.
+- F948 (dismissed=KL Rahul): canonical tag `WICKET-RESOLVED-FROM-DETERMINISTIC-STRIKER` dismissed=KL Rahul → MATCH → PASS.
+- F1017 (dismissed=Pathum Nissanka): canonical tags `WICKET-RESOLVED-FROM-PENDING` dismissed=Pathum Nissanka (MATCH) + `WICKET-RESOLVED-FROM-DETERMINISTIC-STRIKER` dismissed=Tristan Stubbs (no-match); PENDING wins → graceful-degrade PASS.
+
+**§6 UNIFIED claim CONFIRMED.** Single edit closed all 3 instances; no per-frame divergence; trace assertion `trace_gamma_fow_name_matches_striker_at_wicket` flips FAIL × 3 → PASS on the step-7 trace.
+
+### §12.2 Cross-fixture broader-closure observation
+
+The on-disk re-run protocol (gate-7 cross-fixture per step-5b §7.7 + §10.3) covered all 13 captured traces. Shape A swept **4 additional pre-existing `no_prev_striker` FAILs** not enumerated in step-5b §1's 3-frame cohort:
+
+| Trace | Pre-patch FAIL | Post-patch | Source memo |
+|---|---|---|---|
+| validate_shape_a_114349 | FAIL × 1 (F679, dismissed=Nitish Rana) | PASS | WS-G step-5 era |
+| validate_shape_a_20260523_114053 | FAIL × 1 (F679, dismissed=Nitish Rana) | PASS | WS-G step-5 era |
+| validate_surface_b_121222 | FAIL × 1 (F679, dismissed=Nitish Rana) | PASS | WS-G step-8 era |
+| validate_ws_h_step3_20260523_164642 | FAIL × 1 (F679, dismissed=Pathum Nissanka) | PASS | WS-H step-3 era |
+
+These were latent assertion-expectation defects carried by every captured trace from WS-G onward (any trace whose Scout dump exercises the F679 wicket-commit region surfaces the assertion's `no_prev_striker` terminal because pipeline.striker was None at F678 — the same §15-fence cold-start invalidation pattern characterized in step-5b §4).
+
+**S20 cohort-exposure pattern operates ACROSS traces, not just within a single trace's defect cohort.** Step-5b §1 enumerated the 3-frame cohort within `validate_ws_h_step7_20260523_172140` because that was the trace under direct investigation; but the broader cross-fixture survey reveals the cohort spans every trace that exercises the affected wicket window. A trace-by-trace anchor list is necessarily incomplete relative to the actual defect-class footprint.
+
+### §12.3 Third instance of fix-surface-attribution discipline
+
+WS-H step-5b's H3 analysis is the third documented instance of fix-surface disambiguation in the codebase's investigation history:
+
+- **First instance (C21).** UI render layer vs. SM state layer disambiguation — fix in render layer when state was correct.
+- **Second instance (C22).** Both surfaces stale at same value vs. one-surface-divergent — internal-consistency vs. cricket-truth.
+- **Third instance (S21).** Assertion expectation vs. pipeline state — fix in assertion when pipeline is §15-fence-correct.
+
+The disambiguation is now a standing audit obligation per S21's three-step diagnostic protocol; not a one-off finding. Future investigations should run S21's protocol before scoping any downstream defect as a pipeline-side fix.
+
+### §12.4 Budget-neutral closure economics (S22 prefix)
+
+Gate-7 cross-fixture verification consumed 0/5 empirical-falsification budget because the fix surface is assertion-side. Pipeline-side fixes would have required empirical replay of each trace's captured-Scout dump under the modified pipeline (1/5 per fixture). The cost asymmetry is documented as S22 in root-cause memo §16.4.
+
+### §12.5 Step-5b close
+
+**Step-5b OBJECTIVE CLOSED.** All 3 cohort frames closed; 4 bonus closures swept; 0 regressions across 13 captured traces; 0/5 empirical budget consumed. Shape A patch `1dbba14` STAYS LANDED. No follow-on workstream from step-5b open.
