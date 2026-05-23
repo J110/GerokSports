@@ -1,0 +1,1423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Qrackpot — AI powered broadcasting platform for every sport, every player, every audience.</title>
+<meta name="description" content="One real-time AI pipeline. Six simultaneous outputs — game tracking, vision, commentary, analysis, predictions, social games. For every sport, every player and every audience on this planet." />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="canonical" href="https://qrackpot.com/" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="images/hero.jpg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Qrackpot" />
+<meta property="og:url" content="https://qrackpot.com/" />
+<meta property="og:title" content="Qrackpot — AI powered broadcasting platform for every sport, every player, every audience." />
+<meta property="og:description" content="One real-time AI pipeline. Six simultaneous outputs — game tracking, vision, commentary, analysis, predictions, social games. Extended, not replaced." />
+<meta property="og:image" content="https://qrackpot.com/images/og.jpg" />
+<meta property="og:image:secure_url" content="https://qrackpot.com/images/og.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Qrackpot — AI powered broadcasting platform" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Qrackpot — AI powered broadcasting platform" />
+<meta name="twitter:description" content="One pipeline. Six outputs in parallel. For every sport, every player, every audience on this planet." />
+<meta name="twitter:image" content="https://qrackpot.com/images/og.jpg" />
+<meta name="twitter:image:alt" content="Qrackpot — AI powered broadcasting platform" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --bg-2:#141414;
+    --bg-3:#1c1c1c;
+    --bg-4:#262626;
+    --ink:#f5f5f0;
+    --ink-2:#c8c8be;
+    --ink-dim:#7a7a72;
+    --ink-faint:#4a4a44;
+    --red:#d92016;
+    --red-hot:#ef2a1d;
+    --yellow:#e8a838;
+    --lime:#c4ff00;
+    --line:rgba(255,255,255,.08);
+    --line-strong:rgba(255,255,255,.18);
+    --line-bold:rgba(255,255,255,.32);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{font-size:17px;line-height:1.55;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.04) 1.2px,transparent 0);background-size:20px 20px;background-attachment:fixed}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  @media(max-width:600px){.wrap{padding:0 22px}}
+
+  .display{font-family:'Archivo Black',sans-serif;letter-spacing:-.025em;line-height:.94}
+  .editorial{font-family:'Fraunces',serif;font-style:italic;letter-spacing:-.015em}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  /* Tape stickers */
+  .tape{display:inline-block;background:var(--yellow);color:var(--bg);padding:4px 11px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-1.2deg);box-shadow:1px 1px 0 rgba(0,0,0,.5)}
+  .tape.red{background:var(--red);color:var(--ink)}
+  .tape.ink{background:var(--ink);color:var(--bg)}
+  .tape.lime{background:var(--lime);color:var(--bg)}
+
+  /* Flag */
+  .flag{padding:9px 0;border-bottom:1.5px solid var(--line-strong);background:var(--bg)}
+  .flag .row{display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--ink-2);text-transform:uppercase;font-weight:600;flex-wrap:wrap;gap:8px}
+  .flag-left{display:flex;gap:18px;align-items:center}
+  .flag-pulse{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:pulse 1.6s ease-in-out infinite;box-shadow:0 0 12px var(--lime)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  @media(max-width:720px){.flag-left span:nth-child(3),.flag-left span:nth-child(5){display:none}}
+
+  /* Nav */
+  nav{padding:22px 0;border-bottom:2.5px solid var(--line-strong);background:rgba(10,10,10,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:sticky;top:0;z-index:50}
+  nav .row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .logo{display:flex;align-items:baseline;gap:8px}
+  .logo-mark{font-family:'Archivo Black',sans-serif;font-size:28px;letter-spacing:-.035em;color:var(--ink)}
+  .logo-dot{width:9px;height:9px;border-radius:50%;background:var(--red);display:inline-block;margin-left:2px;transform:translateY(-2px)}
+  .logo-tag{font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--ink-dim);margin-left:6px}
+  @media(max-width:560px){.logo-tag{display:none}}
+  .nav-cta-row{display:flex;gap:12px;align-items:center}
+  .nav-cta{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:2px solid var(--line-bold);border-radius:0;transition:all .15s;cursor:pointer;background:transparent;color:var(--ink)}
+  .nav-cta:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .nav-cta-primary{background:var(--red);color:var(--ink);border-color:var(--red)}
+  .nav-cta-primary:hover{background:var(--red-hot);border-color:var(--red-hot);color:var(--ink)}
+  @media(max-width:520px){.nav-cta{padding:8px 12px;font-size:11px}}
+
+  /* Hero — full-bleed image */
+  .hero{padding:120px 0 130px;border-bottom:3px solid var(--line-strong);position:relative;overflow:hidden;min-height:90vh;display:flex;align-items:center}
+  .hero-bg-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;filter:contrast(1.05) saturate(.9) brightness(.85)}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.45) 0%,rgba(10,10,10,.55) 50%,rgba(10,10,10,.92) 100%),linear-gradient(90deg,rgba(10,10,10,.7) 0%,rgba(10,10,10,.25) 60%,rgba(10,10,10,.4) 100%);z-index:1;pointer-events:none}
+  .hero > .wrap{position:relative;z-index:2;width:100%}
+  .hero-eyebrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;align-items:center}
+  .hero-h1{font-family:'Archivo Black',sans-serif;font-size:clamp(54px,9.5vw,148px);line-height:.86;letter-spacing:-.045em;margin-bottom:36px;max-width:1180px;text-wrap:balance;color:var(--ink);text-shadow:0 2px 30px rgba(0,0,0,.4)}
+  .hero-h1 .ai-tag{display:inline-block;background:var(--red);color:var(--ink);padding:0 14px 4px;line-height:1;transform:rotate(-1.2deg);margin-right:6px;box-shadow:3px 3px 0 var(--bg)}
+  .hero-h1 .every-block{display:block;font-family:'Fraunces',serif;font-style:italic;font-weight:500;letter-spacing:-.02em;line-height:.96;margin-top:14px;font-size:.92em}
+  .hero-h1 .every-block .ev{color:var(--red);font-style:italic;font-weight:600}
+  .hero-h1 .planet{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:.56em;color:var(--ink-2);display:inline-block;margin-left:4px;vertical-align:baseline}
+  .hero-sub{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(20px,2.2vw,28px);line-height:1.32;max-width:880px;color:var(--ink-2);margin-bottom:42px;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+  .hero-sub strong{font-family:'Archivo Black',sans-serif;font-style:normal;font-weight:400;background:var(--yellow);padding:0 6px;color:var(--bg)}
+  .hero-sub .ink-tag{background:var(--ink);color:var(--bg)}
+  .hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn-big{display:inline-flex;align-items:center;gap:10px;padding:18px 28px;border:2.5px solid var(--ink);border-radius:0;font-family:'JetBrains Mono',monospace;font-size:13.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--ink);transition:all .15s;cursor:pointer}
+  .btn-big:hover{background:var(--ink);color:var(--bg);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--red)}
+  .btn-big-primary{background:var(--red);border-color:var(--red);color:var(--ink)}
+  .btn-big-primary:hover{background:var(--red-hot);border-color:var(--red-hot);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+  .btn-arrow{transition:transform .2s;font-size:18px;line-height:1}
+  .btn-big:hover .btn-arrow{transform:translateX(3px)}
+
+  .hero-stamp{position:absolute;right:40px;top:120px;width:138px;height:138px;border:3.5px solid var(--red);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-9deg);color:var(--red);font-family:'JetBrains Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:.08em;line-height:1.1;text-align:center;font-size:10px;padding:14px;background:rgba(10,10,10,.55);backdrop-filter:blur(6px)}
+  .hero-stamp .big{font-family:'Archivo Black',sans-serif;font-size:32px;letter-spacing:-.025em;margin:5px 0;line-height:1;color:var(--red)}
+  @media(max-width:1100px){.hero-stamp{display:none}}
+
+  .hero-chips{margin-top:48px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);font-weight:600}
+  .hero-chips .lbl{color:var(--ink);margin-right:6px}
+  .hero-chip{padding:5px 11px;background:rgba(255,255,255,.06);border:1.5px solid var(--line-strong);font-weight:700;color:var(--ink);backdrop-filter:blur(4px)}
+  .hero-chip.red{background:var(--red);color:var(--ink);border-color:var(--red)}
+  .hero-chip.yellow{background:var(--yellow);color:var(--bg);border-color:var(--yellow)}
+  .hero-chip.ink{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .hero-chip.lime{background:var(--lime);color:var(--bg);border-color:var(--lime)}
+
+  /* Section frame */
+  section{padding:110px 0;border-bottom:3px solid var(--line-strong);position:relative;background:var(--bg)}
+  .sec-tag{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .sec-tag-num{font-family:'Archivo Black',sans-serif;font-size:48px;color:var(--red);line-height:.9;letter-spacing:-.04em}
+  .sec-tag-label{display:flex;flex-direction:column;gap:2px}
+  .sec-tag-label .a{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);font-weight:600}
+  .sec-tag-label .b{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--ink)}
+
+  h2.sec-h{font-family:'Archivo Black',sans-serif;font-size:clamp(42px,6vw,86px);line-height:.94;letter-spacing:-.035em;margin-bottom:24px;max-width:1000px;text-wrap:balance;color:var(--ink)}
+  h2.sec-h em{font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--red);letter-spacing:-.02em}
+  .sec-lede{font-family:'Fraunces',serif;font-style:italic;font-size:22px;line-height:1.4;max-width:760px;color:var(--ink-2);margin-bottom:60px}
+
+  /* The Fight — 2x2 grid */
+  .fight-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:40px;border:3px solid var(--line-strong);background:var(--bg-2)}
+  @media(max-width:760px){.fight-grid{grid-template-columns:1fr}}
+  .fight-cell{padding:42px 34px;border-right:3px solid var(--line-strong);border-bottom:3px solid var(--line-strong);position:relative;display:flex;flex-direction:column;gap:16px;min-height:300px}
+  .fight-cell:nth-child(2n){border-right:none}
+  .fight-cell:nth-last-child(-n+2){border-bottom:none}
+  @media(max-width:760px){.fight-cell{border-right:none}.fight-cell:nth-last-child(-n+2){border-bottom:3px solid var(--line-strong)}.fight-cell:last-child{border-bottom:none}}
+  .fight-num{font-family:'Archivo Black',sans-serif;font-size:clamp(70px,8vw,118px);line-height:.86;letter-spacing:-.055em;color:var(--ink)}
+  .fight-num.red{color:var(--red)}
+  .fight-num .unit{font-family:'Fraunces',serif;font-style:italic;font-size:.36em;color:var(--ink-dim);font-weight:500;margin-left:6px;letter-spacing:-.01em}
+  .fight-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;margin-top:auto}
+  .fight-body{font-family:'Fraunces',serif;font-style:italic;font-size:16.5px;line-height:1.4;color:var(--ink-2)}
+  .fight-body strong{font-family:'Archivo Black',sans-serif;font-style:normal;font-size:13.5px;color:var(--bg);letter-spacing:.02em;background:var(--yellow);padding:1px 6px;display:inline-block;margin-top:4px}
+  .fight-coda{margin-top:36px;font-family:'Fraunces',serif;font-style:italic;font-size:28px;color:var(--ink);text-align:center;padding:24px 20px;border:2.5px dashed var(--line-strong);background:var(--bg-2)}
+  .fight-coda em{color:var(--red);font-weight:600}
+
+  /* The Bet — image-forward with capability cards */
+  .bet-section{position:relative;overflow:hidden;border-bottom:3px solid var(--line-strong)}
+  .bet-bg-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;filter:contrast(1.05) saturate(.9) brightness(.8)}
+  .bet-section::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.72) 18%,rgba(10,10,10,.58) 50%,rgba(10,10,10,.72) 82%,rgba(10,10,10,.94) 100%);z-index:1;pointer-events:none}
+  .bet-section > .wrap{position:relative;z-index:2;padding-top:110px;padding-bottom:110px}
+
+  .cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:50px;margin-top:40px}
+  @media(max-width:1000px){.cap-grid{grid-template-columns:1fr 1fr;gap:14px}}
+  @media(max-width:600px){.cap-grid{grid-template-columns:1fr}}
+  .cap-card{border:1.5px solid var(--line-strong);background:rgba(255,255,255,.03);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:22px;display:flex;flex-direction:column;gap:14px;min-height:400px;transition:transform .25s,border-color .25s,background .25s;position:relative;overflow:hidden}
+  .cap-card:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--red);border-color:var(--red);background:rgba(255,255,255,.05)}
+  .cap-card.red{background:var(--red);color:var(--ink);border-color:var(--red)}
+  .cap-card.ink{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .cap-card.yellow{background:var(--yellow);color:var(--bg);border-color:var(--yellow)}
+  .cap-card.lime{background:var(--lime);color:var(--bg);border-color:var(--lime)}
+
+  .cap-head{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink-dim);display:flex;justify-content:space-between;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1.5px solid var(--line-strong)}
+  .cap-card.red .cap-head{color:rgba(245,245,240,.7);border-color:rgba(245,245,240,.25)}
+  .cap-card.ink .cap-head,.cap-card.yellow .cap-head,.cap-card.lime .cap-head{color:rgba(10,10,10,.6);border-color:rgba(10,10,10,.25)}
+  .cap-num{padding:2px 7px;background:var(--ink);color:var(--bg);font-weight:700;letter-spacing:.08em}
+  .cap-card.red .cap-num{background:var(--ink);color:var(--red)}
+  .cap-card.ink .cap-num{background:var(--red);color:var(--ink)}
+  .cap-card.yellow .cap-num{background:var(--bg);color:var(--yellow)}
+  .cap-card.lime .cap-num{background:var(--bg);color:var(--lime)}
+
+  .cap-visual{flex:1;background:rgba(0,0,0,.3);border:1.5px solid var(--line-strong);padding:14px;display:flex;align-items:center;justify-content:center;position:relative;min-height:150px;overflow:hidden}
+  .cap-card.red .cap-visual{background:rgba(10,10,10,.18);border-color:rgba(245,245,240,.25)}
+  .cap-card.ink .cap-visual{background:rgba(10,10,10,.06);border-color:rgba(10,10,10,.25)}
+  .cap-card.yellow .cap-visual{background:rgba(10,10,10,.08);border-color:rgba(10,10,10,.32)}
+  .cap-card.lime .cap-visual{background:rgba(10,10,10,.08);border-color:rgba(10,10,10,.32)}
+
+  .cap-h{font-family:'Archivo Black',sans-serif;font-size:23px;letter-spacing:-.02em;line-height:1.05;margin-bottom:8px}
+  .cap-h em{font-family:'Fraunces',serif;font-style:italic;color:var(--red);font-weight:500}
+  .cap-card.red .cap-h em{color:var(--yellow)}
+  .cap-card.ink .cap-h em,.cap-card.yellow .cap-h em,.cap-card.lime .cap-h em{color:var(--red)}
+
+  .cap-body{font-family:'Fraunces',serif;font-size:14.5px;line-height:1.45;color:var(--ink-2);font-style:italic}
+  .cap-card.red .cap-body{color:rgba(245,245,240,.85)}
+  .cap-card.ink .cap-body,.cap-card.yellow .cap-body,.cap-card.lime .cap-body{color:rgba(10,10,10,.78)}
+
+  .cap-data{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--ink-dim);font-weight:600;line-height:1.55;padding-top:8px;border-top:1px dashed var(--line-strong)}
+  .cap-card.red .cap-data{color:rgba(245,245,240,.7);border-color:rgba(245,245,240,.25)}
+  .cap-card.ink .cap-data,.cap-card.yellow .cap-data,.cap-card.lime .cap-data{color:rgba(10,10,10,.65);border-color:rgba(10,10,10,.25)}
+
+  .cap-vis-svg{width:100%;height:100%;max-height:160px}
+
+  /* Cascade visual */
+  .cap-cascade{display:flex;flex-direction:column;gap:7px;width:100%}
+  .cap-cascade .cas-wave{display:flex;gap:1.8px;align-items:center;height:16px;margin-bottom:4px}
+  .cap-cascade .cas-wave .b{width:2px;background:var(--ink);animation:wave 1.2s ease-in-out infinite}
+  .cap-cascade .cas-wave .b:nth-child(1){animation-delay:0s;height:40%}
+  .cap-cascade .cas-wave .b:nth-child(2){animation-delay:.1s;height:80%}
+  .cap-cascade .cas-wave .b:nth-child(3){animation-delay:.2s;height:55%}
+  .cap-cascade .cas-wave .b:nth-child(4){animation-delay:.3s;height:95%}
+  .cap-cascade .cas-wave .b:nth-child(5){animation-delay:.4s;height:35%}
+  .cap-cascade .cas-wave .b:nth-child(6){animation-delay:.5s;height:75%}
+  .cap-cascade .cas-wave .b:nth-child(7){animation-delay:.6s;height:50%}
+  .cap-cascade .cas-wave .b:nth-child(8){animation-delay:.7s;height:88%}
+  @keyframes wave{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+  .cap-cascade .cas-line{display:flex;gap:8px;align-items:flex-start;padding:5px 8px;background:rgba(10,10,10,.4);border-left:3px solid var(--yellow)}
+  .cap-cascade .cas-tier{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--yellow);flex-shrink:0;font-size:9.5px;letter-spacing:.06em;padding-top:2px}
+  .cap-cascade .cas-text{font-family:'Fraunces',serif;font-style:italic;font-size:12.5px;line-height:1.3;color:var(--ink);font-weight:500}
+
+  /* Stats grid (analysis) */
+  .cap-stats{display:grid;grid-template-columns:1fr 1fr;gap:5px 16px;width:100%}
+  .cap-stats .row{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px dotted rgba(10,10,10,.25);font-family:'JetBrains Mono',monospace}
+  .cap-stats .row.full{grid-column:1/-1;padding:6px 0;border-bottom:1.5px solid rgba(10,10,10,.4)}
+  .cap-stats .row.full .lbl{font-size:9px}
+  .cap-stats .row.full .val{font-size:11px}
+  .cap-stats .lbl{color:rgba(10,10,10,.6);font-weight:600;letter-spacing:.05em;text-transform:uppercase;font-size:9px}
+  .cap-stats .val{color:var(--bg);font-weight:700;font-size:11.5px;font-family:'Archivo Black',sans-serif;letter-spacing:-.01em}
+  .cap-stats .val.red{color:var(--red)}
+
+  /* Predictions */
+  .cap-pred{display:flex;flex-direction:column;gap:12px;width:100%}
+  .cap-pred .pred-row{display:flex;flex-direction:column;gap:5px}
+  .cap-pred .pred-row-top{display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.04em;color:var(--bg);text-transform:uppercase}
+  .cap-pred .pred-row-top .pred-pct{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:-.02em;color:var(--bg);text-transform:none}
+  .cap-pred .pred-bar{height:7px;background:rgba(10,10,10,.2);position:relative;overflow:hidden}
+  .cap-pred .pred-bar-fill{position:absolute;left:0;top:0;bottom:0;background:var(--bg);animation:bar-fill 1.4s ease-out both}
+  @keyframes bar-fill{from{width:0}}
+
+  /* Leaderboard (social) */
+  .cap-leader{display:flex;flex-direction:column;gap:5px;width:100%}
+  .cap-leader .lb-row{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:rgba(255,255,255,.04);border-left:3px solid transparent}
+  .cap-leader .lb-row.gold{border-left-color:var(--yellow);background:rgba(232,168,56,.12)}
+  .cap-leader .lb-row.you{border-left-color:var(--red);background:rgba(217,32,22,.16)}
+  .cap-leader .lb-name{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:7px;font-size:12px}
+  .cap-leader .lb-rank{color:var(--ink-dim);font-size:10px;font-weight:700;width:14px}
+  .cap-leader .lb-pts{font-weight:700;color:var(--ink);font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:-.02em}
+  .cap-leader .lb-chat{margin-top:6px;padding:7px 10px;font-family:'Fraunces',serif;font-style:italic;font-size:11.5px;color:var(--ink);background:rgba(10,10,10,.5);border:1.5px solid var(--line-strong);line-height:1.3}
+  .cap-leader .lb-chat .chat-from{font-family:'JetBrains Mono',monospace;font-style:normal;font-size:9px;font-weight:700;color:var(--red);letter-spacing:.06em;text-transform:uppercase;margin-right:5px}
+
+  /* Bet kicker */
+  .bet-kicker{margin-top:50px;padding:36px 40px;background:var(--ink);color:var(--bg);position:relative;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;transform:rotate(-.5deg)}
+  .bet-kicker::before{content:"\201C";position:absolute;top:-30px;left:24px;font-family:'Fraunces',serif;font-style:italic;font-size:130px;color:var(--red);line-height:1}
+  .bet-kicker-quote{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(22px,2.6vw,32px);line-height:1.2;letter-spacing:-.015em;flex:1}
+  .bet-kicker-quote em{color:var(--red);font-weight:600}
+  .bet-kicker-attr{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);font-weight:600;flex-shrink:0}
+
+  /* Pipeline section */
+  .pipeline-section{padding:110px 0 110px;background:var(--bg);border-bottom:3px solid var(--line-strong);position:relative;overflow:hidden}
+  .pipeline-section::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(90deg,var(--lime) 0,var(--lime) 12px,var(--bg) 12px,var(--bg) 18px);z-index:1}
+  .pipeline-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:.55;filter:contrast(1.05) saturate(.9) brightness(.8)}
+  .pipeline-section::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.72) 18%,rgba(10,10,10,.6) 50%,rgba(10,10,10,.72) 82%,rgba(10,10,10,.94) 100%);z-index:0;pointer-events:none}
+  .pipeline-section > .wrap{position:relative;z-index:2}
+  .pipeline-stage{margin-top:40px}
+  .pipeline-spread{display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:stretch}
+  @media(max-width:1000px){.pipeline-spread{grid-template-columns:1fr}}
+
+  .broadcast-frame{border:3.5px solid var(--line-strong);background:var(--bg);position:relative;display:flex;flex-direction:column;min-height:520px}
+  .frame-chrome{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:var(--bg-3);border-bottom:2.5px solid var(--line-strong);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);flex-wrap:wrap;gap:6px}
+  .frame-chrome .lf{display:flex;align-items:center;gap:10px}
+  .frame-chrome .dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 1.4s ease-in-out infinite}
+  .frame-chrome .rt{color:var(--ink-dim)}
+  .frame-canvas{flex:1;position:relative;overflow:hidden;background:#04040a;aspect-ratio:16/10}
+  .frame-canvas svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .frame-caption{padding:11px 18px;background:var(--bg-3);border-top:2.5px solid var(--line-strong);font-family:'Fraunces',serif;font-style:italic;font-size:13.5px;color:var(--ink-2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+  .frame-caption .cap-mono{font-family:'JetBrains Mono',monospace;font-style:normal;font-size:11px;color:var(--ink-dim);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+
+  .sport-scene{opacity:0;visibility:hidden}
+  .sport-scene.active{opacity:1;visibility:visible;animation:scene-fade-in .35s ease}
+  @keyframes scene-fade-in{from{opacity:0}to{opacity:1}}
+  .player{fill:rgba(255,255,255,.85);stroke:rgba(0,0,0,.4);stroke-width:1;transform-box:fill-box;transform-origin:center}
+  .player.team-2{fill:rgba(232,168,56,.95)}
+  .ball-cricket,.ball-football,.ball-basket,.ball-padel{transform-box:fill-box;transform-origin:center}
+  .scene-cricket.active .ball-cricket{animation:ball-c 3.4s ease-in infinite}
+  @keyframes ball-c{0%{transform:translate(-1px,-54px);opacity:0}8%{opacity:1}55%{transform:translate(0,0);opacity:1}72%{transform:translate(50px,28px);opacity:1}92%{transform:translate(130px,72px);opacity:0}100%{opacity:0}}
+  .scene-cricket.active .player-bat{animation:bat-swing 3.4s ease-in-out infinite}
+  @keyframes bat-swing{0%,52%{transform:translate(0,0) rotate(0)}60%{transform:translate(-2px,-2px) rotate(-6deg)}68%{transform:translate(2px,-1px) rotate(6deg)}78%,100%{transform:translate(0,0) rotate(0)}}
+  .scene-football.active .ball-football{animation:ball-f 3s ease-in-out infinite}
+  @keyframes ball-f{0%{transform:translate(-90px,-65px);opacity:0}12%{opacity:1}60%{transform:translate(0,0);opacity:1}88%{transform:translate(40px,25px);opacity:1}100%{transform:translate(40px,25px);opacity:0}}
+  .scene-football.active .player-fwd{animation:fwd-run 3s linear infinite}
+  @keyframes fwd-run{0%{transform:translate(0,0)}50%{transform:translate(15px,-6px)}100%{transform:translate(30px,-6px)}}
+  .scene-basketball.active .ball-basket{animation:ball-b 3.2s ease-out infinite}
+  @keyframes ball-b{0%{transform:translate(40px,30px);opacity:0}10%{opacity:1}50%{transform:translate(-180px,-55px);opacity:1}90%{transform:translate(-385px,30px);opacity:1}100%{transform:translate(-385px,30px);opacity:0}}
+  .scene-basketball.active .player-shoot{animation:shoot 3.2s ease-in-out infinite}
+  @keyframes shoot{0%,45%{transform:translate(0,0)}55%{transform:translate(0,-5px)}65%,100%{transform:translate(0,0)}}
+  .scene-padel.active .ball-padel{animation:ball-p 3.6s ease-in-out infinite}
+  @keyframes ball-p{0%{transform:translate(140px,-60px);opacity:0}10%{opacity:1}40%{transform:translate(0,0);opacity:1}80%{transform:translate(-100px,130px);opacity:1}100%{transform:translate(-100px,130px);opacity:0}}
+  .bbox{fill:none;stroke:var(--red);stroke-width:1.8;opacity:0;stroke-dasharray:4 3;animation:bbox-draw 7s ease infinite;transform-box:fill-box;transform-origin:center}
+  .bbox.delay-1{animation-delay:.3s}
+  .bbox.delay-2{animation-delay:.6s}
+  @keyframes bbox-draw{0%,3%{opacity:0;transform:scale(.85)}6%,55%{opacity:1;transform:scale(1)}60%,100%{opacity:.5}}
+  .bbox-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;fill:var(--yellow);font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:0;animation:label-show 7s ease infinite}
+  .bbox-label.delay-1{animation-delay:.5s}
+  .bbox-label.delay-2{animation-delay:.8s}
+  @keyframes label-show{0%,6%{opacity:0}10%,55%{opacity:1}60%,100%{opacity:.6}}
+
+  .frame-pipeline-strip{position:absolute;top:14px;left:14px;display:flex;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;z-index:2}
+  .fps-step{padding:5px 9px;background:rgba(0,0,0,.62);backdrop-filter:blur(8px);color:rgba(245,245,240,.5);border:1.5px solid rgba(245,245,240,.18);display:flex;align-items:center;gap:5px;transition:all .35s}
+  .fps-step .sd{width:5px;height:5px;border-radius:50%;background:currentColor}
+  .fps-step.active{color:var(--lime);border-color:var(--lime);box-shadow:0 0 12px rgba(196,255,0,.35)}
+  .frame-score{position:absolute;top:14px;right:14px;padding:6px 12px;background:rgba(0,0,0,.62);backdrop-filter:blur(8px);border:1.5px solid rgba(245,245,240,.2);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink);font-weight:600;letter-spacing:.04em;z-index:2}
+  .frame-meta{position:absolute;bottom:14px;left:14px;display:flex;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:rgba(245,245,240,.6);letter-spacing:.08em;text-transform:uppercase;z-index:2}
+  .frame-meta-item{padding:4px 8px;background:rgba(0,0,0,.55);border:1px solid rgba(245,245,240,.15)}
+
+  .outputs-stack{display:flex;flex-direction:column;gap:14px}
+  .output-card{border:2px solid var(--line-strong);padding:18px 20px;background:var(--bg-3);position:relative;opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease;display:flex;flex-direction:column;gap:8px;min-height:78px;justify-content:center}
+  .output-card.show{opacity:1;transform:translateY(0)}
+  .output-card.style-red{background:var(--red);color:var(--ink);border-color:var(--red)}
+  .output-card.style-yellow{background:var(--yellow);border-color:var(--yellow);color:var(--bg)}
+  .output-card.style-ink{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .out-head{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .out-cat{color:var(--ink-dim)}
+  .output-card.style-red .out-cat{color:rgba(245,245,240,.75)}
+  .output-card.style-ink .out-cat,.output-card.style-yellow .out-cat{color:rgba(10,10,10,.65)}
+  .out-num{padding:2px 7px;background:var(--ink);color:var(--bg);font-weight:700}
+  .output-card.style-red .out-num{background:var(--ink);color:var(--red)}
+  .output-card.style-ink .out-num{background:var(--red);color:var(--ink)}
+  .output-card.style-yellow .out-num{background:var(--bg);color:var(--yellow)}
+  .out-content{font-family:'Fraunces',serif;font-size:15.5px;line-height:1.32;color:var(--ink);font-style:italic;font-weight:500}
+  .output-card.style-red .out-content{color:var(--ink)}
+  .output-card.style-ink .out-content,.output-card.style-yellow .out-content{color:var(--bg)}
+  .out-content .big{font-family:'Archivo Black',sans-serif;font-style:normal;font-weight:400;font-size:1.4em;letter-spacing:-.02em;line-height:1;display:inline-block;vertical-align:-2px;margin-right:4px}
+  .out-content.with-wave{display:flex;align-items:center;gap:10px}
+  .out-wave{display:flex;align-items:center;gap:1.5px;height:18px;flex-shrink:0}
+  .out-wave .b{width:2px;background:currentColor;animation:wave 1.2s ease-in-out infinite}
+  .out-wave .b:nth-child(1){animation-delay:0s;height:40%}
+  .out-wave .b:nth-child(2){animation-delay:.1s;height:80%}
+  .out-wave .b:nth-child(3){animation-delay:.2s;height:55%}
+  .out-wave .b:nth-child(4){animation-delay:.3s;height:90%}
+  .out-wave .b:nth-child(5){animation-delay:.4s;height:35%}
+  .out-wave .b:nth-child(6){animation-delay:.5s;height:70%}
+  .out-foot{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding-top:6px;border-top:1px dashed var(--line-strong)}
+  .output-card.style-red .out-foot{color:rgba(245,245,240,.7);border-color:rgba(245,245,240,.25)}
+  .output-card.style-ink .out-foot,.output-card.style-yellow .out-foot{color:rgba(10,10,10,.6);border-color:rgba(10,10,10,.25)}
+
+  .pipeline-flow{margin-top:42px;border:3px solid var(--line-strong);background:var(--bg-2);display:grid;grid-template-columns:1fr auto 1fr auto 1.4fr;align-items:stretch;overflow:hidden}
+  @media(max-width:900px){.pipeline-flow{grid-template-columns:1fr;gap:0}.pipeline-flow > *{border-bottom:3px solid var(--line-strong)}.pipeline-flow > *:last-child{border-bottom:none}.flow-arrow{display:none}}
+  .flow-step{padding:24px 26px;display:flex;flex-direction:column;gap:6px;justify-content:center;min-height:130px}
+  .flow-step.fan-out{background:var(--red);color:var(--ink)}
+  .flow-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:700}
+  .flow-step.fan-out .flow-num{color:var(--yellow)}
+  .flow-title{font-family:'Archivo Black',sans-serif;font-size:28px;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+  .flow-title em{font-family:'Fraunces',serif;font-style:italic;color:var(--red);font-weight:500}
+  .flow-step.fan-out .flow-title em{color:var(--yellow)}
+  .flow-desc{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--ink-2);line-height:1.35;margin-top:2px}
+  .flow-step.fan-out .flow-desc{color:rgba(245,245,240,.85)}
+  .flow-arrow{display:flex;align-items:center;justify-content:center;padding:0 14px;font-family:'Archivo Black',sans-serif;font-size:36px;color:var(--red);background:var(--bg-3);border-left:3px solid var(--line-strong);border-right:3px solid var(--line-strong)}
+
+  .pipeline-stat-row{margin-top:42px;display:grid;grid-template-columns:repeat(4,1fr);border:3px solid var(--line-strong);background:var(--bg-2)}
+  @media(max-width:760px){.pipeline-stat-row{grid-template-columns:1fr 1fr}}
+  .ps-cell{padding:22px 24px;border-right:3px solid var(--line-strong);display:flex;flex-direction:column;gap:6px}
+  .ps-cell:last-child{border-right:none}
+  @media(max-width:760px){.ps-cell:nth-child(2n){border-right:none}.ps-cell:nth-child(-n+2){border-bottom:3px solid var(--line-strong)}}
+  .ps-num{font-family:'Archivo Black',sans-serif;font-size:38px;line-height:1;color:var(--ink);letter-spacing:-.03em}
+  .ps-num.red{color:var(--red)}
+  .ps-num.lime{color:var(--lime)}
+  .ps-num .small{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:.5em;color:var(--ink-dim);margin-left:4px}
+  .ps-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-dim);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+
+  /* Long tail marquees */
+  .longtail-section{padding-bottom:60px;background:var(--bg);border-bottom:3px solid var(--line-strong);position:relative;overflow:hidden}
+  .longtail-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:.5;filter:contrast(1.05) saturate(.95) brightness(.8)}
+  .longtail-section::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.72) 18%,rgba(10,10,10,.58) 50%,rgba(10,10,10,.72) 82%,rgba(10,10,10,.94) 100%);z-index:0;pointer-events:none}
+  .longtail-section > .wrap, .longtail-section > .longtail-stack{position:relative;z-index:1}
+  .longtail-stack{margin-top:30px;border-top:3px solid var(--line-strong);border-bottom:3px solid var(--line-strong)}
+  .marquee{overflow:hidden;border-bottom:1.5px solid var(--line-strong);padding:18px 0;display:flex;align-items:center;gap:30px;position:relative;background:var(--bg-2)}
+  .marquee:last-child{border-bottom:none}
+  .marquee.dark{background:var(--ink);color:var(--bg);border-color:var(--bg)}
+  .marquee.red{background:var(--red);color:var(--ink);border-color:var(--ink)}
+  .marquee-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:0 24px;flex-shrink:0;border-right:1.5px solid currentColor;line-height:1}
+  .marquee-track{display:flex;gap:40px;white-space:nowrap;animation:slide 50s linear infinite;font-family:'Archivo Black',sans-serif;font-size:28px;letter-spacing:-.025em;line-height:1;flex-shrink:0}
+  .marquee.dark .marquee-track{animation-duration:65s}
+  .marquee.red .marquee-track{animation-duration:55s;animation-direction:reverse}
+  .marquee-item{display:inline-flex;align-items:center;gap:12px}
+  .marquee-item::after{content:"·";color:var(--red);margin-left:12px}
+  .marquee.dark .marquee-item::after{color:var(--red)}
+  .marquee.red .marquee-item::after{color:var(--yellow)}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* Doors */
+  .doors-section{background:var(--bg-2);border-bottom:3px solid var(--line-strong);padding:110px 0;position:relative;overflow:hidden}
+  .doors-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:.42;filter:contrast(1.05) saturate(.95) brightness(.78)}
+  .doors-section::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,20,20,.94) 0%,rgba(20,20,20,.72) 18%,rgba(20,20,20,.6) 50%,rgba(20,20,20,.72) 82%,rgba(20,20,20,.94) 100%);z-index:0;pointer-events:none}
+  .doors-section > .wrap{position:relative;z-index:1}
+  .doors{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  @media(max-width:900px){.doors{grid-template-columns:1fr}}
+  .door{padding:36px 32px;border:2.5px solid var(--line-strong);background:var(--bg-3);position:relative;transition:transform .25s,border-color .25s;display:flex;flex-direction:column;min-height:540px}
+  .door:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--red);border-color:var(--red)}
+  .door.featured{background:var(--red);color:var(--ink);border-color:var(--red)}
+  .door.featured:hover{box-shadow:5px 5px 0 var(--ink);border-color:var(--red)}
+  .door.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .door.dark:hover{box-shadow:5px 5px 0 var(--red);border-color:var(--ink)}
+  .door-num{font-family:'Archivo Black',sans-serif;font-size:80px;color:var(--red);line-height:.86;letter-spacing:-.04em;margin-bottom:14px}
+  .door.featured .door-num{color:var(--yellow)}
+  .door.dark .door-num{color:var(--red)}
+  .door-cat{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin-bottom:6px}
+  .door.featured .door-cat{color:rgba(245,245,240,.72)}
+  .door.dark .door-cat{color:rgba(10,10,10,.6)}
+  .door-name{font-family:'Archivo Black',sans-serif;font-size:26px;letter-spacing:-.02em;line-height:1.05;margin-bottom:14px}
+  .door-name em{font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--red)}
+  .door.featured .door-name em{color:var(--yellow)}
+  .door.dark .door-name em{color:var(--red)}
+  .door-body{font-family:'Fraunces',serif;font-size:16px;line-height:1.5;color:var(--ink-2);margin-bottom:20px}
+  .door.featured .door-body{color:rgba(245,245,240,.86)}
+  .door.dark .door-body{color:rgba(10,10,10,.78)}
+  .door-body strong{font-family:'Archivo Black',sans-serif;font-style:normal;color:var(--bg);font-size:.9em;background:var(--yellow);padding:1px 5px;font-weight:400}
+  .door.featured .door-body strong{background:var(--ink);color:var(--red)}
+  .door.dark .door-body strong{background:var(--red);color:var(--ink)}
+  .door-applist{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);font-weight:700;margin-bottom:10px;border-top:1.5px solid var(--line-strong);padding-top:14px}
+  .door.featured .door-applist{color:rgba(245,245,240,.72);border-color:rgba(245,245,240,.25)}
+  .door.dark .door-applist{color:rgba(10,10,10,.6);border-color:rgba(10,10,10,.22)}
+  .door-list{list-style:none;margin-bottom:24px;flex:1}
+  .door-list li{font-size:13.5px;color:var(--ink-2);padding:6px 0;border-bottom:1px dotted var(--line-strong);display:flex;gap:10px}
+  .door.featured .door-list li{color:rgba(245,245,240,.85);border-color:rgba(245,245,240,.2)}
+  .door.dark .door-list li{color:rgba(10,10,10,.78);border-color:rgba(10,10,10,.18)}
+  .door-list li::before{content:"+";color:var(--red);font-family:'Archivo Black',sans-serif;font-weight:700;flex-shrink:0}
+  .door.featured .door-list li::before{color:var(--yellow)}
+  .door.dark .door-list li::before{color:var(--red)}
+  .door-cta{display:inline-flex;align-items:center;justify-content:space-between;padding:13px 18px;background:var(--red);color:var(--ink);border:2px solid var(--red);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:all .15s;margin-top:auto}
+  .door-cta:hover{background:var(--red-hot);border-color:var(--red-hot)}
+  .door.featured .door-cta{background:var(--ink);color:var(--red);border-color:var(--ink)}
+  .door.featured .door-cta:hover{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+  .door.dark .door-cta{background:var(--red);border-color:var(--red);color:var(--ink)}
+  .door.dark .door-cta:hover{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+
+  /* Final CTA — full-bleed image */
+  .final{padding:0;text-align:center;background:var(--bg);position:relative;overflow:hidden;min-height:75vh;display:flex;align-items:center;justify-content:center;border-bottom:none}
+  .final-bg-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;filter:contrast(1.1) saturate(.85) brightness(.55)}
+  .final::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,10,10,.35) 0%,rgba(10,10,10,.85) 100%);z-index:1;pointer-events:none}
+  .final > .wrap{position:relative;z-index:2;padding-top:120px;padding-bottom:120px}
+  .final-h{font-family:'Archivo Black',sans-serif;font-size:clamp(48px,7vw,104px);line-height:.92;letter-spacing:-.04em;margin-bottom:24px;max-width:1080px;margin-left:auto;margin-right:auto;text-wrap:balance;color:var(--ink);text-shadow:0 4px 30px rgba(0,0,0,.5)}
+  .final-h em{font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--red)}
+  .final-sub{font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:var(--ink-2);max-width:640px;margin:0 auto 44px;line-height:1.4;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+  .final-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* Footer */
+  footer{padding:60px 0 36px;border-top:3px solid var(--line-strong);background:var(--bg-2);color:var(--ink)}
+  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  @media(max-width:760px){.foot-top{grid-template-columns:1fr;gap:32px}}
+  .foot-sign{font-family:'Fraunces',serif;font-style:italic;font-size:24px;line-height:1.3;color:var(--ink);max-width:420px}
+  .foot-sign em{color:var(--yellow);font-weight:600}
+  .foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:18px;font-weight:600}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .foot-col li a{color:var(--ink-2);font-size:14.5px;border-bottom:1px solid transparent;transition:all .15s;font-family:'Fraunces',serif;font-style:italic}
+  .foot-col li a:hover{color:var(--yellow);border-bottom-color:var(--yellow)}
+  .foot-bottom{padding-top:24px;border-top:1.5px solid var(--line-strong);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-dim);letter-spacing:.1em;text-transform:uppercase}
+  .foot-bottom .stamp{padding:5px 11px;border:1.5px solid var(--ink-dim);transform:rotate(-1deg)}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+
+  /* Modals */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease}
+  .modal-backdrop.open{opacity:1;visibility:visible}
+  .modal-card{background:var(--bg-2);border:2.5px solid var(--line-strong);max-width:520px;width:100%;padding:36px 32px;position:relative;transform:translateY(12px);transition:transform .2s ease;max-height:calc(100vh - 40px);overflow-y:auto}
+  .modal-backdrop.open .modal-card{transform:translateY(0)}
+  .modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;background:transparent;border:1.5px solid var(--line-strong);color:var(--ink);font-family:'Inter',sans-serif;font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .15s,background .15s,color .15s;padding:0}
+  .modal-close:hover{border-color:var(--red);background:rgba(217,32,22,.12);color:var(--red)}
+  .modal-title{font-family:'Archivo Black',sans-serif;font-size:28px;line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px;padding-right:36px}
+  .modal-sub{font-family:'Fraunces',serif;font-style:italic;font-size:16px;line-height:1.4;color:var(--ink-2);margin-bottom:24px}
+  .modal-form{display:flex;flex-direction:column;gap:16px}
+  .modal-field{display:flex;flex-direction:column}
+  .modal-field label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px;font-weight:600}
+  .modal-field .req{color:var(--red)}
+  .modal-field input,.modal-field select,.modal-field textarea{background:rgba(255,255,255,.04);border:1.5px solid var(--line-strong);padding:12px 14px;font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);border-radius:0;width:100%;transition:border-color .15s}
+  .modal-field input:focus,.modal-field select:focus,.modal-field textarea:focus{outline:none;border-color:var(--red)}
+  .modal-field textarea{resize:vertical;min-height:84px;line-height:1.45}
+  .modal-field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23c8c8be' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+  .modal-submit{margin-top:8px;width:100%;justify-content:center}
+  .modal-submit[disabled]{opacity:.6;cursor:wait}
+  .modal-foot{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-dim);letter-spacing:.06em;margin-top:14px;text-align:center}
+  .modal-foot a{color:var(--ink-2);border-bottom:1px solid var(--line-strong)}
+  .modal-error{display:none;padding:10px 12px;border:1.5px solid var(--red);background:rgba(217,32,22,.1);color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;line-height:1.4}
+  .modal-error.show{display:block}
+  .modal-success{display:none;text-align:center;padding:24px 0 10px}
+  .modal-success.show{display:block}
+  .modal-success .ok-icon{display:inline-flex;width:54px;height:54px;background:var(--lime);color:var(--bg);font-family:'Archivo Black',sans-serif;font-size:30px;align-items:center;justify-content:center;margin-bottom:18px}
+  .modal-success .ok-msg{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--ink);line-height:1.35}
+  body.modal-open{overflow:hidden}
+</style>
+</head>
+<body>
+
+<div class="flag">
+  <div class="wrap row">
+    <div class="flag-left">
+      <span><span class="flag-pulse"></span> Live in production</span>
+      <span>·</span>
+      <span>Edition 01 · May 2026</span>
+      <span>·</span>
+      <span>An AI broadcasting platform</span>
+    </div>
+    <div>qrackpot.com · A Turings Design product</div>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap row">
+    <a href="#" class="logo">
+      <span class="logo-mark">Qrackpot<span class="logo-dot"></span></span>
+      <span class="logo-tag">— reads every game.</span>
+    </a>
+    <div class="nav-cta-row">
+      <a href="#" class="nav-cta" data-modal="waitlist">I'm watching</a>
+      <a href="#" class="nav-cta nav-cta-primary" data-modal="partner">I'm broadcasting <span>→</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <img class="hero-bg-full" alt="" loading="eager" decoding="async" src="images/hero.jpg">
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="tape">Vol. 01 — Iss. 01</span>
+      <span class="tape red">Free, but loud</span>
+      <span class="tape ink">May 17, 2026</span>
+    </div>
+    <h1 class="hero-h1 display">
+      <span class="ai-tag">AI</span>powered broadcasting platform
+      <span class="every-block">for <span class="ev">every</span> sport,</span>
+      <span class="every-block"><span class="ev">every</span> player,</span>
+      <span class="every-block"><span class="ev">every</span> audience<span class="planet">— on this planet.</span></span>
+    </h1>
+    <p class="hero-sub">One real-time pipeline. <strong>Six outputs in parallel.</strong> Tracking, vision, commentary, analysis, predictions, social games — <span class="ink-tag">all from the same feed</span>, in every language the audience speaks.</p>
+    <div class="hero-cta-row">
+      <a href="#" class="btn-big btn-big-primary" data-modal="partner">Talk to us about the platform <span class="btn-arrow">→</span></a>
+      <a href="#" class="btn-big" data-modal="waitlist">Get the app early <span class="btn-arrow">→</span></a>
+    </div>
+    <div class="hero-chips">
+      <span class="lbl">Powers →</span>
+      <span class="hero-chip">Game tracking</span>
+      <span class="hero-chip ink">Vision details</span>
+      <span class="hero-chip red">Commentary</span>
+      <span class="hero-chip">Tactical analysis</span>
+      <span class="hero-chip yellow">Live predictions</span>
+      <span class="hero-chip">Social games</span>
+      <span class="hero-chip lime">Auto-highlights</span>
+    </div>
+    <div class="hero-stamp">
+      <span>Made for</span>
+      <span class="big">every</span>
+      <span>match on earth</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-tag reveal">
+      <div class="sec-tag-num">01</div>
+      <div class="sec-tag-label"><span class="a">The fight</span><span class="b">What's broken about sports broadcasting today.</span></div>
+    </div>
+    <h2 class="sec-h reveal">Four numbers. <em>All wrong.</em></h2>
+    <p class="sec-lede reveal">Four old constraints. AI carries the slack so people can do what only people can.</p>
+
+    <div class="fight-grid reveal">
+      <div class="fight-cell">
+        <div class="fight-num red">95%<span class="unit">passive</span></div>
+        <div class="fight-body">Of broadcast time even an engaged fan spends as a receiver. <strong>It rewards staying on the couch.</strong> Kids stop imagining themselves on the field.</div>
+        <div class="fight-label">Audience behaviour · the real loss</div>
+      </div>
+      <div class="fight-cell">
+        <div class="fight-num">50×<span class="unit">outputs</span></div>
+        <div class="fight-body">Feeds, languages, graphics, overlays, replay tags, social cuts — produced when the repetitive pipelines run themselves. <strong>Optimised, not replaced.</strong></div>
+        <div class="fight-label">Production economics · 2026</div>
+      </div>
+      <div class="fight-cell">
+        <div class="fight-num">3<span class="unit">at once</span></div>
+        <div class="fight-body">What a human analyst holds in working memory. AI holds the slack: twelve years of matchups, every formation, every pattern, every language. <strong>Alongside, not instead.</strong></div>
+        <div class="fight-label">Cognitive load · per call</div>
+      </div>
+      <div class="fight-cell">
+        <div class="fight-num red">∞<span class="unit">silent</span></div>
+        <div class="fight-body">Matches happening right now with zero commentary, zero analytics, zero coaching feedback. <strong>Attention doesn't scale.</strong></div>
+        <div class="fight-label">The long tail · everywhere</div>
+      </div>
+    </div>
+    <div class="fight-coda reveal">AI extends every one of these. <em>Passive viewers become participants.</em> <em>Silent matches find a voice.</em> People keep doing <em>what only people can</em>.</div>
+  </div>
+</section>
+
+<section class="bet-section">
+  <img class="bet-bg-full" alt="" loading="lazy" decoding="async" src="images/bet.jpg">
+  <div class="wrap">
+    <div class="sec-tag reveal">
+      <div class="sec-tag-num">02</div>
+      <div class="sec-tag-label"><span class="a">The bet</span><span class="b">What the platform actually produces.</span></div>
+    </div>
+    <h2 class="sec-h reveal">Six things we build out of <em>one frame</em>.</h2>
+    <p class="sec-lede reveal">Six outputs. One live feed. In parallel — for fans, coaches, scouts, leagues, and the kid on the sideline.</p>
+
+    <div class="cap-grid reveal">
+
+      <div class="cap-card">
+        <div class="cap-head"><span>Tracking</span><span class="cap-num">01</span></div>
+        <div class="cap-visual">
+          <svg class="cap-vis-svg" viewBox="0 0 200 130" preserveAspectRatio="xMidYMid meet">
+            <ellipse cx="100" cy="68" rx="86" ry="48" fill="rgba(34,197,94,.18)" stroke="rgba(245,245,240,.4)" stroke-width="1"/>
+            <ellipse cx="100" cy="68" rx="58" ry="32" fill="none" stroke="rgba(245,245,240,.22)" stroke-width=".8"/>
+            <rect x="92" y="46" width="16" height="44" fill="rgba(216,32,22,.14)" stroke="rgba(245,245,240,.4)" stroke-width=".8"/>
+            <line x1="92" y1="50" x2="108" y2="50" stroke="#f5f5f0" stroke-width="1"/>
+            <line x1="92" y1="86" x2="108" y2="86" stroke="#f5f5f0" stroke-width="1"/>
+            <circle cx="100" cy="82" r="3.5" fill="#f5f5f0"/>
+            <circle cx="100" cy="52" r="3.5" fill="#d92016"/>
+            <circle cx="55" cy="56" r="3" fill="#f5f5f0"/>
+            <circle cx="145" cy="62" r="3" fill="#f5f5f0"/>
+            <circle cx="45" cy="88" r="3" fill="#f5f5f0"/>
+            <circle cx="155" cy="82" r="3" fill="#f5f5f0"/>
+            <circle cx="115" cy="108" r="3" fill="#f5f5f0"/>
+            <circle cx="75" cy="35" r="3" fill="#f5f5f0"/>
+            <circle cx="135" cy="32" r="3" fill="#f5f5f0"/>
+            <line x1="100" y1="54" x2="100" y2="78" stroke="#d92016" stroke-width="1" stroke-dasharray="2 2"/>
+            <circle cx="100" cy="66" r="2" fill="#d92016"/>
+            <line x1="55" y1="56" x2="60" y2="64" stroke="#f5f5f0" stroke-width="1" opacity=".55"/>
+            <line x1="135" y1="32" x2="131" y2="42" stroke="#f5f5f0" stroke-width="1" opacity=".55"/>
+            <rect x="5" y="5" width="48" height="15" fill="#c4ff00"/>
+            <text x="9" y="15.5" fill="#0a0a0a" font-family="monospace" font-size="7.5" font-weight="700">84/3 · 7.2 OV</text>
+            <text x="155" y="15" fill="#f5f5f0" font-family="monospace" font-size="6.5" font-weight="700" opacity=".55">+ 11 OBJ</text>
+          </svg>
+        </div>
+        <div>
+          <div class="cap-h">Game <em>tracking</em></div>
+          <div class="cap-body">Every player, every ball, every action. Motion vectors and confidence scores, every frame.</div>
+        </div>
+        <div class="cap-data">11 ENTITIES · 2 FPS · 0.94 CONFIDENCE</div>
+      </div>
+
+      <div class="cap-card ink">
+        <div class="cap-head"><span>Vision</span><span class="cap-num">02</span></div>
+        <div class="cap-visual">
+          <svg class="cap-vis-svg" viewBox="0 0 200 130">
+            <rect width="200" height="130" fill="#03030a"/>
+            <circle cx="88" cy="76" r="9.5" fill="rgba(244,235,217,.5)"/>
+            <line x1="110" y1="56" x2="120" y2="64" stroke="#e8a838" stroke-width="1" stroke-dasharray="2 2" opacity=".6"/>
+            <circle cx="120" cy="64" r="3" fill="#e8a838"/>
+            <rect x="76" y="65" width="24" height="24" fill="none" stroke="#d92016" stroke-width="1.4" stroke-dasharray="3 2"/>
+            <text x="76" y="62" fill="#d92016" font-family="monospace" font-size="6.5" font-weight="700">PLAYER · 0.97</text>
+            <rect x="117" y="61" width="8" height="8" fill="none" stroke="#e8a838" stroke-width="1.4" stroke-dasharray="3 2"/>
+            <text x="129" y="67" fill="#e8a838" font-family="monospace" font-size="6.5" font-weight="700">BALL · CARRIED</text>
+            <rect x="6" y="6" width="56" height="13" fill="rgba(0,0,0,.7)" stroke="rgba(244,235,217,.25)"/>
+            <text x="10" y="15" fill="#c4ff00" font-family="monospace" font-size="7" font-weight="700">SCENE · LIVE</text>
+            <rect x="6" y="23" width="78" height="13" fill="rgba(0,0,0,.7)" stroke="rgba(244,235,217,.25)"/>
+            <text x="10" y="32" fill="#e8a838" font-family="monospace" font-size="7" font-weight="700">ACTION · CROSS</text>
+            <rect x="145" y="98" width="50" height="24" fill="rgba(0,0,0,.7)" stroke="rgba(244,235,217,.2)"/>
+            <text x="149" y="108" fill="rgba(244,235,217,.75)" font-family="monospace" font-size="6.5" font-weight="700">VAR · NONE</text>
+            <text x="149" y="117" fill="rgba(244,235,217,.55)" font-family="monospace" font-size="6.5" font-weight="500">REPLAY · NO</text>
+          </svg>
+        </div>
+        <div>
+          <div class="cap-h">Vision <em>details</em></div>
+          <div class="cap-body">Live action separated from graphics, replays, ads, referee signals, review overlays. Every sport.</div>
+        </div>
+        <div class="cap-data">LIVE · REPLAY · AD · OFFICIAL · REVIEW · CROWD</div>
+      </div>
+
+      <div class="cap-card red">
+        <div class="cap-head"><span>Commentary</span><span class="cap-num">03</span></div>
+        <div class="cap-visual">
+          <div class="cap-cascade">
+            <div class="cas-wave">
+              <span class="b"></span><span class="b"></span><span class="b"></span><span class="b"></span>
+              <span class="b"></span><span class="b"></span><span class="b"></span><span class="b"></span>
+            </div>
+            <div class="cas-line">
+              <span class="cas-tier">T1</span>
+              <span class="cas-text">"Pick and roll — Curry steps back."</span>
+            </div>
+            <div class="cas-line">
+              <span class="cas-tier">T2</span>
+              <span class="cas-text">"Three from deep — fourth of the quarter."</span>
+            </div>
+            <div class="cas-line">
+              <span class="cas-tier">T3</span>
+              <span class="cas-text">"Timeout coming — Boston's bench is up."</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cap-h">Live <em>commentary</em></div>
+          <div class="cap-body">Action, tactic, narrative — three tiers. 50+ languages. Voice cloning available.</div>
+        </div>
+        <div class="cap-data">T1 · T2 · T3 · 50+ LANGUAGES · CLONE</div>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-head"><span>Analysis</span><span class="cap-num">04</span></div>
+        <div class="cap-visual" style="background:var(--bg-3)">
+          <div class="cap-stats" style="color:var(--ink)">
+            <div class="row full" style="border-color:var(--line-strong)"><span class="lbl" style="color:var(--ink-dim)">Striker matchup</span><span class="val" style="color:var(--ink)">vs LCB</span></div>
+            <div class="row" style="border-color:var(--line)"><span class="lbl" style="color:var(--ink-dim)">xG</span><span class="val red">0.41</span></div>
+            <div class="row" style="border-color:var(--line)"><span class="lbl" style="color:var(--ink-dim)">Conv %</span><span class="val" style="color:var(--ink)">73%</span></div>
+            <div class="row" style="border-color:var(--line)"><span class="lbl" style="color:var(--ink-dim)">Avg dist</span><span class="val" style="color:var(--ink)">18m</span></div>
+            <div class="row" style="border-color:var(--line)"><span class="lbl" style="color:var(--ink-dim)">Press int</span><span class="val red">+14%</span></div>
+            <div class="row full" style="border-color:var(--line-strong)"><span class="lbl" style="color:var(--ink-dim)">Goal prob · next attack</span><span class="val red">41%</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="cap-h">Tactical <em>analysis</em></div>
+          <div class="cap-body">Matchup history, formation drift, performance, talent signals — surfaced live. For coaches, scouts, strategy.</div>
+        </div>
+        <div class="cap-data">MATCHUP · FORMATION · PERF · TALENT</div>
+      </div>
+
+      <div class="cap-card yellow">
+        <div class="cap-head"><span>Predictions</span><span class="cap-num">05</span></div>
+        <div class="cap-visual">
+          <div class="cap-pred">
+            <div class="pred-row">
+              <div class="pred-row-top"><span>Ace · next serve</span><span class="pred-pct">28%</span></div>
+              <div class="pred-bar"><div class="pred-bar-fill" style="width:28%"></div></div>
+            </div>
+            <div class="pred-row">
+              <div class="pred-row-top"><span>Rally · 10+ shots</span><span class="pred-pct">41%</span></div>
+              <div class="pred-bar"><div class="pred-bar-fill" style="width:41%"></div></div>
+            </div>
+            <div class="pred-row">
+              <div class="pred-row-top"><span>Break point · this game</span><span class="pred-pct">12%</span></div>
+              <div class="pred-bar"><div class="pred-bar-fill" style="width:12%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cap-h">Live <em>predictions</em></div>
+          <div class="cap-body">Probabilities and forecasts surfaced before the play. Powers prediction games and engagement.</div>
+        </div>
+        <div class="cap-data">28% · 41% · 12% · UPDATES EVERY POINT</div>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-head"><span>Participation</span><span class="cap-num">06</span></div>
+        <div class="cap-visual" style="background:var(--bg-3)">
+          <div class="cap-leader">
+            <div class="lb-row gold"><span class="lb-name"><span class="lb-rank">01</span>Priya M.</span><span class="lb-pts">847</span></div>
+            <div class="lb-row"><span class="lb-name"><span class="lb-rank">02</span>Raj K.</span><span class="lb-pts">692</span></div>
+            <div class="lb-row you"><span class="lb-name"><span class="lb-rank">03</span>You</span><span class="lb-pts">514</span></div>
+            <div class="lb-chat"><span class="chat-from">Raj:</span>"100% he goes top corner here, watch."</div>
+          </div>
+        </div>
+        <div>
+          <div class="cap-h">Social <em>games</em></div>
+          <div class="cap-body">Predict. Score. Debate. Live rooms around every match — viewers become participants. Kids start to play.</div>
+        </div>
+        <div class="cap-data">PREDICT · SCORE · ROOM · INSPIRE</div>
+      </div>
+
+    </div>
+
+    <div class="bet-kicker reveal">
+      <div class="bet-kicker-quote">Information about the match used to take a week. <em>Now it takes four seconds.</em></div>
+      <div class="bet-kicker-attr">The thesis<br/>in one line</div>
+    </div>
+  </div>
+</section>
+
+<section class="pipeline-section">
+  <img class="pipeline-bg-img" alt="" loading="lazy" decoding="async" src="images/pipeline.jpg">
+  <div class="wrap">
+    <div class="sec-tag reveal">
+      <div class="sec-tag-num">03</div>
+      <div class="sec-tag-label"><span class="a">The pipeline</span><span class="b">Live. One engine, six outputs.</span></div>
+    </div>
+    <h2 class="sec-h reveal">One feed in. <em>Six minds out.</em></h2>
+    <p class="sec-lede reveal">Every play, every match, every sport — read once, fanned out to six outputs in four seconds. Not a mockup. This is the platform on a live feed.</p>
+
+    <div class="pipeline-stage reveal">
+      <div class="pipeline-spread">
+        <div class="broadcast-frame">
+          <div class="frame-chrome">
+            <div class="lf"><span class="dot"></span><span id="chromeMatch">CRICKET · IPL 2026 · MUMBAI v CHENNAI</span></div>
+            <div class="rt" id="chromeTimecode">FRAME · 06:42.18</div>
+          </div>
+          <div class="frame-canvas">
+            <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="gC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1e3a1f"/><stop offset="1" stop-color="#0a1a0c"/></linearGradient>
+                <linearGradient id="gF" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d2f1a"/><stop offset="1" stop-color="#06170d"/></linearGradient>
+                <linearGradient id="gB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3d1f0a"/><stop offset="1" stop-color="#1a0d04"/></linearGradient>
+                <linearGradient id="gP" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2f3d"/><stop offset="1" stop-color="#0c1620"/></linearGradient>
+                <radialGradient id="vig" cx="50%" cy="50%" r="65%"><stop offset="0%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".55"/></radialGradient>
+              </defs>
+
+              <g class="sport-scene scene-cricket active">
+                <rect width="800" height="500" fill="url(#gC)"/>
+                <ellipse cx="400" cy="260" rx="340" ry="180" fill="rgba(34,197,94,.08)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+                <ellipse cx="400" cy="260" rx="240" ry="120" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+                <rect x="370" y="180" width="60" height="160" fill="rgba(180,140,90,.25)" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+                <line x1="380" y1="184" x2="380" y2="200" stroke="#fff" stroke-width="1.5"/>
+                <line x1="390" y1="184" x2="390" y2="200" stroke="#fff" stroke-width="1.5"/>
+                <line x1="400" y1="184" x2="400" y2="200" stroke="#fff" stroke-width="1.5"/>
+                <line x1="380" y1="324" x2="380" y2="340" stroke="#fff" stroke-width="1.5"/>
+                <line x1="390" y1="324" x2="390" y2="340" stroke="#fff" stroke-width="1.5"/>
+                <line x1="400" y1="324" x2="400" y2="340" stroke="#fff" stroke-width="1.5"/>
+                <circle cx="395" cy="315" r="7" class="player player-bat"/>
+                <circle cx="395" cy="195" r="7" class="player team-2"/>
+                <circle cx="250" cy="220" r="6" class="player"/>
+                <circle cx="540" cy="240" r="6" class="player"/>
+                <circle cx="190" cy="320" r="6" class="player"/>
+                <circle cx="600" cy="310" r="6" class="player"/>
+                <circle cx="450" cy="380" r="6" class="player"/>
+                <circle cx="350" cy="150" r="6" class="player"/>
+                <circle cx="520" cy="140" r="6" class="player"/>
+                <circle cx="290" cy="395" r="6" class="player"/>
+                <circle cx="640" cy="200" r="6" class="player"/>
+                <line x1="395" y1="200" x2="396" y2="248" stroke="rgba(217,32,22,.5)" stroke-width="1.5" stroke-dasharray="2 3"/>
+                <circle cx="396" cy="252" r="3.5" fill="#d92016" class="ball-cricket"/>
+                <rect class="bbox" x="380" y="300" width="32" height="32" rx="3"/>
+                <text class="bbox-label" x="380" y="296">BATSMAN · 0.94</text>
+                <rect class="bbox delay-1" x="386" y="244" width="20" height="20" rx="3"/>
+                <text class="bbox-label delay-1" x="412" y="258">BALL · 142 KM/H</text>
+                <rect class="bbox delay-2" x="380" y="180" width="32" height="32" rx="3"/>
+                <text class="bbox-label delay-2" x="380" y="174">BOWLER</text>
+              </g>
+
+              <g class="sport-scene scene-football">
+                <rect width="800" height="500" fill="url(#gF)"/>
+                <rect x="100" y="60" width="600" height="380" fill="rgba(34,197,94,.06)" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <line x1="100" y1="250" x2="700" y2="250" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <circle cx="400" cy="250" r="50" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <rect x="100" y="160" width="80" height="180" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <rect x="100" y="200" width="30" height="100" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <rect x="620" y="160" width="80" height="180" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <rect x="670" y="200" width="30" height="100" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <circle cx="160" cy="250" r="6" class="player"/>
+                <circle cx="250" cy="170" r="6" class="player"/>
+                <circle cx="250" cy="250" r="6" class="player"/>
+                <circle cx="250" cy="330" r="6" class="player"/>
+                <circle cx="340" cy="200" r="6" class="player player-fwd"/>
+                <circle cx="340" cy="300" r="6" class="player"/>
+                <circle cx="640" cy="250" r="6" class="player team-2"/>
+                <circle cx="550" cy="170" r="6" class="player team-2"/>
+                <circle cx="550" cy="250" r="6" class="player team-2"/>
+                <circle cx="550" cy="330" r="6" class="player team-2"/>
+                <circle cx="460" cy="200" r="6" class="player team-2"/>
+                <circle cx="460" cy="300" r="6" class="player team-2"/>
+                <line x1="340" y1="200" x2="420" y2="260" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-dasharray="2 3"/>
+                <circle cx="420" cy="260" r="4" fill="#fff" class="ball-football"/>
+                <rect class="bbox" x="325" y="185" width="32" height="32" rx="3"/>
+                <text class="bbox-label" x="325" y="181">CARRIER · 0.97</text>
+                <rect class="bbox delay-1" x="410" y="250" width="20" height="20" rx="3"/>
+                <text class="bbox-label delay-1" x="436" y="264">BALL</text>
+                <rect class="bbox delay-2" x="445" y="290" width="32" height="32" rx="3"/>
+                <text class="bbox-label delay-2" x="445" y="338">DEFENDER</text>
+              </g>
+
+              <g class="sport-scene scene-basketball">
+                <rect width="800" height="500" fill="url(#gB)"/>
+                <rect x="120" y="60" width="560" height="380" fill="rgba(232,168,56,.05)" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <line x1="400" y1="60" x2="400" y2="440" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <circle cx="400" cy="250" r="50" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <rect x="120" y="180" width="100" height="140" fill="rgba(232,168,56,.07)" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <path d="M220 180 A70 70 0 0 1 220 320" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <path d="M120 100 A180 180 0 0 1 120 400" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <circle cx="155" cy="250" r="10" fill="none" stroke="rgba(217,32,22,.7)" stroke-width="2"/>
+                <rect x="580" y="180" width="100" height="140" fill="rgba(232,168,56,.07)" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <path d="M580 180 A70 70 0 0 0 580 320" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <path d="M680 100 A180 180 0 0 0 680 400" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/>
+                <circle cx="645" cy="250" r="10" fill="none" stroke="rgba(217,32,22,.7)" stroke-width="2"/>
+                <circle cx="500" cy="250" r="6" class="player player-shoot"/>
+                <circle cx="430" cy="200" r="6" class="player"/>
+                <circle cx="430" cy="320" r="6" class="player"/>
+                <circle cx="380" cy="160" r="6" class="player"/>
+                <circle cx="380" cy="350" r="6" class="player"/>
+                <circle cx="470" cy="250" r="6" class="player team-2"/>
+                <circle cx="410" cy="220" r="6" class="player team-2"/>
+                <circle cx="410" cy="290" r="6" class="player team-2"/>
+                <circle cx="350" cy="200" r="6" class="player team-2"/>
+                <circle cx="350" cy="310" r="6" class="player team-2"/>
+                <line x1="500" y1="250" x2="540" y2="220" stroke="rgba(217,32,22,.55)" stroke-width="1.5" stroke-dasharray="2 3"/>
+                <circle cx="540" cy="220" r="4" fill="#d92016" class="ball-basket"/>
+                <rect class="bbox" x="485" y="235" width="32" height="32" rx="3"/>
+                <text class="bbox-label" x="485" y="231">SHOOTER · 0.92</text>
+                <rect class="bbox delay-1" x="530" y="210" width="20" height="20" rx="3"/>
+                <text class="bbox-label delay-1" x="555" y="224">BALL</text>
+                <rect class="bbox delay-2" x="455" y="235" width="32" height="32" rx="3"/>
+                <text class="bbox-label delay-2" x="380" y="281">DEFENDER</text>
+              </g>
+
+              <g class="sport-scene scene-padel">
+                <rect width="800" height="500" fill="url(#gP)"/>
+                <rect x="200" y="100" width="400" height="300" fill="rgba(59,130,246,.06)" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+                <line x1="200" y1="250" x2="600" y2="250" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+                <line x1="400" y1="100" x2="400" y2="400" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+                <line x1="200" y1="180" x2="600" y2="180" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+                <line x1="200" y1="320" x2="600" y2="320" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+                <rect x="195" y="95" width="410" height="310" fill="none" stroke="rgba(232,168,56,.25)" stroke-width="1" stroke-dasharray="5 4"/>
+                <circle cx="280" cy="160" r="7" class="player"/>
+                <circle cx="280" cy="350" r="7" class="player"/>
+                <circle cx="520" cy="160" r="7" class="player team-2"/>
+                <circle cx="520" cy="350" r="7" class="player team-2"/>
+                <line x1="520" y1="160" x2="380" y2="220" stroke="rgba(232,168,56,.7)" stroke-width="1.5" stroke-dasharray="2 3"/>
+                <circle cx="380" cy="220" r="4" fill="#e8a838" class="ball-padel"/>
+                <rect class="bbox" x="505" y="145" width="32" height="32" rx="3"/>
+                <text class="bbox-label" x="505" y="141">STRIKER · 0.96</text>
+                <rect class="bbox delay-1" x="370" y="210" width="20" height="20" rx="3"/>
+                <text class="bbox-label delay-1" x="396" y="224">BALL</text>
+                <rect class="bbox delay-2" x="265" y="335" width="32" height="32" rx="3"/>
+                <text class="bbox-label delay-2" x="265" y="385">RECEIVER</text>
+              </g>
+
+              <rect width="800" height="500" fill="url(#vig)" pointer-events="none"/>
+            </svg>
+
+            <div class="frame-pipeline-strip">
+              <div class="fps-step" id="fps1"><span class="sd"></span>VISION · 1.6s</div>
+              <div class="fps-step" id="fps2"><span class="sd"></span>REASONING · 0.7s</div>
+              <div class="fps-step" id="fps3"><span class="sd"></span>FAN-OUT · 0.5s</div>
+            </div>
+            <div class="frame-score" id="frameScore">84/3 · 7.2 ov</div>
+            <div class="frame-meta">
+              <span class="frame-meta-item">2 FPS</span>
+              <span class="frame-meta-item">11 entities tracked</span>
+              <span class="frame-meta-item">↑ 3.4s end-to-end</span>
+            </div>
+          </div>
+          <div class="frame-caption">
+            <span><em>Live broadcast feed</em> — the same engine watches every sport. Swap rules, swap voice; the rest doesn't change.</span>
+            <span class="cap-mono" id="capFooter">2 FPS · ALL OUTPUTS &lt; 4S</span>
+          </div>
+        </div>
+
+        <div class="outputs-stack">
+          <div class="output-card style-red" data-out="0">
+            <div class="out-head"><span class="out-cat">Output 01 · Fan commentary</span><span class="out-num">VOICE</span></div>
+            <div class="out-content with-wave"><span class="out-wave"><span class="b"></span><span class="b"></span><span class="b"></span><span class="b"></span><span class="b"></span><span class="b"></span></span><span id="o1">Sharp on off stump — defended into the covers.</span></div>
+            <div class="out-foot">For: broadcasters · streaming · fan app</div>
+          </div>
+          <div class="output-card style-yellow" data-out="1">
+            <div class="out-head"><span class="out-cat">Output 02 · Live prediction</span><span class="out-num">+APP</span></div>
+            <div class="out-content"><span class="big" id="o2big">73%</span><span id="o2">— boundary on next ball</span></div>
+            <div class="out-foot">For: fan apps · prediction games · engagement</div>
+          </div>
+          <div class="output-card style-ink" data-out="2">
+            <div class="out-head"><span class="out-cat">Output 03 · Coach insight</span><span class="out-num">TAC</span></div>
+            <div class="out-content"><span id="o3">Bowler held line · 87% accuracy on off stump · pace drop 4 km/h over 5 balls.</span></div>
+            <div class="out-foot">For: coaches · academies · federations</div>
+          </div>
+          <div class="output-card" data-out="3">
+            <div class="out-head"><span class="out-cat">Output 04 · Scout signal</span><span class="out-num">TLNT</span></div>
+            <div class="out-content"><span id="o4">Batter shot selection 4/5 in scoring zone · technique +2σ vs cohort.</span></div>
+            <div class="out-foot">For: scouts · leagues · agencies</div>
+          </div>
+          <div class="output-card" data-out="4">
+            <div class="out-head"><span class="out-cat">Output 05 · Strategy pattern</span><span class="out-num">PTRN</span></div>
+            <div class="out-content"><span id="o5">Field shifted 2m right of setup · −12% boundary risk in this zone.</span></div>
+            <div class="out-foot">For: analysts · GM · strategy team</div>
+          </div>
+          <div class="output-card style-red" data-out="5">
+            <div class="out-head"><span class="out-cat">Output 06 · Auto-highlight</span><span class="out-num">CLIP</span></div>
+            <div class="out-content"><span id="o6">Crowd reaction +280% over baseline · clip auto-flagged, 8s window.</span></div>
+            <div class="out-foot">For: social · replay · broadcast</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-flow">
+        <div class="flow-step">
+          <div class="flow-num">01 · Vision</div>
+          <div class="flow-title">See the <em>frame</em>.</div>
+          <div class="flow-desc">2 fps observation loop. Players, ball, scoreboard, action — detected. Live action separated from graphics, replays, ads.</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-num">02 · Reasoning</div>
+          <div class="flow-title">Read the <em>game</em>.</div>
+          <div class="flow-desc">Rules engine, matchup memory, tactical models. Structured insight surfaced live, alongside the team.</div>
+        </div>
+        <div class="flow-arrow">↗↘</div>
+        <div class="flow-step fan-out">
+          <div class="flow-num">03 · Fan-out</div>
+          <div class="flow-title">Six minds, <em>one feed</em>.</div>
+          <div class="flow-desc">Same insight, six parallel outputs — fan, app, coach, scout, analyst, editor. Each shaped to its audience.</div>
+        </div>
+      </div>
+
+      <div class="pipeline-stat-row">
+        <div class="ps-cell">
+          <div class="ps-num lime">&lt; 4<span class="small">seconds</span></div>
+          <div class="ps-label">Frame to all six outputs</div>
+        </div>
+        <div class="ps-cell">
+          <div class="ps-num">91.1<span class="small">%</span></div>
+          <div class="ps-label">Live extraction accuracy</div>
+        </div>
+        <div class="ps-cell">
+          <div class="ps-num red">6</div>
+          <div class="ps-label">Parallel outputs per frame</div>
+        </div>
+        <div class="ps-cell">
+          <div class="ps-num">50<span class="small">+ languages</span></div>
+          <div class="ps-label">Voice + text · simultaneous</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="longtail-section">
+  <img class="longtail-bg-img" alt="" loading="lazy" decoding="async" src="images/longtail.jpg">
+  <div class="wrap">
+    <div class="sec-tag reveal">
+      <div class="sec-tag-num">04</div>
+      <div class="sec-tag-label"><span class="a">The long tail</span><span class="b">What "every" actually means.</span></div>
+    </div>
+    <h2 class="sec-h reveal">Every sport. <em>Every language.</em> Every level.</h2>
+    <p class="sec-lede reveal">Premier League helicopter shot or a phone against a school fence — the pipeline doesn't care. Swap rules for a new sport. Swap voice for a new language. The rest stays.</p>
+  </div>
+  <div class="longtail-stack reveal">
+    <div class="marquee">
+      <div class="marquee-label">Sports</div>
+      <div class="marquee-track">
+        <span class="marquee-item">Cricket</span><span class="marquee-item">Football</span><span class="marquee-item">Basketball</span><span class="marquee-item">Kabaddi</span><span class="marquee-item">Padel</span><span class="marquee-item">Esports</span><span class="marquee-item">Rugby</span><span class="marquee-item">Tennis</span><span class="marquee-item">Hockey</span><span class="marquee-item">Baseball</span><span class="marquee-item">Badminton</span><span class="marquee-item">Volleyball</span><span class="marquee-item">Pickleball</span><span class="marquee-item">Squash</span><span class="marquee-item">Lacrosse</span><span class="marquee-item">Hurling</span><span class="marquee-item">Sepak Takraw</span><span class="marquee-item">Snooker</span><span class="marquee-item">Cricket</span><span class="marquee-item">Football</span><span class="marquee-item">Basketball</span><span class="marquee-item">Kabaddi</span><span class="marquee-item">Padel</span><span class="marquee-item">Esports</span><span class="marquee-item">Rugby</span><span class="marquee-item">Tennis</span><span class="marquee-item">Hockey</span><span class="marquee-item">Baseball</span><span class="marquee-item">Badminton</span><span class="marquee-item">Volleyball</span>
+      </div>
+    </div>
+    <div class="marquee red">
+      <div class="marquee-label">Languages</div>
+      <div class="marquee-track">
+        <span class="marquee-item">English</span><span class="marquee-item">Hindi</span><span class="marquee-item">Tamil</span><span class="marquee-item">Marathi</span><span class="marquee-item">Bengali</span><span class="marquee-item">Telugu</span><span class="marquee-item">Spanish</span><span class="marquee-item">Português</span><span class="marquee-item">العربية</span><span class="marquee-item">Bahasa</span><span class="marquee-item">Français</span><span class="marquee-item">Deutsch</span><span class="marquee-item">日本語</span><span class="marquee-item">한국어</span><span class="marquee-item">中文</span><span class="marquee-item">Kiswahili</span><span class="marquee-item">Yorùbá</span><span class="marquee-item">Hausa</span><span class="marquee-item">Türkçe</span><span class="marquee-item">English</span><span class="marquee-item">Hindi</span><span class="marquee-item">Tamil</span><span class="marquee-item">Marathi</span><span class="marquee-item">Bengali</span><span class="marquee-item">Telugu</span><span class="marquee-item">Spanish</span><span class="marquee-item">Português</span><span class="marquee-item">العربية</span><span class="marquee-item">Bahasa</span><span class="marquee-item">Français</span>
+      </div>
+    </div>
+    <div class="marquee dark">
+      <div class="marquee-label">Use cases</div>
+      <div class="marquee-track">
+        <span class="marquee-item">Commentary</span><span class="marquee-item">Predictions</span><span class="marquee-item">Coaching reads</span><span class="marquee-item">Scouting signals</span><span class="marquee-item">Training analytics</span><span class="marquee-item">Strategy patterns</span><span class="marquee-item">Auto-highlights</span><span class="marquee-item">Reaction tracking</span><span class="marquee-item">Officiating support</span><span class="marquee-item">Performance review</span><span class="marquee-item">Talent recognition</span><span class="marquee-item">Fan engagement</span><span class="marquee-item">Match recap</span><span class="marquee-item">Live captions</span><span class="marquee-item">Multilingual voice</span><span class="marquee-item">Commentary</span><span class="marquee-item">Predictions</span><span class="marquee-item">Coaching reads</span><span class="marquee-item">Scouting signals</span><span class="marquee-item">Training analytics</span><span class="marquee-item">Strategy patterns</span><span class="marquee-item">Auto-highlights</span><span class="marquee-item">Reaction tracking</span><span class="marquee-item">Officiating support</span><span class="marquee-item">Performance review</span><span class="marquee-item">Talent recognition</span><span class="marquee-item">Fan engagement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="doors-section">
+  <img class="doors-bg-img" alt="" loading="lazy" decoding="async" src="images/doors.jpg">
+  <div class="wrap">
+    <div class="sec-tag reveal">
+      <div class="sec-tag-num">05</div>
+      <div class="sec-tag-label"><span class="a">Three doors</span><span class="b">Ways to plug into the platform.</span></div>
+    </div>
+    <h2 class="sec-h reveal">Pick the door <em>that fits</em>.</h2>
+    <p class="sec-lede reveal">One pipeline, six outputs — three paths to bring them into your product, league, or region. Each door starts with an email. Weeks to integration, not quarters.</p>
+
+    <div class="doors">
+      <div class="door reveal" id="broadcaster-cta">
+        <div class="door-num">01</div>
+        <div class="door-cat">For platforms · API tier</div>
+        <div class="door-name">Streaming &amp; <em>sports apps</em></div>
+        <div class="door-body">Any of the six outputs in your product, one API call. Commentary, predictions, highlights — <strong>pay per minute</strong>. No floor, no ceiling.</div>
+        <div class="door-applist">Powers</div>
+        <ul class="door-list">
+          <li>Real-time commentary, 50+ languages</li>
+          <li>Prediction game APIs for fan engagement</li>
+          <li>Auto-highlight + reaction clip generation</li>
+          <li>White-label optional — your brand, our pipeline</li>
+        </ul>
+        <a href="#" class="door-cta" data-modal="partner" data-tier="API">Request access <span>→</span></a>
+      </div>
+
+      <div class="door featured reveal">
+        <div class="door-num">02</div>
+        <div class="door-cat">For leagues + teams · Enterprise</div>
+        <div class="door-name">Leagues, teams &amp; <em>federations</em></div>
+        <div class="door-body">The full platform — commentary, coaching, scouting, training, strategy. <strong>Dedicated infrastructure</strong>, league-specific models, custom voice talent.</div>
+        <div class="door-applist">Powers</div>
+        <ul class="door-list">
+          <li>Tactical analytics for coaching staffs</li>
+          <li>Talent recognition for scouts &amp; agencies</li>
+          <li>Training and performance review tools</li>
+          <li>Multilingual broadcast for every match</li>
+          <li>On-prem option for rights-sensitive feeds</li>
+        </ul>
+        <a href="#" class="door-cta" data-modal="partner" data-tier="Enterprise">Start the conversation <span>→</span></a>
+      </div>
+
+      <div class="door dark reveal">
+        <div class="door-num">03</div>
+        <div class="door-cat">For regions · White-label</div>
+        <div class="door-name">Regional &amp; <em>long-tail networks</em></div>
+        <div class="door-body">Bring the long tail online. Every match in your region — including the silent ones. <strong>Revenue share</strong>. You bring the audience; we bring the pipeline.</div>
+        <div class="door-applist">Powers</div>
+        <ul class="door-list">
+          <li>Branded fan app · iOS, Android, web</li>
+          <li>Schoolyard to stadium, same pipeline</li>
+          <li>Local language first — Tamil, Marathi, Bahasa</li>
+          <li>Coaching + scouting layers for academies</li>
+        </ul>
+        <a href="#" class="door-cta" data-modal="partner" data-tier="Regional white-label">Discuss a pilot <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <img class="final-bg-full" alt="" loading="lazy" decoding="async" src="images/final.jpg">
+  <div class="wrap">
+    <h2 class="final-h reveal">Stop watching sports. <em>Start reading</em> them.</h2>
+    <p class="final-sub reveal">A match starts somewhere in the next four hours. Right now nobody's calling it, coaching from it, or learning from it. <em>Let's change that.</em></p>
+    <div class="final-ctas reveal">
+      <a href="#" class="btn-big btn-big-primary" data-modal="partner">Partner with us <span class="btn-arrow">→</span></a>
+      <a href="#" class="btn-big" data-modal="waitlist">Get on the waitlist <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-sign">Built for <em>every athlete</em> whose game has never been called, coached, or scouted — and every fan who got bored of being talked at.</div>
+      <div class="foot-col">
+        <h4>The platform</h4>
+        <ul>
+          <li><a href="#">The fight</a></li>
+          <li><a href="#">The bet</a></li>
+          <li><a href="#">The pipeline</a></li>
+          <li><a href="#">Three doors</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Reach us</h4>
+        <ul>
+          <li><a href="mailto:support@qrackpot.com">support@qrackpot.com</a></li>
+          <li><a href="https://turingsdesign.com">turingsdesign.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Turings Design · qrackpot.com</div>
+      <div class="stamp">Edition 01 · May 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const cycles = [
+    {
+      sport:'cricket', match:'CRICKET · IPL 2026 · MUMBAI v CHENNAI', score:'84/3 · 7.2 ov',
+      o1:'Sharp on off stump — defended cleanly into the covers.',
+      o2big:'73%', o2:'— boundary on next ball.',
+      o3:'Bowler held line · 87% accuracy on off stump · pace drop 4 km/h over 5 balls.',
+      o4:'Batter shot selection 4/5 in scoring zone · technique +2σ vs cohort.',
+      o5:'Field shifted 2m right of setup · −12% boundary risk in this zone.',
+      o6:'Crowd reaction +280% over baseline · clip auto-flagged, 8s window.'
+    },
+    {
+      sport:'football', match:'FOOTBALL · PREMIER LEAGUE · MUN v LIV', score:'2 – 1 · 67\'',
+      o1:'Driven cross from the left — Martinez breaking into space at the far post.',
+      o2big:'67%', o2:'— shot from this zone converts.',
+      o3:'Defensive line stepped 4m · offside trap risk +18% on next phase.',
+      o4:'Player heat map · 78% in attacking third · +14% above season avg.',
+      o5:'Build-up time down to 7s · pressing intensity up 22% this half.',
+      o6:'Crowd peak on Stand-side · clip flagged for social, 6s window.'
+    },
+    {
+      sport:'basketball', match:'BASKETBALL · NBA · GSW v BOS', score:'Q3 · 84 – 79 · 4:23',
+      o1:'Pick and roll — Davies cuts to the rim, kicked out for the open three.',
+      o2big:'64%', o2:'— conversion on this open look.',
+      o3:'Switch defense gave up 12 points this quarter · adjust on next dead ball.',
+      o4:'Shooter eFG 68% from the corner · +9 over season baseline.',
+      o5:'Possession length −2.4s vs first half · pace shift detected.',
+      o6:'Bench reaction high · hype-cut clip auto-generated for socials.'
+    },
+    {
+      sport:'padel', match:'PADEL · WPT FINALS · GALAN/LEBRON v COELLO/TAPIA', score:'6 – 4 · 3 – 2 · 30 – 15',
+      o1:'Lobbed deep over both — they retreat from the net, control shifts left.',
+      o2big:'41%', o2:'— backhand winner from this zone.',
+      o3:'Net pressure 78% · hold position +1.2s longer than baseline.',
+      o4:'Player reaction time 1.4s · +8% above peer cohort this season.',
+      o5:'Lob success 41% · recommend −3 ft from current net stance.',
+      o6:'Set-point rally · 14-shot exchange · auto-highlight, 22s window.'
+    }
+  ];
+
+  let idx = 0;
+  const sceneEls = document.querySelectorAll('.sport-scene');
+  const chromeMatch = document.getElementById('chromeMatch');
+  const chromeTimecode = document.getElementById('chromeTimecode');
+  const frameScore = document.getElementById('frameScore');
+  const capFooter = document.getElementById('capFooter');
+  const o1 = document.getElementById('o1');
+  const o2 = document.getElementById('o2');
+  const o2big = document.getElementById('o2big');
+  const o3 = document.getElementById('o3');
+  const o4 = document.getElementById('o4');
+  const o5 = document.getElementById('o5');
+  const o6 = document.getElementById('o6');
+  const cards = document.querySelectorAll('.output-card');
+  const fps1 = document.getElementById('fps1');
+  const fps2 = document.getElementById('fps2');
+  const fps3 = document.getElementById('fps3');
+
+  function tick(){
+    const c = cycles[idx];
+    sceneEls.forEach(el => el.classList.remove('active'));
+    document.querySelector('.scene-'+c.sport).classList.add('active');
+    chromeMatch.textContent = c.match;
+    frameScore.textContent = c.score;
+    capFooter.textContent = c.sport.toUpperCase()+' · 6 OUTPUTS LIVE';
+
+    cards.forEach(card => card.classList.remove('show'));
+    fps1.classList.remove('active');
+    fps2.classList.remove('active');
+    fps3.classList.remove('active');
+
+    setTimeout(()=>fps1.classList.add('active'), 250);
+    setTimeout(()=>{
+      fps2.classList.add('active');
+      o1.textContent = c.o1;
+      o2big.textContent = c.o2big;
+      o2.textContent = c.o2;
+      o3.textContent = c.o3;
+      o4.textContent = c.o4;
+      o5.textContent = c.o5;
+      o6.textContent = c.o6;
+    }, 1500);
+    setTimeout(()=>fps3.classList.add('active'), 2400);
+    cards.forEach((card,i) => setTimeout(()=>card.classList.add('show'), 2600 + i*320));
+
+    let t = 0;
+    chromeTimecode.textContent = 'FRAME · 06:42.18';
+    const tcInt = setInterval(()=>{
+      t += 0.04;
+      const sec = (42.18 + t).toFixed(2).padStart(5,'0');
+      chromeTimecode.textContent = 'FRAME · 06:'+sec;
+      if (t > 6) clearInterval(tcInt);
+    }, 40);
+
+    idx = (idx + 1) % cycles.length;
+  }
+  tick();
+  setInterval(tick, 8500);
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<div class="modal-backdrop" id="partner-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="partner-modal-title">
+  <div class="modal-card">
+    <button type="button" class="modal-close" data-close aria-label="Close">×</button>
+    <h3 id="partner-modal-title" class="modal-title">Partner with Qrackpot</h3>
+    <p class="modal-sub">Tell us what you'd build with the platform. We'll be back in two business days.</p>
+    <form class="modal-form" data-form="partner" novalidate>
+      <input type="hidden" name="form" value="partner">
+      <div class="modal-field">
+        <label for="p-name">Name <span class="req">*</span></label>
+        <input id="p-name" type="text" name="name" required autocomplete="name">
+      </div>
+      <div class="modal-field">
+        <label for="p-email">Work email <span class="req">*</span></label>
+        <input id="p-email" type="email" name="email" required autocomplete="email">
+      </div>
+      <div class="modal-field">
+        <label for="p-company">Company / league / federation <span class="req">*</span></label>
+        <input id="p-company" type="text" name="company" required autocomplete="organization">
+      </div>
+      <div class="modal-field">
+        <label for="p-tier">Interested in <span class="req">*</span></label>
+        <select id="p-tier" name="tier" required>
+          <option value="" disabled selected>Choose one</option>
+          <option value="API">API</option>
+          <option value="Enterprise">Enterprise</option>
+          <option value="Regional white-label">Regional white-label</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label for="p-msg">Tell us what you're broadcasting or building <span class="req">*</span></label>
+        <textarea id="p-msg" name="message" rows="3" required></textarea>
+      </div>
+      <div class="modal-error" data-error></div>
+      <button type="submit" class="btn-big btn-big-primary modal-submit">Send <span class="btn-arrow">→</span></button>
+      <p class="modal-foot"><a href="mailto:support@qrackpot.com">support@qrackpot.com</a> if you'd rather email.</p>
+    </form>
+    <div class="modal-success" data-success>
+      <div class="ok-icon">✓</div>
+      <div class="ok-msg">Thanks. We'll reply within two business days.</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="waitlist-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="waitlist-modal-title">
+  <div class="modal-card">
+    <button type="button" class="modal-close" data-close aria-label="Close">×</button>
+    <h3 id="waitlist-modal-title" class="modal-title">Get on the early access list.</h3>
+    <p class="modal-sub">First access when we launch in your region. No spam, launch updates only.</p>
+    <form class="modal-form" data-form="waitlist" novalidate>
+      <input type="hidden" name="form" value="waitlist">
+      <div class="modal-field">
+        <label for="w-email">Email <span class="req">*</span></label>
+        <input id="w-email" type="email" name="email" required autocomplete="email">
+      </div>
+      <div class="modal-field">
+        <label for="w-sport">Favourite sport</label>
+        <select id="w-sport" name="sport">
+          <option value="">Pick one (optional)</option>
+          <option>Cricket</option>
+          <option>Football</option>
+          <option>Basketball</option>
+          <option>Padel</option>
+          <option>Kabaddi</option>
+          <option>Esports</option>
+          <option>Tennis</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label for="w-country">Country</label>
+        <input id="w-country" type="text" name="country" placeholder="India" autocomplete="country-name">
+      </div>
+      <div class="modal-error" data-error></div>
+      <button type="submit" class="btn-big btn-big-primary modal-submit">Join the waitlist <span class="btn-arrow">→</span></button>
+      <p class="modal-foot"><a href="mailto:support@qrackpot.com">support@qrackpot.com</a> if you'd rather email.</p>
+    </form>
+    <div class="modal-success" data-success>
+      <div class="ok-icon">✓</div>
+      <div class="ok-msg">You're in. We'll mail you when launch hits your sport.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+  let lastTrigger = null;
+  const modals = {
+    partner: document.getElementById('partner-modal'),
+    waitlist: document.getElementById('waitlist-modal'),
+  };
+
+  function openModal(name, tier){
+    const m = modals[name];
+    if (!m) return;
+    if (tier){
+      const sel = m.querySelector('select[name="tier"]');
+      if (sel) sel.value = tier;
+    }
+    m.classList.add('open');
+    m.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    const focusables = m.querySelectorAll(FOCUSABLE);
+    const skipClose = Array.from(focusables).filter(el => !el.hasAttribute('data-close'));
+    setTimeout(()=>{ const t = skipClose[0] || focusables[0]; if (t) t.focus(); }, 60);
+  }
+
+  function closeModal(m){
+    if (!m || !m.classList.contains('open')) return;
+    m.classList.remove('open');
+    m.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    const form = m.querySelector('form');
+    const success = m.querySelector('[data-success]');
+    const err = m.querySelector('[data-error]');
+    if (form){ form.style.display = ''; form.reset(); }
+    if (success){ success.classList.remove('show'); }
+    if (err){ err.classList.remove('show'); err.textContent = ''; }
+    const submit = m.querySelector('.modal-submit');
+    if (submit){ submit.disabled = false; }
+    if (lastTrigger){ try { lastTrigger.focus(); } catch(_){} lastTrigger = null; }
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      lastTrigger = el;
+      openModal(el.getAttribute('data-modal'), el.getAttribute('data-tier'));
+    });
+  });
+
+  Object.values(modals).forEach(m => {
+    if (!m) return;
+    m.addEventListener('click', (e) => {
+      if (e.target === m || (e.target.closest && e.target.closest('[data-close]'))) closeModal(m);
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape'){
+      Object.values(modals).forEach(m => m && closeModal(m));
+    }
+  });
+
+  document.querySelectorAll('.modal-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const modal = form.closest('.modal-backdrop');
+      const errBox = modal.querySelector('[data-error]');
+      const success = modal.querySelector('[data-success]');
+      errBox.classList.remove('show'); errBox.textContent = '';
+      if (!form.checkValidity()){
+        errBox.textContent = 'Please fill in the required fields.';
+        errBox.classList.add('show');
+        const firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const origLabel = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending…';
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error('bad response');
+        form.style.display = 'none';
+        success.classList.add('show');
+      } catch (err) {
+        errBox.textContent = "Couldn't send. Try again, or email support@qrackpot.com directly.";
+        errBox.classList.add('show');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origLabel;
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

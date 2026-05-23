@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Qrackpot · Mood + Strategy v0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4ebd9;
+    --paper-2:#ede1c8;
+    --paper-3:#e3d4b3;
+    --ink:#0a0a0a;
+    --ink-2:#2a2825;
+    --ink-dim:#5a5448;
+    --ink-faint:#8a8270;
+    --red:#d92016;
+    --red-hot:#ef2a1d;
+    --yellow:#e8a838;
+    --line:rgba(10,10,10,.12);
+    --line-strong:rgba(10,10,10,.25);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+  body{font-size:16px;line-height:1.55}
+  a{color:var(--red);text-decoration:none;border-bottom:1.5px solid var(--red)}
+  a:hover{background:var(--red);color:var(--paper)}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px}
+
+  .display{font-family:'Archivo Black',sans-serif;letter-spacing:-.02em;line-height:.95}
+  .condensed{font-family:'Anton',sans-serif;letter-spacing:.02em;line-height:.92;text-transform:uppercase}
+  .editorial{font-family:'Fraunces',serif;font-style:italic;letter-spacing:-.01em}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  /* Tape texture */
+  .tape{display:inline-block;background:var(--yellow);color:var(--ink);padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-1deg);box-shadow:1px 1px 0 rgba(0,0,0,.15)}
+  .tape.red{background:var(--red);color:var(--paper)}
+  .tape.ink{background:var(--ink);color:var(--paper)}
+
+  /* Top banner */
+  .banner{padding:18px 0;border-bottom:2px solid var(--ink);background:var(--paper)}
+  .banner .row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .banner-title{display:flex;align-items:baseline;gap:14px}
+  .banner-title .mark{font-family:'Archivo Black',sans-serif;font-size:22px;letter-spacing:-.03em}
+  .banner-title .meta{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+  .banner-meta{display:flex;gap:18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-dim);letter-spacing:.08em;text-transform:uppercase}
+
+  /* Hero */
+  .hero{padding:80px 0 60px;border-bottom:2px solid var(--ink);position:relative;overflow:hidden}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(64px,11vw,160px);line-height:.88;letter-spacing:-.04em;margin:0 0 28px;max-width:980px}
+  .hero h1 em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:var(--red)}
+  .hero-sub{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(22px,2.4vw,32px);line-height:1.25;max-width:760px;margin:0 0 28px;color:var(--ink-2)}
+  .hero-tldr{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
+  .hero-stamp{position:absolute;right:32px;top:48px;width:120px;height:120px;border:3px solid var(--red);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-12deg);color:var(--red);font-family:'JetBrains Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:.08em;line-height:1.1;text-align:center;font-size:10px;padding:10px}
+  .hero-stamp .big{font-family:'Archivo Black',sans-serif;font-size:28px;letter-spacing:-.02em;margin:4px 0}
+  @media(max-width:720px){.hero-stamp{display:none}}
+
+  /* Sections */
+  section{padding:90px 0;border-bottom:2px solid var(--ink)}
+  .sec-num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.16em;color:var(--ink-dim);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+  .sec-num .bar{flex:1;height:1.5px;background:var(--ink);max-width:80px}
+  h2.sec-title{font-family:'Archivo Black',sans-serif;font-size:clamp(40px,5.5vw,72px);line-height:.96;letter-spacing:-.03em;margin:0 0 18px;max-width:880px}
+  h2.sec-title em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--red);letter-spacing:-.01em}
+  .sec-lede{font-family:'Fraunces',serif;font-style:italic;font-size:21px;line-height:1.4;max-width:680px;margin:0 0 48px;color:var(--ink-2)}
+
+  /* Anti-references */
+  .anti-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:30px;border:2px solid var(--ink);border-radius:8px;overflow:hidden}
+  @media(max-width:760px){.anti-grid{grid-template-columns:1fr}}
+  .anti-item{padding:24px 26px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);display:flex;align-items:flex-start;gap:14px;position:relative}
+  .anti-item:nth-child(2n){border-right:none}
+  .anti-item:nth-last-child(-n+2){border-bottom:none}
+  @media(max-width:760px){.anti-item{border-right:none}.anti-item:not(:last-child){border-bottom:2px solid var(--ink)}}
+  .anti-x{font-family:'Archivo Black',sans-serif;font-size:28px;color:var(--red);line-height:1;margin-top:-3px}
+  .anti-text strong{display:block;font-family:'Archivo Black',sans-serif;font-size:16px;letter-spacing:-.01em;margin-bottom:4px}
+  .anti-text span{font-size:14px;color:var(--ink-dim);line-height:1.45;font-family:'Fraunces',serif;font-style:italic}
+
+  /* References */
+  .refs{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:30px}
+  @media(max-width:760px){.refs{grid-template-columns:1fr}}
+  .ref-card{padding:26px 28px;border:2px solid var(--ink);border-radius:8px;background:var(--paper);position:relative;transition:transform .2s}
+  .ref-card:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+  .ref-num{position:absolute;top:-14px;left:22px;background:var(--ink);color:var(--paper);padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em}
+  .ref-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:12px}
+  .ref-name{font-family:'Archivo Black',sans-serif;font-size:24px;letter-spacing:-.02em;line-height:1}
+  .ref-link{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-dim);border:none}
+  .ref-link:hover{background:transparent;color:var(--red)}
+  .ref-vibe{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--ink-2);margin-bottom:14px;padding:6px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ref-steal{font-size:14px;line-height:1.5;color:var(--ink-2)}
+  .ref-steal strong{font-family:'Archivo Black',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink);display:block;margin-bottom:4px}
+
+  /* Palette */
+  .palettes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+  @media(max-width:900px){.palettes{grid-template-columns:1fr}}
+  .pal-card{border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--paper);position:relative}
+  .pal-card.rec{box-shadow:4px 4px 0 var(--red)}
+  .pal-rec-badge{position:absolute;top:14px;right:-2px;background:var(--red);color:var(--paper);padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;z-index:2}
+  .pal-preview{height:140px;display:flex}
+  .pal-preview > div{flex:1}
+  .pal-body{padding:20px 22px}
+  .pal-name{font-family:'Archivo Black',sans-serif;font-size:24px;letter-spacing:-.02em;margin-bottom:6px;line-height:1}
+  .pal-name em{font-family:'Fraunces',serif;font-style:italic;color:var(--red);font-weight:400}
+  .pal-vibe{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--ink-2);margin-bottom:14px}
+  .pal-swatches{display:flex;gap:8px;margin-bottom:12px}
+  .pal-swatch{flex:1;height:42px;border-radius:4px;border:1px solid var(--ink);position:relative}
+  .pal-swatch .hex{position:absolute;bottom:-18px;left:0;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-dim);letter-spacing:.04em}
+  .pal-why{font-size:13.5px;line-height:1.5;color:var(--ink-2);margin-top:24px}
+
+  /* Type */
+  .types{display:grid;grid-template-columns:1fr;gap:22px;margin-top:30px}
+  .type-card{border:2px solid var(--ink);border-radius:8px;padding:32px 32px 28px;background:var(--paper);position:relative}
+  .type-card.rec{box-shadow:4px 4px 0 var(--red)}
+  .type-rec-badge{position:absolute;top:18px;right:-2px;background:var(--red);color:var(--paper);padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em}
+  .type-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .type-name{font-family:'Archivo Black',sans-serif;font-size:24px;letter-spacing:-.02em}
+  .type-vibe{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink-dim)}
+  .type-sample-display{font-size:clamp(40px,5vw,72px);line-height:.95;margin-bottom:14px;letter-spacing:-.03em}
+  .type-sample-display em{color:var(--red)}
+  .type-sample-body{font-size:15px;line-height:1.55;color:var(--ink-2);max-width:680px}
+  .type-pair{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;padding-top:18px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-dim);letter-spacing:.06em;text-transform:uppercase}
+  .type-pair span strong{color:var(--ink)}
+
+  /* Voice samples */
+  .voice-grid{display:grid;grid-template-columns:1fr;gap:22px;margin-top:30px}
+  .voice-card{border-left:6px solid var(--red);background:var(--paper-2);padding:26px 32px;border-radius:0 8px 8px 0}
+  .voice-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:10px}
+  .voice-headline{font-family:'Archivo Black',sans-serif;font-size:clamp(28px,3.4vw,42px);line-height:1;letter-spacing:-.025em;margin-bottom:14px}
+  .voice-headline em{font-family:'Fraunces',serif;font-style:italic;color:var(--red);font-weight:400}
+  .voice-body{font-size:16px;line-height:1.55;color:var(--ink-2);max-width:680px}
+  .voice-body em{font-family:'Fraunces',serif;font-style:italic;color:var(--ink)}
+
+  /* Narrative arc */
+  .arc{margin-top:30px;border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--paper)}
+  .arc-row{display:grid;grid-template-columns:60px 200px 1fr;border-bottom:2px solid var(--ink);align-items:stretch;min-height:90px}
+  .arc-row:last-child{border-bottom:none}
+  .arc-num{background:var(--ink);color:var(--paper);font-family:'Archivo Black',sans-serif;font-size:28px;display:flex;align-items:center;justify-content:center;letter-spacing:-.02em}
+  .arc-name{padding:20px 20px;border-right:2px solid var(--ink);display:flex;flex-direction:column;justify-content:center;background:var(--paper-2)}
+  .arc-name h4{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:-.01em;margin:0 0 4px;line-height:1.05}
+  .arc-name .arc-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
+  .arc-body{padding:18px 26px;display:flex;flex-direction:column;gap:6px;justify-content:center}
+  .arc-job{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--ink);line-height:1.35}
+  .arc-treat{font-size:13px;color:var(--ink-dim);line-height:1.5}
+  @media(max-width:760px){.arc-row{grid-template-columns:50px 1fr}.arc-name{border-right:none;border-bottom:1px solid var(--line)}.arc-row{display:flex;flex-direction:column}.arc-num{padding:10px;justify-content:flex-start;padding-left:20px;min-height:auto;font-size:20px}.arc-name{padding:14px 20px}.arc-body{padding:14px 20px}}
+
+  /* Won't do list */
+  .wont-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:30px;border:2px dashed var(--ink);border-radius:8px;background:var(--paper-2);padding:14px}
+  @media(max-width:760px){.wont-grid{grid-template-columns:1fr}}
+  .wont-item{padding:14px 18px;display:flex;align-items:center;gap:14px;font-size:14.5px;color:var(--ink-2)}
+  .wont-item .strike{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;color:var(--ink-dim)}
+  .wont-item .x{font-family:'Archivo Black',sans-serif;color:var(--red);font-size:18px;line-height:1}
+
+  /* Decisions */
+  .decision{margin-top:30px;padding:36px 36px;border:3px solid var(--red);border-radius:8px;background:var(--paper)}
+  .decision-head{font-family:'Archivo Black',sans-serif;font-size:32px;letter-spacing:-.02em;line-height:1;margin-bottom:8px}
+  .decision-head em{font-family:'Fraunces',serif;font-style:italic;color:var(--red);font-weight:400}
+  .decision-sub{font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--ink-2);margin-bottom:28px;max-width:600px}
+  .dec-q{display:grid;grid-template-columns:32px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+  .dec-q:first-of-type{border-top:none;padding-top:0}
+  .dec-num{font-family:'Archivo Black',sans-serif;font-size:22px;color:var(--red);line-height:1}
+  .dec-q-text{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:-.01em;margin-bottom:8px;line-height:1.15}
+  .dec-options{font-size:14px;line-height:1.6;color:var(--ink-2)}
+  .dec-options strong{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-right:6px}
+  .dec-pick{display:inline-block;background:var(--yellow);padding:1px 6px;margin:0 2px}
+
+  /* Footer */
+  footer{padding:60px 0;text-align:center}
+  footer .sign{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--ink-2);max-width:560px;margin:0 auto 16px}
+  footer .stamp{display:inline-block;padding:6px 14px;border:2px solid var(--ink);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;transform:rotate(-1.5deg)}
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="wrap row">
+    <div class="banner-title">
+      <span class="mark">QRACKPOT</span>
+      <span class="meta">Mood + Strategy · v0 · before any code</span>
+    </div>
+    <div class="banner-meta">
+      <span>5-min read</span>
+      <span>3 decisions</span>
+      <span>Then we build</span>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Stop describing the brand. <em>Pick</em> the brand.</h1>
+    <p class="hero-sub">Two builds in, the site still reads like a deck pitched at a venture firm. This document fixes that — by deciding what the page sounds like, looks like, and refuses to be — before we touch HTML again.</p>
+    <div class="hero-tldr">
+      <span class="tape">A marketing site</span>
+      <span class="tape red">Not a product demo</span>
+      <span class="tape ink">Under 800 words total</span>
+    </div>
+    <div class="hero-stamp">
+      <span>Strategy</span>
+      <span class="big">v0</span>
+      <span>2026</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num"><span>§01 · Anti-references</span><span class="bar"></span><span>WHAT WE'RE NOT</span></div>
+    <h2 class="sec-title">Six sites we've <em>already eliminated</em>.</h2>
+    <p class="sec-lede">Before we say what Qrackpot is, fence off what it isn't. Every choice from here points away from these.</p>
+    <div class="anti-grid">
+      <div class="anti-item"><span class="anti-x">✕</span><div class="anti-text"><strong>Generic VC SaaS</strong><span>Purple gradient. Hero with a screenshot. Three feature cards. We've built this twice already. Done.</span></div></div>
+      <div class="anti-item"><span class="anti-x">✕</span><div class="anti-text"><strong>Corporate broadcaster</strong><span>Navy blue. Stadium photo. "Trusted by." Reads like a press release. Not us.</span></div></div>
+      <div class="anti-item"><span class="anti-x">✕</span><div class="anti-text"><strong>Dev-tool landing</strong><span>Terminal screenshots, code blocks, monospace everything. Wrong audience.</span></div></div>
+      <div class="anti-item"><span class="anti-x">✕</span><div class="anti-text"><strong>Sportsbook / DFS</strong><span>DraftKings energy. Bright with bonuses. We're not selling bets. We're selling participation.</span></div></div>
+      <div class="anti-item"><span class="anti-x">✕</span><div class="anti-text"><strong>AI-startup template</strong><span>Geometric mesh. "Powered by AI." Three pricing tiers. Vendor-name bingo. Hard pass.</span></div></div>
+      <div class="anti-item"><span class="anti-x">✕</span><div class="anti-text"><strong>Product simulation</strong><span>The previous proposal. A demo pretending to be a marketing page. Different deliverable, different audience.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num"><span>§02 · References</span><span class="bar"></span><span>WHAT WE STEAL</span></div>
+    <h2 class="sec-title">Six sites. <em>One thing</em> from each.</h2>
+    <p class="sec-lede">We're not copying any of these. We're stealing one specific move from each and assembling them into something nobody else in sports-AI looks like.</p>
+    <div class="refs">
+      <div class="ref-card">
+        <div class="ref-num">01</div>
+        <div class="ref-head"><span class="ref-name">Liquid Death</span><a href="https://liquiddeath.com" class="ref-link" target="_blank">liquiddeath.com →</a></div>
+        <div class="ref-vibe">Heavy-metal poster aesthetic on bottled water.</div>
+        <div class="ref-steal"><strong>What we steal</strong>Irreverent copy as the dominant layer. Headlines that read like jokes but mean it. Type-driven, never photo-driven.</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-num">02</div>
+        <div class="ref-head"><span class="ref-name">Cash App</span><a href="https://cash.app" class="ref-link" target="_blank">cash.app →</a></div>
+        <div class="ref-vibe">Neon green on near-black. Punch over polish.</div>
+        <div class="ref-steal"><strong>What we steal</strong>One bright primary on a strong neutral. Punchy short headlines. Minimal nav. Hero is one statement, full stop.</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-num">03</div>
+        <div class="ref-head"><span class="ref-name">PostHog</span><a href="https://posthog.com" class="ref-link" target="_blank">posthog.com →</a></div>
+        <div class="ref-vibe">A tech company that doesn't sound like one.</div>
+        <div class="ref-steal"><strong>What we steal</strong>Self-aware copy. Mascot energy. "We know we're weird, we lean in" tone. Skip the corporate voice entirely.</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-num">04</div>
+        <div class="ref-head"><span class="ref-name">Oatly</span><a href="https://oatly.com" class="ref-link" target="_blank">oatly.com →</a></div>
+        <div class="ref-vibe">Handwritten oat carton energy on the web.</div>
+        <div class="ref-steal"><strong>What we steal</strong>Copy that argues with itself. Footer as its own brand piece. The site treats every pixel as voice, including the legal text.</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-num">05</div>
+        <div class="ref-head"><span class="ref-name">Mundial Mag</span><a href="https://mundialmag.com" class="ref-link" target="_blank">mundialmag.com →</a></div>
+        <div class="ref-vibe">Football culture as printed magazine.</div>
+        <div class="ref-steal"><strong>What we steal</strong>Editorial layout. Typography as the brand. Sport-as-culture, not sport-as-product. The thing that separates us from every AI-startup playing in this space.</div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-num">06</div>
+        <div class="ref-head"><span class="ref-name">Granola</span><a href="https://granola.ai" class="ref-link" target="_blank">granola.ai →</a></div>
+        <div class="ref-vibe">AI product that doesn't open with "we built AI."</div>
+        <div class="ref-steal"><strong>What we steal</strong>Talk about the problem first. Bold typography over stock illustration. AI is the engine, not the headline.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num"><span>§03 · Color</span><span class="bar"></span><span>PICK ONE</span></div>
+    <h2 class="sec-title">Three palettes. <em>One</em> recommendation.</h2>
+    <p class="sec-lede">All three fit "irreverent + playful." They go to different places. You're reading this document in the recommended one — that's not an accident.</p>
+    <div class="palettes">
+      <div class="pal-card">
+        <div class="pal-preview"><div style="background:#0d2818"></div><div style="background:#c4ff00"></div><div style="background:#f5f5ee"></div></div>
+        <div class="pal-body">
+          <div class="pal-name">A · <em>Stadium</em></div>
+          <div class="pal-vibe">Turf green, scoreboard lime, bone white.</div>
+          <div class="pal-swatches">
+            <div class="pal-swatch" style="background:#0d2818"><span class="hex">#0d2818</span></div>
+            <div class="pal-swatch" style="background:#c4ff00"><span class="hex">#c4ff00</span></div>
+            <div class="pal-swatch" style="background:#f5f5ee"><span class="hex">#f5f5ee</span></div>
+          </div>
+          <div class="pal-why" style="margin-top:32px">Sports-coded, energy-drink bright. The safest of the three — reads "sports tech" instantly. The risk: lots of sports apps already live here.</div>
+        </div>
+      </div>
+      <div class="pal-card rec">
+        <div class="pal-rec-badge">★ Recommended</div>
+        <div class="pal-preview"><div style="background:#f4ebd9"></div><div style="background:#d92016"></div><div style="background:#0a0a0a"></div><div style="background:#e8a838"></div></div>
+        <div class="pal-body">
+          <div class="pal-name">B · <em>Tabloid</em></div>
+          <div class="pal-vibe">Cream paper, tabasco red, ink black, mustard yellow.</div>
+          <div class="pal-swatches">
+            <div class="pal-swatch" style="background:#f4ebd9"><span class="hex">#f4ebd9</span></div>
+            <div class="pal-swatch" style="background:#d92016"><span class="hex">#d92016</span></div>
+            <div class="pal-swatch" style="background:#0a0a0a"><span class="hex">#0a0a0a</span></div>
+            <div class="pal-swatch" style="background:#e8a838"><span class="hex">#e8a838</span></div>
+          </div>
+          <div class="pal-why" style="margin-top:32px">Sports tabloid meets diner sign. Warm, opinionated, looks nothing like any AI startup in this category. Plays well with irreverent copy. Wendy's lineage, Mundial Mag lineage, Liquid Death adjacent.</div>
+        </div>
+      </div>
+      <div class="pal-card">
+        <div class="pal-preview"><div style="background:#0a0a0a"></div><div style="background:#ff2d6d"></div><div style="background:#00f0ff"></div></div>
+        <div class="pal-body">
+          <div class="pal-name">C · <em>After Dark</em></div>
+          <div class="pal-vibe">Pitch black, neon pink, acid cyan.</div>
+          <div class="pal-swatches">
+            <div class="pal-swatch" style="background:#0a0a0a"><span class="hex">#0a0a0a</span></div>
+            <div class="pal-swatch" style="background:#ff2d6d"><span class="hex">#ff2d6d</span></div>
+            <div class="pal-swatch" style="background:#00f0ff"><span class="hex">#00f0ff</span></div>
+          </div>
+          <div class="pal-why" style="margin-top:32px">Twitch-coded, esports-coded, late-night Discord. Big payoff with the gamer fan. The risk: alienates the broadcaster / partner audience, who read this site too.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num"><span>§04 · Type</span><span class="bar"></span><span>PICK ONE</span></div>
+    <h2 class="sec-title">Three voices. <em>One</em> face.</h2>
+    <p class="sec-lede">Headlines do the punching, italics do the winking, body does the work. The samples below are real headline copy in real faces. Click the tab on the right of one to lock it in.</p>
+    <div class="types">
+      <div class="type-card">
+        <div class="type-head"><span class="type-name">A · Newspaper Sports</span><span class="type-vibe">All-caps poster, no italic. One voice, very loud.</span></div>
+        <div class="type-sample-display condensed">SPORTS BROADCASTING HAS BEEN GETTING WORSE FOR FIFTY YEARS.</div>
+        <div class="type-sample-body" style="margin-top:18px">A schoolyard cricket match in Coimbatore gets a guy named Vikram filming on his phone in vertical mode. The Premier League gets six commentators and a helicopter shot. We're fixing the first one.</div>
+        <div class="type-pair">
+          <span>Display: <strong>Anton</strong> · uppercase</span>
+          <span>Body: <strong>Inter</strong> · regular</span>
+          <span>Italic: <strong>none</strong></span>
+        </div>
+      </div>
+      <div class="type-card rec">
+        <div class="type-rec-badge">★ Recommended</div>
+        <div class="type-head"><span class="type-name">B · Editorial Mix</span><span class="type-vibe">A fist and a wink. Heavy sans for punch, soft italic for the joke.</span></div>
+        <div class="type-sample-display display">Sports broadcasting has been getting worse for <em class="editorial">fifty years</em>.</div>
+        <div class="type-sample-body" style="margin-top:18px">A schoolyard cricket match in Coimbatore gets <em class="editorial">a guy named Vikram</em> filming on his phone in vertical mode. The Premier League gets six commentators and a helicopter shot. <em class="editorial">We're fixing the first one.</em></div>
+        <div class="type-pair">
+          <span>Display: <strong>Archivo Black</strong></span>
+          <span>Italic: <strong>Fraunces Italic</strong></span>
+          <span>Body: <strong>Inter</strong></span>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-head"><span class="type-name">C · Mag Italic</span><span class="type-vibe">All italic, all the time. Soft, literary, less in-your-face.</span></div>
+        <div class="type-sample-display editorial" style="font-style:italic">Sports broadcasting has been getting worse for fifty years.</div>
+        <div class="type-sample-body editorial" style="font-style:italic;margin-top:18px;color:var(--ink-2)">A schoolyard cricket match in Coimbatore gets a guy named Vikram filming on his phone in vertical mode. The Premier League gets six commentators and a helicopter shot. We're fixing the first one.</div>
+        <div class="type-pair">
+          <span>All: <strong>Fraunces</strong> (variable, italic-dominant)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num"><span>§05 · Voice</span><span class="bar"></span><span>WRITE THIS WAY</span></div>
+    <h2 class="sec-title">How the site <em>actually talks</em>.</h2>
+    <p class="sec-lede">Six sample blocks. Real copy, not lorem. This is what gets written for the v0 site if you sign off on the voice.</p>
+    <div class="voice-grid">
+      <div class="voice-card">
+        <div class="voice-label">Hero — option 1 of 3</div>
+        <div class="voice-headline display">Sports broadcasting has been getting worse for <em>fifty years</em>. We fixed it.</div>
+        <div class="voice-body">Real-time AI commentary for every match, every language, every level. Even the ones <em>nobody covers</em>. Especially those.</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-label">Hero — option 2 of 3</div>
+        <div class="voice-headline display">Your nephew's U-13 cricket match deserves <em>better than silence</em>.</div>
+        <div class="voice-body">Premier League gets six commentators. Your nephew gets a guy named Vikram filming in vertical mode with no audio. We're fixing the second one.</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-label">Hero — option 3 of 3</div>
+        <div class="voice-headline display">We taught a machine to call a googly. <em>Now we're teaching it everything else.</em></div>
+        <div class="voice-body">Cricket. Football. Kabaddi. Padel. Esports. Whatever your sport is, in whatever language you actually speak. Real-time AI commentary, live now.</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-label">The problem section</div>
+        <div class="voice-headline display">Three things wrong with <em>watching sports</em> in 2026.</div>
+        <div class="voice-body"><em>One:</em> nobody's actually talking to you — broadcasters talk at a million people at once.<br/><em>Two:</em> nobody's talking about you — the things you want to know, the matchups, the patterns, nobody's computing those in real time.<br/><em>Three:</em> most of the games on Earth right now? Nobody's talking at all.<br/><br/>We thought that was weird too.</div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-label">The partner section</div>
+        <div class="voice-headline display">If you've ever looked at a silent sports feed and thought "<em>somebody should be calling this</em>" —</div>
+        <div class="voice-body">We're somebody. Three ways to work with us — pick the one that fits. Streaming platform? We have an API. Broadcaster or league? We have enterprise. Regional network with a long tail of silent matches? We have a revenue share. <em>All three start with an email.</em></div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-label">The close</div>
+        <div class="voice-headline display">Stop watching sports. <em>Start participating</em> in them again.</div>
+        <div class="voice-body">Get on the waitlist, or come build with us. The next match starts in about four hours and right now nobody's calling it. Let's change that.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num"><span>§06 · Narrative arc</span><span class="bar"></span><span>SEVEN BLOCKS</span></div>
+    <h2 class="sec-title">The page, <em>blocked out</em>.</h2>
+    <p class="sec-lede">Seven blocks. Each does one thing. Total copy budget: under 800 words. If a section needs more than that, it's the wrong section.</p>
+    <div class="arc">
+      <div class="arc-row">
+        <div class="arc-num">01</div>
+        <div class="arc-name"><h4>The punch</h4><span class="arc-tag">Hero</span></div>
+        <div class="arc-body"><div class="arc-job">Who we are in one sentence. Two CTAs.</div><div class="arc-treat">Treatment: huge type, no hero image, tiny animated motif (waveform or scoreboard tick). 40 words max.</div></div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-num">02</div>
+        <div class="arc-name"><h4>The fight</h4><span class="arc-tag">Problem</span></div>
+        <div class="arc-body"><div class="arc-job">What's wrong with watching sports in 2026.</div><div class="arc-treat">Treatment: three magazine-style statements. Big numbers, no bullets. Stamps + tape over key words.</div></div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-num">03</div>
+        <div class="arc-name"><h4>The bet</h4><span class="arc-tag">Vision</span></div>
+        <div class="arc-body"><div class="arc-job">What we're building, and the world it makes.</div><div class="arc-treat">Treatment: editorial paragraph. One pull-quote in italic serif. No diagram here.</div></div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-num">04</div>
+        <div class="arc-name"><h4>The long tail</h4><span class="arc-tag">Why it matters</span></div>
+        <div class="arc-body"><div class="arc-job">Every sport on Earth. Every language. Even Vikram's match.</div><div class="arc-treat">Treatment: marquee of sports + languages scrolling past, or a wall of names. Visual element, not a list.</div></div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-num">05</div>
+        <div class="arc-name"><h4>The engine</h4><span class="arc-tag">Tech, briefly</span></div>
+        <div class="arc-body"><div class="arc-job">Vision → Reasoning → Voice, in one sentence.</div><div class="arc-treat">Treatment: three giant serif words on a line. No table, no vendor names. One stat: "under four seconds, frame to phrase."</div></div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-num">06</div>
+        <div class="arc-name"><h4>Three doors</h4><span class="arc-tag">How to work with us</span></div>
+        <div class="arc-body"><div class="arc-job">API / Enterprise / White-label · plus fan waitlist.</div><div class="arc-treat">Treatment: four numbered cards, magazine-style, one-line value prop each. CTAs are real email links, not forms.</div></div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-num">07</div>
+        <div class="arc-name"><h4>Who's behind it</h4><span class="arc-tag">Founder</span></div>
+        <div class="arc-body"><div class="arc-job">One line. Patents. Prior exit. Done.</div><div class="arc-treat">Treatment: typewritten byline + a small portrait or initials stamp. No bio card.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num"><span>§07 · Won't do</span><span class="bar"></span><span>BANNED FROM THE BUILD</span></div>
+    <h2 class="sec-title">What's <em>off the table</em>.</h2>
+    <p class="sec-lede">Every line below is something the previous builds did or something the category does. None of them are getting into v1.</p>
+    <div class="wont-grid">
+      <div class="wont-item"><span class="x">✕</span><span class="strike">Pricing tiers on the marketing page</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">Vendor names (Groq, Qwen, etc.)</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">"Trusted by" without real logos</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">Per-match cost figures</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">Stock photos of cheering crowds</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">Roadmap with dates</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">"AI-powered" anywhere on the site</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">Feature grid: icon + headline + paragraph × 6</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">Bullet lists where prose would do</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">Hero with a product screenshot</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">Three-card feature comparison table</span></div>
+      <div class="wont-item"><span class="x">✕</span><span class="strike">"Book a demo" as the primary CTA</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num"><span>§08 · Decisions</span><span class="bar"></span><span>YOUR TURN</span></div>
+    <div class="decision">
+      <div class="decision-head">Three things to <em>lock</em>.</div>
+      <div class="decision-sub">Pick one in each. Once these are locked, the v0 site gets built in one shot against these specs. No more bolt-ons, no more rewrites.</div>
+
+      <div class="dec-q">
+        <div class="dec-num">1</div>
+        <div>
+          <div class="dec-q-text">Color palette</div>
+          <div class="dec-options"><strong>Pick</strong> A · Stadium &nbsp;&nbsp;<span class="dec-pick">B · Tabloid (rec.)</span>&nbsp;&nbsp; C · After Dark</div>
+        </div>
+      </div>
+      <div class="dec-q">
+        <div class="dec-num">2</div>
+        <div>
+          <div class="dec-q-text">Typography pairing</div>
+          <div class="dec-options"><strong>Pick</strong> A · Newspaper Sports &nbsp;&nbsp;<span class="dec-pick">B · Editorial Mix (rec.)</span>&nbsp;&nbsp; C · Mag Italic</div>
+        </div>
+      </div>
+      <div class="dec-q">
+        <div class="dec-num">3</div>
+        <div>
+          <div class="dec-q-text">Hero line</div>
+          <div class="dec-options">A · "Sports broadcasting has been getting worse for fifty years. We fixed it."<br/>B · "Your nephew's U-13 cricket match deserves better than silence."<br/>C · "We taught a machine to call a googly. Now we're teaching it everything else."<br/>D · You write it. Or we mix-and-match.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="sign">Built for every athlete whose game has never been called. And for every fan who was getting bored of being talked at.</p>
+    <span class="stamp">Qrackpot · 2026 · Turings Design</span>
+  </div>
+</footer>
+
+</body>
+</html>
