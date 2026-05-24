@@ -1213,6 +1213,44 @@ class Scoreboard:
                     log.warn(f"Score rejected: chase {v} > "
                              f"target {tgt} + 4")
                     return False
+            # WS-O.b PA — WARM-mode magnitude gate. Tightens the
+            # per-update jump guard below with an RPO-derived
+            # plausibility cap (analog of OA's COLD-START gate at
+            # score_manager.py:_handle_cold_start, but applied at
+            # the canonical sb.set bottleneck so it catches the
+            # WARM-mode cascade root WS-O step-3 (`ed70807`)
+            # surfaced). Threshold balls * 2.5 + 10 accommodates
+            # rare single-ball maxes (NB+6, all-run 7) while
+            # catching cold-start overreads that survive into WARM
+            # (e.g. 49-spike at balls=12 → 49 > 12*2.5+10=40 →
+            # reject). Skipped when overs is None (very first frame
+            # before overs has been hydrated).
+            cur_overs = self._inn.get("overs")
+            if cur_overs is not None:
+                try:
+                    _o = str(cur_overs)
+                    _c, _b = _o.split(".")
+                    _balls = int(_c) * 6 + int(_b)
+                except (TypeError, ValueError, AttributeError):
+                    _balls = 0
+                _max_plausible = int(_balls * 2.5) + 10
+                if v > _max_plausible:
+                    log.warn(
+                        f"Score WARM-mode magnitude gate rejected: "
+                        f"{v} > {_max_plausible} (balls={_balls}, "
+                        f"overs={cur_overs})")
+                    if _trace is not None:
+                        try:
+                            _trace.get_recorder().record(
+                                tag="WARM-MODE-MAGNITUDE-GATE-REJECTED",
+                                proposed_score=v,
+                                max_plausible=_max_plausible,
+                                balls=_balls,
+                                overs=cur_overs,
+                                frame_id=frame)
+                        except Exception:
+                            pass
+                    return False
             # Per-update jump guard: even after a long ad break,
             # consecutive scoreboard reads should not differ by 100+
             # runs.  Hard-reject before the consensus tracker so

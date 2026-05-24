@@ -105,6 +105,11 @@ KNOWN_TAGS: set[str] = {
     # score_manager.py:_drain_pending_queue.
     "COLD-START-OVERREAD-REJECTED",
     "SCORE-FORCE-RESET",
+    # WS-O.b PA (2026-05-24) — WARM-mode magnitude gate at the
+    # canonical sb.set bottleneck. Tightens the existing per-update
+    # jump guard (>100) with an RPO-derived plausibility cap. Fires
+    # when proposed score exceeds balls * 2.5 + 10 at current overs.
+    "WARM-MODE-MAGNITUDE-GATE-REJECTED",
     "EXTRACTOR-ROW-RECLASSIFIED",
     "ABSORBED-LEGAL-BOWLER-CREDITED",
     "EXTRA-FABRICATION-REJECTED-NO-WITNESS",

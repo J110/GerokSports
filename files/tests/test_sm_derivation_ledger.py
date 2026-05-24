@@ -482,7 +482,12 @@ def main(argv: list[str] | None = None) -> int:
         return snap_rc
     from test_cold_start_magnitude_gate import (
         run_all as _run_csm_gate)
-    return _run_csm_gate()
+    csm_rc = _run_csm_gate()
+    if csm_rc != 0:
+        return csm_rc
+    from test_warm_mode_magnitude_gate import (
+        run_all as _run_wmm_gate)
+    return _run_wmm_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:

@@ -583,6 +583,15 @@ def derive_this_over_token(
 
     # Standard legal ball
     if delta_legal_balls == 1:
+        # WS-O.b PE — cricket-physics negative-runs guard. A legal
+        # ball cannot produce negative off-bat runs; emitting str(-N)
+        # leaked into UI snapshots as `this_over_tokens: ["-27", ...]`
+        # post-WS-O step-3 baseline. Return None so the caller's
+        # existing `if _wire_token is not None: ... else: append("?")`
+        # fallback at score_manager.py:6682 / :6815 routes to a
+        # placeholder rather than the negative string.
+        if runs_off_bat < 0:
+            return None
         if runs_off_bat == 0:
             raw = "."
         elif 1 <= runs_off_bat <= 6:
