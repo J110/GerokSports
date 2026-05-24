@@ -96,6 +96,15 @@ KNOWN_TAGS: set[str] = {
     "EVENT-BASELINE-SEEDED-HOT-RESUME",
     "GAP-TOKEN-INFERENCE",
     "COLD-START-PHYSICS-PROMOTE",
+    # WS-O OA (2026-05-24) — innings-1 cold-start magnitude
+    # plausibility gate (analog of P12 inn2 lockout). Rejected
+    # seeds whose proposed score exceeds the RPO-derived
+    # plausibility cap at the proposed overs. SCORE-FORCE-RESET
+    # is the Scoreboard-side recovery primitive invoked by the
+    # PendingBall regression-signal consumer at
+    # score_manager.py:_drain_pending_queue.
+    "COLD-START-OVERREAD-REJECTED",
+    "SCORE-FORCE-RESET",
     "EXTRACTOR-ROW-RECLASSIFIED",
     "ABSORBED-LEGAL-BOWLER-CREDITED",
     "EXTRA-FABRICATION-REJECTED-NO-WITNESS",

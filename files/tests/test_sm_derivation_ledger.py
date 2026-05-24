@@ -477,7 +477,12 @@ def main(argv: list[str] | None = None) -> int:
         return ofb_rc
     from test_snapshotter_full_pipeline_integration import (
         run_all as _run_snap_gate)
-    return _run_snap_gate()
+    snap_rc = _run_snap_gate()
+    if snap_rc != 0:
+        return snap_rc
+    from test_cold_start_magnitude_gate import (
+        run_all as _run_csm_gate)
+    return _run_csm_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:

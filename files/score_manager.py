@@ -1273,6 +1273,32 @@ class ScoreManager:
                 break
             entry.committed = True
             derived = self._derive_pending_token(entry)
+            # WS-O OA gate (consumer) — substantial negative runs_delta
+            # is the regression-correction signal the post-WS-N
+            # snapshotter surfaced as `-N` tokens in the diff baseline
+            # (commit 80f1be9 §1.3). Walk the score back via the
+            # force_reset_score escape hatch (Scoreboard regression-
+            # rejection at :1224 would otherwise stick the inflated
+            # baseline) and emit a DOT in the slot so the token stream
+            # stays canonical. Threshold of -5 buffers single-ball OCR
+            # jitter from triggering a false reset; substantial
+            # regressions (-10 / -16 / -20 / -27 from the diff
+            # baseline) all cross the gate.
+            if (entry.runs_delta is not None
+                    and entry.runs_delta <= -5
+                    and self.scoreboard is not None):
+                _corrected = (self.score or 0) + entry.runs_delta
+                if _corrected >= 0:
+                    try:
+                        _f = int(entry.frame_id)
+                    except (TypeError, ValueError):
+                        _f = 0
+                    self.scoreboard.force_reset_score(
+                        _corrected,
+                        reason="pending_ball_regression_signal",
+                        frame=_f)
+                    self.score = _corrected
+                    derived = "."
             over_mgr = getattr(self, "over_mgr", None)
             rewrite = getattr(over_mgr, "rewrite_token", None)
             if rewrite is not None and entry.slot_idx is not None:
@@ -2762,6 +2788,27 @@ class ScoreManager:
             return _fb_payload
 
         if self.cold_candidate is None:
+            # WS-O OA gate (a) — innings-1 cold-start magnitude
+            # plausibility. Mirror of the P12 inn2 lockout below;
+            # rejects an over-read seed (e.g. Scout OCR reads "49" off
+            # a transient overlay at overs=0.0) before it can anchor
+            # the WARM exit at a bogus baseline. RPO ceiling of 2.5
+            # runs/ball + 6-run buffer for a six on the last ball
+            # accommodates the highest legitimate T20 strike rates
+            # (~15 RPO opening overs) while catching any cold-start
+            # score that physics rule out.
+            _s = card.get("score") or 0
+            _o = card.get("overs") or 0.0
+            try:
+                _balls = self._overs_to_balls(_o)
+            except (TypeError, ValueError):
+                _balls = 0
+            _max_plausible = int(_balls * 2.5) + 6
+            if _s > _max_plausible:
+                self.cold_frames -= 1
+                _record_cold_start_reject(
+                    "COLD-START-OVERREAD-REJECTED", frame, card)
+                return None
             # P12 cold-start commit lockout: during innings-2
             # transition window, require 3 consecutive frames passing
             # numeric bounds before allowing the seed.  Card here has

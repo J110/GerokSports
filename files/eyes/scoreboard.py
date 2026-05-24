@@ -2080,6 +2080,41 @@ class Scoreboard:
         if new_wkts_i == 0:
             self._wickets_confirmed_frames_at_zero = 0
 
+    def force_reset_score(self, new_score: int, *, reason: str,
+                          frame: int = 0) -> bool:
+        """High-confidence escape hatch around the regression-rejection
+        predicate at :1224 (`if v < cur_int: return False`). Caller
+        surface limited to recovery paths that have already gathered
+        out-of-band evidence the committed score is wrong (cold-start
+        over-read recovery, state-recovery aggregator, poison-streak
+        watchdog). Emits SCORE-FORCE-RESET trace tag for audit.
+        """
+        try:
+            v = int(new_score)
+        except (ValueError, TypeError):
+            return False
+        if v < 0 or v > 320:
+            return False
+        cur = self._inn.get("score")
+        self._inn["score"] = v
+        try:
+            self._tracker.confirmed["score"] = v
+        except (AttributeError, KeyError, TypeError):
+            pass
+        log.info(
+            f"[SCORE-FORCE-RESET] {cur}→{v} (reason={reason})")
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="SCORE-FORCE-RESET",
+                    old_score=cur,
+                    new_score=v,
+                    reason=reason,
+                    frame_id=str(frame))
+            except Exception:
+                pass
+        return True
+
     def update_batter(self, name: str, runs: int | None = None,
                       balls: int | None = None, fours: int | None = None,
                       sixes: int | None = None, striker: bool | None = None,
