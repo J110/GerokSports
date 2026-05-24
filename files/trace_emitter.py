@@ -61,6 +61,14 @@ KNOWN_TAGS: set[str] = {
     "BOWLER-BATTER-GATE", "BOWLER-LEAD",
     "BOWLER-OVERRIDE", "BOWLER-BOOTSTRAP-REJECT",
     "BOWLING-CARD-CREATED", "BOWLING-CARD-RESUMED",
+    # WS-R step-1b (2026-05-24) — NO-OP log-only instrumentation at
+    # Scoreboard.update_bowler entry + gating attribution. Empirical
+    # anchor for why BOWLING-CARD-CREATED=0 on dckkr-264 post-WS-Q
+    # (per workstream_r_fa_fb_cohort_investigation.md §5). CHECKPOINT
+    # fires per call; CHANGE-CHECK fires after _bowler_changed/_bootstrapped
+    # logic with both flags + whether create/resume emission triggered.
+    "BOWLER-CARD-LIFECYCLE-CHECKPOINT",
+    "BOWLER-CARD-CHANGE-CHECK",
     "MULTI-BALL-DERIVATION-EXPANDED",  # deprecated B1.2 — see no_multiball_design.md
     # B1.1 (2026-05-15) — no-MULTI_BALL pending-ball queue lifecycle.
     "PENDING-BALL-ENQUEUED",

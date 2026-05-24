@@ -3124,6 +3124,19 @@ class Scoreboard:
                       runs_delta: int | None = None,
                       balls_delta: int | None = None,
                       wickets_delta: int | None = None) -> bool:
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="BOWLER-CARD-LIFECYCLE-CHECKPOINT",
+                    site="update_bowler_entry",
+                    bowler=name, frame_id=str(frame),
+                    in_card=(name in self.bowling_card),
+                    has_delta=any(d is not None for d in
+                                  (runs_delta, balls_delta, wickets_delta)),
+                    strip_runs=runs, strip_wickets=wickets,
+                    strip_overs=overs)
+            except Exception:
+                pass
         if isinstance(runs, str):
             try: runs = int(runs)
             except (TypeError, ValueError): runs = None
@@ -3942,6 +3955,17 @@ class Scoreboard:
         # Safe because we only seed when the card's figures are still
         # unset (a returning 2nd-spell bowler keeps their accumulated
         # figures — those entries are non-None).
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="BOWLER-CARD-CHANGE-CHECK",
+                    bowler=name, frame_id=str(frame),
+                    bowler_changed=bool(_bowler_changed),
+                    bootstrapped=bool(_bootstrapped),
+                    create_resume_will_emit=(
+                        bool(_bowler_changed) or bool(_bootstrapped)))
+            except Exception:
+                pass
         if _bowler_changed or _bootstrapped:
             try:
                 _bc_runs = int(entry.get("runs") or 0)
