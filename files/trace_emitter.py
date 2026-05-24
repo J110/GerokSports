@@ -116,6 +116,13 @@ KNOWN_TAGS: set[str] = {
     # else branch. Subsequent asterisk-detected frame OR first ball
     # event in WARM mode anchors the canonical striker pointer.
     "STRIKER-ANCHOR-DEFERRED-NO-ASTERISK",
+    # WS-Q step-2a (2026-05-24) — canonical sm.set_score API invocation.
+    # Emitted every time sm.set_score is called (regardless of
+    # USE_SM_CANONICAL_SCORE flag state). Foundation-only observability
+    # for step-2b writer-redirect verification + step-2c flag-flip
+    # rollout monitoring. Expected count = 0 at step-2a (no callers
+    # invoke yet); becomes non-zero at step-2b when writers redirect.
+    "CANONICAL-SCORE-API-INVOKED",
     # WS-V.A1 FA (2026-05-24) — symmetric defensive anchor to the A1
     # event-firing defense. Fires at score_manager.py:_handle_warm
     # prev = self._snapshot() construction when self.score is pre-

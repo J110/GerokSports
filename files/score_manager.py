@@ -20,6 +20,7 @@ from cricket_rules import (
     validate_absolute,
     validate_diff,
 )
+from eyes.config import USE_SM_CANONICAL_SCORE
 from eyes.cricket_logger import CricketLogger
 from eyes.this_over import ThisOverManager as _TOM
 from score_manager_derivation import (
@@ -409,6 +410,11 @@ class ScoreManager:
         # attached; shadow / no-SB tests store here (set_innings_2 calls
         # __init__ and clears scoreboard before batting_team assign).
         self._sm_scalar_fallback: dict[str, Any] = {}
+        # WS-Q step-2a (2026-05-24) — canonical score store behind
+        # USE_SM_CANONICAL_SCORE flag (default 0). At flag=0 this field
+        # is invisible (sm.score @property still reads sb._inn["score"]).
+        # At flag=1 the @property reads here (falls back to sb if None).
+        self._canonical_score: int | None = None
         self._current_frame: int = 0
 
         # Mode
@@ -1708,6 +1714,8 @@ class ScoreManager:
 
     @property
     def score(self) -> int | None:
+        if USE_SM_CANONICAL_SCORE and self._canonical_score is not None:
+            return self._canonical_score
         if self.scoreboard is not None:
             raw = self._sb_inn_get("score")
             if raw is not None:
@@ -1761,6 +1769,28 @@ class ScoreManager:
         log.info(
             f"  [SM-FEEDER-SYNC] field=score value={iv} "
             f"sb_accepted={str(ok).lower()}")
+
+    def set_score(self, value: int, *, confidence: float, source: str) -> bool:
+        try:
+            iv = int(value)
+        except (TypeError, ValueError):
+            return False
+        self._canonical_score = iv
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="CANONICAL-SCORE-API-INVOKED",
+                    value=iv, confidence=confidence, source=source)
+            except Exception:
+                pass
+        if USE_SM_CANONICAL_SCORE and self.scoreboard is not None:
+            frame = self._current_frame
+            try:
+                ok = bool(self.scoreboard.set("score", iv, frame))
+            except Exception:
+                return False
+            return ok
+        return True
 
     @property
     def wickets(self) -> int | None:

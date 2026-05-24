@@ -115,6 +115,13 @@ USE_V3_CHUNKER = os.environ.get("USE_V3_CHUNKER", "0") == "1"
 # behavior unchanged until the gates in chunker_v3_setup.md are met.
 USE_V3_CHUNKER_SPANS = os.environ.get("USE_V3_CHUNKER_SPANS", "0") == "1"
 
+# ── WS-Q step-2a (2026-05-24) — canonical sm.set_score API gate ──
+# Foundation only at this commit (storage + API + flag); writer redirect
+# lands at step-2b; default flip at step-2c. See WS-Q step-1 memo a3e75d2.
+# Default 0 = zero behavior change; flag=1 routes sm.score @property read
+# through self._canonical_score and parallel-writes sb on set_score.
+USE_SM_CANONICAL_SCORE = os.environ.get("USE_SM_CANONICAL_SCORE", "0") == "1"
+
 # ── Chunker v3 None-fallback safety net ──
 # When the v3 chunker returns None for a score event AND the legacy
 # `_find_span` also fails, ``DeliveryWindowRecorder`` emits a fixed
