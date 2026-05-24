@@ -111,9 +111,19 @@ def extracted_to_frame_input(
     # / this_over_broadcast / match_overs, while FrameInput/SM expect
     # the simpler ext_/broadcast_ shapes. Map explicitly here.
     bat1_striker = bool(bat1.get("striker"))
+    # WS-P Change 2 — mirror production semantics. The legacy
+    # fallback to bat1.get("name") when neither bat had Scout's
+    # `striker` flag diverged from test_pipeline.py main loop
+    # which passes None when Scout's *-marker asterisk detection
+    # fails. The bat1-default caused _accept_initial's F1 block
+    # to enter its `if _strip_bc:` truthy branch and anchor
+    # whichever opener Scout happened to put in the bat1 row
+    # (per WS-P step-1 memo §4 + step-2 V1 file-ownership
+    # verification confirming this helper is consumed by L2 +
+    # snapshotter + audit scripts).
     broadcast_striker = (
         bat1.get("name") if bat1_striker
-        else (bat2.get("name") if bat2.get("striker") else bat1.get("name"))
+        else (bat2.get("name") if bat2.get("striker") else None)
     )
     return FrameInput(
         frame_id=str(frame_id),

@@ -110,6 +110,12 @@ KNOWN_TAGS: set[str] = {
     # jump guard (>100) with an RPO-derived plausibility cap. Fires
     # when proposed score exceeds balls * 2.5 + 10 at current overs.
     "WARM-MODE-MAGNITUDE-GATE-REJECTED",
+    # WS-P QA+QE (2026-05-24) — cold-start striker-anchor deferral
+    # when Scout's *-marker asterisk signal is absent. Replaces the
+    # legacy default bat1=striker anchor at score_manager.py:_accept_initial
+    # else branch. Subsequent asterisk-detected frame OR first ball
+    # event in WARM mode anchors the canonical striker pointer.
+    "STRIKER-ANCHOR-DEFERRED-NO-ASTERISK",
     "EXTRACTOR-ROW-RECLASSIFIED",
     "ABSORBED-LEGAL-BOWLER-CREDITED",
     "EXTRA-FABRICATION-REJECTED-NO-WITNESS",

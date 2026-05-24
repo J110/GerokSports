@@ -487,7 +487,12 @@ def main(argv: list[str] | None = None) -> int:
         return csm_rc
     from test_warm_mode_magnitude_gate import (
         run_all as _run_wmm_gate)
-    return _run_wmm_gate()
+    wmm_rc = _run_wmm_gate()
+    if wmm_rc != 0:
+        return wmm_rc
+    from test_striker_anchor_deferred import (
+        run_all as _run_sad_gate)
+    return _run_sad_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:

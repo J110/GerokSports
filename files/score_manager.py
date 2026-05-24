@@ -3519,9 +3519,48 @@ class ScoreManager:
                         self.bat1_name, self.bat2_name,
                         source="init_from_card.combined_same_first")
             else:
-                self._set_slot_pair(
-                    self.bat1_name, self.bat2_name,
-                    source="cold_start_no_indicator")
+                # WS-P QA+QE composite — squad-convention-aware
+                # anchor when no Scout *-marker asterisk signal is
+                # present. The legacy `_set_slot_pair(bat1, bat2)`
+                # default anchored bat1=striker regardless of
+                # cricket truth, producing the ~50-field swap cohort
+                # the post-WS-O.b baseline surfaced when Scout's
+                # bat1 row happened to be the off-strike batter
+                # (frequent at pre-match graphics + asterisk-OCR-
+                # failure frames). Cricket convention:
+                # batting_squad[0] is the conventional opener-on-
+                # strike facing ball 1. When Scout's bat2_name
+                # matches batting_squad[0], anchor bat2=striker
+                # (Scout flipped the row order); otherwise the
+                # legacy bat1-default holds (covers both correctly-
+                # ordered reads AND mid-innings re-entry cases
+                # where squad-convention no longer applies).
+                # Squad order accessed via batting_card insertion-order
+                # (Scoreboard.setup_innings populates batting_card in
+                # batting_squad order; Python dicts preserve insertion).
+                _bc = (getattr(self.scoreboard, "batting_card", None)
+                       if self.scoreboard is not None else None) or {}
+                _sq = list(_bc.keys())
+                if (_sq and self.bat1_name and self.bat2_name
+                        and _sq[0] == self.bat2_name):
+                    self._set_slot_pair(
+                        self.bat2_name, self.bat1_name,
+                        source="cold_start_squad_convention")
+                    if _trace is not None:
+                        try:
+                            _trace.get_recorder().record(
+                                tag="STRIKER-ANCHOR-DEFERRED-NO-ASTERISK",
+                                anchored="bat2",
+                                bat1=self.bat1_name,
+                                bat2=self.bat2_name,
+                                squad_opener=_sq[0],
+                                frame_id=str(self._current_frame))
+                        except Exception:
+                            pass
+                else:
+                    self._set_slot_pair(
+                        self.bat1_name, self.bat2_name,
+                        source="cold_start_no_indicator")
 
         if self.bat2_name != _prev_b2_accept:
             self._w8_guard_fired.clear()
