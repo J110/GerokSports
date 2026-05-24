@@ -337,3 +337,182 @@ Empirical-budget status: 1/5 → 1/5 (UNCHANGED).
 Methodology insights running total: 25 (unchanged).
 Memo: files/docs/investigations/workstream_n_snapshotter_full_pipeline_integration.md (11 sections, ~420 lines).
 ```
+
+---
+
+## §12 Step-1b sub-investigation — code reading
+
+**Trigger.** WS-N step-1 §4 NA flagged "sub-mechanism reservation" as deliberate UNVERIFIED marker per S26-v2 promoted methodology. Step-1b spot-checks the marker BEFORE step-2 commitment.
+
+**Task 1 — `sm.on_frame` body inspection (`files/score_manager.py:2073`).** `sm.on_frame` is the SM event-processing entry point. Grep across `score_manager.py` for `over_mgr.`:
+
+| Line | Context | Type |
+|---|---|---|
+| `:709` | `_rewrite_eyes_this_over_from_event` — accesses `over_mgr.this_over` for SM-authoritative rewrite | Data access |
+| `:712` | Comment about `over_mgr.this_over` placeholders | Comment |
+| `:1265` | Docstring referencing `over_mgr.this_over` rewrite via `rewrite_token` | Comment |
+| `:725, :1276` | `over_mgr = getattr(self, "over_mgr", None)` — checks for over_mgr presence | Defensive read |
+
+**Critical finding.** **NO `over_mgr.on_ball_event` calls in `score_manager.py`.** The `over_mgr.` mentions are about `over_mgr.this_over` (data access for SM-authoritative rewrites) + `over_mgr.rewrite_token` (slot binding callback). The ball-event dispatch path is NOT inside score_manager.
+
+**Task 2 — `scoreboard.on_ball_event` call chain (`files/eyes/scoreboard.py`).** Grep across `scoreboard.py` for `def on_ball_event\|on_ball_event(`: **NO MATCHES.** `scoreboard.on_ball_event` does not exist as a method on Scoreboard. The dispatch flow does NOT route through scoreboard.
+
+**Task 3 — `over_mgr.on_ball_event` call sites in production.** Grep across `test_pipeline.py`:
+
+| Line | Context |
+|---|---|
+| `:7366` | `over_mgr.attach_score_manager(score_mgr)` — setup wiring (not dispatch) |
+| **`:9236`** | `over_mgr.on_ball_event(_pre_ball, ...)` — pre-ball dispatch path |
+| **`:13098`** | `over_mgr.on_ball_event(ball_event, score=int(scoreboard._inn.get("score") or 0))` — main loop dispatch after `ball_detector.detect()` |
+| **`:14017`** | `over_mgr.on_ball_event(_abe, score=_sc_abs)` — ABSORBED_LEGAL post-dispatch path |
+
+**All `over_mgr.on_ball_event` invocations live in `test_pipeline.py` main loop logic** — none inside score_manager. The ball_event dicts at these sites are produced by `BallEventDetector.detect()` (per `:13056` precedent already documented at WS-M step-1b §11) + the per-event synthesis path at `:13083-13097` (WICKET-ATTRIB site).
+
+## §13 Sub-mechanism verdict — (b) CONFIRMED
+
+**Sub-mechanism (b) — external BallEventDetector wiring required — CONFIRMED.**
+
+Evidence:
+- `sm.on_frame` does NOT internally dispatch to `over_mgr.on_ball_event` (task 1).
+- `scoreboard.on_ball_event` does not exist (task 2).
+- `over_mgr.on_ball_event` is invoked exclusively from `test_pipeline.py` main loop at 3 sites, all of which depend on `BallEventDetector.detect()` output OR direct synthesis from frame-loop state (task 3).
+
+**Sub-mechanism (a) FALSIFIED.** sm.on_frame does not drive over_mgr dispatch; the snapshotter cannot rely on internal dispatch to activate the bind_pending_slot path.
+
+**Step-2 LOC estimate REVISED upward.**
+- Sub-mechanism (a) projection (memo §10): ~5-10 LOC (build_sm helper only). **FALSIFIED.**
+- Sub-mechanism (b) actual: ~15-25 LOC (build_sm helper + BallEventDetector instantiation + frame-loop integration + per-event dispatch wiring). **CONFIRMED.**
+
+Additional considerations for (b):
+- `BallEventDetector()` is parameterless (`test_pipeline.py:7174`) — minimal setup cost.
+- `BallEventDetector.detect(scoreboard._tracker)` requires `scoreboard._tracker` to be maintained. Whether the snapshotter's existing scoreboard setup includes `_tracker` initialization needs verification at step-2 (potential additional dependency to satisfy).
+- Per-event dispatch needs to handle the WICKET-ATTRIB synthesis path at `test_pipeline.py:13083-13097` (the H-D2-Layer-1a fix from C31). Reproducing this in the snapshotter pulls in additional pipeline logic.
+
+**Per the user's stop condition** ("Sub-mechanism (b) confirmed → STOP, report; flag step-2 as larger scope; recommend user authorization before proceeding (NB `--full-pipeline` flag alternative may be preferred for clarity)"): **STOP.** Report. User decides whether to:
+- Authorize NA at expanded 15-25+ LOC scope (with explicit BallEventDetector + tracker setup verification at step-2);
+- Pivot to NB `--full-pipeline` flag for explicit user-controlled opt-in mode preservation;
+- Pivot to ND extract-pipeline-setup architectural refactor (previously falsified at gate 3 for scope; revisit if cleaner integration outweighs scope cost);
+- Defer WS-N (accept SM-only-snapshotter measurement gap as architectural-known-limitation; rely on natural production session traces for over_mgr-wired closure validation).
+
+## §14 Refined step-2 entry data + S26-v2 third-instance footprint
+
+### Refined NA step-2 patch surface (sub-mechanism (b))
+
+**`files/tests/test_pipeline_captured_replay.py:build_sm`** — modifications:
+1. `from eyes.this_over import ThisOverManager`
+2. `from eyes.state.ball_detector import BallDetector` (verify exact path at step-2)
+3. Inside `build_sm`: instantiate `over_mgr = ThisOverManager()` + `ball_detector = BallDetector(min_gap=0.0)` (or production min_gap=8.0)
+4. After SM construction: `over_mgr.attach_score_manager(sm)` + `scoreboard.on_fow_upgrade = over_mgr.reorder_wicket_to_ball`
+5. Return tuple extended to include over_mgr + ball_detector (OR snapshotter reads from sm's attached references)
+
+**`files/scripts/replay_captured_scout_trace.py`** — modifications:
+1. Unpack over_mgr + ball_detector from build_sm return tuple
+2. In frame loop after `sm.on_frame(fi)`: call `ball_event = ball_detector.check(score_dict_with_score_wkts_overs)` (note: `check`, not `detect`, per WS-Surface-E step-2 codebase reading)
+3. If ball_event is not None: synthesize WICKET-ATTRIB if needed (mirror `test_pipeline.py:13083-13097`); then `over_mgr.on_ball_event(ball_event, score=score)`
+4. Existing snapshot emission hook remains unchanged
+
+**Estimated diff scope:** 20-35 LOC total (10 LOC build_sm + 15-25 LOC snapshotter frame loop including WICKET-ATTRIB synthesis if required).
+
+### Backward compatibility review
+
+**The expanded scope changes the snapshotter's behavior:**
+- Pre-NA: SM-only mode; per-fixture measurement gap exists; familiar to runbook §8 fix-iteration users.
+- Post-NA: full-pipeline mode (over_mgr-wired); measurement gap closed; existing fix-iteration workflows for SM-internal-only fixes still pass (additive, not regressive).
+
+**Risk:** If existing L2 captured-replay (`test_pipeline_captured_replay.py`) depends on the SM-only `build_sm` shape (return tuple `(sm, sb)` vs `(sm, sb, over_mgr, ball_detector)`), L2 may break. **Step-2 must verify L2 ledger PASS post-build_sm modification.** Alternative: keep build_sm's return tuple stable; have snapshotter look up over_mgr via `sm._over_mgr` attribute (if such a back-ref exists or can be added).
+
+### Step-2 decision fork for user
+
+**Recommended: re-authorize NA at expanded scope with explicit gate-2 backward-compat verification.** Step-2 patch ships if L2 ledger PASSes post-modification + new L1.5 cases (N-1 + N-2 + N-3) PASS at unit level. Predicted-flip table from memo §8 holds. Budget cost: 0/5 at step-2 (unit + L2 verification) + 1/5 at step-3 (single empirical replay).
+
+**Alternative: pivot to NB `--full-pipeline` flag.** Preserves SM-only mode for legitimate use cases (e.g., rapid iteration on SM-internal fixes); requires explicit opt-in for full-pipeline mode. Larger surface area but clearer user-facing semantics. Same step-2 LOC estimate (15-25); just adds an argparse flag + conditional branch.
+
+**Alternative: pivot to ND extract-pipeline-setup refactor.** Previously falsified at gate 3 for scope expansion. Worth reconsidering ONLY if (a) ongoing snapshotter divergence from test_pipeline.py setup logic becomes load-bearing, OR (b) future Phase 4 cleanup combines multiple refactor pressures. Defer until justified.
+
+**Alternative: defer WS-N.** SM-only snapshotter measurement gap stays as architectural-known-limitation; natural production session traces continue to serve as the over_mgr-wired closure validation path. Budget remains at 1/5; methodology cap proximity preserved. No code change. Lowest immediate cost; postpones the runbook fitness restoration that motivated WS-N's opening.
+
+### S26-v2 THIRD-INSTANCE FOOTPRINT
+
+**This step-1b sub-investigation IS the third-instance footprint for S26-v2.** Predecessors:
+1. **WS-L step-1b (`394ed58`)** — 10-call deviation discovery at half-commit-cycle cost.
+2. **WS-M step-1b (`c46fcb0`)** — 1-call cohort-split discovery.
+3. **WS-N step-1b (this)** — 1-call sub-mechanism (b) confirmation. Sub-mechanism (a) projection (~5-10 LOC) FALSIFIED; sub-mechanism (b) actual scope (~15-25 LOC) confirmed. Step-2 would have shipped at wrong LOC estimate (with build_sm-only patch failing to engage over_mgr.on_ball_event dispatch) had spot-check been skipped.
+
+**Promotion status.** S26-v2 was already promoted at WS-M step-4 on two-instance evidence; this third instance is **empirical reinforcement, not new promotion**. The 10× cost-reduction ratio holds across all three instances: ~1 tool call at step-1b vs ~10 tool calls + STOP at step-2 verification deviation.
+
+**Standing audit framework update.** The S22 + S26 + S26-v2 + S28 cost-optimization framework (Architecture_HANDOFF.md post-WS-M architectural-fence section) now has a third demonstrated instance of S26-v2 in production use. The standing discipline is validated across detection-layer (WS-Surface-E), state-machine layer (WS-K), assertion-side (WS-L), pipeline-plumbing (WS-M), and now snapshotter-integration (WS-N) fix-surface categories.
+
+---
+
+## §15 Status footer (step-1b)
+
+**WS-N step-1b status.** CLOSED — sub-mechanism (b) CONFIRMED via code-reading (zero `over_mgr.on_ball_event` calls in score_manager; exclusive production-only invocation at `test_pipeline.py:9236/13098/14017`). NA scope revised from ~5-10 LOC (sub-mechanism a hypothetical) to ~15-25 LOC (sub-mechanism b actual). Step-2 patch shape requires re-authorization at expanded scope OR pivot to NB / ND / deferral.
+
+**Recommended next step.** **User authorization required for step-2 patch shape.** Decision fork enumerated at §14:
+- NA expanded (~15-25 LOC + L2 verification) — leading recommendation.
+- NB `--full-pipeline` flag (same scope + explicit opt-in semantics).
+- ND extract-pipeline-setup refactor (previously falsified; revisit only if justified).
+- Defer WS-N (accept SM-only as architectural-known-limitation).
+
+**Sub-findings.** S26-v2 third-instance footprint confirmed. No new candidates promoted.
+
+**Empirical-budget status.** **1/5 — UNCHANGED across step-1b.**
+
+**Methodology insights running total.** 25 (S26-v2 promoted at WS-M step-4; S28 promoted at WS-L step-3; S25 + S27 + replay-tool-fitness candidates awaiting respective promotion thresholds).
+
+**Recommended commit message:**
+
+```
+docs(workstream-n): step-1b sub-investigation — sub-mechanism (b) confirmed; external BallEventDetector wiring required; step-2 scope expansion review needed
+
+Memo §12-§14 appended. WS-N step-1b spot-checks step-1 §4 NA's
+"sub-mechanism reservation" UNVERIFIED marker per S26-v2 methodology
+(promoted at WS-M step-4).
+
+Code-reading evidence:
+  Task 1 (sm.on_frame body): NO `over_mgr.on_ball_event` calls in
+    score_manager.py. The `over_mgr.` mentions at :709/:712/:725/
+    :1265/:1276 are data-access for `over_mgr.this_over` rewrites
+    + `over_mgr.rewrite_token` slot-binding callback — NOT ball-
+    event dispatch.
+  Task 2 (scoreboard.on_ball_event): NO MATCHES. The method does
+    not exist on Scoreboard. Dispatch does not route through
+    scoreboard.
+  Task 3 (over_mgr.on_ball_event call sites): exclusive production
+    invocation at test_pipeline.py:7366 (attach_score_manager
+    setup) + :9236 (pre-ball dispatch) + :13098 (main loop after
+    BallEventDetector.detect()) + :14017 (ABSORBED_LEGAL post-
+    dispatch). All depend on production-pipeline ball_event
+    sourcing.
+
+Sub-mechanism verdict: (b) CONFIRMED. Sub-mechanism (a)
+FALSIFIED. sm.on_frame does not drive over_mgr; external
+BallEventDetector wiring required for snapshotter to activate the
+bind_pending_slot path.
+
+Step-2 LOC estimate REVISED: ~5-10 LOC (sub-mechanism a
+hypothetical) → ~15-25 LOC (sub-mechanism b actual). Additional
+scope: BallEventDetector instantiation + frame-loop integration
++ per-event dispatch wiring + potential WICKET-ATTRIB synthesis
+mirror from test_pipeline.py:13083-13097.
+
+S26-v2 third-instance footprint:
+  WS-L step-1b (394ed58) — 10-call deviation discovery.
+  WS-M step-1b (c46fcb0) — 1-call cohort-split discovery.
+  WS-N step-1b (this) — 1-call sub-mechanism (b) confirmation.
+~10× cost-reduction ratio preserved. S26-v2 already promoted at
+WS-M step-4; this is empirical reinforcement, not new promotion.
+
+Per user stop condition: STOP. Step-2 requires re-authorization
+at expanded scope OR pivot to NB --full-pipeline flag OR ND
+extract-pipeline-setup refactor OR defer WS-N.
+
+Recommendation: NA expanded with explicit L2 backward-compat
+verification at step-2. Budget projection unchanged: 0/5 step-2
+(unit + L2) + 1/5 step-3 (single empirical replay).
+
+Empirical-budget status: 1/5 → 1/5 (UNCHANGED).
+Methodology insights running total: 25 (unchanged).
+Memo: files/docs/investigations/workstream_n_snapshotter_full_pipeline_integration.md (15 sections, ~600 lines).
+```
+
