@@ -110,3 +110,11 @@
 - "Great question!"
 - "Of course!"
 - "Absolutely!"
+
+## Budget discipline (removed by user direction 2026-05-24)
+
+Do NOT track empirical-budget counters, methodology cap proximity, or Phase-tier cost framing. Do NOT introduce budget-counter language into decisions, instructions, commit bodies, or memos. Do NOT recommend workstream deferrals on budget-conservation grounds. The "5-cap empirical-falsification budget" framework is retired going forward.
+
+What remains in scope: code structure discipline (§15 fence, §7.2 audits, canonical write paths), planning discipline (investigation memos for complex scope, pre-screen fix-surface category, S26-v2 spot-check before patch), quality gates (L1.5 + L2 + derivation green before commit), single-IV discipline for empirical replays (causal attribution, not cost-rationing), honest scope assessment.
+
+Execute decisively. Historical references to budget counters in past investigation memos are preserved as factual records but going-forward framing drops the cap.
