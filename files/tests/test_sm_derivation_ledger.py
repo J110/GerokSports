@@ -472,7 +472,12 @@ def main(argv: list[str] | None = None) -> int:
         return abr_rc
     from test_orphan_fallback_bind import (
         run_all as _run_ofb_gate)
-    return _run_ofb_gate()
+    ofb_rc = _run_ofb_gate()
+    if ofb_rc != 0:
+        return ofb_rc
+    from test_snapshotter_full_pipeline_integration import (
+        run_all as _run_snap_gate)
+    return _run_snap_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:

@@ -55,6 +55,7 @@ import trace_emitter  # noqa: E402
 from score_manager import ScoreManager  # noqa: E402
 from eyes.extract_regex import parse_strip  # noqa: E402
 from eyes.scoreboard import Scoreboard  # noqa: E402
+from pipeline_setup_helper import build_pipeline_components  # noqa: E402
 from test_pipeline_captured_replay import (  # noqa: E402
     BATTING_TEAM as DCKKR_BATTING_TEAM,
     BOWLING_TEAM as DCKKR_BOWLING_TEAM,
@@ -342,6 +343,15 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
         snapshot_output: Path | None = None) -> int:
     builder, batting_team, bowling_team = FIXTURE_BUILDERS[fixture]
     sm, sb = builder()
+    # WS-N N1.2: wire over_mgr + ball_detector + partnership_tracker
+    # via pipeline_setup_helper so the snapshotter exercises the
+    # full-pipeline dispatch path (closes the SM-only measurement gap
+    # documented in
+    # files/docs/investigations/workstream_n_snapshotter_full_pipeline_integration.md).
+    _pipeline_components = build_pipeline_components(sm, sb)
+    over_mgr = _pipeline_components.over_mgr
+    ball_detector = _pipeline_components.ball_detector
+    partnership_tracker = _pipeline_components.partnership_tracker  # noqa: F841
     warm_seed_pending = (
         seed_frame is not None
         and seed_striker is not None
@@ -504,6 +514,60 @@ def run(dump_path: Path, session_id: str, trace_dir: Path,
                 sb.set("overs", fi.ext_overs, frame=frame_id)
         except Exception:
             pass
+
+        # WS-N N1.2: pre-SM ball_detector + over_mgr dispatch.
+        # Mirrors test_pipeline.py:13050-13117 minimum dispatch path
+        # (_pending_bcast_striker_key is per-frame local in
+        # test_pipeline.py:8533 — compute fresh from FrameInput.broadcast_-
+        # striker here; monitoring counters + on-lock callbacks are
+        # test_pipeline-specific scaffolding and are intentionally not
+        # mirrored per memo §16 verification 5).
+        _pending_bcast_striker_key = None
+        if fi.broadcast_striker and getattr(sb, "batting_card", None):
+            _bs_resolved = sb.resolve_name(fi.broadcast_striker)
+            if _bs_resolved:
+                _bs_key = sb._find_card_key(_bs_resolved, sb.batting_card)
+                if (_bs_key
+                        and sb.batting_card.get(_bs_key, {}).get(
+                            "status") == "batting"):
+                    _pending_bcast_striker_key = _bs_key
+        _striker_this_ball = canonical_name(getattr(sm, "striker", None))
+        try:
+            ball_event = ball_detector.detect(sb._tracker)
+        except Exception as e:
+            recorder.record(
+                tag="REPLAY-BALL-DETECTOR-RAISED",
+                error=f"{type(e).__name__}: {e}")
+            ball_event = None
+        if ball_event:
+            if ball_event.get("type") in ("WICKET", "WICKET_LATE"):
+                if _striker_this_ball and not ball_event.get("dismissed"):
+                    # Inline _attribute_dismissed_with_broadcast_override
+                    # equivalent (test_pipeline.py:3154) — broadcast wins
+                    # when it disagrees with the SM-derived striker.
+                    if (_pending_bcast_striker_key
+                            and _pending_bcast_striker_key
+                                != _striker_this_ball):
+                        _dismissed = _pending_bcast_striker_key
+                        recorder.record(
+                            tag="WICKET-ATTRIB-BROADCAST-OVERRIDE-APPLIED",
+                            deterministic=_striker_this_ball,
+                            broadcast=_pending_bcast_striker_key,
+                            frame_id=str(frame_id))
+                    else:
+                        _dismissed = _striker_this_ball
+                    ball_event["dismissed"] = _dismissed
+                    ball_event["striker"] = _dismissed
+                sb.apply_known_wicket_increment(ball_event.get("dismissed"))
+            try:
+                over_mgr.on_ball_event(
+                    ball_event,
+                    score=int(sb._inn.get("score") or 0))
+                sb._tracker.on_ball_event()
+            except Exception as e:
+                recorder.record(
+                    tag="REPLAY-OVER-MGR-DISPATCH-RAISED",
+                    error=f"{type(e).__name__}: {e}")
 
         try:
             sm.on_frame(fi)
