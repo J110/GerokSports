@@ -492,7 +492,12 @@ def main(argv: list[str] | None = None) -> int:
         return wmm_rc
     from test_striker_anchor_deferred import (
         run_all as _run_sad_gate)
-    return _run_sad_gate()
+    sad_rc = _run_sad_gate()
+    if sad_rc != 0:
+        return sad_rc
+    from test_scout_prompt_parrot_anchor_guards import (
+        run_all as _run_spg_gate)
+    return _run_spg_gate()
 
 
 def test_sm_derivation_ledger_passes_through_5_6() -> None:

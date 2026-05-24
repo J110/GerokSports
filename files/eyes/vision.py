@@ -313,6 +313,17 @@ output what you actually see):
 # defense), STEP 3 STRIP, plus an optional CHASE line for innings-2.
 # Anti-priming rules preserved verbatim — they were the post-mortem
 # fix for the 2026-05-11/12 hallucination regression.
+#
+# 2026-05-24 WS-U step-2 (UD-prime-A): extended anti-priming with two
+# additional bullets covering score-shape priors + graphic-overlay
+# digit parrot-anchor (the WS-O.c bogus-63 / WS-Surface-E F1017
+# wickets-counter cohort) and strengthened the VISIBLE_TEXT (none)
+# exit clause to explicit unreadable-frame demotion authorization
+# (sponsor card / replay graphic / mid-cut frames). Schema-preserving
+# text-only extension — reuses the existing STRIP all-null + VT-(none)
+# shape; zero new output shapes, zero parser-touch. See
+# files/docs/investigations/workstream_u_scout_prompt_parrot_anchor_rewrite_investigation.md
+# §10.1 + §10.4 (UD-prime-A leading candidate).
 SCOUT_PROMPT_SHORT = """\
 You are reading a live IPL cricket broadcast frame.
 
@@ -341,6 +352,15 @@ LINE 2 — VISIBLE_TEXT. Transcribe ONLY the bottom-strip scoreboard \
 text, character-by-character, exactly as the pixels render. Use ? \
 for individual chars/words you cannot resolve. Do NOT paraphrase, \
 expand abbreviations, or fill from memory.
+If the strip is missing OR fully unreadable (blank / decoder- \
+corrupted / fully ad-occluded / mid-cut / sponsor-card only / replay- \
+graphic only with no scoreboard text rendered), emit exactly:
+VISIBLE_TEXT: (none)
+and then emit the STRIP all-null line shown below for LINE 3. Do NOT \
+fabricate structured fields when the strip is unreadable — emitting \
+all-null on an unreadable frame is the CORRECT behaviour; downstream \
+gates treat (none) as a clean demotion, while hallucinated structured \
+fields propagate into committed state.
 VISIBLE_TEXT: <verbatim text, or (none) if no strip is rendered>
 
 LINE 3 — STRIP. Parse VISIBLE_TEXT into the structured format below. \
@@ -379,6 +399,14 @@ infer MI, RCB, KKR, LSG, CSK, DC, PBKS, GT, RR, SRH from logo \
 geometry. Only emit a team abbreviation that is written in pixels.
 - Overs token: emit null if no X.Y over counter is visible — do NOT \
 steal a digit from score, run-rate, partnership, or speed.
+- Forbidden score-shape priors (unless literally in VISIBLE_TEXT this \
+frame): generic round-number scores like 100-3, 150-4, 200-5, 250-6 \
+from training data. Score MUST come from the strip pixels.
+- Forbidden graphic-overlay digit parrot: if a side-panel / OTS-panel \
+digit (run-rate denominator, partnership total, target, speed in kph) \
+is the only number visible, do NOT use it as the strip score / \
+wickets / overs. Strip values come from the strip alone — never from \
+side panels, OTS panels, or sponsor cards.
 - * or > prefix on a batter name marks the striker.
 
 HINT FROM SCORER (TIE-BREAK ONLY — VISIBLE_TEXT always wins; if the \
