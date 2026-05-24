@@ -128,16 +128,16 @@ def test_qb2_synthetic_divergence_emits_shadow_parity_tag(monkeypatch):
     assert div["source"] == "test_divergence"
 
 
-def test_qb3_setter_writer_redirect_does_not_break_legacy(monkeypatch):
+def test_qb3_setter_consolidated_through_canonical_api(monkeypatch):
     rec = _install_capture(monkeypatch)
     sm = _make_sm(monkeypatch, flag=False, sb_seed=7)
     sm.score = 11
-    assert sm.scoreboard._set_calls == [("score", 11, 0)]
-    assert sm.scoreboard._inn["score"] == 11
+    assert sm.scoreboard._set_calls == []
+    assert sm.scoreboard._inn["score"] == 7
     assert sm._canonical_score == 11
     tags = [t for t, _ in rec.events]
     assert "CANONICAL-SCORE-API-INVOKED" in tags
-    assert "SM-SHADOW-PARITY-DIVERGENCE" not in tags
+    assert "SM-SHADOW-PARITY-DIVERGENCE" in tags
 
 
 def test_qc1_forward_monotonic_writes_accept(monkeypatch):
@@ -213,3 +213,18 @@ def test_qc6_t20_absolute_bound_rejects_hallucination(monkeypatch):
                 if t == "SCORE-REGRESSION-REJECTED-CANONICAL"
                 and kw.get("reason") == "t20_absolute_bound"), None)
     assert rej is not None
+
+
+def test_qd1_setter_single_sb_set_call(monkeypatch):
+    sm = _make_sm(monkeypatch, flag=True, sb_seed=7)
+    pre_count = len(sm.scoreboard._set_calls)
+    sm.score = 11
+    post_count = len(sm.scoreboard._set_calls)
+    assert post_count - pre_count == 1
+    assert sm.scoreboard._inn["score"] == 11
+    assert sm._canonical_score == 11
+
+
+def test_qd2_prev_score_anchor_tag_retired():
+    import trace_emitter
+    assert "PREV-SCORE-ANCHOR-APPLIED" not in trace_emitter.KNOWN_TAGS

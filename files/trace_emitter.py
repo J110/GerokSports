@@ -144,17 +144,12 @@ KNOWN_TAGS: set[str] = {
     # recal None reset / explicit reset_score caller). Mirrors S10
     # bypass writer redirect from step-2b deferral list.
     "CANONICAL-SCORE-RESET-INVOKED",
-    # WS-V.A1 FA (2026-05-24) — symmetric defensive anchor to the A1
-    # event-firing defense. Fires at score_manager.py:_handle_warm
-    # prev = self._snapshot() construction when self.score is pre-
-    # advanced by an upstream mutator (broadcast tracker /
-    # state-recovery / commit_decision) before _handle_warm runs.
-    # Anchors prev["score"] to _event_baseline_score so downstream
-    # derive_this_over_token computes the correct delta_score
-    # (instead of 0 → raw='.' cascade). Three-instance architectural
-    # cross-corroboration: A1 anchor at :3722-3741 + wire-commentary
-    # comment at test_pipeline.py:14102-14109 + WS-Q §5 D3 catalogue.
-    "PREV-SCORE-ANCHOR-APPLIED",
+    # WS-V.A1 FA tag retired at WS-Q step-2d (2026-05-24): cross-fixture
+    # audit at `4e3b3d3` verified PREV-SCORE-ANCHOR-APPLIED count=0 across
+    # 4 captures + 2,472 trace records post-step-2c flag flip. FA self-
+    # disabled structurally as predicted at WS-V.A1 step-2 §10 forward-
+    # compat contract. A1 event-firing defense at score_manager.py:3828
+    # retained (uses `_event_baseline_score` for d_score calculation).
     "EXTRACTOR-ROW-RECLASSIFIED",
     "ABSORBED-LEGAL-BOWLER-CREDITED",
     "EXTRA-FABRICATION-REJECTED-NO-WITNESS",

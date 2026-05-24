@@ -1762,18 +1762,10 @@ class ScoreManager:
                 self._sm_feeder_sb_missing_logged = True
             self._sm_scalar_fallback["score"] = iv
             return
-        frame = self._current_frame
-        try:
-            ok = self.scoreboard.set("score", iv, frame)
-        except Exception as e:
-            log.info(
-                "  [SM-FEEDER-SYNC] field=score "
-                f"value={iv} sb_error={e}")
-            return
+        ok = self.set_score(iv, confidence=1.0, source="setter")
         log.info(
             f"  [SM-FEEDER-SYNC] field=score value={iv} "
             f"sb_accepted={str(ok).lower()}")
-        self.set_score(iv, confidence=1.0, source="setter")
 
     def set_score(self, value: int, *, confidence: float, source: str) -> bool:
         try:
@@ -4231,41 +4223,12 @@ class ScoreManager:
             return None
 
         prev = self._snapshot()
-        # WS-V.A1 FA (2026-05-24): symmetric defensive anchor to the
-        # A1 event-firing defense at `:3722-3741`. `prev["score"]`
-        # captures `self.score`, which is a @property over
-        # `scoreboard._inn["score"]` (line 1710-1719). Upstream
-        # callers (broadcast tracker / state-recovery / commit_decision
-        # in test_pipeline.py) routinely mutate `scoreboard._inn["score"]`
-        # to the new value BEFORE `_handle_warm` runs, so the snapshot
-        # captures the POST-advance value. Without this anchor, downstream
-        # `_apply_event` → `_snapshot_primitives_from_dict(prev)` →
-        # `derive_this_over_token` computes `delta_score = current.score
-        # - prior.score = 0` → emits `raw='.'` for every per-ball commit
-        # (see WS-V.A1 step-1b memo `23ec7dc`; smoking-gun trace
-        # `dckkr_post_ws_o_b_baseline_20260524_100620.jsonl` at F82/F96/
-        # F97/F119/F126 shows d_score=1/d_score_naive=0). The mechanism
-        # is architecturally documented at three sites: A1 comment
-        # block at `:3722-3733`, wire-commentary comment at
-        # `test_pipeline.py:14102-14109`, and WS-Q §5 D3 catalogue.
-        # WS-Q forward-compat: once SM owns the canonical score field,
-        # the pre-advance mutation is structurally eliminated and this
-        # anchor becomes a no-op (the predicate is unreachable).
-        _fa_baseline = getattr(self, "_event_baseline_score", None)
-        if (_fa_baseline is not None
-                and prev.get("score") == c_score
-                and d_score > 0):
-            prev["score"] = int(_fa_baseline)
-            if _trace is not None:
-                try:
-                    _trace.get_recorder().record(
-                        tag="PREV-SCORE-ANCHOR-APPLIED",
-                        baseline_score=int(_fa_baseline),
-                        stale_snapshot_score=int(c_score),
-                        d_score=int(d_score),
-                        frame_id=str(self._current_frame))
-                except Exception:
-                    pass
+        # WS-V.A1 FA retired at WS-Q step-2d: cross-fixture audit
+        # (`4e3b3d3`) verified PREV-SCORE-ANCHOR-APPLIED count=0 across
+        # 4 captures post-step-2c flag flip. Canonical store is now
+        # authoritative; pre-advance mutation structurally eliminated.
+        # A1 event-firing defense at `:3828` retained — still uses
+        # `_event_baseline_score` for d_score calculation.
         # Capture batter prevs separately — `prev` here is the SM-state
         # snapshot used by event inference, which keys by bat1/bat2 slot.
         # Striker resolution needs prev-by-name to survive a batter swap
