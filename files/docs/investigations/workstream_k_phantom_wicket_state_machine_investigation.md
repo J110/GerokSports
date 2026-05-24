@@ -5,6 +5,8 @@
 **Empirical-budget status.** 2/5 — UNCHANGED (static-only this step).
 **Outcome.** **WS-K state-machine layer ALSO STATICALLY FALSIFIED.** State-machine signal stack derives from the same Scout-OCR source as detection-layer signals; the OCR-noise-uniformity finding from Surface E §15 GENERALIZES upward — F1017 phantom is structurally undiscriminable from genuine cohort across BOTH detection and state-machine layers within the current Scout primitive set. **Five candidates (KA / KB / KC / KD / KE) statically falsified at gate 1; KF (external Cricbuzz-commentary corroboration) requires architectural pivot beyond Phase 1 scope; KG (cohort-split) unavailable on single-instance cohort.** Recommendation: **accept-and-document-known-limitation** — F1017 retires as architectural-known-defect (Surface E `a4f91f5` framing VALIDATED by WS-K step-1 convergence). Candidate S27 surfaced: **multi-layer falsification convergence** — when sequential investigation layers all falsify on shared signal source, the defect class is structurally beyond current pipeline scope; continued layer-search is methodology waste.
 
+**Footnote (2026-05-24).** KF external-corroboration framing retired per user direction; F1017 remains architectural-known-defect within the broadcast-reading framework (Scout primitive expansion / broadcast wicket-banner detection / at-crease cross-check / replay-slow-mo detection / audio analysis). Cricbuzz commentary fixture role narrowed to offline regression GT only. See HANDOFF + Architecture_HANDOFF standing directives.
+
 ---
 
 ## §1 Empirical anchor — F1017 frame reconstruction + at-crease-pair stability across cohort
