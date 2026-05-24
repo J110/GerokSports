@@ -544,13 +544,13 @@ def _apply_event(
 
     # New over rollover: when we cross from one over to a different one,
     # commit previous over to over_history and reset this_over.
+    # End-of-over striker rotation is applied EAGERLY at end of the
+    # 6th legal ball below (before snapshot), to match the pipeline's
+    # eager-rotation convention. So no rotation here on the rollover.
     if over_n != state.current_over and state.legal_balls_this_over > 0:
         state.over_history[state.current_over] = list(state.this_over_tokens)
         state.this_over_tokens = []
         state.legal_balls_this_over = 0
-        # End-of-over striker rotation
-        state.striker_full, state.non_striker_full = (
-            state.non_striker_full, state.striker_full)
         state.current_over = over_n
     elif over_n != state.current_over:
         state.current_over = over_n
@@ -687,6 +687,13 @@ def _apply_event(
     if (parsed["legal_ball"]
             and not parsed["wicket"]
             and parsed["runs_off_bat"] in (1, 3, 5)):
+        state.striker_full, state.non_striker_full = (
+            state.non_striker_full, state.striker_full)
+
+    # End-of-over striker rotation, applied EAGERLY before snapshot at X.6
+    # (when the 6th legal ball of this over has just been processed).
+    # Pipeline convention: striker reflects post-end-of-over-swap at X.6.
+    if parsed["legal_ball"] and state.legal_balls_this_over == 6:
         state.striker_full, state.non_striker_full = (
             state.non_striker_full, state.striker_full)
 

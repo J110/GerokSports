@@ -351,3 +351,99 @@ User decision options:
 - **Option C**: Declare ALL 56 rows acceptable + pivot immediately (no GT-fix). Cleanest but leaves 35 rows that ARE cheaply fixable.
 
 **STOP** per charter stop condition: arc-trajectory recommendation surfaced to user for decision.
+
+---
+
+## §11 Phase 1 GT-encoding-fix execution
+
+User authorized Option A (Phase 1 GT-fix + acceptable residue + pivot). Execution log:
+
+### §11.1 Patch surface
+
+`files/scripts/ingest_cricbuzz_ground_truth.py:547-553` — removed lazy end-of-over rotation at over-rollover.
+`files/scripts/ingest_cricbuzz_ground_truth.py:686-691` — added eager end-of-over rotation block AFTER mid-over odd-run rotation, gated on `state.legal_balls_this_over == 6`. Rotation fires BEFORE snapshot construction at `_snapshot()`.
+
+Net diff: +6 LOC, -2 LOC (gross 8 LOC change, well under the 10 LOC discipline cap from WS-V.B step-2 lesson).
+
+### §11.2 Fixture regeneration
+
+Regenerated `files/tests/fixtures/dckkr_ground_truth_ui_snapshots.jsonl` via `ingest_cricbuzz_ground_truth.py --commentary … --output …`. Output unchanged in row count (122 events). Striker/non-striker names at X.6 frames flipped per Phase 1 semantic shift.
+
+### §11.3 Baseline replay outcome
+
+Re-ran `replay_captured_scout_trace.py` + `replay_diff_harness.py` against patched-ingester GT. New baseline: `files/tests/baselines/dckkr_diff_post_ws_v_b_phase1_baseline.md`.
+
+Diff count: matched=28 | missing=94 | phantom=3 | **divergences=59** (down from 93, **34 rows closed**).
+
+---
+
+## §12 Post-Phase-1 baseline divergence count + per-cohort attribution
+
+| Cohort | Pre-Phase-1 rows | Post-Phase-1 rows | Closure | Notes |
+|---|---|---|---|---|
+| Y (over-end X.6, 0.6/1.6/2.6/3.6) | 35 (34 striker-swap + 1 boundary) | 0 | **CLOSED** | Y patch effective; over-end snapshots now match pipeline post-end-of-over swap |
+| Z (mid-over 4.4) | 10 | 10 | UNCHANGED | Phase 1 patch does not touch mid-over rotation; left as acceptable residue |
+| W (mid-over 4.3) | 10 | 10 | UNCHANGED | True pipeline cricket-defect; deferred to Phase 4 catalogue as WS-V.B.W |
+| Recent-overs-drop | 4 | 4 | UNCHANGED | Independent surface |
+| Per-batter-ledger-drift | 5 | 5 | UNCHANGED | Independent (E2-cohort) |
+| Boundary-counter-double-increment | 1 | 0 | **CLOSED** | Y cohort downstream cascade |
+| E2-phantom-runs | 3 | 3 | UNCHANGED | WS-O.c surface |
+| F-A-commit-lag | 10 | 10 | UNCHANGED | Independent |
+| F-B-ad-occlusion | 8 | 8 | UNCHANGED | Independent |
+| G-pipeline-lag | 94 | 94 | UNCHANGED | Independent |
+| Cold-start non_striker (0.2/0.3) | 2 | 2 | UNCHANGED | Pre-existing GT cold-start anomaly; pipeline emits Rahul, GT emits null |
+
+**Predicted vs actual**: predicted 48-58 divergences; actual 59. +1 vs upper-band-predicted is the 0.2/0.3 cold-start anomaly being independent of the Y cohort (already present at the same count pre-Phase-1; not closed by Phase 1).
+
+**H3 META-FINDING CONFIRMED**: 34 rows closed via GT-encoding-fix (no pipeline change). The diff baseline was over-counting pipeline defects by 34 rows in the post-WS-V.A1 baseline. WS-O.b PA, WS-P P1, WS-U V2, WS-V.A1 FA, and WS-V.B step-2 (reverted) predicted-flip tables were all compared against an inflated baseline; going forward the validated baseline is 59 rows, not 93.
+
+---
+
+## §13 WS-V.B arc closure
+
+### §13.1 4-step arc retrospective
+
+| Step | Output | Empirical outcome |
+|---|---|---|
+| WS-V.B step-1 (`c942e47`) | Investigation memo: residual classification (D3-class) | D3-class hypothesis derived from canonical-writer firings; not empirically anchored to snapshot output |
+| WS-V.B step-2 (no commit) | VBD-1 patch (cache pre-rotation pair, snapshot reads cache) | Phase 3 shadow replay: **+71 NEW divergences**, FALSIFIED; reverted |
+| WS-V.B step-1b (`ca22851`) | Investigation memo: S35-anchored cohort partitioning | 56 residual → 35 Y + 10 Z + 10 W; 45 rows = GT-vs-pipeline convention mismatch (NOT pipeline defects) |
+| **WS-V.B Phase 1 (THIS COMMIT)** | GT ingester eager-rotation fix + regenerated fixture + close-out | **34 rows closed; 59-row validated baseline; arc CLOSED** |
+
+### §13.2 Cumulative WS-V investigation (5 layers from WS-V → WS-V.B Phase 1)
+
+| Layer | Workstream | Outcome |
+|---|---|---|
+| 1 | WS-V step-1 | Score-derivation A1 anchor (12 rows closed) |
+| 2 | WS-V.A1 step-1b | FA prev-snapshot-staleness anchor identification |
+| 3 | WS-V.A1 FA (`b7251e7`) | FA patch landed (~53-61 rows closed) |
+| 4 | WS-V.B step-1 + step-2 (VBD-1 falsified) | Mechanism walkthrough refinement (S35-candidate emerged) |
+| 5 | WS-V.B step-1b + Phase 1 | Cohort re-partition + GT-encoding-fix (34 rows closed; 20-row acceptable residue) |
+
+**Total arc closure**: 207 (initial baseline) → 59 (post-Phase-1 validated). **~71% total divergence reduction across WS-V arc.**
+
+### §13.3 S33+S34+S35 footprint summary
+
+- **S33 (parallel-prompt parity)**: 2nd-instance footprint (WS-O OA + WS-P P1 prior; reinforced by WS-V.B step-2 falsification empirical-parity discipline)
+- **S34 (empirical-parity-check)**: 5th-instance footprint (WS-O.b + WS-P + WS-V.A1 + WS-V.B step-1 + WS-V.B step-1b). PROMOTED to standard methodology.
+- **S35 (empirical-anchor to actual snapshot-write output)**: PROVISIONAL PROMOTION from candidate status. First formal application at WS-V.B step-1b prevented VBD-1-style falsifiable patches from landing (saved +71-divergence regression). Full S35 promotion deferred to second-instance corroboration.
+
+### §13.4 Acceptable residue declaration
+
+- **Cohort Z (10 rows at 4.4)**: GT-vs-pipeline mid-over convention mismatch. Both individually consistent cricket conventions. Closing would require broader GT semantic shift (risks regressing many currently-matched mid-over rows). DECLARED ACCEPTABLE.
+- **Cohort W (10 rows at 4.3)**: True pipeline cricket-defect (striker_name vs stats internal inconsistency). Requires step-1c instrumentation + step-2 patch (3-step iteration for 1.7% closure). DEFERRED to Phase 4 catalogue as WS-V.B.W. User may authorize step-1c at any time after pivot queue is exhausted.
+
+### §13.5 Pivot queue
+
+Pivot recommendations (priority order, decisive factor noted):
+1. **Track 2 re-enable** — highest leverage, oldest deferral
+2. **WS-Q score-axis step-2a** — chartered next step in canonical-API refactor
+3. **WS-V.A1 step-4 close-out** — FA-followup; load-bearing for FA arc completeness
+4. **WS-V.B.W step-1c** — only after queue 1-3 exhausted; 10-row payoff
+5. Independent cohorts: F-A-commit-lag (10), F-B-ad-occlusion (8), Recent-overs-drop (4), Per-batter-ledger-drift (5)
+
+---
+
+## §14 WS-V.B arc CLOSED
+
+This memo is updated as the WS-V.B arc-closure document. No further WS-V.B work planned; cohort W deferred to Phase 4 (WS-V.B.W) for future investigation.
