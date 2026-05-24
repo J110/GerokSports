@@ -19,6 +19,7 @@ import numpy as np
 import websockets
 
 sys.path.insert(0, ".")
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
 
 from card_helpers import overs_to_balls, _reconcile_bowler_overs
 from eyes.config import CAPTURE_FPS
@@ -82,6 +83,7 @@ from commentary.context_builder import ContextBuilder
 from commentary.moment_detector import MomentDetector
 from ball_analyzer import BallAnalyzer
 from score_manager import ScoreManager, FrameInput, ABSORBED_LEGAL
+from pipeline_setup_helper import build_pipeline_components
 
 from scorer_decision_schema import (
     BATTERS_INVARIANT_AUTOCORRECT,
@@ -7160,19 +7162,14 @@ async def run_test():
     scorer = MatchStateAgent()
     jump_guard = ScoreJumpGuard()
     cricket_checker = CricketChecker()
-    over_mgr = ThisOverManager()
-
-    # Wire the FOW-upgrade callback (Fix 3): when scoreboard.`_add_fow`
-    # upgrades a placeholder W{n} entry to a real wicket with concrete
-    # `overs="X.Y"`, ask the over manager to reorder its `this_over`
-    # so the W token sits at the correct legal-ball position.  Fixes
-    # the "W appended after the boundary" UX bug where wicket-graphics
-    # animate before the score-strip catches up.
-    scoreboard.on_fow_upgrade = over_mgr.reorder_wicket_to_ball
-
-    # === COMMENTARY TRACKERS ===
-    ball_detector = BallEventDetector()
-    partnership_tracker = PartnershipTracker()
+    # over_mgr / ball_detector / partnership_tracker are instantiated
+    # below via pipeline_setup_helper.build_pipeline_components (which
+    # also wires scoreboard.on_fow_upgrade and over_mgr.attach_score_-
+    # manager once score_mgr exists). Closure-tangled state defined
+    # in this scope (reset_for_innings, _on_bowler_lock,
+    # _on_striker_lock, monitoring counters, _pending_bcast_striker_key)
+    # binds those names from the enclosing scope at call time, so
+    # defining the closures here before the helper call is safe.
 
     # Bug #14: centralized innings-change reset.
     # Called from every code path that flips current_innings → 2.
@@ -7353,17 +7350,15 @@ async def run_test():
     # === SCORE MANAGER (live mode — events drive Wire commentary) ===
     score_mgr = ScoreManager(shadow=False)
     score_mgr._bowler_tracker = bowler_tracker
-    # Attach the scoreboard so SM can canonicalize raw scout names
-    # ("N RANA", "Rahul") to canonical squad keys ("Nitish Rana",
-    # "KL Rahul") at the single entry point (_build_scorecard).  Without
-    # this, `score_mgr.striker` / `bat1_name` stay raw, the UI's
-    # `batting_card[i].is_striker = (name == striker)` comparison always
-    # fails, and no batter is highlighted as striker.  Issue 1 fix.
-    score_mgr.scoreboard = scoreboard
-    # B1.2c: wire the slot-binding back-ref so over_mgr's ABSORBED_LEGAL
-    # handler can call sm.bind_pending_slot(slot_idx) after appending "?"
-    # placeholders. See no_multiball_design.md.
-    over_mgr.attach_score_manager(score_mgr)
+    # WS-N N1.1: helper instantiates over_mgr + ball_detector +
+    # partnership_tracker and wires on_fow_upgrade (Fix 3) +
+    # score_mgr.scoreboard (Issue 1) + over_mgr.attach_score_manager
+    # (B1.2c). See files/scripts/pipeline_setup_helper.py for the
+    # consolidated documentation.
+    _pipeline_components = build_pipeline_components(score_mgr, scoreboard)
+    over_mgr = _pipeline_components.over_mgr
+    ball_detector = _pipeline_components.ball_detector
+    partnership_tracker = _pipeline_components.partnership_tracker
     # B1.3 §2.8: wire bowler / striker tracker on_lock callbacks. The
     # callback fires on the False→True _locked transition inside
     # observe() (confidence_tracker.py); it triggers a resweep that
