@@ -687,4 +687,78 @@ Memo: files/docs/investigations/workstream_n_snapshotter_full_pipeline_integrati
 
 **Methodology insights running total.** 25 (unchanged).
 
+---
+
+## §19 Phase 2 reframe declaration
+
+**WS-N status: PHASE-2-REFRAMED.** Not closed. Not retired. Not deferred-indefinitely. Active backlog item with full Phase 2 scoping artifact (this memo §1-§21).
+
+**Strategic value preserved.** WS-N closes the SM-only snapshotter measurement gap surfaced at WS-M step-3 + documented at runbook fix `3e8ac11`. Full-pipeline snapshotter enables differential-testing validation of cross-module fixes (Shape 2 / WS-H D-post-FoW-striker closure / future cross-module workstreams). The user direction "change the snapshotter to ingest full pipeline output" remains the canonical objective.
+
+**Scope reality per six-layer S26-v2 cascade.** Step-1 §4 estimated NA at ~5-10 LOC. Step-1b sub-mechanism (b) revised to ~15-25 LOC. Step-2 verification (no commit) surfaced BallEventDetector class disambiguation + `_pending_bcast_striker_key` discovery, revising to ~50-75 LOC. Step-1c Fork C verdict revised to ~70-115 LOC. Step-2 verification (no commit) surfaced setup-block-not-discrete (closures bind setup primitives to main-loop state), revising to **~90-165 LOC across 2-3 commits + closure-equivalent code in snapshotter (`reset_for_innings`-equivalent + on-lock callbacks + monitoring state mirror + `_pending_bcast_striker_key` mirror)**.
+
+**Why Phase 1-unaffordable.**
+- Single-commit-budget-neutral closure model (WS-I shape) doesn't fit ~90-165 LOC across 2-3 commits.
+- Methodology cap at 1/5 budget proximity puts step-3 empirical validation at risk of consuming final budget; pipeline-runtime regression risk on a refactor of test_pipeline.py setup is real.
+- S26-v2 sixth-instance pattern (six cascading scope-expansion layers) suggests additional scope-expansion layers likely at step-3+; the static-investigation chain has not yet bottomed out.
+
+**Phase 2 framing.** WS-N reframes as Phase 2-class architectural refactor. Execution triggers on EITHER (a) production-session-driven validation accumulates sufficient cross-module-fix verification needs to justify the investment (e.g., 3+ workstreams blocked on snapshotter-validation-of-cross-module-wiring), OR (b) empirical-budget recovers via shipped Phase 1 assertion-side fix validation against natural traces (budget ≥3/5 restored).
+
+## §20 Phase 2 scoping artifact pointer
+
+**This memo (§1-§21) IS the canonical Phase 2 scoping document for WS-N.** No separate scoping memo needed at Phase 2 entry — the static-investigation chain has already produced comprehensive analysis:
+- §1-§4: empirical anchor + current snapshotter architecture + integration requirements + 5-hypothesis enumeration (NA/NB/NC/ND/NE).
+- §5-§10: cohort-closure verification + audit + risk assessment + predicted-flip + sub-findings + step-2 entry data (initial sub-mechanism (a) hypothetical).
+- §11-§14: step-1b sub-mechanism (b) confirmation + refined step-2 entry data + S26-v2 third-instance footprint.
+- §15-§18: step-1c Fork C extractability analysis + MESSY-PARTIAL verdict + cost-benefit + S26-v2 fifth-instance.
+- §19-§21 (this): Phase 2 reframe + scoping pointer + candidate methodology insight.
+
+**Recommended Phase 2 entry point.** Re-evaluate Fork A-expanded vs Fork C-revised at honest 90-165 LOC scope with explicit multi-commit execution plan. Consider Fork ND (extract-pipeline-setup-into-class refactor) if Phase 2 timing aligns with broader test_pipeline.py modernization (e.g., as part of an architectural refactor pass that addresses multiple closure-tangling concerns).
+
+**Operational mitigation during Phase 1.** Runbook SM-only caveat at `3e8ac11` documents the limitation for runbook users. Production-session-driven validation mode (per WS-M step-4 close-out at `b11f000`) handles cross-module fix verification need via natural session traces + shipped assertion re-run at zero budget cost. Sub-cohort A's predicted closure (Shape 2 + 18-run total) remains verifiable on next natural session.
+
+## §21 Candidate methodology insight — scope-expansion-cascades-as-Phase-2-signal
+
+**Statement (CANDIDATE — single-instance evidence at WS-N; NOT yet promoted).** *"When a workstream's static-investigation chain surfaces progressive scope expansion at each verification layer (S26-v2 spot-check repeatedly catching scope the prior layer missed), the cumulative pattern is itself a signal the workstream is Phase 2-class architectural-refactor rather than Phase 1-affordable surgical-fix. Phase boundary discrimination via S26-v2-cascade-count: ≥4 layers of cascading scope expansion suggests Phase 2 reframe."*
+
+**Distinction from S26-v2.** S26-v2 catches DRIFT AT A SINGLE LAYER — pre-step-N spot-check of step-(N-1) UNVERIFIED markers prevents one-layer deviation cost. This candidate (potentially S29 or unnumbered) catches CUMULATIVE SCOPE GROWTH across MULTIPLE LAYERS — the absolute scope estimate keeps growing at each verification layer, suggesting the workstream's architectural-fit is Phase 2 not Phase 1.
+
+**First-instance evidence — WS-N's six-layer cascade.**
+
+| Layer | Estimated scope | Tool methodology that surfaced the layer |
+|---|---|---|
+| Step-1 §4 NA initial | ~5-10 LOC | Grep + script docstring |
+| Step-1b sub-mechanism (b) | ~15-25 LOC | Grep + sm.on_frame body scan |
+| Step-2 verification (prior; no commit) | ~50-75 LOC | BallEventDetector class disambiguation grep + WICKET-ATTRIB body read |
+| Step-1c Fork C MESSY-PARTIAL | ~70-115 LOC | `_pending_bcast_striker_key` site enumeration via grep |
+| Step-2 verification (this; no commit) | **~90-165 LOC** | End-to-end read of test_pipeline.py:7160-7400 surfacing closure-tangling that grep missed |
+
+**Scope growth trajectory:** ~10x from initial estimate to final. Each layer's tool methodology surfaced what the prior layer's tool methodology couldn't see (grep → grep-with-context → end-to-end-read → closure-relationship-analysis).
+
+**Operational corollary if promoted.** When a static-investigation chain shows ≥4 cascading layers of scope expansion + each layer's scope estimate is ≥1.5x the prior layer's: declare Phase 2 reframe. Don't authorize Phase 1 patch step-2 even if user willing; the workstream is architectural-refactor-class disguised as surgical-fix.
+
+**Promotion threshold.** Single-instance (WS-N). Awaits second-instance from a different workstream's static-investigation chain surfacing a similar cascade. When second instance surfaces, promote at that workstream's close-out.
+
+**Cross-references.**
+- S22 + S26 + S26-v2 + S28 cost-optimization framework (Architecture_HANDOFF post-WS-M architectural-fence) — this candidate is the **phase-boundary discrimination** peer to the cost-optimization framework.
+- S27 (shared-signal-source structural barrier, candidate single-instance at WS-K) — peer "single workstream produces a methodology-class insight" pattern.
+- Replay-tool-fitness candidate (WS-M step-4 first-instance) — peer "single workstream produces a tooling-class insight" pattern.
+
+---
+
+## §22 Status footer (Phase 2 reframe close-out)
+
+**WS-N status: PHASE-2-REFRAMED.** Active Phase 2 backlog item. Canonical scoping at this memo §1-§21. Execution gated on cross-module-fix-verification cohort growth OR empirical-budget recovery to ≥3/5.
+
+**Recommended next session-level action.** Continue Phase 1 work per the HANDOFF post-WS-M-step-4 standing discipline: assertion-side WS-I-pattern reuse only; Phase 4 docs-class cleanup; production-session-driven validation mode for shipped Phase 1 assertion verification.
+
+**Sub-findings.** Scope-expansion-cascades-as-Phase-2-signal candidate logged at §21 awaiting second-instance.
+
+**Empirical-budget status.** **1/5 — UNCHANGED across WS-N entire arc** (step-1 + step-1b + step-1c + step-2 verification + Phase 2 reframe — all static; zero pipeline execution).
+
+**Methodology insights running total.** 25 (unchanged; no new promotions). S26-v2 sixth-instance footprint at WS-N step-2 verification reinforces the discipline's working-as-designed validation.
+
+**Arc retired into Phase 2 backlog.**
+
+
 
