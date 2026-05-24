@@ -120,7 +120,16 @@ USE_V3_CHUNKER_SPANS = os.environ.get("USE_V3_CHUNKER_SPANS", "0") == "1"
 # lands at step-2b; default flip at step-2c. See WS-Q step-1 memo a3e75d2.
 # Default 0 = zero behavior change; flag=1 routes sm.score @property read
 # through self._canonical_score and parallel-writes sb on set_score.
-USE_SM_CANONICAL_SCORE = os.environ.get("USE_SM_CANONICAL_SCORE", "0") == "1"
+USE_SM_CANONICAL_SCORE = os.environ.get("USE_SM_CANONICAL_SCORE", "1") == "1"
+# WS-Q step-2c (2026-05-24) — canonical sm.set_score regression-rejection
+# predicate confidence threshold. Backward writes with confidence >=
+# REGRESSION_CONFIDENCE_THRESHOLD accept as retroactive corrections
+# (WS-O.c residue closure); below threshold reject as bogus drops.
+# Empirically anchored against the 6 step-2b SM-SHADOW-PARITY-DIVERGENCE
+# events at frames 288/290/303/319/334/361 (all setter-source confidence=1.0,
+# all canonical values matched GT at balls 4.1-4.6).
+REGRESSION_CONFIDENCE_THRESHOLD = float(
+    os.environ.get("REGRESSION_CONFIDENCE_THRESHOLD", "0.7"))
 
 # ── Chunker v3 None-fallback safety net ──
 # When the v3 chunker returns None for a score event AND the legacy

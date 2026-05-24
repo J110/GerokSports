@@ -131,6 +131,19 @@ KNOWN_TAGS: set[str] = {
     # (flag default 0; observability only); load-bearing for step-2c flip
     # decision (high-volume divergence = legacy path semantically critical).
     "SM-SHADOW-PARITY-DIVERGENCE",
+    # WS-Q step-2c (2026-05-24) — sm.set_score regression-rejection
+    # predicate accept/reject trace tags. RETROACTIVE-CORRECTION-APPLIED
+    # fires when a backward write (iv < cur_canonical) accepts via the
+    # confidence threshold (the WS-O.c residue-closure case).
+    # REGRESSION-REJECTED-CANONICAL fires when backward write fails
+    # confidence threshold OR cricket-physics bound (iv<0 or iv>320 T20
+    # ceiling) — the canonical-side gate.
+    "SCORE-RETROACTIVE-CORRECTION-APPLIED",
+    "SCORE-REGRESSION-REJECTED-CANONICAL",
+    # WS-Q step-2c — canonical store reset (innings boundary / poison-
+    # recal None reset / explicit reset_score caller). Mirrors S10
+    # bypass writer redirect from step-2b deferral list.
+    "CANONICAL-SCORE-RESET-INVOKED",
     # WS-V.A1 FA (2026-05-24) — symmetric defensive anchor to the A1
     # event-firing defense. Fires at score_manager.py:_handle_warm
     # prev = self._snapshot() construction when self.score is pre-

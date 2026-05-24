@@ -138,3 +138,78 @@ def test_qb3_setter_writer_redirect_does_not_break_legacy(monkeypatch):
     tags = [t for t, _ in rec.events]
     assert "CANONICAL-SCORE-API-INVOKED" in tags
     assert "SM-SHADOW-PARITY-DIVERGENCE" not in tags
+
+
+def test_qc1_forward_monotonic_writes_accept(monkeypatch):
+    rec = _install_capture(monkeypatch)
+    sm = _make_sm(monkeypatch, flag=True, sb_seed=10)
+    assert sm.set_score(10, confidence=1.0, source="t") is True
+    assert sm.set_score(15, confidence=1.0, source="t") is True
+    assert sm.set_score(15, confidence=1.0, source="t") is True
+    assert sm._canonical_score == 15
+    tags = [t for t, _ in rec.events]
+    assert "SCORE-REGRESSION-REJECTED-CANONICAL" not in tags
+    assert "SCORE-RETROACTIVE-CORRECTION-APPLIED" not in tags
+
+
+def test_qc2_backward_high_confidence_accepts_retroactive(monkeypatch):
+    rec = _install_capture(monkeypatch)
+    sm = _make_sm(monkeypatch, flag=True, sb_seed=63)
+    sm.set_score(63, confidence=1.0, source="t_seed")
+    rc = sm.set_score(43, confidence=1.0, source="setter")
+    assert rc is True
+    assert sm._canonical_score == 43
+    retro = next((kw for t, kw in rec.events
+                  if t == "SCORE-RETROACTIVE-CORRECTION-APPLIED"), None)
+    assert retro is not None
+    assert retro["canonical"] == 43
+    assert retro["prior_canonical"] == 63
+
+
+def test_qc3_backward_low_confidence_rejects(monkeypatch):
+    rec = _install_capture(monkeypatch)
+    sm = _make_sm(monkeypatch, flag=True, sb_seed=63)
+    sm.set_score(63, confidence=1.0, source="t_seed")
+    rc = sm.set_score(43, confidence=0.5, source="low_conf")
+    assert rc is False
+    assert sm._canonical_score == 63
+    rej = next((kw for t, kw in rec.events
+                if t == "SCORE-REGRESSION-REJECTED-CANONICAL"), None)
+    assert rej is not None
+    assert rej["reason"] == "confidence_below_threshold"
+
+
+def test_qc4_innings_reset_clears_canonical(monkeypatch):
+    rec = _install_capture(monkeypatch)
+    sm = _make_sm(monkeypatch, flag=True, sb_seed=180)
+    sm.set_score(180, confidence=1.0, source="t")
+    assert sm._canonical_score == 180
+    sm.reset_score(source="innings_change")
+    assert sm._canonical_score is None
+    sm.set_score(0, confidence=1.0, source="innings_2_start")
+    assert sm._canonical_score == 0
+    reset_evt = next((kw for t, kw in rec.events
+                      if t == "CANONICAL-SCORE-RESET-INVOKED"), None)
+    assert reset_evt is not None
+    assert reset_evt["source"] == "innings_change"
+
+
+def test_qc5_flag_flip_read_returns_canonical_not_legacy(monkeypatch):
+    sm = _make_sm(monkeypatch, flag=True, sb_seed=63)
+    sm.set_score(63, confidence=1.0, source="t_seed")
+    sm.set_score(43, confidence=1.0, source="setter")
+    assert sm._canonical_score == 43
+    assert sm.score == 43
+
+
+def test_qc6_t20_absolute_bound_rejects_hallucination(monkeypatch):
+    rec = _install_capture(monkeypatch)
+    sm = _make_sm(monkeypatch, flag=True, sb_seed=50)
+    sm.set_score(50, confidence=1.0, source="t_seed")
+    rc = sm.set_score(500, confidence=1.0, source="hallucination")
+    assert rc is False
+    assert sm._canonical_score == 50
+    rej = next((kw for t, kw in rec.events
+                if t == "SCORE-REGRESSION-REJECTED-CANONICAL"
+                and kw.get("reason") == "t20_absolute_bound"), None)
+    assert rej is not None

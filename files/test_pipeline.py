@@ -11110,6 +11110,8 @@ async def run_test():
                                     scoreboard._inn["score"] = None
                                     scoreboard._inn["wickets"] = None
                                     scoreboard._inn["overs"] = None
+                                    score_mgr.reset_score(
+                                        source="poison_recal")
                                     # P1 (2026-05-02): the phantom
                                     # commit that landed alongside
                                     # the stuck tracker baseline

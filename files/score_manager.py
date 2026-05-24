@@ -20,7 +20,10 @@ from cricket_rules import (
     validate_absolute,
     validate_diff,
 )
-from eyes.config import USE_SM_CANONICAL_SCORE
+from eyes.config import (
+    REGRESSION_CONFIDENCE_THRESHOLD,
+    USE_SM_CANONICAL_SCORE,
+)
 from eyes.cricket_logger import CricketLogger
 from eyes.this_over import ThisOverManager as _TOM
 from score_manager_derivation import (
@@ -1730,6 +1733,7 @@ class ScoreManager:
     def score(self, value: int | None) -> None:
         if value is None:
             self._sm_scalar_fallback.pop("score", None)
+            self._canonical_score = None
             return
         try:
             iv = int(value)
@@ -1776,6 +1780,34 @@ class ScoreManager:
             iv = int(value)
         except (TypeError, ValueError):
             return False
+        if iv < 0 or iv > 320:
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="SCORE-REGRESSION-REJECTED-CANONICAL",
+                        proposed=iv, reason="t20_absolute_bound",
+                        source=source, confidence=confidence)
+                except Exception:
+                    pass
+            return False
+        cur = self._canonical_score
+        if cur is None or iv >= cur:
+            accept, retro = True, False
+        elif confidence >= REGRESSION_CONFIDENCE_THRESHOLD:
+            accept, retro = True, True
+        else:
+            accept, retro = False, False
+        if not accept:
+            if _trace is not None:
+                try:
+                    _trace.get_recorder().record(
+                        tag="SCORE-REGRESSION-REJECTED-CANONICAL",
+                        proposed=iv, cur_canonical=cur,
+                        reason="confidence_below_threshold",
+                        source=source, confidence=confidence)
+                except Exception:
+                    pass
+            return False
         self._canonical_score = iv
         if _trace is not None:
             try:
@@ -1784,6 +1816,14 @@ class ScoreManager:
                     value=iv, confidence=confidence, source=source)
             except Exception:
                 pass
+            if retro:
+                try:
+                    _trace.get_recorder().record(
+                        tag="SCORE-RETROACTIVE-CORRECTION-APPLIED",
+                        canonical=iv, prior_canonical=cur,
+                        source=source, confidence=confidence)
+                except Exception:
+                    pass
             sb_val = (self._sb_inn_get("score")
                       if self.scoreboard is not None else None)
             try:
@@ -1806,6 +1846,15 @@ class ScoreManager:
                 return False
             return ok
         return True
+
+    def reset_score(self, *, source: str = "reset") -> None:
+        self._canonical_score = None
+        if _trace is not None:
+            try:
+                _trace.get_recorder().record(
+                    tag="CANONICAL-SCORE-RESET-INVOKED", source=source)
+            except Exception:
+                pass
 
     @property
     def wickets(self) -> int | None:
