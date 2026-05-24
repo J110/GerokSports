@@ -490,6 +490,11 @@ def main(argv: list[str] | None = None) -> int:
     wmm_rc = _run_wmm_gate()
     if wmm_rc != 0:
         return wmm_rc
+    from test_prev_snapshot_anchor import (
+        run_all as _run_psa_gate)
+    psa_rc = _run_psa_gate()
+    if psa_rc != 0:
+        return psa_rc
     from test_striker_anchor_deferred import (
         run_all as _run_sad_gate)
     sad_rc = _run_sad_gate()

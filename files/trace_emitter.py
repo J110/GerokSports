@@ -116,6 +116,17 @@ KNOWN_TAGS: set[str] = {
     # else branch. Subsequent asterisk-detected frame OR first ball
     # event in WARM mode anchors the canonical striker pointer.
     "STRIKER-ANCHOR-DEFERRED-NO-ASTERISK",
+    # WS-V.A1 FA (2026-05-24) — symmetric defensive anchor to the A1
+    # event-firing defense. Fires at score_manager.py:_handle_warm
+    # prev = self._snapshot() construction when self.score is pre-
+    # advanced by an upstream mutator (broadcast tracker /
+    # state-recovery / commit_decision) before _handle_warm runs.
+    # Anchors prev["score"] to _event_baseline_score so downstream
+    # derive_this_over_token computes the correct delta_score
+    # (instead of 0 → raw='.' cascade). Three-instance architectural
+    # cross-corroboration: A1 anchor at :3722-3741 + wire-commentary
+    # comment at test_pipeline.py:14102-14109 + WS-Q §5 D3 catalogue.
+    "PREV-SCORE-ANCHOR-APPLIED",
     "EXTRACTOR-ROW-RECLASSIFIED",
     "ABSORBED-LEGAL-BOWLER-CREDITED",
     "EXTRA-FABRICATION-REJECTED-NO-WITNESS",
