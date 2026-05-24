@@ -516,3 +516,175 @@ Methodology insights running total: 25 (unchanged).
 Memo: files/docs/investigations/workstream_n_snapshotter_full_pipeline_integration.md (15 sections, ~600 lines).
 ```
 
+---
+
+## §16 Step-1c sub-investigation — Fork C extraction feasibility
+
+**Trigger.** WS-N step-2 verification (no commit) surfaced ~50-75 LOC actual scope vs step-1b §14's ~15-25 LOC estimate, plus the `BallEventDetector`-from-`commentary.py` vs `BallDetector`-from-`state/ball_detector.py` class disambiguation. User authorized Fork C step-1c to assess extraction feasibility BEFORE committing to scope.
+
+**Task 1 — `_pending_bcast_striker_key` origin.** Grep across `test_pipeline.py`:
+- `:8538`: declared as `_pending_bcast_striker_key: str | None = None` — **inside main loop body** (after pipeline setup block at ~7140-7400, deep in the per-frame iteration).
+- `:8547`: first WRITE (`_pending_bcast_striker_key = _bs_key`).
+- `:11408 / :11424 / :11434 / :11437 / :11452 / :11460 / :11466 / :11473`: 8 read/write sites within the main loop (the broadcast-vs-deterministic-striker resolution chain).
+- Also consumed at `:13088` (WICKET-ATTRIB site, `_attribute_dismissed_with_broadcast_override` call).
+
+**`_pending_bcast_striker_key` is NOT setup — it is per-frame main-loop-local mutable state.** It tracks pending broadcast striker overrides across consecutive frames within the iteration loop. Any extraction strategy must address it as state-tracking-during-iteration, not as one-time setup.
+
+**Task 2 — Setup block component classification (lines 7140-7400 region):**
+
+| Component | Site | Extractability |
+|---|---|---|
+| OpenScout machinery (`OpenScoutSidecar` + `OpenScout` + `OpenScoutRateGate`) | `:7141-7158` | **Conditional** — gated by `USE_OPEN_SCOUT`; depends on `SESSION_ID`. Extractable with optional-init parameter. |
+| `Extractor()` (LLM Scout fallback) | `:7159` | Clean — parameterless. |
+| `MatchStateAgent()` (scorer) | `:7160` | Clean. |
+| `ScoreJumpGuard()` | `:7161` | Clean. |
+| `CricketChecker()` | `:7162` | Clean. |
+| **`over_mgr = ThisOverManager()`** | **`:7163`** | **Clean** — parameterless. |
+| `scoreboard.on_fow_upgrade = over_mgr.reorder_wicket_to_ball` callback wire | `:7171` | Clean — single assignment. |
+| **`ball_detector = BallEventDetector()`** | **`:7174`** | **Clean** — parameterless. |
+| `partnership_tracker = PartnershipTracker()` | `:7175` | Clean. |
+| Bug #14 innings-change-reset setup (`_innings_reset_done_for: set[int]`) | `:7189` | Clean — local state init. |
+| `score_mgr.scoreboard = scoreboard` back-ref | `:7362` | Clean. |
+| **`over_mgr.attach_score_manager(score_mgr)`** | **`:7366`** | **Clean.** |
+| `_on_bowler_lock` / `_on_striker_lock` callbacks (tracker on_lock wiring) | `:7374+` | Conditional — closures capturing main-loop state; requires careful extraction. |
+
+**Setup block extractability verdict: ~80% CLEAN.** OpenScout + tracker on_lock callbacks are conditional/closure-dependent; the rest extracts directly.
+
+**Task 3 — Minimum extractable subset for snapshotter:**
+
+| Snapshotter needs | Source | Extractability |
+|---|---|---|
+| over_mgr instantiation + `attach_score_manager` | `:7163 + :7366` | CLEAN — extract |
+| BallEventDetector instantiation | `:7174` | CLEAN — extract |
+| on_fow_upgrade callback wire | `:7171` | CLEAN — extract |
+| `_attribute_dismissed_with_broadcast_override` function | module-level | Already accessible; no extraction needed |
+| `_pending_bcast_striker_key` per-frame state tracking | **main-loop state at `:8538-13088`** | **MESSY — main-loop-local; not setup; requires mirror in snapshotter loop OR refactor into class wrapping per-frame state machine** |
+
+**Task 4 — test_pipeline.py refactor scope assessment.** A clean function-extraction of the setup primitives (over_mgr + ball_detector + partnership_tracker + on_fow_upgrade wire + attach_score_manager) is feasible at the 7140-7400 region. Estimated extraction: ~30-50 LOC of helper code + ~5 LOC at test_pipeline.py call site updating to invoke the helper + ~5-10 LOC in snapshotter `build_sm` to invoke the helper. **Setup-portion extraction: ~40-65 LOC total, regression risk LOW** (L2 ledger covers test_pipeline.py main path; refactor is semantically identical).
+
+**BUT the `_pending_bcast_striker_key` per-frame state mirror is NOT solved by the setup-extraction.** Snapshotter still needs ~30-50 LOC of per-frame state tracking to enable WICKET-ATTRIB synthesis equivalent. Total Fork C scope: setup-extraction (~40-65 LOC) + per-frame state mirror in snapshotter (~30-50 LOC) = **~70-115 LOC**, comparable to or slightly larger than Fork A-expanded (~50-75 LOC).
+
+**Task 5 — Regression risk assessment.** Setup-portion-only extraction: LOW risk (L2 + L1.5 cover). Per-frame state mirror in snapshotter: SAME risk as Fork A-expanded (no test currently exercises this state-tracking through the snapshotter, so step-2 must add new L1.5 cases). No additional risk from Fork C vs Fork A-expanded.
+
+## §17 Fork C verdict — MESSY-PARTIAL
+
+**Fork C verdict: MESSY-PARTIAL.**
+
+- **Setup-portion extraction**: FEASIBLE and clean (~40-65 LOC; LOW regression risk; deduplication benefit on setup primitives).
+- **Per-frame state mirror (`_pending_bcast_striker_key`)**: NOT solved by extraction; same scope as Fork A-expanded regardless of approach.
+- **Total scope (Fork C-partial)**: ~70-115 LOC — comparable to or larger than Fork A-expanded (~50-75 LOC).
+
+**Per the user's stop condition** ("Fork C-messy: extraction surfaces non-trivial scope > 100 LOC → STOP, report; recommend Fork A-expanded fallback OR Fork D defer"): **the upper bound of Fork C-partial scope (~115 LOC) crosses the >100 LOC threshold.** Fork C-messy STOP triggered.
+
+**The deduplication benefit on the setup portion IS real** — extracting the over_mgr + ball_detector setup avoids future drift on those primitives. But the per-frame state mirror dominates the scope cost, and that scope exists in BOTH Fork A-expanded and Fork C-partial. The architectural-correctness argument for Fork C is partially preserved (setup deduplication) but not load-bearing for the budget calculus.
+
+### Cost-benefit comparison
+
+| Approach | Scope (LOC) | Maintenance debt | Future drift risk | Step-2 budget | Step-3 budget |
+|---|---|---|---|---|---|
+| **Fork A-expanded** | ~50-75 | All new code in snapshotter | High on setup; moderate on state-tracking | 0/5 | 1/5 |
+| **Fork C-partial** | ~70-115 | Setup deduplicated; state-tracking mirror | Low on setup; moderate on state-tracking | 0/5 | 1/5 |
+| **Fork D (defer)** | 0 | None; SM-only stays as documented limitation | None on snapshotter; production-session validation preserved | 0/5 | 0/5 |
+
+**Recommendation:** **Fork D — defer WS-N.** Per the budget calculus + scope-vs-deduplication-benefit ratio:
+- Fork C's deduplication benefit (~30-65 LOC of setup not duplicated) is real but bounded.
+- Fork A-expanded ships duplicate setup that WILL drift (per the runbook precedent the user cited).
+- Fork C-partial is architecturally cleaner but exceeds the 100-LOC stop-condition threshold.
+- **Fork D leaves the architectural-known-limitation in place** but preserves the standing methodology cap (1/5 budget) AND honors the production-session-driven validation mode established at WS-M step-4.
+
+**Fork D pivot honors the user's previously-locked architectural framing:** "Empirical-falsification budget at 1/5 — methodology cap proximity. Remaining Phase 1 work admissible: assertion-side WS-I-pattern reuse only. Phase 4 docs-class cleanup proceeds budget-neutrally. Production-session-driven validation mode: natural sessions generate traces re-runnable against shipped assertions at zero budget cost." (HANDOFF.md header per `b11f000`).
+
+**WS-N is genuinely pipeline-direct + 70-115 LOC scope + 1/5 step-3 budget** — that's exactly the category the methodology-cap-proximity warning flagged as unaffordable. The static-investigation chain has now confirmed the scope; honoring the cap means accepting Fork D.
+
+### S26-v2 fifth-instance footprint CONFIRMED
+
+Five instances of pre-step-N spot-checks now demonstrated:
+1. **WS-L step-1b (`394ed58`)** — 10-call deviation discovery.
+2. **WS-M step-1b (`c46fcb0`)** — 1-call cohort-split discovery.
+3. **WS-N step-1b (`6c322c5`)** — 1-call sub-mechanism (b) confirmation.
+4. **WS-N step-2 verification (no commit)** — 3-call scope-expansion via BallEventDetector class disambiguation + `_pending_bcast_striker_key` discovery.
+5. **WS-N step-1c (this)** — 1-call Fork C MESSY-PARTIAL verdict.
+
+Each spot-check prevented a misspecified step-N commit. Total saved: ~50+ tool calls + multiple revert/refinement cycles + budget consumption from empirical-validation cycles that would have failed for predictable reasons.
+
+**S26-v2 was promoted at WS-M step-4 on two-instance evidence; this fifth instance is empirical reinforcement at saturation — the methodology is working as designed across diverse fix-surface categories.**
+
+### Recommended commit message (Fork D pivot)
+
+```
+docs(workstream-n): step-1c sub-investigation — Fork C extraction MESSY-PARTIAL (~70-115 LOC including per-frame state mirror); recommend Fork D defer per methodology-cap proximity
+
+Memo §16-§17 appended. Fork C extraction feasibility scoped at
+step-1c per S26-v2 methodology (fifth-instance footprint).
+
+Component classification (memo §16 task 2):
+  Setup-portion extraction (~40-65 LOC): CLEAN. over_mgr +
+    BallEventDetector + on_fow_upgrade wire + attach_score_manager
+    all extract cleanly. L2 + L1.5 cover regression risk on
+    test_pipeline.py main path.
+  Per-frame state mirror (`_pending_bcast_striker_key` at :8538):
+    MESSY. Main-loop-local mutable state; NOT setup. 8 read/write
+    sites across main loop body (:8547 / :11408+ / :13088). Snapshot-
+    ter would need ~30-50 LOC of per-frame state tracking
+    regardless of setup-portion approach.
+
+Fork C verdict: MESSY-PARTIAL. Total scope ~70-115 LOC (setup
+extraction + per-frame state mirror). Upper bound crosses the
+user's 100-LOC stop-condition threshold for Fork C-messy.
+
+Cost-benefit:
+  Fork A-expanded ~50-75 LOC; all new code in snapshotter; setup
+    drift risk on every future test_pipeline.py change.
+  Fork C-partial ~70-115 LOC; setup deduplicated; state-tracking
+    mirror still required (same risk as Fork A-expanded).
+  Fork D defer: 0 LOC; SM-only stays as documented limitation
+    (runbook fitness-corrected at 3e8ac11 caveat); production-
+    session-driven validation mode preserved.
+
+RECOMMENDATION: Fork D defer.
+
+Decisive: WS-N is genuinely pipeline-direct + 70-115 LOC + 1/5
+step-3 budget — exactly the category the methodology-cap-proximity
+warning (HANDOFF.md b11f000) flagged as unaffordable. The static-
+investigation chain has now confirmed the scope; honoring the cap
+means accepting Fork D. Production-session-driven validation mode
+remains the standing discipline.
+
+WS-N proceeds to step-2 only if user explicitly re-authorizes at
+the confirmed ~70-115 LOC scope AND accepts 1/5 step-3 budget cost
+(potentially hitting 0/5 methodology cap on worst case).
+
+S26-v2 fifth-instance footprint CONFIRMED:
+  WS-L step-1b (394ed58) 10-call deviation discovery.
+  WS-M step-1b (c46fcb0) 1-call cohort-split discovery.
+  WS-N step-1b (6c322c5) 1-call sub-mechanism (b).
+  WS-N step-2 verification (no commit) 3-call scope-expansion.
+  WS-N step-1c (this) 1-call Fork C MESSY-PARTIAL verdict.
+Each spot-check prevented a misspecified step-N commit. Method-
+ology working as designed across diverse fix-surface categories.
+
+Empirical-budget status: 1/5 → 1/5 (UNCHANGED).
+Methodology insights running total: 25 (unchanged; S26-v2 already
+promoted at WS-M step-4; fifth-instance is empirical reinforce-
+ment).
+Memo: files/docs/investigations/workstream_n_snapshotter_full_pipeline_integration.md (17 sections, ~780 lines).
+```
+
+---
+
+## §18 Status footer (step-1c)
+
+**WS-N step-1c status.** CLOSED — Fork C MESSY-PARTIAL verdict. Extraction is feasible for setup primitives (~40-65 LOC clean) but per-frame state mirror (~30-50 LOC) cannot be deduplicated — total ~70-115 LOC crosses 100-LOC stop-condition threshold. Recommendation: **Fork D defer**.
+
+**Recommended next step.** **User authorization required for WS-N disposition.** Three options:
+- **Fork D (RECOMMENDED): defer WS-N.** Accept SM-only snapshotter as documented architectural-known-limitation; rely on production-session-driven validation mode (standing discipline per WS-M step-4). Methodology cap preserved at 1/5 budget.
+- **Fork A-expanded re-authorized: ~50-75 LOC + 1/5 step-3 budget.** Maintenance-debt artifact future drift risk acknowledged.
+- **Fork C-partial re-authorized: ~70-115 LOC + 1/5 step-3 budget.** Architecturally cleaner; same step-3 budget cost.
+
+**Sub-findings.** S26-v2 fifth-instance footprint confirmed (saturation reinforcement; no new promotion). No other candidates promoted.
+
+**Empirical-budget status.** **1/5 — UNCHANGED across step-1c.**
+
+**Methodology insights running total.** 25 (unchanged).
+
+
