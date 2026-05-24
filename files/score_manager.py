@@ -1769,6 +1769,7 @@ class ScoreManager:
         log.info(
             f"  [SM-FEEDER-SYNC] field=score value={iv} "
             f"sb_accepted={str(ok).lower()}")
+        self.set_score(iv, confidence=1.0, source="setter")
 
     def set_score(self, value: int, *, confidence: float, source: str) -> bool:
         try:
@@ -1783,6 +1784,20 @@ class ScoreManager:
                     value=iv, confidence=confidence, source=source)
             except Exception:
                 pass
+            sb_val = (self._sb_inn_get("score")
+                      if self.scoreboard is not None else None)
+            try:
+                sb_iv = int(sb_val) if sb_val is not None else None
+            except (TypeError, ValueError):
+                sb_iv = None
+            if sb_iv != iv:
+                try:
+                    _trace.get_recorder().record(
+                        tag="SM-SHADOW-PARITY-DIVERGENCE",
+                        canonical=iv, sb_value=sb_iv,
+                        source=source, confidence=confidence)
+                except Exception:
+                    pass
         if USE_SM_CANONICAL_SCORE and self.scoreboard is not None:
             frame = self._current_frame
             try:

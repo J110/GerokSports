@@ -123,6 +123,14 @@ KNOWN_TAGS: set[str] = {
     # rollout monitoring. Expected count = 0 at step-2a (no callers
     # invoke yet); becomes non-zero at step-2b when writers redirect.
     "CANONICAL-SCORE-API-INVOKED",
+    # WS-Q step-2b (2026-05-24) — shadow-parity divergence detection
+    # inside sm.set_score. Fires when the canonical store value (_canonical_score)
+    # disagrees with sb._inn["score"] AFTER both have been written. Indicates
+    # legacy path (sb.set) rejected the proposed value via PA/regression/
+    # tracker gates while canonical accepted it. Informational at step-2b
+    # (flag default 0; observability only); load-bearing for step-2c flip
+    # decision (high-volume divergence = legacy path semantically critical).
+    "SM-SHADOW-PARITY-DIVERGENCE",
     # WS-V.A1 FA (2026-05-24) — symmetric defensive anchor to the A1
     # event-firing defense. Fires at score_manager.py:_handle_warm
     # prev = self._snapshot() construction when self.score is pre-

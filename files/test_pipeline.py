@@ -3641,6 +3641,8 @@ def _apply_state_recovery_phase2_mutation(
     cand = event.get("candidate") or {}
     if cand.get("score") is not None:
         scoreboard._inn["score"] = int(cand["score"])
+        score_mgr.set_score(int(cand["score"]), confidence=1.0,
+                            source="state_recovery_phase_2")
     if cand.get("wickets") is not None:
         scoreboard._inn["wickets"] = int(cand["wickets"])
     if cand.get("overs") is not None:
@@ -4816,11 +4818,17 @@ def apply_scorer_decision(scoreboard, decision, frame, jump_guard,
                             if scoreboard.set(
                                     "score",
                                     _proposed_score, frame):
+                                score_mgr.set_score(
+                                    _proposed_score, confidence=1.0,
+                                    source="scorer_commit_guarded")
                                 changes.append(
                                     f"score→{_proposed_score}")
                     else:
                         if scoreboard.set("score", _proposed_score,
                                           frame):
+                            score_mgr.set_score(
+                                _proposed_score, confidence=1.0,
+                                source="scorer_commit")
                             changes.append(
                                 f"score→{_proposed_score}")
 
@@ -9142,6 +9150,9 @@ async def run_test():
                             try:
                                 _cu_si = int(_cu_s)
                                 if scoreboard.set("score", _cu_si, frame_count):
+                                    score_mgr.set_score(
+                                        _cu_si, confidence=1.0,
+                                        source="catchup_scout")
                                     _cu_changes.append(f"score→{_cu_si}")
                             except (ValueError, TypeError):
                                 pass

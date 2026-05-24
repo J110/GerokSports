@@ -88,3 +88,53 @@ def test_q4b_set_score_rejects_invalid_value(monkeypatch):
     rc = sm.set_score("not-an-int", confidence=0.9, source="test")  # type: ignore[arg-type]
     assert rc is False
     assert sm._canonical_score is None
+
+
+class _CaptureRecorder:
+    def __init__(self):
+        self.events: list[tuple] = []
+
+    def record(self, *, tag, **kwargs):
+        self.events.append((tag, kwargs))
+
+
+def _install_capture(monkeypatch):
+    import trace_emitter
+    rec = _CaptureRecorder()
+    monkeypatch.setattr(trace_emitter, "get_recorder", lambda: rec)
+    return rec
+
+
+def test_qb1_parity_no_divergence_when_values_match(monkeypatch):
+    rec = _install_capture(monkeypatch)
+    sm = _make_sm(monkeypatch, flag=False, sb_seed=11)
+    rc = sm.set_score(11, confidence=0.9, source="test_parity")
+    assert rc is True
+    tags = [t for t, _ in rec.events]
+    assert "CANONICAL-SCORE-API-INVOKED" in tags
+    assert "SM-SHADOW-PARITY-DIVERGENCE" not in tags
+
+
+def test_qb2_synthetic_divergence_emits_shadow_parity_tag(monkeypatch):
+    rec = _install_capture(monkeypatch)
+    sm = _make_sm(monkeypatch, flag=False, sb_seed=7)
+    rc = sm.set_score(11, confidence=0.9, source="test_divergence")
+    assert rc is True
+    div = next((kw for t, kw in rec.events
+                if t == "SM-SHADOW-PARITY-DIVERGENCE"), None)
+    assert div is not None
+    assert div["canonical"] == 11
+    assert div["sb_value"] == 7
+    assert div["source"] == "test_divergence"
+
+
+def test_qb3_setter_writer_redirect_does_not_break_legacy(monkeypatch):
+    rec = _install_capture(monkeypatch)
+    sm = _make_sm(monkeypatch, flag=False, sb_seed=7)
+    sm.score = 11
+    assert sm.scoreboard._set_calls == [("score", 11, 0)]
+    assert sm.scoreboard._inn["score"] == 11
+    assert sm._canonical_score == 11
+    tags = [t for t, _ in rec.events]
+    assert "CANONICAL-SCORE-API-INVOKED" in tags
+    assert "SM-SHADOW-PARITY-DIVERGENCE" not in tags
