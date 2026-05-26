@@ -21,7 +21,7 @@
 - Supported GT inputs are `--ledger` and `--commentary`.
 - `files/scripts/replay_diff_harness.py` accepts only `--pipeline`, `--ground-truth`, and `--report`.
 - Ball log JSONL is not directly accepted by `replay_diff_harness.py`.
-- This replay currently has trace + ball-log signal, but not a harness-compatible GT stream.
+- This replay now has trace + ball-log signal, a harness-compatible pipeline snapshot stream, and KKR/DC GT snapshot streams.
 
 ## GT Source Search
 
@@ -43,11 +43,24 @@ files/.venv/bin/python files/scripts/replay_captured_scout_trace.py \
 ```
 
 - Result: succeeded and produced `files/logs/deliveries/replay_live_kkrdc_20260526_115105/ui_snapshots.jsonl` with 85 snapshots.
-- Diff is not yet possible because no KKR/DC GT commentary or ledger fixture exists in a harness-compatible form.
+- Recording/replay remains incomplete and noisy because of many Scout/OpenScout `429`s, but the output is useful for fixture/tooling validation.
 
-## Next GT Work
+## GT Fixtures
 
-- Create separate DC innings and KKR innings Cricbuzz commentary fixture files before ingesting; the current ingester is single-innings only.
-- Normalize only parser-hostile one-run extras in the fixture text (`byes` -> `1 bye`; `leg byes, 1 run` -> `1 leg bye`).
-- Expected GT sanity once commentary is available: DC innings near 203/5 from 120 legal balls; KKR innings near 163/10 from 112 legal balls.
-- Likely parser gaps to expose next: `2 wides` and `W1` run-out-with-run.
+- Commentary fixtures:
+  - `files/tests/fixtures/kkr_dc_20260524_innings1_cricbuzz_commentary.md`
+  - `files/tests/fixtures/kkr_dc_20260524_innings2_cricbuzz_commentary.md`
+- GT snapshot fixtures:
+  - `files/tests/fixtures/kkr_dc_20260524_innings1_gt_snapshots.jsonl`
+  - `files/tests/fixtures/kkr_dc_20260524_innings2_gt_snapshots.jsonl`
+- Parser fixes made in `files/scripts/ingest_cricbuzz_ground_truth.py`: textual one-run byes/leg-byes, plural wides, run-out with completed runs, and non-bowler-attributable wicket handling.
+- Ingest final states:
+  - Innings 1: DC 203/5, 120 legal balls, extras total 12.
+  - Innings 2: KKR 163/10, 112 legal balls, extras total 5.
+
+## Diff
+
+- Innings 1 report: `files/docs/replay_live_kkrdc_20260526_diff_innings1.md`
+- Summary: matched=72, missing=57, phantom=13, divergences=1019.
+- Top surface counts: `Extras-counter-drop` 150, `F-A-commit-lag` 65, `G-pipeline-lag` 57, `E3-wicket-frame-misalign` 55, `D-post-FoW-striker` 43, `F-B-ad-occlusion` 33.
+- Innings 2 diff not run; pipeline snapshots were not cleanly isolated by innings.

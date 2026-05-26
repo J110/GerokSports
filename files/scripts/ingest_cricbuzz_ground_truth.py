@@ -394,6 +394,7 @@ def _classify_outcome(text: str) -> dict:
       bye:          int
       leg_bye:      int
       boundary_token: str | None  ("4" / "6" or None)
+      bowler_wicket: bool
     """
     t = text.strip().lower()
     out = {
@@ -402,14 +403,35 @@ def _classify_outcome(text: str) -> dict:
         "wide": False, "no_ball": False,
         "bye": 0, "leg_bye": 0,
         "boundary_token": None,
+        "bowler_wicket": False,
     }
+    non_bowler_wicket = any(
+        phrase in t for phrase in (
+            "run out",
+            "retired hurt",
+            "retired out",
+            "obstructing the field",
+            "handled the ball",
+            "hit the ball twice",
+        )
+    )
     # Wide (possibly compound with wicket)
+    m = re.match(r"^(\d+)\s+wides?$", t)
+    if m:
+        out["wide"] = True
+        out["legal_ball"] = False
+        out["total_runs"] = int(m.group(1))
+        if re.search(r"\bout\b", t):
+            out["wicket"] = True
+            out["bowler_wicket"] = not non_bowler_wicket
+        return out
     if t.startswith("wide"):
         out["wide"] = True
         out["legal_ball"] = False
         out["total_runs"] = 1  # base wide = 1 extra
         if re.search(r"\bout\b", t):
             out["wicket"] = True
+            out["bowler_wicket"] = not non_bowler_wicket
         return out
     # No ball
     if t.startswith("no ball") or t.startswith("no-ball"):
@@ -418,6 +440,7 @@ def _classify_outcome(text: str) -> dict:
         out["total_runs"] = 1
         if re.search(r"\bout\b", t):
             out["wicket"] = True
+            out["bowler_wicket"] = not non_bowler_wicket
         return out
     # Boundary keyword
     if t.startswith("four"):
@@ -447,8 +470,23 @@ def _classify_outcome(text: str) -> dict:
     # Out (legal ball wicket — caught, bowled, lbw, run out, stumped)
     if t.startswith("out "):
         out["wicket"] = True
+        out["bowler_wicket"] = not non_bowler_wicket
+        if "run out" in t:
+            m = re.search(r"(\d+)\s+runs?\s+completed", t)
+            if m:
+                completed_runs = int(m.group(1))
+                out["runs_off_bat"] = completed_runs
+                out["total_runs"] = completed_runs
         return out
     # Leg-bye / bye
+    if t in {"bye", "byes"}:
+        out["bye"] = 1
+        out["total_runs"] = 1
+        return out
+    if t in {"leg bye", "leg byes"} or t.startswith("leg byes, 1 run"):
+        out["leg_bye"] = 1
+        out["total_runs"] = 1
+        return out
     m = re.match(r"^(\d+)\s+leg\s*byes?$", t)
     if m:
         out["leg_bye"] = int(m.group(1))
@@ -650,7 +688,8 @@ def _apply_event(
     # Wicket bookkeeping
     if parsed["wicket"]:
         state.wickets += 1
-        bowler_slot["wickets"] = int(bowler_slot.get("wickets") or 0) + 1
+        if parsed["bowler_wicket"]:
+            bowler_slot["wickets"] = int(bowler_slot.get("wickets") or 0) + 1
         # FoW: record post-state score + wkt#
         # overs_str = post-state legal-balls — for wide-with-wicket
         # the legal-ball counter doesn't advance, so the overs string
