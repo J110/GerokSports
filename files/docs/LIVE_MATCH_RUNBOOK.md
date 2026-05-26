@@ -50,7 +50,7 @@ cd ~/Projects/SportsComm
 git pull origin derive-not-detect
 
 # Sanity check tests
-/Users/anmolmohan/opt/anaconda3/bin/python -m pytest files/tests/test_confidence_tracker.py -q
+~/Projects/SportsComm/files/.venv/bin/python -m pytest files/tests/test_confidence_tracker.py -q
 ```
 
 Tests should be all green (31 tests last count).
@@ -134,7 +134,7 @@ export SCOUT_RAW_DUMP=1
 export SKIP_PREMATCH_S=0
 
 # Run
-/Users/anmolmohan/opt/anaconda3/bin/python files/test_pipeline.py 2>&1 | tee /tmp/pipeline.log
+~/Projects/SportsComm/files/.venv/bin/python files/test_pipeline.py 2>&1 | tee /tmp/pipeline.log
 ```
 
 Wait for the log to show:
@@ -194,7 +194,7 @@ This is the 60-second polling loop that builds clusters from scout_raw.jsonl + t
 ```bash
 cd ~/Projects/SportsComm
 BMF_SESSION_ID="<paste from terminal B>" \
-/Users/anmolmohan/opt/anaconda3/bin/python files/scripts/ball_by_ball_logger.py \
+~/Projects/SportsComm/files/.venv/bin/python files/scripts/ball_by_ball_logger.py \
   --ws ws://localhost:8765 \
   --out-dir files/logs/ball_log \
   2>&1 | tee /tmp/ball-log.log
@@ -424,7 +424,7 @@ export FRAME_SOURCE=udp FRAME_SOURCE_UDP_URL='udp://0.0.0.0:9999?fifo_size=10000
 export FRAME_SOURCE_UDP_ALLOWED_DIMENSIONS='1920x1080,1280x720' SCOUT_PROMPT_MODE=verbose
 export USE_OPEN_SCOUT=1 OPENSCOUT_DECOUPLED=1 OPENSCOUT_DECOUPLED_TARGET_INTERVAL_S=2.0
 export SCOUT_RAW_DUMP=1 PYTHONUNBUFFERED=1 SKIP_PREMATCH_S=0
-/Users/anmolmohan/opt/anaconda3/bin/python files/test_pipeline.py 2>&1 | tee /tmp/pipeline.log
+~/Projects/SportsComm/files/.venv/bin/python files/test_pipeline.py 2>&1 | tee /tmp/pipeline.log
 
 # Terminal D (Mac sender):
 TS=$(date +%Y%m%d_%H%M%S)
@@ -442,7 +442,7 @@ LIVE_CLIPS_INTERVAL_S=60 bash files/scripts/extract_live_clips_chunk.sh
 
 # Terminal F (ball-by-ball logger — paste same SESSION_ID):
 cd ~/Projects/SportsComm
-BMF_SESSION_ID="<paste>" /Users/anmolmohan/opt/anaconda3/bin/python \
+BMF_SESSION_ID="<paste>" ~/Projects/SportsComm/files/.venv/bin/python \
   files/scripts/ball_by_ball_logger.py --ws ws://localhost:8765 \
   --out-dir files/logs/ball_log 2>&1 | tee /tmp/ball-log.log
 

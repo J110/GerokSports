@@ -772,3 +772,59 @@ Each session contributes one or more transferable methodology insights. **11 tra
 Empirically validated discipline saves engineering work. F1 demonstrated the positive case (cascade closure of separate workstreams). B-η demonstrated the negative case (5 empirical + 8 static falsifications prevented 5 wrong fixes from landing). Both outcomes are the discipline working as designed.
 
 Welcome to the branch. Read the discipline lessons (§10) before touching anything. Layer 1.5 (now 36 ledger + 6 cross-field) + Layer 2 gates protect you. Read C13 audit memo + C10/C11/C12/C12.5b briefs to understand the static-analysis methodology before defaulting to instrument-replay-then-fix on the next defect class.
+
+---
+
+## 13. Live-pipeline architecture lessons (post 2026-05-24 KKR vs DC session)
+
+The first end-to-end live broadcast capture revealed five architectural defect classes that were invisible to captured-replay testing. Each is a real defect of the live-path; none are introduced by the recording substrate. The recording (`files/logs/deliveries/live_20260524_185913/`) is the source of truth for post-match attribution.
+
+### 13.1 Two distinct frame paths in production (recorder vs pipeline)
+
+The Mac sender (`-f tee` muxer) fans a single libx264 encode out to three sinks:
+
+```
+UGREEN avfoundation → libx264 ───┬─→ UDP 9999 → pipeline (decode → frame queue → Vision SCOUT)
+                                  ├─→ UDP 9998 → recorder (-c copy → .ts archive)
+                                  └─→ mp4 file (fragmented, frag_keyframe+empty_moov)
+```
+
+The recorder path has NO decode stage — `ffmpeg -c copy -f mpegts` writes packets verbatim. The pipeline path has a private ffmpeg subprocess (`udp_frame_source._spawn_ffmpeg`) that decodes UDP H264 to raw BGR24 frames and pipes them to Python. Latency surfaces appear on the pipeline path, never on the recorder path. **This decoupling is the architectural foundation of S36 (recording-as-source-of-truth) — the recording is uncontaminated by any pipeline-internal defects, so post-match replay analysis isolates pipeline defects from capture defects.**
+
+### 13.2 UDPFrameSource consumer-buffer accumulation (D-LIVE-2)
+
+The pipeline's ffmpeg subprocess produces decoded frames into a shared buffer faster than the consumer (Vision SCOUT call loop with 7-10s adaptive sleep) drains it. Over ~10-15 minutes of running, the buffer fills with decoded frames N seconds old. Frame-MD5 frozen-detection exists (`_FROZEN_STREAM_THRESHOLD=5`, emits `[UDP-STREAM-FROZEN]` log + trace tag) but has no recovery action. The `_kill_ffmpeg` + `_spawn_ffmpeg` plumbing exists; what's missing is the watchdog edge that escalates from "log warning" to "kill+respawn subprocess."
+
+Architectural-cure pattern (proposed for next workstream): wire `_consumer_md5_streak ≥ K` (K higher than the warn threshold) as a kill-respawn trigger, with a backoff so a slow-broadcast pause (legitimate same-frame) doesn't thrash the subprocess. The producer is fine; the consumer pacing + buffering is the architectural defect.
+
+Low-delay ffmpeg flags (`+nobuffer`, `-flags low_delay`, `-max_delay 0`) reduce but do not eliminate the buffer. `-probesize 32 -analyzeduration 0` were tried and reverted — they starve the MPEGTS H264 parser and produce blank/garbage frames.
+
+### 13.3 Stale `match_state_cache.json` as cross-session state-source defect (D-LIVE-1)
+
+Hot-resume loads `files/match_state_cache.json` if present. The cache is written every WS broadcast emission. After a previous match ended and the pipeline exited, the cache survived on disk with the previous innings-end state. A new pipeline boot read the stale cache and SM treated it as authoritative warm state. Live Vision reads then looked like regressions to SM's gates and were rejected.
+
+This is **architecturally similar to §12 dual-state-write but with a temporal axis**: it's not two parallel surfaces in one session; it's one surface across two sessions. The architectural cure is to gate `match_state_cache.json` consumption on freshness and identity: reject cache if it is older than the freshness TTL, belongs to a different match/session id, or was created before the current session start.
+
+### 13.4 Vision SCOUT graphic-context unawareness (D-LIVE-4)
+
+Vision SCOUT receives a frame and returns a STRIP parse. Between-overs stats graphics (e.g. "MOST WICKETS BY SPINNERS … KKR 34 RR 30 GT 23 …") visually look like score strips and are parsed into per-batter card writes that latch SM's batter ledger on fictional state. Production already has `frame_phase` and `camera_view` classifiers; what's missing is a graphic-context veto at the SM write side. When `frame_phase ∈ {advertisement, graphic, stats_package, fixture_intro}`, per-batter card writes should be suppressed; STRIP score parse can still flow (it has its own consensus gate) but the per-batter ledger should refuse the read.
+
+This is the **first instance of a write-side graphic-context defect** (WS-V.A1 Phase 1 was the GT-side analog). Pattern: classifier-aware-read-gating is well-established; classifier-aware-write-gating is not.
+
+### 13.5 AdaptiveSleep cadence under-tuning for live ball-by-ball (D-LIVE-3)
+
+The pre-Scout gating chain (pixel-diff → text-band → AdaptiveSleep) was tuned for replay accuracy under cost discipline. In live operation, it produces 1 Vision call per 7-10 seconds. T20 ball cadence is ~20-30s per delivery; resolving each delivery requires 2-3 Vision calls per ball. 1 call per 10s is structurally insufficient.
+
+Architectural lever: AdaptiveSleep has a ceiling that should drop sharply when `frame_phase = active_play` is detected by the upstream OpenScout (or by the Vision SCOUT itself once it has fired). The cadence-thin defect is not a single-knob fix; it's the interaction of three gates that each have legitimate reasons for their thresholds. Investigation memo expected.
+
+---
+
+## 14. Updated next agent's first move (post live match session)
+
+The pre-live "next agent's first move" in §11 is superseded. The live match session created its own first move:
+
+1. Read `NEXT_AGENT_HANDOFF.md` at repo root for the full takeover briefing.
+2. Replay the 12GB `.ts` (`FRAME_SOURCE=file FRAME_SOURCE_FILE=files/logs/deliveries/live_20260524_185913/match_live_20260524_185913.ts`) through the pipeline offline. Capture a clean trace + ball-log.
+3. Diff the offline ball-log against Cricbuzz ground truth (`files/scripts/ingest_cricbuzz_ground_truth.py` with match_id 152263).
+4. Use the diff to attribute each D-LIVE defect (1-5) to a fix surface.
+5. Pre-existing workstreams from §11 (D1+D2 empirical validation, §12 catalogue extension, etc.) are still open but lower-priority than the live-match defect set if it surfaces high-volume cohorts.
