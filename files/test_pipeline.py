@@ -93,6 +93,7 @@ from scorer_decision_schema import (
     finalize_schema_shadow_logs,
     process_scorer_decision_schema,
 )
+from scorer_replay import ScorerReplay
 
 # ---------------------------------------------------------------------------
 # State Recovery Phase 2 — mutation is STAGED only.  Keep False until Phase 1
@@ -119,6 +120,10 @@ WS_PORT = 8765
 COMMENTARY_PORT = 8766
 _UI_SNAPSHOT_ENABLED = (
     _FRAME_SOURCE_MODE == "file" and TEST_DURATION < 18000)
+_DISABLE_INLINE_COMMENTARY_LLM = (
+    os.environ.get("DISABLE_INLINE_COMMENTARY_LLM", "0") == "1")
+_DISABLE_DELIVERY_ANALYSIS = (
+    os.environ.get("DISABLE_DELIVERY_ANALYSIS", "0") == "1")
 
 # Post-processing: strip fabricated fielding positions from commentary
 _FIELDING_STRIP_RE = re.compile(
@@ -221,6 +226,129 @@ def _fast_path_overs_str_to_balls(overs_str: str | None) -> int:
         except (ValueError, IndexError):
             return 0
     return norm[1]
+
+
+def _scoreless_legal_fast_path_placeholder_evidence(
+        *,
+        extracted: dict | None,
+        ball_detector,
+        this_over_tokens,
+        camera_view: str | None,
+        frame_phase: str | None,
+        broadcast_extra: str | None,
+        post_dead_guard_active: bool) -> bool:
+    if not post_dead_guard_active or broadcast_extra:
+        return False
+    view = (camera_view or "").strip().lower()
+    phase = (frame_phase or "").strip().lower()
+    if view in {"ad", "graphic", "replay", "other"}:
+        return False
+    if phase in {"advertisement", "graphic", "replay"}:
+        return False
+    if "?" not in list(this_over_tokens or []):
+        return False
+
+    extracted = extracted or {}
+    score = extracted.get("score")
+    wickets = extracted.get("wickets")
+    overs = extracted.get("match_overs")
+    if overs is None:
+        overs = extracted.get("overs")
+    if score is None or wickets is None or overs is None:
+        return False
+
+    prev_score = getattr(ball_detector, "prev_score", None)
+    prev_wickets = getattr(ball_detector, "prev_wickets", None)
+    prev_overs = getattr(ball_detector, "prev_overs", None)
+    if prev_score is None or prev_wickets is None or prev_overs is None:
+        return False
+    try:
+        score_i = int(score)
+        wickets_i = int(wickets)
+    except (TypeError, ValueError):
+        return False
+    if score_i != int(prev_score) or wickets_i != int(prev_wickets):
+        return False
+
+    current_balls = _fast_path_overs_str_to_balls(str(overs))
+    previous_balls = _fast_path_overs_str_to_balls(str(prev_overs))
+    if current_balls - previous_balls != 1:
+        return False
+
+    bowler = extracted.get("bowler")
+    if not isinstance(bowler, dict):
+        return False
+    if (not bowler.get("name")
+            or bowler.get("runs") is None
+            or bowler.get("wickets") is None
+            or bowler.get("overs") is None):
+        return False
+    bowler_balls = _fast_path_overs_str_to_balls(str(bowler.get("overs")))
+    return bowler_balls % 6 == current_balls % 6
+
+
+def _scoreless_legal_over_closing_evidence(
+        *,
+        extracted: dict | None,
+        ball_detector,
+        this_over_tokens,
+        camera_view: str | None,
+        frame_phase: str | None,
+        broadcast_extra: str | None,
+        post_dead_guard_active: bool) -> bool:
+    if not post_dead_guard_active or broadcast_extra:
+        return False
+    view = (camera_view or "").strip().lower()
+    phase = (frame_phase or "").strip().lower()
+    if view in {"ad", "graphic", "replay", "other"}:
+        return False
+    if phase in {"advertisement", "graphic", "replay"}:
+        return False
+
+    tokens = list(this_over_tokens or [])
+    if any(str(token) == "?" for token in tokens):
+        return False
+    legal_count = sum(
+        1 for token in tokens
+        if str(token).strip().lower() not in {"wd", "wide", "nb", "no ball"})
+    if legal_count != 5:
+        return False
+
+    extracted = extracted or {}
+    score = extracted.get("score")
+    wickets = extracted.get("wickets")
+    overs = extracted.get("match_overs")
+    if overs is None:
+        overs = extracted.get("overs")
+    if score is None or wickets is None or overs is None:
+        return False
+    batters = [
+        row for row in extracted.get("batters") or []
+        if isinstance(row, dict)
+        and row.get("name")
+        and row.get("balls") is not None
+    ]
+    if len(batters) < 2:
+        return False
+
+    prev_score = getattr(ball_detector, "prev_score", None)
+    prev_wickets = getattr(ball_detector, "prev_wickets", None)
+    prev_overs = getattr(ball_detector, "prev_overs", None)
+    if prev_score is None or prev_wickets is None or prev_overs is None:
+        return False
+    try:
+        score_i = int(score)
+        wickets_i = int(wickets)
+    except (TypeError, ValueError):
+        return False
+    if score_i != int(prev_score) or wickets_i != int(prev_wickets):
+        return False
+
+    current_balls = _fast_path_overs_str_to_balls(str(overs))
+    previous_balls = _fast_path_overs_str_to_balls(str(prev_overs))
+    if current_balls - previous_balls != 1:
+        return False
+    return previous_balls % 6 == 5 and current_balls % 6 == 0
 
 
 def _cam_graphic_fast_path(
@@ -363,7 +491,9 @@ class InlineCommentary:
     """Generates commentary inline within the pipeline loop for logging."""
 
     def __init__(self):
-        self.groq = _AsyncGroq(api_key=_GROQ_KEY)
+        self.groq = (
+            None if _DISABLE_INLINE_COMMENTARY_LLM
+            else _AsyncGroq(api_key=_GROQ_KEY))
         self.context = ContextBuilder()
         self.detector = MomentDetector()
         self._prev_state: dict | None = None
@@ -607,6 +737,8 @@ class InlineCommentary:
                 self.history.append(_wo_entry)
                 await self._broadcast(_wo_entry)
                 continue
+            if _DISABLE_INLINE_COMMENTARY_LLM:
+                continue
             persona = PERSONALITIES[name]
             tasks[name] = self._call_llm(name, persona, prompt_text)
 
@@ -693,6 +825,8 @@ class InlineCommentary:
 
     async def _call_llm(self, name: str, persona: dict,
                         prompt_text: str) -> dict:
+        if self.groq is None:
+            return {"text": "", "latency_ms": 0}
         config = persona["config"]
         t0 = time.time()
         try:
@@ -981,6 +1115,12 @@ _TRACE_RECORDER = _trace.get_recorder()
 _TRACE_HANDLER = _trace.install_log_handler()
 _TRACE_WRITER = _trace.get_writer(SESSION_ID)
 _TRACE_MIRROR = _trace.get_mirror()
+_SCORER_REPLAY = ScorerReplay.from_env()
+if _SCORER_REPLAY is not None:
+    log.info(
+        f"[SCORER-REPLAY] loaded {len(_SCORER_REPLAY.records)} records "
+        f"strict={int(_SCORER_REPLAY.strict)} "
+        f"tolerance={_SCORER_REPLAY.tolerance}")
 
 # Shadow v3 delivery detector (env-gated). Non-blocking side-channel
 # off OpenScout's result_sink. Logs decisions to
@@ -7793,7 +7933,9 @@ async def run_test():
     frames.start()
 
     ball_analyzer: BallAnalyzer | None = None
-    if firefox_wid or _FRAME_SOURCE_MODE in ("capture_card", "file", "udp"):
+    if (not _DISABLE_DELIVERY_ANALYSIS
+            and (firefox_wid
+                 or _FRAME_SOURCE_MODE in ("capture_card", "file", "udp"))):
         # window_id is ignored when BallAnalyzer's own FRAME_SOURCE
         # resolves to capture_card; pass 0 as a harmless placeholder.
         # UDPFrameSource has the same get_latest_with_ts/get_frame_count
@@ -12142,23 +12284,37 @@ async def run_test():
                 if scoreboard.fall_of_wickets else "None yet"
             history_str = json.dumps(scoreboard.get_update_history(10))
 
-            decision = await scorer.validate(
-                extracted=extracted,
-                team_a=team_names[0] if team_names else "?",
-                team_b=team_names[1] if len(team_names) > 1 else "?",
-                batting_team=batting_team or "NOT SET",
-                bowling_team=bowling_team or "NOT SET",
-                innings=scoreboard.current_innings,
-                target=str(scoreboard._inn.get("target") or "first innings"),
-                batting_squad_roles=batting_squad_roles,
-                bowling_squad_roles=bowling_squad_roles,
-                batting_card=scoreboard.format_batting_card(),
-                bowling_card=scoreboard.format_bowling_card(),
-                live_state=scoreboard.get_live_state_str(),
-                fow=fow_str,
-                history=history_str,
-                vision_desc=description,
-            )
+            _scorer_replay_hit = (
+                _SCORER_REPLAY.lookup(frame_count)
+                if _SCORER_REPLAY is not None else None)
+            if _scorer_replay_hit is not None:
+                decision = _scorer_replay_hit.decision
+                log.info(
+                    f"[SCORER-REPLAY] requested={frame_count} "
+                    f"matched={_scorer_replay_hit.matched} "
+                    f"delta={_scorer_replay_hit.delta}")
+            elif _SCORER_REPLAY is not None and _SCORER_REPLAY.strict:
+                decision = {}
+                log.warn(
+                    f"[SCORER-REPLAY-MISS] frame_id={frame_count} strict=1")
+            else:
+                decision = await scorer.validate(
+                    extracted=extracted,
+                    team_a=team_names[0] if team_names else "?",
+                    team_b=team_names[1] if len(team_names) > 1 else "?",
+                    batting_team=batting_team or "NOT SET",
+                    bowling_team=bowling_team or "NOT SET",
+                    innings=scoreboard.current_innings,
+                    target=str(scoreboard._inn.get("target") or "first innings"),
+                    batting_squad_roles=batting_squad_roles,
+                    bowling_squad_roles=bowling_squad_roles,
+                    batting_card=scoreboard.format_batting_card(),
+                    bowling_card=scoreboard.format_bowling_card(),
+                    live_state=scoreboard.get_live_state_str(),
+                    fow=fow_str,
+                    history=history_str,
+                    vision_desc=description,
+                )
             s_ms = (time.time() - t0) * 1000
 
             # === INNINGS / TARGET — Rule 2 (Clean Design) ===
@@ -13176,9 +13332,31 @@ async def run_test():
                 and _last_cam not in ("ad", "graphic", "replay", "other")
                 and _last_phase not in ("advertisement", "graphic", "replay")
             )
+            _fast_path_placeholder_scoreless_legal_evidence = (
+                _scoreless_legal_fast_path_placeholder_evidence(
+                    extracted=extracted,
+                    ball_detector=ball_detector,
+                    this_over_tokens=over_mgr.this_over,
+                    camera_view=_last_cam,
+                    frame_phase=_last_phase,
+                    broadcast_extra=_bcast_extra,
+                    post_dead_guard_active=(
+                        _post_dead_time_scoreless_legal_guard > 0)))
+            _over_closing_scoreless_legal_evidence = (
+                _scoreless_legal_over_closing_evidence(
+                    extracted=extracted,
+                    ball_detector=ball_detector,
+                    this_over_tokens=over_mgr.this_over,
+                    camera_view=_last_cam,
+                    frame_phase=_last_phase,
+                    broadcast_extra=_bcast_extra,
+                    post_dead_guard_active=(
+                        _post_dead_time_scoreless_legal_guard > 0)))
             _scoreless_legal_guard_override = (
                 _live_legal_evidence
-                or _strong_live_strip_scoreless_legal_evidence)
+                or _strong_live_strip_scoreless_legal_evidence
+                or _fast_path_placeholder_scoreless_legal_evidence
+                or _over_closing_scoreless_legal_evidence)
             _block_scoreless_legal = (
                 should_block_scoreless_legal_tick(
                     _last_cam,
@@ -14763,13 +14941,8 @@ async def run_test():
                 )
                 _decisions = _TRACE_RECORDER.drain()
                 _ext_full = (extracted or {})
-                _scorer_proposed = {
-                    "score": _ext_full.get("score"),
-                    "wickets": _ext_full.get("wickets"),
-                    "overs": _ext_full.get("match_overs"),
-                    "batter_updates": _ext_full.get("batters") or [],
-                    "bowler": _ext_full.get("bowler") or {},
-                }
+                _scorer_proposed = (
+                    decision if isinstance(decision, dict) else {})
                 _trace_record = {
                     "frame": frame_count,
                     "ts_wall": time.time(),

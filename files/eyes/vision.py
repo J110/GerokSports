@@ -21,6 +21,7 @@ from groq import AsyncGroq
 
 from eyes.config import GROQ_API_KEY, GROQ_PRIMARY_MODEL
 from eyes.cricket_logger import CricketLogger, get_global_frame
+from eyes.tpm_budget import TPMBudget
 
 log = CricketLogger("VISION")
 
@@ -489,14 +490,26 @@ class Vision:
             self._raw_dump_fp = open(
                 os.path.join(ddir, "scout_raw.jsonl"),
                 "a", buffering=1, encoding="utf-8")
-        # Replay cache (opt-in via SCOUT_REPLAY_LOG=<path>). When a
-        # frame_id is present in the cache, _scout_call returns the
-        # cached raw_response instead of calling Groq. Takes precedence
-        # over real API calls; misses fall through to Groq (so partial
-        # caches still work — paired with SCOUT_RAW_DUMP=1 they'll be
-        # filled on the fly).
+        # Replay cache (opt-in via SCOUT_REPLAY_LOG=<path>). Default
+        # mode is frame_id for backwards compatibility. Strict mode
+        # turns cache misses into None instead of live Groq calls so
+        # validation runs cannot silently become non-deterministic.
         self._replay_cache: dict[int, str] = {}
+        self._replay_cap_idx_cache: dict[int, str] = {}
+        self._replay_sequence: list[tuple[int | None, str]] = []
+        self._replay_sequence_index = 0
+        self._replay_mode = os.environ.get(
+            "SCOUT_REPLAY_MODE", "frame_id").strip().lower()
+        if self._replay_mode not in {
+                "frame_id", "sequence", "nearest_frame", "nearest_cap_idx"}:
+            self._replay_mode = "frame_id"
+        self._replay_strict = os.environ.get("SCOUT_REPLAY_STRICT") == "1"
+        self._replay_nearest_tolerance = max(
+            0, int(os.environ.get("SCOUT_REPLAY_NEAREST_TOLERANCE", "2")))
+        self._replay_log_enabled = False
         replay_path = os.environ.get("SCOUT_REPLAY_LOG")
+        if replay_path:
+            self._replay_log_enabled = True
         if replay_path and os.path.exists(replay_path):
             with open(replay_path, encoding="utf-8") as fh:
                 for line in fh:
@@ -506,13 +519,42 @@ class Vision:
                     try:
                         rec = json.loads(line)
                         fid = rec.get("frame_id")
+                        cap_idx = rec.get("cap_idx")
                         raw = rec.get("raw_response")
-                        if isinstance(fid, int) and isinstance(raw, str):
+                        if not isinstance(raw, str):
+                            continue
+                        if isinstance(fid, int):
                             self._replay_cache[fid] = raw
+                            self._replay_sequence.append((fid, raw))
+                        else:
+                            self._replay_sequence.append((None, raw))
+                        if isinstance(cap_idx, int):
+                            self._replay_cap_idx_cache[cap_idx] = raw
                     except json.JSONDecodeError:
                         continue
-            log.info(f"[SCOUT-REPLAY] loaded {len(self._replay_cache)} "
-                     f"cached responses from {replay_path}")
+            log.info(
+                f"[SCOUT-REPLAY] loaded {len(self._replay_cache)} "
+                f"frame_id cached responses and "
+                f"{len(self._replay_sequence)} sequence responses "
+                f"from {replay_path} mode={self._replay_mode} "
+                f"strict={int(self._replay_strict)}")
+        self._scout_tpm_budget: TPMBudget | None = None
+        self._scout_tpm_estimate = int(
+            os.environ.get("SCOUT_TPM_ESTIMATE", "6000"))
+        _scout_tpm_on_exhaust = os.environ.get("SCOUT_TPM_ON_EXHAUST")
+        if not _scout_tpm_on_exhaust:
+            _replay_validation = (
+                os.environ.get("FRAME_SOURCE") == "file"
+                or "TEST_DURATION_S" in os.environ)
+            _scout_tpm_on_exhaust = (
+                "empty" if _replay_validation else "sleep")
+        self._scout_tpm_on_exhaust = (
+            _scout_tpm_on_exhaust
+            if _scout_tpm_on_exhaust in {"empty", "sleep"}
+            else "sleep")
+        _scout_tpm_cap = int(os.environ.get("SCOUT_TPM_BUDGET", "0"))
+        if _scout_tpm_cap > 0:
+            self._scout_tpm_budget = TPMBudget(cap=_scout_tpm_cap)
         self.last_drs_flag: bool = False
         # Fix #4: cumulative count of frames where Scout returned a
         # prompt-template placeholder response.  Surfaced for monitoring;
@@ -829,10 +871,44 @@ class Vision:
     async def _scout_call(self, image_b64: str,
                           prompt: str) -> str | None:
         fid = get_global_frame()
-        if self._replay_cache:
-            cached = self._replay_cache.get(fid)
-            if cached is not None:
-                return cached
+        if self._replay_log_enabled:
+            if self._replay_mode == "sequence":
+                idx = self._replay_sequence_index
+                if idx < len(self._replay_sequence):
+                    cached_fid, cached = self._replay_sequence[idx]
+                    self._replay_sequence_index += 1
+                    log.info(
+                        f"[SCOUT-REPLAY-SEQUENCE] current_frame={fid} "
+                        f"cached_frame={cached_fid} index={idx}")
+                    return cached
+                if self._replay_strict:
+                    log.warn("[SCOUT-REPLAY-EXHAUSTED] strict=1")
+                    return None
+            elif self._replay_mode in {"nearest_frame", "nearest_cap_idx"}:
+                cache = (
+                    self._replay_cap_idx_cache
+                    if self._replay_mode == "nearest_cap_idx"
+                    and self._replay_cap_idx_cache
+                    else self._replay_cache)
+                match = self._nearest_replay_match(fid, cache)
+                if match is not None:
+                    cached_id, cached, delta = match
+                    log.info(
+                        f"[SCOUT-REPLAY-NEAREST] requested={fid} "
+                        f"matched={cached_id} delta={delta}")
+                    return cached
+                if self._replay_strict:
+                    log.warn(f"[SCOUT-REPLAY-MISS] frame_id={fid} strict=1")
+                    return ""
+            else:
+                cached = self._replay_cache.get(fid)
+                if cached is not None:
+                    return cached
+                if self._replay_strict:
+                    log.warn(f"[SCOUT-REPLAY-MISS] frame_id={fid} strict=1")
+                    return None
+        if not await self._reserve_scout_tpm_budget():
+            return ""
         # F130-class fix: 429 retry once with parsed backoff. Without
         # this, a single 429 returns None → ("UNKNOWN","",None) at the
         # describe() boundary → frame discarded by test_pipeline.py with
@@ -843,6 +919,9 @@ class Vision:
         retry_t0: float | None = None
         for attempt in range(2):
             try:
+                if attempt > 0:
+                    if not await self._reserve_scout_tpm_budget():
+                        return ""
                 resp = await self._groq.chat.completions.create(
                     model=GROQ_PRIMARY_MODEL,
                     temperature=0,
@@ -948,6 +1027,57 @@ class Vision:
                 log.error(f"[SCOUT] Error: {e}")
                 return None
         return None
+
+    async def _reserve_scout_tpm_budget(self) -> bool:
+        budget = self._scout_tpm_budget
+        if budget is None:
+            return True
+        spend = max(0, int(self._scout_tpm_estimate))
+        wait_s = self._scout_tpm_wait_s(spend)
+        if wait_s > 0 and self._scout_tpm_on_exhaust == "empty":
+            log.warn(
+                f"[SCOUT-TPM-SKIP] budget exhausted, returning empty "
+                f"response wait_s={wait_s:.2f} spend={spend} cap={budget.cap}")
+            return False
+        while wait_s > 0:
+            log.warn(
+                f"[SCOUT-TPM-GATE] budget exhausted, sleeping "
+                f"{wait_s:.2f}s spend={spend} cap={budget.cap}")
+            await asyncio.sleep(wait_s)
+            wait_s = self._scout_tpm_wait_s(spend)
+        budget.record(spend)
+        return True
+
+    def _scout_tpm_wait_s(self, spend: int) -> float:
+        budget = self._scout_tpm_budget
+        if budget is None or spend <= 0:
+            return 0.0
+        now = time.monotonic()
+        with budget._lock:
+            budget._evict(now)
+            current = sum(tokens for _, tokens in budget._records)
+            if current <= 0 or current + spend <= budget.cap:
+                return 0.0
+            remaining = current
+            for ts, tokens in budget._records:
+                remaining -= tokens
+                if remaining + spend <= budget.cap:
+                    return max(0.0, (ts + budget._window_s) - now)
+            if budget._records:
+                oldest_ts = budget._records[0][0]
+                return max(0.0, (oldest_ts + budget._window_s) - now)
+        return 0.0
+
+    def _nearest_replay_match(
+            self, requested: int,
+            cache: dict[int, str]) -> tuple[int, str, int] | None:
+        if not cache:
+            return None
+        matched_id = min(cache, key=lambda k: (abs(k - requested), k))
+        delta = abs(matched_id - requested)
+        if delta > self._replay_nearest_tolerance:
+            return None
+        return matched_id, cache[matched_id], delta
 
     # ------------------------------------------------------------------
     # Parse the JSON tag line from Scout output
