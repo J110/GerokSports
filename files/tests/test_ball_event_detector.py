@@ -497,6 +497,176 @@ def test_post_dead_time_guard_does_not_use_over_closing_override_for_replay_bad_
     ) is False
 
 
+def test_kkrdc_track1_sequence_keeps_1_6_over_closing_dot():
+    detector = BallEventDetector()
+    detector.detect(_Tracker({
+        "score": 10,
+        "wickets": 0,
+        "overs": "1.0",
+        "striker": "Abishek Porel",
+        "bat:Abishek Porel:balls": 5,
+        "current_bowler": "Saurabh Dubey",
+    }))
+    detector.prev_striker = "Abishek Porel"
+    detector.prev_striker_balls = 5
+
+    emitted = []
+    this_over = []
+
+    def record(event):
+        if event is not None:
+            emitted.append(event)
+            token = {
+                "DOT": ".",
+                "EXTRA": "Wd",
+                "1_RUNS": "1",
+            }.get(event["type"], event["type"])
+            this_over.append(token)
+        return event
+
+    def extracted(score, overs, balls, bowler_overs=None):
+        return {
+            "score": score,
+            "wickets": 0,
+            "match_overs": overs,
+            "batters": [
+                {"name": "Abishek Porel", "runs": 9, "balls": balls},
+                {"name": "KL Rahul", "runs": 2, "balls": 3},
+            ],
+            "bowler": (
+                {
+                    "name": "Saurabh Dubey",
+                    "runs": score - 10,
+                    "wickets": 0,
+                    "overs": bowler_overs,
+                }
+                if bowler_overs is not None else None
+            ),
+        }
+
+    def allow(extracted_frame, tokens):
+        return _caller_allows_scoreless_legal(
+            "closeup",
+            "between_play",
+            "The players are taking a break between play.",
+            extracted_frame,
+            detector=detector,
+            this_over_tokens=tokens,
+            broadcast_extra=None,
+        )
+
+    record(detector.detect(
+        _Tracker({
+            "score": 10,
+            "wickets": 0,
+            "overs": "1.1",
+            "striker": "Abishek Porel",
+            "bat:Abishek Porel:balls": 5,
+            "current_bowler": "Saurabh Dubey",
+        }),
+        allow_scoreless_legal=allow(extracted(10, 1.1, 6, "0.1"), []),
+    ))
+    record(detector.detect(_Tracker({
+        "score": 11,
+        "wickets": 0,
+        "overs": "1.2",
+        "striker": "Abishek Porel",
+        "bat:Abishek Porel:balls": 5,
+        "current_bowler": "Saurabh Dubey",
+    })))
+    record(detector.detect(
+        _Tracker({
+            "score": 11,
+            "wickets": 0,
+            "overs": "1.3",
+            "striker": "Abishek Porel",
+            "bat:Abishek Porel:balls": 5,
+            "current_bowler": "Saurabh Dubey",
+        }),
+        allow_scoreless_legal=allow(extracted(11, 1.3, 6, "0.3"), this_over),
+    ))
+    record(detector.detect(
+        _Tracker({
+            "score": 11,
+            "wickets": 0,
+            "overs": "1.4",
+            "striker": "Abishek Porel",
+            "bat:Abishek Porel:balls": 5,
+            "current_bowler": "Saurabh Dubey",
+        }),
+        allow_scoreless_legal=allow(extracted(11, 1.4, 7, "0.4"), this_over),
+    ))
+
+    detector.set_broadcast_extra("WD")
+    record(detector.detect(_Tracker({
+        "score": 12,
+        "wickets": 0,
+        "overs": "1.4",
+        "striker": "Abishek Porel",
+        "bat:Abishek Porel:balls": 5,
+        "current_bowler": "Saurabh Dubey",
+    })))
+    detector.set_broadcast_extra(None)
+
+    record(detector.detect(
+        _Tracker({
+            "score": 12,
+            "wickets": 0,
+            "overs": "1.5",
+            "striker": "Abishek Porel",
+            "bat:Abishek Porel:balls": 5,
+            "current_bowler": "Saurabh Dubey",
+        }),
+        allow_scoreless_legal=allow(extracted(12, 1.5, 8, "0.5"), this_over),
+    ))
+
+    assert this_over == [".", "1", ".", ".", "Wd", "."]
+    over_closing_allow = allow(extracted(12, 2.0, 9, None), this_over)
+    record(detector.detect(
+        _Tracker({
+            "score": 12,
+            "wickets": 0,
+            "overs": "2.0",
+            "striker": "Abishek Porel",
+            "bat:Abishek Porel:balls": 5,
+            "current_bowler": "Saurabh Dubey",
+        }),
+        allow_scoreless_legal=over_closing_allow,
+    ))
+    record(detector.detect(_Tracker({
+        "score": 13,
+        "wickets": 0,
+        "overs": "2.1",
+        "striker": "Abishek Porel",
+        "bat:Abishek Porel:balls": 5,
+        "current_bowler": "Cameron Green",
+    })))
+
+    observed = [
+        (event["type"], event.get("over"), event.get("extra_type"))
+        for event in emitted
+    ]
+    assert observed == [
+        ("DOT", "1.1", None),
+        ("1_RUNS", "1.2", None),
+        ("DOT", "1.3", None),
+        ("DOT", "1.4", None),
+        ("EXTRA", "1.4", "wide"),
+        ("DOT", "1.5", None),
+        ("DOT", "2.0", None),
+        ("1_RUNS", "2.1", None),
+    ]
+    assert sum(
+        1 for event in emitted
+        if event["type"] == "EXTRA" and event.get("extra_type") == "wide"
+    ) == 1
+    assert over_closing_allow is True
+    assert all(
+        not (event["type"] == "DOT" and event.get("over") == "2.1")
+        for event in emitted[:-1]
+    )
+
+
 def test_post_dead_time_break_text_blocks_scoreless_legal_without_batter_evidence():
     detector = BallEventDetector()
     detector.detect(_Tracker({
