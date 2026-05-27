@@ -428,7 +428,9 @@ def _build_recorder_for_fallback_test(tmp_path,
                                       *,
                                       v3_fallback_enabled: bool | None = None,
                                       v3_fallback_lookback_s: float | None = None,
-                                      v3_fallback_forward_s: float | None = None):
+                                      v3_fallback_forward_s: float | None = None,
+                                      tagged_rows: list[tuple[
+                                          float, str, str]] | None = None):
     """Construct a DWR with stubs that force the else branch.
 
     No tagged frames → legacy `_find_span` returns None.
@@ -448,8 +450,16 @@ def _build_recorder_for_fallback_test(tmp_path,
             out.append((t, np.zeros((4, 4, 3), dtype=np.uint8)))
         return out
 
+    tagged_rows = tagged_rows or []
+
     def tagged_source(start, end, allowed_views):
-        return []
+        allowed = set(allowed_views) if allowed_views is not None else None
+        out = []
+        for ts, view, phase in tagged_rows:
+            if start <= ts <= end and (allowed is None or view in allowed):
+                out.append((ts, np.zeros((4, 4, 3), dtype=np.uint8),
+                            view, phase))
+        return out
 
     return DeliveryWindowRecorder(
         classifier=_StubClassifier(),
@@ -469,7 +479,7 @@ def _build_recorder_for_fallback_test(tmp_path,
 
 def test_fallback_when_v3_and_legacy_both_none(tmp_path):
     """v3 and legacy both None + fallback enabled → fallback window
-    (event_ts−6, event_ts+4) drives the cut."""
+    (event_ts−24, event_ts−4) drives the cut."""
     rec = _build_recorder_for_fallback_test(
         tmp_path,
         v3_fallback_enabled=True,
@@ -481,16 +491,21 @@ def test_fallback_when_v3_and_legacy_both_none(tmp_path):
         runs=1, event_ts=event_ts, save_dir=str(tmp_path / "win_a"))
     assert result is not None
     assert result["_window_source"] == "v3_chunker_fallback"
-    assert result["_window_start_ts"] == 94.0
-    assert result["_window_end_ts"] == 104.0
+    assert result["_window_start_ts"] == 76.0
+    assert result["_window_end_ts"] == 96.0
     # window_debug.json should record the fallback.
     import json
     debug = json.loads(
         (tmp_path / "win_a" / "window_debug.json").read_text())
     assert debug["window_source"] == "v3_chunker_fallback"
     assert debug["fallback"]["used"] is True
-    assert debug["fallback"]["lookback_s"] == 6.0
-    assert debug["fallback"]["forward_s"] == 4.0
+    assert debug["fallback"]["type"] == "delayed_score_pre_event"
+    assert debug["fallback"]["lookback_s"] == 24.0
+    assert debug["fallback"]["end_before_event_s"] == 4.0
+    assert debug["fallback"]["old_lookback_s"] == 6.0
+    assert debug["fallback"]["old_forward_s"] == 4.0
+    assert debug["fallback"]["clip_start_ts"] == 76.0
+    assert debug["fallback"]["clip_end_ts"] == 96.0
     assert debug["v3_chunker"]["drove_cut"] == "fallback"
 
 
@@ -514,7 +529,7 @@ def test_fallback_disabled(tmp_path):
 
 
 def test_fallback_lookback_override(tmp_path):
-    """V3_FALLBACK_LOOKBACK_S override propagates to the cut bounds."""
+    """Old fallback overrides are persisted but no longer drive bounds."""
     rec = _build_recorder_for_fallback_test(
         tmp_path,
         v3_fallback_enabled=True,
@@ -525,12 +540,87 @@ def test_fallback_lookback_override(tmp_path):
     result = rec.classify_for_score_event(
         runs=1, event_ts=event_ts, save_dir=str(tmp_path / "win_c"))
     assert result is not None
-    assert result["_window_start_ts"] == 92.0
-    assert result["_window_end_ts"] == 104.0
+    assert result["_window_start_ts"] == 76.0
+    assert result["_window_end_ts"] == 96.0
     import json
     debug = json.loads(
         (tmp_path / "win_c" / "window_debug.json").read_text())
-    assert debug["fallback"]["lookback_s"] == 8.0
+    assert debug["fallback"]["lookback_s"] == 24.0
+    assert debug["fallback"]["old_lookback_s"] == 8.0
+    assert debug["fallback"]["old_forward_s"] == 4.0
+
+
+def test_retrospective_span_too_close_uses_delayed_fallback(tmp_path):
+    rec = _build_recorder_for_fallback_test(
+        tmp_path,
+        v3_fallback_enabled=True,
+        v3_fallback_lookback_s=6.0,
+        v3_fallback_forward_s=4.0,
+        tagged_rows=[(96.5, "bowlers_end", "release")],
+    )
+    result = rec.classify_for_score_event(
+        runs=1, event_ts=100.0, save_dir=str(tmp_path / "win_d"))
+    assert result is not None
+    assert result["_window_source"] == "v3_chunker_fallback"
+    assert result["_window_reason"] == (
+        "retrospective_span_rejected_too_close_to_event")
+    assert result["_window_start_ts"] == 76.0
+    assert result["_window_end_ts"] == 96.0
+    import json
+    debug = json.loads(
+        (tmp_path / "win_d" / "window_debug.json").read_text())
+    assert debug["retrospective_span_rejected"] == "too_close_to_event"
+    assert debug["rejected_span_start_ts"] == 96.5
+    assert debug["rejected_span_end_ts"] == 96.5
+    assert debug["rejected_clip_start_ts"] == 94.5
+    assert debug["rejected_clip_end_ts"] == 98.0
+    assert debug["rejection_event_safe_cutoff_ts"] == 97.5
+    assert debug["retrospective_span_safe_margin_s"] == 2.0
+    assert debug["retrospective_span_rejection_threshold_s"] == 2.5
+    assert debug["fallback"]["type"] == "delayed_score_pre_event"
+
+
+def test_retrospective_span_near_old_cutoff_is_preserved(tmp_path):
+    rec = _build_recorder_for_fallback_test(
+        tmp_path,
+        v3_fallback_enabled=True,
+        tagged_rows=[(95.392, "bowlers_end", "release")],
+    )
+    result = rec.classify_for_score_event(
+        runs=1, event_ts=100.0, save_dir=str(tmp_path / "win_e"))
+    assert result is not None
+    assert result["_window_source"] == "retrospective_span"
+    assert result["_window_start_ts"] == pytest.approx(93.392)
+    assert result["_window_end_ts"] == pytest.approx(96.892)
+    import json
+    debug = json.loads(
+        (tmp_path / "win_e" / "window_debug.json").read_text())
+    assert debug["retrospective_span_rejected"] is None
+    assert debug["retrospective_span_safe_margin_s"] == 3.108
+    assert debug["retrospective_span_rejection_threshold_s"] == 2.5
+    assert debug["fallback"]["used"] is False
+
+
+def test_retrospective_span_dead_time_tag_uses_delayed_fallback(tmp_path):
+    rec = _build_recorder_for_fallback_test(
+        tmp_path,
+        v3_fallback_enabled=True,
+        tagged_rows=[
+            (95.0, "bowlers_end", "release"),
+            (95.5, "replay", "replay"),
+        ],
+    )
+    result = rec.classify_for_score_event(
+        runs=1, event_ts=100.0, save_dir=str(tmp_path / "win_f"))
+    assert result is not None
+    assert result["_window_source"] == "v3_chunker_fallback"
+    import json
+    debug = json.loads(
+        (tmp_path / "win_f" / "window_debug.json").read_text())
+    assert debug["retrospective_span_rejected"] == "dead_time_tag"
+    assert debug["retrospective_span_safe_margin_s"] == 3.5
+    assert debug["retrospective_span_rejection_threshold_s"] == 2.5
+    assert debug["retrospective_span_has_dead_time_tag"] is True
 
 
 def test_p21_silent_when_v3_returns_none():

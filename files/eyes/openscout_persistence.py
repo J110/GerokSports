@@ -546,6 +546,14 @@ class OpenScoutDeliveryWriter:
             "n_classifications_other": n_other,
             "clip_pre_pad_s": self._pre_pad_s,
             "clip_post_pad_s": self._post_pad_s,
+            "clip_start_ts": clip_start,
+            "clip_end_ts": clip_end,
+            "mp4_path": str(mp4_path),
+            "frames_written": 0,
+            "mp4_exists": False,
+            "frame_source_error": None,
+            "compile_error": None,
+            "note": None,
             "manual_review": None,
         }
 
@@ -553,6 +561,7 @@ class OpenScoutDeliveryWriter:
         try:
             frames = self._frame_source_fn(clip_start, clip_end)
         except Exception as e:  # noqa: BLE001
+            meta["frame_source_error"] = str(e)
             log.warning(
                 f"[OPEN-SCOUT-DELIVERY] frame_source_fn failed: {e}")
             frames = []
@@ -565,12 +574,16 @@ class OpenScoutDeliveryWriter:
                 )
                 frames_written = len(frames)
             except Exception as e:  # noqa: BLE001
+                meta["compile_error"] = str(e)
                 log.warning(
                     f"[OPEN-SCOUT-DELIVERY] mp4 compile failed for "
                     f"{base}: {e}")
         else:
-            log.debug(
+            meta["note"] = "frame buffer empty for span window"
+            log.warning(
                 f"[OPEN-SCOUT-DELIVERY] no frames for {base} window")
+        meta["frames_written"] = frames_written
+        meta["mp4_exists"] = mp4_path.exists()
 
         try:
             with open(meta_path, "w", encoding="utf-8") as f:

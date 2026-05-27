@@ -115,3 +115,36 @@ def test_score_inf_floor_reads_record_extra_total() -> None:
     assert complete is True
     assert bat_sum == 4
     assert extras_total == 3
+
+
+def test_replay_ui_snapshot_wide_uses_scoreboard_extras_and_next_slot() -> None:
+    import test_pipeline
+    from eyes.scoreboard import Scoreboard
+
+    sb = Scoreboard()
+    sb.record_extra("wide", 1)
+    payload = {
+        "scorecard": {
+            "score": 12,
+            "wickets": 0,
+            "overs": "1.4",
+            "striker": "Abishek Porel",
+            "non": "KL Rahul",
+            "current_bowler": "Saurabh Dubey",
+        },
+        "batting_card": [],
+        "bowling_card": [],
+        "this_over": [".", "1", ".", ".", "Wd"],
+    }
+    snap = test_pipeline._build_replay_ui_snapshot_payload(
+        payload,
+        sb,
+        {"type": "EXTRA", "extra_type": "wide", "runs": 1, "legal": False},
+        0,
+    )
+
+    assert snap["over_ball"] == "1.5"
+    assert snap["balls_total"] == 10
+    assert snap["this_over_tokens"] == [".", "1", ".", ".", "Wd"]
+    assert snap["extras_total"] == 1
+    assert snap["extras_wd"] == 1

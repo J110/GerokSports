@@ -356,7 +356,8 @@ class DeliveryBurstTracker:
 class BallAnalyzer:
     """Continuous background capture + on-demand delivery analysis."""
 
-    def __init__(self, window_id: int, *, file_frame_source=None):
+    def __init__(self, window_id: int, *, file_frame_source=None,
+                 session_id: str | None = None):
         self._window_id = window_id
         self._frame_source_mode = FRAME_SOURCE
         self._capture_card: CaptureCardFrameSource | None = (
@@ -407,7 +408,7 @@ class BallAnalyzer:
         self._roi_cache = PitchROICache()  # legacy; unused in VLM mode
         self._current_innings = 1
         # session id keeps delivery folders from colliding across runs
-        self._session_id = time.strftime("%Y%m%d_%H%M%S")
+        self._session_id = session_id or time.strftime("%Y%m%d_%H%M%S")
         # OpenScout output persistence (Layer A sidecar + decoupled
         # delivery clip writer).  Wired in via ``attach_open_scout_sidecar``
         # from the pipeline boot path; left None when OpenScout is

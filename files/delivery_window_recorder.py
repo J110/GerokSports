@@ -72,6 +72,9 @@ FALLBACK_LOOKBACK_S = 10.0
 # bump to +2.5s so the clip ends on the post-shot fielder cutaway rather
 # than mid-swing.
 MAX_EVENT_DRIFT_S = 2.5
+DELAYED_SCORE_FALLBACK_LOOKBACK_S = 24.0
+DELAYED_SCORE_FALLBACK_END_BEFORE_EVENT_S = 4.0
+RETROSPECTIVE_SPAN_REJECTION_THRESHOLD_S = 2.5
 MIN_FRAMES_FOR_CLASSIFICATION = 4
 REPLAY_CAPTURE_S = 15.0
 # RC-3 (2026-04-21): replays of the SCORED delivery happen AFTER
@@ -315,6 +318,8 @@ class DeliveryWindowRecorder:
         # Cut-precedence outcome flags.  ``fallback_used`` flips True
         # only when the V3 None-fallback safety net fires.
         fallback_used = False
+        retrospective_rejection_block: dict | None = None
+        retrospective_safety_block: dict | None = None
 
         legacy_span = self._find_span(
             event_ts=event_ts, target_view="bowlers_end")
@@ -439,21 +444,71 @@ class DeliveryWindowRecorder:
                 span_end=legacy_span[1],
                 event_ts=event_ts,
             )
-            frames = self._get_frames(clip_start, clip_end)
-            source = "retrospective_span"
-            reason = "latest_bowlers_end_span"
-            span = legacy_span
-            self._stats["score_span_found"] += 1
+            safe_margin = event_ts - clip_end
+            safe_cutoff = (
+                event_ts - RETROSPECTIVE_SPAN_REJECTION_THRESHOLD_S)
+            has_dead_time_tag = self._has_dead_time_tag(tags)
+            retrospective_safety_block = {
+                "safe_margin_s": round(safe_margin, 3),
+                "rejection_threshold_s": (
+                    RETROSPECTIVE_SPAN_REJECTION_THRESHOLD_S),
+                "has_dead_time_tag": has_dead_time_tag,
+            }
+            if safe_margin < RETROSPECTIVE_SPAN_REJECTION_THRESHOLD_S:
+                rejection_reason = "too_close_to_event"
+            elif has_dead_time_tag:
+                rejection_reason = "dead_time_tag"
+            else:
+                rejection_reason = None
+            if rejection_reason is not None:
+                retrospective_rejection_block = {
+                    "reason": rejection_reason,
+                    "rejected_span_start_ts": round(legacy_span[0], 3),
+                    "rejected_span_end_ts": round(legacy_span[1], 3),
+                    "rejected_clip_start_ts": round(clip_start, 3),
+                    "rejected_clip_end_ts": round(clip_end, 3),
+                    "rejection_event_safe_cutoff_ts": round(safe_cutoff, 3),
+                }
+                log.warning(
+                    f"[DWR] retrospective_span rejected: "
+                    f"event_ts={event_ts:.2f} "
+                    f"clip_end={clip_end:.2f} "
+                    f"safe_margin_s={safe_margin:.2f} "
+                    f"threshold_s="
+                    f"{RETROSPECTIVE_SPAN_REJECTION_THRESHOLD_S:.2f} "
+                    f"reason={rejection_reason}")
+                self._stats["score_span_rejected_too_close"] += 1
+                legacy_span = None
+                clip_start = max(
+                    0.0, event_ts - DELAYED_SCORE_FALLBACK_LOOKBACK_S)
+                clip_end = max(
+                    clip_start,
+                    event_ts - DELAYED_SCORE_FALLBACK_END_BEFORE_EVENT_S)
+                frames = self._get_frames(clip_start, clip_end)
+                tags = self._get_tags(clip_start, clip_end, None)
+                source = "v3_chunker_fallback"
+                reason = "retrospective_span_rejected_too_close_to_event"
+                span = (clip_start, clip_end)
+                fallback_used = True
+                self._stats["score_v3_fallback_used"] += 1
+            else:
+                frames = self._get_frames(clip_start, clip_end)
+                source = "retrospective_span"
+                reason = "latest_bowlers_end_span"
+                span = legacy_span
+                self._stats["score_span_found"] += 1
         else:
             self._stats["score_span_missing"] += 1
             if self._v3_fallback_enabled:
                 # Safety net — v3 + legacy both returned None.  Cut a
-                # fixed-duration window centered on event_ts so every
-                # score event still produces a clip.  See chunker_v3_
-                # setup.md "None-event fallback".
+                # delayed-score pre-event window so every score event
+                # still produces a clip.  See chunker_v3_setup.md
+                # "None-event fallback".
                 clip_start = max(
-                    0.0, event_ts - self._v3_fallback_lookback_s)
-                clip_end = event_ts + self._v3_fallback_forward_s
+                    0.0, event_ts - DELAYED_SCORE_FALLBACK_LOOKBACK_S)
+                clip_end = max(
+                    clip_start,
+                    event_ts - DELAYED_SCORE_FALLBACK_END_BEFORE_EVENT_S)
                 frames = self._get_frames(clip_start, clip_end)
                 tags = self._get_tags(clip_start, clip_end, None)
                 source = "v3_chunker_fallback"
@@ -464,8 +519,14 @@ class DeliveryWindowRecorder:
                 log.warning(
                     f"[CHUNKER-V3-FALLBACK] event_ts={event_ts:.2f} "
                     f"window=({clip_start:.2f}, {clip_end:.2f}) "
-                    f"lookback_s={self._v3_fallback_lookback_s:.2f} "
-                    f"forward_s={self._v3_fallback_forward_s:.2f}")
+                    "fallback_type=delayed_score_pre_event "
+                    f"lookback_s={DELAYED_SCORE_FALLBACK_LOOKBACK_S:.2f} "
+                    f"end_before_event_s="
+                    f"{DELAYED_SCORE_FALLBACK_END_BEFORE_EVENT_S:.2f} "
+                    f"old_lookback_s="
+                    f"{self._v3_fallback_lookback_s:.2f} "
+                    f"old_forward_s="
+                    f"{self._v3_fallback_forward_s:.2f}")
             else:
                 clip_start = max(
                     0.0, event_ts - self._fallback_lookback_s)
@@ -509,8 +570,19 @@ class DeliveryWindowRecorder:
         )
         fallback_block = {
             "used": bool(fallback_used),
-            "lookback_s": self._v3_fallback_lookback_s,
+            "type": (
+                "delayed_score_pre_event" if fallback_used else None),
+            "lookback_s": (
+                DELAYED_SCORE_FALLBACK_LOOKBACK_S
+                if fallback_used else self._v3_fallback_lookback_s),
+            "end_before_event_s": (
+                DELAYED_SCORE_FALLBACK_END_BEFORE_EVENT_S
+                if fallback_used else None),
             "forward_s": self._v3_fallback_forward_s,
+            "old_lookback_s": self._v3_fallback_lookback_s,
+            "old_forward_s": self._v3_fallback_forward_s,
+            "clip_start_ts": round(clip_start, 3) if fallback_used else None,
+            "clip_end_ts": round(clip_end, 3) if fallback_used else None,
         }
 
         # Live-monitoring v1: retro hit-rate + v3 stats bookkeeping.
@@ -569,6 +641,8 @@ class DeliveryWindowRecorder:
             use_open_scout_spans=self._use_open_scout_spans,
             v3_chunker_block=v3_chunker_block,
             fallback_block=fallback_block,
+            retrospective_rejection_block=retrospective_rejection_block,
+            retrospective_safety_block=retrospective_safety_block,
         )
         if result is None:
             self._stats["score_unknown"] += 1
@@ -921,6 +995,19 @@ class DeliveryWindowRecorder:
         tags = self._get_tags(clip_start, clip_end, None)
         return clip_start, clip_end, tags
 
+    @staticmethod
+    def _has_dead_time_tag(tags: list[tuple[float, np.ndarray, str,
+                                           str | None]]) -> bool:
+        dead_views = {"ad", "graphic", "replay"}
+        dead_phases = {"advertisement", "graphic", "replay",
+                       "post_shot", "fielder_reaction"}
+        for _ts, _frame, view, phase in tags:
+            if (view or "").strip().lower() in dead_views:
+                return True
+            if (phase or "").strip().lower() in dead_phases:
+                return True
+        return False
+
     def _classify_frames_for_event(self,
                                    frames: list[tuple[float, np.ndarray]],
                                    save_dir: Path | None,
@@ -937,6 +1024,10 @@ class DeliveryWindowRecorder:
                                    use_open_scout_spans: bool = False,
                                    v3_chunker_block: dict | None = None,
                                    fallback_block: dict | None = None,
+                                   retrospective_rejection_block:
+                                   dict | None = None,
+                                   retrospective_safety_block:
+                                   dict | None = None,
                                    ) -> dict | None:
         win_id = context["window_id"]
         log.info(f"[DWR] window #{win_id} source={source} "
@@ -964,6 +1055,8 @@ class DeliveryWindowRecorder:
             use_open_scout_spans=use_open_scout_spans,
             v3_chunker_block=v3_chunker_block,
             fallback_block=fallback_block,
+            retrospective_rejection_block=retrospective_rejection_block,
+            retrospective_safety_block=retrospective_safety_block,
         )
 
         if len(frames) < self._min_frames:
@@ -1050,6 +1143,10 @@ class DeliveryWindowRecorder:
                             use_open_scout_spans: bool = False,
                             v3_chunker_block: dict | None = None,
                             fallback_block: dict | None = None,
+                            retrospective_rejection_block:
+                            dict | None = None,
+                            retrospective_safety_block:
+                            dict | None = None,
                             ) -> None:
         if save_dir is None:
             return
@@ -1084,6 +1181,34 @@ class DeliveryWindowRecorder:
             # ``lookback_s`` / ``forward_s`` fields document the bounds
             # that produced the cut.
             "fallback": fallback_block,
+            "retrospective_span_rejected": (
+                retrospective_rejection_block.get("reason")
+                if retrospective_rejection_block else None),
+            "rejected_span_start_ts": (
+                retrospective_rejection_block.get("rejected_span_start_ts")
+                if retrospective_rejection_block else None),
+            "rejected_span_end_ts": (
+                retrospective_rejection_block.get("rejected_span_end_ts")
+                if retrospective_rejection_block else None),
+            "rejected_clip_start_ts": (
+                retrospective_rejection_block.get("rejected_clip_start_ts")
+                if retrospective_rejection_block else None),
+            "rejected_clip_end_ts": (
+                retrospective_rejection_block.get("rejected_clip_end_ts")
+                if retrospective_rejection_block else None),
+            "rejection_event_safe_cutoff_ts": (
+                retrospective_rejection_block.get(
+                    "rejection_event_safe_cutoff_ts")
+                if retrospective_rejection_block else None),
+            "retrospective_span_safe_margin_s": (
+                retrospective_safety_block.get("safe_margin_s")
+                if retrospective_safety_block else None),
+            "retrospective_span_rejection_threshold_s": (
+                retrospective_safety_block.get("rejection_threshold_s")
+                if retrospective_safety_block else None),
+            "retrospective_span_has_dead_time_tag": (
+                retrospective_safety_block.get("has_dead_time_tag")
+                if retrospective_safety_block else None),
             "tags": [
                 {
                     "ts": ts,

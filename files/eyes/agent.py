@@ -6,6 +6,7 @@ No squad matching. No validation. That's the scorer's job.
 Uses Groq (Llama 4 Scout 17B) for speed + accuracy.
 Falls back to Llama 3.1 8B on rate limits.
 """
+from __future__ import annotations
 
 import json
 import time

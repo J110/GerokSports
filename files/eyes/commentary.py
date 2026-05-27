@@ -17,6 +17,87 @@ from eyes.cricket_logger import CricketLogger
 log = CricketLogger("COMMENTARY")
 
 
+def should_block_scoreless_legal_tick(
+        camera_view: str | None,
+        frame_phase: str | None,
+        action_text: str | None,
+        *,
+        post_dead_time_guard_active: bool = False) -> bool:
+    view = (camera_view or "").strip().lower()
+    phase = (frame_phase or "").strip().lower()
+    action = (action_text or "").strip().lower()
+    if view in {"ad", "graphic", "replay", "other"}:
+        return True
+    if phase in {"advertisement", "graphic", "replay"}:
+        return True
+    if not post_dead_time_guard_active:
+        return False
+    return any(token in action for token in (
+        "between play",
+        "taking a break",
+        "no delivery",
+        "no specific action",
+        "players are taking a break",
+    ))
+
+
+def _overs_to_total_balls(value) -> int | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+    try:
+        if "." in text:
+            overs_text, balls_text = text.split(".", 1)
+            overs = int(overs_text or "0")
+            balls = int((balls_text or "0")[:1])
+        else:
+            overs = int(float(text))
+            balls = 0
+    except (TypeError, ValueError):
+        return None
+    if balls < 0 or balls > 5:
+        return None
+    return overs * 6 + balls
+
+
+def has_strong_live_strip_scoreless_legal_evidence(
+        extracted: dict | None) -> bool:
+    extracted = extracted or {}
+    score = extracted.get("score")
+    overs = extracted.get("match_overs")
+    if overs is None:
+        overs = extracted.get("overs")
+    if score is None or overs is None:
+        return False
+
+    batters = [
+        row for row in extracted.get("batters") or []
+        if isinstance(row, dict)
+        and row.get("name")
+        and row.get("balls") is not None
+    ]
+    if len(batters) < 2:
+        return False
+
+    bowler = extracted.get("bowler")
+    if not isinstance(bowler, dict):
+        return False
+    if not bowler.get("name"):
+        return False
+    if (bowler.get("runs") is None
+            or bowler.get("wickets") is None
+            or bowler.get("overs") is None):
+        return False
+
+    team_balls = _overs_to_total_balls(overs)
+    bowler_balls = _overs_to_total_balls(bowler.get("overs"))
+    if team_balls is None or bowler_balls is None:
+        return False
+    return team_balls % 6 == bowler_balls % 6
+
+
 class BallEventDetector:
     """Detect ball events from confirmed tracker values only.
 
@@ -175,7 +256,11 @@ class BallEventDetector:
         o = float(overs or "0")
         return int(o) * 6 + round((o % 1) * 10)
 
-    def detect(self, tracker) -> dict | None:
+    def detect(
+            self,
+            tracker,
+            *,
+            allow_scoreless_legal: bool = True) -> dict | None:
         """Read from ConsistentReadTracker directly."""
         self._detect_count += 1
 
@@ -391,11 +476,26 @@ class BallEventDetector:
                 f"{event['type']} instead of DOT")
             self._possible_extra = None
 
+        if (event is None
+                and balls_delta == 1
+                and s_delta == 0
+                and w_delta == 0
+                and not allow_scoreless_legal
+                and striker_balls_delta <= 0):
+            log.info(
+                "[BED] Suppressing scoreless legal-ball tick without "
+                "live-play evidence after dead time")
+            self._save(score, wickets, overs, bowler_runs,
+                       cur_striker, striker_balls, striker_runs,
+                       bowler=cur_bowler, extras=_extras_now_i)
+            return None
+
         if event is None and balls_delta == 1:
             # Check if a fresh broadcast_extra implies an extra + legal
             # delivery were both missed in the same Scout gap.  The wide/NB
             # always precedes the legal re-bowl chronologically.
-            if self._broadcast_extra_is_fresh(within_calls=5):
+            if (self._broadcast_extra_is_fresh(within_calls=5)
+                    and s_delta > 0):
                 _bcast = self._broadcast_extra
                 extra_type = "wide" if _bcast == "WD" else "no_ball"
 

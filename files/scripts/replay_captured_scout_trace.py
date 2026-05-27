@@ -280,7 +280,18 @@ def _build_ui_snapshot(sm, sb, frame_id: int) -> UIBallSnapshot:
     if completed is not None and completed >= 0:
         recent = over_history.get(completed) or over_history.get(str(completed)) or []
 
-    extras_inn = (getattr(sb, "_inn", {}) or {}).get("extras") or {}
+    extras_inn = getattr(sb, "extras", None) or {}
+    event_extra = None
+    try:
+        event_extra = getattr(sm, "last_event", None)
+    except Exception:
+        event_extra = None
+    if isinstance(event_extra, dict) and event_extra.get("legal") is False:
+        try:
+            c, b = overs_str.split(".")
+            overs_str = f"{int(c)}.{int(b) + 1}"
+        except (ValueError, AttributeError):
+            pass
 
     return UIBallSnapshot(
         over_ball=overs_str,

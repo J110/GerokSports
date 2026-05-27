@@ -77,6 +77,8 @@ from eyes.commentary import (
     BallEventDetector, PartnershipTracker,
     get_match_situation,
     get_spell_analysis, get_batter_phase,
+    has_strong_live_strip_scoreless_legal_evidence,
+    should_block_scoreless_legal_tick,
 )
 from commentary.personalities import PERSONALITIES
 from commentary.context_builder import ContextBuilder
@@ -112,9 +114,11 @@ except (ImportError, AttributeError):
 
 log = CricketLogger("TEST")
 FRAME_WIDTH = 1280
-TEST_DURATION = 18000  # 5 hours — full T20 match buffer
+TEST_DURATION = int(os.environ.get("TEST_DURATION_S", "18000"))
 WS_PORT = 8765
 COMMENTARY_PORT = 8766
+_UI_SNAPSHOT_ENABLED = (
+    _FRAME_SOURCE_MODE == "file" and TEST_DURATION < 18000)
 
 # Post-processing: strip fabricated fielding positions from commentary
 _FIELDING_STRIP_RE = re.compile(
@@ -3395,6 +3399,103 @@ def _sr_float(value) -> float | None:
 
 def _sr_json(value) -> str:
     return json.dumps(value, sort_keys=True, separators=(",", ":"))
+
+
+def _ui_snapshot_overs_str(scorecard: dict, ball_event: dict | None) -> str:
+    raw = scorecard.get("overs") or "0.0"
+    try:
+        overs = float(raw)
+        overs_str = f"{overs:.1f}"
+    except (TypeError, ValueError):
+        overs_str = str(raw)
+    is_non_legal_extra = bool(
+        ball_event
+        and (ball_event.get("legal") is False
+             or ball_event.get("type") == "EXTRA"))
+    if is_non_legal_extra:
+        try:
+            c, b = overs_str.split(".")
+            return f"{int(c)}.{int(b) + 1}"
+        except (ValueError, AttributeError):
+            return overs_str
+    try:
+        c, b = overs_str.split(".")
+        if int(b) == 0 and int(c) > 0:
+            return f"{int(c) - 1}.6"
+    except (ValueError, AttributeError):
+        pass
+    return overs_str
+
+
+def _ui_snapshot_balls_total(over_ball: str, ball_event: dict | None) -> int:
+    try:
+        c, b = over_ball.split(".")
+        balls = int(c) * 6 + int(b)
+    except (ValueError, AttributeError):
+        return 0
+    if ball_event and (
+            ball_event.get("legal") is False
+            or ball_event.get("type") == "EXTRA"):
+        return max(0, balls - 1)
+    return balls
+
+
+def _ui_snapshot_card_slot(card: list[dict], name: str | None) -> dict:
+    if not name:
+        return {}
+    for row in card or []:
+        if row.get("name") == name:
+            return row
+    return {}
+
+
+def _build_replay_ui_snapshot_payload(
+        ws_payload: dict,
+        scoreboard,
+        ball_event: dict | None,
+        event_index: int) -> dict:
+    scorecard = ws_payload.get("scorecard") or {}
+    over_ball = _ui_snapshot_overs_str(scorecard, ball_event)
+    striker = scorecard.get("striker")
+    non = scorecard.get("non")
+    bowler = scorecard.get("current_bowler")
+    batting = ws_payload.get("batting_card") or []
+    bowling = ws_payload.get("bowling_card") or []
+    striker_slot = _ui_snapshot_card_slot(batting, striker)
+    non_slot = _ui_snapshot_card_slot(batting, non)
+    bowler_slot = _ui_snapshot_card_slot(bowling, bowler)
+    extras = getattr(scoreboard, "extras", None) or {}
+    return {
+        "over_ball": over_ball,
+        "score": int(scorecard.get("score") or 0),
+        "wickets": int(scorecard.get("wickets") or 0),
+        "balls_total": _ui_snapshot_balls_total(over_ball, ball_event),
+        "striker_name": striker,
+        "striker_runs": int(striker_slot.get("runs") or 0),
+        "striker_balls": int(striker_slot.get("balls") or 0),
+        "striker_fours": int(striker_slot.get("fours") or 0),
+        "striker_sixes": int(striker_slot.get("sixes") or 0),
+        "non_striker_name": non,
+        "non_striker_runs": int(non_slot.get("runs") or 0),
+        "non_striker_balls": int(non_slot.get("balls") or 0),
+        "non_striker_fours": int(non_slot.get("fours") or 0),
+        "non_striker_sixes": int(non_slot.get("sixes") or 0),
+        "bowler_name": bowler,
+        "bowler_overs": bowler_slot.get("overs"),
+        "bowler_runs": int(bowler_slot.get("runs") or 0),
+        "bowler_wickets": int(bowler_slot.get("wickets") or 0),
+        "event_index": event_index,
+        "this_over_tokens": list(ws_payload.get("this_over") or []),
+        "recent_over_n_minus_1": [],
+        "partnership_runs": 0,
+        "partnership_balls": 0,
+        "extras_total": int(extras.get("total") or 0),
+        "extras_wd": int(extras.get("wides") or 0),
+        "extras_nb": int(extras.get("no_balls") or 0),
+        "extras_b": int(extras.get("byes") or 0),
+        "extras_lb": int(extras.get("leg_byes") or 0),
+        "fow_entries": [],
+    }
 
 
 def _build_state_recovery_candidate(extracted: dict | None,
@@ -7194,6 +7295,14 @@ async def run_test():
     # carry the last known result rather than blanking the panel).
     # Cleared on innings change.
     _last_delivery_info: dict | None = None
+    _ui_snapshot_fh = None
+    _ui_snapshot_event_index: collections.Counter[str] = collections.Counter()
+    if _UI_SNAPSHOT_ENABLED:
+        _ui_snapshot_path = os.path.join(
+            "files", "logs", "deliveries", SESSION_ID, "ui_snapshots.jsonl")
+        os.makedirs(os.path.dirname(_ui_snapshot_path), exist_ok=True)
+        _ui_snapshot_fh = open(_ui_snapshot_path, "w", encoding="utf-8")
+        log.info(f"[UI-SNAPSHOT] writing {os.path.abspath(_ui_snapshot_path)}")
 
     # === Stuck-tracker POISON watchdog (2026-04-20) ===
     # The per-frame POISON delta check blocks extracted data from ever
@@ -7695,6 +7804,7 @@ async def run_test():
             window_id=firefox_wid or 0,
             file_frame_source=(
                 frames if _FRAME_SOURCE_MODE in ("file", "udp") else None),
+            session_id=SESSION_ID,
         )
         ball_analyzer.start()
         log.info("[BALL ANALYZER] Background capture started "
@@ -7951,6 +8061,7 @@ async def run_test():
     # active-play frame after the gap, with a one-line log entry so
     # we can audit dead → active transitions.
     _was_dead_time = False
+    _post_dead_time_scoreless_legal_guard = 0
     _cam_graphic_fp_cooldown = deque(maxlen=_FAST_PATH_COOLDOWN_MAXLEN)
     _prev_vision_frame_type: str | None = None
     # P3 — N-frame debounce window. Set to OVERLAY_WINDOW_FRAMES whenever
@@ -9051,6 +9162,7 @@ async def run_test():
 
             if frame_type == "ADVERTISEMENT":
                 skipped_ad += 1
+                _was_dead_time = True
                 cv2.imwrite(
                     f"debug_frames/f{frame_count}_ad.jpg", frame)
                 log.info(f"[F{frame_count}] AD {v_ms:.0f}ms (#{skipped_ad})")
@@ -9406,6 +9518,7 @@ async def run_test():
                          f"resuming active play after dead-time "
                          f"gap (#{skipped_dead_view} skipped)")
                 _cam_graphic_fp_cooldown.clear()
+                _post_dead_time_scoreless_legal_guard = 3
                 _was_dead_time = False
 
             processed += 1
@@ -13054,7 +13167,34 @@ async def run_test():
             # `if ball_event:` body via the queue-drain semantics of
             # detect(). For the first call we set ball_event normally;
             # the drain loop is below (after the main body runs once).
-            ball_event = ball_detector.detect(scoreboard._tracker)
+            _live_legal_evidence = (
+                _last_cam in ("bowlers_end", "side_on")
+                and _last_phase in ("release", "flight", "shot", "post_shot")
+            )
+            _strong_live_strip_scoreless_legal_evidence = (
+                has_strong_live_strip_scoreless_legal_evidence(extracted)
+                and _last_cam not in ("ad", "graphic", "replay", "other")
+                and _last_phase not in ("advertisement", "graphic", "replay")
+            )
+            _scoreless_legal_guard_override = (
+                _live_legal_evidence
+                or _strong_live_strip_scoreless_legal_evidence)
+            _block_scoreless_legal = (
+                should_block_scoreless_legal_tick(
+                    _last_cam,
+                    _last_phase,
+                    current_action,
+                    post_dead_time_guard_active=(
+                        _post_dead_time_scoreless_legal_guard > 0))
+                and not _scoreless_legal_guard_override)
+            ball_event = ball_detector.detect(
+                scoreboard._tracker,
+                allow_scoreless_legal=(
+                    not _block_scoreless_legal
+                    and (_post_dead_time_scoreless_legal_guard <= 0
+                         or _scoreless_legal_guard_override)))
+            if _post_dead_time_scoreless_legal_guard > 0:
+                _post_dead_time_scoreless_legal_guard -= 1
             # B1.3 exclusive-producer invariant: duplicate enqueue
             # removed. SM._decompose_multi_ball (sm.py:3617) is the
             # sole canonical PendingBall producer. The duplicate here
@@ -14120,6 +14260,16 @@ async def run_test():
                         if _plain:
                             ws_payload["_wire_override"] = _plain
             _assert_payload_invariants(ws_payload)
+            if _ui_snapshot_fh is not None and ball_event:
+                _snap_key = _ui_snapshot_overs_str(
+                    ws_payload.get("scorecard") or {}, ball_event)
+                _snap_event_index = _ui_snapshot_event_index[_snap_key]
+                _ui_snapshot_event_index[_snap_key] += 1
+                _ui_snapshot = _build_replay_ui_snapshot_payload(
+                    ws_payload, scoreboard, ball_event, _snap_event_index)
+                _ui_snapshot_fh.write(
+                    json.dumps(_ui_snapshot, default=_json_default) + "\n")
+                _ui_snapshot_fh.flush()
             await broadcast_state(ws_payload)
 
             scoreboard._tracker._flush_entity_suspicion()
