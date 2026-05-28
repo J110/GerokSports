@@ -44,10 +44,22 @@ def _label(event):
     return f"{event['over']} {event_type}"
 
 
+def _names_match(a, b):
+    ta = [t for t in str(a or "").upper().split() if t]
+    tb = [t for t in str(b or "").upper().split() if t]
+    if ta == tb:
+        return True
+    if not ta or not tb:
+        return False
+    small, large = (ta, tb) if len(ta) <= len(tb) else (tb, ta)
+    return large[-len(small):] == small
+
+
 class _KkrDcHarness:
     def __init__(self):
         self.detector = BallEventDetector()
         self.events = []
+        self.held_transition = None
         self.score = 10
         self.wickets = 0
         self.overs = "1.0"
@@ -141,6 +153,37 @@ class _KkrDcHarness:
         self.detector.prev_bowler_runs = raw_bowler["runs"]
         return event
 
+    def scoreonly_extra_from_progression_memory(
+            self,
+            *,
+            score,
+            raw_batters,
+            raw_bowler,
+            progression_bowler):
+        assert score == self.score + 1
+        assert raw_batters == self.raw_batters
+        assert _names_match(raw_bowler["name"], progression_bowler["name"])
+        assert raw_bowler["balls"] == progression_bowler["balls"]
+        assert raw_bowler["runs"] == progression_bowler["runs"] + 1
+        event = {
+            "type": "EXTRA",
+            "extra_type": "wide",
+            "runs": 1,
+            "certain": True,
+            "over": _over_label(_balls(self.overs) + 1),
+            "bowler": raw_bowler["name"],
+        }
+        self.events.append(event)
+        self.score = score
+        self.raw_batters = deepcopy(raw_batters)
+        self.raw_bowler = deepcopy(raw_bowler)
+        self.detector.prev_score = score
+        self.detector.prev_wickets = self.wickets
+        self.detector.prev_overs = self.overs
+        self.detector.prev_bowler = raw_bowler["name"]
+        self.detector.prev_bowler_runs = raw_bowler["runs"]
+        return event
+
     def stripped_batteronly_wide_dot(self, *, raw_batters, raw_bowler):
         changed = [
             name for name, row in raw_batters.items()
@@ -203,6 +246,107 @@ class _KkrDcHarness:
         if camera_view == "other" and real_progress:
             return self.legal(score=score, overs=overs, batter_balls=7)
         return None
+
+    def graphic_score_progress_with_corrob(
+            self,
+            *,
+            score,
+            overs,
+            raw_batters=None,
+            raw_bowler=None,
+            this_over_token=None):
+        score_delta = score - self.score
+        balls_delta = _balls(overs) - _balls(self.overs)
+        if not (score_delta > 0 and balls_delta == 1):
+            return self.legal(score=score, overs=overs)
+        if this_over_token:
+            return self.legal(score=score, overs=overs)
+        if raw_batters and set(raw_batters) == set(self.raw_batters):
+            changed = [
+                (name, row, self.raw_batters[name])
+                for name, row in raw_batters.items()
+                if row != self.raw_batters[name]
+            ]
+            if len(changed) == 1:
+                _name, row, prev = changed[0]
+                if (
+                        row["balls"] == prev["balls"] + 1
+                        and row["runs"] == prev["runs"] + score_delta):
+                    return self.legal(score=score, overs=overs)
+        if (
+                raw_bowler
+                and raw_bowler["name"] == self.raw_bowler["name"]
+                and raw_bowler["balls"] == self.raw_bowler["balls"] + 1
+                and raw_bowler["runs"] == self.raw_bowler["runs"] + score_delta):
+            return self.legal(score=score, overs=overs)
+        self.held_transition = {
+            "score_before": self.score,
+            "score_after": score,
+            "overs_before": self.overs,
+            "overs_after": overs,
+        }
+        return None
+
+    def later_graphic_after_held_transition(self, *, score, overs):
+        if self.held_transition and _balls(overs) > _balls(
+                self.held_transition["overs_after"]):
+            held = self.held_transition
+            held_runs = held["score_after"] - held["score_before"]
+            if held_runs > 0 and score == held["score_after"]:
+                held_event = {
+                    "type": f"{held_runs}_RUNS",
+                    "runs": held_runs,
+                    "certain": True,
+                    "over": held["overs_after"],
+                }
+                dot_event = {
+                    "type": "DOT",
+                    "runs": 0,
+                    "certain": True,
+                    "over": overs,
+                }
+                self.events.extend([held_event, dot_event])
+                self.score = score
+                self.overs = overs
+                self.detector.prev_score = self.score
+                self.detector.prev_wickets = self.wickets
+                self.detector.prev_overs = self.overs
+                self.held_transition = None
+                return [held_event, dot_event]
+            if held_runs > 0 and score > held["score_after"]:
+                held_event = {
+                    "type": f"{held_runs}_RUNS",
+                    "runs": held_runs,
+                    "certain": True,
+                    "over": held["overs_after"],
+                }
+                self.events.append(held_event)
+                self.score = held["score_after"]
+                self.overs = held["overs_after"]
+                self.detector.prev_score = self.score
+                self.detector.prev_wickets = self.wickets
+                self.detector.prev_overs = self.overs
+                self.held_transition = None
+                current_event = self.graphic_score_progress_with_corrob(
+                    score=score,
+                    overs=overs,
+                    raw_batters=None,
+                    raw_bowler=None,
+                    this_over_token="1",
+                )
+                return [held_event, current_event]
+            self.score = held["score_after"]
+            self.overs = held["overs_after"]
+            self.detector.prev_score = self.score
+            self.detector.prev_wickets = self.wickets
+            self.detector.prev_overs = self.overs
+            self.held_transition = None
+        return self.graphic_score_progress_with_corrob(
+            score=score,
+            overs=overs,
+            raw_batters={},
+            raw_bowler=None,
+        )
 
 
 def _prime_at_1_4():
@@ -293,6 +437,38 @@ def test_score_plus_one_same_over_bowler_only_extra_not_1_4_runs():
     assert "1.4 RUNS" not in [_label(e) for e in h.events]
 
 
+def test_scoreonly_extra_uses_standings_row_bowler_progression_memory():
+    h = _prime_at_1_4()
+    h.raw_bowler = _bowler(runs=0, overs="0.3")
+    progression_bowler = _bowler(runs=1, overs="0.4")
+
+    event = h.scoreonly_extra_from_progression_memory(
+        score=12,
+        raw_batters=deepcopy(h.raw_batters),
+        raw_bowler=_bowler(runs=2, overs="0.4"),
+        progression_bowler=progression_bowler,
+    )
+
+    assert _label(event) == "1.5 EXTRA"
+    assert "1.4 RUNS" not in [_label(e) for e in h.events]
+
+
+def test_scoreonly_extra_matches_suffix_bowler_name_from_progression_memory():
+    h = _prime_at_1_4()
+    h.raw_bowler = _bowler("S DUBEY", runs=1, overs="0.4")
+    progression_bowler = _bowler("S DUBEY", runs=1, overs="0.4")
+
+    event = h.scoreonly_extra_from_progression_memory(
+        score=12,
+        raw_batters=deepcopy(h.raw_batters),
+        raw_bowler=_bowler("DUBEY", runs=2, overs="0.4"),
+        progression_bowler=progression_bowler,
+    )
+
+    assert _label(event) == "1.5 EXTRA"
+    assert "1.4 RUNS" not in [_label(e) for e in h.events]
+
+
 def test_next_tick_after_scoreonly_extra_is_1_5_dot():
     h = _prime_at_1_4()
     _add_1_5_extra(h)
@@ -329,6 +505,95 @@ def test_score_plus_one_2_0_to_2_1_with_batter_bowler_increment_is_runs():
     )
 
     assert _label(event) == "2.1 RUNS"
+
+
+def test_graphic_score_progress_missing_batter_bowler_corrob_holds_2_3_runs():
+    h = _prime_at_1_4()
+    _add_1_5_extra(h)
+    h.legal(score=12, overs="1.5", batter_balls=8, bowler_runs=2)
+    h.legal(score=12, overs="2.0", batter_balls=9, bowler_runs=2)
+    h.legal(
+        score=13,
+        overs="2.1",
+        striker="KL Rahul",
+        batter_runs=3,
+        batter_balls=4,
+        bowler="Cameron Green",
+        bowler_runs=1,
+    )
+    h.legal(
+        score=14,
+        overs="2.2",
+        striker="KL Rahul",
+        batter_runs=4,
+        batter_balls=5,
+        bowler="Cameron Green",
+        bowler_runs=2,
+    )
+    h.raw_batters = _rows(
+        ("Abishek Porel", 9, 8, False),
+        ("KL Rahul", 4, 5, True),
+    )
+    h.raw_bowler = _bowler("Cameron Green", runs=2, overs="0.2")
+
+    event = h.graphic_score_progress_with_corrob(
+        score=16,
+        overs="2.3",
+        raw_batters={},
+        raw_bowler=None,
+    )
+
+    assert event is None
+    assert "2.3 RUNS" not in [_label(event) for event in h.events]
+
+
+def test_held_graphic_run_does_not_become_absorbed_gap_on_later_frame():
+    h = _prime_at_1_4()
+    _add_1_5_extra(h)
+    h.legal(score=12, overs="1.5", batter_balls=8, bowler_runs=2)
+    h.legal(score=12, overs="2.0", batter_balls=9, bowler_runs=2)
+    h.legal(
+        score=13,
+        overs="2.1",
+        striker="KL Rahul",
+        batter_runs=3,
+        batter_balls=4,
+        bowler="Cameron Green",
+        bowler_runs=1,
+    )
+
+    held = h.graphic_score_progress_with_corrob(
+        score=14,
+        overs="2.2",
+        raw_batters={},
+        raw_bowler=None,
+    )
+    later = h.later_graphic_after_held_transition(score=14, overs="2.3")
+
+    assert held is None
+    assert [_label(event) for event in later] == ["2.2 RUNS", "2.3 DOT"]
+    assert all(event["type"] != "ABSORBED_LEGAL" for event in h.events)
+    assert "2.2 ABSORBED_LEGAL" not in [_label(event) for event in h.events]
+    assert "2.3 ABSORBED_LEGAL" not in [_label(event) for event in h.events]
+
+
+def test_held_graphic_run_resolves_before_later_scoring_frame():
+    h = _prime_at_1_4()
+    _add_1_5_extra(h)
+    h.legal(score=12, overs="1.5", batter_balls=8, bowler_runs=2)
+    h.legal(score=12, overs="2.0", batter_balls=9, bowler_runs=2)
+
+    held = h.graphic_score_progress_with_corrob(
+        score=13,
+        overs="2.1",
+        raw_batters={},
+        raw_bowler=None,
+    )
+    later = h.later_graphic_after_held_transition(score=14, overs="2.2")
+
+    assert held is None
+    assert [_label(event) for event in later] == ["2.1 RUNS", "2.2 RUNS"]
+    assert all(event["type"] != "ABSORBED_LEGAL" for event in h.events)
 
 
 def test_standings_row_batteronly_no_progress_does_not_poison_memory():

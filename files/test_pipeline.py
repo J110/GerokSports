@@ -8399,6 +8399,8 @@ async def run_test():
 
     _last_accepted_raw_strip_batters: dict[str, dict] = {}
     _last_accepted_raw_strip_bowler: dict | None = None
+    _last_batteronly_progression_raw_bowler: dict | None = None
+    _held_graphic_strip_transition: dict | None = None
     _batteronly_wide_dot_emitted_overs: set[str] = set()
 
     def _maybe_feed_graphic_strip_event(
@@ -8411,6 +8413,8 @@ async def run_test():
             allow_cam_graphic: bool = False) -> None:
         nonlocal _last_accepted_raw_strip_batters
         nonlocal _last_accepted_raw_strip_bowler
+        nonlocal _last_batteronly_progression_raw_bowler
+        nonlocal _held_graphic_strip_transition
         nonlocal _batteronly_wide_dot_emitted_overs
         nonlocal _ball_events_for_current_team
         nonlocal _last_ball_event_frame, _last_delivery_info
@@ -8695,6 +8699,23 @@ async def run_test():
                 f"accepted_or_stripped={reason}")
 
         def _scoreonly_extra_candidate() -> dict | None:
+            def _bowler_names_match(a, b) -> bool:
+                _a = (a or "").strip()
+                _b = (b or "").strip()
+                if not _a or not _b:
+                    return False
+                _ra = scoreboard.resolve_name(_a) or _a
+                _rb = scoreboard.resolve_name(_b) or _b
+                if _ra == _rb:
+                    return True
+                _ta = [t for t in _ra.upper().split() if t]
+                _tb = [t for t in _rb.upper().split() if t]
+                if not _ta or not _tb:
+                    return False
+                _small, _large = (
+                    (_ta, _tb) if len(_ta) <= len(_tb) else (_tb, _ta))
+                return _large[-len(_small):] == _small
+
             if not (
                     delta_score == 1
                     and delta_balls == 0
@@ -8713,14 +8734,37 @@ async def run_test():
                     return None
             _bowler = _raw_strip_bowler_state()
             _prev_bowler = _last_accepted_raw_strip_bowler
+            _memory_source = "accepted"
+            if (
+                    _bowler
+                    and (not _prev_bowler
+                         or not _bowler_names_match(
+                             _bowler.get("name"), _prev_bowler.get("name"))
+                         or _bowler.get("balls") != _prev_bowler.get("balls")
+                         or _bowler.get("runs")
+                         != _prev_bowler.get("runs") + 1)):
+                _progression_bowler = (
+                    _last_batteronly_progression_raw_bowler)
+                if _progression_bowler:
+                    _prev_bowler = _progression_bowler
+                    _memory_source = "batteronly_progression"
             if not _bowler or not _prev_bowler:
                 return None
-            if _bowler.get("name") != _prev_bowler.get("name"):
+            if not _bowler_names_match(
+                    _bowler.get("name"), _prev_bowler.get("name")):
                 return None
             if _bowler.get("runs") != _prev_bowler.get("runs") + 1:
                 return None
             if _bowler.get("balls") != _prev_bowler.get("balls"):
                 return None
+            if _memory_source == "batteronly_progression":
+                log.info(
+                    f"[GRAPHIC-STRIP-SCOREONLY-EXTRA-MEMORY] "
+                    f"frame=F{frame_count} source={_memory_source} "
+                    f"bowler={_bowler.get('name')} "
+                    f"prior_runs={_prev_bowler.get('runs')} "
+                    f"current_runs={_bowler.get('runs')} "
+                    f"balls={_bowler.get('balls')}")
             return _bowler
 
         def _sync_score_manager_after_graphic_extra() -> None:
@@ -8740,6 +8784,15 @@ async def run_test():
             return f"{total_balls // 6}.{total_balls % 6}"
 
         def _log_batteronly_progression(reason: str) -> None:
+            nonlocal _last_batteronly_progression_raw_bowler
+            _raw_state = _raw_strip_batter_state()
+            _raw_bowler = _raw_strip_bowler_state()
+            if (_raw_state
+                    and _last_accepted_raw_strip_batters
+                    and _raw_bowler
+                    and set(_raw_state)
+                    == set(_last_accepted_raw_strip_batters)):
+                _last_batteronly_progression_raw_bowler = _raw_bowler
             if not _raw_strip_rows_changed():
                 return
             log.info(
@@ -9011,6 +9064,124 @@ async def run_test():
             return
         delta_balls = cur_balls - prev_balls
         delta_score = cur_score - prev_score_i
+
+        def _settle_held_transition_before_sm() -> bool:
+            nonlocal _held_graphic_strip_transition
+            _held = _held_graphic_strip_transition
+            if not _held:
+                return False
+            try:
+                _held_balls = overs_to_balls(_held.get("overs_after") or "0")
+            except (TypeError, ValueError):
+                _held_graphic_strip_transition = None
+                return False
+            if cur_balls <= _held_balls:
+                return False
+            _held_score_before = int(_held.get("score_before") or prev_score_i)
+            _held_score_after = int(_held.get("score_after") or prev_score_i)
+            _held_runs = _held_score_after - _held_score_before
+            _no_additional_score = (cur_score == _held_score_after)
+            _next_ball_after_held = (
+                cur_balls == _held_balls + 1
+                and cur_wickets == int(
+                    _held.get("wickets") or prev_wickets_i))
+            if (_held_runs > 0 and _no_additional_score
+                    and cur_balls == _held_balls + 1
+                    and cur_wickets == int(
+                        _held.get("wickets") or prev_wickets_i)):
+                _held_evt = {
+                    "type": "RUNS",
+                    "runs": _held_runs,
+                    "certain": True,
+                    "over": str(_held.get("overs_after")),
+                    "bowler": _cu_bowler_n,
+                    "batter": scoreboard._inn.get("striker"),
+                }
+                _dot_evt = {
+                    "type": "DOT",
+                    "runs": 0,
+                    "certain": True,
+                    "over": str(cur_overs),
+                    "bowler": _cu_bowler_n,
+                    "batter": scoreboard._inn.get("striker"),
+                }
+                _forward_graphic_event(_held_evt, "held_run_resolved")
+                _forward_graphic_event(_dot_evt, "held_next_dot")
+                score_mgr.score = cur_score
+                score_mgr.wickets = cur_wickets
+                score_mgr.overs = float(cur_overs)
+                try:
+                    score_mgr._event_baseline_score = cur_score
+                except Exception:
+                    pass
+                try:
+                    score_mgr._recompute()
+                except Exception:
+                    pass
+                log.info(
+                    f"[GRAPHIC-STRIP-RUN-HOLD-RESOLVED] "
+                    f"reason={_held.get('reason')} "
+                    f"held_frame=F{_held.get('frame')} frame=F{frame_count} "
+                    f"held_over={_held.get('overs_after')} "
+                    f"current_over={cur_overs} runs={_held_runs}")
+                _held_graphic_strip_transition = None
+                return True
+            if (_held_runs > 0
+                    and _next_ball_after_held
+                    and cur_score > _held_score_after):
+                _held_evt = {
+                    "type": "RUNS",
+                    "runs": _held_runs,
+                    "certain": True,
+                    "over": str(_held.get("overs_after")),
+                    "bowler": _cu_bowler_n,
+                    "batter": scoreboard._inn.get("striker"),
+                }
+                _forward_graphic_event(_held_evt, "held_run_resolved")
+                score_mgr.score = _held_score_after
+                score_mgr.wickets = cur_wickets
+                score_mgr.overs = float(_held.get("overs_after") or prev_overs)
+                try:
+                    score_mgr._event_baseline_score = _held_score_after
+                except Exception:
+                    pass
+                try:
+                    score_mgr._recompute()
+                except Exception:
+                    pass
+                log.info(
+                    f"[GRAPHIC-STRIP-RUN-HOLD-RESOLVED] "
+                    f"reason={_held.get('reason')} "
+                    f"held_frame=F{_held.get('frame')} frame=F{frame_count} "
+                    f"held_over={_held.get('overs_after')} "
+                    f"current_over={cur_overs} runs={_held_runs} "
+                    f"continue_current=1")
+                _held_graphic_strip_transition = None
+                return False
+            score_mgr.score = int(_held.get("score_after") or prev_score_i)
+            score_mgr.wickets = int(_held.get("wickets") or prev_wickets_i)
+            score_mgr.overs = float(_held.get("overs_after") or prev_overs)
+            try:
+                score_mgr._event_baseline_score = score_mgr.score
+            except Exception:
+                pass
+            try:
+                score_mgr._recompute()
+            except Exception:
+                pass
+            log.info(
+                f"[GRAPHIC-STRIP-RUN-HOLD-SETTLED] "
+                f"reason={_held.get('reason')} "
+                f"held_frame=F{_held.get('frame')} frame=F{frame_count} "
+                f"held_over={_held.get('overs_after')} "
+                f"next_overs={cur_overs}")
+            _held_graphic_strip_transition = None
+            return True
+
+        if _held_graphic_strip_transition:
+            if _settle_held_transition_before_sm():
+                return
+
         if _last_cam == "other":
             _has_real_progress = (
                 delta_score != 0
@@ -9130,6 +9301,71 @@ async def run_test():
                 f"overlay={bool(getattr(vision, 'last_overlay_flag', False))} "
                 f"changes={changes}")
             return
+
+        def _graphic_strip_run_has_corrob() -> bool:
+            if not (
+                    delta_balls == 1
+                    and delta_score > 0
+                    and not _graphic_bcast.get("broadcast_extra")
+                    and not (extracted_for_overlay or {}).get("dismissal")
+                    and not (extracted_for_overlay or {}).get(
+                        "dismissal_mode")):
+                return True
+            if _graphic_bcast.get("this_over_broadcast"):
+                return True
+            _current_raw = _raw_strip_batter_state()
+            _prev_raw = _last_accepted_raw_strip_batters
+            if _current_raw and _prev_raw and set(_current_raw) == set(_prev_raw):
+                _changed = []
+                for _name, _row in _current_raw.items():
+                    _prev = _prev_raw.get(_name)
+                    if _row != _prev:
+                        _changed.append((_name, _row, _prev))
+                if len(_changed) == 1:
+                    _name, _row, _prev = _changed[0]
+                    if (_prev
+                            and _row.get("balls") == _prev.get("balls") + 1
+                            and _row.get("runs")
+                            == _prev.get("runs") + int(delta_score)):
+                        return True
+                elif not _changed:
+                    _live_action_complete = (
+                        _last_cam in ("bowlers_end", "side_on")
+                        and _last_phase in (
+                            "release", "flight", "shot", "post_shot")
+                        and len(_current_raw) >= 2
+                        and _raw_strip_bowler_state() is not None)
+                    if _live_action_complete:
+                        return True
+            _bowler = _raw_strip_bowler_state()
+            _prev_bowler = _last_accepted_raw_strip_bowler
+            if (_bowler and _prev_bowler
+                    and _bowler.get("name") == _prev_bowler.get("name")
+                    and _bowler.get("balls") == _prev_bowler.get("balls") + 1
+                    and _bowler.get("runs")
+                    == _prev_bowler.get("runs") + int(delta_score)):
+                return True
+            return False
+
+        if not _graphic_strip_run_has_corrob():
+            _held_graphic_strip_transition = {
+                "target_over": str(cur_overs),
+                "score_before": prev_score_i,
+                "score_after": cur_score,
+                "overs_before": str(prev_overs),
+                "overs_after": str(cur_overs),
+                "wickets": cur_wickets,
+                "frame": frame_count,
+                "reason": "missing_corrob",
+            }
+            log.info(
+                f"[GRAPHIC-STRIP-RUN-HOLD] reason=missing_corrob "
+                f"frame=F{frame_count} score_before={prev_score_i} "
+                f"score_after={cur_score} overs_before={prev_overs} "
+                f"overs_after={cur_overs}")
+            _remember_raw_strip_batters("run_hold_missing_corrob")
+            return
+
         _sm_frame = FrameInput(
             frame_id=str(frame_count),
             timestamp=time.time(),
