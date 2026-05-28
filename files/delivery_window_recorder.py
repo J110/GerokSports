@@ -318,6 +318,7 @@ class DeliveryWindowRecorder:
         # Cut-precedence outcome flags.  ``fallback_used`` flips True
         # only when the V3 None-fallback safety net fires.
         fallback_used = False
+        fallback_scan_block: dict | None = None
         retrospective_rejection_block: dict | None = None
         retrospective_safety_block: dict | None = None
 
@@ -488,6 +489,14 @@ class DeliveryWindowRecorder:
                 tags = self._get_tags(clip_start, clip_end, None)
                 source = "v3_chunker_fallback"
                 reason = "retrospective_span_rejected_too_close_to_event"
+                (clip_start, clip_end, frames, tags,
+                 fallback_scan_block) = self._scan_v3_fallback_window(
+                     event_ts=event_ts,
+                     clip_start=clip_start,
+                     clip_end=clip_end,
+                     frames=frames,
+                     tags=tags,
+                     reason=reason)
                 span = (clip_start, clip_end)
                 fallback_used = True
                 self._stats["score_v3_fallback_used"] += 1
@@ -513,6 +522,14 @@ class DeliveryWindowRecorder:
                 tags = self._get_tags(clip_start, clip_end, None)
                 source = "v3_chunker_fallback"
                 reason = "v3_and_legacy_returned_none"
+                (clip_start, clip_end, frames, tags,
+                 fallback_scan_block) = self._scan_v3_fallback_window(
+                     event_ts=event_ts,
+                     clip_start=clip_start,
+                     clip_end=clip_end,
+                     frames=frames,
+                     tags=tags,
+                     reason=reason)
                 span = (clip_start, clip_end)
                 fallback_used = True
                 self._stats["score_v3_fallback_used"] += 1
@@ -641,6 +658,7 @@ class DeliveryWindowRecorder:
             use_open_scout_spans=self._use_open_scout_spans,
             v3_chunker_block=v3_chunker_block,
             fallback_block=fallback_block,
+            fallback_scan_block=fallback_scan_block,
             retrospective_rejection_block=retrospective_rejection_block,
             retrospective_safety_block=retrospective_safety_block,
         )
@@ -1008,6 +1026,107 @@ class DeliveryWindowRecorder:
                 return True
         return False
 
+    @staticmethod
+    def _fallback_window_scan_reason(
+            tags: list[tuple[float, np.ndarray, str, str | None]],
+            frames: list[tuple[float, np.ndarray]]) -> str | None:
+        if not frames:
+            return "no_frames"
+        if not tags:
+            return "no_tags"
+        dead_views = {"ad", "graphic", "replay", "other"}
+        dead_phases = {"advertisement", "graphic", "replay"}
+        useful_views = {"bowlers_end", "side_on", "closeup"}
+        action_phases = {"runup", "release", "flight", "shot", "post_shot"}
+        dead_count = 0
+        useful_count = 0
+        action_count = 0
+        for _ts, _frame, view, phase in tags:
+            view_norm = (view or "").strip().lower()
+            phase_norm = (phase or "").strip().lower()
+            is_dead = view_norm in dead_views or phase_norm in dead_phases
+            if is_dead:
+                dead_count += 1
+            is_action = phase_norm in action_phases
+            if is_action:
+                action_count += 1
+            if view_norm in useful_views and is_action and not is_dead:
+                useful_count += 1
+        if useful_count == 0:
+            if action_count == 0:
+                return "no_action_tags"
+            return "dead_or_no_useful_tags"
+        if dead_count / max(1, len(tags)) >= 0.75:
+            return "dead_dominated"
+        return None
+
+    def _scan_v3_fallback_window(
+            self,
+            *,
+            event_ts: float,
+            clip_start: float,
+            clip_end: float,
+            frames: list[tuple[float, np.ndarray]],
+            tags: list[tuple[float, np.ndarray, str, str | None]],
+            reason: str,
+    ) -> tuple[
+            float, float,
+            list[tuple[float, np.ndarray]],
+            list[tuple[float, np.ndarray, str, str | None]],
+            dict]:
+        scan_reason = self._fallback_window_scan_reason(tags, frames)
+        block = {
+            "used": False,
+            "reason": scan_reason,
+            "direction": None,
+            "original_clip_start_ts": round(clip_start, 3),
+            "original_clip_end_ts": round(clip_end, 3),
+            "candidates_checked": 0,
+        }
+        if scan_reason is None:
+            return clip_start, clip_end, frames, tags, block
+
+        original_start = clip_start
+        original_end = clip_end
+        window_s = max(0.0, original_end - original_start)
+        candidates_checked = 0
+        forward_end = original_end
+        max_forward_end = event_ts + MAX_EVENT_DRIFT_S
+        forward_step_s = max(1.0, DELAYED_SCORE_FALLBACK_END_BEFORE_EVENT_S)
+        while forward_end < max_forward_end:
+            cand_end = min(max_forward_end, forward_end + forward_step_s)
+            cand_start = max(0.0, cand_end - window_s)
+            if cand_end <= cand_start or cand_end <= original_end:
+                break
+            candidates_checked += 1
+            cand_frames = self._get_frames(cand_start, cand_end)
+            cand_tags = self._get_tags(cand_start, cand_end, None)
+            cand_reason = self._fallback_window_scan_reason(
+                cand_tags, cand_frames)
+            if cand_reason is None:
+                log.warning(
+                    f"[CHUNKER-V3-FALLBACK-SCAN] "
+                    f"event_ts={event_ts:.2f} "
+                    f"old=({original_start:.2f},{original_end:.2f}) "
+                    f"new=({cand_start:.2f},{cand_end:.2f}) "
+                    f"reason={scan_reason} "
+                    f"direction=forward "
+                    f"trigger={reason} "
+                    f"candidates_checked={candidates_checked}")
+                block.update({
+                    "used": True,
+                    "reason": scan_reason,
+                    "direction": "forward",
+                    "original_clip_start_ts": round(original_start, 3),
+                    "original_clip_end_ts": round(original_end, 3),
+                    "candidates_checked": candidates_checked,
+                })
+                return cand_start, cand_end, cand_frames, cand_tags, block
+            forward_end = cand_end
+
+        block["candidates_checked"] = candidates_checked
+        return clip_start, clip_end, frames, tags, block
+
     def _classify_frames_for_event(self,
                                    frames: list[tuple[float, np.ndarray]],
                                    save_dir: Path | None,
@@ -1024,6 +1143,7 @@ class DeliveryWindowRecorder:
                                    use_open_scout_spans: bool = False,
                                    v3_chunker_block: dict | None = None,
                                    fallback_block: dict | None = None,
+                                   fallback_scan_block: dict | None = None,
                                    retrospective_rejection_block:
                                    dict | None = None,
                                    retrospective_safety_block:
@@ -1055,6 +1175,7 @@ class DeliveryWindowRecorder:
             use_open_scout_spans=use_open_scout_spans,
             v3_chunker_block=v3_chunker_block,
             fallback_block=fallback_block,
+            fallback_scan_block=fallback_scan_block,
             retrospective_rejection_block=retrospective_rejection_block,
             retrospective_safety_block=retrospective_safety_block,
         )
@@ -1143,6 +1264,7 @@ class DeliveryWindowRecorder:
                             use_open_scout_spans: bool = False,
                             v3_chunker_block: dict | None = None,
                             fallback_block: dict | None = None,
+                            fallback_scan_block: dict | None = None,
                             retrospective_rejection_block:
                             dict | None = None,
                             retrospective_safety_block:
@@ -1181,6 +1303,24 @@ class DeliveryWindowRecorder:
             # ``lookback_s`` / ``forward_s`` fields document the bounds
             # that produced the cut.
             "fallback": fallback_block,
+            "fallback_scan_used": (
+                bool(fallback_scan_block.get("used"))
+                if fallback_scan_block else False),
+            "fallback_scan_reason": (
+                fallback_scan_block.get("reason")
+                if fallback_scan_block else None),
+            "fallback_scan_direction": (
+                fallback_scan_block.get("direction")
+                if fallback_scan_block else None),
+            "fallback_scan_original_clip_start_ts": (
+                fallback_scan_block.get("original_clip_start_ts")
+                if fallback_scan_block else None),
+            "fallback_scan_original_clip_end_ts": (
+                fallback_scan_block.get("original_clip_end_ts")
+                if fallback_scan_block else None),
+            "fallback_scan_candidates_checked": (
+                fallback_scan_block.get("candidates_checked")
+                if fallback_scan_block else 0),
             "retrospective_span_rejected": (
                 retrospective_rejection_block.get("reason")
                 if retrospective_rejection_block else None),

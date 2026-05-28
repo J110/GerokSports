@@ -5804,6 +5804,91 @@ def _empty_cold_start_payload(
     }
 
 
+def _maybe_bootstrap_cold_start_from_scoreboard(
+    *,
+    scoreboard,
+    score_mgr,
+    frame_count: int,
+) -> bool:
+    if (score_mgr is None
+            or getattr(score_mgr, "mode", None) != "COLD_START"
+            or getattr(score_mgr, "shadow", False)):
+        return False
+    inn = getattr(scoreboard, "_inn", None) or {}
+    try:
+        score = int(inn.get("score"))
+        wickets = int(inn.get("wickets"))
+        overs = float(inn.get("overs"))
+    except (TypeError, ValueError):
+        return False
+    if score <= 0 and overs <= 0.0:
+        return False
+    batting_team = (
+        getattr(scoreboard, "batting_team", None)
+        or inn.get("batting_team"))
+    if not batting_team:
+        return False
+    active = [
+        name for name, info in (getattr(scoreboard, "batting_card", None)
+                                or {}).items()
+        if info and info.get("status") == "batting"
+    ]
+    striker = getattr(score_mgr, "striker", None) or inn.get("striker")
+    non = getattr(score_mgr, "non", None) or inn.get("non")
+    if striker not in active and active:
+        striker = active[0]
+    if not non or non == striker:
+        non = next((name for name in active if name != striker), None)
+    if not striker or not non or striker == non:
+        return False
+    bowler = (
+        getattr(score_mgr, "bowler_name", None)
+        or inn.get("current_bowler")
+        or inn.get("bowler"))
+    if not bowler:
+        return False
+    card = {
+        "score": score,
+        "wickets": wickets,
+        "overs": overs,
+        "bat1_name": striker,
+        "bat2_name": non,
+        "bowler_name": bowler,
+    }
+    try:
+        score_mgr._last_warm_state = None
+        score_mgr._accept_initial(
+            card,
+            FrameInput(
+                frame_id=str(frame_count),
+                timestamp=time.time(),
+                ext_score=score,
+                ext_wickets=wickets,
+                ext_overs=overs,
+                broadcast_team=batting_team,
+            ),
+        )
+        score_mgr.mode = "WARM"
+        score_mgr.cold_candidate = None
+        score_mgr.cold_candidate_streak = 0
+        score_mgr.batting_team = batting_team
+        score_mgr.striker = striker
+        score_mgr.non = non
+        score_mgr.bowler_name = bowler
+        inn["batting_team"] = batting_team
+        inn["striker"] = striker
+        inn["non"] = non
+        inn["current_bowler"] = bowler
+        log.info(
+            f"[COLD-START-BOOTSTRAP] score={score} wickets={wickets} "
+            f"overs={overs} batting_team={batting_team} "
+            f"striker={striker} non={non} bowler={bowler}")
+        return True
+    except Exception as exc:  # noqa: BLE001
+        log.warn(f"[COLD-START-BOOTSTRAP] failed: {exc}")
+        return False
+
+
 def _build_full_payload_from_state(
     *,
     scoreboard,
@@ -5826,6 +5911,11 @@ def _build_full_payload_from_state(
 ) -> dict:
     """Build the SINGLE canonical WS payload (extracted from run_test)."""
     _ = assert_payload_invariants  # API compatibility; not used in-body.
+    _maybe_bootstrap_cold_start_from_scoreboard(
+        scoreboard=scoreboard,
+        score_mgr=score_mgr,
+        frame_count=frame_count,
+    )
 
     # Pre-lock cold-start suppression.  When SM is in COLD_START (live
     # mode), `scoreboard._inn` / `scoreboard.batting_card` /
@@ -8255,6 +8345,954 @@ async def run_test():
         except Exception as e:
             log.error(f"broadcast_base error: {e}")
 
+    def _maybe_correct_cold_start_baseline_overs(
+            *,
+            frame_kind: str,
+            broadcast_extra=None,
+            dismissal_present: bool = False) -> bool:
+        if getattr(score_mgr, "mode", None) != "WARM":
+            return False
+        if _ball_events_for_current_team != 0:
+            return False
+        if broadcast_extra or dismissal_present:
+            return False
+        _inn = scoreboard._inn if scoreboard._inn else {}
+        try:
+            _sb_score = int(_inn.get("score"))
+            _sb_wickets = int(_inn.get("wickets"))
+            _sb_overs = float(_inn.get("overs"))
+            _sm_score = int(score_mgr.score)
+            _sm_wickets = int(score_mgr.wickets)
+            _sm_overs = float(score_mgr.overs)
+        except (TypeError, ValueError):
+            return False
+        if _sb_score != _sm_score or _sb_wickets != _sm_wickets:
+            return False
+        try:
+            _delta_balls = overs_to_balls(_sb_overs) - overs_to_balls(_sm_overs)
+        except (TypeError, ValueError):
+            return False
+        if _delta_balls <= 1:
+            return False
+        _eligible_frame = (
+            (frame_kind == "GRAPHIC"
+             and getattr(vision, "last_strip_flag", False))
+            or frame_kind == "SCOREBOARD")
+        if not _eligible_frame:
+            return False
+        score_mgr.score = _sb_score
+        score_mgr.wickets = _sb_wickets
+        score_mgr.overs = _sb_overs
+        try:
+            score_mgr._event_baseline_score = _sb_score
+        except Exception:
+            pass
+        try:
+            score_mgr._recompute()
+        except Exception:
+            pass
+        log.info(
+            f"[COLD-START-BASELINE-OVERS-CORRECT] "
+            f"old_overs={_sm_overs} new_overs={_sb_overs} "
+            f"frame=F{frame_count}")
+        return True
+
+    _last_accepted_raw_strip_batters: dict[str, dict] = {}
+    _last_accepted_raw_strip_bowler: dict | None = None
+    _batteronly_wide_dot_emitted_overs: set[str] = set()
+
+    def _maybe_feed_graphic_strip_event(
+            *,
+            changes: list,
+            prev_score,
+            prev_wickets,
+            prev_overs,
+            extracted_for_overlay: dict | None = None,
+            allow_cam_graphic: bool = False) -> None:
+        nonlocal _last_accepted_raw_strip_batters
+        nonlocal _last_accepted_raw_strip_bowler
+        nonlocal _batteronly_wide_dot_emitted_overs
+        nonlocal _ball_events_for_current_team
+        nonlocal _last_ball_event_frame, _last_delivery_info
+
+        cur_score = 0
+        cur_wickets = 0
+        cur_overs = "0"
+        _graphic_speed = None
+        _graphic_forwarded_events: set = set()
+
+        def _skip(reason: str) -> None:
+            log.info(
+                f"[GRAPHIC-STRIP-EVENT-SKIP] reason={reason} "
+                f"frame=F{frame_count} "
+                f"score={scoreboard._inn.get('score') if scoreboard._inn else None} "
+                f"overs={scoreboard._inn.get('overs') if scoreboard._inn else None}")
+
+        def _event_key(evt: dict) -> tuple:
+            return (
+                evt.get("type"),
+                evt.get("over"),
+                evt.get("ball_index"),
+                evt.get("runs"),
+                evt.get("extra_type"),
+            )
+
+        def _normalize_graphic_event(evt: dict) -> None:
+            if evt.get("over") is None:
+                evt["over"] = str(cur_overs)
+            if evt.get("ball_index") is None:
+                try:
+                    _event_balls = overs_to_balls(evt.get("over") or cur_overs)
+                    evt["ball_index"] = ((_event_balls - 1) % 6
+                                         if _event_balls > 0 else 0)
+                except (TypeError, ValueError):
+                    pass
+
+        def _is_real_delivery_event(evt: dict) -> bool:
+            _real_delivery_types = {
+                "DOT", "RUNS", "FOUR", "SIX", "WICKET",
+                "WICKET_LATE", "WIDE", "NO_BALL", "EXTRA",
+            }
+            _evt_type_raw = evt.get("type", "")
+            return (_evt_type_raw in _real_delivery_types
+                    or _evt_type_raw.endswith("_RUNS"))
+
+        def _enqueue_graphic_delivery(evt: dict) -> None:
+            nonlocal _last_delivery_info
+
+            if (not ball_analyzer or not ball_analyzer.alive
+                    or _layer2_enqueue_blocked_absorbed(evt)
+                    or not _is_real_delivery_event(evt)):
+                return
+            _da_t0 = time.time()
+            _over_str = evt.get("over")
+            try:
+                _over_num = float(_over_str) if _over_str else None
+            except (ValueError, TypeError):
+                _over_num = None
+            try:
+                _known_handed = scoreboard.get_current_batsman_handed()
+            except Exception:
+                _known_handed = "unknown"
+            try:
+                _known_arm = scoreboard.get_current_bowling_arm()
+            except Exception:
+                _known_arm = "unknown"
+            _delivery_info = ball_analyzer.enqueue_delivery_analysis(
+                runs=evt.get("runs", 0),
+                speed_kph=_graphic_speed,
+                over_number=_over_num,
+                innings=scoreboard.current_innings,
+                event_age_hint=evt.get("_event_age_hint"),
+                event_type=evt.get("type", ""),
+                known_batsman_handed=_known_handed,
+                known_bowling_arm=_known_arm)
+            if shadow_runner is not None:
+                try:
+                    shadow_runner.mark_score_event(time.time())
+                except Exception:
+                    log.exception("[SHADOW] mark_score_event failed")
+            _da_ms = (time.time() - _da_t0) * 1000
+            if (_delivery_info
+                    and not _delivery_info.get("_untrackable")
+                    and not _delivery_info.get("_pending")):
+                _last_delivery_info = _delivery_info
+            if _delivery_info:
+                _d_method = _delivery_info.get("_method", "?")
+                if _delivery_info.get("_pending"):
+                    log.info(
+                        f"  [DELIVERY ENQUEUED] dnum="
+                        f"{_delivery_info.get('_delivery_num')} "
+                        f"evt={_delivery_info.get('_event_type')} "
+                        f"runs={_delivery_info.get('runs')} "
+                        f"(submit_ms={_da_ms:.0f}, method={_d_method}) "
+                        f"— awaiting async classification")
+                elif _delivery_info.get("_untrackable"):
+                    _skip_reason = _delivery_info.get(
+                        "_skip_reason", "unknown")
+                    log.info(
+                        f"  [DELIVERY SKIPPED] reason={_skip_reason} "
+                        f"({_da_ms:.0f}ms, method={_d_method})")
+                else:
+                    log.info(
+                        f"  [DELIVERY] "
+                        f"{_delivery_info['commentary_line']} "
+                        f"({_da_ms:.0f}ms, "
+                        f"{_delivery_info['detections']} dets, "
+                        f"method={_d_method})")
+
+        def _forward_graphic_event(evt: dict, source: str) -> None:
+            nonlocal _ball_events_for_current_team, _last_ball_event_frame
+
+            _normalize_graphic_event(evt)
+            _evt_key = _event_key(evt)
+            if _evt_key in _graphic_forwarded_events:
+                return
+            _score_for_event = int(scoreboard._inn.get("score") or cur_score)
+            over_mgr.on_ball_event(evt, score=_score_for_event)
+            _graphic_forwarded_events.add(_evt_key)
+            _already_recorded = any(_event_key(_ev) == _evt_key
+                                    for _ev in ball_detector.events)
+            if not _already_recorded:
+                ball_detector.events.append(dict(evt))
+                _ball_events_for_current_team += 1
+                _last_ball_event_frame = frame_count
+                scoreboard._tracker.on_ball_event()
+            _marker = (
+                "GRAPHIC-STRIP-BED-EVENT"
+                if source == "bed_drain"
+                else "GRAPHIC-STRIP-SM-EVENT")
+            log.info(
+                f"[{_marker}] frame=F{frame_count} source={source} "
+                f"type={evt.get('type')} over={evt.get('over')} "
+                f"runs={evt.get('runs')}")
+            log.info(
+                f"  [THIS-OVER] Ball {evt.get('type')} "
+                f"ix={evt.get('ball_index')} "
+                f"over={evt.get('over')}")
+            _enqueue_graphic_delivery(evt)
+
+        def _forward_graphic_sm_event(evt: dict) -> None:
+            _forward_graphic_event(evt, "score_manager")
+
+        def _raw_strip_batter_state() -> dict[str, dict]:
+            _state: dict[str, dict] = {}
+            if not extracted_for_overlay:
+                return _state
+            for _row in extracted_for_overlay.get("batters") or []:
+                if not isinstance(_row, dict):
+                    continue
+                _name = (_row.get("name") or "").strip()
+                if not _name:
+                    continue
+                _resolved = scoreboard.resolve_name(_name) or _name
+                try:
+                    _state[_resolved] = {
+                        "runs": int(_row.get("runs")),
+                        "balls": int(_row.get("balls")),
+                        "striker": bool(_row.get("striker")),
+                    }
+                except (TypeError, ValueError):
+                    continue
+            return _state
+
+        def _raw_batters_for_log():
+            return (extracted_for_overlay or {}).get("batters") or []
+
+        def _raw_bowler_for_log():
+            return (extracted_for_overlay or {}).get("bowler")
+
+        def _raw_strip_bowler_state() -> dict | None:
+            _row = _raw_bowler_for_log()
+            if not isinstance(_row, dict):
+                return None
+            _name = (_row.get("name") or "").strip()
+            if not _name:
+                return None
+            _resolved = scoreboard.resolve_name(_name) or _name
+            try:
+                _overs = str(_row.get("overs"))
+                return {
+                    "name": _resolved,
+                    "runs": int(_row.get("runs")),
+                    "balls": overs_to_balls(_overs),
+                    "overs": _overs,
+                }
+            except (TypeError, ValueError):
+                return None
+
+        def _raw_strip_rows_changed() -> bool:
+            _raw_state = _raw_strip_batter_state()
+            if not _raw_state or not _last_accepted_raw_strip_batters:
+                return False
+            for _name, _row in _raw_state.items():
+                if _last_accepted_raw_strip_batters.get(_name) != _row:
+                    return True
+            return False
+
+        def _remember_raw_strip_batters(reason: str) -> None:
+            nonlocal _last_accepted_raw_strip_batters
+            nonlocal _last_accepted_raw_strip_bowler
+            _raw_state = _raw_strip_batter_state()
+            if _raw_state:
+                _skip_downgrade_reasons = {
+                    "overlay_no_progress",
+                    "no_progress",
+                    "standings_row",
+                    "info_panel",
+                }
+                if (_last_accepted_raw_strip_batters
+                        and len(_raw_state)
+                        < len(_last_accepted_raw_strip_batters)
+                        and reason in _skip_downgrade_reasons):
+                    _current_names = ",".join(sorted(_raw_state.keys()))
+                    _previous_names = ",".join(
+                        sorted(_last_accepted_raw_strip_batters.keys()))
+                    log.info(
+                        f"[GRAPHIC-RAW-STRIP-MEMORY-SKIP] "
+                        f"frame=F{frame_count} reason={reason} "
+                        f"current_names={_current_names} "
+                        f"previous_names={_previous_names} "
+                        f"cause=partial_downgrade")
+                    return
+                if (_last_accepted_raw_strip_batters
+                        and len(_raw_state)
+                        == len(_last_accepted_raw_strip_batters)
+                        and _raw_state != _last_accepted_raw_strip_batters
+                        and reason in _skip_downgrade_reasons
+                        and delta_score == 0
+                        and delta_balls == 0
+                        and cur_wickets == prev_wickets_i):
+                    _current_names = ",".join(sorted(_raw_state.keys()))
+                    _previous_names = ",".join(
+                        sorted(_last_accepted_raw_strip_batters.keys()))
+                    log.info(
+                        f"[GRAPHIC-RAW-STRIP-MEMORY-SKIP] "
+                        f"frame=F{frame_count} reason={reason} "
+                        f"current_names={_current_names} "
+                        f"previous_names={_previous_names} "
+                        f"cause=no_progress_row_change")
+                    return
+                _last_accepted_raw_strip_batters = _raw_state
+                _raw_bowler_state = _raw_strip_bowler_state()
+                if _raw_bowler_state:
+                    _last_accepted_raw_strip_bowler = _raw_bowler_state
+                _names = ",".join(sorted(_raw_state.keys()))
+                log.info(
+                    f"[GRAPHIC-RAW-STRIP-MEMORY] frame=F{frame_count} "
+                    f"names={_names} reason={reason}")
+
+        def _wide_dot_nope(reason: str, current=None, previous=None) -> None:
+            if delta_score == 1 and delta_balls == 1:
+                log.info(
+                    f"[GRAPHIC-STRIP-WIDE-DOT-NOPE] "
+                    f"frame=F{frame_count} reason={reason} "
+                    f"current={current} previous={previous}")
+
+        def _log_scoreonly_extra_candidate(reason: str) -> None:
+            if not (
+                    delta_score == 1
+                    and delta_balls == 0
+                    and cur_wickets == prev_wickets_i
+                    and not (extracted_for_overlay or {}).get("dismissal")
+                    and not (extracted_for_overlay or {}).get(
+                        "dismissal_mode")):
+                return
+            log.info(
+                f"[GRAPHIC-SCOREONLY-EXTRA-CANDIDATE] "
+                f"frame=F{frame_count} "
+                f"score_before={prev_score_i} score_after={cur_score} "
+                f"overs_before={prev_overs} overs_after={cur_overs} "
+                f"wickets_before={prev_wickets_i} "
+                f"wickets_after={cur_wickets} "
+                f"raw_batters={_raw_batters_for_log()} "
+                f"raw_bowler={_raw_bowler_for_log()} "
+                f"broadcast_extra={_graphic_bcast.get('broadcast_extra')} "
+                f"broadcast_this_over="
+                f"{_graphic_bcast.get('this_over_broadcast')} "
+                f"camera_view={_last_cam} frame_phase={_last_phase} "
+                f"action_text={_graphic_action!r} "
+                f"accepted_or_stripped={reason}")
+
+        def _scoreonly_extra_candidate() -> dict | None:
+            if not (
+                    delta_score == 1
+                    and delta_balls == 0
+                    and cur_wickets == prev_wickets_i
+                    and not _graphic_bcast.get("broadcast_extra")
+                    and not _graphic_bcast.get("this_over_broadcast")
+                    and not (extracted_for_overlay or {}).get("dismissal")
+                    and not (extracted_for_overlay or {}).get(
+                        "dismissal_mode")):
+                return None
+            _current_raw = _raw_strip_batter_state()
+            if not _current_raw or not _last_accepted_raw_strip_batters:
+                return None
+            for _name, _row in _current_raw.items():
+                if _last_accepted_raw_strip_batters.get(_name) != _row:
+                    return None
+            _bowler = _raw_strip_bowler_state()
+            _prev_bowler = _last_accepted_raw_strip_bowler
+            if not _bowler or not _prev_bowler:
+                return None
+            if _bowler.get("name") != _prev_bowler.get("name"):
+                return None
+            if _bowler.get("runs") != _prev_bowler.get("runs") + 1:
+                return None
+            if _bowler.get("balls") != _prev_bowler.get("balls"):
+                return None
+            return _bowler
+
+        def _sync_score_manager_after_graphic_extra() -> None:
+            score_mgr.score = cur_score
+            score_mgr.wickets = cur_wickets
+            score_mgr.overs = float(cur_overs)
+            try:
+                score_mgr._event_baseline_score = cur_score
+            except Exception:
+                pass
+            try:
+                score_mgr._recompute()
+            except Exception:
+                pass
+
+        def _balls_to_over_label(total_balls: int) -> str:
+            return f"{total_balls // 6}.{total_balls % 6}"
+
+        def _log_batteronly_progression(reason: str) -> None:
+            if not _raw_strip_rows_changed():
+                return
+            log.info(
+                f"[GRAPHIC-BATTERONLY-PROGRESSION] "
+                f"frame=F{frame_count} "
+                f"raw_batters={_raw_batters_for_log()} "
+                f"raw_bowler={_raw_bowler_for_log()} "
+                f"current_score="
+                f"{scoreboard._inn.get('score') if scoreboard._inn else None} "
+                f"current_overs="
+                f"{scoreboard._inn.get('overs') if scoreboard._inn else None} "
+                f"strip_gate_reason={reason}")
+
+        def _try_batteronly_wide_dot_from_strip(reason: str) -> bool:
+            nonlocal cur_score, cur_wickets, cur_overs
+            nonlocal _graphic_forwarded_events
+
+            if reason != "standings_row":
+                return False
+            if getattr(score_mgr, "mode", None) == "COLD_START":
+                return False
+            if not scoreboard._inn:
+                return False
+            try:
+                cur_score = int(scoreboard._inn.get("score") or 0)
+                cur_wickets = int(scoreboard._inn.get("wickets") or 0)
+                cur_overs = scoreboard._inn.get("overs")
+            except (TypeError, ValueError):
+                return False
+            if cur_score != int(prev_score or 0):
+                return False
+            if cur_wickets != int(prev_wickets or 0):
+                return False
+            try:
+                _graphic_bcast = _bcast if isinstance(_bcast, dict) else {}
+            except NameError:
+                _graphic_bcast = {}
+            if (_graphic_bcast.get("broadcast_extra")
+                    or _graphic_bcast.get("this_over_broadcast")):
+                return False
+            if (extracted_for_overlay or {}).get("dismissal"):
+                return False
+            if (extracted_for_overlay or {}).get("dismissal_mode"):
+                return False
+            _current_raw = _raw_strip_batter_state()
+            if not _current_raw or not _last_accepted_raw_strip_batters:
+                return False
+            _raw_batter_runs = sum(
+                int(_row.get("runs") or 0)
+                for _row in _current_raw.values())
+            if cur_score <= _raw_batter_runs:
+                return False
+            _bowler = _raw_strip_bowler_state()
+            _prev_bowler = _last_accepted_raw_strip_bowler
+            if not _bowler or not _prev_bowler:
+                return False
+            if _bowler.get("name") != _prev_bowler.get("name"):
+                return False
+            if _bowler.get("balls") != _prev_bowler.get("balls") + 1:
+                return False
+            _bowler_runs = _bowler.get("runs")
+            _prev_bowler_runs = _prev_bowler.get("runs")
+            if (_bowler_runs != _prev_bowler_runs
+                    and _bowler_runs != _prev_bowler_runs + 1):
+                return False
+            try:
+                _accepted_balls = overs_to_balls(str(cur_overs or "0"))
+            except (TypeError, ValueError):
+                return False
+            _target_over = _balls_to_over_label(_accepted_balls + 1)
+            if _target_over in _batteronly_wide_dot_emitted_overs:
+                return False
+            _batter_match = None
+            _changed_batters = 0
+            for _name, _row in _current_raw.items():
+                _prev = _last_accepted_raw_strip_batters.get(_name)
+                if _prev is None:
+                    return False
+                if _row == _prev:
+                    continue
+                if (_row.get("runs") == _prev.get("runs")
+                        and _row.get("balls") == _prev.get("balls") + 1):
+                    _changed_batters += 1
+                    _batter_match = _name
+                else:
+                    return False
+            if _changed_batters != 1 or not _batter_match:
+                return False
+            for _name in _last_accepted_raw_strip_batters:
+                if _name not in _current_raw:
+                    return False
+            _graphic_forwarded_events = set()
+            try:
+                _graphic_speed = _frame_speed_kph
+            except NameError:
+                _graphic_speed = None
+            _cu_bowler_n = _bowler.get("name")
+            _extra_evt = {
+                "type": "EXTRA",
+                "extra_type": "wide",
+                "runs": 1,
+                "certain": True,
+                "over": _target_over,
+                "bowler": _cu_bowler_n,
+            }
+            _dot_evt = {
+                "type": "DOT",
+                "runs": 0,
+                "over": _target_over,
+                "batter": _batter_match,
+                "bowler": _cu_bowler_n,
+                "certain": True,
+            }
+            _forward_graphic_event(_extra_evt, "score_manager")
+            _forward_graphic_event(_dot_evt, "score_manager")
+            score_mgr.score = cur_score
+            score_mgr.wickets = cur_wickets
+            score_mgr.overs = float(_target_over)
+            try:
+                score_mgr._event_baseline_score = cur_score
+            except Exception:
+                pass
+            try:
+                score_mgr._recompute()
+            except Exception:
+                pass
+            ball_detector.prev_score = cur_score
+            ball_detector.prev_wickets = cur_wickets
+            ball_detector.prev_overs = str(_target_over)
+            if _bowler_runs is not None:
+                ball_detector.prev_bowler_runs = _bowler_runs
+            ball_detector.prev_bowler = _cu_bowler_n
+            _batteronly_wide_dot_emitted_overs.add(_target_over)
+            log.info(
+                f"[GRAPHIC-STRIP-BATTERONLY-WIDE-DOT] frame=F{frame_count} "
+                f"over={_target_over} batter={_batter_match} "
+                f"bowler={_cu_bowler_n} score={cur_score} "
+                f"overs_before={cur_overs}")
+            _remember_raw_strip_batters("batteronly_wide_dot")
+            if over_mgr.check_over_change(
+                    str(_target_over), _cu_bowler_n, cur_score):
+                adaptive.on_over_change()
+            return True
+
+        def _wide_dot_decompose_candidate() -> dict | None:
+            if not (
+                    delta_score == 1
+                    and delta_balls == 1
+                    and cur_wickets == prev_wickets_i
+                    and not _graphic_bcast.get("broadcast_extra")
+                    and not _graphic_bcast.get("this_over_broadcast")
+                    and not (extracted_for_overlay or {}).get("dismissal")
+                    and not (extracted_for_overlay or {}).get(
+                        "dismissal_mode")):
+                return None
+            _current_raw = _raw_strip_batter_state()
+            if not _current_raw or not _last_accepted_raw_strip_batters:
+                _wide_dot_nope(
+                    "missing_raw_history",
+                    _current_raw,
+                    _last_accepted_raw_strip_batters)
+                return None
+            _current_items = list(_current_raw.items())
+            _striker_items = [
+                _item for _item in _current_items
+                if _item[1].get("striker")
+            ]
+            for _name, _row in (_striker_items or _current_items):
+                _prev = _last_accepted_raw_strip_batters.get(_name)
+                if not _prev:
+                    _wide_dot_nope(
+                        "no_previous_row",
+                        {_name: _row},
+                        _last_accepted_raw_strip_batters)
+                    continue
+                if (_row.get("balls") == _prev.get("balls") + 1
+                        and _row.get("runs") == _prev.get("runs")):
+                    return {"batter": _name}
+                _wide_dot_nope("raw_delta_mismatch", {_name: _row}, _prev)
+            return None
+
+        upper_desc = (description or "").upper()
+        if not any(str(c).startswith(("score", "overs")) for c in changes):
+            _strip_gate_reason = "score_overs_stripped_or_absent"
+            if any(kw in upper_desc for kw in _STANDINGS_ROW_KEYWORDS):
+                _strip_gate_reason = "standings_row"
+            elif any(kw in upper_desc for kw in _INFO_PANEL_KEYWORDS):
+                _strip_gate_reason = "info_panel"
+            _log_batteronly_progression(_strip_gate_reason)
+            if _try_batteronly_wide_dot_from_strip(_strip_gate_reason):
+                return
+            return
+        if getattr(score_mgr, "mode", None) == "COLD_START":
+            _skip("cold_start")
+            return
+        if not getattr(vision, "last_strip_flag", False):
+            _skip("no_strip")
+            return
+        if _last_cam in ("ad", "replay"):
+            _skip("dead_view")
+            return
+        if _last_cam == "graphic" and not allow_cam_graphic:
+            _skip("dead_graphic_view")
+            return
+        if any(kw in upper_desc for kw in _INFO_PANEL_KEYWORDS):
+            _log_batteronly_progression("info_panel")
+            _skip("info_panel")
+            return
+        if any(kw in upper_desc for kw in _STANDINGS_ROW_KEYWORDS):
+            _log_batteronly_progression("standings_row")
+            _skip("standings_row")
+            return
+        sentinel = _detect_overlay_strip_sentinels(
+            description, _parse_current_match_number(
+                _broadcast_cache.get("match_info")))
+        if sentinel:
+            _sentinel_ok = False
+            if batting_team and extracted_for_overlay:
+                _resolved_batters = []
+                for _row in extracted_for_overlay.get("batters") or []:
+                    if not isinstance(_row, dict):
+                        continue
+                    _name = (_row.get("name") or "").strip()
+                    _resolved = scoreboard.resolve_name(_name) if _name else None
+                    if _resolved:
+                        _resolved_batters.append(_resolved)
+                _sentinel_ok = (
+                    bool(_resolved_batters)
+                    and all(_name in (scoreboard.batting_card or {})
+                            for _name in _resolved_batters))
+            if _sentinel_ok:
+                log.info(
+                    f"[GRAPHIC-STRIP-EVENT-SENTINEL-OK] "
+                    f"frame=F{frame_count} sentinel={sentinel}")
+            else:
+                _skip("overlay_sentinel")
+                return
+        try:
+            cur_score = int(scoreboard._inn.get("score") or 0)
+            cur_wickets = int(scoreboard._inn.get("wickets") or 0)
+            cur_overs = scoreboard._inn.get("overs")
+            prev_score_i = int(prev_score or 0)
+            prev_wickets_i = int(prev_wickets or 0)
+            prev_balls = overs_to_balls(prev_overs or "0")
+            cur_balls = overs_to_balls(cur_overs or "0")
+        except (TypeError, ValueError):
+            _skip("parse_failed")
+            return
+        _cu_overs_str = scoreboard._inn.get("overs")
+        _cu_bowler_n = scoreboard._inn.get("current_bowler")
+        _graphic_forwarded_events = set()
+        try:
+            _graphic_bcast = _bcast if isinstance(_bcast, dict) else {}
+        except NameError:
+            _graphic_bcast = {}
+        try:
+            _graphic_action = current_action or ""
+        except NameError:
+            _graphic_action = ""
+        try:
+            _graphic_speed = _frame_speed_kph
+        except NameError:
+            _graphic_speed = None
+        if cur_score < prev_score_i:
+            _skip("score_regressed")
+            return
+        if cur_wickets < prev_wickets_i:
+            _skip("wickets_regressed")
+            return
+        delta_balls = cur_balls - prev_balls
+        delta_score = cur_score - prev_score_i
+        if _last_cam == "other":
+            _has_real_progress = (
+                delta_score != 0
+                or cur_wickets != prev_wickets_i
+                or delta_balls != 0)
+            if not _has_real_progress:
+                _skip("dead_view")
+                return
+            log.info(
+                f"[GRAPHIC-STRIP-DEADVIEW-PROGRESS-ALLOW] "
+                f"frame=F{frame_count} cam=other "
+                f"score_before={prev_score_i} score_after={cur_score} "
+                f"overs_before={prev_overs} overs_after={cur_overs} "
+                f"wickets_before={prev_wickets_i} "
+                f"wickets_after={cur_wickets}")
+        if _overlay_window_remaining > 0:
+            _has_real_progress = (
+                delta_score != 0
+                or cur_wickets != prev_wickets_i
+                or delta_balls != 0)
+            if not _has_real_progress:
+                _skip("overlay_window")
+                return
+            log.info(
+                f"[GRAPHIC-STRIP-OVERLAY-PROGRESS-ALLOW] "
+                f"frame=F{frame_count} "
+                f"score_before={prev_score_i} score_after={cur_score} "
+                f"overs_before={prev_overs} overs_after={cur_overs} "
+                f"wickets_before={prev_wickets_i} "
+                f"wickets_after={cur_wickets}")
+        _log_scoreonly_extra_candidate("accepted_same_over_score_change")
+        if delta_balls < 0:
+            _skip("overs_regressed")
+            return
+        if delta_balls > 1:
+            if _maybe_correct_cold_start_baseline_overs(
+                    frame_kind=frame_type,
+                    broadcast_extra=_graphic_bcast.get("broadcast_extra"),
+                    dismissal_present=False):
+                return
+            _skip("overs_jump")
+            return
+        if delta_balls == 0 and delta_score <= 0:
+            _pending_extra = getattr(
+                ball_detector, "_extra_jitter_pending", None)
+            _pending_extra_matches = (
+                delta_score == 0
+                and isinstance(_pending_extra, dict)
+                and _pending_extra.get("score_at") == cur_score
+                and str(_pending_extra.get("overs")) == str(cur_overs)
+                and cur_wickets == prev_wickets_i
+                and not _graphic_bcast.get("broadcast_extra"))
+            if _pending_extra_matches:
+                _pending_event = ball_detector.detect(scoreboard._tracker)
+                if _pending_event:
+                    _normalize_graphic_event(_pending_event)
+                    _pending_key = _event_key(_pending_event)
+                    _graphic_forwarded_events.add(_pending_key)
+                    over_mgr.on_ball_event(
+                        _pending_event,
+                        score=int(scoreboard._inn.get("score") or cur_score))
+                    _ball_events_for_current_team += 1
+                    _last_ball_event_frame = frame_count
+                    scoreboard._tracker.on_ball_event()
+                    log.info(
+                        f"[GRAPHIC-STRIP-PENDING-EXTRA-CONFIRM] "
+                        f"frame=F{frame_count} "
+                        f"type={_pending_event.get('type')} "
+                        f"over={_pending_event.get('over')} "
+                        f"runs={_pending_event.get('runs')}")
+                    _enqueue_graphic_delivery(_pending_event)
+                    log.info(
+                        f"[GRAPHIC-STRIP-EVENT-FEED] frame=F{frame_count} "
+                        f"score={cur_score} overs={_cu_overs_str} "
+                        f"overlay={bool(getattr(vision, 'last_overlay_flag', False))} "
+                        f"changes={changes}")
+                    _remember_raw_strip_batters("pending_extra_confirm")
+                    return
+            if _raw_strip_batter_state():
+                _remember_raw_strip_batters(
+                    "overlay_no_progress"
+                    if getattr(vision, "last_overlay_flag", False)
+                    else "no_progress")
+            if getattr(vision, "last_overlay_flag", False):
+                _skip("overlay_no_progress")
+            else:
+                _skip("no_progress")
+            return
+        _scoreonly_bowler = _scoreonly_extra_candidate()
+        if _scoreonly_bowler:
+            _scoreonly_extra_over = _balls_to_over_label(cur_balls + 1)
+            _extra_evt = {
+                "type": "EXTRA",
+                "extra_type": "wide",
+                "runs": 1,
+                "certain": True,
+                "over": _scoreonly_extra_over,
+                "bowler": _scoreonly_bowler.get("name"),
+            }
+            _forward_graphic_event(_extra_evt, "score_manager")
+            _sync_score_manager_after_graphic_extra()
+            log.info(
+                f"[GRAPHIC-STRIP-SCOREONLY-EXTRA] "
+                f"frame=F{frame_count} over={_scoreonly_extra_over} "
+                f"bowler={_scoreonly_bowler.get('name')} runs=1")
+            log.info(
+                f"[GRAPHIC-STRIP-WIDE-DOT-DECOMPOSED] "
+                f"frame=F{frame_count} over={_scoreonly_extra_over} "
+                f"batter=None score={cur_score} overs={_scoreonly_extra_over}")
+            _remember_raw_strip_batters("scoreonly_extra")
+            if over_mgr.check_over_change(
+                    _cu_overs_str, _cu_bowler_n, cur_score):
+                adaptive.on_over_change()
+            log.info(
+                f"[GRAPHIC-STRIP-EVENT-FEED] frame=F{frame_count} "
+                f"score={cur_score} overs={_cu_overs_str} "
+                f"overlay={bool(getattr(vision, 'last_overlay_flag', False))} "
+                f"changes={changes}")
+            return
+        _sm_frame = FrameInput(
+            frame_id=str(frame_count),
+            timestamp=time.time(),
+            ext_score=cur_score,
+            ext_wickets=cur_wickets,
+            ext_overs=float(cur_overs),
+            scorer_changes=(changes if isinstance(changes, list) else []),
+            speed_kph=_graphic_speed,
+            broadcast_extra=_graphic_bcast.get("broadcast_extra"),
+            broadcast_this_over=_graphic_bcast.get("this_over_broadcast"),
+            broadcast_team=(batting_team or scoreboard.batting_team),
+            scout_text=description or "",
+            action_text=_graphic_action,
+        )
+        _sm_result = score_mgr.on_frame(_sm_frame)
+        _sm_events = (_sm_result or {}).get("ball_events") or []
+        _wide_dot_info = _wide_dot_decompose_candidate()
+        _sm_real_events = [
+            _sm_evt for _sm_evt in _sm_events
+            if (_sm_evt.get("type") != ABSORBED_LEGAL
+                and _is_real_delivery_event(_sm_evt))
+        ]
+        _sm_runs_events = [
+            _sm_evt for _sm_evt in _sm_real_events
+            if (_sm_evt.get("type") == "RUNS"
+                or str(_sm_evt.get("type") or "").endswith("_RUNS"))
+        ]
+        _wide_dot_sm_match = False
+        if _wide_dot_info and len(_sm_real_events) == 1 and len(_sm_runs_events) == 1:
+            _sm_runs_evt = _sm_runs_events[0]
+            _sm_over = str(_sm_runs_evt.get("over") or cur_overs)
+            _wide_dot_sm_match = (
+                _sm_over == str(cur_overs)
+                and int(_sm_runs_evt.get("runs") or 0) == 1)
+        if _wide_dot_sm_match:
+            _extra_evt = {
+                "type": "EXTRA",
+                "extra_type": "wide",
+                "runs": 1,
+                "over": str(cur_overs),
+                "bowler": _cu_bowler_n,
+                "certain": True,
+            }
+            _dot_evt = {
+                "type": "DOT",
+                "runs": 0,
+                "over": str(cur_overs),
+                "batter": _wide_dot_info.get("batter"),
+                "bowler": _cu_bowler_n,
+                "certain": True,
+            }
+            _forward_graphic_event(_extra_evt, "score_manager")
+            _forward_graphic_event(_dot_evt, "score_manager")
+            _sync_score_manager_after_graphic_extra()
+            log.info(
+                f"[GRAPHIC-STRIP-WIDE-DOT-DECOMPOSED] "
+                f"frame=F{frame_count} over={cur_overs} "
+                f"batter={_wide_dot_info.get('batter')} "
+                f"score={cur_score} overs={cur_overs}")
+            if over_mgr.check_over_change(
+                    _cu_overs_str, _cu_bowler_n, cur_score):
+                adaptive.on_over_change()
+            log.info(
+                f"[GRAPHIC-STRIP-SM-FEED] frame=F{frame_count} "
+                f"score={cur_score} overs={_cu_overs_str} "
+                f"events={len(_sm_events)}")
+            log.info(
+                f"[GRAPHIC-STRIP-EVENT-FEED] frame=F{frame_count} "
+                f"score={cur_score} overs={_cu_overs_str} "
+                f"overlay={bool(getattr(vision, 'last_overlay_flag', False))} "
+                f"changes={changes}")
+            _remember_raw_strip_batters("wide_dot_decomposed")
+            return
+        for _sm_evt in _sm_events:
+            _forward_graphic_sm_event(_sm_evt)
+        _sm_real_event = bool(_sm_real_events)
+        _hold_graphic_dot = (
+            delta_balls == 1
+            and delta_score == 0
+            and bool(getattr(vision, "last_overlay_flag", False))
+            and not (_last_cam in ("bowlers_end", "side_on")
+                     and _last_phase in ("release", "flight", "shot",
+                                         "post_shot")))
+        _same_over_graphic_score_change = (
+            delta_balls == 0
+            and delta_score > 0
+            and (bool(getattr(vision, "last_overlay_flag", False))
+                 or frame_type == "GRAPHIC"))
+
+        def _rewrite_last_scoreless_legal_if_late_run() -> bool:
+            if _scoreonly_extra_candidate():
+                log.info(
+                    f"[GRAPHIC-STRIP-LATE-RUN-SKIP] "
+                    f"reason=scoreonly_extra_candidate frame=F{frame_count} "
+                    f"score_before={prev_score_i} score_after={cur_score} "
+                    f"overs={cur_overs}")
+                return False
+            if not (
+                    delta_balls == 0
+                    and 0 < delta_score <= 6
+                    and cur_wickets == prev_wickets_i
+                    and _raw_strip_bowler_state()
+                    and len(_raw_strip_batter_state()) >= 2
+                    and not _graphic_bcast.get("broadcast_extra")
+                    and not _graphic_bcast.get("this_over_broadcast")
+                    and not (extracted_for_overlay or {}).get("dismissal")
+                    and not (extracted_for_overlay or {}).get(
+                        "dismissal_mode")
+                    and ball_detector.events):
+                return False
+            _last_evt = ball_detector.events[-1]
+            if (_last_evt.get("type") != "DOT"
+                    or int(_last_evt.get("runs") or 0) != 0
+                    or str(_last_evt.get("over")) != str(cur_overs)):
+                return False
+            _last_evt["type"] = "RUNS"
+            _last_evt["runs"] = int(delta_score)
+            _last_evt["certain"] = True
+            if _cu_bowler_n:
+                _last_evt["bowler"] = _cu_bowler_n
+            if over_mgr.this_over:
+                _last_idx = len(over_mgr.this_over) - 1
+                if str(over_mgr.this_over[_last_idx]) in (".", "?"):
+                    over_mgr.this_over[_last_idx] = str(int(delta_score))
+            log.info(
+                f"[GRAPHIC-STRIP-LATE-RUN-CORRECTED] "
+                f"frame=F{frame_count} over={cur_overs} "
+                f"runs={int(delta_score)} score_before={prev_score_i} "
+                f"score_after={cur_score}")
+            return True
+        if _sm_real_event:
+            log.info(
+                f"[GRAPHIC-STRIP-BED-SKIP] reason=sm_real_event "
+                f"frame=F{frame_count}")
+        elif _same_over_graphic_score_change:
+            _rewrite_last_scoreless_legal_if_late_run()
+            _remember_raw_strip_batters("same_over_score_change")
+            log.info(
+                f"[GRAPHIC-STRIP-BED-SKIP] "
+                f"reason=same_over_score_change frame=F{frame_count}")
+        elif _hold_graphic_dot:
+            log.info(
+                f"[GRAPHIC-STRIP-DOT-HOLD] frame=F{frame_count} "
+                f"over={_cu_overs_str}")
+        else:
+            while True:
+                _pre_ball = ball_detector.detect(scoreboard._tracker)
+                if not _pre_ball:
+                    break
+                _forward_graphic_event(_pre_ball, "bed_drain")
+        if over_mgr.check_over_change(_cu_overs_str, _cu_bowler_n, cur_score):
+            adaptive.on_over_change()
+        log.info(
+            f"[GRAPHIC-STRIP-SM-FEED] frame=F{frame_count} "
+            f"score={cur_score} overs={_cu_overs_str} "
+            f"events={len(_sm_events)}")
+        log.info(
+            f"[GRAPHIC-STRIP-EVENT-FEED] frame=F{frame_count} "
+            f"score={cur_score} overs={_cu_overs_str} "
+            f"overlay={bool(getattr(vision, 'last_overlay_flag', False))} "
+            f"changes={changes}")
+        _remember_raw_strip_batters("event_feed")
+
     # === STARTUP CLEANUP ===
     # Move existing frames to a dated subdir under
     # `debug_frames_archive/` rather than deleting outright, so that
@@ -9363,7 +10401,18 @@ async def run_test():
 
                 # HYBRID: run extractor on CLOSEUP too — the broadcast
                 # strip is almost always visible at the bottom
-                if description and batting_team:
+                _preteam_strip_extract = (
+                    description
+                    and batting_team is None
+                    and getattr(vision, "last_strip_flag", False)
+                    and (frame_type in ("GRAPHIC", "CLOSEUP", "PREMATCH")
+                         or _hybrid_graphic_with_strip))
+                if description and (batting_team or _preteam_strip_extract):
+                    if _preteam_strip_extract:
+                        log.info(
+                            f"[PRETEAM-STRIP-EXTRACT] frame=F{frame_count} "
+                            f"frame_type={frame_type} cam={_last_cam} "
+                            f"phase={_last_phase}")
                     _cu_t0 = time.time()
                     _cu_ext = await extractor.extract(
                         description,
@@ -9386,13 +10435,179 @@ async def run_test():
                             filter_standings_row_contamination(
                                 _cu_ext, description)
                         _cu_vis = _cu_ext.get("batting_team_visible")
+                        if _preteam_strip_extract and _cu_vis:
+                            _cu_vis_resolved = _resolve_team_variant(_cu_vis)
+                            if (_cu_vis_resolved
+                                    and _cu_vis_resolved in team_names
+                                    and _cu_ext.get("score") is not None
+                                    and _cu_ext.get("wickets") is not None
+                                    and _cu_ext.get("match_overs") is not None):
+                                _cu_zzz = False
+                                try:
+                                    _cu_zzz = (
+                                        int(_cu_ext.get("score")) == 0
+                                        and int(_cu_ext.get("wickets")) == 0
+                                        and float(_cu_ext.get("match_overs")) == 0.0)
+                                except (ValueError, TypeError):
+                                    _cu_zzz = False
+                                if not _cu_zzz:
+                                    _cu_off = cold_start_off_roster_batters(
+                                        _cu_ext, scoreboard)
+                                    if _cu_off:
+                                        _cu_kept = []
+                                        _cu_dropped = []
+                                        for _row in _cu_ext.get("batters") or []:
+                                            if not isinstance(_row, dict):
+                                                continue
+                                            _name = (_row.get("name") or "").strip()
+                                            if (_name
+                                                    and _find_player_team(_name)
+                                                    == _cu_vis_resolved):
+                                                _cu_kept.append(_row)
+                                            else:
+                                                _cu_dropped.append(_name or "<empty>")
+                                        _cu_ext["batters"] = _cu_kept
+                                        log.warn(
+                                            f"  [OFF-ROSTER-DROP-COLD-START] "
+                                            f"frame=F{frame_count} "
+                                            f"dropped={_cu_dropped} "
+                                            f"team={_cu_vis_resolved}")
+                                    _cu_other = [
+                                        t for t in team_names
+                                        if t != _cu_vis_resolved]
+                                    _cu_bowl_t = _cu_other[0] if _cu_other else "?"
+                                    log.info(
+                                        f"  [TEAM] Detected from visible_team: "
+                                        f"{_cu_vis} → {_cu_vis_resolved} batting")
+                                    assign_teams(_cu_vis_resolved, _cu_bowl_t)
                         if (_cu_vis and bowling_team
                                 and scoreboard.batting_card):
                             _cu_res = _resolve_team_variant(_cu_vis)
                             if _cu_res and _cu_res == bowling_team:
                                 _cu_ext = {}
 
+                        if frame_type == "GRAPHIC" and _cu_ext:
+                            def _strip_graphic_score_fields(_reason: str) -> None:
+                                _g_score = _cu_ext.get("score")
+                                _g_overs = _cu_ext.get("match_overs")
+                                _cu_ext.pop("score", None)
+                                _cu_ext.pop("wickets", None)
+                                _cu_ext.pop("match_overs", None)
+                                log.info(
+                                    f"[GRAPHIC-PRECOMMIT-POISON] "
+                                    f"frame=F{frame_count} reason={_reason} "
+                                    f"score={_g_score} overs={_g_overs}")
+
+                            def _strip_graphic_all_fields(_reason: str) -> None:
+                                _strip_graphic_score_fields(_reason)
+                                _cu_ext.pop("batters", None)
+                                _cu_ext.pop("bowler", None)
+
+                            _poison_prev_score = (
+                                scoreboard._inn.get("score")
+                                if scoreboard._inn else None)
+                            _poison_prev_overs = (
+                                scoreboard._inn.get("overs")
+                                if scoreboard._inn else None)
+                            _sentinel = _detect_overlay_strip_sentinels(
+                                description, _parse_current_match_number(
+                                    _broadcast_cache.get("match_info")))
+                            if _sentinel and scoreboard.batting_card:
+                                _resolved_batters = []
+                                for _row in _cu_ext.get("batters") or []:
+                                    if not isinstance(_row, dict):
+                                        continue
+                                    _name = (_row.get("name") or "").strip()
+                                    _resolved = (
+                                        scoreboard.resolve_name(_name)
+                                        if _name else None)
+                                    if _resolved:
+                                        _resolved_batters.append(_resolved)
+                                _sentinel_ok = (
+                                    bool(_resolved_batters)
+                                    and all(_name in scoreboard.batting_card
+                                            for _name in _resolved_batters))
+                                if not _sentinel_ok:
+                                    _strip_graphic_all_fields(
+                                        "overlay_sentinel_unresolved_batters")
+
+                            _cur_batting_team = (
+                                batting_team
+                                or getattr(scoreboard, "batting_team", None))
+                            _batters = _cu_ext.get("batters") or []
+                            if _cur_batting_team and _batters:
+                                _kept_batters = []
+                                _off_roster = []
+                                for _row in _batters:
+                                    if not isinstance(_row, dict):
+                                        continue
+                                    _name = (_row.get("name") or "").strip()
+                                    if not _name or _is_placeholder(_name):
+                                        continue
+                                    _player_team = _find_player_team(_name)
+                                    if (_player_team is None
+                                            or _player_team == _cur_batting_team):
+                                        _kept_batters.append(_row)
+                                    else:
+                                        _off_roster.append(_name)
+                                if _off_roster:
+                                    _cu_ext["batters"] = _kept_batters
+                                    log.info(
+                                        f"[GRAPHIC-PRECOMMIT-POISON] "
+                                        f"frame=F{frame_count} "
+                                        f"reason=off_roster_batters "
+                                        f"score={_cu_ext.get('score')} "
+                                        f"overs={_cu_ext.get('match_overs')}")
+                                    if not _kept_batters:
+                                        _strip_graphic_score_fields(
+                                            "all_batters_off_roster")
+
+                            try:
+                                _new_score = (
+                                    int(_cu_ext.get("score"))
+                                    if _cu_ext.get("score") is not None
+                                    else None)
+                                _prev_score_i = (
+                                    int(_poison_prev_score)
+                                    if _poison_prev_score is not None
+                                    else None)
+                                _new_overs_raw = _cu_ext.get("match_overs")
+                                _new_balls = (
+                                    overs_to_balls(_new_overs_raw)
+                                    if _new_overs_raw is not None else None)
+                                _prev_balls = (
+                                    overs_to_balls(_poison_prev_overs)
+                                    if _poison_prev_overs is not None else None)
+                                if (_new_balls is not None
+                                        and _prev_balls is not None
+                                        and _new_balls < _prev_balls):
+                                    _strip_graphic_score_fields(
+                                        "overs_regressed")
+                                elif (_new_score is not None
+                                      and _prev_score_i is not None):
+                                    _score_jump = _new_score - _prev_score_i
+                                    _balls_advance = (
+                                        _new_balls - _prev_balls
+                                        if (_new_balls is not None
+                                            and _prev_balls is not None)
+                                        else None)
+                                    if (_score_jump > 6
+                                            and _balls_advance != 1):
+                                        _strip_graphic_score_fields(
+                                            "score_jump_without_legal_ball")
+                            except (TypeError, ValueError):
+                                pass
+
                         _cu_changes = []
+                        _cu_prev_score = (
+                            scoreboard._inn.get("score")
+                            if scoreboard._inn else None)
+                        _cu_prev_wickets = (
+                            scoreboard._inn.get("wickets")
+                            if scoreboard._inn else None)
+                        _cu_prev_overs = (
+                            scoreboard._inn.get("overs")
+                            if scoreboard._inn else None)
                         _cu_s = _cu_ext.get("score")
                         if _cu_s is not None:
                             try:
@@ -9453,13 +10668,14 @@ async def run_test():
                         # Flush entity suspicion after all updates
                         scoreboard._tracker._flush_entity_suspicion()
 
-                        # Over change / ball event for hybrid frames.
-                        # 2026-05-13 (bug #5 root): skip over_mgr
-                        # inference when frame is classified as GRAPHIC
-                        # — strategic timeout / H2H / preview graphics
-                        # leak team-overs progressions that pad '?'
-                        # placeholders into this_over.
-                        if frame_type != "GRAPHIC":
+                        if frame_type == "GRAPHIC":
+                            _maybe_feed_graphic_strip_event(
+                                changes=_cu_changes,
+                                prev_score=_cu_prev_score,
+                                prev_wickets=_cu_prev_wickets,
+                                prev_overs=_cu_prev_overs,
+                                extracted_for_overlay=_cu_ext)
+                        else:
                             _cu_overs_str = scoreboard._inn.get("overs")
                             _cu_bowler_n = scoreboard._inn.get("current_bowler")
                             _cu_score_int = int(scoreboard._inn.get("score") or 0)
@@ -9562,6 +10778,15 @@ async def run_test():
                         drs_state=_drs_state,
                     )
                     if _fp_commit is not None:
+                        _fp_prev_score = (
+                            scoreboard._inn.get("score")
+                            if scoreboard._inn else None)
+                        _fp_prev_wickets = (
+                            scoreboard._inn.get("wickets")
+                            if scoreboard._inn else None)
+                        _fp_prev_overs = (
+                            scoreboard._inn.get("overs")
+                            if scoreboard._inn else None)
                         try:
                             _fp_cs = scoreboard.set(
                                 "score", _fp_commit["score"], frame_count)
@@ -9585,6 +10810,13 @@ async def run_test():
                                 f"score={_fp_commit['score']} "
                                 f"overs={_fp_commit['match_overs']} "
                                 f"changes={_fp_parts}")
+                            _maybe_feed_graphic_strip_event(
+                                changes=_fp_parts,
+                                prev_score=_fp_prev_score,
+                                prev_wickets=_fp_prev_wickets,
+                                prev_overs=_fp_prev_overs,
+                                extracted_for_overlay=None,
+                                allow_cam_graphic=True)
                             await broadcast_state(build_full_payload())
                         else:
                             log.info(
@@ -10080,6 +11312,54 @@ async def run_test():
                     extracted.pop("score", None)
                     extracted.pop("wickets", None)
                     extracted.pop("match_overs", None)
+
+            if (not _frame_poisoned
+                    and frame_type == "SCOREBOARD"
+                    and batting_team
+                    and scoreboard.batting_card
+                    and (extracted.get("score") is not None
+                         or extracted.get("match_overs") is not None)):
+                _scoreboard_vis = (
+                    extracted.get("batting_team_visible")
+                    or extracted.get("visible_team"))
+                if not _scoreboard_vis:
+                    _strip_team_match = re.search(
+                        r"\b([A-Z]{2,5})\s+\d+\s*[-/]\s*\d+\s*\(",
+                        description or "")
+                    if _strip_team_match:
+                        _scoreboard_vis = _strip_team_match.group(1)
+                _scoreboard_vis_resolved = (
+                    _resolve_team_variant(_scoreboard_vis)
+                    if _scoreboard_vis else None)
+                _scoreboard_team_matches = (
+                    bool(_scoreboard_vis_resolved)
+                    and _team_names_match(_scoreboard_vis_resolved,
+                                          batting_team))
+                if _scoreboard_vis and not _scoreboard_team_matches:
+                    _valid_scoreboard_batter_rows = 0
+                    for _row in extracted.get("batters") or []:
+                        if not isinstance(_row, dict):
+                            continue
+                        _name = (_row.get("name") or "").strip()
+                        _resolved = (
+                            scoreboard.resolve_name(_name)
+                            if _name else None)
+                        if _resolved in (scoreboard.batting_card or {}):
+                            _valid_scoreboard_batter_rows += 1
+                    if _valid_scoreboard_batter_rows == 0:
+                        _frame_poisoned = True
+                        _poison_non_graphic = True
+                        log.info(
+                            f"[SCOREBOARD-PRECOMMIT-POISON] "
+                            f"frame=F{frame_count} "
+                            f"reason=team_mismatch_or_unresolved_strip")
+                        extracted.pop("score", None)
+                        extracted.pop("wickets", None)
+                        extracted.pop("match_overs", None)
+                        extracted.pop("batters", None)
+                        extracted.pop("bowler", None)
+                        extracted.pop("bowlers", None)
+                        extracted.pop("bowler_figures", None)
 
             # Filter info panel contamination before scorer
             if description:
@@ -10716,7 +11996,9 @@ async def run_test():
             # visible_team observation feeds ConfidenceTracker.observe().
             # assign_teams() short-circuits when the leader is unchanged.
             if extracted:
-                _vis = extracted.get("batting_team_visible")
+                _vis = (
+                    extracted.get("batting_team_visible")
+                    or _bcast.get("team_abbr"))
                 if _vis:
                     _vis_resolved = _resolve_team_variant(_vis)
                     if _vis_resolved and _vis_resolved in team_names:
@@ -10767,14 +12049,41 @@ async def run_test():
                                 _off = cold_start_off_roster_batters(
                                     extracted, scoreboard)
                                 if _off:
-                                    log.warn(
-                                        f"  [BATTING_TEAM-COMMIT-"
-                                        f"DEFERRED] frame=F"
-                                        f"{frame_count} "
-                                        f"reason=off_roster_present "
-                                        f"dropped={_off} "
-                                        f"vis={_vis_resolved}")
-                                    _defer_commit = True
+                                    _complete_strip = (
+                                        extracted.get("score") is not None
+                                        and extracted.get("wickets") is not None
+                                        and extracted.get("match_overs") is not None
+                                    )
+                                    if (_complete_strip
+                                            and not extracted.get("dismissal")):
+                                        _kept_batters = []
+                                        _dropped_batters = []
+                                        for _row in extracted.get("batters") or []:
+                                            if not isinstance(_row, dict):
+                                                continue
+                                            _name = (_row.get("name") or "").strip()
+                                            if (_name
+                                                    and _find_player_team(_name)
+                                                    == _vis_resolved):
+                                                _kept_batters.append(_row)
+                                            else:
+                                                _dropped_batters.append(
+                                                    _name or "<empty>")
+                                        extracted["batters"] = _kept_batters
+                                        log.warn(
+                                            f"  [OFF-ROSTER-DROP-COLD-START] "
+                                            f"frame=F{frame_count} "
+                                            f"dropped={_dropped_batters} "
+                                            f"team={_vis_resolved}")
+                                    else:
+                                        log.warn(
+                                            f"  [BATTING_TEAM-COMMIT-"
+                                            f"DEFERRED] frame=F"
+                                            f"{frame_count} "
+                                            f"reason=off_roster_present "
+                                            f"dropped={_off} "
+                                            f"vis={_vis_resolved}")
+                                        _defer_commit = True
                             if not _defer_commit:
                                 log.info(
                                     f"  [TEAM] Detected from "
@@ -13371,6 +14680,59 @@ async def run_test():
                     not _block_scoreless_legal
                     and (_post_dead_time_scoreless_legal_guard <= 0
                          or _scoreless_legal_guard_override)))
+            if ball_event and ball_event.get("type") == ABSORBED_LEGAL:
+                try:
+                    _cur_score_now = int(scoreboard._inn.get("score") or 0)
+                    _cur_wickets_now = int(
+                        scoreboard._inn.get("wickets") or 0)
+                    _before_score_now = int(_before_state.get("score") or 0)
+                    _before_wickets_now = int(
+                        _before_state.get("wickets") or 0)
+                    _cur_balls_now = overs_to_balls(
+                        scoreboard._inn.get("overs") or "0")
+                    _before_balls_now = overs_to_balls(
+                        _before_state.get("overs") or "0")
+                except (TypeError, ValueError):
+                    _cur_score_now = _cur_wickets_now = None
+                    _before_score_now = _before_wickets_now = None
+                    _cur_balls_now = _before_balls_now = None
+                _no_scoreboard_progress = (
+                    frame_type == "SCOREBOARD"
+                    and _cur_score_now == _before_score_now
+                    and _cur_wickets_now == _before_wickets_now
+                    and _cur_balls_now == _before_balls_now
+                    and not _bcast_extra
+                    and not _bcast.get("this_over_broadcast")
+                    and not extracted.get("dismissal")
+                    and not extracted.get("dismissal_mode")
+                    and not _bcast.get("dismissal_mode"))
+                if _no_scoreboard_progress:
+                    log.info(
+                        f"[BED-ABSORBED-SUPPRESSED] "
+                        f"reason=no_scoreboard_progress frame=F{frame_count}")
+                    try:
+                        if (ball_detector.events
+                                and ball_detector.events[-1] is ball_event):
+                            ball_detector.events.pop()
+                    except Exception:
+                        pass
+                    try:
+                        _suppressed_key = ball_detector._dedup_key(
+                            ball_event,
+                            scoreboard._tracker.get("score"))
+                        ball_detector._recent_emissions = [
+                            (_c, _k)
+                            for _c, _k in ball_detector._recent_emissions
+                            if _k != _suppressed_key]
+                    except Exception:
+                        pass
+                    try:
+                        ball_detector._event_queue = [
+                            _evt for _evt in ball_detector._event_queue
+                            if _evt.get("type") != ABSORBED_LEGAL]
+                    except Exception:
+                        pass
+                    ball_event = None
             if _post_dead_time_scoreless_legal_guard > 0:
                 _post_dead_time_scoreless_legal_guard -= 1
             # B1.3 exclusive-producer invariant: duplicate enqueue
@@ -14290,6 +15652,13 @@ async def run_test():
                     f"score={_r_bow.leader_score:.2f} "
                     f"state={_r_bow.state} "
                     f"flipped={_r_bow.flipped}")
+            _maybe_correct_cold_start_baseline_overs(
+                frame_kind=frame_type,
+                broadcast_extra=_bcast.get("broadcast_extra"),
+                dismissal_present=bool(
+                    extracted.get("dismissal")
+                    or extracted.get("dismissal_mode")
+                    or _bcast.get("dismissal_mode")))
             _sm_frame = FrameInput(
                 frame_id=str(frame_count),
                 timestamp=time.time(),
@@ -14329,6 +15698,69 @@ async def run_test():
                     reason="score_manager_mid_innings_recovery")
 
             _sm_belist_fan = (_sm_result or {}).get("ball_events") or []
+            _sm_real_delivery_types = {
+                "DOT", "RUNS", "FOUR", "SIX", "WICKET",
+                "WICKET_LATE", "WIDE", "NO_BALL", "EXTRA",
+            }
+            _sm_has_real_event = any(
+                (_evt.get("type") in _sm_real_delivery_types
+                 or str(_evt.get("type") or "").endswith("_RUNS"))
+                for _evt in _sm_belist_fan)
+            if (ball_event
+                    and ball_event.get("type") == ABSORBED_LEGAL
+                    and _sm_has_real_event):
+                log.info(
+                    f"[BED-ABSORBED-SUPPRESSED] "
+                    f"reason=score_manager_real_event frame=F{frame_count}")
+                try:
+                    if ball_detector.events:
+                        if ball_detector.events[-1] is ball_event:
+                            ball_detector.events.pop()
+                        else:
+                            _bed_key = (
+                                ball_event.get("type"),
+                                ball_event.get("over"),
+                                ball_event.get("ball_index"),
+                                ball_event.get("runs"),
+                                ball_event.get("extra_type"),
+                            )
+                            for _idx in range(
+                                    len(ball_detector.events) - 1, -1, -1):
+                                _ev = ball_detector.events[_idx]
+                                _ev_key = (
+                                    _ev.get("type"),
+                                    _ev.get("over"),
+                                    _ev.get("ball_index"),
+                                    _ev.get("runs"),
+                                    _ev.get("extra_type"),
+                                )
+                                if _ev_key == _bed_key:
+                                    ball_detector.events.pop(_idx)
+                                    break
+                except Exception:
+                    pass
+                try:
+                    _suppressed_key = ball_detector._dedup_key(
+                        ball_event,
+                        scoreboard._tracker.get("score"))
+                    ball_detector._recent_emissions = [
+                        (_c, _k)
+                        for _c, _k in ball_detector._recent_emissions
+                        if _k != _suppressed_key]
+                except Exception:
+                    pass
+                try:
+                    ball_detector._event_queue = [
+                        _evt for _evt in ball_detector._event_queue
+                        if _evt.get("type") != ABSORBED_LEGAL]
+                except Exception:
+                    pass
+                try:
+                    _ball_events_for_current_team = max(
+                        0, _ball_events_for_current_team - 1)
+                except Exception:
+                    pass
+                ball_event = None
             if any(e.get("type") == ABSORBED_LEGAL for e in _sm_belist_fan):
                 _sc_abs = int(scoreboard._inn.get("score") or 0)
                 for _abe in _sm_belist_fan:
@@ -14373,6 +15805,130 @@ async def run_test():
             elif ball_event:
                 log.info(f"  [SHADOW] SM=None "
                          f"BED={ball_event.get('type')} MISSED")
+
+            if ball_event is None:
+                _real_delivery_types = {
+                    "DOT", "RUNS", "FOUR", "SIX", "WICKET",
+                    "WICKET_LATE", "WIDE", "NO_BALL", "EXTRA",
+                }
+                _sm_promotable_events = [
+                    dict(_evt) for _evt in _sm_belist_fan
+                    if (_evt.get("type") in _real_delivery_types
+                        or str(_evt.get("type") or "").endswith("_RUNS"))
+                ]
+                for _sm_promoted in _sm_promotable_events:
+                    if _sm_promoted.get("over") is None:
+                        _sm_promoted["over"] = state.get("overs")
+                    if _sm_promoted.get("ball_index") is None:
+                        try:
+                            _event_balls = overs_to_balls(
+                                _sm_promoted.get("over") or state.get("overs"))
+                            _sm_promoted["ball_index"] = (
+                                (_event_balls - 1) % 6
+                                if _event_balls > 0 else 0)
+                        except (TypeError, ValueError):
+                            pass
+                    _sm_key = (
+                        _sm_promoted.get("type"),
+                        _sm_promoted.get("over"),
+                        _sm_promoted.get("ball_index"),
+                        _sm_promoted.get("runs"),
+                        _sm_promoted.get("extra_type"),
+                    )
+                    _already_recorded = any(
+                        (
+                            _ev.get("type"),
+                            _ev.get("over"),
+                            _ev.get("ball_index"),
+                            _ev.get("runs"),
+                            _ev.get("extra_type"),
+                        ) == _sm_key
+                        for _ev in ball_detector.events)
+                    if _already_recorded:
+                        log.info(
+                            f"[SCOREBOARD-SM-EVENT-SKIP] "
+                            f"reason=duplicate frame=F{frame_count} "
+                            f"type={_sm_promoted.get('type')} "
+                            f"over={_sm_promoted.get('over')} "
+                            f"runs={_sm_promoted.get('runs')}")
+                        continue
+                    over_mgr.on_ball_event(
+                        _sm_promoted,
+                        score=int(scoreboard._inn.get("score") or 0))
+                    ball_detector.events.append(dict(_sm_promoted))
+                    _ball_events_for_current_team += 1
+                    _last_ball_event_frame = frame_count
+                    scoreboard._tracker.on_ball_event()
+                    ball_event = _sm_promoted
+                    log.info(
+                        f"[SCOREBOARD-SM-EVENT] frame=F{frame_count} "
+                        f"type={_sm_promoted.get('type')} "
+                        f"over={_sm_promoted.get('over')} "
+                        f"runs={_sm_promoted.get('runs')}")
+                    if (ball_analyzer and ball_analyzer.alive
+                            and not _layer2_enqueue_blocked_absorbed(
+                                _sm_promoted)):
+                        _da_t0 = time.time()
+                        _over_str = _sm_promoted.get("over")
+                        try:
+                            _over_num = (
+                                float(_over_str) if _over_str else None)
+                        except (ValueError, TypeError):
+                            _over_num = None
+                        try:
+                            _known_handed = (
+                                scoreboard.get_current_batsman_handed())
+                        except Exception:
+                            _known_handed = "unknown"
+                        try:
+                            _known_arm = scoreboard.get_current_bowling_arm()
+                        except Exception:
+                            _known_arm = "unknown"
+                        delivery_info = ball_analyzer.enqueue_delivery_analysis(
+                            runs=_sm_promoted.get("runs", 0),
+                            speed_kph=_frame_speed_kph,
+                            over_number=_over_num,
+                            innings=scoreboard.current_innings,
+                            event_age_hint=_sm_promoted.get(
+                                "_event_age_hint"),
+                            event_type=_sm_promoted.get("type"),
+                            known_batsman_handed=_known_handed,
+                            known_bowling_arm=_known_arm)
+                        if shadow_runner is not None:
+                            try:
+                                shadow_runner.mark_score_event(time.time())
+                            except Exception:
+                                log.exception(
+                                    "[SHADOW] mark_score_event failed")
+                        _da_ms = (time.time() - _da_t0) * 1000
+                        if (delivery_info
+                                and not delivery_info.get("_untrackable")
+                                and not delivery_info.get("_pending")):
+                            _last_delivery_info = delivery_info
+                        if delivery_info:
+                            _d_method = delivery_info.get("_method", "?")
+                            if delivery_info.get("_pending"):
+                                log.info(
+                                    f"  [DELIVERY ENQUEUED] dnum="
+                                    f"{delivery_info.get('_delivery_num')} "
+                                    f"evt={delivery_info.get('_event_type')} "
+                                    f"runs={delivery_info.get('runs')} "
+                                    f"(submit_ms={_da_ms:.0f}, "
+                                    f"method={_d_method}) — awaiting async "
+                                    f"classification")
+                            elif delivery_info.get("_untrackable"):
+                                _skip = delivery_info.get(
+                                    "_skip_reason", "unknown")
+                                log.info(
+                                    f"  [DELIVERY SKIPPED] reason={_skip} "
+                                    f"({_da_ms:.0f}ms, method={_d_method})")
+                            else:
+                                log.info(
+                                    f"  [DELIVERY] "
+                                    f"{delivery_info['commentary_line']} "
+                                    f"({_da_ms:.0f}ms, "
+                                    f"{delivery_info['detections']} dets, "
+                                    f"method={_d_method})")
 
             # === Pull async delivery classification result ===
             # enqueue_delivery_analysis hands the DWR + Gemini call to
